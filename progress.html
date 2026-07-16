@@ -1,0 +1,2231 @@
+<!DOCTYPE html>
+
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>全國社宅統一申請登記平臺｜申請進度查詢</title>
+<style>
+    :root {
+      --primary: #009c9a;
+      --primary-dark: #006f6d;
+      --primary-deep: #003f3f;
+      --primary-soft: #d9f4f2;
+      --mint: #effaf8;
+      --bg: #f4fbfa;
+      --card: #ffffff;
+      --line: #d7e7e5;
+      --text: #243837;
+      --muted: #6c7f7d;
+      --danger: #e45656;
+      --warning: #ff8a3d;
+      --success: #20a36a;
+      --shadow: 0 12px 28px rgba(0, 80, 80, .12);
+      --radius: 20px;
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    body {
+      margin: 0;
+      font-family: "Noto Sans TC", "Microsoft JhengHei", Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 8% 10%, #dff8ef 0, transparent 26%),
+        radial-gradient(circle at 92% 4%, #e8dcff 0, transparent 24%),
+        radial-gradient(circle at 78% 78%, #ffe4d4 0, transparent 28%),
+        linear-gradient(135deg, #f7fffb, #eef9f8);
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none
+    }
+
+    .page {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 18px 0 56px
+    }
+
+    .topbar {
+      background: rgba(255, 255, 255, .92);
+      border: 1px solid rgba(0, 156, 154, .15);
+      border-radius: 999px;
+      box-shadow: var(--shadow);
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 14px;
+      z-index: 20;
+      backdrop-filter: blur(12px);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 260px
+    }
+
+    .brand-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #00a9a6, #80d9d2);
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-size: 24px;
+      font-weight: 800;
+    }
+
+    .brand-title strong {
+      display: block;
+      color: var(--primary-dark);
+      font-size: 16px;
+      letter-spacing: .5px
+    }
+
+    .brand-title span {
+      color: var(--muted);
+      font-size: 12px
+    }
+
+    .nav {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+      justify-content: center;
+      flex: 1
+    }
+
+    .nav a {
+      padding: 9px 13px;
+      border-radius: 999px;
+      color: #536765;
+      font-size: 14px;
+      transition: .2s
+    }
+
+    .nav a.active,
+    .nav a:hover {
+      color: var(--primary-dark);
+      background: var(--primary-soft);
+      font-weight: 700
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px
+    }
+
+    .circle-btn {
+      width: 38px;
+      height: 38px;
+      border: 0;
+      border-radius: 999px;
+      background: var(--primary);
+      color: #fff;
+      cursor: pointer;
+      font-size: 16px;
+      box-shadow: 0 6px 14px rgba(0, 156, 154, .22)
+    }
+
+    .circle-btn.secondary {
+      background: #eaf8f7;
+      color: var(--primary-dark);
+      border: 1px solid #bfe8e5;
+      box-shadow: none
+    }
+
+    .stepbar {
+      margin: 28px auto 22px;
+      background: rgba(255, 255, 255, .72);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      display: flex;
+      justify-content: space-between;
+      padding: 8px;
+      box-shadow: 0 8px 20px rgba(0, 80, 80, .06);
+    }
+
+    .step {
+      flex: 1;
+      text-align: center;
+      padding: 10px 12px;
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 700
+    }
+
+    .step.active {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 8px 18px rgba(0, 156, 154, .2)
+    }
+
+    .step.done {
+      color: var(--primary-dark);
+      background: #e8faf8
+    }
+
+    .main-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      overflow: hidden
+    }
+
+    .card-head {
+      background: linear-gradient(90deg, rgba(0, 156, 154, .12), rgba(255, 255, 255, 0)), #fff;
+      padding: 24px 28px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 18px;
+    }
+
+    .card-head h1 {
+      margin: 0;
+      font-size: 26px;
+      color: var(--primary-deep)
+    }
+
+    .card-head p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7
+    }
+
+    .autosave {
+      font-size: 13px;
+      color: var(--muted);
+      background: #f2f8f7;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 9px 14px;
+      white-space: nowrap
+    }
+
+    .content {
+      padding: 26px 28px 32px
+    }
+
+    .notice {
+      border-radius: 18px;
+      background: #f0fbfa;
+      border: 1px solid #bfece9;
+      color: var(--primary-dark);
+      padding: 14px 18px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 22px;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .section {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      margin-bottom: 22px;
+      overflow: hidden
+    }
+
+    .section-title {
+      padding: 16px 20px;
+      background: linear-gradient(90deg, #f4fbfa, #fff);
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-title h2 {
+      margin: 0;
+      font-size: 19px;
+      color: var(--primary-deep);
+      display: flex;
+      align-items: center;
+      gap: 10px
+    }
+
+    .section-body {
+      padding: 20px
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      background: var(--primary-soft);
+      color: var(--primary-dark);
+      border: 1px solid #bce9e6;
+      white-space: nowrap
+    }
+
+    .badge.gray {
+      background: #f2f6f5;
+      color: var(--muted);
+      border-color: #d9e6e4
+    }
+
+    .badge.warn {
+      background: #fff4e8;
+      color: #b85b00;
+      border-color: #ffd1a3
+    }
+
+    .badge.success {
+      background: #e5faee;
+      color: #147a4d;
+      border-color: #b7ebc9
+    }
+
+    .badge.fail {
+      background: #fff0f0;
+      color: #c34646;
+      border-color: #ffc7c7
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 16px
+    }
+
+    .field {
+      grid-column: span 4
+    }
+
+    .field.span-2 {
+      grid-column: span 2
+    }
+
+    .field.span-3 {
+      grid-column: span 3
+    }
+
+    .field.span-4 {
+      grid-column: span 4
+    }
+
+    .field.span-6 {
+      grid-column: span 6
+    }
+
+    .field.span-8 {
+      grid-column: span 8
+    }
+
+    .field.span-12 {
+      grid-column: span 12
+    }
+
+    label {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      margin-bottom: 7px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #3b5553
+    }
+
+    .required {
+      color: var(--danger)
+    }
+
+    .source {
+      font-size: 11px;
+      padding: 2px 7px;
+      border-radius: 999px;
+      background: #eaf8f7;
+      color: var(--primary-dark);
+      border: 1px solid #c6ebe8;
+      font-weight: 700
+    }
+
+    .source.self {
+      background: #fff7ed;
+      color: #b65f00;
+      border-color: #ffd8a8
+    }
+
+    .source.lock {
+      background: #eef8f7;
+      color: var(--primary-dark);
+      border-color: #bfe8e5
+    }
+
+    .source.fail {
+      background: #fff0f0;
+      color: #c34646;
+      border-color: #ffc7c7
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      border: 1px solid #d3e1df;
+      border-radius: 12px;
+      padding: 11px 12px;
+      font-size: 14px;
+      color: var(--text);
+      background: #fff;
+      outline: none;
+      transition: .2s;
+    }
+
+    textarea {
+      min-height: 78px;
+      resize: vertical
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(0, 156, 154, .1)
+    }
+
+    input[readonly],
+    select[disabled],
+    textarea[readonly] {
+      background: #f3f7f7;
+      color: #617371;
+      cursor: not-allowed
+    }
+
+    .hint {
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5
+    }
+
+    .btn {
+      border: 1px solid var(--primary);
+      background: #fff;
+      color: var(--primary-dark);
+      border-radius: 999px;
+      padding: 10px 18px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: .2s;
+      white-space: nowrap;
+    }
+
+    .btn:hover {
+      background: var(--primary-soft)
+    }
+
+    .btn.primary {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 8px 18px rgba(0, 156, 154, .18)
+    }
+
+    .btn.dark {
+      background: var(--primary-deep);
+      color: #fff;
+      border-color: var(--primary-deep)
+    }
+
+    .btn.ghost {
+      border-color: #cfdedc;
+      color: var(--muted)
+    }
+
+    .auth-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 16px;
+      flex-wrap: wrap
+    }
+
+    .consent-box {
+      border: 1px solid #bfece9;
+      border-radius: 18px;
+      background: #f5fcfb;
+      padding: 16px 18px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .consent-box input {
+      width: 20px;
+      height: 20px;
+      margin-top: 4px;
+      accent-color: var(--primary);
+      flex: 0 0 auto
+    }
+
+    .consent-text {
+      font-size: 17px;
+      font-weight: 800;
+      line-height: 1.65;
+      color: var(--primary-deep)
+    }
+
+    .status-cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px
+    }
+
+    .status-card {
+      border: 1px solid #cfe6e3;
+      border-radius: 18px;
+      background: linear-gradient(180deg, #fff, #f4fbfa);
+      padding: 14px;
+      min-height: 108px;
+    }
+
+    .status-card .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px
+    }
+
+    .status-card strong {
+      color: var(--primary-deep);
+      font-size: 16px
+    }
+
+    .status-tag {
+      font-size: 12px;
+      font-weight: 800;
+      padding: 4px 8px;
+      border-radius: 999px;
+      white-space: nowrap
+    }
+
+    .status-tag.done {
+      color: #147a4d;
+      background: #dff8ea
+    }
+
+    .status-tag.pending {
+      color: #a15c00;
+      background: #fff0d9
+    }
+
+    .status-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 13px
+    }
+
+    .radio-row,
+    .check-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 18px;
+      min-height: 42px;
+      align-items: center
+    }
+
+    .option {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #3b5553;
+      font-size: 14px;
+      line-height: 1.5
+    }
+
+    .option input {
+      width: auto;
+      accent-color: var(--primary)
+    }
+
+    .identity-box {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: #fbfefd;
+      padding: 14px
+    }
+
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0 8px
+    }
+
+    th {
+      text-align: left;
+      color: var(--muted);
+      font-size: 13px;
+      padding: 0 10px 4px;
+      white-space: nowrap
+    }
+
+    td {
+      background: #f4fbfa;
+      border-top: 1px solid #d8ebe9;
+      border-bottom: 1px solid #d8ebe9;
+      padding: 11px 10px;
+      font-size: 14px;
+      vertical-align: middle
+    }
+
+    td:first-child {
+      border-left: 1px solid #d8ebe9;
+      border-radius: 12px 0 0 12px;
+      font-weight: 700;
+      color: var(--primary-dark)
+    }
+
+    td:last-child {
+      border-right: 1px solid #d8ebe9;
+      border-radius: 0 12px 12px 0
+    }
+
+    .mini-btn {
+      border: 1px solid #c7d9d7;
+      background: #fff;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 12px;
+      cursor: pointer;
+      color: var(--muted)
+    }
+
+    .mini-btn.primary {
+      color: var(--primary-dark);
+      border-color: #bfe8e5;
+      background: #f4fbfa
+    }
+
+    .mini-btn.danger {
+      color: var(--danger);
+      border-color: #ffd0d0
+    }
+
+    .table-wrap {
+      overflow: auto
+    }
+
+    .compact-files {
+      border-spacing: 0;
+      border-collapse: collapse
+    }
+
+    .compact-files th {
+      background: #f4fbfa;
+      border-bottom: 1px solid var(--line);
+      padding: 10px
+    }
+
+    .compact-files td {
+      border: 0;
+      border-bottom: 1px solid #e4eeee;
+      border-radius: 0;
+      background: #fff;
+      padding: 11px 10px
+    }
+
+    .compact-files td:first-child,
+    .compact-files td:last-child {
+      border-left: 0;
+      border-right: 0;
+      border-radius: 0;
+      font-weight: 400;
+      color: var(--text)
+    }
+
+    .file-name {
+      font-weight: 800;
+      color: var(--primary-deep)
+    }
+
+    .file-note {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 3px
+    }
+
+    .form-footer {
+      position: sticky;
+      bottom: 0;
+      background: rgba(255, 255, 255, .88);
+      border-top: 1px solid var(--line);
+      padding: 18px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(10px);
+    }
+
+    .footer-note {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5
+    }
+
+    .footer-actions {
+      display: flex;
+      gap: 10px
+    }
+
+    .chat-support {
+      position: fixed;
+      right: 24px;
+      bottom: 28px;
+      z-index: 30
+    }
+
+    .chat-bubble {
+      border: 0;
+      background: linear-gradient(135deg, #009c9a, #006f6d);
+      color: #fff;
+      border-radius: 999px;
+      padding: 13px 18px 13px 14px;
+      font-size: 15px;
+      font-weight: 900;
+      box-shadow: 0 12px 28px rgba(0, 80, 80, .25);
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      cursor: pointer;
+    }
+
+    .chat-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .18);
+      display: grid;
+      place-items: center;
+      font-size: 18px
+    }
+
+    .sub-title {
+      font-weight: 900;
+      color: #3b5553;
+      font-size: 17px;
+      margin: 4px 0 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap
+    }
+
+    .sub-title .radio-row {
+      min-height: auto
+    }
+
+    .property-table {
+      border-collapse: separate;
+      border-spacing: 0 8px;
+      margin-bottom: 14px;
+      min-width: 980px
+    }
+
+    .property-table th {
+      text-align: left;
+      color: var(--muted);
+      font-size: 13px;
+      padding: 0 10px 4px;
+      background: transparent;
+      border: 0
+    }
+
+    .property-table td {
+      background: #f4fbfa;
+      border-top: 1px solid #d8ebe9;
+      border-bottom: 1px solid #d8ebe9;
+      padding: 11px 10px;
+      font-size: 14px;
+      vertical-align: middle
+    }
+
+    .property-table td:first-child {
+      border-left: 1px solid #d8ebe9;
+      border-radius: 12px 0 0 12px;
+      font-weight: 700;
+      color: var(--primary-dark)
+    }
+
+    .property-table td:last-child {
+      border-right: 1px solid #d8ebe9;
+      border-radius: 0 12px 12px 0
+    }
+
+    .property-table th:nth-child(2),
+    .property-table td:nth-child(2) {
+      min-width: 110px;
+      width: 110px
+    }
+
+    .property-table th:nth-child(3),
+    .property-table td:nth-child(3) {
+      min-width: 170px
+    }
+
+    .property-table th:nth-child(4),
+    .property-table td:nth-child(4) {
+      min-width: 160px
+    }
+
+    .inline-inputs {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr .4fr 1fr 1fr 1fr;
+      gap: 6px;
+      align-items: end
+    }
+
+    .unit {
+      font-weight: 800;
+      color: #3b5553;
+      text-align: center;
+      padding-bottom: 12px
+    }
+
+    .notes {
+      color: #3b5553;
+      font-size: 13px;
+      line-height: 1.75;
+      margin: 6px 0 18px
+    }
+
+    .total-value {
+      font-weight: 900;
+      color: #3b5553;
+      margin-top: 8px
+    }
+
+    .download-link {
+      color: var(--primary-dark);
+      font-weight: 900;
+      text-decoration: underline;
+      text-underline-offset: 3px
+    }
+
+    .lock-mark {
+      margin-right: 6px;
+      color: var(--primary-dark)
+    }
+
+    @media(max-width:1024px) {
+      .nav {
+        display: none
+      }
+
+      .status-cards {
+        grid-template-columns: repeat(2, 1fr)
+      }
+
+      .field,
+      .field.span-2,
+      .field.span-3,
+      .field.span-4,
+      .field.span-6,
+      .field.span-8 {
+        grid-column: span 12
+      }
+
+      .chat-support {
+        display: none
+      }
+    }
+
+    @media(max-width:720px) {
+      .page {
+        width: min(100% - 20px, 1180px)
+      }
+
+      .topbar {
+        border-radius: 24px;
+        align-items: flex-start
+      }
+
+      .brand {
+        min-width: auto
+      }
+
+      .brand-title span {
+        display: none
+      }
+
+      .stepbar {
+        flex-direction: column;
+        border-radius: 24px
+      }
+
+      .card-head,
+      .form-footer {
+        flex-direction: column;
+        align-items: stretch
+      }
+
+      .status-cards {
+        grid-template-columns: 1fr
+      }
+    }
+
+    /* 修正版 5：整體緊湊與細節優化 */
+    .content {
+      padding: 20px 22px 26px
+    }
+
+    .section {
+      margin-bottom: 15px
+    }
+
+    .section-title {
+      padding: 12px 16px
+    }
+
+    .section-body {
+      padding: 14px 16px
+    }
+
+    .grid {
+      gap: 12px
+    }
+
+    input,
+    select,
+    textarea {
+      padding: 9px 10px
+    }
+
+    .notice {
+      padding: 10px 14px;
+      margin-bottom: 14px
+    }
+
+    .status-cards {
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 10px
+    }
+
+    .status-card {
+      padding: 12px;
+      min-height: 94px
+    }
+
+    .status-card p {
+      font-size: 12px
+    }
+
+    .consent-box {
+      padding: 13px 15px;
+      margin-bottom: 12px
+    }
+
+    .auth-head {
+      margin-bottom: 12px
+    }
+
+    .subsidy-consent {
+      margin-top: 12px;
+      border: 1px solid #f3c680;
+      background: #fff9ee;
+      border-radius: 14px;
+      padding: 12px 14px;
+    }
+
+    .subsidy-consent .result-line {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+      font-weight: 900;
+      color: #9a5300;
+    }
+
+    .subsidy-consent label {
+      margin: 0;
+      align-items: flex-start;
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .subsidy-consent input {
+      width: 18px;
+      height: 18px;
+      margin-top: 3px;
+      flex: 0 0 auto;
+      accent-color: var(--primary);
+    }
+
+    .family-reminder {
+      padding: 7px 11px;
+      margin: 9px 0 12px;
+      font-size: 12.5px;
+      line-height: 1.45;
+      border-radius: 12px;
+    }
+
+    .family-reminder strong {
+      white-space: nowrap
+    }
+
+    .family-form-title {
+      margin: 2px 0 10px;
+      font-size: 14px;
+      font-weight: 900;
+      color: var(--primary-deep);
+    }
+
+    .property-summary {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .summary-chip {
+      border: 1px solid #cfe6e3;
+      background: #f4fbfa;
+      border-radius: 999px;
+      padding: 5px 10px;
+      font-size: 12px;
+      font-weight: 800;
+      color: #3b5553;
+    }
+
+    .property-group {
+      border: 1px solid #dcebea;
+      border-radius: 14px;
+      padding: 10px 12px 8px;
+      margin-bottom: 10px;
+      background: #fcfefe;
+    }
+
+    .property-group .sub-title {
+      margin: 0 0 7px;
+      font-size: 15px;
+      justify-content: space-between;
+    }
+
+    .property-table {
+      border-collapse: separate;
+      border-spacing: 0 4px;
+      margin-bottom: 4px;
+      min-width: 850px;
+    }
+
+    .property-table th {
+      padding: 0 8px 3px;
+      font-size: 12px
+    }
+
+    .property-table td {
+      padding: 8px;
+      font-size: 13px
+    }
+
+    .property-table th:nth-child(2),
+    .property-table td:nth-child(2) {
+      min-width: 88px;
+      width: 88px
+    }
+
+    .property-table th:nth-child(3),
+    .property-table td:nth-child(3) {
+      min-width: 130px
+    }
+
+    .property-table th:nth-child(4),
+    .property-table td:nth-child(4) {
+      min-width: 145px
+    }
+
+    .property-notes {
+      color: var(--muted);
+      font-size: 11.5px;
+      line-height: 1.55;
+      margin: 3px 0 0;
+    }
+
+    .total-value {
+      margin-top: 4px;
+      text-align: right;
+      background: #f4fbfa;
+      border: 1px solid #d7e7e5;
+      border-radius: 10px;
+      padding: 8px 11px;
+      font-size: 14px;
+    }
+
+    /* 擬人化圓形智能客服 */
+    .chat-support {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      z-index: 40
+    }
+
+    .chat-launcher {
+      width: 66px;
+      height: 66px;
+      border: 0;
+      border-radius: 50%;
+      background: linear-gradient(145deg, #23c3b6, #008c88);
+      box-shadow: 0 12px 28px rgba(0, 80, 80, .28);
+      cursor: pointer;
+      position: relative;
+      display: grid;
+      place-items: center;
+      transition: .2s ease;
+    }
+
+    .chat-launcher:hover {
+      transform: translateY(-3px) scale(1.03)
+    }
+
+    .bot-head {
+      width: 42px;
+      height: 37px;
+      border-radius: 17px 17px 15px 15px;
+      background: #fff;
+      position: relative;
+      box-shadow: inset 0 -4px 0 #dff7f4;
+    }
+
+    .bot-head:before {
+      content: "";
+      position: absolute;
+      left: 19px;
+      top: -10px;
+      width: 4px;
+      height: 10px;
+      border-radius: 3px;
+      background: #fff;
+    }
+
+    .bot-head:after {
+      content: "";
+      position: absolute;
+      left: 16px;
+      top: -14px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #ffd65a;
+      border: 2px solid #fff;
+    }
+
+    .bot-eye {
+      position: absolute;
+      top: 13px;
+      width: 6px;
+      height: 7px;
+      border-radius: 50%;
+      background: #006f6d;
+    }
+
+    .bot-eye.left {
+      left: 10px
+    }
+
+    .bot-eye.right {
+      right: 10px
+    }
+
+    .bot-smile {
+      position: absolute;
+      left: 14px;
+      top: 23px;
+      width: 14px;
+      height: 7px;
+      border-bottom: 3px solid #ff9f43;
+      border-radius: 0 0 12px 12px;
+    }
+
+    .chat-label {
+      position: absolute;
+      right: 76px;
+      bottom: 12px;
+      background: #fff;
+      color: var(--primary-deep);
+      border: 1px solid #d7e7e5;
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 13px;
+      font-weight: 900;
+      white-space: nowrap;
+      box-shadow: 0 8px 20px rgba(0, 80, 80, .12);
+    }
+
+    .chat-label:after {
+      content: "";
+      position: absolute;
+      right: -6px;
+      top: 50%;
+      width: 10px;
+      height: 10px;
+      transform: translateY(-50%) rotate(45deg);
+      background: #fff;
+      border-top: 1px solid #d7e7e5;
+      border-right: 1px solid #d7e7e5;
+    }
+
+    .chat-panel {
+      position: absolute;
+      right: 0;
+      bottom: 78px;
+      width: 300px;
+      background: #fff;
+      border: 1px solid #d7e7e5;
+      border-radius: 18px;
+      box-shadow: 0 16px 38px rgba(0, 80, 80, .20);
+      overflow: hidden;
+      display: none;
+    }
+
+    .chat-panel.open {
+      display: block
+    }
+
+    .chat-panel-head {
+      padding: 12px 14px;
+      background: linear-gradient(135deg, #009c9a, #006f6d);
+      color: #fff;
+      font-weight: 900;
+    }
+
+    .chat-panel-body {
+      padding: 14px;
+      font-size: 13px;
+      line-height: 1.6
+    }
+
+    .chat-quick {
+      width: 100%;
+      text-align: left;
+      border: 1px solid #cfe6e3;
+      background: #f4fbfa;
+      color: #31504e;
+      border-radius: 10px;
+      padding: 9px 10px;
+      margin-top: 7px;
+      cursor: pointer;
+    }
+
+    @media(max-width:1024px) {
+      .chat-support {
+        display: block
+      }
+
+      .chat-label {
+        display: none
+      }
+    }
+
+    .address-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 2.4fr;
+      gap: 8px;
+    }
+
+    .identity-list {
+      display: grid;
+      gap: 9px;
+    }
+
+    .identity-option {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 14px;
+      line-height: 1.55;
+      color: #3b5553;
+    }
+
+    .identity-option input {
+      width: 17px;
+      height: 17px;
+      margin-top: 2px;
+      flex: 0 0 auto;
+      accent-color: var(--primary);
+    }
+
+    .identity-option .source {
+      margin-left: 5px;
+      vertical-align: middle;
+    }
+
+    @media(max-width:720px) {
+      .address-row {
+        grid-template-columns: 1fr
+      }
+    }
+
+    /* 本版調整：導覽與步驟列合併固定 */
+    .sticky-stack {
+      position: sticky;
+      top: 0;
+      z-index: 60;
+      padding-top: 0;
+    }
+
+    .topbar {
+      position: static;
+      top: auto;
+      border-radius: 26px 26px 0 0;
+      box-shadow: 0 8px 20px rgba(0, 80, 80, .10);
+      backdrop-filter: blur(12px);
+    }
+
+    .stepbar {
+      position: static;
+      top: auto;
+      margin: 0 0 18px;
+      border-top: 0;
+      border-radius: 0 0 26px 26px;
+      background: rgba(255, 255, 255, .96);
+      box-shadow: 0 10px 22px rgba(0, 80, 80, .10);
+    }
+
+    /* 智能客服文字置於按鈕正上方 */
+    .chat-label {
+      right: 50%;
+      bottom: 76px;
+      transform: translateX(50%);
+      padding: 7px 11px;
+    }
+
+    .chat-label:after {
+      right: 50%;
+      top: auto;
+      bottom: -6px;
+      transform: translateX(50%) rotate(45deg);
+      border-top: 0;
+      border-left: 0;
+      border-right: 1px solid #d7e7e5;
+      border-bottom: 1px solid #d7e7e5;
+    }
+
+    /* 房產選項緊接標題，避免被推到最右側 */
+    .property-group .sub-title {
+      justify-content: flex-start;
+      align-items: center;
+    }
+
+    .property-group .sub-title>span:first-child {
+      flex: 0 0 auto;
+    }
+
+    .property-group .sub-title .radio-row {
+      gap: 10px 14px;
+      min-height: auto;
+    }
+
+    /* 家庭所得摘要：與不動產總值同樣式 */
+    .family-income-summary {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin: 4px 0 10px;
+    }
+
+    .family-income-summary .summary-note {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .family-income-summary .summary-divider {
+      color: #9ab0ae;
+    }
+
+    @media(max-width:720px) {
+      .sticky-stack {
+        position: static;
+      }
+
+      .topbar {
+        border-radius: 24px 24px 0 0;
+      }
+
+      .stepbar {
+        border-radius: 0 0 24px 24px;
+        margin-bottom: 14px;
+      }
+
+      .family-income-summary {
+        justify-content: flex-start;
+      }
+    }
+
+    /* 登入者資訊 */
+    .login-user {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 11px;
+      border: 1px solid #cfe6e3;
+      border-radius: 999px;
+      background: #f4fbfa;
+      color: var(--primary-deep);
+      white-space: nowrap;
+      font-size: 13px;
+    }
+
+    .login-user-label {
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .login-user strong {
+      font-size: 14px;
+    }
+
+    /* 所得與不動產摘要 */
+    .family-income-summary,
+    .total-value {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      text-align: left;
+      margin: 8px 0 12px;
+      padding: 10px 12px;
+      background: #f4fbfa;
+      border: 1px solid #d7e7e5;
+      border-radius: 10px;
+      color: #3b5553;
+    }
+
+    .summary-metric {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 5px;
+      flex-wrap: wrap;
+    }
+
+    .summary-label {
+      font-size: 14px;
+      font-weight: 800;
+      color: #3b5553;
+    }
+
+    .summary-value {
+      font-size: 19px;
+      line-height: 1;
+      color: var(--primary-dark);
+      letter-spacing: .2px;
+    }
+
+    .summary-unit {
+      font-size: 14px;
+      font-weight: 800;
+      color: #3b5553;
+    }
+
+    /* 純文字提醒 */
+    .plain-reminder {
+      display: flex;
+      gap: 6px;
+      align-items: flex-start;
+      padding: 2px 0;
+      margin: 7px 0 11px;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    .plain-reminder strong {
+      color: #718380;
+      font-size: 12px;
+    }
+
+    /* 新增／編輯家庭成員表單群組 */
+    .family-form-panel {
+      margin-top: 10px;
+      padding: 14px 15px 15px;
+      border: 1px solid #d7e7e5;
+      border-radius: 14px;
+      background: #fbfefd;
+    }
+
+    .family-form-panel .family-form-title {
+      margin: 0 0 12px;
+      padding-bottom: 9px;
+      border-bottom: 1px solid #e1ecea;
+      font-size: 15px;
+      color: var(--primary-deep);
+    }
+
+    .family-form-panel .grid {
+      gap: 12px;
+    }
+
+    @media(max-width:720px) {
+      .login-user-label {
+        display: none
+      }
+
+      .login-user {
+        padding: 7px 9px
+      }
+
+      .family-income-summary,
+      .total-value {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 7px;
+      }
+    }
+
+    /* 完成登記頁 */
+    .completion-page {
+      padding: 44px 54px 40px;
+      background: #fff;
+    }
+
+    .completion-hero {
+      max-width: 820px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .success-icon {
+      width: 86px;
+      height: 86px;
+      margin: 0 auto 20px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(145deg, #dff8ea, #c7f1df);
+      border: 1px solid #a9e2c6;
+      box-shadow: 0 12px 28px rgba(32, 163, 106, .16);
+    }
+
+    .success-check {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--success);
+      color: #fff;
+      font-size: 31px;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .completion-title {
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 18px;
+      color: #4a5554;
+      font-size: 34px;
+      line-height: 1.35;
+      letter-spacing: .2px;
+    }
+
+    .completion-title strong {
+      color: var(--primary-deep);
+      font-weight: 900;
+    }
+
+    .completion-lead {
+      margin: 0 0 18px;
+      color: #3f5150;
+      font-size: 19px;
+      font-weight: 800;
+    }
+
+    .completion-text {
+      margin: 0 auto;
+      max-width: 780px;
+      color: #647673;
+      font-size: 16px;
+      line-height: 1.9;
+    }
+
+    .important-notice {
+      max-width: 900px;
+      margin: 28px auto 0;
+      padding: 20px 22px;
+      border: 1px solid #f1d89b;
+      border-radius: 18px;
+      background: #fff9df;
+      color: #5d5234;
+    }
+
+    .notice-title {
+      margin-bottom: 8px;
+      color: #8a6a12;
+      font-size: 18px;
+      font-weight: 900;
+    }
+
+    .notice-content {
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.8;
+    }
+
+    .privacy-note {
+      margin-top: 13px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(138, 106, 18, .16);
+      color: #6f6a58;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .confirmation-panel {
+      max-width: 900px;
+      margin: 24px auto 0;
+      padding: 20px 22px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: #fbfefd;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .confirmation-copy h2 {
+      margin: 0 0 6px;
+      color: var(--primary-deep);
+      font-size: 18px;
+    }
+
+    .confirmation-copy p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .confirmation-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .confirmation-btn {
+      min-width: 310px;
+    }
+
+    .confirmation-btn.sent {
+      background: var(--success);
+      border-color: var(--success);
+      cursor: default;
+      opacity: 1;
+    }
+
+    .completion-help {
+      max-width: 900px;
+      margin: 18px auto 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+      text-align: center;
+    }
+
+    @media(max-width:820px) {
+      .completion-page {
+        padding: 30px 20px 28px;
+      }
+
+      .completion-title {
+        font-size: 27px;
+      }
+
+      .confirmation-panel {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .confirmation-actions {
+        justify-content: stretch;
+      }
+
+      .confirmation-actions .btn {
+        width: 100%;
+      }
+
+      .confirmation-btn {
+        min-width: 0;
+      }
+    }
+
+    @media(max-width:520px) {
+      .completion-title {
+        font-size: 23px;
+      }
+
+      .completion-lead {
+        font-size: 17px;
+      }
+
+      .completion-text {
+        font-size: 14px;
+      }
+
+      .important-notice {
+        padding: 16px;
+      }
+    }
+
+    /* 完成登記確認區簡化 */
+    .confirmation-panel {
+      display: block;
+      text-align: center;
+      padding: 24px;
+      background: #f7fcfb;
+      border: 1px solid #cfe8e5;
+    }
+
+    .simplified-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+    }
+
+    .emphasis-btn {
+      width: min(100%, 560px);
+      min-height: 58px;
+      padding: 15px 28px;
+      border-radius: 16px;
+      font-size: 18px;
+      font-weight: 900;
+      letter-spacing: .2px;
+      box-shadow: 0 12px 26px rgba(0, 156, 154, .24);
+    }
+
+    .emphasis-btn:hover {
+      transform: translateY(-2px);
+      background: var(--primary-dark);
+    }
+
+    .text-link-btn {
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      font-size: 14px;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      cursor: pointer;
+      padding: 6px 10px;
+    }
+
+    .text-link-btn:hover {
+      color: var(--primary-dark);
+    }
+
+    @media(max-width:520px) {
+      .confirmation-panel {
+        padding: 18px 14px;
+      }
+
+      .emphasis-btn {
+        min-height: 54px;
+        padding: 13px 18px;
+        font-size: 16px;
+      }
+    }
+  
+/* 申請進度查詢頁 */
+.progress-page{padding:0;background:#fff}
+.progress-head{
+  display:flex;justify-content:space-between;align-items:center;gap:16px;
+  padding:22px 26px;border-bottom:1px solid var(--line);
+  background:linear-gradient(90deg,rgba(0,156,154,.12),rgba(255,255,255,0)),#fff
+}
+.progress-head h1{margin:0;color:var(--primary-deep);font-size:26px}
+.progress-head p{margin:7px 0 0;color:var(--muted);font-size:14px}
+.case-count{
+  padding:8px 12px;border-radius:999px;background:#f2f8f7;
+  border:1px solid var(--line);color:var(--primary-dark);font-size:13px;font-weight:900
+}
+.status-summary{
+  display:grid;grid-template-columns:repeat(5,1fr);gap:10px;
+  padding:16px 22px 8px
+}
+.summary-card{
+  border:1px solid var(--line);border-radius:14px;background:#fff;
+  padding:12px 14px;text-align:left;cursor:pointer;transition:.16s
+}
+.summary-card:hover,.summary-card.active{
+  border-color:var(--primary);background:#effaf8;box-shadow:0 0 0 3px rgba(0,156,154,.07)
+}
+.summary-card span{display:block;color:var(--muted);font-size:12px;font-weight:800}
+.summary-card strong{display:block;margin-top:5px;color:var(--primary-deep);font-size:22px}
+.summary-card.warning strong{color:#b86a00}
+.summary-card.success strong{color:#168458}
+.summary-card.danger strong{color:#bf4a4a}
+
+.query-bar{
+  display:grid;grid-template-columns:1.7fr 1fr auto auto;gap:10px;align-items:end;
+  margin:8px 22px 16px;padding:14px;border:1px solid var(--line);
+  border-radius:16px;background:#fbfefd
+}
+.query-field label{
+  display:block;margin:0 0 6px;color:#3b5553;font-size:12px;font-weight:900
+}
+.query-field input,.query-field select{
+  width:100%;height:42px;border:1px solid #d3e1df;border-radius:11px;
+  padding:8px 10px;background:#fff;color:var(--text)
+}
+.query-field input:focus,.query-field select:focus{
+  outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(0,156,154,.1)
+}
+.query-btn,.reset-btn{
+  height:42px;border-radius:11px;padding:0 18px;font-weight:900;cursor:pointer
+}
+.query-btn{border:1px solid var(--primary);background:var(--primary);color:#fff}
+.reset-btn{border:1px solid #cfdedc;background:#fff;color:var(--muted)}
+
+.case-list{display:grid;gap:14px;padding:0 22px 24px}
+.case-card{
+  border:1px solid var(--line);border-radius:18px;background:#fff;
+  padding:16px 18px;box-shadow:0 7px 18px rgba(0,80,80,.05)
+}
+.case-card-head{
+  display:flex;justify-content:space-between;align-items:flex-start;gap:16px;
+  padding-bottom:12px;border-bottom:1px solid #e7efee
+}
+.case-number{
+  display:inline-block;margin-bottom:5px;color:var(--primary-dark);
+  font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:13px;font-weight:900
+}
+.case-card h2{margin:0;color:var(--primary-deep);font-size:18px}
+.case-sub{margin-top:5px;color:var(--muted);font-size:12px}
+.status-badge{
+  display:inline-flex;align-items:center;justify-content:center;min-width:76px;
+  padding:6px 10px;border-radius:999px;border:1px solid;font-size:12px;font-weight:900;white-space:nowrap
+}
+.status-review{background:#eef6ff;color:#35699b;border-color:#c9dff4}
+.status-supplement{background:#fff5e8;color:#b66500;border-color:#ffd29a}
+.status-unqualified{background:#fff0f0;color:#bf4747;border-color:#ffcaca}
+.status-qualified{background:#e8faef;color:#14794d;border-color:#b9e9cb}
+.status-draw{background:#f2edff;color:#6a4ba6;border-color:#d7c9fa}
+.status-contract{background:#e7f8f7;color:#006f6d;border-color:#b7e3df}
+.status-live{background:#e8faef;color:#14794d;border-color:#b9e9cb}
+.status-ended{background:#f1f4f4;color:#687a78;border-color:#d5e0df}
+
+.case-info-grid{
+  display:grid;grid-template-columns:1fr 1.5fr 1.15fr .95fr .95fr;
+  gap:10px;margin-top:13px
+}
+.case-info-grid>div{
+  min-width:0;padding:8px 10px;border-radius:11px;background:#f7fbfa
+}
+.case-info-grid span{
+  display:block;margin-bottom:4px;color:var(--muted);font-size:11px;font-weight:800
+}
+.case-info-grid strong{display:block;color:#374f4d;font-size:13px;line-height:1.45}
+.case-info-grid .deadline{color:#c35732}
+.case-info-grid .lottery-result{color:var(--primary-dark)}
+
+.case-progress{
+  display:grid;grid-template-columns:repeat(5,1fr);margin-top:13px;
+  border-radius:10px;overflow:hidden;background:#f0f5f4
+}
+.case-progress span{
+  position:relative;padding:8px 5px;text-align:center;color:#83918f;
+  font-size:11px;font-weight:800
+}
+.case-progress span.done{background:#e5f7f4;color:#397c77}
+.case-progress span.current{background:var(--primary);color:#fff}
+.case-progress span:not(:last-child):after{
+  content:"";position:absolute;right:-4px;top:50%;width:8px;height:8px;
+  transform:translateY(-50%) rotate(45deg);background:inherit;z-index:2
+}
+
+.case-actions{
+  display:flex;justify-content:flex-end;gap:9px;margin-top:13px
+}
+.case-actions .btn{padding:8px 14px;font-size:12px}
+.case-actions .btn.primary{background:var(--primary);color:#fff}
+
+.compact-row .case-info-grid{margin-bottom:0}
+.empty-result{
+  display:none;margin:0 22px 24px;padding:36px;text-align:center;
+  border:1px dashed #cbdedb;border-radius:16px;color:var(--muted);background:#fbfefd
+}
+
+@media(max-width:980px){
+  .status-summary{grid-template-columns:repeat(3,1fr)}
+  .query-bar{grid-template-columns:1fr 1fr}
+  .query-btn,.reset-btn{width:100%}
+  .case-info-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:680px){
+  .progress-head{align-items:flex-start;flex-direction:column}
+  .status-summary{grid-template-columns:1fr 1fr;padding:14px}
+  .query-bar{grid-template-columns:1fr;margin:6px 14px 14px}
+  .case-list{padding:0 14px 18px}
+  .case-card-head{flex-direction:column}
+  .case-info-grid{grid-template-columns:1fr}
+  .case-progress{grid-template-columns:1fr}
+  .case-progress span:not(:last-child):after{display:none}
+  .case-actions{flex-direction:column}
+  .case-actions .btn{width:100%}
+}
+
+/* 個人申請紀錄精簡版 */
+.simple-progress-page{
+  padding:0;
+  background:#fff;
+}
+.simple-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:16px;
+  padding:22px 26px;
+  border-bottom:1px solid var(--line);
+  background:linear-gradient(90deg,rgba(0,156,154,.12),rgba(255,255,255,0)),#fff;
+}
+.simple-head h1{
+  margin:0;
+  color:var(--primary-deep);
+  font-size:26px;
+}
+.simple-head p{
+  margin:7px 0 0;
+  color:var(--muted);
+  font-size:14px;
+}
+.record-count{
+  padding:8px 12px;
+  border-radius:999px;
+  background:#f2f8f7;
+  border:1px solid var(--line);
+  color:var(--primary-dark);
+  font-size:13px;
+  font-weight:900;
+  white-space:nowrap;
+}
+.simple-list-wrap{
+  padding:16px 20px 24px;
+  overflow-x:auto;
+}
+.application-table{
+  width:100%;
+  min-width:1100px;
+  border-collapse:separate;
+  border-spacing:0 8px;
+}
+.application-table th{
+  padding:0 9px 5px;
+  color:var(--muted);
+  font-size:12px;
+  font-weight:800;
+  white-space:nowrap;
+}
+.application-table td{
+  padding:11px 9px;
+  background:#f8fbfb;
+  border-top:1px solid #dce9e7;
+  border-bottom:1px solid #dce9e7;
+  font-size:13px;
+  vertical-align:middle;
+}
+.application-table td:first-child{
+  border-left:1px solid #dce9e7;
+  border-radius:12px 0 0 12px;
+  color:var(--text);
+}
+.application-table td:last-child{
+  border-right:1px solid #dce9e7;
+  border-radius:0 12px 12px 0;
+}
+.application-table tbody tr:hover td{
+  background:#eff9f8;
+}
+.application-table td>strong{
+  display:block;
+  color:var(--primary-deep);
+  font-size:14px;
+  line-height:1.45;
+}
+.sub-text{
+  display:inline-block;
+  margin-top:3px;
+  color:var(--muted);
+  font-size:11px;
+}
+.case-no{
+  color:var(--primary-dark);
+  font-family:ui-monospace,SFMono-Regular,Consolas,monospace;
+  font-size:12px;
+  font-weight:900;
+  white-space:nowrap;
+}
+.status-badge{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:68px;
+  padding:5px 9px;
+  border-radius:999px;
+  border:1px solid;
+  font-size:11px;
+  font-weight:900;
+  white-space:nowrap;
+}
+.status-review{background:#eef6ff;color:#35699b;border-color:#c9dff4}
+.status-supplement{background:#fff5e8;color:#b66500;border-color:#ffd29a}
+.status-qualified{background:#e8faef;color:#14794d;border-color:#b9e9cb}
+.status-draw{background:#f2edff;color:#6a4ba6;border-color:#d7c9fa}
+.status-contract{background:#e7f8f7;color:#006f6d;border-color:#b7e3df}
+.deadline{color:#c35732}
+.lottery-result{color:var(--primary-dark)}
+.row-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  min-width:150px;
+}
+.mini-action{
+  border:1px solid #bcdedb;
+  border-radius:999px;
+  background:#fff;
+  color:var(--primary-dark);
+  padding:6px 10px;
+  font-size:11px;
+  font-weight:800;
+  cursor:pointer;
+  white-space:nowrap;
+}
+.mini-action:hover{
+  background:var(--primary-soft);
+}
+.mini-action.primary{
+  background:var(--primary);
+  border-color:var(--primary);
+  color:#fff;
+}
+@media(max-width:680px){
+  .simple-head{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+  .simple-list-wrap{
+    padding:12px 12px 18px;
+  }
+}
+</style>
+<link rel="stylesheet" href="assets/member-shell.css" />
+</head>
+<body id="top">
+<header class="site-header">
+<div class="utility-bar">
+<a class="agency-link" href="https://www.nlma.gov.tw/" target="_blank" rel="noopener noreferrer">內政部國土管理署</a>
+<div class="utility-links">
+<a class="utility-link" href="#primaryNavigation" aria-label="網站導覽"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="2.5" width="6" height="5" rx="1.2"/><rect x="2" y="16.5" width="6" height="5" rx="1.2"/><rect x="9" y="16.5" width="6" height="5" rx="1.2"/><rect x="16" y="16.5" width="6" height="5" rx="1.2"/><path d="M12 7.5V12M5 16.5V12h14v4.5M12 12v4.5"/></svg><span>網站導覽</span></a>
+<a class="utility-link" href="#siteFooter" aria-label="聯絡我們"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13v-1a8 8 0 0 1 16 0v1"/><path d="M4 12H2v5c0 1.1.9 2 2 2h2v-7H4Zm16 0h2v5c0 1.1-.9 2-2 2h-2v-7h2Z"/><path d="M18 19c0 2-2 3-5 3"/></svg><span>聯絡我們</span></a>
+</div>
+</div>
+<nav class="site-main-nav" id="primaryNavigation" aria-label="會員主要導覽">
+<a class="brand" href="index.html" aria-label="全國社宅統一登記申請平台首頁"><img class="brand-mark" src="assets/platform-logo-elegant.svg" alt=""/><span class="brand-name">全國社宅統一登記申請平台</span></a>
+<div class="member-nav"><a class="member-nav-link" href="index.html">首頁</a><a class="member-nav-link" href="index.html#housingExplorer">找社宅</a><a class="member-nav-link" href="data.html">資料登記</a><a class="member-nav-link" href="questionnaire.html">需求問卷</a><a class="member-nav-link" href="apply.html">申請社宅</a><a class="member-nav-link active" href="#top" aria-current="page">進度查詢/補件</a><a class="member-nav-link" href="#">操作紀錄</a></div>
+<div class="member-actions"><div class="login-user"><span class="login-user-label">登入者</span><strong>陳ＯＯ</strong></div><button class="member-icon" type="button" title="通知" aria-label="查看通知"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg></button><a class="member-icon" href="index.html" title="登出" aria-label="登出"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 17l5-5-5-5M15 12H3M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/></svg></a></div>
+<button class="site-mobile-menu" type="button" aria-label="開啟選單" aria-controls="memberMobileNav" aria-expanded="false">☰</button>
+<div class="site-mobile-nav" id="memberMobileNav"><a href="index.html">首頁</a><a href="index.html#housingExplorer">找社宅</a><a href="data.html">資料登記</a><a href="questionnaire.html">需求問卷</a><a href="apply.html">申請社宅</a><a class="active" href="#top" aria-current="page">進度查詢/補件</a><a href="#">操作紀錄</a><div class="mobile-member"><div class="login-user"><span class="login-user-label">登入者</span><strong>陳ＯＯ</strong></div><div class="mobile-member-actions"><button class="member-icon" type="button" aria-label="查看通知"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg></button><a class="member-icon" href="index.html" aria-label="登出"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 17l5-5-5-5M15 12H3M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/></svg></a></div></div></div>
+</nav>
+</header>
+<div class="page">
+<main class="main-card">
+<div class="simple-progress-page">
+<div class="simple-head">
+<div>
+<h1>申請進度查詢</h1>
+<p>以下為您的社會住宅申請紀錄。</p>
+</div>
+<div class="record-count">共 5 筆</div>
+</div>
+<div class="simple-list-wrap">
+<table class="application-table">
+<thead>
+<tr>
+<th>申請社宅</th>
+<th>房型</th>
+<th>身分別</th>
+<th>案件編號</th>
+<th>申請時間</th>
+<th>案件狀態</th>
+<th>補件期限</th>
+<th>中籤結果</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<strong>西屯安居社會住宅</strong>
+<span class="sub-text">臺中市／西屯區</span>
+</td>
+<td>三房型</td>
+<td>婚育戶</td>
+<td><span class="case-no">TB-NAA-116-000123-B</span></td>
+<td>116/03/18<br/><span class="sub-text">10:32</span></td>
+<td><span class="status-badge status-supplement">須補件</span></td>
+<td><strong class="deadline">116/03/25</strong></td>
+<td>尚未抽籤</td>
+<td>
+<div class="row-actions">
+<button class="mini-action" onclick="viewCase('TB-NAA-116-000123-B')" type="button">檢視申請資料</button>
+<button class="mini-action primary" onclick="openSupplement('TB-NAA-116-000123-B')" type="button">補件</button>
+</div>
+</td>
+</tr>
+<tr>
+<td>
+<strong>文心好室社會住宅</strong>
+<span class="sub-text">臺中市／北屯區</span>
+</td>
+<td>二房型</td>
+<td>設籍戶</td>
+<td><span class="case-no">TB-WAA-116-000118-B</span></td>
+<td>116/03/15<br/><span class="sub-text">14:08</span></td>
+<td><span class="status-badge status-review">審查中</span></td>
+<td>—</td>
+<td>尚未抽籤</td>
+<td>
+<div class="row-actions">
+<button class="mini-action" onclick="viewCase('TB-WAA-116-000118-B')" type="button">檢視申請資料</button>
+</div>
+</td>
+</tr>
+<tr>
+<td>
+<strong>豐原青年社會住宅</strong>
+<span class="sub-text">臺中市／豐原區</span>
+</td>
+<td>一房型</td>
+<td>一般戶</td>
+<td><span class="case-no">TB-FCA-116-000096-D</span></td>
+<td>116/03/10<br/><span class="sub-text">09:21</span></td>
+<td><span class="status-badge status-qualified">合格</span></td>
+<td>—</td>
+<td>待抽籤</td>
+<td>
+<div class="row-actions">
+<button class="mini-action" onclick="viewCase('TB-FCA-116-000096-D')" type="button">檢視申請資料</button>
+</div>
+</td>
+</tr>
+<tr>
+<td>
+<strong>北屯社會住宅</strong>
+<span class="sub-text">臺中市／北屯區</span>
+</td>
+<td>二房型</td>
+<td>婚育戶</td>
+<td><span class="case-no">TB-BRA-116-000075-C</span></td>
+<td>116/02/26<br/><span class="sub-text">16:42</span></td>
+<td><span class="status-badge status-draw">已抽籤</span></td>
+<td>—</td>
+<td><strong class="lottery-result">正取第 18 名</strong></td>
+<td>
+<div class="row-actions">
+<button class="mini-action" onclick="viewCase('TB-BRA-116-000075-C')" type="button">檢視申請資料</button>
+</div>
+</td>
+</tr>
+<tr>
+<td>
+<strong>梧棲安居社會住宅</strong>
+<span class="sub-text">臺中市／梧棲區</span>
+</td>
+<td>二房型</td>
+<td>一般戶</td>
+<td><span class="case-no">OB-NHA-115-000842-A</span></td>
+<td>115/11/02<br/><span class="sub-text">13:17</span></td>
+<td><span class="status-badge status-contract">已簽約</span></td>
+<td>—</td>
+<td><strong class="lottery-result">正取第 6 名</strong></td>
+<td>
+<div class="row-actions">
+<button class="mini-action" onclick="viewCase('OB-NHA-115-000842-A')" type="button">檢視申請資料</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</main>
+</div>
+<footer class="site-footer" id="siteFooter">
+<div class="footer-inner">
+<div class="footer-top"><a class="footer-brand" href="index.html"><span class="footer-logo"><img src="assets/platform-logo-elegant.svg" alt=""/></span><span class="footer-brand-text"><strong>全國社宅統一登記申請平台</strong><span>內政部國土管理署</span></span></a><nav class="footer-links" aria-label="頁尾導覽"><a href="privacy.html">隱私權政策</a><a href="terms.html">服務條款</a><a href="#top">返回頂端</a></nav></div>
+<div class="footer-rule"></div>
+<div class="footer-bottom"><div class="footer-details"><div class="footer-contact"><div class="footer-meta"><span class="footer-meta-label">機關地址</span><span>105404台北市松山區八德路2段342號</span></div><div class="footer-meta"><span class="footer-meta-label">總機服務</span><a href="tel:+886-2-87712345">(02)-87712345</a></div></div><p class="footer-copyright">內政部國土管理署 版權所有&nbsp; © 2026 All Rights Reserved.</p></div><div class="footer-badge"><img src="https://www.nlma.gov.tw/_next/static/media/AA.860fb9dd.svg" alt="AA 等級無障礙網站標章" loading="lazy"/></div></div>
+</div>
+</footer>
+<aside class="chat-support">
+<div class="chat-panel" id="chatPanel">
+<div class="chat-panel-head">智能客服</div>
+<div class="chat-panel-body">
+        您好，我可以協助查詢申請流程、資料查調、補件方式與進度。
+        <button class="chat-quick" type="button">如何重新取得查調資料？</button>
+<button class="chat-quick" type="button">哪些資料需要自行填寫？</button>
+<button class="chat-quick" type="button">如何查看申請進度？</button>
+</div>
+</div>
+<div class="chat-label">智能客服</div>
+<button aria-label="開啟智能客服" class="chat-launcher" onclick="toggleChat()" type="button">
+<span class="bot-head">
+<span class="bot-eye left"></span>
+<span class="bot-eye right"></span>
+<span class="bot-smile"></span>
+</span>
+</button>
+</aside>
+<script>
+function toggleChat(){
+  document.getElementById("chatPanel").classList.toggle("open");
+}
+function viewCase(caseNo){
+  alert("示意：開啟申請案件資料檢視頁\n" + caseNo);
+}
+function openSupplement(caseNo){
+  alert("示意：前往補件頁面\n" + caseNo);
+}
+</script>
+<script src="assets/member-shell.js"></script>
+</body>
+</html>

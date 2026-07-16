@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>全國社宅統一申請登記平臺｜條款切結與聯絡資訊</title>
+<style>
+  :root{
+    --primary:#009c9a;
+    --primary-dark:#006f6d;
+    --primary-deep:#003f3f;
+    --primary-soft:#d9f4f2;
+    --line:#d7e7e5;
+    --text:#243837;
+    --muted:#6c7f7d;
+    --warning-bg:#fff8dc;
+    --warning-line:#efd48d;
+    --danger:#e45656;
+    --card:#ffffff;
+    --shadow:0 12px 28px rgba(0,80,80,.12);
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:"Noto Sans TC","Microsoft JhengHei",Arial,sans-serif;
+    color:var(--text);
+    background:
+      radial-gradient(circle at 8% 10%,#dff8ef 0,transparent 26%),
+      radial-gradient(circle at 92% 4%,#e8dcff 0,transparent 24%),
+      radial-gradient(circle at 78% 78%,#ffe4d4 0,transparent 28%),
+      linear-gradient(135deg,#f7fffb,#eef9f8);
+    min-height:100vh;
+  }
+
+  a{color:inherit;text-decoration:none}
+  button,input{font:inherit}
+
+  .page{
+    width:min(1180px,calc(100% - 40px));
+    margin:0 auto;
+    padding:0 0 48px;
+  }
+
+  .sticky-stack{
+    position:sticky;
+    top:0;
+    z-index:50;
+  }
+
+  .topbar{
+    background:rgba(255,255,255,.96);
+    border:1px solid rgba(0,156,154,.15);
+    box-shadow:0 8px 20px rgba(0,80,80,.10);
+    padding:12px 18px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:18px;
+    backdrop-filter:blur(10px);
+  }
+
+  .brand{display:flex;align-items:center;gap:12px;min-width:260px}
+  .brand-icon{
+    width:44px;height:44px;border-radius:14px;
+    background:linear-gradient(135deg,#00a9a6,#80d9d2);
+    color:#fff;display:grid;place-items:center;
+    font-size:24px;font-weight:900;
+  }
+  .brand-title strong{display:block;color:var(--primary-dark);font-size:16px}
+  .brand-title span{display:block;color:var(--muted);font-size:12px;margin-top:2px}
+
+  .nav{display:flex;gap:4px;align-items:center;justify-content:center;flex:1}
+  .nav a{padding:9px 13px;border-radius:999px;color:#536765;font-size:14px}
+  .nav a.active,.nav a:hover{background:var(--primary-soft);color:var(--primary-dark);font-weight:800}
+
+  .top-actions{display:flex;align-items:center;gap:10px}
+  .login-user{
+    display:flex;align-items:center;gap:7px;
+    padding:7px 11px;border:1px solid #cfe6e3;
+    border-radius:999px;background:#f4fbfa;
+    color:var(--primary-deep);font-size:13px;white-space:nowrap;
+  }
+  .login-user span{color:var(--muted);font-weight:700}
+
+  .circle-btn{
+    width:38px;height:38px;border:0;border-radius:50%;
+    background:#eaf8f7;color:var(--primary-dark);cursor:pointer;
+    border:1px solid #bfe8e5;font-size:16px;
+  }
+
+  .stepbar{
+    background:rgba(255,255,255,.97);
+    border:1px solid var(--line);
+    border-top:0;
+    border-radius:0 0 24px 24px;
+    display:flex;
+    justify-content:space-between;
+    padding:8px;
+    box-shadow:0 10px 22px rgba(0,80,80,.10);
+  }
+  .step{
+    flex:1;text-align:center;padding:10px 12px;
+    border-radius:999px;color:var(--muted);
+    font-size:14px;font-weight:800;
+  }
+  .step.active{background:var(--primary);color:#fff;box-shadow:0 8px 18px rgba(0,156,154,.2)}
+
+  .main-card{
+    margin-top:20px;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:28px;
+    box-shadow:var(--shadow);
+    overflow:hidden;
+  }
+
+  .card-head{
+    padding:22px 26px;
+    background:linear-gradient(90deg,rgba(0,156,154,.12),rgba(255,255,255,0)),#fff;
+    border-bottom:1px solid var(--line);
+    display:flex;align-items:flex-start;justify-content:space-between;gap:16px;
+  }
+
+  .card-head h1{margin:0;color:var(--primary-deep);font-size:25px}
+  .card-head p{margin:7px 0 0;color:var(--muted);font-size:14px;line-height:1.7}
+  .stage-chip{
+    padding:8px 13px;border-radius:999px;
+    background:#eef8f7;border:1px solid #cce8e5;
+    color:var(--primary-dark);font-size:13px;font-weight:900;
+    white-space:nowrap;
+  }
+
+  .content{padding:22px 24px 28px}
+
+  .stage-tabs{
+    display:flex;
+    gap:10px;
+    margin-bottom:16px;
+  }
+  .stage-tab{
+    flex:1;
+    border:1px solid var(--line);
+    background:#f7fbfa;
+    color:var(--muted);
+    border-radius:14px;
+    padding:11px 14px;
+    font-size:14px;
+    font-weight:900;
+    text-align:center;
+  }
+  .stage-tab.active{
+    border-color:#8fd5d0;
+    background:#eafaf8;
+    color:var(--primary-dark);
+  }
+  .stage-tab.done{
+    background:#e8f8ef;
+    border-color:#b9e5ce;
+    color:#1b7b50;
+  }
+  .stage-tab-button{
+    cursor:pointer;
+    transition:border-color .18s ease,background .18s ease,box-shadow .18s ease,transform .18s ease;
+  }
+  .stage-tab-button:hover{
+    border-color:#62beb9;
+    background:#e2f6f3;
+    box-shadow:0 7px 16px rgba(0,111,109,.10);
+    transform:translateY(-1px);
+  }
+  .stage-tab-button:focus-visible{outline:3px solid rgba(0,156,154,.24);outline-offset:3px}
+
+  .terms-layout{
+    display:grid;
+    grid-template-columns:minmax(0,1.2fr) minmax(330px,.8fr);
+    gap:18px;
+  }
+
+  .terms-card,.agreement-card,.contact-card{
+    border:1px solid var(--line);
+    border-radius:18px;
+    background:#fff;
+    overflow:hidden;
+  }
+
+  .panel-head{
+    padding:15px 17px;
+    background:linear-gradient(90deg,#f4fbfa,#fff);
+    border-bottom:1px solid var(--line);
+  }
+
+  .panel-head h2{
+    margin:0;
+    color:var(--primary-deep);
+    font-size:18px;
+  }
+  .panel-head p{
+    margin:5px 0 0;
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.6;
+  }
+
+  .terms-scroll{
+    height:530px;
+    overflow-y:auto;
+    padding:18px 20px;
+    line-height:1.85;
+    color:#4f5f5d;
+    font-size:14px;
+  }
+
+  .terms-scroll h3{
+    margin:20px 0 8px;
+    color:var(--primary-dark);
+    font-size:17px;
+  }
+  .terms-scroll h3:first-child{margin-top:0}
+  .terms-scroll ol{margin:0 0 0 20px;padding:0}
+  .terms-scroll li{margin-bottom:7px}
+  .terms-scroll .section-note{
+    padding:10px 12px;
+    border-left:4px solid #8fd5d0;
+    background:#f5fbfa;
+    color:#526866;
+    margin:12px 0;
+  }
+
+  .agreement-body{
+    padding:17px;
+  }
+
+  .agreement-intro{
+    border:1px solid #9edfe6;
+    background:#e7faff;
+    color:#3d666a;
+    border-radius:14px;
+    padding:12px 14px;
+    font-size:13px;
+    line-height:1.7;
+    margin-bottom:14px;
+  }
+
+  .check-list{
+    display:grid;
+    gap:11px;
+  }
+
+  .check-row{
+    display:flex;
+    align-items:flex-start;
+    gap:9px;
+    padding:10px 11px;
+    border:1px solid #e2ecea;
+    border-radius:12px;
+    background:#fbfefd;
+    cursor:pointer;
+  }
+
+  .check-row:hover{border-color:#a8dcd8}
+  .check-row input{
+    width:19px;height:19px;
+    margin-top:2px;
+    accent-color:var(--primary);
+    flex:0 0 auto;
+  }
+  .check-row span{
+    font-size:14px;
+    line-height:1.65;
+    color:#425755;
+  }
+
+  .submit-area{
+    margin-top:16px;
+  }
+
+  .btn{
+    border:1px solid var(--primary);
+    background:#fff;
+    color:var(--primary-dark);
+    border-radius:14px;
+    padding:12px 18px;
+    font-weight:900;
+    cursor:pointer;
+    transition:.18s;
+  }
+  .btn:hover{background:var(--primary-soft)}
+  .btn.primary{
+    width:100%;
+    min-height:52px;
+    background:var(--primary);
+    color:#fff;
+    box-shadow:0 10px 22px rgba(0,156,154,.18);
+  }
+  .btn.primary:hover{background:var(--primary-dark)}
+  .btn.primary:disabled{
+    opacity:.45;
+    cursor:not-allowed;
+    box-shadow:none;
+  }
+
+  .contact-stage{display:none}
+  .contact-stage.active{display:block}
+
+  .contact-wrap{
+    max-width:700px;
+    margin:0 auto;
+  }
+
+  .welcome{
+    text-align:center;
+    margin-bottom:18px;
+  }
+
+  .welcome-icon{
+    width:82px;height:82px;margin:0 auto 14px;
+    border-radius:50%;
+    background:linear-gradient(145deg,#dff8ea,#c8f0df);
+    display:grid;place-items:center;
+    font-size:34px;
+  }
+
+  .welcome h2{
+    margin:0;
+    color:var(--primary-deep);
+    font-size:25px;
+  }
+
+  .welcome p{
+    margin:8px auto 0;
+    max-width:620px;
+    color:var(--muted);
+    font-size:14px;
+    line-height:1.75;
+  }
+
+  .contact-card{
+    padding:20px;
+  }
+
+  .contact-note{
+    padding:13px 15px;
+    background:#e8faff;
+    border:1px solid #a7dfea;
+    border-radius:14px;
+    color:#3c666b;
+    font-size:14px;
+    line-height:1.75;
+    margin-bottom:16px;
+  }
+
+  .form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+  }
+
+  .field{min-width:0}
+  .field.full{grid-column:1/-1}
+  .field label{
+    display:block;
+    margin-bottom:7px;
+    color:#3b5553;
+    font-size:13px;
+    font-weight:900;
+  }
+  .required{color:var(--danger)}
+  .field input{
+    width:100%;
+    border:1px solid #d3e1df;
+    border-radius:12px;
+    padding:12px 13px;
+    font-size:15px;
+    color:var(--text);
+    background:#fff;
+    outline:none;
+  }
+  .field input:focus{
+    border-color:var(--primary);
+    box-shadow:0 0 0 4px rgba(0,156,154,.10);
+  }
+  .hint{
+    margin-top:5px;
+    color:var(--muted);
+    font-size:12px;
+  }
+
+  .contact-actions{
+    display:flex;
+    justify-content:flex-end;
+    gap:10px;
+    margin-top:18px;
+  }
+
+  .secondary-btn{
+    border:0;
+    background:transparent;
+    color:var(--muted);
+    text-decoration:underline;
+    text-underline-offset:4px;
+    cursor:pointer;
+    font-size:14px;
+    padding:10px 12px;
+  }
+
+  .continue-btn{
+    min-width:240px;
+    background:var(--primary);
+    color:#fff;
+    border-color:var(--primary);
+  }
+  .continue-btn:hover{
+    color:#fff;
+    background:var(--primary-dark);
+    border-color:var(--primary-dark);
+    box-shadow:0 10px 20px rgba(0,111,109,.22);
+    transform:translateY(-2px);
+  }
+  .continue-btn:active{transform:translateY(0);box-shadow:0 5px 12px rgba(0,111,109,.18)}
+  .continue-btn:focus-visible{outline:3px solid rgba(0,156,154,.25);outline-offset:3px}
+
+  .chat-support{
+    position:fixed;
+    right:24px;
+    bottom:24px;
+    z-index:40;
+  }
+  .chat-label{
+    position:absolute;
+    right:50%;
+    bottom:72px;
+    transform:translateX(50%);
+    background:#fff;
+    color:var(--primary-deep);
+    border:1px solid var(--line);
+    border-radius:999px;
+    padding:7px 11px;
+    font-size:13px;
+    font-weight:900;
+    white-space:nowrap;
+    box-shadow:0 8px 20px rgba(0,80,80,.12);
+  }
+  .chat-launcher{
+    width:62px;height:62px;border:0;border-radius:50%;
+    background:linear-gradient(145deg,#23c3b6,#008c88);
+    box-shadow:0 12px 28px rgba(0,80,80,.28);
+    cursor:pointer;display:grid;place-items:center;
+  }
+  .bot-head{
+    width:40px;height:34px;border-radius:16px;background:#fff;position:relative;
+  }
+  .bot-head:before{
+    content:"";position:absolute;left:18px;top:-9px;width:4px;height:9px;
+    border-radius:4px;background:#fff;
+  }
+  .bot-eye{
+    position:absolute;top:12px;width:6px;height:7px;border-radius:50%;background:#006f6d;
+  }
+  .bot-eye.left{left:9px}.bot-eye.right{right:9px}
+  .bot-smile{
+    position:absolute;left:13px;top:22px;width:14px;height:6px;
+    border-bottom:3px solid #ff9f43;border-radius:0 0 12px 12px;
+  }
+
+  @media(max-width:980px){
+    .nav{display:none}
+    .terms-layout{grid-template-columns:1fr}
+    .terms-scroll{height:420px}
+  }
+
+  @media(max-width:680px){
+    .page{width:min(100% - 20px,1180px)}
+    .brand{min-width:0}
+    .brand-title span{display:none}
+    .login-user span{display:none}
+    .stepbar{flex-direction:column;border-radius:0 0 20px 20px}
+    .card-head{flex-direction:column}
+    .content{padding:16px}
+    .stage-tabs{flex-direction:column}
+    .form-grid{grid-template-columns:1fr}
+    .field.full{grid-column:auto}
+    .contact-actions{flex-direction:column-reverse}
+    .continue-btn{width:100%;min-width:0}
+    .secondary-btn{width:100%}
+    .chat-label{display:none}
+  }
+
+  /* 首頁共用：登入後雙層固定頁首 */
+  .site-header{position:sticky;top:0;z-index:1000;height:137px;isolation:isolate}
+  .site-header .utility-bar{
+    position:relative;z-index:3;height:44px;display:flex;align-items:center;justify-content:space-between;
+    padding:0 max(36px,calc((100vw - 1510px)/2));border:0;border-radius:0;color:#333b40;
+    background:rgba(255,255,255,.94);box-shadow:none;font-size:15px;font-weight:700;letter-spacing:.04em;
+    backdrop-filter:none;transition:background .2s ease,box-shadow .2s ease;
+  }
+  .site-header.is-scrolled .utility-bar{background:rgba(255,255,255,.99)}
+  .agency-link{color:inherit;text-decoration:none}
+  .agency-link:hover{color:#007983}
+  .site-header .utility-links{display:flex;align-items:center;gap:47px}
+  .site-header .utility-link{display:inline-flex;align-items:center;gap:10px;color:inherit;text-decoration:none}
+  .site-header .utility-link svg{width:24px;height:24px;fill:none;stroke:#15191c;stroke-width:1.8}
+  .site-main-nav{
+    position:absolute;z-index:2;top:44px;right:0;left:0;height:93px;display:grid;
+    grid-template-columns:auto minmax(600px,1fr) auto;align-items:center;gap:24px;
+    padding:0 max(36px,calc((100vw - 1510px)/2));background:rgba(255,255,255,.76);
+    border-bottom:1px solid rgba(106,128,130,.12);backdrop-filter:blur(14px) saturate(1.08);
+    transition:background .2s ease,box-shadow .2s ease;
+  }
+  .site-header.is-scrolled .site-main-nav{background:rgba(255,255,255,.97);box-shadow:0 12px 28px rgba(20,65,70,.14)}
+  .site-header .brand{min-width:0;display:flex;align-items:center;gap:16px;color:#154f5b;text-decoration:none;white-space:nowrap}
+  .brand-mark{width:50px;height:48px;flex:0 0 auto}
+  .site-header .brand-name{font-family:"Noto Serif TC","PMingLiU","Songti TC",serif;font-size:clamp(20px,1.65vw,27px);font-weight:800;letter-spacing:.06em}
+  .member-nav{height:100%;display:flex;align-items:center;justify-self:center;gap:clamp(14px,1.65vw,28px)}
+  .member-nav-link{position:relative;height:100%;display:grid;place-items:center;padding:0 2px;color:#5c6265;font-size:15px;font-weight:700;letter-spacing:.04em;text-decoration:none;white-space:nowrap}
+  .member-nav-link:hover,.member-nav-link.active{color:#007983}
+  .member-nav-link.active::after{content:"";position:absolute;right:0;bottom:14px;left:0;height:4px;border-radius:4px;background:#007983}
+  .member-actions{display:flex;align-items:center;justify-self:end;gap:9px}
+  .site-header .login-user{padding:8px 12px;border-color:rgba(0,121,131,.18);color:#154f5b;background:rgba(241,248,247,.9)}
+  .site-header .login-user-label{color:#6c7f7d;font-weight:700}
+  .member-icon{width:40px;height:40px;display:grid;place-items:center;padding:0;border:1px solid rgba(0,121,131,.18);border-radius:50%;color:#006b75;background:rgba(255,255,255,.8);cursor:pointer}
+  .member-icon:hover{color:#fff;background:#007983}
+  .member-icon svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+  .site-mobile-menu{width:46px;height:46px;display:none;place-items:center;margin-left:auto;padding:0;border:1px solid rgba(0,121,131,.22);border-radius:50%;color:#007983;background:rgba(255,255,255,.65);font-size:26px;line-height:1}
+  .site-mobile-nav{z-index:4;display:none}
+  .site-mobile-nav a{color:#31545a;text-decoration:none;font-size:16px;font-weight:700;letter-spacing:.04em}
+  .site-mobile-nav a.active{color:#007983}
+  .mobile-member{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:16px;border-top:1px solid #d9e6e4}
+  .mobile-member-actions{display:flex;gap:8px}
+  .site-header a:focus-visible,.site-header button:focus-visible{outline:3px solid rgba(0,121,131,.35);outline-offset:3px}
+
+  /* 首頁共用：頁尾 */
+  .site-footer{position:relative;margin-top:34px;padding:0 48px;overflow:hidden;color:#e7f2f1;background:radial-gradient(circle at 82% -40%,rgba(23,152,157,.3),transparent 38%),linear-gradient(135deg,#123d45,#092d34)}
+  .site-footer::before{content:"";position:absolute;top:0;right:0;left:0;height:4px;background:linear-gradient(90deg,#0a848d,#55bdb8 48%,#0a848d)}
+  .footer-inner{width:min(1180px,100%);margin:0 auto;padding:52px 0 28px}
+  .footer-top{display:flex;align-items:center;justify-content:space-between;gap:40px}
+  .footer-brand{display:inline-flex;align-items:center;gap:16px;color:#fff;text-decoration:none}
+  .footer-logo{width:62px;height:62px;display:grid;flex:0 0 auto;place-items:center;border:1px solid rgba(255,255,255,.16);border-radius:18px;background:rgba(255,255,255,.94);box-shadow:0 10px 24px rgba(0,0,0,.14)}
+  .footer-logo img{width:48px;height:auto}
+  .footer-brand-text strong{display:block;font-family:"Noto Serif TC","PMingLiU","Songti TC",serif;font-size:20px;letter-spacing:.08em}
+  .footer-brand-text span{display:block;margin-top:6px;color:#a9ccca;font-size:13px;letter-spacing:.08em}
+  .footer-links{display:flex;align-items:center;gap:10px}
+  .footer-links a{min-height:40px;display:inline-flex;align-items:center;padding:0 16px;border:1px solid rgba(255,255,255,.15);border-radius:999px;color:#d7e8e7;text-decoration:none;font-size:14px;font-weight:700;transition:.18s ease}
+  .footer-links a:hover{color:#fff;border-color:rgba(111,210,207,.48);background:rgba(255,255,255,.08)}
+  .footer-rule{height:1px;margin:32px 0 25px;background:linear-gradient(90deg,rgba(255,255,255,.2),rgba(255,255,255,.05))}
+  .footer-bottom{display:flex;align-items:flex-end;justify-content:space-between;gap:40px}
+  .footer-details{min-width:0}
+  .footer-contact{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px 38px;margin:0}
+  .footer-meta{display:grid;gap:3px;color:#d2e3e2;font-size:14px;line-height:1.65}
+  .footer-meta-label{color:#78bcb9;font-size:12px;font-weight:800;letter-spacing:.12em}
+  .footer-contact a{color:inherit;text-decoration:none}
+  .footer-contact a:hover{color:#fff;text-decoration:underline}
+  .footer-copyright{margin:20px 0 0;color:#87aaa8;font-size:12px;letter-spacing:.04em}
+  .footer-badge{flex:0 0 auto}
+  .footer-badge img{display:block;width:120px;height:auto}
+  .site-footer a:focus-visible{outline:3px solid #65cbc6;outline-offset:4px}
+
+  @media(max-width:1380px){
+    .site-main-nav{grid-template-columns:auto minmax(530px,1fr) auto;gap:16px;padding-right:24px;padding-left:24px}
+    .site-header .brand{gap:11px}.brand-mark{width:44px;height:42px}.site-header .brand-name{font-size:20px}
+    .member-nav{gap:13px}.member-nav-link{font-size:14px;letter-spacing:0}
+    .site-header .login-user-label{display:none}.site-header .login-user{padding:8px 10px}
+  }
+  @media(max-width:1180px){
+    .site-main-nav{display:flex}.member-nav,.site-main-nav>.member-actions{display:none}.site-mobile-menu{display:grid}
+    .site-mobile-nav{position:absolute;top:calc(100% + 10px);right:max(28px,calc((100vw - 1040px)/2));width:min(330px,calc(100vw - 40px));padding:22px;gap:19px;border:1px solid rgba(255,255,255,.9);border-radius:18px;background:rgba(255,255,255,.96);box-shadow:0 18px 42px rgba(30,72,76,.2);backdrop-filter:blur(18px) saturate(1.08)}
+    .site-mobile-nav.open{display:grid}
+  }
+  @media(max-width:700px){
+    .site-header{height:110px}.site-header .utility-bar{height:38px;padding:0 18px;font-size:12px}
+    .site-header .utility-links{gap:12px}.site-header .utility-link span{display:none}.site-header .utility-link svg{width:20px;height:20px}
+    .site-main-nav{top:38px;height:72px;padding:0 18px}.brand-mark{width:38px;height:36px}
+    .site-header .brand-name{max-width:220px;overflow:hidden;text-overflow:ellipsis;font-size:17px}
+    .site-mobile-menu{width:42px;height:42px}.site-mobile-nav{right:16px;width:calc(100vw - 32px)}
+    .site-footer{padding:0 22px}.footer-inner{padding-top:42px}
+    .footer-top,.footer-bottom{align-items:flex-start;flex-direction:column}.footer-top{gap:26px}
+    .footer-links{width:100%;align-items:stretch;flex-direction:column}.footer-links a{justify-content:center}
+    .footer-contact{grid-template-columns:1fr;gap:14px}.footer-badge{align-self:flex-start}
+  }
+</style>
+<link rel="stylesheet" href="assets/member-shell.css" />
+</head>
+
+<body id="top">
+<header class="site-header">
+  <div class="utility-bar">
+    <a class="agency-link" href="https://www.nlma.gov.tw/" target="_blank" rel="noopener noreferrer">內政部國土管理署</a>
+    <div class="utility-links">
+      <a class="utility-link" href="#primaryNavigation" aria-label="網站導覽"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="2.5" width="6" height="5" rx="1.2"/><rect x="2" y="16.5" width="6" height="5" rx="1.2"/><rect x="9" y="16.5" width="6" height="5" rx="1.2"/><rect x="16" y="16.5" width="6" height="5" rx="1.2"/><path d="M12 7.5V12M5 16.5V12h14v4.5M12 12v4.5"/></svg><span>網站導覽</span></a>
+      <a class="utility-link" href="#siteFooter" aria-label="聯絡我們"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13v-1a8 8 0 0 1 16 0v1"/><path d="M4 12H2v5c0 1.1.9 2 2 2h2v-7H4Zm16 0h2v5c0 1.1-.9 2-2 2h-2v-7h2Z"/><path d="M18 19c0 2-2 3-5 3"/></svg><span>聯絡我們</span></a>
+    </div>
+  </div>
+  <nav class="site-main-nav" id="primaryNavigation" aria-label="會員主要導覽">
+    <a class="brand" href="index.html" aria-label="全國社宅統一登記申請平台首頁"><img class="brand-mark" src="assets/platform-logo-elegant.svg" alt=""/><span class="brand-name">全國社宅統一登記申請平台</span></a>
+    <div class="member-nav">
+      <a class="member-nav-link" href="index.html">首頁</a>
+      <a class="member-nav-link" href="index.html#housingExplorer">找社宅</a>
+      <a class="member-nav-link active" href="data.html" aria-current="page">資料登記</a>
+      <a class="member-nav-link" href="questionnaire.html">需求問卷</a>
+      <a class="member-nav-link" href="apply.html">申請社宅</a>
+      <a class="member-nav-link" href="progress.html">進度查詢/補件</a>
+      <a class="member-nav-link" href="#">操作紀錄</a>
+    </div>
+    <div class="member-actions">
+      <div class="login-user"><span class="login-user-label">登入者</span><strong>陳ＯＯ</strong></div>
+      <button class="member-icon" type="button" title="通知" aria-label="查看通知"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg></button>
+      <a class="member-icon" href="index.html" title="登出" aria-label="登出"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 17l5-5-5-5M15 12H3M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/></svg></a>
+    </div>
+    <button class="site-mobile-menu" type="button" aria-label="開啟選單" aria-controls="memberMobileNav" aria-expanded="false">☰</button>
+    <div class="site-mobile-nav" id="memberMobileNav">
+      <a href="index.html">首頁</a><a href="index.html#housingExplorer">找社宅</a><a class="active" href="data.html" aria-current="page">資料登記</a>
+      <a href="questionnaire.html">需求問卷</a><a href="apply.html">申請社宅</a><a href="progress.html">進度查詢/補件</a><a href="#">操作紀錄</a>
+      <div class="mobile-member"><div class="login-user"><span class="login-user-label">登入者</span><strong>陳ＯＯ</strong></div><div class="mobile-member-actions"><button class="member-icon" type="button" aria-label="查看通知"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg></button><a class="member-icon" href="index.html" aria-label="登出"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 17l5-5-5-5M15 12H3M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/></svg></a></div></div>
+    </div>
+  </nav>
+</header>
+<div class="page">
+  <div class="stepbar">
+      <div class="step active">1 資料登記／授權同意查調</div>
+      <div class="step">2 需求登記／問卷調查回饋</div>
+      <div class="step">3 完成登記</div>
+  </div>
+
+  <main class="main-card">
+    <div class="card-head">
+      <div>
+        <h1>使用條款、個資告知與切結</h1>
+        <p>開始填寫申請資料前，請先閱讀服務條款及個人資料保護告知內容，完成同意與切結。</p>
+      </div>
+      <div class="stage-chip" id="stageChip">步驟 1／2　條款與切結</div>
+    </div>
+
+    <div class="content">
+      <div class="stage-tabs">
+        <button class="stage-tab stage-tab-button active" id="tabTerms" type="button" onclick="backToTerms()">1. 閱讀條款並完成切結</button>
+        <div class="stage-tab" id="tabContact">2. 填寫聯絡資訊</div>
+      </div>
+
+      <section id="termsStage">
+        <div class="terms-layout">
+          <article class="terms-card">
+            <div class="panel-head">
+              <h2>全國社宅統一申請登記平臺使用條款及個人資料保護告知聲明</h2>
+              <p>請完整閱讀下列內容，向下捲動可查看全部條款。</p>
+            </div>
+
+            <div class="terms-scroll">
+              <h3>一、服務目的與適用範圍</h3>
+              <ol>
+                <li>本平臺提供社會住宅資訊查詢、需求登記、申請資料登記、資料授權查調、補件及案件進度查詢等服務。</li>
+                <li>完成本平臺登記僅代表建立基本資料與接收招租通知，不等同完成任何社會住宅正式申請。</li>
+                <li>正式招租期間，申請人仍須依公告內容主動提出申請，並配合權責機關辦理審查、補件及後續作業。</li>
+              </ol>
+
+              <h3>二、個人資料蒐集、處理及利用</h3>
+              <ol>
+                <li>為辦理社會住宅相關業務，本平臺得蒐集姓名、身分證字號或居留證號、出生年月日、聯絡方式、戶籍與家庭成員等資料。</li>
+                <li>經本人授權後，系統得依資格審查需要查調戶政、財稅、社福、地政及住宅補貼等相關資料。</li>
+                <li>蒐集之資料僅限於社會住宅申請、審查、通知、統計與政策分析等業務範圍使用，不作行銷或其他無關用途。</li>
+              </ol>
+
+              <div class="section-note">
+                查調取得之資料將作為資格初判及地方審查參考；資料缺漏、查調失敗或有疑義時，系統可能要求補充說明或上傳佐證文件。
+              </div>
+
+              <h3>三、帳號與資料安全</h3>
+              <ol>
+                <li>使用者應妥善保管登入憑證，不得冒用他人身分或將帳號提供他人使用。</li>
+                <li>使用者應確認所填資料正確；如資料有變更，應即時更新，以避免影響通知或申請權益。</li>
+                <li>本平臺將保存必要之登入、授權、查調、異動及通知紀錄，作為資安與稽核依據。</li>
+              </ol>
+
+              <h3>四、使用者義務</h3>
+              <ol>
+                <li>不得提供不實資料、偽造文件或以其他方式規避資格審查。</li>
+                <li>不得以任何方式破壞平臺安全、干擾服務或從事違法行為。</li>
+                <li>因填報不實或違反規定所生之責任，由使用者自行負責。</li>
+              </ol>
+
+              <h3>五、權利行使與聯絡方式</h3>
+              <ol>
+                <li>使用者得依法查詢、閱覽、補充、更正或請求停止利用其個人資料。</li>
+                <li>若對條款、個資運用或申請流程有疑問，可透過本平臺智能客服或客服窗口洽詢。</li>
+              </ol>
+            </div>
+          </article>
+
+          <aside class="agreement-card">
+            <div class="panel-head">
+              <h2>同意與切結</h2>
+              <p>請逐項勾選，全部完成後即可送出切結。</p>
+            </div>
+
+            <div class="agreement-body">
+              <div class="agreement-intro">
+                為保障您的申請權益，請詳閱服務條款及隱私權保護政策，並確認下列事項。
+              </div>
+
+              <div class="check-list">
+                <label class="check-row">
+                  <input type="checkbox" class="agreement-check" checked />
+                  <span>我已閱讀並同意《服務條款》及《隱私權保護政策》之全部內容。</span>
+                </label>
+
+                <label class="check-row">
+                  <input type="checkbox" class="agreement-check" checked />
+                  <span>我同意本平臺於業務必要範圍內蒐集、處理及利用本人與家庭成員之個人資料。</span>
+                </label>
+
+                <label class="check-row">
+                  <input type="checkbox" class="agreement-check" checked />
+                  <span>我同意於資格審查需要時，依法提供相關資料予地方政府、國家住都中心或受託辦理機關。</span>
+                </label>
+
+                <label class="check-row">
+                  <input type="checkbox" class="agreement-check" checked />
+                  <span>我承諾所填資料及檢附文件均屬真實，如有不實願負相關法律責任。</span>
+                </label>
+
+                <label class="check-row">
+                  <input type="checkbox" class="agreement-check" checked />
+                  <span>我了解完成本平臺登記不等同完成正式社宅申請，仍須於招租期間另行提出申請。</span>
+                </label>
+
+                <label class="check-row">
+                  <input type="checkbox" class="agreement-check" checked />
+                  <span>我同意接收社宅招租、補件、審查結果及其他申請相關通知。</span>
+                </label>
+              </div>
+
+              <div class="submit-area">
+                <button class="btn primary" id="submitAgreement" type="button" onclick="submitAgreement()">
+                  送出切結
+                </button>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="contact-stage" id="contactStage">
+        <div class="contact-wrap">
+          <div class="welcome">
+            <div class="welcome-icon">✓</div>
+            <h2>切結已完成，請開始登記</h2>
+            <p>請填寫本人真實姓名與可接收通知的聯絡方式，後續招租、補件及申請進度將依此資訊通知。</p>
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-note">
+              完成準申請人登記後，系統將依您提供的手機與電子信箱發送社宅招租通知。請確認資料正確，以免影響後續通知。
+            </div>
+
+            <div class="form-grid">
+              <div class="field full">
+                <label>真實姓名 <span class="required">*</span></label>
+                <input type="text" id="realName" value="陳小明" placeholder="請輸入本人真實姓名" />
+                <div class="hint">請填寫與身分證件一致之姓名。</div>
+              </div>
+
+              <div class="field">
+                <label>聯絡手機 <span class="required">*</span></label>
+                <input type="tel" id="mobile" value="0912-345-678" placeholder="例如：0912-345-678" />
+                <div class="hint">用於接收簡訊通知。</div>
+              </div>
+
+              <div class="field">
+                <label>電子信箱 <span class="required">*</span></label>
+                <input type="email" id="email" value="chen@example.com" placeholder="例如：name@example.com" />
+                <div class="hint">用於接收招租及申請相關通知。</div>
+              </div>
+            </div>
+
+            <div class="contact-actions">
+              <button class="btn continue-btn" type="button" onclick="continueToForm()">確認並開始資料登記</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+
+<footer class="site-footer" id="siteFooter">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a class="footer-brand" href="index.html"><span class="footer-logo"><img src="assets/platform-logo-elegant.svg" alt=""/></span><span class="footer-brand-text"><strong>全國社宅統一登記申請平台</strong><span>內政部國土管理署</span></span></a>
+      <nav class="footer-links" aria-label="頁尾導覽"><a href="privacy.html">隱私權政策</a><a href="terms.html">服務條款</a><a href="#top">返回頂端</a></nav>
+    </div>
+    <div class="footer-rule"></div>
+    <div class="footer-bottom">
+      <div class="footer-details">
+        <div class="footer-contact"><div class="footer-meta"><span class="footer-meta-label">機關地址</span><span>105404台北市松山區八德路2段342號</span></div><div class="footer-meta"><span class="footer-meta-label">總機服務</span><a href="tel:+886-2-87712345">(02)-87712345</a></div></div>
+        <p class="footer-copyright">內政部國土管理署 版權所有&nbsp; © 2026 All Rights Reserved.</p>
+      </div>
+      <div class="footer-badge"><img src="https://www.nlma.gov.tw/_next/static/media/AA.860fb9dd.svg" alt="AA 等級無障礙網站標章" loading="lazy"/></div>
+    </div>
+  </div>
+</footer>
+
+<aside class="chat-support">
+  <div class="chat-label">智能客服</div>
+  <button class="chat-launcher" type="button" aria-label="開啟智能客服">
+    <span class="bot-head">
+      <span class="bot-eye left"></span>
+      <span class="bot-eye right"></span>
+      <span class="bot-smile"></span>
+    </span>
+  </button>
+</aside>
+
+<script>
+  const siteHeader = document.querySelector('.site-header');
+  const mobileMenu = document.querySelector('.site-mobile-menu');
+  const mobileNav = document.getElementById('memberMobileNav');
+
+  function closeMemberMenu(){
+    if(!mobileMenu || !mobileNav) return;
+    mobileNav.classList.remove('open');
+    mobileMenu.setAttribute('aria-expanded','false');
+    mobileMenu.textContent = '☰';
+    mobileMenu.setAttribute('aria-label','開啟選單');
+  }
+
+  if(siteHeader){
+    const updateHeader = () => siteHeader.classList.toggle('is-scrolled',window.scrollY > 8);
+    updateHeader();
+    window.addEventListener('scroll',updateHeader,{passive:true});
+  }
+
+  if(mobileMenu && mobileNav){
+    mobileMenu.addEventListener('click',() => {
+      const isOpen = mobileNav.classList.toggle('open');
+      mobileMenu.setAttribute('aria-expanded',String(isOpen));
+      mobileMenu.textContent = isOpen ? '×' : '☰';
+      mobileMenu.setAttribute('aria-label',isOpen ? '關閉選單' : '開啟選單');
+    });
+    mobileNav.querySelectorAll('a').forEach(link => link.addEventListener('click',closeMemberMenu));
+    document.addEventListener('click',event => {
+      if(!event.target.closest('.site-main-nav')) closeMemberMenu();
+    });
+    window.addEventListener('resize',() => {
+      if(window.innerWidth > 1180) closeMemberMenu();
+    });
+  }
+
+  const checks = Array.from(document.querySelectorAll(".agreement-check"));
+  const submitButton = document.getElementById("submitAgreement");
+
+  checks.forEach(check => {
+    check.addEventListener("change", () => {
+      submitButton.disabled = !checks.every(item => item.checked);
+    });
+  });
+  submitButton.disabled = !checks.every(item => item.checked);
+
+  function submitAgreement(){
+    document.getElementById("termsStage").style.display = "none";
+    document.getElementById("contactStage").classList.add("active");
+
+    document.getElementById("tabTerms").classList.remove("active");
+    document.getElementById("tabTerms").classList.add("done");
+    document.getElementById("tabContact").classList.add("active");
+
+    document.getElementById("stageChip").textContent = "步驟 2／2　填寫聯絡資訊";
+    window.scrollTo({top:0,behavior:"smooth"});
+  }
+
+  function backToTerms(){
+    document.getElementById("contactStage").classList.remove("active");
+    document.getElementById("termsStage").style.display = "";
+
+    document.getElementById("tabTerms").classList.remove("done");
+    document.getElementById("tabTerms").classList.add("active");
+    document.getElementById("tabContact").classList.remove("active");
+
+    document.getElementById("stageChip").textContent = "步驟 1／2　條款與切結";
+    window.scrollTo({top:0,behavior:"smooth"});
+  }
+
+  function continueToForm(){
+    const name = document.getElementById("realName").value.trim();
+    const mobile = document.getElementById("mobile").value.trim();
+    const email = document.getElementById("email").value.trim();
+
+    if(!name || !mobile || !email){
+      alert("請完整填寫真實姓名、聯絡手機及電子信箱。");
+      return;
+    }
+
+    window.location.href = "data.html";
+  }
+</script>
+</body>
+</html>

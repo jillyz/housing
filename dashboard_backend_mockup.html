@@ -1,0 +1,813 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>全國社宅統一申請登記平臺｜後台資訊面板原型</title>
+  <style>
+    :root {
+      --bg: #eef4f8;
+      --panel: #ffffff;
+      --panel-soft: #f8fbfd;
+      --ink: #183247;
+      --muted: #66788a;
+      --line: #d9e5ec;
+      --primary: #1f7a8c;
+      --primary-dark: #0f596b;
+      --blue: #2f80ed;
+      --green: #27ae60;
+      --amber: #f2994a;
+      --red: #eb5757;
+      --purple: #7b61ff;
+      --shadow: 0 18px 45px rgba(20, 58, 80, 0.12);
+      --radius: 22px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top left, rgba(31, 122, 140, 0.16), transparent 32rem),
+        linear-gradient(135deg, #f6fbfd, var(--bg));
+      color: var(--ink);
+      font-family: "Noto Sans TC", "Microsoft JhengHei", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    .app {
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+      min-height: 100vh;
+    }
+
+    aside {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      padding: 28px 22px;
+      background: linear-gradient(180deg, #11394a 0%, #0c2735 100%);
+      color: #e8f5f8;
+    }
+
+    .brand {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      padding-bottom: 28px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 50px;
+      height: 50px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #34d3b5, #2f80ed);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.26);
+      font-size: 24px;
+      font-weight: 900;
+    }
+
+    .brand small {
+      display: block;
+      margin-top: 4px;
+      color: #9ec5cf;
+      font-size: 12px;
+      letter-spacing: .08em;
+    }
+
+    nav {
+      margin-top: 26px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .nav-item {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      padding: 13px 14px;
+      border-radius: 16px;
+      color: #cde4eb;
+      font-size: 15px;
+    }
+
+    .nav-item.active {
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+    }
+
+    .nav-item span:first-child {
+      width: 26px;
+      text-align: center;
+    }
+
+    .side-card {
+      margin-top: 28px;
+      padding: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .side-card strong {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .side-card p {
+      margin: 0;
+      color: #b8d6df;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    main {
+      padding: 30px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: flex-start;
+      margin-bottom: 26px;
+    }
+
+    .eyebrow {
+      color: var(--primary);
+      font-weight: 800;
+      letter-spacing: .08em;
+      font-size: 13px;
+    }
+
+    h1 {
+      margin: 8px 0 8px;
+      font-size: clamp(28px, 3.5vw, 42px);
+      letter-spacing: -0.04em;
+    }
+
+    .lead {
+      max-width: 860px;
+      color: var(--muted);
+      line-height: 1.8;
+      margin: 0;
+    }
+
+    .user-pill {
+      min-width: 220px;
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    .avatar {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: #e3f7f4;
+      color: var(--primary-dark);
+      font-weight: 900;
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.68);
+      backdrop-filter: blur(10px);
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    select,
+    button {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fff;
+      color: var(--ink);
+      padding: 10px 12px;
+      font: inherit;
+    }
+
+    button.primary {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #fff;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .kpis {
+      grid-template-columns: repeat(6, minmax(150px, 1fr));
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid rgba(217, 229, 236, 0.8);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .kpi {
+      padding: 18px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .kpi::after {
+      content: "";
+      position: absolute;
+      right: -20px;
+      top: -20px;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: var(--accent, rgba(31, 122, 140, .12));
+    }
+
+    .kpi .label {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+
+    .kpi .value {
+      font-size: 30px;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+    }
+
+    .kpi .note {
+      margin-top: 8px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .layout {
+      grid-template-columns: minmax(0, 1.35fr) minmax(360px, .65fr);
+      align-items: start;
+      margin-top: 18px;
+    }
+
+    .panel {
+      padding: 22px;
+    }
+
+    .panel-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 21px;
+      letter-spacing: -0.02em;
+    }
+
+    .sub {
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .status-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .status-row {
+      display: grid;
+      gap: 8px;
+      padding: 14px;
+      border-radius: 16px;
+      background: var(--panel-soft);
+      border: 1px solid var(--line);
+    }
+
+    .status-title {
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .bar {
+      height: 11px;
+      border-radius: 999px;
+      background: #e7eef3;
+      overflow: hidden;
+    }
+
+    .bar > i {
+      display: block;
+      height: 100%;
+      width: var(--w);
+      border-radius: inherit;
+      background: var(--c);
+    }
+
+    .chart-wrap {
+      display: grid;
+      grid-template-columns: 230px 1fr;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .donut {
+      width: 210px;
+      height: 210px;
+      border-radius: 50%;
+      background: conic-gradient(var(--blue) 0 31%, var(--green) 31% 52%, var(--amber) 52% 70%, var(--red) 70% 81%, var(--purple) 81% 100%);
+      position: relative;
+      margin: auto;
+    }
+
+    .donut::after {
+      content: "案件狀態";
+      position: absolute;
+      inset: 34px;
+      border-radius: 50%;
+      background: #fff;
+      display: grid;
+      place-items: center;
+      color: var(--muted);
+      font-weight: 800;
+    }
+
+    .legend {
+      display: grid;
+      gap: 11px;
+    }
+
+    .legend-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .dot {
+      display: inline-block;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      margin-right: 8px;
+      background: var(--c);
+    }
+
+    .api-list,
+    .task-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .api-item,
+    .task {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: var(--panel-soft);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 9px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      background: #e8f6ee;
+      color: #18723f;
+    }
+
+    .badge.warn {
+      background: #fff3e5;
+      color: #9a530c;
+    }
+
+    .badge.danger {
+      background: #ffeaea;
+      color: #b82e2e;
+    }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border-radius: 16px;
+    }
+
+    .data-table th,
+    .data-table td {
+      padding: 13px 12px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    .data-table th {
+      color: var(--muted);
+      font-size: 12px;
+      background: #f2f7fa;
+    }
+
+    .region-bars {
+      display: grid;
+      gap: 15px;
+    }
+
+    .region-row {
+      display: grid;
+      grid-template-columns: 70px 1fr 56px;
+      gap: 10px;
+      align-items: center;
+      font-size: 14px;
+    }
+
+    .footer-note {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 1180px) {
+      .app {
+        grid-template-columns: 1fr;
+      }
+
+      aside {
+        position: static;
+        height: auto;
+      }
+
+      nav {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .kpis {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      main {
+        padding: 18px;
+      }
+
+      header,
+      .panel-head,
+      .toolbar {
+        flex-direction: column;
+      }
+
+      nav,
+      .kpis,
+      .status-grid,
+      .chart-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .user-pill {
+        width: 100%;
+        justify-content: flex-start;
+      }
+
+      .data-table {
+        display: block;
+        overflow-x: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <aside aria-label="後台主選單">
+      <div class="brand">
+        <div class="brand-mark">宅</div>
+        <div>
+          <strong>全國社宅平台</strong>
+          <small>後台管理中心</small>
+        </div>
+      </div>
+
+      <nav>
+        <div class="nav-item active"><span>📊</span><span>資訊總覽</span></div>
+        <div class="nav-item"><span>📁</span><span>案件審查</span></div>
+        <div class="nav-item"><span>🔁</span><span>資料查調</span></div>
+        <div class="nav-item"><span>✅</span><span>資格比對</span></div>
+        <div class="nav-item"><span>🔔</span><span>通知補件</span></div>
+        <div class="nav-item"><span>📈</span><span>統計報表</span></div>
+        <div class="nav-item"><span>🛡️</span><span>資安稽核</span></div>
+        <div class="nav-item"><span>⚙️</span><span>系統管理</span></div>
+      </nav>
+
+      <div class="side-card">
+        <strong>今日系統摘要</strong>
+        <p>資料查調服務正常，財稅介接有 3 筆逾時待重送；待補件案件較昨日增加 8.4%，建議承辦優先處理。</p>
+      </div>
+    </aside>
+
+    <main>
+      <header>
+        <div>
+          <div class="eyebrow">115A-037｜後台資訊面板示意</div>
+          <h1>全國社會住宅統一申請登記平臺</h1>
+          <p class="lead">本頁為服務建議書使用之後台資訊面板 HTML 原型，展示案件狀態、跨機關資料查調、補件審查、區域需求與資安維運指標，作為需求訪談與系統雛形展示基礎。</p>
+        </div>
+        <div class="user-pill">
+          <div>
+            <strong>國土管理署承辦人</strong>
+            <div class="sub">權限：中央業務管理</div>
+          </div>
+          <div class="avatar">管</div>
+        </div>
+      </header>
+
+      <section class="toolbar" aria-label="篩選列">
+        <div class="filters">
+          <select aria-label="年度">
+            <option>115 年度</option>
+            <option>116 年度</option>
+          </select>
+          <select aria-label="縣市">
+            <option>全國</option>
+            <option>臺北市</option>
+            <option>新北市</option>
+            <option>桃園市</option>
+            <option>臺中市</option>
+            <option>臺南市</option>
+            <option>高雄市</option>
+          </select>
+          <select aria-label="案件狀態">
+            <option>全部案件狀態</option>
+            <option>已收件</option>
+            <option>查調中</option>
+            <option>待補件</option>
+            <option>審核中</option>
+            <option>已回拋</option>
+          </select>
+        </div>
+        <button class="primary" type="button">匯出 ODF 報表</button>
+      </section>
+
+      <section class="grid kpis" aria-label="核心指標">
+        <article class="card kpi" style="--accent: rgba(47,128,237,.14)">
+          <div class="label">累計申請件數</div>
+          <div class="value">42,816</div>
+          <div class="note">較上週 +12.6%</div>
+        </article>
+        <article class="card kpi" style="--accent: rgba(39,174,96,.14)">
+          <div class="label">今日新增</div>
+          <div class="value">1,284</div>
+          <div class="note">尖峰 10:00-12:00</div>
+        </article>
+        <article class="card kpi" style="--accent: rgba(242,153,74,.18)">
+          <div class="label">待補件</div>
+          <div class="value">3,092</div>
+          <div class="note">逾期 184 件</div>
+        </article>
+        <article class="card kpi" style="--accent: rgba(123,97,255,.14)">
+          <div class="label">待審核</div>
+          <div class="value">6,438</div>
+          <div class="note">平均等待 2.7 日</div>
+        </article>
+        <article class="card kpi" style="--accent: rgba(235,87,87,.14)">
+          <div class="label">查調異常</div>
+          <div class="value">37</div>
+          <div class="note">3 筆需人工處理</div>
+        </article>
+        <article class="card kpi" style="--accent: rgba(31,122,140,.14)">
+          <div class="label">已回拋地方/住都</div>
+          <div class="value">18,920</div>
+          <div class="note">成功率 99.1%</div>
+        </article>
+      </section>
+
+      <section class="grid layout">
+        <div class="grid">
+          <article class="card panel">
+            <div class="panel-head">
+              <div>
+                <h2>案件狀態分布</h2>
+                <div class="sub">以案件生命週期呈現處理瓶頸與待辦量</div>
+              </div>
+              <span class="badge">即時更新</span>
+            </div>
+            <div class="chart-wrap">
+              <div class="donut" role="img" aria-label="案件狀態圓餅圖"></div>
+              <div class="legend">
+                <div class="legend-row"><span><i class="dot" style="--c: var(--blue)"></i>已收件</span><strong>31%</strong></div>
+                <div class="legend-row"><span><i class="dot" style="--c: var(--green)"></i>查調中</span><strong>21%</strong></div>
+                <div class="legend-row"><span><i class="dot" style="--c: var(--amber)"></i>待補件</span><strong>18%</strong></div>
+                <div class="legend-row"><span><i class="dot" style="--c: var(--red)"></i>審核中</span><strong>11%</strong></div>
+                <div class="legend-row"><span><i class="dot" style="--c: var(--purple)"></i>已回拋/結案</span><strong>19%</strong></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="card panel">
+            <div class="panel-head">
+              <div>
+                <h2>區域需求熱度</h2>
+                <div class="sub">依申請區位彙整，支援社宅供給與政策分析</div>
+              </div>
+              <span class="badge">政策分析</span>
+            </div>
+            <div class="region-bars">
+              <div class="region-row"><strong>新北市</strong><div class="bar"><i style="--w: 92%; --c: var(--blue)"></i></div><span>9,841</span></div>
+              <div class="region-row"><strong>臺北市</strong><div class="bar"><i style="--w: 78%; --c: var(--primary)"></i></div><span>8,217</span></div>
+              <div class="region-row"><strong>桃園市</strong><div class="bar"><i style="--w: 66%; --c: var(--green)"></i></div><span>6,908</span></div>
+              <div class="region-row"><strong>臺中市</strong><div class="bar"><i style="--w: 54%; --c: var(--purple)"></i></div><span>5,644</span></div>
+              <div class="region-row"><strong>高雄市</strong><div class="bar"><i style="--w: 49%; --c: var(--amber)"></i></div><span>5,105</span></div>
+              <div class="region-row"><strong>臺南市</strong><div class="bar"><i style="--w: 36%; --c: var(--red)"></i></div><span>3,786</span></div>
+            </div>
+          </article>
+
+          <article class="card panel">
+            <div class="panel-head">
+              <div>
+                <h2>近期高優先待辦</h2>
+                <div class="sub">逾期、失敗、異常案件集中提示</div>
+              </div>
+              <span class="badge warn">需處理 27 件</span>
+            </div>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>類型</th>
+                  <th>案件/批次</th>
+                  <th>狀態</th>
+                  <th>負責單位</th>
+                  <th>期限</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>補件逾期</td>
+                  <td>A115-20260708-0182</td>
+                  <td><span class="badge danger">逾期</span></td>
+                  <td>臺北市</td>
+                  <td>今日</td>
+                </tr>
+                <tr>
+                  <td>財稅查調</td>
+                  <td>TX-FIN-0722</td>
+                  <td><span class="badge warn">待重送</span></td>
+                  <td>中央查調</td>
+                  <td>今日</td>
+                </tr>
+                <tr>
+                  <td>通知失敗</td>
+                  <td>SMS-115-7781</td>
+                  <td><span class="badge warn">待確認</span></td>
+                  <td>客服</td>
+                  <td>明日</td>
+                </tr>
+                <tr>
+                  <td>審查逾期</td>
+                  <td>A115-20260707-0427</td>
+                  <td><span class="badge danger">主管覆核</span></td>
+                  <td>新北市</td>
+                  <td>今日</td>
+                </tr>
+              </tbody>
+            </table>
+          </article>
+        </div>
+
+        <div class="grid">
+          <article class="card panel">
+            <div class="panel-head">
+              <div>
+                <h2>跨機關介接健康度</h2>
+                <div class="sub">監控資料查調、API 拋轉與回拋狀態</div>
+              </div>
+            </div>
+            <div class="api-list">
+              <div class="api-item">
+                <div><strong>戶政資料</strong><div class="sub">最近交換 2 分鐘前</div></div>
+                <span class="badge">正常</span>
+              </div>
+              <div class="api-item">
+                <div><strong>財稅資料</strong><div class="sub">3 筆逾時，等待重送</div></div>
+                <span class="badge warn">注意</span>
+              </div>
+              <div class="api-item">
+                <div><strong>社福資料</strong><div class="sub">最近交換 7 分鐘前</div></div>
+                <span class="badge">正常</span>
+              </div>
+              <div class="api-item">
+                <div><strong>地政資料</strong><div class="sub">批次查調完成率 98.7%</div></div>
+                <span class="badge">正常</span>
+              </div>
+              <div class="api-item">
+                <div><strong>地方/住都中心</strong><div class="sub">回拋成功率 99.1%</div></div>
+                <span class="badge">正常</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="card panel">
+            <div class="panel-head">
+              <div>
+                <h2>審查流程進度</h2>
+                <div class="sub">每日批次案件處理完成率</div>
+              </div>
+            </div>
+            <div class="status-grid">
+              <div class="status-row">
+                <div class="status-title"><span>收件建檔</span><strong>96%</strong></div>
+                <div class="bar"><i style="--w: 96%; --c: var(--green)"></i></div>
+              </div>
+              <div class="status-row">
+                <div class="status-title"><span>資料查調</span><strong>84%</strong></div>
+                <div class="bar"><i style="--w: 84%; --c: var(--blue)"></i></div>
+              </div>
+              <div class="status-row">
+                <div class="status-title"><span>資格比對</span><strong>73%</strong></div>
+                <div class="bar"><i style="--w: 73%; --c: var(--purple)"></i></div>
+              </div>
+              <div class="status-row">
+                <div class="status-title"><span>補件處理</span><strong>58%</strong></div>
+                <div class="bar"><i style="--w: 58%; --c: var(--amber)"></i></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="card panel">
+            <div class="panel-head">
+              <div>
+                <h2>資安與維運摘要</h2>
+                <div class="sub">符合中級防護基準之稽核佐證管理</div>
+              </div>
+            </div>
+            <div class="task-list">
+              <div class="task">
+                <div><strong>每日差異備份</strong><div class="sub">今日 02:00 完成，保留 30 日</div></div>
+                <span class="badge">完成</span>
+              </div>
+              <div class="task">
+                <div><strong>弱點修補</strong><div class="sub">中風險 2 項，剩餘 12 日</div></div>
+                <span class="badge warn">追蹤中</span>
+              </div>
+              <div class="task">
+                <div><strong>異常登入</strong><div class="sub">近 24 小時 0 件高風險</div></div>
+                <span class="badge">正常</span>
+              </div>
+              <div class="task">
+                <div><strong>日誌保存</strong><div class="sub">操作軌跡保存至少 6 個月</div></div>
+                <span class="badge">符合</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <p class="footer-note">註：本頁資料為服務建議書展示用模擬資料，可於需求訪談後替換為正式欄位、角色權限、資料來源及統計口徑。所有涉及個資之查詢、匯出及異動作業，均應納入操作軌跡與稽核紀錄。</p>
+    </main>
+  </div>
+</body>
+</html>

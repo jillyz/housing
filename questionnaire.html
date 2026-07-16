@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>全國社宅統一申請登記平臺｜需求登記／問卷調查回饋</title>
+<style>
+  :root{
+    --primary:#009c9a;
+    --primary-dark:#006f6d;
+    --primary-deep:#003f3f;
+    --primary-soft:#d9f4f2;
+    --line:#d7e7e5;
+    --text:#243837;
+    --muted:#6c7f7d;
+    --card:#fff;
+    --bg:#f4fbfa;
+    --shadow:0 12px 28px rgba(0,80,80,.12);
+    --radius:20px;
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:"Noto Sans TC","Microsoft JhengHei",Arial,sans-serif;
+    color:var(--text);
+    background:
+      radial-gradient(circle at 8% 8%,#dff8ef 0,transparent 26%),
+      radial-gradient(circle at 92% 4%,#e8dcff 0,transparent 24%),
+      radial-gradient(circle at 82% 82%,#ffe4d4 0,transparent 25%),
+      linear-gradient(135deg,#f7fffb,#eef9f8);
+    min-height:100vh;
+  }
+
+  a{color:inherit;text-decoration:none}
+  button{font-family:inherit}
+
+  .page{
+    width:min(1180px,calc(100% - 40px));
+    margin:0 auto;
+    padding:0 0 48px;
+  }
+
+  .sticky-stack{
+    position:sticky;
+    top:0;
+    z-index:50;
+  }
+
+  .topbar{
+    background:rgba(255,255,255,.96);
+    border:1px solid rgba(0,156,154,.15);
+    border-radius:0 0 0 0;
+    box-shadow:0 8px 20px rgba(0,80,80,.10);
+    padding:12px 18px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:18px;
+    backdrop-filter:blur(10px);
+  }
+
+  .brand{display:flex;align-items:center;gap:12px;min-width:260px}
+  .brand-icon{
+    width:44px;height:44px;border-radius:14px;
+    background:linear-gradient(135deg,#00a9a6,#80d9d2);
+    color:#fff;display:grid;place-items:center;
+    font-size:24px;font-weight:900;
+  }
+  .brand-title strong{display:block;color:var(--primary-dark);font-size:16px}
+  .brand-title span{display:block;color:var(--muted);font-size:12px;margin-top:2px}
+
+  .nav{display:flex;gap:4px;align-items:center;justify-content:center;flex:1}
+  .nav a{padding:9px 13px;border-radius:999px;color:#536765;font-size:14px}
+  .nav a.active,.nav a:hover{background:var(--primary-soft);color:var(--primary-dark);font-weight:800}
+
+  .top-actions{display:flex;align-items:center;gap:10px}
+  .login-user{
+    display:flex;align-items:center;gap:7px;
+    padding:7px 11px;border:1px solid #cfe6e3;
+    border-radius:999px;background:#f4fbfa;
+    color:var(--primary-deep);font-size:13px;white-space:nowrap;
+  }
+  .login-user span{color:var(--muted);font-weight:700}
+  .circle-btn{
+    width:38px;height:38px;border:0;border-radius:50%;
+    background:#eaf8f7;color:var(--primary-dark);cursor:pointer;
+    border:1px solid #bfe8e5;font-size:16px;
+  }
+
+  .stepbar{
+    background:rgba(255,255,255,.97);
+    border:1px solid var(--line);
+    border-top:0;
+    border-radius:0 0 24px 24px;
+    display:flex;
+    justify-content:space-between;
+    padding:8px;
+    box-shadow:0 10px 22px rgba(0,80,80,.10);
+  }
+  .step{
+    flex:1;text-align:center;padding:10px 12px;
+    border-radius:999px;color:var(--muted);
+    font-size:14px;font-weight:800;
+  }
+  .step.done{background:#e8faf8;color:var(--primary-dark)}
+  .step.active{background:var(--primary);color:#fff;box-shadow:0 8px 18px rgba(0,156,154,.2)}
+
+  .main-card{
+    margin-top:20px;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:28px;
+    box-shadow:var(--shadow);
+    overflow:hidden;
+  }
+
+  .card-head{
+    padding:22px 26px;
+    background:linear-gradient(90deg,rgba(0,156,154,.12),rgba(255,255,255,0)),#fff;
+    border-bottom:1px solid var(--line);
+    display:flex;align-items:center;justify-content:space-between;gap:16px;
+  }
+
+  .card-head h1{margin:0;color:var(--primary-deep);font-size:25px}
+  .card-head p{margin:7px 0 0;color:var(--muted);font-size:14px}
+  .progress-chip{
+    padding:8px 13px;border-radius:999px;
+    background:#eef8f7;border:1px solid #cce8e5;
+    color:var(--primary-dark);font-size:13px;font-weight:900;
+    white-space:nowrap;
+  }
+
+  .content{padding:24px 26px 26px}
+
+  .question-panel{
+    border:1px solid var(--line);
+    border-radius:20px;
+    background:#fff;
+    overflow:hidden;
+  }
+
+  .question-head{
+    padding:18px 20px;
+    background:linear-gradient(90deg,#f4fbfa,#fff);
+    border-bottom:1px solid var(--line);
+  }
+
+  .question-number{
+    display:inline-flex;align-items:center;gap:7px;
+    color:var(--primary-dark);font-size:14px;font-weight:900;
+    margin-bottom:7px;
+  }
+
+  .question-title{
+    margin:0;
+    font-size:20px;
+    line-height:1.6;
+    color:var(--primary-deep);
+  }
+
+  .question-note{
+    margin:6px 0 0;
+    color:var(--muted);
+    font-size:13px;
+  }
+
+  .room-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+    padding:20px;
+  }
+
+  .room-option{
+    position:relative;
+    display:block;
+    border:2px solid #d8e7e5;
+    border-radius:18px;
+    background:linear-gradient(180deg,#eefbff,#f8ffff);
+    padding:12px;
+    cursor:pointer;
+    transition:.18s ease;
+    min-height:255px;
+  }
+
+  .room-option:hover{
+    transform:translateY(-2px);
+    border-color:#8fd5d0;
+    box-shadow:0 10px 24px rgba(0,80,80,.10);
+  }
+
+  .room-option input{
+    position:absolute;
+    opacity:0;
+    pointer-events:none;
+  }
+
+  .room-option.selected{
+    border-color:var(--primary);
+    background:linear-gradient(180deg,#e9fffc,#f8ffff);
+    box-shadow:0 0 0 4px rgba(0,156,154,.10);
+  }
+
+  .room-visual{
+    height:178px;
+    border-radius:14px;
+    background:
+      radial-gradient(circle at 20% 20%,rgba(255,255,255,.9),transparent 28%),
+      linear-gradient(135deg,#82d7f2,#dff7ff);
+    display:grid;
+    place-items:center;
+    overflow:hidden;
+  }
+
+  .room-label{
+    display:flex;align-items:center;gap:10px;
+    padding:13px 6px 3px;
+    font-size:15px;font-weight:800;color:#46605d;
+  }
+
+  .fake-check{
+    width:22px;height:22px;border-radius:6px;
+    border:2px solid #cbdad8;background:#fff;
+    display:grid;place-items:center;flex:0 0 auto;
+    color:#fff;font-size:14px;font-weight:900;
+  }
+  .room-option.selected .fake-check{
+    background:var(--primary);border-color:var(--primary);
+  }
+  .room-option.selected .fake-check::after{content:"✓"}
+
+  /* 簡化房型示意圖 */
+  .mini-room{
+    width:150px;height:115px;
+    position:relative;
+    transform:skewY(-4deg);
+    border-radius:12px;
+    background:#f5d99b;
+    border:5px solid #fff5d7;
+    box-shadow:0 13px 22px rgba(95,74,30,.18);
+    overflow:hidden;
+  }
+  .mini-room::before{
+    content:"";
+    position:absolute;left:9px;top:10px;width:50px;height:38px;
+    background:#e9c26a;border-radius:4px;
+    box-shadow:70px 0 0 #e9c26a,0 52px 0 #e9c26a,70px 52px 0 #e9c26a;
+  }
+  .bed{
+    position:absolute;width:42px;height:26px;border-radius:4px;
+    background:#75a957;border:5px solid #e6c889;
+    box-shadow:0 3px 0 rgba(0,0,0,.08);
+  }
+  .bed.b1{left:17px;top:20px}
+  .bed.b2{right:17px;top:20px}
+  .bed.b3{left:17px;bottom:15px}
+  .sofa{
+    position:absolute;width:48px;height:24px;border-radius:7px;
+    background:#738da2;right:18px;bottom:17px;
+  }
+  .table{
+    position:absolute;width:21px;height:21px;border-radius:50%;
+    background:#9c6c36;left:64px;bottom:20px;
+  }
+  .bath{
+    position:absolute;width:28px;height:35px;border-radius:5px;
+    background:#dcecf3;right:12px;top:10px;
+    border:4px solid #fff;
+  }
+
+  .studio .bed.b2,.studio .bed.b3{display:none}
+  .studio .sofa{left:18px;bottom:16px}
+  .studio .table{left:72px;bottom:17px}
+  .one-room .bed.b2,.one-room .bed.b3{display:none}
+  .one-room .sofa{right:18px;bottom:17px}
+  .two-room .bed.b3{display:none}
+  .two-room .bath{right:61px;top:10px}
+  .two-room-plus .bed.b3{display:none}
+  .two-room-plus .bath{right:58px;top:10px;width:34px}
+  .three-room .bath{right:58px;top:10px}
+  .three-room::after{
+    content:"";
+    position:absolute;right:12px;top:10px;width:28px;height:35px;
+    border-radius:5px;background:#dcecf3;border:4px solid #fff;
+  }
+
+  .question-footer{
+    padding:16px 20px;
+    border-top:1px solid var(--line);
+    display:flex;align-items:center;justify-content:space-between;gap:14px;
+    background:#fbfefd;
+  }
+
+  .nav-btn{
+    width:46px;height:46px;border-radius:50%;
+    border:1px solid var(--primary);
+    background:#fff;color:var(--primary-dark);
+    font-size:25px;font-weight:900;cursor:pointer;
+    display:grid;place-items:center;
+    transition:.18s;
+  }
+  .nav-btn:hover{background:var(--primary-soft);transform:translateY(-1px)}
+  .nav-btn:disabled{opacity:.4;cursor:not-allowed}
+
+  .question-progress{
+    display:flex;align-items:center;gap:8px;
+    color:var(--muted);font-size:13px;font-weight:700;
+  }
+  .dots{display:flex;gap:6px}
+  .dot{width:8px;height:8px;border-radius:50%;background:#d7e7e5}
+  .dot.active{width:22px;border-radius:999px;background:var(--primary)}
+
+  .chat-support{position:fixed;right:24px;bottom:24px;z-index:40}
+  .chat-launcher{
+    width:62px;height:62px;border:0;border-radius:50%;
+    background:linear-gradient(145deg,#23c3b6,#008c88);
+    box-shadow:0 12px 28px rgba(0,80,80,.28);
+    cursor:pointer;display:grid;place-items:center;position:relative;
+  }
+  .chat-label{
+    position:absolute;right:50%;bottom:72px;transform:translateX(50%);
+    background:#fff;color:var(--primary-deep);border:1px solid var(--line);
+    border-radius:999px;padding:7px 11px;font-size:13px;font-weight:900;
+    white-space:nowrap;box-shadow:0 8px 20px rgba(0,80,80,.12);
+  }
+  .bot-head{
+    width:40px;height:34px;border-radius:16px;background:#fff;position:relative;
+  }
+  .bot-head::before{
+    content:"";position:absolute;left:18px;top:-9px;width:4px;height:9px;
+    border-radius:4px;background:#fff;
+  }
+  .bot-eye{position:absolute;top:12px;width:6px;height:7px;border-radius:50%;background:#006f6d}
+  .bot-eye.left{left:9px}.bot-eye.right{right:9px}
+  .bot-smile{
+    position:absolute;left:13px;top:22px;width:14px;height:6px;
+    border-bottom:3px solid #ff9f43;border-radius:0 0 12px 12px;
+  }
+
+  @media(max-width:980px){
+    .nav{display:none}
+    .room-grid{grid-template-columns:repeat(2,1fr)}
+  }
+
+  @media(max-width:680px){
+    .page{width:min(100% - 20px,1180px)}
+    .brand{min-width:0}
+    .brand-title span{display:none}
+    .topbar{align-items:flex-start}
+    .login-user span{display:none}
+    .stepbar{flex-direction:column;border-radius:0 0 20px 20px}
+    .room-grid{grid-template-columns:1fr;padding:14px}
+    .card-head{align-items:flex-start;flex-direction:column}
+    .question-title{font-size:18px}
+    .question-footer{padding:14px}
+    .room-option{min-height:auto}
+    .room-visual{height:160px}
+    .chat-label{display:none}
+  }
+</style>
+<link rel="stylesheet" href="assets/member-shell.css" />
+</head>
+
+<body id="top">
+<header class="site-header">
+  <div class="utility-bar">
+    <a class="agency-link" href="https://www.nlma.gov.tw/" target="_blank" rel="noopener noreferrer">內政部國土管理署</a>
+    <div class="utility-links">
+      <a class="utility-link" href="#primaryNavigation" aria-label="網站導覽"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="2.5" width="6" height="5" rx="1.2"/><rect x="2" y="16.5" width="6" height="5" rx="1.2"/><rect x="9" y="16.5" width="6" height="5" rx="1.2"/><rect x="16" y="16.5" width="6" height="5" rx="1.2"/><path d="M12 7.5V12M5 16.5V12h14v4.5M12 12v4.5"/></svg><span>網站導覽</span></a>
+      <a class="utility-link" href="#siteFooter" aria-label="聯絡我們"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13v-1a8 8 0 0 1 16 0v1"/><path d="M4 12H2v5c0 1.1.9 2 2 2h2v-7H4Zm16 0h2v5c0 1.1-.9 2-2 2h-2v-7h2Z"/><path d="M18 19c0 2-2 3-5 3"/></svg><span>聯絡我們</span></a>
+    </div>
+  </div>
+  <nav class="site-main-nav" id="primaryNavigation" aria-label="會員主要導覽">
+    <a class="brand" href="index.html" aria-label="全國社宅統一登記申請平台首頁"><img class="brand-mark" src="assets/platform-logo-elegant.svg" alt=""/><span class="brand-name">全國社宅統一登記申請平台</span></a>
+    <div class="member-nav">
+      <a class="member-nav-link" href="index.html">首頁</a><a class="member-nav-link" href="index.html#housingExplorer">找社宅</a><a class="member-nav-link" href="data.html">資料登記</a>
+      <a class="member-nav-link active" href="#top" aria-current="page">需求問卷</a><a class="member-nav-link" href="apply.html">申請社宅</a><a class="member-nav-link" href="progress.html">進度查詢/補件</a><a class="member-nav-link" href="#">操作紀錄</a>
+    </div>
+    <div class="member-actions">
+      <div class="login-user"><span class="login-user-label">登入者</span><strong>陳ＯＯ</strong></div>
+      <button class="member-icon" type="button" title="通知" aria-label="查看通知"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg></button>
+      <a class="member-icon" href="index.html" title="登出" aria-label="登出"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 17l5-5-5-5M15 12H3M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/></svg></a>
+    </div>
+    <button class="site-mobile-menu" type="button" aria-label="開啟選單" aria-controls="memberMobileNav" aria-expanded="false">☰</button>
+    <div class="site-mobile-nav" id="memberMobileNav">
+      <a href="index.html">首頁</a><a href="index.html#housingExplorer">找社宅</a><a href="data.html">資料登記</a><a class="active" href="#top" aria-current="page">需求問卷</a><a href="apply.html">申請社宅</a><a href="progress.html">進度查詢/補件</a><a href="#">操作紀錄</a>
+      <div class="mobile-member"><div class="login-user"><span class="login-user-label">登入者</span><strong>陳ＯＯ</strong></div><div class="mobile-member-actions"><button class="member-icon" type="button" aria-label="查看通知"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg></button><a class="member-icon" href="index.html" aria-label="登出"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 17l5-5-5-5M15 12H3M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/></svg></a></div></div>
+    </div>
+  </nav>
+</header>
+<div class="page">
+  <div class="stepbar">
+      <div class="step done">1 資料登記／授權同意查調</div>
+      <div class="step active">2 需求登記／問卷調查回饋</div>
+      <div class="step">3 完成登記</div>
+  </div>
+
+  <main class="main-card">
+    <div class="card-head">
+      <div>
+        <h1>社會住宅需求調查</h1>
+        <p>請依您的實際居住需求填答，系統將自動儲存作答內容。</p>
+      </div>
+      <div class="progress-chip">題目 4／10</div>
+    </div>
+
+    <div class="content">
+      <section class="question-panel">
+        <div class="question-head">
+          <div class="question-number">題目 4</div>
+          <h2 class="question-title">請問您預計申請的社會住宅房型為何？</h2>
+          <p class="question-note">所選房型須符合家庭成員數量規定。</p>
+        </div>
+
+        <div class="room-grid" id="roomGrid">
+          <label class="room-option">
+            <input type="radio" name="roomType" value="studio" />
+            <div class="room-visual">
+              <div class="mini-room studio">
+                <span class="bed b1"></span>
+                <span class="bed b2"></span>
+                <span class="bed b3"></span>
+                <span class="sofa"></span>
+                <span class="table"></span>
+                <span class="bath"></span>
+              </div>
+            </div>
+            <div class="room-label">
+              <span class="fake-check"></span>
+              <span>套房型（1房＋1衛浴）</span>
+            </div>
+          </label>
+
+          <label class="room-option">
+            <input type="radio" name="roomType" value="one-room" />
+            <div class="room-visual">
+              <div class="mini-room one-room">
+                <span class="bed b1"></span>
+                <span class="bed b2"></span>
+                <span class="bed b3"></span>
+                <span class="sofa"></span>
+                <span class="table"></span>
+                <span class="bath"></span>
+              </div>
+            </div>
+            <div class="room-label">
+              <span class="fake-check"></span>
+              <span>一房型（1房＋1廳＋1衛浴）</span>
+            </div>
+          </label>
+
+          <label class="room-option">
+            <input type="radio" name="roomType" value="two-room" />
+            <div class="room-visual">
+              <div class="mini-room two-room">
+                <span class="bed b1"></span>
+                <span class="bed b2"></span>
+                <span class="bed b3"></span>
+                <span class="sofa"></span>
+                <span class="table"></span>
+                <span class="bath"></span>
+              </div>
+            </div>
+            <div class="room-label">
+              <span class="fake-check"></span>
+              <span>二房型（2房＋1廳＋1衛浴）</span>
+            </div>
+          </label>
+
+          <label class="room-option">
+            <input type="radio" name="roomType" value="two-room-plus" />
+            <div class="room-visual">
+              <div class="mini-room two-room-plus">
+                <span class="bed b1"></span>
+                <span class="bed b2"></span>
+                <span class="bed b3"></span>
+                <span class="sofa"></span>
+                <span class="table"></span>
+                <span class="bath"></span>
+              </div>
+            </div>
+            <div class="room-label">
+              <span class="fake-check"></span>
+              <span>二房型（2房＋1廳＋1.5衛浴）</span>
+            </div>
+          </label>
+
+          <label class="room-option selected">
+            <input type="radio" name="roomType" value="three-room" checked />
+            <div class="room-visual">
+              <div class="mini-room three-room">
+                <span class="bed b1"></span>
+                <span class="bed b2"></span>
+                <span class="bed b3"></span>
+                <span class="sofa"></span>
+                <span class="table"></span>
+                <span class="bath"></span>
+              </div>
+            </div>
+            <div class="room-label">
+              <span class="fake-check"></span>
+              <span>三房型（3房＋1廳＋2衛浴）</span>
+            </div>
+          </label>
+        </div>
+
+        <div class="question-footer">
+          <button class="nav-btn" type="button" title="上一題" aria-label="上一題" onclick="goPrev()">‹</button>
+
+          <div class="question-progress">
+            <span>4／10</span>
+            <div class="dots" aria-hidden="true">
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot active"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+            </div>
+          </div>
+
+          <button class="nav-btn" type="button" title="下一題" aria-label="下一題" onclick="goNext()">›</button>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+
+<footer class="site-footer" id="siteFooter">
+  <div class="footer-inner">
+    <div class="footer-top"><a class="footer-brand" href="index.html"><span class="footer-logo"><img src="assets/platform-logo-elegant.svg" alt=""/></span><span class="footer-brand-text"><strong>全國社宅統一登記申請平台</strong><span>內政部國土管理署</span></span></a><nav class="footer-links" aria-label="頁尾導覽"><a href="privacy.html">隱私權政策</a><a href="terms.html">服務條款</a><a href="#top">返回頂端</a></nav></div>
+    <div class="footer-rule"></div>
+    <div class="footer-bottom"><div class="footer-details"><div class="footer-contact"><div class="footer-meta"><span class="footer-meta-label">機關地址</span><span>105404台北市松山區八德路2段342號</span></div><div class="footer-meta"><span class="footer-meta-label">總機服務</span><a href="tel:+886-2-87712345">(02)-87712345</a></div></div><p class="footer-copyright">內政部國土管理署 版權所有&nbsp; © 2026 All Rights Reserved.</p></div><div class="footer-badge"><img src="https://www.nlma.gov.tw/_next/static/media/AA.860fb9dd.svg" alt="AA 等級無障礙網站標章" loading="lazy"/></div></div>
+  </div>
+</footer>
+
+<aside class="chat-support">
+  <div class="chat-label">智能客服</div>
+  <button class="chat-launcher" type="button" aria-label="開啟智能客服">
+    <span class="bot-head">
+      <span class="bot-eye left"></span>
+      <span class="bot-eye right"></span>
+      <span class="bot-smile"></span>
+    </span>
+  </button>
+</aside>
+
+<script>
+  const roomOptions = document.querySelectorAll(".room-option");
+
+  roomOptions.forEach(option => {
+    option.addEventListener("click", () => {
+      roomOptions.forEach(item => item.classList.remove("selected"));
+      option.classList.add("selected");
+      const radio = option.querySelector('input[type="radio"]');
+      radio.checked = true;
+      window.setTimeout(() => {
+        window.location.href = "completion.html";
+      }, 160);
+    });
+  });
+
+  function goPrev(){
+    alert("示意：返回題目 3");
+  }
+
+  function goNext(){
+    const selected = document.querySelector('input[name="roomType"]:checked');
+    if(!selected){
+      alert("請先選擇預計申請的房型。");
+      return;
+    }
+    window.location.href = "completion.html";
+  }
+</script>
+<script src="assets/member-shell.js"></script>
+</body>
+</html>

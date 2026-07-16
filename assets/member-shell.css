@@ -1,0 +1,102 @@
+/* 登入後共用頁首與頁尾 */
+.site-header{position:sticky;top:0;z-index:1000;height:137px;isolation:isolate}
+.site-header .utility-bar{position:relative;z-index:3;height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 max(36px,calc((100vw - 1510px)/2));border:0;border-radius:0;color:#333b40;background:rgba(255,255,255,.92);box-shadow:none;font-size:15px;font-weight:700;letter-spacing:.04em;backdrop-filter:none;transition:background .2s ease,box-shadow .2s ease}
+.site-header.is-scrolled .utility-bar{background:rgba(255,255,255,.99)}
+.agency-link{color:inherit;text-decoration:none}
+.agency-link:hover{color:#007983}
+.site-header .utility-links{display:flex;align-items:center;gap:47px}
+.site-header .utility-link{display:inline-flex;align-items:center;gap:10px;color:inherit;text-decoration:none}
+.site-header .utility-link svg{width:24px;height:24px;fill:none;stroke:#15191c;stroke-width:1.8}
+.site-main-nav{position:absolute;z-index:2;top:44px;right:0;left:0;height:93px;display:grid;grid-template-columns:auto minmax(600px,1fr) auto;align-items:center;gap:30px;padding:0 max(52px,calc((100vw - 1480px)/2));background:rgba(255,255,255,.68);border-bottom:0;backdrop-filter:blur(14px) saturate(1.08);transition:background .2s ease,box-shadow .2s ease}
+.site-header.is-scrolled .site-main-nav{background:rgba(255,255,255,.97);box-shadow:0 12px 28px rgba(20,65,70,.14)}
+.site-header .brand{min-width:0;display:flex;align-items:center;gap:19px;color:#154f5b;text-decoration:none;white-space:nowrap}
+.brand-mark{width:50px;height:48px;flex:0 0 auto}
+.site-header .brand-name{font-family:"Noto Serif TC","PMingLiU","Songti TC",serif;font-size:clamp(24px,2vw,30px);font-weight:800;letter-spacing:.07em}
+.member-nav{height:100%;display:flex;align-items:center;justify-self:center;gap:clamp(16px,1.45vw,28px)}
+.member-nav-link{position:relative;height:100%;display:grid;place-items:center;padding:0 3px;color:#5c5d60;font-size:17px;font-weight:700;letter-spacing:.06em;text-decoration:none;white-space:nowrap}
+.member-nav-link:hover,.member-nav-link.active{color:#007983}
+.member-nav-link.active::after{content:"";position:absolute;right:0;bottom:14px;left:0;height:4px;border-radius:4px;background:#007983}
+.member-actions{display:flex;align-items:center;justify-self:end;gap:9px}
+.site-header .public-login{min-width:141px;height:51px;display:inline-grid;place-items:center;padding:0 24px;border-radius:28px;color:#fff;background:linear-gradient(135deg,#078b92,#00646f 79%);box-shadow:0 8px 13px rgba(0,92,102,.19);font-size:19px;font-weight:800;letter-spacing:.12em;text-decoration:none;transition:transform .18s ease,filter .18s ease}
+.site-header .public-login:hover{color:#fff;filter:brightness(1.06);transform:translateY(-2px)}
+.site-header .login-user{display:flex;align-items:center;gap:7px;padding:8px 12px;border:1px solid rgba(0,121,131,.18);border-radius:999px;color:#154f5b;background:rgba(241,248,247,.9);white-space:nowrap;font-size:13px}
+.site-header .login-user-label{color:#6c7f7d;font-weight:700}
+.site-header .login-user strong{font-size:14px}
+.member-icon{position:relative;width:40px;height:40px;display:grid;place-items:center;padding:0;border:1px solid rgba(0,121,131,.18);border-radius:50%;color:#006b75;background:rgba(255,255,255,.8);cursor:pointer}
+.member-icon:hover{color:#fff;background:#007983}
+.member-icon svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.member-icon[data-notification-button]::after{content:"3";position:absolute;top:-6px;right:-6px;min-width:18px;height:18px;display:grid;place-items:center;padding:0 4px;border:2px solid #fff;border-radius:999px;color:#fff;background:#df664e;font-size:10px;font-weight:800;line-height:1}
+.member-icon[data-notification-button][aria-expanded="true"]{color:#fff;background:#007983}
+.notification-panel{position:absolute;z-index:8;top:calc(100% + 12px);right:max(52px,calc((100vw - 1480px)/2));width:min(390px,calc(100vw - 32px));overflow:hidden;border:1px solid rgba(197,222,220,.94);border-radius:20px;color:#31545a;background:rgba(255,255,255,.98);box-shadow:0 22px 55px rgba(24,67,70,.24);backdrop-filter:blur(20px) saturate(1.12)}
+.notification-panel[hidden]{display:none}
+.notification-head{display:flex;align-items:center;justify-content:space-between;padding:20px 22px 15px;border-bottom:1px solid #e0ecea}
+.notification-head strong{color:#075f69;font-size:19px;letter-spacing:.06em}
+.notification-total{padding:4px 9px;border-radius:999px;color:#fff;background:#df664e;font-size:12px;font-weight:800}
+.notification-list{margin:0;padding:0;list-style:none}
+.notification-item{position:relative;display:grid;grid-template-columns:10px 1fr;gap:12px;padding:16px 22px;border-bottom:1px solid #e7efee}
+.notification-item::before{content:"";width:8px;height:8px;margin-top:7px;border-radius:50%;background:#13949a;box-shadow:0 0 0 4px rgba(19,148,154,.1)}
+.notification-item:last-child{border-bottom:0}
+.notification-copy strong{display:block;margin-bottom:5px;color:#214f55;font-size:15px}
+.notification-copy p{margin:0;color:#5f7375;font-size:13px;line-height:1.65}
+.notification-time{display:block;margin-top:6px;color:#879697;font-size:12px}
+.notification-footer{display:flex;justify-content:flex-end;padding:13px 22px;background:#f2f8f7}
+.notification-footer a{color:#007983;font-size:13px;font-weight:800;text-decoration:none}
+.notification-footer a:hover{text-decoration:underline}
+.site-mobile-menu{width:46px;height:46px;display:none;place-items:center;margin-left:auto;padding:0;border:1px solid rgba(0,121,131,.22);border-radius:50%;color:#007983;background:rgba(255,255,255,.65);font-size:26px;line-height:1}
+.site-mobile-nav{z-index:4;display:none}
+.site-mobile-nav a{color:#31545a;text-decoration:none;font-size:16px;font-weight:700;letter-spacing:.04em}
+.site-mobile-nav a.active{color:#007983}
+.mobile-member{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:16px;border-top:1px solid #d9e6e4}
+.mobile-member-actions{display:flex;gap:8px}
+.site-header a:focus-visible,.site-header button:focus-visible{outline:3px solid rgba(0,121,131,.35);outline-offset:3px}
+
+.site-footer{position:relative;margin-top:34px;padding:0 48px;overflow:hidden;color:#e7f2f1;background:radial-gradient(circle at 82% -40%,rgba(23,152,157,.3),transparent 38%),linear-gradient(135deg,#123d45,#092d34)}
+.site-footer::before{content:"";position:absolute;top:0;right:0;left:0;height:4px;background:linear-gradient(90deg,#0a848d,#55bdb8 48%,#0a848d)}
+.footer-inner{width:min(1180px,100%);margin:0 auto;padding:52px 0 28px}
+.footer-top{display:flex;align-items:center;justify-content:space-between;gap:40px}
+.footer-brand{display:inline-flex;align-items:center;gap:16px;color:#fff;text-decoration:none}
+.footer-logo{width:62px;height:62px;display:grid;flex:0 0 auto;place-items:center;border:1px solid rgba(255,255,255,.16);border-radius:18px;background:rgba(255,255,255,.94);box-shadow:0 10px 24px rgba(0,0,0,.14)}
+.footer-logo img{width:48px;height:auto}
+.footer-brand-text strong{display:block;font-family:"Noto Serif TC","PMingLiU","Songti TC",serif;font-size:20px;letter-spacing:.08em}
+.footer-brand-text span{display:block;margin-top:6px;color:#a9ccca;font-size:13px;letter-spacing:.08em}
+.footer-links{display:flex;align-items:center;gap:10px}
+.footer-links a{min-height:40px;display:inline-flex;align-items:center;padding:0 16px;border:1px solid rgba(255,255,255,.15);border-radius:999px;color:#d7e8e7;text-decoration:none;font-size:14px;font-weight:700;transition:.18s ease}
+.footer-links a:hover{color:#fff;border-color:rgba(111,210,207,.48);background:rgba(255,255,255,.08)}
+.footer-rule{height:1px;margin:32px 0 25px;background:linear-gradient(90deg,rgba(255,255,255,.2),rgba(255,255,255,.05))}
+.footer-bottom{display:flex;align-items:flex-end;justify-content:space-between;gap:40px}
+.footer-details{min-width:0}
+.footer-contact{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px 38px;margin:0}
+.footer-meta{display:grid;gap:3px;color:#d2e3e2;font-size:14px;line-height:1.65}
+.footer-meta-label{color:#78bcb9;font-size:12px;font-weight:800;letter-spacing:.12em}
+.footer-contact a{color:inherit;text-decoration:none}
+.footer-contact a:hover{color:#fff;text-decoration:underline}
+.footer-copyright{margin:20px 0 0;color:#87aaa8;font-size:12px;letter-spacing:.04em}
+.footer-badge{flex:0 0 auto}
+.footer-badge img{display:block;width:120px;height:auto}
+.site-footer a:focus-visible{outline:3px solid #65cbc6;outline-offset:4px}
+
+@media(max-width:1380px){
+  .site-main-nav{grid-template-columns:auto minmax(530px,1fr) auto;gap:16px;padding-right:24px;padding-left:24px}
+  .site-header .brand{gap:13px}.brand-mark{width:46px;height:44px}.site-header .brand-name{font-size:22px}
+  .member-nav{gap:10px}.member-nav-link{font-size:14px;letter-spacing:0}
+  .site-header .login-user-label{display:none}.site-header .login-user{padding:8px 10px}
+}
+@media(max-width:1180px){
+  .site-main-nav{display:flex}.member-nav,.site-main-nav>.member-actions{display:none}.site-mobile-menu{display:grid}
+  .site-mobile-nav{position:absolute;top:calc(100% + 10px);right:max(28px,calc((100vw - 1040px)/2));width:min(330px,calc(100vw - 40px));padding:22px;gap:19px;border:1px solid rgba(255,255,255,.9);border-radius:18px;background:rgba(255,255,255,.9);box-shadow:0 18px 42px rgba(30,72,76,.2);backdrop-filter:blur(18px) saturate(1.08)}
+  .site-mobile-nav.open{display:grid}
+}
+@media(max-width:700px){
+  .site-header{height:110px}.site-header .utility-bar{height:38px;padding:0 18px;font-size:12px}
+  .site-header .utility-links{gap:12px}.site-header .utility-link span{display:none}.site-header .utility-link svg{width:20px;height:20px}
+  .site-main-nav{top:38px;height:72px;padding:0 18px}.brand-mark{width:40px;height:39px}
+  .site-header .brand-name{max-width:240px;overflow:hidden;text-overflow:ellipsis;font-size:19px;line-height:1.25}
+  .site-mobile-nav .public-login{min-width:0;width:100%;height:46px;margin-top:4px;font-size:17px}
+  .notification-panel{top:calc(100% + 8px);right:16px;border-radius:17px}
+  .notification-head{padding:17px 18px 13px}.notification-item{padding:14px 18px}.notification-footer{padding:12px 18px}
+  .site-mobile-menu{width:42px;height:42px}.site-mobile-nav{right:16px;width:calc(100vw - 32px)}
+  .site-footer{padding:0 22px}.footer-inner{padding-top:42px}
+  .footer-top,.footer-bottom{align-items:flex-start;flex-direction:column}.footer-top{gap:26px}
+  .footer-links{width:100%;align-items:stretch;flex-direction:column}.footer-links a{justify-content:center}
+  .footer-contact{grid-template-columns:1fr;gap:14px}.footer-badge{align-self:flex-start}
+}
