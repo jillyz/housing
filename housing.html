@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#006b75" />
-  <title>全國社宅統一登記申請平台</title>
+  <title>尋找社宅｜全國社宅統一登記申請平台</title>
   <style>
     :root {
       --ink: #154f5b;
@@ -340,6 +340,11 @@
     .dialog-actions button, .dialog-actions a { min-width: 92px; height: 40px; display: inline-grid; place-items: center; border: 0; border-radius: 20px; color: white; background: var(--teal); font-weight: 700; text-decoration: none; }
     .dialog-actions .close-dialog { color: #5a666b; background: #e8eeee; }
 
+    .housing-page .hero,
+    .housing-page .journey,
+    .housing-page .value-section { display: none; }
+    .housing-page .housing-explorer { min-height: calc(100vh - 44px); padding-top: 150px; }
+
     @media (prefers-reduced-motion: reduce) {
       .content-reveal { opacity: 1; filter: none; transform: none; transition: none; }
     }
@@ -411,15 +416,16 @@
       .footer-badge { justify-self: start; }
       .chat-support { right: 16px; bottom: 16px; }
       .chat-label { display: none; }
+      .housing-page .housing-explorer { padding-top: 118px; }
     }
   </style>
 </head>
-<body>
+<body class="housing-page">
   <header>
     <div class="utility-bar">
       <a class="agency-link" href="https://www.nlma.gov.tw/" target="_blank" rel="noopener noreferrer">內政部國土管理署</a>
       <div class="utility-links">
-        <a class="utility-link" href="#journey" aria-label="網站導覽">
+        <a class="utility-link" href="#primaryNavigation" aria-label="網站導覽">
           <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="2.5" width="6" height="5" rx="1.2"/><rect x="2" y="16.5" width="6" height="5" rx="1.2"/><rect x="9" y="16.5" width="6" height="5" rx="1.2"/><rect x="16" y="16.5" width="6" height="5" rx="1.2"/><path d="M12 7.5V12M5 16.5V12h14v4.5M12 12v4.5"/></svg><span>網站導覽</span>
         </a>
         <a class="utility-link" href="#service" aria-label="聯絡我們">
@@ -427,22 +433,22 @@
         </a>
       </div>
     </div>
-    <nav class="main-nav" aria-label="主要導覽">
-      <a class="brand" href="#top" aria-label="全國社宅統一登記申請平台首頁">
+    <nav class="main-nav" id="primaryNavigation" aria-label="主要導覽">
+      <a class="brand" href="index.html" aria-label="全國社宅統一登記申請平台首頁">
         <img class="brand-mark" src="assets/platform-logo-elegant.svg" alt="" />
         <span class="brand-name">全國社宅統一登記申請平台</span>
       </a>
       <div class="nav-group">
-        <a class="nav-link active" href="#top">首頁</a>
-        <a class="nav-link" href="housing.html">找社宅</a>
-        <a class="nav-link" href="#journey">申請流程</a>
+        <a class="nav-link" href="index.html">首頁</a>
+        <a class="nav-link active" href="#top" aria-current="page">找社宅</a>
+        <a class="nav-link" href="index.html#journey">申請流程</a>
       </div>
       <a class="login-button" href="login.html">登入</a>
       <button class="mobile-menu" type="button" aria-label="開啟選單" aria-controls="mobileNav" aria-expanded="false">☰</button>
       <div class="mobile-nav" id="mobileNav">
-        <a href="#top">首頁</a>
-        <a href="housing.html">找社宅</a>
-        <a href="#journey">申請流程</a>
+        <a href="index.html">首頁</a>
+        <a class="active" href="#top" aria-current="page">找社宅</a>
+        <a href="index.html#journey">申請流程</a>
         <a class="login-button" href="login.html">登入</a>
       </div>
     </nav>
@@ -498,7 +504,7 @@
       </div>
     </section>
 
-    <section class="housing-explorer" id="housingExplorer" aria-labelledby="housing-title" hidden>
+    <section class="housing-explorer" id="housingExplorer" aria-labelledby="housing-title">
       <div class="explorer-inner">
         <div class="explorer-head">
           <span class="explorer-kicker">尋找社宅</span>
@@ -511,7 +517,7 @@
           <label class="explorer-field"><span>縣市</span><select id="housingCounty"><option value="">全臺灣</option><option>基隆市</option><option>臺北市</option><option>新北市</option><option>桃園市</option><option>新竹市</option><option>新竹縣</option><option>苗栗縣</option><option>臺中市</option><option>彰化縣</option><option>南投縣</option><option>雲林縣</option><option>嘉義市</option><option>嘉義縣</option><option>臺南市</option><option>高雄市</option><option>屏東縣</option><option>宜蘭縣</option><option>花蓮縣</option><option>臺東縣</option><option>澎湖縣</option><option>金門縣</option><option>連江縣</option></select></label>
           <label class="explorer-field"><span>房型</span><select id="housingRoom"><option value="">全部房型</option><option value="套房">套房</option><option value="一房">一房型</option><option value="二房">二房型</option><option value="三房">三房型</option></select></label>
           <label class="explorer-field"><span>每月租金</span><select id="housingRent"><option value="">不限租金</option><option value="10000">10,000 元以下</option><option value="20000">20,000 元以下</option><option value="30000">30,000 元以下</option></select></label>
-          <div class="status-field"><span>興建狀態</span><div class="status-options"><label><input type="checkbox" name="housingStatus" value="completed" checked />已完工</label><label><input type="checkbox" name="housingStatus" value="building" checked />興建中</label><label><input type="checkbox" name="housingStatus" value="recruiting" checked />招租中</label></div></div>
+          <div class="status-field"><span>興建狀態</span><div class="status-options"><label><input type="checkbox" name="housingStatus" value="building" checked />興建中</label><label><input type="checkbox" name="housingStatus" value="completed" checked />已完工</label><label><input type="checkbox" name="housingStatus" value="recruiting" checked />招租中</label></div></div>
           <button class="filter-button" type="submit">搜尋</button>
           <button class="reset-button" id="housingReset" type="button">重設</button>
         </form>
@@ -792,15 +798,24 @@
     const quickCountyMap = { taipei: '臺北市', 'new-taipei': '新北市', taoyuan: '桃園市', taichung: '臺中市', tainan: '臺南市', kaohsiung: '高雄市' };
     document.querySelector('.search-card').addEventListener('submit', (event) => {
       event.preventDefault();
-      const query = new URLSearchParams();
-      const quickCounty = quickCountyMap[city.value] || '';
+      housingCounty.value = quickCountyMap[city.value] || '';
       const quickRoom = document.getElementById('quickRoom').value;
-      const roomValue = quickRoom.includes('3') ? '三房' : quickRoom.includes('2') ? '二房' : quickRoom.includes('1') ? '一房' : quickRoom.includes('套') ? '套房' : '';
-      if (quickCounty) query.set('county', quickCounty);
-      if (roomValue) query.set('room', roomValue);
-      query.set('rent', maxRent.value);
-      window.location.href = `housing.html?${query.toString()}`;
+      housingRoom.value = quickRoom.includes('3') ? '三房' : quickRoom.includes('2') ? '二房' : quickRoom.includes('1') ? '一房' : quickRoom.includes('套') ? '套房' : '';
+      applyHousingFilters();
+      document.getElementById('housingExplorer').scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
     });
+    const initialFilters = new URLSearchParams(window.location.search);
+    const initialCounty = initialFilters.get('county') || '';
+    const initialRoom = initialFilters.get('room') || '';
+    const initialRent = Number(initialFilters.get('rent') || 0);
+    if (Array.from(housingCounty.options).some((option) => option.value === initialCounty)) housingCounty.value = initialCounty;
+    if (Array.from(housingRoom.options).some((option) => option.value === initialRoom)) housingRoom.value = initialRoom;
+    if (initialRent >= 5000 && initialRent <= 50000) {
+      if (!Array.from(housingRent.options).some((option) => Number(option.value) === initialRent)) {
+        housingRent.add(new Option(`${initialRent.toLocaleString('en-US')} 元以下`, String(initialRent)), 1);
+      }
+      housingRent.value = String(initialRent);
+    }
     applyHousingFilters();
   </script>
 </body>
