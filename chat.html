@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#006b75" />
+  <title>智能客服｜全國社宅統一登記申請平台</title>
+  <style>
+    :root{--teal:#007983;--teal-deep:#005d67;--ink:#154f5b;--text:#304c50;--muted:#6b7e81;--line:#d4e4e2;--soft:#eef7f5;--sans:"Noto Sans TC","Microsoft JhengHei",system-ui,sans-serif;--serif:"Noto Serif TC","PMingLiU",serif}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;color:var(--text);background:radial-gradient(circle at 5% 5%,rgba(74,190,181,.13),transparent 27%),linear-gradient(145deg,#f7fbfa,#eaf4f2);font-family:var(--sans)}
+    button,input{font:inherit}
+    .chat-page{width:min(1260px,calc(100% - 40px));margin:0 auto;padding:28px 0 54px}
+    .standalone-bar{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:14px;padding:0 4px}
+    .back-home{min-height:42px;display:inline-flex;align-items:center;gap:8px;padding:0 16px;border:1px solid #b8d8d5;border-radius:999px;color:var(--teal-deep);background:rgba(255,255,255,.9);box-shadow:0 7px 18px rgba(25,75,77,.07);font-size:14px;font-weight:900;text-decoration:none;transition:.18s}
+    .back-home:hover{color:#fff;border-color:var(--teal);background:var(--teal);transform:translateY(-1px)}
+    .standalone-brand{display:flex;align-items:center;gap:10px;color:var(--ink);font-family:var(--serif);font-size:16px;font-weight:900;letter-spacing:.05em}.standalone-brand img{width:34px;height:33px}
+    .chat-shell{min-height:690px;display:grid;grid-template-columns:280px minmax(0,1fr);overflow:hidden;border:1px solid rgba(141,185,183,.4);border-radius:28px;background:rgba(255,255,255,.94);box-shadow:0 24px 60px rgba(25,75,77,.14)}
+    .chat-sidebar{display:flex;flex-direction:column;padding:25px 20px;color:#eaf6f5;background:radial-gradient(circle at 20% 0,rgba(48,194,187,.28),transparent 35%),linear-gradient(160deg,#123f47,#082e35)}
+    .assistant-profile{display:flex;align-items:center;gap:13px;padding-bottom:22px;border-bottom:1px solid rgba(255,255,255,.13)}
+    .assistant-avatar{position:relative;width:56px;height:56px;display:grid;place-items:center;flex:0 0 auto;border-radius:18px;background:linear-gradient(145deg,#22c3b6,#07878a);box-shadow:0 9px 22px rgba(0,0,0,.2)}
+    .assistant-face{position:relative;width:36px;height:29px;border-radius:14px;background:#fff}
+    .assistant-face::before,.assistant-face::after{content:"";position:absolute;top:10px;width:5px;height:6px;border-radius:50%;background:#08747a}.assistant-face::before{left:8px}.assistant-face::after{right:8px}
+    .assistant-face span{position:absolute;left:12px;bottom:5px;width:12px;height:5px;border-bottom:2px solid #f49a48;border-radius:0 0 10px 10px}
+    .assistant-profile strong{display:block;font-size:17px;letter-spacing:.04em}.assistant-profile small{display:flex;align-items:center;gap:5px;margin-top:4px;color:#bcd3d2;font-size:12px}.assistant-profile small::before{content:"";width:7px;height:7px;border-radius:50%;background:#52d38c;box-shadow:0 0 0 3px rgba(82,211,140,.13)}
+    .conversation-label{margin:24px 0 10px;color:#9fbab9;font-size:11px;font-weight:800;letter-spacing:.12em}
+    .conversation-item{padding:13px 14px;border:1px solid rgba(255,255,255,.1);border-radius:14px;background:rgba(255,255,255,.08)}
+    .conversation-item strong{display:block;font-size:14px}.conversation-item span{display:block;margin-top:5px;color:#b9cecd;font-size:11px}
+    .service-note{margin-top:auto;padding:15px;border:1px solid rgba(255,255,255,.11);border-radius:15px;color:#c6d8d7;background:rgba(255,255,255,.06);font-size:12px;line-height:1.7}.service-note strong{display:block;margin-bottom:4px;color:#fff}
+    .chat-main{min-width:0;display:grid;grid-template-rows:auto 1fr auto;background:linear-gradient(180deg,#fff,#f7fbfa)}
+    .chat-head{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:21px 25px;border-bottom:1px solid var(--line);background:rgba(255,255,255,.88)}
+    .chat-head h1{margin:0;color:var(--ink);font-family:var(--serif);font-size:24px;letter-spacing:.06em}.chat-head p{margin:5px 0 0;color:var(--muted);font-size:13px}
+    .new-chat{height:40px;padding:0 15px;border:1px solid #b8d9d6;border-radius:999px;color:var(--teal);background:#fff;font-weight:800;cursor:pointer}.new-chat:hover{color:#fff;background:var(--teal)}
+    .message-area{min-height:0;padding:28px 28px 20px;overflow-y:auto;scrollbar-color:#9fc6c3 #eef5f4}
+    .message-row{display:flex;align-items:flex-end;gap:10px;margin-bottom:21px}.message-row.user{justify-content:flex-end}
+    .message-avatar{width:34px;height:34px;display:grid;place-items:center;flex:0 0 auto;border-radius:11px;color:#fff;background:linear-gradient(145deg,#20b8af,#077c82);font-size:13px;font-weight:900}.user .message-avatar{order:2;background:#60787a}
+    .message-wrap{max-width:min(680px,78%)}
+    .message-bubble{padding:13px 16px;border:1px solid #d9e8e6;border-radius:17px 17px 17px 5px;color:#395559;background:#fff;box-shadow:0 6px 16px rgba(25,75,77,.06);font-size:15px;line-height:1.75}.user .message-bubble{border-color:#007983;border-radius:17px 17px 5px 17px;color:#fff;background:linear-gradient(135deg,#078b92,#00646f)}
+    .message-time{display:block;margin-top:6px;color:#8a9a9c;font-size:11px}.user .message-time{text-align:right}
+    .quick-prompts{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 24px 44px}.quick-prompt{padding:8px 12px;border:1px solid #bcdedb;border-radius:999px;color:#176970;background:#fff;font-size:13px;font-weight:700;cursor:pointer}.quick-prompt:hover{color:#fff;background:var(--teal)}
+    .message-bubble p{margin:0 0 9px}.message-bubble p:last-child{margin-bottom:0}
+    .message-bubble ul,.message-bubble ol{margin:8px 0 0;padding-left:22px}.message-bubble li{margin:5px 0}
+    .choice-row{display:flex;flex-wrap:wrap;gap:8px;margin:-10px 0 22px 44px}
+    .choice-button{min-height:38px;padding:7px 13px;border:1px solid #a9d3d0;border-radius:999px;color:#126a70;background:#fff;font-size:13px;font-weight:800;cursor:pointer;transition:.16s}
+    .choice-button:hover,.choice-button:focus-visible{color:#fff;border-color:var(--teal);background:var(--teal);outline:0;transform:translateY(-1px)}
+    .choice-button.secondary{color:#5f7375;border-color:#d3e1df;background:#f7faf9}.choice-button.secondary:hover{color:#fff;border-color:#60787a;background:#60787a}
+    .choice-row.used .choice-button{opacity:.48;pointer-events:none}
+    .assistant-card{margin-top:11px;padding:12px 13px;border:1px solid #cfe2df;border-radius:13px;background:#f7fbfa}
+    .assistant-card+.assistant-card{margin-top:8px}
+    .assistant-card strong{display:block;color:var(--ink);font-size:15px}.assistant-card span{display:block;margin-top:3px;color:#667b7d;font-size:13px;line-height:1.55}
+    .assistant-card .card-meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.assistant-card .card-meta b{padding:3px 7px;border-radius:7px;color:#357077;background:#e7f3f1;font-size:11px}
+    .assistant-link{min-height:39px;display:inline-flex;align-items:center;justify-content:center;gap:7px;margin-top:11px;padding:7px 14px;border-radius:999px;color:#fff;background:linear-gradient(135deg,#078b92,#00646f);font-size:13px;font-weight:900;text-decoration:none}.assistant-link:hover{filter:brightness(1.08)}
+    .assistant-link.purple{background:linear-gradient(135deg,#7966bd,#574293)}.assistant-link.orange{background:linear-gradient(135deg,#ff8b2c,#e95815)}
+    .answer-summary{display:grid;grid-template-columns:auto 1fr;gap:5px 12px;margin:10px 0 0;padding:11px 12px;border-radius:12px;background:#f3f8f7;font-size:13px}.answer-summary dt{color:#728486;font-weight:800}.answer-summary dd{margin:0;color:#36585b;font-weight:800}
+    .eligibility-result{margin-top:11px;padding:14px;border:1px solid #addbc3;border-radius:13px;color:#245c3d;background:#edf9f1}.eligibility-result.review{border-color:#efd39a;color:#76571b;background:#fff8e8}.eligibility-result strong{display:block;font-size:18px}.eligibility-result span{display:block;margin-top:5px;font-size:12px;line-height:1.6}
+    .scenario-number{display:inline-grid;place-items:center;width:25px;height:25px;margin-right:7px;border-radius:50%;color:#fff;background:var(--teal);font-size:12px;font-weight:900;vertical-align:middle}
+    .prototype-note{display:block;margin-top:9px;color:#7b8e90;font-size:11px;line-height:1.55}
+    .typing{display:none;align-items:center;gap:5px;width:max-content;margin:0 0 18px 44px;padding:10px 14px;border-radius:15px;background:#eaf4f2}.typing.show{display:flex}.typing i{width:6px;height:6px;border-radius:50%;background:#6aa5a3;animation:typing 1s infinite}.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}@keyframes typing{0%,70%,100%{transform:translateY(0);opacity:.55}35%{transform:translateY(-4px);opacity:1}}
+    .composer{padding:17px 22px 20px;border-top:1px solid var(--line);background:#fff}
+    .composer-form{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:end;padding:8px 8px 8px 16px;border:1px solid #bed8d5;border-radius:19px;background:#fbfefd;box-shadow:0 7px 18px rgba(25,75,77,.06)}
+    .composer-form:focus-within{border-color:var(--teal);box-shadow:0 0 0 4px rgba(0,121,131,.1)}
+    .composer-form textarea{width:100%;min-height:48px;max-height:130px;padding:12px 0;border:0;outline:0;resize:none;color:var(--text);background:transparent;font:inherit;line-height:1.55}
+    .send-button{width:48px;height:48px;display:grid;place-items:center;border:0;border-radius:15px;color:#fff;background:linear-gradient(145deg,#10a1a5,#006770);box-shadow:0 7px 15px rgba(0,105,112,.22);cursor:pointer}.send-button:hover{filter:brightness(1.08);transform:translateY(-1px)}.send-button svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+    .composer-note{margin:8px 3px 0;color:#839395;font-size:11px;text-align:center}
+    @media(max-width:820px){.chat-page{width:calc(100% - 24px);padding:12px 0 24px}.standalone-bar{margin-bottom:10px}.chat-shell{min-height:calc(100vh - 84px);grid-template-columns:1fr;border-radius:20px}.chat-sidebar{display:none}.chat-head{padding:17px 18px}.chat-head h1{font-size:21px}.message-area{padding:21px 15px 14px}.message-wrap{max-width:86%}.quick-prompts,.choice-row{margin-left:0}.composer{padding:12px}.new-chat{padding:0 12px;font-size:13px}}
+    @media(max-width:480px){.chat-head p{display:none}.chat-head h1{font-size:19px}.message-bubble{padding:11px 13px;font-size:14px}.message-avatar{width:30px;height:30px}.composer-form{padding-left:12px}.send-button{width:44px;height:44px}}
+  </style>
+</head>
+<body id="top">
+  <main class="chat-page">
+    <div class="standalone-bar"><a class="back-home" href="index.html" aria-label="返回平台首頁">← 返回首頁</a><div class="standalone-brand"><img src="assets/platform-logo-elegant.svg" alt=""/><span>全國社宅統一登記申請平台</span></div></div>
+    <section class="chat-shell" aria-labelledby="chatTitle">
+      <aside class="chat-sidebar">
+        <div class="assistant-profile"><div class="assistant-avatar"><div class="assistant-face"><span></span></div></div><div><strong>社宅智能客服</strong><small>服務中</small></div></div>
+        <div class="conversation-label">目前對話</div>
+        <div class="conversation-item"><strong>社宅服務諮詢</strong><span>招租、申請、資格與進度</span></div>
+        <div class="service-note"><strong>可協助的事項</strong>查詢招租社宅、說明申請文件、資格自我檢核、進度與補件查詢，以及轉介人工客服。</div>
+      </aside>
+      <div class="chat-main">
+        <header class="chat-head"><div><h1 id="chatTitle">智能客服</h1><p>請輸入您想詢問的問題</p></div><button class="new-chat" id="newChat" type="button">＋ 新對話</button></header>
+        <div class="message-area" id="messageArea" aria-live="polite">
+          <div id="conversation"></div>
+          <div class="typing" id="typing" aria-label="智能客服正在輸入"><i></i><i></i><i></i></div>
+        </div>
+        <div class="composer"><form class="composer-form" id="chatForm"><textarea id="messageInput" rows="1" maxlength="500" placeholder="輸入訊息……" aria-label="輸入訊息"></textarea><button class="send-button" type="submit" aria-label="傳送訊息"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 4 17 8-17 8 3-8-3-8Z"/><path d="M7 12h14"/></svg></button></form><div class="composer-note">請勿輸入密碼、完整身分證字號或其他敏感資料</div></div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const chatForm=document.getElementById('chatForm');
+    const messageInput=document.getElementById('messageInput');
+    const messageArea=document.getElementById('messageArea');
+    const conversation=document.getElementById('conversation');
+    const typing=document.getElementById('typing');
+    const escapeHtml=value=>value.replace(/[&<>'"]/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[char]));
+    const scrollMessages=()=>{messageArea.scrollTop=messageArea.scrollHeight};
+    const addUserMessage=text=>{conversation.insertAdjacentHTML('beforeend',`<div class="message-row user"><div class="message-avatar" aria-hidden="true">我</div><div class="message-wrap"><div class="message-bubble">${escapeHtml(text)}</div><span class="message-time">您・剛剛</span></div></div>`)};
+    const addAssistantMessage=html=>{conversation.insertAdjacentHTML('beforeend',`<div class="message-row"><div class="message-avatar" aria-hidden="true">客</div><div class="message-wrap"><div class="message-bubble">${html}</div><span class="message-time">智能客服・剛剛</span></div></div>`)};
+    const addChoices=options=>{
+      const buttons=options.map(option=>`<button class="choice-button${option.secondary?' secondary':''}" type="button" data-action="${escapeHtml(option.action)}" data-value="${escapeHtml(option.value||'')}">${escapeHtml(option.label)}</button>`).join('');
+      conversation.insertAdjacentHTML('beforeend',`<div class="choice-row">${buttons}</div>`);
+    };
+    let responseTimer;
+    const reply=callback=>{
+      window.clearTimeout(responseTimer);
+      typing.classList.add('show');
+      scrollMessages();
+      responseTimer=window.setTimeout(()=>{typing.classList.remove('show');callback();scrollMessages()},430);
+    };
+
+    const scenarioChoices=()=>addChoices([
+      {label:'查詢招租中的社宅',action:'scenario',value:'housing'},
+      {label:'申請文件與流程',action:'scenario',value:'documents'},
+      {label:'資格自我檢核',action:'scenario',value:'eligibility'},
+      {label:'進度查詢／補件',action:'scenario',value:'progress'},
+      {label:'特殊情況／人工客服',action:'scenario',value:'support'}
+    ]);
+    const renderWelcome=()=>{
+      addAssistantMessage('<p>您好，我是全國社宅統一登記申請平台的智能客服。</p><p>我可以透過對話協助您查詢招租社宅、準備申請文件、進行資格自我檢核，或查詢案件進度。請問您想先處理哪一項？</p>');
+      scenarioChoices();
+    };
+
+    const housingData={
+      '臺北市':[
+        {name:'萬華安居',rooms:'套房／一房型／二房型',agency:'臺北市政府'},
+        {name:'南港機廠社宅',rooms:'一房型／二房型／三房型',agency:'臺北市政府'},
+        {name:'明倫社會住宅',rooms:'套房／二房型',agency:'臺北市政府'}
+      ],
+      '新北市':[
+        {name:'保二安居',rooms:'套房／一房型／二房型／三房型',agency:'國家住都中心'},
+        {name:'五谷好室 A',rooms:'套房／二房型／三房型',agency:'國家住都中心'},
+        {name:'富貴好室',rooms:'套房／二房型／三房型',agency:'新北市政府'}
+      ],
+      '桃園市':[
+        {name:'慈文安居',rooms:'一房型／二房型／三房型',agency:'桃園市政府'},
+        {name:'中路社會住宅',rooms:'一房型／二房型',agency:'桃園市政府'},
+        {name:'八德社會住宅',rooms:'二房型／三房型',agency:'桃園市政府'}
+      ]
+    };
+
+    const askHousingCounty=()=>reply(()=>{
+      addAssistantMessage('<p><span class="scenario-number">01</span><strong>查詢招租中的社宅</strong></p><p>請選擇想查詢的縣市，我會整理符合條件的社宅供您繼續了解。</p>');
+      addChoices([{label:'臺北市',action:'housing-city',value:'臺北市'},{label:'新北市',action:'housing-city',value:'新北市'},{label:'桃園市',action:'housing-city',value:'桃園市'},{label:'其他縣市',action:'housing-all',value:'',secondary:true}]);
+    });
+    const showHousingCity=city=>reply(()=>{
+      const projects=housingData[city]||[];
+      const cards=projects.map(project=>`<div class="assistant-card"><strong>${project.name}</strong><span>${project.rooms}</span><div class="card-meta"><b>${project.agency}</b><b>${city}</b></div></div>`).join('');
+      addAssistantMessage(`<p>以下為<strong>${city}</strong>招租社宅的對話情境示意，共 ${projects.length} 案：</p>${cards}<p>您想進一步了解哪一案呢？</p><span class="prototype-note">本頁為功能原型，實際招租案件與資格仍以各權責機關最新公告為準。</span>`);
+      addChoices([...projects.map(project=>({label:project.name,action:'housing-detail',value:`${city}|${project.name}`})),{label:`查看全部${city}社宅`,action:'housing-page',value:city},{label:'回服務選單',action:'menu',value:'',secondary:true}]);
+    });
+    const showHousingDetail=value=>reply(()=>{
+      const [city,name]=value.split('|');
+      const project=(housingData[city]||[]).find(item=>item.name===name);
+      if(!project){showFallback();return}
+      addAssistantMessage(`<p><strong>${project.name}</strong>的示意資訊如下：</p><div class="assistant-card"><strong>${city}・${project.name}</strong><span>可申請房型：${project.rooms}<br>權責機關：${project.agency}</span></div><p>若要正式申請，建議先確認申請文件與自身資格。</p><a class="assistant-link" href="housing.html?county=${encodeURIComponent(city)}">前往找社宅頁面 →</a>`);
+      addChoices([{label:'要準備哪些文件？',action:'scenario',value:'documents'},{label:'先做資格檢核',action:'scenario',value:'eligibility'},{label:'回服務選單',action:'menu',value:'',secondary:true}]);
+    });
+
+    const showDocuments=()=>reply(()=>{
+      addAssistantMessage('<p><span class="scenario-number">02</span><strong>申請文件與操作引導</strong></p><p>申請社宅通常需要準備以下資料：</p><ul><li>身分證明文件</li><li>戶籍謄本或戶口名簿</li><li>家庭所得及財產相關資料</li><li>特殊身分或加分資格證明</li><li>各招租公告要求的其他文件</li></ul><p>本平台可透過授權查調減少重複填寫；實際項目仍以招租公告為準。您需要我接著說明申請流程嗎？</p>');
+      addChoices([{label:'需要，說明申請流程',action:'application-flow',value:''},{label:'先做資格檢核',action:'scenario',value:'eligibility'},{label:'暫時不用',action:'menu',value:'',secondary:true}]);
+    });
+    const showApplicationFlow=()=>reply(()=>{
+      addAssistantMessage('<p>申請流程可以分成 6 個步驟：</p><ol><li>驗證登入並完成電子切結</li><li>填寫基本資料與授權查調</li><li>完成住宅需求問卷</li><li>選擇符合需求的社宅與房型</li><li>確認並提送一筆或多筆申請</li><li>查詢進度並依通知補件</li></ol><a class="assistant-link" href="login.html">開始驗證登入 →</a>');
+      addChoices([{label:'我想先確認資格',action:'scenario',value:'eligibility'},{label:'回服務選單',action:'menu',value:'',secondary:true}]);
+    });
+
+    const eligibilityQuestions=[
+      {key:'city',question:'想申請哪個縣市的社宅？',options:['臺北市','新北市','桃園市']},
+      {key:'project',question:'是否已經有想申請的招租案？',options:['有','尚未指定']},
+      {key:'registration',question:'戶籍、就業或就學條件是否符合該招租案規定？',options:['是','否','不確定']},
+      {key:'income',question:'家庭年所得大約在哪個區間？',options:['50 萬以下','50–80 萬','80–120 萬','120 萬以上']},
+      {key:'home',question:'您或家庭成員目前是否持有自有住宅？',options:['是','否','不確定']}
+    ];
+    let eligibilityIndex=0;
+    let eligibilityAnswers={};
+    const startEligibility=()=>{
+      eligibilityIndex=0;eligibilityAnswers={};
+      reply(()=>{
+        addAssistantMessage('<p><span class="scenario-number">03</span><strong>資格自我檢核</strong></p><p>我會用 5 個問題協助您進行初步試算。請依目前情況回答；結果僅供參考，不代表正式審查結果。</p>');
+        askEligibilityQuestion();
+      });
+    };
+    const askEligibilityQuestion=()=>{
+      const item=eligibilityQuestions[eligibilityIndex];
+      addAssistantMessage(`<p><strong>第 ${eligibilityIndex+1} 題，共 5 題</strong></p><p>${item.question}</p>`);
+      addChoices(item.options.map(option=>({label:option,action:'eligibility-answer',value:option})));
+    };
+    const answerEligibility=value=>{
+      eligibilityAnswers[eligibilityQuestions[eligibilityIndex].key]=value;
+      eligibilityIndex+=1;
+      if(eligibilityIndex<eligibilityQuestions.length){reply(askEligibilityQuestion);return}
+      reply(showEligibilityResult);
+    };
+    const showEligibilityResult=()=>{
+      const needsReview=eligibilityAnswers.registration!=='是'||eligibilityAnswers.home!=='否'||eligibilityAnswers.income==='120 萬以上';
+      const summary=`<dl class="answer-summary"><dt>申請縣市</dt><dd>${eligibilityAnswers.city}</dd><dt>指定招租案</dt><dd>${eligibilityAnswers.project}</dd><dt>戶籍／就業條件</dt><dd>${eligibilityAnswers.registration}</dd><dt>家庭年所得</dt><dd>${eligibilityAnswers.income}</dd><dt>持有住宅</dt><dd>${eligibilityAnswers.home}</dd></dl>`;
+      const result=needsReview?'<div class="eligibility-result review"><strong>△ 需要進一步確認</strong><span>部分條件可能受招租地、家庭人口、所得與住宅持有狀況影響，建議查看個別公告或洽詢人工客服。</span></div>':'<div class="eligibility-result"><strong>✓ 可能符合資格</strong><span>依您提供的條件，初步未發現明顯不符項目。正式資格仍以提送申請後的跨機關查調與權責機關審查結果為準。</span></div>';
+      addAssistantMessage(`<p>已完成初步資格檢核：</p>${summary}${result}`);
+      addChoices([{label:'查看申請文件',action:'scenario',value:'documents'},{label:'重新檢核',action:'scenario',value:'eligibility'},{label:'詢問人工客服',action:'scenario',value:'support'},{label:'回服務選單',action:'menu',value:'',secondary:true}]);
+    };
+
+    const showProgress=()=>reply(()=>{
+      addAssistantMessage('<p><span class="scenario-number">04</span><strong>查詢案件進度</strong></p><p>申請進度與補件狀態涉及個人資料，請先完成身分驗證。驗證完成後即可查看每筆申請的審查狀態、補件期限及抽籤結果。</p><a class="assistant-link purple" href="login.html">前往身分驗證 →</a>');
+      addChoices([{label:'模擬已完成身分驗證',action:'progress-demo',value:''},{label:'我需要人工協助',action:'scenario',value:'support'},{label:'回服務選單',action:'menu',value:'',secondary:true}]);
+    });
+    const showProgressDemo=()=>reply(()=>{
+      addAssistantMessage('<p>已找到您的申請紀錄（原型示意）：</p><div class="assistant-card"><strong>西屯安居社會住宅</strong><span>案件狀態：須補件<br>補件期限：116/03/25</span><div class="card-meta"><b>二房型</b><b>須補件</b></div></div><div class="assistant-card"><strong>文心好室社會住宅</strong><span>案件狀態：資格審查中<br>目前不需補件</span><div class="card-meta"><b>二房型</b><b>審查中</b></div></div><a class="assistant-link purple" href="progress.html">開啟進度查詢／補件 →</a>');
+      addChoices([{label:'補件要準備什麼？',action:'scenario',value:'documents'},{label:'回服務選單',action:'menu',value:'',secondary:true}]);
+    });
+
+    const showSupport=()=>reply(()=>{
+      addAssistantMessage('<p><span class="scenario-number">05</span><strong>需要進一步協助</strong></p><p>若問題涉及特殊家庭情況、個案資格判斷，或智能客服無法正確回答，建議由專人協助確認。</p><div class="assistant-card"><strong>客服聯絡資訊</strong><span>總機服務：(02)-87712345<br>聯絡時請準備案件編號；請勿在公開對話中提供完整身分證字號或密碼。</span></div><a class="assistant-link orange" href="tel:+886-2-87712345">撥打客服電話 →</a>');
+      addChoices([{label:'重新描述我的問題',action:'focus-input',value:''},{label:'回服務選單',action:'menu',value:'',secondary:true}]);
+    });
+    const showFallback=()=>reply(()=>{
+      addAssistantMessage('<p>我目前無法確定您的問題屬於哪一類。您可以換一種方式描述，或直接選擇以下服務：</p>');
+      scenarioChoices();
+    });
+
+    const handleAction=(action,value)=>{
+      if(action==='scenario'){
+        ({housing:askHousingCounty,documents:showDocuments,eligibility:startEligibility,progress:showProgress,support:showSupport}[value]||showFallback)();
+      }else if(action==='housing-city'){showHousingCity(value)}
+      else if(action==='housing-detail'){showHousingDetail(value)}
+      else if(action==='housing-page'){window.location.href=`housing.html?county=${encodeURIComponent(value)}`}
+      else if(action==='housing-all'){window.location.href='housing.html'}
+      else if(action==='application-flow'){showApplicationFlow()}
+      else if(action==='eligibility-answer'){answerEligibility(value)}
+      else if(action==='progress-demo'){showProgressDemo()}
+      else if(action==='focus-input'){messageInput.focus()}
+      else if(action==='menu'){reply(()=>{addAssistantMessage('<p>好的，請選擇接下來需要的服務：</p>');scenarioChoices()})}
+    };
+
+    conversation.addEventListener('click',event=>{
+      const button=event.target.closest('.choice-button');
+      if(!button)return;
+      const row=button.closest('.choice-row');
+      row.classList.add('used');
+      addUserMessage(button.textContent.trim());
+      handleAction(button.dataset.action,button.dataset.value);
+      scrollMessages();
+    });
+
+    const sendMessage=text=>{
+      const value=text.trim();if(!value)return;
+      addUserMessage(value);messageInput.value='';
+      if(/資格|符合|所得|房產/.test(value))startEligibility();
+      else if(/進度|補件|申請了|案件/.test(value))showProgress();
+      else if(/文件|準備|流程|怎麼申請/.test(value))showDocuments();
+      else if(/臺北|台北/.test(value))showHousingCity('臺北市');
+      else if(/新北/.test(value))showHousingCity('新北市');
+      else if(/桃園/.test(value))showHousingCity('桃園市');
+      else if(/招租|找社宅|有哪些社宅|社宅/.test(value))askHousingCounty();
+      else if(/人工|客服|特殊|協助|無法/.test(value))showSupport();
+      else showFallback();
+      scrollMessages();
+    };
+    chatForm.addEventListener('submit',event=>{event.preventDefault();sendMessage(messageInput.value)});
+    messageInput.addEventListener('keydown',event=>{if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendMessage(messageInput.value)}});
+    document.getElementById('newChat').addEventListener('click',()=>{
+      window.clearTimeout(responseTimer);typing.classList.remove('show');conversation.innerHTML='';messageInput.value='';eligibilityIndex=0;eligibilityAnswers={};renderWelcome();messageInput.focus();scrollMessages();
+    });
+    renderWelcome();
+  </script>
+</body>
+</html>

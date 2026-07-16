@@ -3,263 +3,199 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#008e93" />
-  <title>登入驗證｜全國社宅統一登記申請平台</title>
+  <meta name="theme-color" content="#008f95" />
+  <title>登入驗證｜安心服務入口</title>
   <style>
     :root {
-      --navy: #063c5e;
-      --ink: #164e64;
-      --teal: #00999a;
-      --teal-deep: #007d85;
-      --teal-pale: #dff6f3;
-      --blue-pale: #eefaff;
-      --line: #dcebed;
-      --muted: #537084;
-      --shadow: 0 12px 29px rgba(18, 83, 102, .14);
+      --navy: #063d5f;
+      --teal: #009b9b;
+      --teal-dark: #007d87;
+      --mist: #eaf8f8;
+      --line: #d9eaec;
+      --muted: #527084;
+      --card-shadow: 0 14px 31px rgba(16, 75, 95, .14);
       --sans: "Noto Sans TC", "Microsoft JhengHei", "PingFang TC", system-ui, sans-serif;
+      --serif: "Noto Serif TC", "PMingLiU", serif;
+      --ink: #153e47;
     }
 
     * { box-sizing: border-box; }
-    body {
-      min-width: 320px;
-      min-height: 100vh;
-      margin: 0;
-      overflow-x: hidden;
-      color: var(--ink);
-      font-family: var(--sans);
-      background: linear-gradient(180deg, #fff 0%, #faffff 66%, #eefbfc 100%);
-    }
-    button, a { font: inherit; }
+    html { background: #f4fcfc; }
+    body { min-width: 320px; min-height: 100vh; display: flex; flex-direction: column; margin: 0; color: var(--navy); font-family: var(--sans); background: linear-gradient(180deg, #fff 0%, #f9ffff 60%, #ecf9fa 100%); }
+    a, button { font: inherit; }
     button { cursor: pointer; }
-    button:focus-visible, a:focus-visible { outline: 3px solid rgba(0, 153, 154, .42); outline-offset: 3px; }
+    a:focus-visible, button:focus-visible { outline: 3px solid rgba(0, 155, 155, .45); outline-offset: 3px; }
 
-    .page {
-      position: relative;
-      isolation: isolate;
-      min-height: 100vh;
-      padding: 40px 18px 34px;
-      overflow: hidden;
-    }
-    .orb { position: absolute; z-index: -1; border-radius: 50%; pointer-events: none; }
-    .orb.top-left { width: min(37vw, 610px); height: min(37vw, 610px); top: -105px; left: -72px; background: radial-gradient(circle at 60% 67%, #d9f7fb, #eefcff 70%); }
-    .orb.top-right { width: 320px; height: 320px; right: -154px; top: 86px; background: #f0fbfc; }
-    .orb.bottom-right { width: 370px; height: 180px; right: -80px; bottom: -109px; background: #d8f3f5; }
-    .orb.bottom-left { width: 260px; height: 132px; left: 24px; bottom: -91px; background: #e5f8f8; }
+    .page { position: relative; isolation: isolate; flex: 1; padding: 48px 22px 58px; overflow: hidden; }
+    .shape { position: absolute; z-index: -1; border-radius: 50%; pointer-events: none; }
+    .shape.one { width: min(47vw, 620px); height: min(47vw, 620px); top: -315px; left: -140px; background: #e0f8fa; }
+    .shape.two { width: 330px; height: 330px; top: 155px; right: -230px; background: #edfafa; }
+    .shape.three { width: 410px; height: 165px; bottom: -105px; right: -63px; background: #d9f2f4; }
+    .shape.four { width: 265px; height: 110px; bottom: -71px; left: 65px; background: #e4f7f7; }
 
-    .topbar { width: min(1170px, 100%); margin: 0 auto 24px; display: flex; align-items: center; justify-content: space-between; }
-    .brand { display: inline-flex; align-items: center; gap: 10px; color: var(--navy); font-size: 16px; font-weight: 800; letter-spacing: .08em; text-decoration: none; }
-    .brand-mark { display: grid; place-items: center; width: 42px; height: 38px; }
-    .brand-mark img { display: block; width: 42px; height: auto; }
-    .back-link { color: #3b6c7a; font-size: 14px; font-weight: 700; text-decoration: none; }
-    .back-link:hover { color: var(--teal-deep); text-decoration: underline; }
+    .site-header { position: sticky; z-index: 1000; top: 0; height: 137px; border-bottom: 1px solid rgba(106, 128, 130, .16); background: rgba(255,255,255,.96); box-shadow: 0 5px 16px rgba(20,65,70,.06); }
+    .utility-bar { position: relative; z-index: 3; height: 44px; display: flex; align-items: center; justify-content: space-between; padding: 0 max(36px, calc((100vw - 1510px) / 2)); color: #333b40; background: rgba(255, 255, 255, .92); font-size: 15px; font-weight: 700; letter-spacing: .04em; }
+    .agency-link { color: inherit; text-decoration: none; }
+    .agency-link:hover { color: var(--teal); }
+    .utility-links { display: flex; align-items: center; gap: 47px; }
+    .utility-link { display: inline-flex; align-items: center; gap: 10px; color: inherit; text-decoration: none; }
+    .utility-link:hover { color: var(--teal); }
+    .utility-link svg { width: 24px; height: 24px; stroke: #15191c; stroke-width: 1.8; fill: none; }
+    .login-header-inner { width: min(1380px, calc(100% - 72px)); height: 93px; display: flex; align-items: center; justify-content: space-between; gap: 24px; margin: 0 auto; }
+    .brand { display: flex; align-items: center; gap: 19px; color: var(--ink); text-decoration: none; white-space: nowrap; }
+    .brand-mark { width: 50px; height: 48px; flex: 0 0 auto; }
+    .brand-name { font-family: var(--serif); font-size: clamp(24px, 2vw, 30px); font-weight: 800; letter-spacing: .07em; }
+    .back-link { min-height: 42px; padding: 0 17px; border: 1px solid #b7d6d7; border-radius: 999px; color: #2c656b; background: #f8fcfb; font-size: 15px; font-weight: 800; letter-spacing: .06em; transition: color .18s ease, border-color .18s ease, background .18s ease, transform .18s ease; }
+    .back-link:hover { border-color: var(--teal); color: #fff; background: var(--teal); transform: translateY(-1px); }
+    .intro { max-width: 760px; margin: 0 auto 26px; text-align: center; }
+    h1 { margin: 0; color: var(--navy); font-size: clamp(31px, 4vw, 47px); line-height: 1.28; letter-spacing: .1em; font-weight: 900; }
+    .intro p { margin: 9px 0 0; color: var(--muted); font-size: clamp(14px, 1.7vw, 17px); letter-spacing: .12em; font-weight: 600; }
 
-    .intro { max-width: 780px; margin: 0 auto 25px; text-align: center; }
-    h1 { margin: 0; color: var(--navy); font-size: clamp(31px, 4.2vw, 48px); line-height: 1.25; letter-spacing: .1em; font-weight: 900; }
-    .intro p { margin: 11px 0 0; color: #557084; font-size: clamp(14px, 1.7vw, 17px); font-weight: 600; letter-spacing: .12em; }
-
-    .login-grid { width: min(1170px, 100%); margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
-    .method-card {
-      display: flex;
-      min-width: 0;
-      min-height: 348px;
-      flex-direction: column;
-      padding: 15px 16px 16px;
-      border: 1px solid rgba(220, 235, 237, .92);
-      border-radius: 16px;
-      background: rgba(255, 255, 255, .93);
-      box-shadow: var(--shadow);
-      transition: transform .2s ease, box-shadow .2s ease;
-    }
-    .method-card:hover { transform: translateY(-5px); box-shadow: 0 19px 35px rgba(18, 83, 102, .19); }
-    .illustration { position: relative; height: 116px; display: grid; place-items: center; margin: 0 0 8px; overflow: hidden; border-radius: 13px; background: linear-gradient(135deg, #f0fbfa, #e7f7fc); }
-    .illustration::before, .illustration::after { content: ""; position: absolute; border-radius: 50%; background: rgba(151, 224, 222, .36); }
-    .illustration::before { width: 103px; height: 103px; left: 15px; bottom: -55px; }
-    .illustration::after { width: 80px; height: 80px; right: 9px; top: -34px; }
-    .illustration svg { position: relative; z-index: 1; width: 178px; height: 124px; }
-    .method-card h2 { margin: 0 0 11px; color: var(--navy); font-size: clamp(18px, 1.8vw, 21px); line-height: 1.2; font-weight: 900; letter-spacing: .06em; white-space: nowrap; }
-    .benefits { display: grid; gap: 5px; margin: 0 0 14px; padding: 0; list-style: none; color: #456378; font-size: 12px; line-height: 1.35; font-weight: 600; }
+    .methods { width: min(1170px, 100%); margin: 0 auto; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
+    .card { display: flex; min-width: 0; min-height: 390px; flex-direction: column; padding: 13px 14px 15px; border: 1px solid rgba(217, 234, 236, .95); border-radius: 17px; background: rgba(255, 255, 255, .94); box-shadow: var(--card-shadow); transition: transform .2s ease, box-shadow .2s ease; }
+    .card:hover { transform: translateY(-5px); box-shadow: 0 20px 37px rgba(16, 75, 95, .19); }
+    .visual { position: relative; height: 155px; margin-bottom: 13px; overflow: hidden; border-radius: 12px; background: #effbfb; }
+    .visual::after { content: ""; position: absolute; inset: 0; pointer-events: none; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .5); }
+    .visual img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+    .card h2 { margin: 0 16px 11px; color: var(--navy); font-size: clamp(18px, 1.65vw, 21px); line-height: 1.2; letter-spacing: .055em; font-weight: 900; white-space: nowrap; }
+    .benefits { display: grid; gap: 5px; margin: 0 16px 14px; padding: 0; color: #456477; list-style: none; font-size: 12px; line-height: 1.35; font-weight: 600; }
     .benefits li { position: relative; padding-left: 18px; }
-    .benefits li::before { content: "✓"; position: absolute; left: 0; top: -1px; display: grid; width: 13px; height: 13px; place-items: center; border-radius: 50%; color: white; background: var(--teal); font-size: 9px; font-weight: 900; }
-    .login-action { width: 100%; min-height: 43px; margin-top: auto; border: 0; border-radius: 8px; color: white; background: linear-gradient(135deg, #04a7a4, #008995); box-shadow: inset 0 1px rgba(255,255,255,.25), 0 5px 9px rgba(0, 132, 142, .14); font-size: 16px; font-weight: 900; letter-spacing: .12em; transition: filter .16s ease, transform .16s ease; }
-    .login-action:hover { filter: brightness(1.06); transform: translateY(-1px); }
-    .register { align-self: center; margin-top: 9px; color: #008d98; font-size: 14px; font-weight: 700; text-underline-offset: 3px; }
-    .register:hover { color: #006e7a; }
+    .benefits li::before { content: "✓"; position: absolute; top: -1px; left: 0; display: grid; width: 13px; height: 13px; place-items: center; border-radius: 50%; color: #fff; background: var(--teal); font-size: 9px; font-weight: 900; }
+    .login { width: 100%; min-height: 43px; margin-top: auto; border: 0; border-radius: 8px; color: #fff; background: linear-gradient(135deg, #06aaa5, #008896); box-shadow: inset 0 1px rgba(255,255,255,.22), 0 5px 9px rgba(0, 129, 143, .14); font-size: 16px; font-weight: 900; letter-spacing: .12em; transition: transform .16s ease, filter .16s ease; }
+    .login:hover { filter: brightness(1.05); transform: translateY(-1px); }
+    .register { align-self: center; margin-top: 9px; color: #008c97; font-size: 14px; font-weight: 700; text-underline-offset: 3px; }
+    .register:hover { color: #006f7a; }
 
-    .security-note { width: min(780px, 100%); display: flex; justify-content: center; gap: 9px; margin: 24px auto 0; color: #608092; font-size: 13px; font-weight: 600; text-align: center; line-height: 1.55; }
-    .security-note svg { flex: 0 0 auto; width: 18px; height: 18px; color: var(--teal); }
+    .notice { width: min(780px, 100%); display: flex; align-items: flex-start; justify-content: center; gap: 9px; margin: 24px auto 0; color: #5f7e8d; font-size: 13px; line-height: 1.55; font-weight: 600; text-align: center; }
+    .notice svg { width: 18px; height: 18px; flex: 0 0 auto; margin-top: 1px; color: var(--teal); }
 
-    dialog { width: min(420px, calc(100% - 32px)); padding: 0; border: 0; border-radius: 18px; box-shadow: 0 24px 65px rgba(6, 60, 94, .28); }
-    dialog::backdrop { background: rgba(3, 48, 65, .38); backdrop-filter: blur(3px); }
-    .dialog-body { padding: 27px 28px 24px; color: #416073; }
-    .dialog-icon { width: 52px; height: 52px; display: grid; place-items: center; margin-bottom: 14px; border-radius: 50%; color: white; background: var(--teal); font-size: 25px; font-weight: 900; }
+    .site-footer { position: relative; padding: 0 48px; overflow: hidden; color: #e7f2f1; background: radial-gradient(circle at 82% -40%, rgba(23,152,157,.3), transparent 38%), linear-gradient(135deg, #123d45, #092d34); }
+    .site-footer::before { content: ""; position: absolute; top: 0; right: 0; left: 0; height: 4px; background: linear-gradient(90deg, #0a848d, #55bdb8 48%, #0a848d); }
+    .footer-inner { width: min(1180px, 100%); margin: 0 auto; padding: 52px 0 28px; }
+    .footer-top { display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+    .footer-brand { display: inline-flex; align-items: center; gap: 16px; color: #fff; text-decoration: none; }
+    .footer-logo { width: 62px; height: 62px; display: grid; flex: 0 0 auto; place-items: center; border: 1px solid rgba(255,255,255,.16); border-radius: 18px; background: rgba(255,255,255,.94); box-shadow: 0 10px 24px rgba(0,0,0,.14); }
+    .footer-logo img { width: 48px; height: auto; }
+    .footer-brand-text strong { display: block; font-family: var(--serif); font-size: 20px; letter-spacing: .08em; }
+    .footer-brand-text span { display: block; margin-top: 6px; color: #a9ccca; font-size: 13px; letter-spacing: .08em; }
+    .footer-links { display: flex; align-items: center; gap: 10px; }
+    .footer-links a { min-height: 40px; display: inline-flex; align-items: center; padding: 0 16px; border: 1px solid rgba(255,255,255,.15); border-radius: 999px; color: #d7e8e7; font-size: 14px; font-weight: 700; text-decoration: none; transition: color .18s ease, border-color .18s ease, background .18s ease; }
+    .footer-links a:hover { border-color: rgba(111,210,207,.48); color: #fff; background: rgba(255,255,255,.08); }
+    .footer-rule { height: 1px; margin: 32px 0 25px; background: linear-gradient(90deg, rgba(255,255,255,.2), rgba(255,255,255,.05)); }
+    .footer-bottom { display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; }
+    .footer-details { min-width: 0; }
+    .footer-contact { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px 38px; margin: 0; }
+    .footer-meta { display: grid; gap: 3px; color: #d2e3e2; font-size: 14px; line-height: 1.65; }
+    .footer-meta-label { color: #78bcb9; font-size: 12px; font-weight: 800; letter-spacing: .12em; }
+    .footer-contact a { color: inherit; text-decoration: none; }
+    .footer-contact a:hover { color: #fff; text-decoration: underline; }
+    .footer-copyright { margin: 20px 0 0; color: #87aaa8; font-size: 12px; letter-spacing: .04em; }
+    .footer-badge { flex: 0 0 auto; }
+    .footer-badge img { display: block; width: 120px; height: auto; }
+
+    dialog { width: min(420px, calc(100% - 32px)); padding: 0; border: 0; border-radius: 18px; box-shadow: 0 24px 65px rgba(6, 60, 94, .29); }
+    dialog::backdrop { background: rgba(3, 48, 65, .4); backdrop-filter: blur(3px); }
+    .dialog-body { padding: 27px 28px 24px; color: #466477; }
+    .dialog-mark { width: 52px; height: 52px; display: grid; place-items: center; margin-bottom: 13px; border-radius: 50%; color: white; background: var(--teal); font-size: 25px; font-weight: 900; }
     .dialog-body h2 { margin: 0 0 8px; color: var(--navy); font-size: 23px; letter-spacing: .04em; }
-    .dialog-body p { margin: 0; line-height: 1.75; font-size: 15px; }
+    .dialog-body p { margin: 0; font-size: 15px; line-height: 1.75; }
     .dialog-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 22px; }
     .dialog-actions button { min-width: 92px; min-height: 39px; border: 0; border-radius: 20px; color: white; background: var(--teal); font-weight: 800; }
-    .dialog-actions .secondary { color: #4d6775; background: #eaf2f3; }
+    .dialog-actions .cancel { color: #4d6775; background: #eaf2f3; }
 
-    .site-header .public-login { min-width: 141px; height: 51px; display: inline-grid; place-items: center; border-radius: 28px; color: #fff; background: linear-gradient(135deg,#078b92,#00646f 79%); box-shadow: 0 8px 13px rgba(0,92,102,.19); font-size: 19px; font-weight: 800; letter-spacing: .12em; text-decoration: none; transition: transform .18s ease,filter .18s ease; }
-    .site-header .public-login:hover { color: #fff; filter: brightness(1.06); transform: translateY(-2px); }
-    .site-mobile-nav .public-login { width: 100%; margin-top: 3px; }
-
-    @media (max-width: 960px) {
-      .login-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 610px; }
-      .method-card { min-height: 338px; }
-    }
-    @media (max-width: 560px) {
-      .page { padding-top: 22px; }
-      .topbar { margin-bottom: 32px; }
-      .brand { font-size: 13px; }
-      .back-link { font-size: 13px; }
-      .intro { margin-bottom: 20px; }
-      .intro p { line-height: 1.7; letter-spacing: .06em; }
-      .login-grid { grid-template-columns: 1fr; max-width: 340px; gap: 15px; }
-      .method-card { min-height: 322px; }
-      .illustration { height: 108px; }
-      .security-note { margin-top: 18px; font-size: 12px; }
-    }
+    @media (max-width: 960px) { .methods { max-width: 630px; grid-template-columns: repeat(2, minmax(0, 1fr)); } .card { min-height: 376px; } .site-footer { padding: 0 30px; } .footer-top { align-items: flex-start; flex-direction: column; gap: 25px; } .footer-links { flex-wrap: wrap; } }
+    @media (max-width: 700px) { .brand { gap: 10px; } .brand-mark { width: 40px; height: 39px; } .brand-name { white-space: normal; font-size: 19px; line-height: 1.25; } .footer-inner { padding-top: 42px; } .footer-bottom { align-items: flex-start; flex-direction: column; gap: 24px; } .footer-contact { grid-template-columns: 1fr; gap: 13px; } .footer-badge img { width: 108px; } }
+    @media (max-width: 560px) { .page { padding: 34px 18px 42px; } .intro { margin-bottom: 20px; } .intro p { line-height: 1.7; letter-spacing: .06em; } .methods { max-width: 340px; grid-template-columns: 1fr; gap: 15px; } .card { min-height: 371px; } .visual { height: 178px; } .notice { margin-top: 18px; font-size: 12px; } .site-footer { padding: 0 20px; } .footer-brand { align-items: flex-start; } .footer-logo { width: 54px; height: 54px; } .footer-logo img { width: 42px; } .footer-brand-text strong { font-size: 17px; } .footer-links a { padding: 0 13px; font-size: 13px; } }
+    @media (max-width: 700px) { .site-header { height: 110px; } .utility-bar { height: 38px; padding: 0 18px; font-size: 12px; } .utility-links { gap: 12px; } .utility-link span { display: none; } .utility-link svg { width: 20px; height: 20px; } .login-header-inner { width: calc(100% - 36px); height: 72px; gap: 14px; } .back-link { min-height: 38px; padding: 0 12px; font-size: 13px; } }
   </style>
-  <link rel="stylesheet" href="assets/member-shell.css" />
 </head>
-<body id="top">
+<body>
   <header class="site-header">
     <div class="utility-bar">
       <a class="agency-link" href="https://www.nlma.gov.tw/" target="_blank" rel="noopener noreferrer">內政部國土管理署</a>
       <div class="utility-links">
-        <a class="utility-link" href="#primaryNavigation" aria-label="網站導覽"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="2.5" width="6" height="5" rx="1.2"/><rect x="2" y="16.5" width="6" height="5" rx="1.2"/><rect x="9" y="16.5" width="6" height="5" rx="1.2"/><rect x="16" y="16.5" width="6" height="5" rx="1.2"/><path d="M12 7.5V12M5 16.5V12h14v4.5M12 12v4.5"/></svg><span>網站導覽</span></a>
-        <a class="utility-link" href="#siteFooter" aria-label="聯絡我們"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13v-1a8 8 0 0 1 16 0v1"/><path d="M4 12H2v5c0 1.1.9 2 2 2h2v-7H4Zm16 0h2v5c0 1.1-.9 2-2 2h-2v-7h2Z"/><path d="M18 19c0 2-2 3-5 3"/></svg><span>聯絡我們</span></a>
+        <a class="utility-link" href="index.html#journey" aria-label="網站導覽">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="2.5" width="6" height="5" rx="1.2"/><rect x="2" y="16.5" width="6" height="5" rx="1.2"/><rect x="9" y="16.5" width="6" height="5" rx="1.2"/><rect x="16" y="16.5" width="6" height="5" rx="1.2"/><path d="M12 7.5V12M5 16.5V12h14v4.5M12 12v4.5"/></svg><span>網站導覽</span>
+        </a>
+        <a class="utility-link" href="chat.html" aria-label="聯絡我們">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13v-1a8 8 0 0 1 16 0v1"/><path d="M4 12H2v5c0 1.1.9 2 2 2h2v-7H4Zm16 0h2v5c0 1.1-.9 2-2 2h-2v-7h2Z"/><path d="M18 19c0 2-2 3-5 3"/></svg><span>聯絡我們</span>
+        </a>
       </div>
     </div>
-    <nav class="site-main-nav" id="primaryNavigation" aria-label="主要導覽">
-      <a class="brand" href="index.html" aria-label="回到全國社宅統一登記申請平台首頁"><img class="brand-mark" src="assets/platform-logo-elegant.svg" alt=""/><span class="brand-name">全國社宅統一登記申請平台</span></a>
-      <div class="member-nav"><a class="member-nav-link" href="index.html">首頁</a><a class="member-nav-link" href="housing.html">找社宅</a><a class="member-nav-link" href="index.html#journey">申請流程</a></div>
-      <div class="member-actions"><a class="public-login" href="#top" aria-current="page">登入</a></div>
-      <button class="site-mobile-menu" type="button" aria-label="開啟選單" aria-controls="memberMobileNav" aria-expanded="false">☰</button>
-      <div class="site-mobile-nav" id="memberMobileNav"><a href="index.html">首頁</a><a href="housing.html">找社宅</a><a href="index.html#journey">申請流程</a><a class="public-login" href="#top" aria-current="page">登入</a></div>
-    </nav>
+    <div class="login-header-inner">
+      <a class="brand" href="index.html" aria-label="全國社宅統一登記申請平台首頁"><img class="brand-mark" src="assets/platform-logo-elegant.svg" alt="" /><span class="brand-name">全國社宅統一登記申請平台</span></a>
+      <button class="back-link" type="button">← 返回上頁</button>
+    </div>
   </header>
-  <main class="page">
-    <div class="orb top-left" aria-hidden="true"></div>
-    <div class="orb top-right" aria-hidden="true"></div>
-    <div class="orb bottom-left" aria-hidden="true"></div>
-    <div class="orb bottom-right" aria-hidden="true"></div>
 
-    <section class="intro" aria-labelledby="page-title">
-      <h1 id="page-title">請選擇以下方式登入</h1>
-      <p>安全・便捷・值得信賴的政府數位服務</p>
-    </section>
+  <main class="page" id="top">
+    <div class="shape one" aria-hidden="true"></div><div class="shape two" aria-hidden="true"></div><div class="shape three" aria-hidden="true"></div><div class="shape four" aria-hidden="true"></div>
+    <section class="intro" aria-labelledby="page-title"><h1 id="page-title">請選擇以下方式登入</h1><p>安全・便捷・值得信賴的政府數位服務</p></section>
 
-    <section class="login-grid" aria-label="登入驗證方式">
-      <article class="method-card">
-        <div class="illustration" aria-hidden="true">
-          <svg viewBox="0 0 190 130" fill="none">
-            <path d="M27 105c-5-16 2-41 19-48 20-8 44 2 46 27l4 27H27v-6Z" fill="#13A9A5"/>
-            <path d="M47 67c2-21 32-29 46-7 4 7 3 18-1 26L74 80 60 90 46 82c-2-5-2-10 1-15Z" fill="#FFE6CE"/>
-            <path d="M49 68c7-24 38-26 47-4l-7 9-4-12-8 6-17 1-5 13-7-3 1-10Z" fill="#093E5B"/>
-            <circle cx="66" cy="75" r="1.8" fill="#173E55"/><circle cx="83" cy="74" r="1.8" fill="#173E55"/>
-            <path d="M70 84c4 3 9 3 13 0" stroke="#C86E5D" stroke-width="1.6" stroke-linecap="round"/>
-            <path d="M57 91c8 7 23 7 33-1l11 21H46l11-20Z" fill="#007F88"/>
-            <g transform="rotate(5 125 74)"><rect x="106" y="25" width="48" height="88" rx="7" fill="#123F59"/><rect x="110" y="30" width="40" height="76" rx="4" fill="white"/><path d="M124 34h13" stroke="#123F59" stroke-width="2.5" stroke-linecap="round"/><path d="M129 92c0 1.5 1.2 2.7 2.7 2.7s2.7-1.2 2.7-2.7-1.2-2.7-2.7-2.7-2.7 1.2-2.7 2.7Z" fill="#DFEFF1"/><path d="M118 55c8-8 20-8 28 0M122 60c5-5 14-5 19 0M127 65c3-3 7-3 10 0" stroke="#009B9B" stroke-width="2.8" stroke-linecap="round"/><circle cx="132" cy="70" r="2.2" fill="#009B9B"/></g>
-            <circle cx="157" cy="100" r="12" fill="#0AA6A5"/><path d="m152 100 3.5 3.5 6.5-8" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M20 84v17M14 91l6-7 6 7M23 91l7-9 7 9" stroke="#A8E3DD" stroke-width="3" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <h2>手機電信驗證</h2>
-        <ul class="benefits"><li>我的手機已綁定本人門號</li><li>僅使用 4G／5G 行動網路驗證</li><li>驗證快速，適合手機操作</li></ul>
-        <button class="login-action" type="button" data-method="手機電信驗證">點我登入</button>
-        <a class="register" href="#register">前往註冊</a>
+    <section class="methods" aria-label="登入驗證方式">
+      <article class="card">
+        <div class="visual"><img src="assets/login-illustrations/phone-verification.png" alt="使用手機進行電信驗證的插畫" /></div>
+        <h2>手機電信驗證</h2><ul class="benefits"><li>我的手機已綁定本人門號</li><li>僅使用 4G／5G 行動網路驗證</li><li>驗證快速，適合手機操作</li></ul>
+        <button class="login" type="button" data-method="手機電信驗證">點我登入</button><a class="register" href="#register">前往註冊</a>
       </article>
-
-      <article class="method-card">
-        <div class="illustration" aria-hidden="true">
-          <svg viewBox="0 0 190 130" fill="none">
-            <path d="M29 109c0-24 16-41 36-41 17 0 31 12 34 29l2 12H29Z" fill="#00A1AA"/>
-            <path d="M50 50c4-20 32-23 42-5 5 9 3 24-5 32-8 8-24 10-33 1-7-7-8-18-4-28Z" fill="#FFE5CE"/>
-            <path d="M49 56c1-20 33-28 45-10l-4 11-9-2-8-7-8 7-13 2-3-1Z" fill="#143D58"/>
-            <circle cx="66" cy="66" r="1.8" fill="#173E55"/><circle cx="83" cy="66" r="1.8" fill="#173E55"/>
-            <path d="M69 76c3 2 8 2 11 0" stroke="#C86E5D" stroke-width="1.6" stroke-linecap="round"/>
-            <path d="M52 84c9 10 28 10 38 0l7 25H42l10-25Z" fill="#00818A"/>
-            <g transform="rotate(8 109 85)"><rect x="98" y="63" width="30" height="50" rx="5" fill="#2B5368"/><rect x="102" y="67" width="22" height="38" rx="2" fill="#FBFFFF"/><circle cx="113" cy="109" r="1.6" fill="#DAEFF0"/></g>
-            <path d="M137 39 161 48v25c0 16-10 26-24 31-14-5-24-15-24-31V48l24-9Z" fill="#0C9A9C" stroke="#087986" stroke-width="2"/>
-            <rect x="125" y="59" width="24" height="20" rx="3" fill="white"/><circle cx="137" cy="66" r="4" fill="#61C8C7"/><path d="M129 76c2-5 14-5 16 0" stroke="#61C8C7" stroke-width="3" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <h2>行動自然人憑證</h2>
-        <ul class="benefits"><li>我已綁定行動自然人憑證</li><li>需先安裝行動自然人憑證 APP</li><li>可搭配手機進行驗證</li></ul>
-        <button class="login-action" type="button" data-method="行動自然人憑證">點我登入</button>
-        <a class="register" href="#register">前往註冊</a>
+      <article class="card">
+        <div class="visual"><img src="assets/login-illustrations/mobile-certificate.png" alt="行動自然人憑證手機與盾牌插畫" /></div>
+        <h2>行動自然人憑證</h2><ul class="benefits"><li>我已綁定行動自然人憑證</li><li>需先安裝行動自然人憑證 APP</li><li>可搭配手機進行驗證</li></ul>
+        <button class="login" type="button" data-method="行動自然人憑證">點我登入</button><a class="register" href="#register">前往註冊</a>
       </article>
-
-      <article class="method-card">
-        <div class="illustration" aria-hidden="true">
-          <svg viewBox="0 0 190 130" fill="none">
-            <path d="M31 108c1-22 14-37 34-39 21-2 37 13 39 39H31Z" fill="#08A8A3"/>
-            <path d="M50 47c3-19 31-25 43-7 7 10 5 26-4 35-9 8-25 8-34 1-7-6-8-19-5-29Z" fill="#FFE5CE"/>
-            <path d="M48 55c0-20 31-28 45-11l-3 13-10-8-8 8-15 2-6 5-3-9Z" fill="#073D5B"/>
-            <circle cx="65" cy="66" r="1.8" fill="#173E55"/><circle cx="82" cy="65" r="1.8" fill="#173E55"/>
-            <path d="M68 76c3 2 8 2 11 0" stroke="#C86E5D" stroke-width="1.6" stroke-linecap="round"/>
-            <path d="M52 85c8 9 29 9 38 0l8 23H42l10-23Z" fill="#008088"/>
-            <path d="M89 69h45l12 39H81l8-39Z" fill="#546A82"/><path d="M95 73h32l5 25H90l5-25Z" fill="#B3CAD6"/><circle cx="112" cy="86" r="4" fill="#D8E8EC"/>
-            <rect x="128" y="80" width="28" height="31" rx="3" fill="white" stroke="#1A7283" stroke-width="2"/><circle cx="142" cy="89" r="4" fill="#51C2C0"/><path d="M134 102c2-6 14-6 16 0" stroke="#51C2C0" stroke-width="3" stroke-linecap="round"/>
-            <path d="M24 81v22M18 89l6-8 6 8M26 93l7-9 7 9M164 70v31M158 80l6-10 6 10" stroke="#A5E0DE" stroke-width="3" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <h2>實體自然人憑證</h2>
-        <ul class="benefits"><li>我已有自然人憑證讀卡機</li><li>需於電腦端完成驗證</li><li>適合桌機或筆電使用</li></ul>
-        <button class="login-action" type="button" data-method="實體自然人憑證">點我登入</button>
-        <a class="register" href="#register">前往註冊</a>
+      <article class="card">
+        <div class="visual"><img src="assets/login-illustrations/card-certificate.png" alt="讀卡機與自然人憑證插畫" /></div>
+        <h2>實體自然人憑證</h2><ul class="benefits"><li>我已有自然人憑證讀卡機</li><li>需於電腦端完成驗證</li><li>適合桌機或筆電使用</li></ul>
+        <button class="login" type="button" data-method="實體自然人憑證">點我登入</button><a class="register" href="#register">前往註冊</a>
       </article>
-
-      <article class="method-card">
-        <div class="illustration" aria-hidden="true">
-          <svg viewBox="0 0 190 130" fill="none">
-            <path d="M90 109c0-20 13-36 32-36 21 0 36 15 37 36H90Z" fill="#079D9C"/>
-            <path d="M109 51c1-20 29-27 42-10 7 10 5 26-3 34-9 9-24 10-33 2-7-7-8-17-6-26Z" fill="#FFE6CE"/>
-            <path d="M108 55c3-22 36-25 45-6l-3 12-11-3-8-8-6 8-13 2-4 5v-10Z" fill="#153D57"/>
-            <circle cx="124" cy="68" r="1.8" fill="#173E55"/><circle cx="141" cy="68" r="1.8" fill="#173E55"/>
-            <path d="M127 78c3 2 7 2 11 0" stroke="#C86E5D" stroke-width="1.6" stroke-linecap="round"/>
-            <path d="M110 87c8 8 28 8 38 0l8 22H100l10-22Z" fill="#007E87"/>
-            <path d="M31 80h62l7 29H25l6-29Z" fill="#1B596B"/><path d="M35 84h54l4 18H31l4-18Z" fill="#0C314D"/>
-            <rect x="42" y="49" width="70" height="45" rx="7" fill="#0C9897" stroke="#087784" stroke-width="2"/><rect x="46" y="53" width="62" height="37" rx="4" fill="white"/>
-            <path d="M59 62h30M59 69h37M59 76h22" stroke="#78BFC2" stroke-width="2.5" stroke-linecap="round"/>
-            <rect x="51" y="57" width="14" height="25" rx="2" fill="#E1F6F3"/><path d="M58 62c-3 0-5 2-5 5v8h10v-8c0-3-2-5-5-5Z" fill="#16A5A1"/>
-            <circle cx="165" cy="92" r="15" fill="#CEF0EE"/><path d="M165 82v20M155 92h20" stroke="#70C9C5" stroke-width="2.5" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <h2>健保卡</h2>
-        <ul class="benefits"><li>我已有健保卡與讀卡機</li><li>需完成相關元件安裝</li><li>可於電腦完成驗證</li></ul>
-        <button class="login-action" type="button" data-method="健保卡">點我登入</button>
-        <a class="register" href="#register">前往註冊</a>
+      <article class="card">
+        <div class="visual"><img src="assets/login-illustrations/health-card.png" alt="健保卡讀卡機登入插畫" /></div>
+        <h2>健保卡</h2><ul class="benefits"><li>我已有健保卡與讀卡機</li><li>需完成相關元件安裝</li><li>可於電腦完成驗證</li></ul>
+        <button class="login" type="button" data-method="健保卡">點我登入</button><a class="register" href="#register">前往註冊</a>
       </article>
     </section>
 
-    <p class="security-note" id="register"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>登入資料將受到加密保護。尚未完成註冊？請從任一驗證方式前往註冊。</p>
+    <p class="notice" id="register"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>登入資料將受到加密保護。尚未完成註冊？請從任一驗證方式前往註冊。</p>
   </main>
 
-  <footer class="site-footer" id="siteFooter">
+  <footer class="site-footer">
     <div class="footer-inner">
-      <div class="footer-top"><a class="footer-brand" href="index.html"><span class="footer-logo"><img src="assets/platform-logo-elegant.svg" alt=""/></span><span class="footer-brand-text"><strong>全國社宅統一登記申請平台</strong><span>內政部國土管理署</span></span></a><nav class="footer-links" aria-label="頁尾導覽"><a href="privacy.html">隱私權政策</a><a href="terms.html">服務條款</a><a href="#top">返回頂端</a></nav></div>
+      <div class="footer-top">
+        <a class="footer-brand" href="index.html">
+          <span class="footer-logo"><img src="assets/platform-logo-elegant.svg" alt="" /></span>
+          <span class="footer-brand-text"><strong>全國社宅統一登記申請平台</strong><span>內政部國土管理署</span></span>
+        </a>
+        <nav class="footer-links" aria-label="網站連結">
+          <a href="privacy.html">隱私權政策</a>
+          <a href="terms.html">使用條款</a>
+          <a href="#top">回到頁首</a>
+        </nav>
+      </div>
       <div class="footer-rule"></div>
-      <div class="footer-bottom"><div class="footer-details"><div class="footer-contact"><div class="footer-meta"><span class="footer-meta-label">機關地址</span><span>105404台北市松山區八德路2段342號</span></div><div class="footer-meta"><span class="footer-meta-label">總機服務</span><a href="tel:+886-2-87712345">(02)-87712345</a></div></div><p class="footer-copyright">內政部國土管理署 版權所有&nbsp; © 2026 All Rights Reserved.</p></div><div class="footer-badge"><img src="https://www.nlma.gov.tw/_next/static/media/AA.860fb9dd.svg" alt="AA 等級無障礙網站標章" loading="lazy"/></div></div>
+      <div class="footer-bottom">
+        <div class="footer-details">
+          <div class="footer-contact">
+            <div class="footer-meta"><span class="footer-meta-label">服務地址</span><span>105404 臺北市松山區八德路二段342號</span></div>
+            <div class="footer-meta"><span class="footer-meta-label">服務專線</span><a href="tel:+886-2-87712345">(02) 8771-2345</a></div>
+          </div>
+          <p class="footer-copyright">內政部國土管理署　© 2026 All Rights Reserved.</p>
+        </div>
+        <div class="footer-badge"><img src="https://www.nlma.gov.tw/_next/static/media/AA.860fb9dd.svg" alt="無障礙網頁設計 AA 標章" loading="lazy" /></div>
+      </div>
     </div>
   </footer>
 
-  <dialog id="login-dialog" aria-labelledby="dialog-title">
-    <div class="dialog-body">
-      <div class="dialog-icon">✓</div>
-      <h2 id="dialog-title">準備進行登入驗證</h2>
-      <p id="dialog-message">即將為您開啟登入驗證流程。</p>
-      <div class="dialog-actions"><button class="secondary" type="button" data-close>取消</button><button type="button" data-close>繼續</button></div>
-    </div>
-  </dialog>
-
+  <dialog id="login-dialog" aria-labelledby="dialog-title"><div class="dialog-body"><div class="dialog-mark">✓</div><h2 id="dialog-title">準備進行登入驗證</h2><p id="dialog-message">即將為您開啟登入驗證流程。</p><div class="dialog-actions"><button class="cancel" type="button" data-close>取消</button><button type="button" data-close>繼續</button></div></div></dialog>
   <script>
-    document.querySelectorAll('[data-method]').forEach((button) => {
-      button.addEventListener('click', () => {
-        window.location.href = 'declaration.html';
-      });
+    const dialog = document.querySelector('#login-dialog');
+    const message = document.querySelector('#dialog-message');
+    document.querySelectorAll('[data-method]').forEach((button) => button.addEventListener('click', () => { window.location.href = 'declaration.html'; }));
+    document.querySelectorAll('[data-close]').forEach((button) => button.addEventListener('click', () => dialog.close()));
+    dialog.addEventListener('click', (event) => { if (event.target === dialog) dialog.close(); });
+    document.querySelector('.back-link').addEventListener('click', () => {
+      if (window.history.length > 1) window.history.back();
+      else window.location.href = 'index.html';
     });
   </script>
-  <script src="assets/member-shell.js"></script>
 </body>
 </html>

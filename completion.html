@@ -792,9 +792,9 @@
       max-width:900px;
       margin:24px auto 0;
       padding:20px 22px;
-      border:1px solid var(--line);
+      /* border:1px solid var(--line);
       border-radius:18px;
-      background:#fbfefd;
+      background:#fbfefd; */
       display:flex;
       justify-content:space-between;
       align-items:center;
@@ -891,8 +891,8 @@
       display:block;
       text-align:center;
       padding:24px;
-      background:#f7fcfb;
-      border:1px solid #cfe8e5;
+      /* background:#f7fcfb;
+      border:1px solid #cfe8e5; */
     }
 
     .simplified-actions{
@@ -1006,7 +1006,7 @@
 <button class="btn primary confirmation-btn emphasis-btn" onclick="confirmRegistration(this)" type="button">
           接收確認簡訊，並前往申請社宅
         </button>
-<button class="text-link-btn" onclick="location.href='index.html'" type="button">返回首頁</button>
+<!-- <button class="text-link-btn" onclick="location.href='index.html'" type="button">返回首頁</button> -->
 </div>
 </div>
 <div class="completion-help">
@@ -1033,13 +1033,13 @@
 </div>
 </div>
 <div class="chat-label">智能客服</div>
-<button aria-label="開啟智能客服" class="chat-launcher" onclick="toggleChat()" type="button">
+<a aria-label="開啟智能客服對話頁面（另開新分頁）" class="chat-launcher" href="chat.html" target="_blank" rel="noopener noreferrer">
 <span class="bot-head">
 <span class="bot-eye left"></span>
 <span class="bot-eye right"></span>
 <span class="bot-smile"></span>
 </span>
-</button>
+</a>
 </aside>
 <script>
     function refreshData(){

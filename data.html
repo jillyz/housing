@@ -174,10 +174,21 @@
     .file-note{font-size:12px;color:var(--muted);margin-top:3px}
     .form-footer{
       position:sticky;bottom:0;background:rgba(255,255,255,.88);border-top:1px solid var(--line);
-      padding:18px 28px;display:flex;justify-content:space-between;align-items:center;backdrop-filter:blur(10px);
+      padding:20px 28px;display:flex;justify-content:center;align-items:center;backdrop-filter:blur(10px);
     }
-    .footer-note{color:var(--muted);font-size:13px;line-height:1.5}
-    .footer-actions{display:flex;gap:10px}
+    .footer-actions{display:flex;justify-content:center;gap:10px;width:100%}
+    .form-footer .next-step-btn{
+      min-width:340px;min-height:50px;padding:12px 28px;border:1px solid var(--primary);
+      color:#fff;background:linear-gradient(135deg,var(--primary),var(--primary-deep));
+      box-shadow:0 9px 20px rgba(0,111,109,.2);font-size:15px;font-weight:900;
+      letter-spacing:.03em;transition:transform .18s ease,box-shadow .18s ease,filter .18s ease;
+    }
+    .form-footer .next-step-btn:hover{
+      color:#fff;background:linear-gradient(135deg,#00aaa7,#006765);
+      box-shadow:0 12px 24px rgba(0,111,109,.27);transform:translateY(-2px);filter:brightness(1.02);
+    }
+    .form-footer .next-step-btn:active{transform:translateY(0);box-shadow:0 6px 14px rgba(0,111,109,.2)}
+    .form-footer .next-step-btn:focus-visible{outline:3px solid rgba(0,156,154,.3);outline-offset:4px}
     .chat-support{position:fixed;right:24px;bottom:28px;z-index:30}
     .chat-bubble{
       border:0;background:linear-gradient(135deg,#009c9a,#006f6d);color:#fff;border-radius:999px;
@@ -215,6 +226,8 @@
       .stepbar{flex-direction:column;border-radius:24px}
       .card-head,.form-footer{flex-direction:column;align-items:stretch}
       .status-cards{grid-template-columns:1fr}
+      .form-footer{padding:15px 14px}
+      .form-footer .next-step-btn{width:100%;min-width:0;white-space:normal;line-height:1.45}
     }
   
     /* 修正版 5：整體緊湊與細節優化 */
@@ -1404,10 +1417,8 @@
 </section>
 </div>
 <div class="form-footer">
-<div class="footer-note">系統已自動儲存｜下一步將進行需求登記／問卷調查回饋</div>
 <div class="footer-actions">
-<button class="btn ghost">返回</button>
-<button class="btn dark" type="button" onclick="window.location.href='questionnaire.html'">下一步：需求登記／問卷調查回饋</button>
+<button class="btn next-step-btn" type="button" onclick="window.location.href='questionnaire.html'">下一步：需求登記／問卷調查回饋</button>
 </div>
 </div>
 </main>
@@ -1449,13 +1460,13 @@
 </div>
 </div>
 <div class="chat-label">智能客服</div>
-<button aria-label="開啟智能客服" class="chat-launcher" onclick="toggleChat()" type="button">
+<a aria-label="開啟智能客服對話頁面（另開新分頁）" class="chat-launcher" href="chat.html" target="_blank" rel="noopener noreferrer">
 <span class="bot-head">
 <span class="bot-eye left"></span>
 <span class="bot-eye right"></span>
 <span class="bot-smile"></span>
 </span>
-</button>
+</a>
 </aside>
 <script>
     const siteHeader = document.querySelector('.site-header');
