@@ -1,0 +1,1609 @@
+<!DOCTYPE html>
+
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>全國社宅統一申請登記平臺｜中央主管／管理者資訊儀表板</title>
+<style>
+    :root {
+      --primary: #009c9a;
+      --primary-dark: #006f6d;
+      --primary-deep: #003f3f;
+      --primary-soft: #d9f4f2;
+      --navy: #0f4c81;
+      --navy-soft: #eaf3fb;
+      --bg: #f4fbfa;
+      --card: #ffffff;
+      --line: #d7e7e5;
+      --text: #243837;
+      --muted: #6c7f7d;
+      --danger: #d94d4d;
+      --danger-bg: #fff0f0;
+      --warning: #b85b00;
+      --warning-bg: #fff4e8;
+      --success: #1c8f5d;
+      --success-bg: #e5faee;
+      --gray-bg: #f2f6f5;
+      --shadow: 0 12px 28px rgba(0, 80, 80, 0.12);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Noto Sans TC", "Microsoft JhengHei", Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 8% 8%, #dff8ef 0, transparent 28%),
+        radial-gradient(circle at 90% 10%, #e8f1ff 0, transparent 24%),
+        linear-gradient(135deg, #f8fffd, #eef9f8);
+      min-height: 100vh;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      background: linear-gradient(180deg, #053f52, #006f6d);
+      color: #fff;
+      padding: 22px 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0 6px 22px;
+      border-bottom: 1px solid rgba(255,255,255,.18);
+      margin-bottom: 18px;
+    }
+    .brand-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.16);
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      font-size: 22px;
+    }
+    .brand-title strong { display: block; line-height: 1.25; font-size: 15px; }
+    .brand-title span { display: block; margin-top: 3px; font-size: 12px; opacity: .78; }
+
+    .menu { display: grid; gap: 7px; }
+    .menu a {
+      color: #e9fffe;
+      text-decoration: none;
+      padding: 11px 12px;
+      border-radius: 12px;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      opacity: .88;
+    }
+    .menu a.active, .menu a:hover { background: rgba(255,255,255,.16); opacity: 1; font-weight: 800; }
+
+    .main { padding: 22px 28px 46px; }
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+    .crumb { color: var(--muted); font-size: 13px; margin-bottom: 8px; }
+    h1 { margin: 0; color: var(--primary-deep); font-size: 28px; }
+    .subtitle { margin-top: 8px; color: var(--muted); font-size: 14px; }
+    .home-switch { position: relative; z-index: 35; width: fit-content; max-width: 100%; }
+    .home-switch h1 { margin: 0; }
+    .home-switch-toggle {
+      max-width: 100%; display: inline-flex; align-items: center; gap: 10px;
+      padding: 0; border: 0; color: inherit; background: transparent;
+      font: inherit; font-weight: inherit; line-height: 1.35; text-align: left;
+    }
+    .home-switch-toggle:hover { color: var(--primary-dark); }
+    .home-switch-toggle > span:first-child { font-size: 32px !important; }
+    .home-switch-chevron {
+      width: 29px; height: 29px; flex: 0 0 29px; display: grid; place-items: center;
+      border: 1px solid var(--line); border-radius: 9px; color: var(--primary-dark);
+      background: #fff; font-size: 15px; transition: transform .18s ease, color .18s ease, background .18s ease;
+    }
+    .home-switch.open .home-switch-chevron { color: #fff; background: var(--primary); transform: rotate(180deg); }
+    .home-switch-menu {
+      position: absolute; top: calc(100% + 11px); left: 0; z-index: 80;
+      width: min(370px, calc(100vw - 36px)); display: none; gap: 7px; padding: 9px;
+      border: 1px solid var(--line); border-radius: 16px; background: #fff;
+      box-shadow: 0 18px 42px rgba(19, 66, 70, .2);
+    }
+    .home-switch.open .home-switch-menu { display: grid; }
+    .home-switch-option {
+      position: relative; display: block; padding: 12px 42px 12px 13px;
+      border: 1px solid transparent; border-radius: 11px; color: var(--text);
+      background: #fff; text-decoration: none;
+    }
+    .home-switch-option:hover { border-color: #b9dbd7; background: #f4faf9; }
+    .home-switch-option.active { border-color: #a9d8d3; background: var(--primary-soft); }
+    .home-switch-option.active::after {
+      content: "目前"; position: absolute; top: 12px; right: 12px; padding: 3px 7px;
+      border-radius: 999px; color: var(--primary-dark); background: #fff; font-size: 10px; font-weight: 900;
+    }
+    .home-switch-option strong { display: block; color: var(--primary-deep); font-size: 14px; }
+    .home-switch-option span { display: block; margin-top: 3px; color: var(--muted); font-size: 11px; font-weight: 500; }
+    .actions { display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end; }
+
+    .btn {
+      border: 1px solid var(--primary);
+      color: var(--primary-dark);
+      background: #fff;
+      border-radius: 999px;
+      padding: 10px 16px;
+      font-weight: 800;
+      cursor: pointer;
+      white-space: nowrap;
+      font-size: 14px;
+    }
+    .btn.primary { background: var(--primary); color: #fff; box-shadow: 0 8px 18px rgba(0,156,154,.18); }
+    .btn.dark { background: var(--primary-deep); color: #fff; border-color: var(--primary-deep); }
+    .btn.ghost { border-color: #cfdedc; color: var(--muted); }
+    .btn.small { padding: 7px 11px; font-size: 12px; }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      margin-bottom: 18px;
+    }
+    .card-head {
+      padding: 18px 22px;
+      background: linear-gradient(90deg, rgba(0,156,154,.12), rgba(255,255,255,0));
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .card-head h2 { margin: 0; color: var(--primary-deep); font-size: 20px; }
+    .card-head p { margin: 5px 0 0; color: var(--muted); font-size: 13px; }
+    .card-body { padding: 20px 22px 22px; }
+
+    .filter-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 14px;
+    }
+    .field { grid-column: span 3; }
+    .field.span-2 { grid-column: span 2; }
+    .field.span-4 { grid-column: span 4; }
+    .field.span-6 { grid-column: span 6; }
+    .field.span-12 { grid-column: span 12; }
+    label {
+      display: block;
+      color: #3b5553;
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 7px;
+    }
+    input, select {
+      width: 100%;
+      border: 1px solid #d3e1df;
+      border-radius: 12px;
+      padding: 10px 12px;
+      font-size: 14px;
+      color: var(--text);
+      background: #fff;
+      outline: none;
+      transition: .2s;
+      min-height: 42px;
+    }
+    input:focus, select:focus { border-color: var(--primary); box-shadow: 0 0 0 4px rgba(0,156,154,.1); }
+    input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      min-height: 0;
+      padding: 0;
+      accent-color: var(--primary);
+      vertical-align: middle;
+    }
+
+    .filter-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 18px;
+      padding-top: 16px;
+      border-top: 1px dashed var(--line);
+    }
+    .hint { color: var(--muted); font-size: 13px; line-height: 1.5; }
+
+    .summary-row {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+    .summary-card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 14px 15px;
+      box-shadow: 0 8px 20px rgba(0,80,80,.06);
+    }
+    .summary-card .label { color: var(--muted); font-size: 12px; font-weight: 800; }
+    .summary-card .num { margin-top: 7px; font-size: 24px; font-weight: 900; color: var(--primary-deep); }
+    .summary-card.warn .num { color: var(--warning); }
+    .summary-card.danger .num { color: var(--danger); }
+    .summary-card.info .num { color: var(--navy); }
+
+    .table-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 18px;
+      background: #fbfffe;
+      border-bottom: 1px solid var(--line);
+    }
+    .result-count { color: var(--muted); font-size: 13px; }
+    .table-wrap { overflow-x: auto; }
+    table {
+      width: 100%;
+      min-width: 1180px;
+      border-collapse: separate;
+      border-spacing: 0;
+    }
+    th {
+      background: #f4fbfa;
+      color: #3b5553;
+      font-size: 13px;
+      text-align: left;
+      padding: 12px 10px;
+      border-bottom: 1px solid var(--line);
+      white-space: nowrap;
+    }
+    td {
+      padding: 13px 10px;
+      border-bottom: 1px solid #edf3f2;
+      font-size: 13px;
+      vertical-align: middle;
+      background: #fff;
+    }
+    tr:hover td { background: #fbfffe; }
+    .case-id { font-weight: 900; color: var(--navy); line-height: 1.45; }
+    .sub { display: block; color: var(--muted); font-size: 12px; margin-top: 2px; }
+    .person { font-weight: 800; color: var(--primary-deep); }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      padding: 5px 9px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 900;
+      border: 1px solid transparent;
+      white-space: nowrap;
+    }
+    .tag.success { color: var(--success); background: var(--success-bg); border-color: #b7ebc9; }
+    .tag.warn { color: var(--warning); background: var(--warning-bg); border-color: #ffd1a3; }
+    .tag.danger { color: var(--danger); background: var(--danger-bg); border-color: #ffd0d0; }
+    .tag.info { color: var(--navy); background: var(--navy-soft); border-color: #cce0f4; }
+    .tag.gray { color: var(--muted); background: var(--gray-bg); border-color: #d9e6e4; }
+    .tag.teal { color: var(--primary-dark); background: var(--primary-soft); border-color: #bce9e6; }
+
+    .two-line { line-height: 1.55; }
+    .op-group { display: flex; gap: 7px; flex-wrap: wrap; }
+    .pagination {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 18px;
+      background: #fbfffe;
+      flex-wrap: wrap;
+    }
+    .pagination-left, .pagination-right { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .pagination label { margin: 0; color: var(--muted); font-size: 13px; }
+    .pagination select, .pagination input { width: auto; min-height: 34px; padding: 6px 9px; border-radius: 10px; font-size: 13px; }
+    .pagination input { width: 68px; text-align: center; }
+    .page-btn {
+      min-width: 34px;
+      height: 34px;
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 10px;
+      color: var(--muted);
+      font-weight: 800;
+    }
+    .page-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+
+    @media (max-width: 1180px) {
+      .summary-row { grid-template-columns: repeat(3, 1fr); }
+      .field, .field.span-2, .field.span-3, .field.span-4 { grid-column: span 6; }
+    }
+    @media (max-width: 860px) {
+      .layout { grid-template-columns: 1fr; }
+      .sidebar { display: none; }
+      .main { padding: 18px 14px 38px; }
+      .topbar, .card-head, .filter-footer { flex-direction: column; align-items: stretch; }
+      .summary-row { grid-template-columns: 1fr 1fr; }
+      .field, .field.span-2, .field.span-3, .field.span-4, .field.span-6 { grid-column: span 12; }
+    }
+  
+/* 中央主管／管理者資訊儀表板 */
+.operator-box{
+  position:relative;
+  min-width:370px;
+  display:grid;
+  grid-template-columns:52px minmax(0,1fr) 36px;
+  align-items:center;
+  gap:12px;
+  padding:12px 12px 12px 14px;
+  border:1px solid #badbd7;
+  border-radius:18px;
+  background:linear-gradient(135deg,#fff 0%,#f1fbf9 100%);
+  text-align:left;
+  box-shadow:0 10px 24px rgba(0,80,80,.11)
+}
+.operator-box::before{
+  content:"";position:absolute;inset:0 auto 0 0;width:5px;border-radius:18px 0 0 18px;
+  background:linear-gradient(180deg,var(--primary),var(--primary-dark))
+}
+.operator-avatar{
+  width:52px;height:52px;display:grid;place-items:center;border-radius:16px;
+  background:linear-gradient(145deg,var(--primary),var(--primary-dark));color:#fff;
+  font-size:20px;font-weight:900;box-shadow:0 8px 16px rgba(0,111,109,.22)
+}
+.operator-main{min-width:0}
+.operator-box strong{display:block;margin:4px 0;color:var(--primary-deep);font-size:14px}
+.operator-box small{display:block;color:var(--muted);font-size:11px;line-height:1.45}
+.operator-menu{
+  width:36px;height:36px;padding:0;border:1px solid #c9dfdc;border-radius:11px;
+  background:#fff;color:var(--primary-dark);font-weight:900;cursor:pointer;transition:.18s ease
+}
+.operator-menu:hover,.operator-box.open .operator-menu{background:var(--primary-soft);border-color:#9bd5cf}
+.operator-box.open .operator-menu{transform:rotate(180deg)}
+.operator-dropdown{
+  position:absolute;top:calc(100% + 8px);right:0;z-index:30;display:none;
+  min-width:230px;padding:8px;border:1px solid var(--line);border-radius:14px;
+  background:#fff;box-shadow:0 14px 32px rgba(0,80,80,.18)
+}
+.operator-box.open .operator-dropdown{display:grid}
+.operator-dropdown button{
+  width:100%;padding:10px 12px;border:0;border-radius:9px;background:transparent;
+  color:var(--text);text-align:left;cursor:pointer
+}
+.operator-dropdown button:hover{background:#f0f8f7;color:var(--primary-dark)}
+.operator-dropdown button.logout{color:var(--danger);border-top:1px solid var(--line);border-radius:0 0 9px 9px}
+.dashboard-filter{
+  display:grid;grid-template-columns:180px 220px 180px auto;gap:10px;
+  align-items:end;margin-bottom:16px;padding:14px 16px;background:#fff;
+  border:1px solid var(--line);border-radius:18px;box-shadow:0 8px 20px rgba(0,80,80,.05)
+}
+.dashboard-filter label{margin-bottom:5px;font-size:12px}
+.dashboard-card{margin-bottom:16px}
+.update-time,.health-badge{
+  padding:6px 10px;border:1px solid var(--line);border-radius:999px;
+  background:#f7fbfa;color:var(--muted);font-size:12px;font-weight:800;white-space:nowrap
+}
+.health-badge{background:var(--success-bg);color:var(--success);border-color:#b7ebc9}
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.kpi-card{
+  min-height:126px;padding:14px;border:1px solid var(--line);border-radius:16px;
+  background:linear-gradient(180deg,#fff,#f8fffe)
+}
+.kpi-card span{display:block;color:var(--muted);font-size:12px;font-weight:800}
+.kpi-card strong{display:block;margin:7px 0 4px;color:var(--primary-deep);font-size:27px}
+.kpi-card small{display:block;color:var(--muted);font-size:11px;line-height:1.45}
+.kpi-card.info strong{color:var(--navy)}
+.kpi-card.warn strong{color:var(--warning)}
+.kpi-card.success strong{color:var(--success)}
+.kpi-card.accent strong{color:var(--primary-dark)}
+.kpi-pair{
+  display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:11px
+}
+.kpi-pair>div+div{padding-left:12px;border-left:1px solid var(--line)}
+.kpi-pair strong{margin:0;font-size:25px;line-height:1.2}
+.kpi-pair small{margin-top:5px}
+.split-grid,.progress-summary-grid,.monitor-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px
+}
+.panel-box,.progress-panel,.monitor-card{
+  border:1px solid var(--line);border-radius:16px;background:#fbfefd;padding:15px
+}
+.panel-title{
+  display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px
+}
+.panel-title strong{color:var(--primary-deep);font-size:14px}
+.panel-title span{color:var(--muted);font-size:11px}
+.agency-bars{display:grid;gap:10px}
+.bar-row{display:grid;grid-template-columns:120px 1fr 28px;gap:9px;align-items:center}
+.bar-row span{font-size:12px;color:#506562}
+.bar-row div{height:9px;border-radius:999px;background:#e7f0ef;overflow:hidden}
+.bar-row i{display:block;height:100%;border-radius:999px;background:var(--primary)}
+.bar-row b{text-align:right;color:var(--primary-deep);font-size:12px}
+.room-distribution{display:grid;gap:12px}
+.room-distribution>div{
+  display:grid;grid-template-columns:90px 45px 1fr;gap:8px;align-items:center
+}
+.room-distribution span{font-size:12px;color:#506562}
+.room-distribution strong{font-size:12px;color:var(--primary-deep)}
+.room-distribution i{
+  display:block;height:10px;border-radius:999px;background:linear-gradient(90deg,var(--primary),#76d7d2)
+}
+.status-flow{
+  display:grid;grid-template-columns:repeat(11,auto);align-items:center;justify-content:space-between;gap:7px
+}
+.status-step{
+  min-width:125px;padding:13px;border:1px solid var(--line);border-radius:14px;background:#f8fbfb;text-align:center
+}
+.status-step span{display:block;color:var(--muted);font-size:11px;font-weight:800}
+.status-step strong{display:block;margin-top:5px;color:var(--navy);font-size:20px}
+.status-step.warning strong{color:var(--warning)}
+.status-step.success strong{color:var(--success)}
+.status-step.purple strong{color:#7453aa}
+.status-step.teal strong{color:var(--primary-dark)}
+.status-step.dark strong{color:var(--primary-deep)}
+.flow-arrow{font-size:28px;color:#a8bbb8}
+.pie-chart-wrap{
+  min-height:174px;display:grid;grid-template-columns:174px 1fr;gap:24px;align-items:center;
+  padding:2px 12px 4px
+}
+.pie-chart{
+  width:174px;aspect-ratio:1;border-radius:50%;
+  background:conic-gradient(
+    #5c8fc6 0 56.7%,
+    #e5a044 56.7% 65.8%,
+    #46a779 65.8% 88.4%,
+    #9270c4 88.4% 100%
+  );
+  box-shadow:0 10px 26px rgba(34,79,94,.12),inset 0 0 0 1px rgba(255,255,255,.55)
+}
+.room-pie{
+  background:conic-gradient(
+    #009c9a 0 34%,
+    #4f9ed3 34% 75%,
+    #6f78bd 75% 94%,
+    #b7c8c5 94% 100%
+  )
+}
+.legend{display:flex;flex-wrap:wrap;gap:10px 14px;margin-top:12px}
+.pie-legend{display:grid;grid-template-columns:1fr;gap:12px;margin-top:0}
+.legend span{display:inline-flex;align-items:center;gap:6px;color:var(--muted);font-size:11px}
+.legend i{width:9px;height:9px;border-radius:50%}
+.legend i.review{background:#5c8fc6}
+.legend i.supplement{background:#e5a044}
+.legend i.qualified{background:#46a779}
+.legend i.waiting{background:#9270c4}
+.legend i.room-one{background:#009c9a}
+.legend i.room-two{background:#4f9ed3}
+.legend i.room-three{background:#6f78bd}
+.legend i.room-other{background:#b7c8c5}
+.pie-legend>span{justify-content:space-between;padding-bottom:9px;border-bottom:1px dashed var(--line);font-size:12px}
+.pie-legend>span:last-child{padding-bottom:0;border-bottom:0}
+.pie-legend>span>span{padding:0;border:0}
+.pie-legend b{color:var(--primary-deep);font-size:13px}
+.trend-bars{
+  height:150px;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;align-items:end;
+  padding:12px 8px 0;border-bottom:1px solid var(--line)
+}
+.trend-bars div{height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:7px}
+.trend-bars i{width:38px;border-radius:8px 8px 0 0;background:linear-gradient(180deg,#72d9d1,var(--primary))}
+.trend-bars span{font-size:11px;color:var(--muted)}
+.monitor-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.monitor-head span{display:block;color:var(--muted);font-size:12px;font-weight:800}
+.monitor-head strong{display:block;margin-top:5px;color:var(--primary-deep);font-size:27px}
+.monitor-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:14px 0}
+.monitor-stats>div{padding:9px;border-radius:11px;background:#f4f8f7}
+.monitor-stats span{display:block;color:var(--muted);font-size:10px}
+.monitor-stats strong{display:block;margin-top:4px;color:var(--primary-deep);font-size:15px}
+.danger-text{color:var(--danger)!important}.warn-text{color:var(--warning)!important}
+.monitor-progress{height:9px;border-radius:999px;background:#e7f0ef;overflow:hidden}
+.monitor-progress i{display:block;height:100%;background:var(--success);border-radius:999px}
+.monitor-progress.warning i{background:var(--warning)}
+.text-button{
+  margin-top:12px;border:0;background:transparent;color:var(--primary-dark);
+  padding:0;font-size:12px;font-weight:900;cursor:pointer
+}
+.monitor-table-wrap{margin-top:14px;overflow:auto}
+.monitor-table{min-width:950px}
+.monitor-table th,.monitor-table td{font-size:12px}
+@media(max-width:1200px){
+  .kpi-grid{grid-template-columns:repeat(3,1fr)}
+  .status-flow{grid-template-columns:repeat(3,1fr)}
+  .flow-arrow{display:none}
+}
+@media(max-width:900px){
+  .dashboard-filter{grid-template-columns:1fr 1fr}
+  .split-grid,.progress-summary-grid,.monitor-grid{grid-template-columns:1fr}
+  .pie-chart-wrap{grid-template-columns:154px 1fr}
+  .pie-chart{width:154px}
+  .operator-box{text-align:left}
+}
+@media(max-width:620px){
+  .dashboard-filter,.kpi-grid,.status-flow{grid-template-columns:1fr}
+  .pie-chart-wrap{grid-template-columns:1fr;justify-items:center}
+  .pie-legend{width:100%}
+}
+
+/* 監控熱區圖整合 */
+.monitor-head-actions{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+}
+.monitor-time-filter{
+  display:flex;
+  align-items:flex-end;
+  gap:12px;
+  margin-bottom:14px;
+  padding:13px 15px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:#f7fbfa;
+}
+.monitor-time-filter .time-field{min-width:230px}
+.monitor-time-filter label{margin-bottom:6px}
+.monitor-time-filter input{min-height:44px;background:#fff}
+.monitor-time-filter .filter-note{margin-left:auto;align-self:center;color:var(--muted)}
+.last-check{
+  padding:6px 10px;
+  border:1px solid var(--line);
+  border-radius:999px;
+  background:#fff;
+  color:var(--muted);
+  font-size:11px;
+  font-weight:800;
+  white-space:nowrap;
+}
+.health-heatmap-panel{
+  margin-top:16px;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:#fbfefd;
+  overflow:hidden;
+}
+.heatmap-toolbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:18px;
+  padding:11px 14px 10px;
+  border-bottom:1px solid var(--line);
+  background:linear-gradient(90deg,#f5fbfa,#fff);
+}
+.heatmap-title{
+  margin-bottom:8px;
+}
+.heatmap-legend{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px 13px;
+}
+.heatmap-legend span{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  color:var(--muted);
+  font-size:11px;
+}
+.legend-dot{
+  width:10px;
+  height:10px;
+  border-radius:3px;
+  display:inline-block;
+}
+.legend-dot.green{background:#45b879}
+.legend-dot.yellow{background:#f3b34f}
+.legend-dot.red{background:#e45656}
+.legend-dot.blue{background:#5e8fd0}
+.legend-dot.gray{background:#d7e1df}
+.heatmap-controls{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+}
+.segmented{
+  display:inline-flex;
+  padding:3px;
+  border:1px solid #d5e3e1;
+  border-radius:11px;
+  background:#fff;
+}
+.segmented button{
+  border:0;
+  border-radius:8px;
+  background:transparent;
+  color:var(--muted);
+  padding:7px 10px;
+  font-size:11px;
+  font-weight:800;
+  cursor:pointer;
+}
+.segmented button.active{
+  background:var(--primary-soft);
+  color:var(--primary-dark);
+}
+.heatmap-controls select{
+  width:auto;
+  min-height:34px;
+  padding:6px 9px;
+  border-radius:10px;
+  font-size:11px;
+}
+.heatmap-summary{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:1px;
+  background:var(--line);
+  border-bottom:1px solid var(--line);
+}
+.heatmap-summary>div{
+  padding:8px 12px;
+  background:#fff;
+}
+.heatmap-summary span{
+  display:block;
+  color:var(--muted);
+  font-size:10px;
+  font-weight:800;
+}
+.heatmap-summary strong{
+  display:block;
+  margin-top:4px;
+  color:var(--primary-deep);
+  font-size:14px;
+}
+.heatmap-scroll{
+  overflow-x:auto;
+  padding:8px 10px 6px;
+}
+.heatmap-grid{
+  display:grid;
+  grid-template-columns:210px repeat(20, minmax(31px,1fr));
+  gap:3px;
+  min-width:1140px;
+  align-items:center;
+}
+.heatmap-group{
+  grid-column:1/-1;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  min-height:34px;
+  margin-top:4px;
+  padding:6px 10px;
+  border-left:4px solid var(--primary);
+  border-radius:8px;
+  background:linear-gradient(90deg,#e7f7f5,#f8fcfb);
+}
+.heatmap-group strong{color:var(--primary-deep)}
+.heatmap-group span{color:var(--muted)}
+.heatmap-group.lookup{
+  border-left-color:var(--navy);
+  background:linear-gradient(90deg,#eaf3fb,#f8fbfe);
+}
+.heatmap-corner,
+.heatmap-hour{
+  height:24px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--muted);
+  font-size:10px;
+  font-weight:800;
+  position:sticky;
+  top:0;
+  z-index:4;
+  background:#fbfefd;
+}
+.heatmap-corner{
+  justify-content:flex-start;
+  padding-left:4px;
+  left:0;
+  z-index:6;
+}
+.current-hour{
+  color:var(--primary-dark);
+}
+.heatmap-service{
+  min-height:30px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:2px 8px 2px 4px;
+  position:sticky;
+  left:0;
+  z-index:2;
+  background:#fbfefd;
+}
+.heatmap-service strong{
+  color:var(--primary-deep);
+  font-size:11px;
+}
+.heatmap-service span{
+  color:var(--muted);
+  font-size:9px;
+  margin-top:2px;
+}
+.heat-cell{
+  position:relative;
+  width:100%;
+  height:18px;
+  min-height:18px;
+  border:0;
+  border-radius:4px;
+  cursor:pointer;
+  transition:.16s ease;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.28);
+}
+.heat-cell:hover{
+  transform:scale(1.12);
+  z-index:3;
+  box-shadow:0 7px 16px rgba(0,60,60,.18);
+}
+.heat-cell.g{background:#4dbc7d}
+.heat-cell.y{background:#f2b54f}
+.heat-cell.r{background:#e45b5b}
+.heat-cell.b{background:#5e8fd0}
+.heat-cell.n{background:#d7e1df}
+.heat-cell.pulse::after{
+  content:"";
+  position:absolute;
+  inset:-3px;
+  border:2px solid rgba(0,111,109,.42);
+  border-radius:8px;
+  animation:heatPulse 1.8s infinite;
+}
+@keyframes heatPulse{
+  0%{transform:scale(.92);opacity:.8}
+  70%{transform:scale(1.15);opacity:0}
+  100%{transform:scale(1.15);opacity:0}
+}
+.heatmap-footnote{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:14px;
+  padding:10px 14px 14px;
+  color:var(--muted);
+  font-size:10px;
+}
+.current-alert-title{
+  margin-bottom:10px;
+}
+.monitor-table-wrap{
+  margin-top:16px;
+}
+.heat-tooltip{
+  position:fixed;
+  z-index:1000;
+  display:none;
+  min-width:210px;
+  padding:11px 12px;
+  border:1px solid var(--line);
+  border-radius:12px;
+  background:#fff;
+  box-shadow:0 12px 28px rgba(0,80,80,.18);
+  color:var(--text);
+  pointer-events:none;
+}
+.heat-tooltip strong{
+  display:block;
+  color:var(--primary-deep);
+  font-size:12px;
+  margin-bottom:5px;
+}
+.heat-tooltip span{
+  display:block;
+  color:var(--muted);
+  font-size:11px;
+  line-height:1.6;
+}
+
+/* 全頁可讀性：一般資訊文字至少 16px */
+body{font-size:16px}
+body :is(a,p,span,small,label,input,select,button,th,td){font-size:16px!important}
+.brand-title strong,
+.operator-box strong,
+.panel-title strong,
+.bar-row b,
+.room-distribution strong,
+.pie-legend b,
+.monitor-stats strong,
+.heatmap-summary strong,
+.heatmap-service strong,
+.heatmap-group strong,
+.heat-tooltip strong,
+.crumb,
+.subtitle,
+.hint,
+.result-count,
+.update-time,
+.heatmap-corner,
+.heatmap-hour,
+.heatmap-footnote{font-size:16px!important}
+.status-step{min-width:145px}
+.monitor-scope{display:block;margin-top:4px;color:var(--muted);line-height:1.45}
+.heatmap-corner,.heatmap-hour{height:32px}
+@media(max-width:1100px){
+  .monitor-time-filter{flex-wrap:wrap}
+  .monitor-time-filter .filter-note{width:100%;margin-left:0}
+  .heatmap-toolbar{
+    flex-direction:column;
+  }
+  .heatmap-controls{
+    justify-content:flex-start;
+  }
+  .heatmap-summary{
+    grid-template-columns:1fr 1fr;
+  }
+}
+@media(max-width:620px){
+  .home-switch-toggle > span:first-child{font-size:24px!important}
+  .operator-box{width:100%;min-width:0;grid-template-columns:48px minmax(0,1fr) 36px}
+  .operator-avatar{width:48px;height:48px}
+  .monitor-time-filter{align-items:stretch}
+  .monitor-time-filter .time-field{width:100%;min-width:0}
+  .segmented{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    width:100%;
+  }
+  .heatmap-controls{
+    width:100%;
+  }
+  .heatmap-controls select{
+    width:100%;
+  }
+  .heatmap-summary{
+    grid-template-columns:1fr;
+  }
+  .heatmap-footnote{
+    flex-direction:column;
+    align-items:stretch;
+  }
+}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside class="sidebar">
+<div class="brand">
+<div class="brand-icon">宅</div>
+<div class="brand-title">
+<strong>全國社宅統一申請登記平臺</strong>
+<span>後臺管理系統</span>
+</div>
+</div>
+<nav class="menu">
+<a class="active" href="home-admin.html" aria-current="page">▣ 總覽儀表板</a>
+<a href="#">⌂ 社宅與招租概況</a>
+<a href="#">📄 全國申請進度</a>
+<a href="#">🔁 資料交換監控</a>
+<a href="#">⌕ 跨機關查調監控</a>
+<a href="#">📊 統計報表</a>
+<a href="#">⚙ 系統管理</a>
+</nav>
+</aside>
+<main class="main">
+<div class="topbar">
+<div>
+<div class="crumb">後臺首頁 / 總覽儀表板</div>
+<div class="home-switch" id="homeSwitch">
+<h1><button class="home-switch-toggle" id="homeSwitchToggle" type="button" aria-expanded="false" aria-controls="homeSwitchMenu"><span>中央主管／管理者資訊儀表板</span><span class="home-switch-chevron" aria-hidden="true">⌄</span></button></h1>
+<div class="home-switch-menu" id="homeSwitchMenu">
+<a class="home-switch-option active" href="home-admin.html" aria-current="page"><strong>國土署／管理員首頁</strong><span>全國統計、營運監控與系統管理</span></a>
+<a class="home-switch-option" href="home-agency.html"><strong>權責機關承辦首頁</strong><span>案件交換、跨域查詢與狀態追蹤</span></a>
+</div>
+</div>
+<div class="subtitle">掌握全國社宅招租、申請進度及平臺資料交換與查調運作情形。</div>
+</div>
+<div class="operator-box" id="operatorBox">
+<div class="operator-avatar" aria-hidden="true">管</div>
+<div class="operator-main">
+<strong>國土署主管</strong>
+<small>內政部國土管理署</small>
+</div>
+<button class="operator-menu" id="operatorMenu" type="button" aria-label="開啟使用者選單" aria-expanded="false">⌄</button>
+<div class="operator-dropdown" id="operatorDropdown">
+<button type="button" data-operator-action="profile">個人資料與帳號設定</button>
+<button type="button" data-operator-action="role">切換登入角色</button>
+<button class="logout" type="button" data-operator-action="logout">登出系統</button>
+</div>
+</div>
+</div>
+<!-- 社宅招租概況 -->
+<section class="card dashboard-card">
+<div class="card-head">
+<div>
+<h2>全國社宅招租概況</h2>
+<p>掌握社宅供給、招租案件與申請熱度。</p>
+</div>
+<span class="update-time">資料更新：116/07/13 18:00</span>
+</div>
+<div class="card-body">
+<div class="kpi-grid housing-kpi">
+<div class="kpi-card">
+<span>社宅總數</span>
+<strong>326</strong>
+<small>處｜已納入本平臺</small>
+</div>
+<div class="kpi-card warn">
+<span>興建中社宅</span>
+<div class="kpi-pair">
+<div><strong>188</strong><small>社宅數（處）</small></div>
+<div><strong>58,426</strong><small>戶數（戶）</small></div>
+</div>
+</div>
+<div class="kpi-card success">
+<span>已完工社宅</span>
+<div class="kpi-pair">
+<div><strong>138</strong><small>社宅數（處）</small></div>
+<div><strong>42,318</strong><small>戶數（戶）</small></div>
+</div>
+</div>
+<div class="kpi-card info">
+<span>招租中社宅</span>
+<div class="kpi-pair">
+<div><strong>18</strong><small>社宅數（處）</small></div>
+<div><strong>8,642</strong><small>戶數（戶）</small></div>
+</div>
+</div>
+</div>
+<div class="split-grid">
+<div class="panel-box">
+<div class="panel-title">
+<strong>各權責機關招租案件</strong>
+<span>依招租中案件數排序</span>
+</div>
+<div class="agency-bars">
+<div class="bar-row"><span>國家住都中心</span><div><i style="width:100%"></i></div><b>6</b></div>
+<div class="bar-row"><span>新北市政府</span><div><i style="width:66%"></i></div><b>4</b></div>
+<div class="bar-row"><span>臺中市政府</span><div><i style="width:50%"></i></div><b>3</b></div>
+<div class="bar-row"><span>臺北市政府</span><div><i style="width:33%"></i></div><b>2</b></div>
+<div class="bar-row"><span>高雄市政府</span><div><i style="width:33%"></i></div><b>2</b></div>
+<div class="bar-row"><span>桃園市政府</span><div><i style="width:16%"></i></div><b>1</b></div>
+</div>
+</div>
+<div class="panel-box">
+<div class="panel-title">
+<strong>房型申請分布</strong>
+<span>本年度累計</span>
+</div>
+<div class="pie-chart-wrap">
+<div class="pie-chart room-pie" role="img" aria-label="房型申請分布圓餅圖：一房型 34%、二房型 41%、三房型 19%、套房或其他 6%"></div>
+<div class="legend pie-legend room-legend">
+<span><span><i class="room-one"></i>一房型</span><b>34%</b></span>
+<span><span><i class="room-two"></i>二房型</span><b>41%</b></span>
+<span><span><i class="room-three"></i>三房型</span><b>19%</b></span>
+<span><span><i class="room-other"></i>套房／其他</span><b>6%</b></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 申請進度統計 -->
+<section class="card dashboard-card">
+<div class="card-head">
+<div>
+<h2>全國申請進度統計</h2>
+<p>彙整各權責機關回傳的最新案件狀態。</p>
+</div>
+<button class="btn small ghost" type="button">查看統計報表</button>
+</div>
+<div class="card-body">
+<div class="status-flow">
+<div class="status-step">
+<span>申請中／審查中</span>
+<strong>5,286</strong>
+</div>
+<div class="flow-arrow">›</div>
+<div class="status-step warning">
+<span>須補件</span>
+<strong>846</strong>
+</div>
+<div class="flow-arrow">›</div>
+<div class="status-step success">
+<span>合格</span>
+<strong>2,104</strong>
+</div>
+<div class="flow-arrow">›</div>
+<div class="status-step purple">
+<span>已抽籤／候補中</span>
+<strong>1,326</strong>
+</div>
+<div class="flow-arrow">›</div>
+<div class="status-step teal">
+<span>已簽約</span>
+<strong>1,934</strong>
+</div>
+<div class="flow-arrow">›</div>
+<div class="status-step dark">
+<span>入住中</span>
+<strong>6,408</strong>
+</div>
+</div>
+<div class="progress-summary-grid">
+<div class="progress-panel">
+<div class="panel-title">
+<strong>案件狀態分布</strong>
+<span>有效案件 9,318 筆</span>
+</div>
+<div class="pie-chart-wrap">
+<div class="pie-chart" role="img" aria-label="案件狀態分布圓餅圖：審查中 56.7%、須補件 9.1%、合格 22.6%、候補或後續 11.6%"></div>
+<div class="legend pie-legend">
+<span><span><i class="review"></i>審查中</span><b>56.7%</b></span>
+<span><span><i class="supplement"></i>須補件</span><b>9.1%</b></span>
+<span><span><i class="qualified"></i>合格</span><b>22.6%</b></span>
+<span><span><i class="waiting"></i>候補／後續</span><b>11.6%</b></span>
+</div>
+</div>
+</div>
+<div class="progress-panel">
+<div class="panel-title">
+<strong>本月申請趨勢</strong>
+<span>較上月 +12.6%</span>
+</div>
+<div class="trend-bars">
+<div><i style="height:38%"></i><span>第1週</span></div>
+<div><i style="height:54%"></i><span>第2週</span></div>
+<div><i style="height:72%"></i><span>第3週</span></div>
+<div><i style="height:88%"></i><span>第4週</span></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 平臺運作監控 -->
+<section class="card dashboard-card">
+<div class="card-head">
+<div>
+<h2>平臺運作監控</h2>
+<p>監控各權責機關資料交換與跨機關查調服務，快速辨識異常發生的機關、服務與時段。</p>
+</div>
+<div class="monitor-head-actions">
+<span class="health-badge">整體服務正常</span>
+<span class="last-check">最後檢查：116/07/13 18:05</span>
+</div>
+</div>
+<div class="card-body">
+<div class="monitor-time-filter">
+<div class="time-field">
+<label for="monitorStartTime">開始時間</label>
+<input id="monitorStartTime" type="datetime-local" value="2027-07-12T18:00"/>
+</div>
+<div class="time-field">
+<label for="monitorEndTime">結束時間</label>
+<input id="monitorEndTime" type="datetime-local" value="2027-07-13T18:00"/>
+</div>
+<button class="btn dark" id="monitorTimeSearch" type="button">查詢</button>
+<span class="filter-note">預設查詢最近 24 小時監控資料</span>
+</div>
+<!-- 整體健康指標 -->
+<div class="monitor-grid">
+<div class="monitor-card">
+<div class="monitor-head">
+<div>
+<span>資料交換</span>
+<small class="monitor-scope">六都與國家住都中心</small>
+<strong>99.72%</strong>
+</div>
+<span class="tag success">正常</span>
+</div>
+<div class="monitor-stats">
+<div><span>成功</span><strong>48,362</strong></div>
+<div><span>異常</span><strong class="danger-text">23</strong></div>
+<div><span>待重送</span><strong class="warn-text">7</strong></div>
+</div>
+<div class="monitor-progress"><i style="width:99.72%"></i></div>
+<button class="text-button" type="button">查看資料交換明細</button>
+</div>
+<div class="monitor-card">
+<div class="monitor-head">
+<div>
+<span>跨機關查調</span>
+<small class="monitor-scope">戶政司、地政司、移民署、消防（警政）署、衛福部、財政部、集保所、勞動部、國防部</small>
+<strong>98.94%</strong>
+</div>
+<span class="tag warn">部分異常</span>
+</div>
+<div class="monitor-stats">
+<div><span>成功</span><strong>112,486</strong></div>
+<div><span>異常</span><strong class="danger-text">64</strong></div>
+<div><span>處理中</span><strong class="warn-text">18</strong></div>
+</div>
+<div class="monitor-progress warning"><i style="width:98.94%"></i></div>
+<button class="text-button" type="button">查看查調服務明細</button>
+</div>
+</div>
+<!-- 紅綠燈熱區圖 -->
+<div class="health-heatmap-panel">
+<div class="heatmap-toolbar">
+<div>
+<div class="panel-title heatmap-title">
+<strong>服務健康狀態熱區圖</strong>
+<span>預設顯示最近 24 小時，每小時彙整</span>
+</div>
+<div class="heatmap-legend">
+<span><i class="legend-dot green"></i>正常</span>
+<span><i class="legend-dot yellow"></i>注意</span>
+<span><i class="legend-dot red"></i>異常</span>
+<span><i class="legend-dot blue"></i>維護中</span>
+<span><i class="legend-dot gray"></i>無交易</span>
+</div>
+</div>
+<div class="heatmap-controls">
+<div class="segmented" id="rangeControl">
+<button class="active" data-range="24h" type="button">最近 24 小時</button>
+<button data-range="6h" type="button">最近 6 小時</button>
+<button data-range="7d" type="button">最近 7 日</button>
+<button data-range="30d" type="button">最近 30 日</button>
+</div>
+<select aria-label="時間粒度" id="granularitySelect">
+<option selected="">每小時</option>
+<option>每 15 分鐘</option>
+<option>每日</option>
+</select>
+</div>
+</div>
+<div class="heatmap-summary">
+<div><span>目前異常服務</span><strong class="danger-text">2</strong></div>
+<div><span>目前注意服務</span><strong class="warn-text">3</strong></div>
+<div><span>連續異常最久</span><strong>財政部查調 2 小時</strong></div>
+<div><span>近 24 小時可用率</span><strong>99.18%</strong></div>
+</div>
+<div class="heatmap-scroll">
+<div class="heatmap-grid" id="healthHeatmap">
+<div class="heatmap-corner">監控服務</div>
+<div class="heatmap-hour">00</div><div class="heatmap-hour">01</div><div class="heatmap-hour">02</div><div class="heatmap-hour">03</div>
+<div class="heatmap-hour">04</div><div class="heatmap-hour">05</div><div class="heatmap-hour">06</div><div class="heatmap-hour">07</div>
+<div class="heatmap-hour">08</div><div class="heatmap-hour">09</div><div class="heatmap-hour">10</div><div class="heatmap-hour">11</div>
+<div class="heatmap-hour">12</div><div class="heatmap-hour">13</div><div class="heatmap-hour">14</div><div class="heatmap-hour">15</div>
+<div class="heatmap-hour">16</div><div class="heatmap-hour">17</div><div class="heatmap-hour">18</div><div class="heatmap-hour current-hour">目前</div>
+<div class="heatmap-group exchange"><strong>資料交換</strong><span>監控六都與國家住都中心的案件及狀態交換</span></div>
+<div class="heatmap-service">
+<strong>臺北市政府</strong>
+</div>
+<button class="heat-cell g" data-error="0" data-rate="99.9%" data-service="臺北市政府資料交換" data-time="00:00"></button>
+<button class="heat-cell g" data-error="1" data-rate="99.8%" data-service="臺北市政府資料交換" data-time="01:00"></button>
+<button class="heat-cell g" data-error="0" data-rate="99.9%" data-service="臺北市政府資料交換" data-time="02:00"></button>
+<button class="heat-cell g" data-error="1" data-rate="99.7%" data-service="臺北市政府資料交換" data-time="03:00"></button>
+<button class="heat-cell g" data-error="0" data-rate="100%" data-service="臺北市政府資料交換" data-time="04:00"></button>
+<button class="heat-cell g" data-error="0" data-rate="100%" data-service="臺北市政府資料交換" data-time="05:00"></button>
+<button class="heat-cell g" data-error="1" data-rate="99.8%" data-service="臺北市政府資料交換" data-time="06:00"></button>
+<button class="heat-cell g" data-error="1" data-rate="99.7%" data-service="臺北市政府資料交換" data-time="07:00"></button>
+<button class="heat-cell g" data-error="0" data-rate="99.9%" data-service="臺北市政府資料交換" data-time="08:00"></button>
+<button class="heat-cell g" data-error="1" data-rate="99.8%" data-service="臺北市政府資料交換" data-time="09:00"></button>
+<button class="heat-cell g" data-error="0" data-rate="99.9%" data-service="臺北市政府資料交換" data-time="10:00"></button>
+<button class="heat-cell g" data-error="1" data-rate="99.8%" data-service="臺北市政府資料交換" data-time="11:00"></button>
+<button class="heat-cell g" data-error="0" data-rate="99.9%" data-service="臺北市政府資料交換" data-time="12:00"></button>
+<button class="heat-cell g" data-error="1" data-rate="99.7%" data-service="臺北市政府資料交換" data-time="13:00"></button>
+<button class="heat-cell g" data-error="1" data-rate="99.8%" data-service="臺北市政府資料交換" data-time="14:00"></button>
+<button class="heat-cell g" data-error="0" data-rate="99.9%" data-service="臺北市政府資料交換" data-time="15:00"></button>
+<button class="heat-cell g" data-error="0" data-rate="99.9%" data-service="臺北市政府資料交換" data-time="16:00"></button>
+<button class="heat-cell g" data-error="1" data-rate="99.8%" data-service="臺北市政府資料交換" data-time="17:00"></button>
+<button class="heat-cell g" data-error="0" data-rate="99.9%" data-service="臺北市政府資料交換" data-time="18:00"></button>
+<button class="heat-cell g pulse" data-error="0" data-rate="99.9%" data-service="臺北市政府資料交換" data-time="目前"></button>
+<div class="heatmap-service">
+<strong>臺中市政府</strong>
+</div>
+<button class="heat-cell g" data-error="1" data-rate="99.7%" data-service="臺中市政府資料交換" data-time="00:00"></button>
+<button class="heat-cell g" data-error="2" data-rate="99.5%" data-service="臺中市政府資料交換" data-time="01:00"></button>
+<button class="heat-cell y" data-error="4" data-rate="97.8%" data-service="臺中市政府資料交換" data-time="02:00"></button>
+<button class="heat-cell r" data-error="12" data-rate="92.1%" data-service="臺中市政府資料交換" data-time="03:00"></button>
+<button class="heat-cell r" data-error="15" data-rate="91.6%" data-service="臺中市政府資料交換" data-time="04:00"></button>
+<button class="heat-cell y" data-error="6" data-rate="96.4%" data-service="臺中市政府資料交換" data-time="05:00"></button>
+<button class="heat-cell g" data-error="2" data-rate="99.1%" data-service="臺中市政府資料交換" data-time="06:00"></button>
+<button class="heat-cell g" data-error="2" data-rate="99.4%" data-service="臺中市政府資料交換" data-time="07:00"></button>
+<button class="heat-cell g" data-error="1" data-rate="99.7%" data-service="臺中市政府資料交換" data-time="08:00"></button>
+<button class="heat-cell g" data-error="2" data-rate="99.5%" data-service="臺中市政府資料交換" data-time="09:00"></button>
+<button class="heat-cell g" data-error="1" data-rate="99.8%" data-service="臺中市政府資料交換" data-time="10:00"></button>
+<button class="heat-cell g" data-error="1" data-rate="99.8%" data-service="臺中市政府資料交換" data-time="11:00"></button>
+<button class="heat-cell g" data-error="2" data-rate="99.6%" data-service="臺中市政府資料交換" data-time="12:00"></button>
+<button class="heat-cell g" data-error="1" data-rate="99.7%" data-service="臺中市政府資料交換" data-time="13:00"></button>
+<button class="heat-cell g" data-error="2" data-rate="99.5%" data-service="臺中市政府資料交換" data-time="14:00"></button>
+<button class="heat-cell g" data-error="1" data-rate="99.8%" data-service="臺中市政府資料交換" data-time="15:00"></button>
+<button class="heat-cell g" data-error="2" data-rate="99.6%" data-service="臺中市政府資料交換" data-time="16:00"></button>
+<button class="heat-cell y" data-error="5" data-rate="97.1%" data-service="臺中市政府資料交換" data-time="17:00"></button>
+<button class="heat-cell y" data-error="6" data-rate="96.8%" data-service="臺中市政府資料交換" data-time="18:00"></button>
+<button class="heat-cell y pulse" data-error="6" data-rate="96.8%" data-service="臺中市政府資料交換" data-time="目前"></button>
+<div class="heatmap-service">
+<strong>國家住都中心</strong>
+</div>
+<button class="heat-cell g" data-error="0" data-rate="100%" data-service="國家住都中心資料交換" data-time="00:00"></button>
+<button class="heat-cell g" data-error="0" data-rate="99.9%" data-service="國家住都中心資料交換" data-time="01:00"></button>
+<button class="heat-cell g" data-error="1" data-rate="99.8%" data-service="國家住都中心資料交換" data-time="02:00"></button>
+<button class="heat-cell g" data-error="0" data-rate="99.9%" data-service="國家住都中心資料交換" data-time="03:00"></button>
+<button class="heat-cell g" data-error="0" data-rate="100%" data-service="國家住都中心資料交換" data-time="04:00"></button>
+<button class="heat-cell g" data-error="0" data-rate="99.9%" data-service="國家住都中心資料交換" data-time="05:00"></button>
+<button class="heat-cell g" data-error="1" data-rate="99.8%" data-service="國家住都中心資料交換" data-time="06:00"></button>
+<button class="heat-cell g" data-error="0" data-rate="99.9%" data-service="國家住都中心資料交換" data-time="07:00"></button>
+<button class="heat-cell g" data-error="0" data-rate="99.9%" data-service="國家住都中心資料交換" data-time="08:00"></button>
+<button class="heat-cell g" data-error="1" data-rate="99.8%" data-service="國家住都中心資料交換" data-time="09:00"></button>
+<button class="heat-cell g" data-error="0" data-rate="99.9%" data-service="國家住都中心資料交換" data-time="10:00"></button>
+<button class="heat-cell g" data-error="1" data-rate="99.8%" data-service="國家住都中心資料交換" data-time="11:00"></button>
+<button class="heat-cell g" data-error="0" data-rate="100%" data-service="國家住都中心資料交換" data-time="12:00"></button>
+<button class="heat-cell g" data-error="0" data-rate="99.9%" data-service="國家住都中心資料交換" data-time="13:00"></button>
+<button class="heat-cell g" data-error="1" data-rate="99.8%" data-service="國家住都中心資料交換" data-time="14:00"></button>
+<button class="heat-cell g" data-error="0" data-rate="99.9%" data-service="國家住都中心資料交換" data-time="15:00"></button>
+<button class="heat-cell g" data-error="0" data-rate="99.9%" data-service="國家住都中心資料交換" data-time="16:00"></button>
+<button class="heat-cell g" data-error="1" data-rate="99.8%" data-service="國家住都中心資料交換" data-time="17:00"></button>
+<button class="heat-cell g" data-error="0" data-rate="99.9%" data-service="國家住都中心資料交換" data-time="18:00"></button>
+<button class="heat-cell g pulse" data-error="0" data-rate="99.9%" data-service="國家住都中心資料交換" data-time="目前"></button>
+<div class="heatmap-group lookup"><strong>跨機關查調</strong><span>戶政司、地政司、移民署、消防（警政）署、衛福部、財政部、集保所、勞動部、國防部</span></div>
+<div class="heatmap-service">
+<strong>戶政司</strong>
+</div>
+<button class="heat-cell g" data-error="0" data-rate="99.9%" data-service="戶政資料查調" data-time="00:00"></button>
+<button class="heat-cell g" data-error="1" data-rate="99.8%" data-service="戶政資料查調" data-time="01:00"></button>
+<button class="heat-cell g" data-error="0" data-rate="99.9%" data-service="戶政資料查調" data-time="02:00"></button>
+<button class="heat-cell g" data-error="0" data-rate="99.9%" data-service="戶政資料查調" data-time="03:00"></button>
+<button class="heat-cell g" data-error="1" data-rate="99.8%" data-service="戶政資料查調" data-time="04:00"></button>
+<button class="heat-cell g" data-error="0" data-rate="99.9%" data-service="戶政資料查調" data-time="05:00"></button>
+<button class="heat-cell g" data-error="0" data-rate="99.9%" data-service="戶政資料查調" data-time="06:00"></button>
+<button class="heat-cell g" data-error="1" data-rate="99.8%" data-service="戶政資料查調" data-time="07:00"></button>
+<button class="heat-cell g" data-error="0" data-rate="99.9%" data-service="戶政資料查調" data-time="08:00"></button>
+<button class="heat-cell g" data-error="1" data-rate="99.8%" data-service="戶政資料查調" data-time="09:00"></button>
+<button class="heat-cell g" data-error="0" data-rate="99.9%" data-service="戶政資料查調" data-time="10:00"></button>
+<button class="heat-cell g" data-error="0" data-rate="99.9%" data-service="戶政資料查調" data-time="11:00"></button>
+<button class="heat-cell g" data-error="1" data-rate="99.8%" data-service="戶政資料查調" data-time="12:00"></button>
+<button class="heat-cell g" data-error="0" data-rate="99.9%" data-service="戶政資料查調" data-time="13:00"></button>
+<button class="heat-cell g" data-error="0" data-rate="99.9%" data-service="戶政資料查調" data-time="14:00"></button>
+<button class="heat-cell g" data-error="1" data-rate="99.8%" data-service="戶政資料查調" data-time="15:00"></button>
+<button class="heat-cell g" data-error="0" data-rate="99.9%" data-service="戶政資料查調" data-time="16:00"></button>
+<button class="heat-cell g" data-error="0" data-rate="99.9%" data-service="戶政資料查調" data-time="17:00"></button>
+<button class="heat-cell g" data-error="1" data-rate="99.8%" data-service="戶政資料查調" data-time="18:00"></button>
+<button class="heat-cell g pulse" data-error="1" data-rate="99.8%" data-service="戶政資料查調" data-time="目前"></button>
+<div class="heatmap-service">
+<strong>財政部</strong>
+</div>
+<button class="heat-cell g" data-error="2" data-rate="99.4%" data-service="財稅資料查調" data-time="00:00"></button>
+<button class="heat-cell g" data-error="3" data-rate="99.2%" data-service="財稅資料查調" data-time="01:00"></button>
+<button class="heat-cell y" data-error="8" data-rate="97.2%" data-service="財稅資料查調" data-time="02:00"></button>
+<button class="heat-cell y" data-error="11" data-rate="95.8%" data-service="財稅資料查調" data-time="03:00"></button>
+<button class="heat-cell g" data-error="3" data-rate="99.1%" data-service="財稅資料查調" data-time="04:00"></button>
+<button class="heat-cell g" data-error="2" data-rate="99.3%" data-service="財稅資料查調" data-time="05:00"></button>
+<button class="heat-cell g" data-error="3" data-rate="99.2%" data-service="財稅資料查調" data-time="06:00"></button>
+<button class="heat-cell g" data-error="4" data-rate="99.0%" data-service="財稅資料查調" data-time="07:00"></button>
+<button class="heat-cell g" data-error="3" data-rate="99.1%" data-service="財稅資料查調" data-time="08:00"></button>
+<button class="heat-cell g" data-error="3" data-rate="99.2%" data-service="財稅資料查調" data-time="09:00"></button>
+<button class="heat-cell g" data-error="4" data-rate="99.0%" data-service="財稅資料查調" data-time="10:00"></button>
+<button class="heat-cell g" data-error="3" data-rate="99.1%" data-service="財稅資料查調" data-time="11:00"></button>
+<button class="heat-cell g" data-error="3" data-rate="99.2%" data-service="財稅資料查調" data-time="12:00"></button>
+<button class="heat-cell g" data-error="3" data-rate="99.1%" data-service="財稅資料查調" data-time="13:00"></button>
+<button class="heat-cell y" data-error="10" data-rate="96.2%" data-service="財稅資料查調" data-time="14:00"></button>
+<button class="heat-cell y" data-error="12" data-rate="95.4%" data-service="財稅資料查調" data-time="15:00"></button>
+<button class="heat-cell r" data-error="26" data-rate="91.8%" data-service="財稅資料查調" data-time="16:00"></button>
+<button class="heat-cell r" data-error="31" data-rate="89.6%" data-service="財稅資料查調" data-time="17:00"></button>
+<button class="heat-cell y" data-error="14" data-rate="95.8%" data-service="財稅資料查調" data-time="18:00"></button>
+<button class="heat-cell y pulse" data-error="14" data-rate="95.8%" data-service="財稅資料查調" data-time="目前"></button>
+<div class="heatmap-service">
+<strong>地政司</strong>
+</div>
+<button class="heat-cell g" data-error="2" data-rate="99.4%" data-service="地政資料查調" data-time="00:00"></button>
+<button class="heat-cell g" data-error="2" data-rate="99.3%" data-service="地政資料查調" data-time="01:00"></button>
+<button class="heat-cell g" data-error="3" data-rate="99.2%" data-service="地政資料查調" data-time="02:00"></button>
+<button class="heat-cell g" data-error="3" data-rate="99.1%" data-service="地政資料查調" data-time="03:00"></button>
+<button class="heat-cell g" data-error="2" data-rate="99.4%" data-service="地政資料查調" data-time="04:00"></button>
+<button class="heat-cell g" data-error="2" data-rate="99.5%" data-service="地政資料查調" data-time="05:00"></button>
+<button class="heat-cell g" data-error="2" data-rate="99.3%" data-service="地政資料查調" data-time="06:00"></button>
+<button class="heat-cell g" data-error="2" data-rate="99.4%" data-service="地政資料查調" data-time="07:00"></button>
+<button class="heat-cell g" data-error="3" data-rate="99.2%" data-service="地政資料查調" data-time="08:00"></button>
+<button class="heat-cell g" data-error="2" data-rate="99.3%" data-service="地政資料查調" data-time="09:00"></button>
+<button class="heat-cell g" data-error="2" data-rate="99.4%" data-service="地政資料查調" data-time="10:00"></button>
+<button class="heat-cell g" data-error="3" data-rate="99.2%" data-service="地政資料查調" data-time="11:00"></button>
+<button class="heat-cell g" data-error="2" data-rate="99.3%" data-service="地政資料查調" data-time="12:00"></button>
+<button class="heat-cell y" data-error="7" data-rate="97.8%" data-service="地政資料查調" data-time="13:00"></button>
+<button class="heat-cell y" data-error="8" data-rate="97.2%" data-service="地政資料查調" data-time="14:00"></button>
+<button class="heat-cell g" data-error="4" data-rate="99.0%" data-service="地政資料查調" data-time="15:00"></button>
+<button class="heat-cell g" data-error="3" data-rate="99.1%" data-service="地政資料查調" data-time="16:00"></button>
+<button class="heat-cell g" data-error="3" data-rate="99.2%" data-service="地政資料查調" data-time="17:00"></button>
+<button class="heat-cell g" data-error="3" data-rate="99.1%" data-service="地政資料查調" data-time="18:00"></button>
+<button class="heat-cell g pulse" data-error="3" data-rate="99.1%" data-service="地政資料查調" data-time="目前"></button>
+</div>
+</div>
+<div class="heatmap-footnote">
+<span>判定門檻：綠色 ≥ 99%；黃色 95%～未滿 99%；紅色 &lt; 95% 或連續逾時達門檻。</span>
+<button class="btn small ghost" type="button">進入完整監控中心</button>
+</div>
+</div>
+<!-- 當前異常明細 -->
+<div class="monitor-table-wrap">
+<div class="panel-title current-alert-title">
+<strong>目前異常與注意項目</strong>
+<span>依嚴重程度排序</span>
+</div>
+<table class="monitor-table">
+<thead>
+<tr>
+<th>監控項目</th>
+<th>服務／機關</th>
+<th>目前狀態</th>
+<th>成功率</th>
+<th>異常數</th>
+<th>持續時間</th>
+<th>最後成功時間</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>跨機關查調</td>
+<td><strong>財政部</strong></td>
+<td><span class="tag danger">異常</span></td>
+<td>91.8%</td>
+<td><span class="tag danger">26</span></td>
+<td>2 小時</td>
+<td>116/07/13 15:58</td>
+<td><button class="btn small primary" type="button">檢視錯誤</button></td>
+</tr>
+<tr>
+<td>資料交換</td>
+<td><strong>臺中市政府</strong></td>
+<td><span class="tag warn">注意</span></td>
+<td>96.8%</td>
+<td><span class="tag warn">6</span></td>
+<td>1 小時</td>
+<td>116/07/13 17:42</td>
+<td><button class="btn small ghost" type="button">檢視明細</button></td>
+</tr>
+<tr>
+<td>跨機關查調</td>
+<td><strong>地政資料服務</strong></td>
+<td><span class="tag success">已恢復</span></td>
+<td>99.1%</td>
+<td><span class="tag gray">3</span></td>
+<td>—</td>
+<td>116/07/13 18:01</td>
+<td><button class="btn small ghost" type="button">檢視歷程</button></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+</main>
+</div>
+<div class="heat-tooltip" id="heatTooltip">
+<strong id="tipTitle"></strong>
+<span id="tipTime"></span>
+<span id="tipRate"></span>
+<span id="tipError"></span>
+</div><script>
+const heatmap = document.getElementById('healthHeatmap');
+const heatmapTimes = Array.from({length:19}, (_, index) => String(index).padStart(2, '0') + ':00').concat('目前');
+const heatStatusMeta = {
+  g: { rate: '99.8%', error: '0' },
+  y: { rate: '97.2%', error: '6' },
+  r: { rate: '92.4%', error: '18' },
+  b: { rate: '維護中', error: '0' },
+  n: { rate: '無交易', error: '0' }
+};
+
+function findHeatmapService(serviceName) {
+  return [...heatmap.querySelectorAll('.heatmap-service')]
+    .find(row => row.querySelector('strong')?.textContent.trim() === serviceName);
+}
+
+function insertExchangeService(serviceName, statuses, beforeServiceName) {
+  const referenceRow = findHeatmapService(beforeServiceName);
+  if (!referenceRow) return;
+
+  const fragment = document.createDocumentFragment();
+  const serviceRow = document.createElement('div');
+  serviceRow.className = 'heatmap-service';
+  serviceRow.innerHTML = '<strong>' + serviceName + '</strong>';
+  fragment.appendChild(serviceRow);
+
+  statuses.forEach((status, index) => {
+    const button = document.createElement('button');
+    const meta = heatStatusMeta[status];
+    button.type = 'button';
+    button.className = 'heat-cell ' + status + (index === statuses.length - 1 ? ' pulse' : '');
+    button.dataset.service = serviceName + '資料交換';
+    button.dataset.time = heatmapTimes[index];
+    button.dataset.rate = meta.rate;
+    button.dataset.error = meta.error;
+    fragment.appendChild(button);
+  });
+
+  heatmap.insertBefore(fragment, referenceRow);
+}
+
+function renameHeatmapService(currentName, newName, dataSuffix) {
+  const serviceRow = findHeatmapService(currentName);
+  if (!serviceRow) return;
+
+  serviceRow.querySelector('strong').textContent = newName;
+  let cell = serviceRow.nextElementSibling;
+  while (cell?.classList.contains('heat-cell')) {
+    cell.dataset.service = newName + dataSuffix;
+    cell = cell.nextElementSibling;
+  }
+}
+
+function insertLookupService(serviceName, statuses, beforeServiceName) {
+  const referenceRow = findHeatmapService(beforeServiceName);
+  if (!referenceRow) return;
+
+  const fragment = document.createDocumentFragment();
+  const serviceRow = document.createElement('div');
+  serviceRow.className = 'heatmap-service';
+  serviceRow.innerHTML = '<strong>' + serviceName + '</strong>';
+  fragment.appendChild(serviceRow);
+
+  statuses.forEach((status, index) => {
+    const button = document.createElement('button');
+    const meta = heatStatusMeta[status];
+    button.type = 'button';
+    button.className = 'heat-cell ' + status + (index === statuses.length - 1 ? ' pulse' : '');
+    button.dataset.service = serviceName + '查調';
+    button.dataset.time = heatmapTimes[index];
+    button.dataset.rate = meta.rate;
+    button.dataset.error = meta.error;
+    fragment.appendChild(button);
+  });
+
+  heatmap.insertBefore(fragment, referenceRow);
+}
+
+function reorderHeatmapServices(serviceNames) {
+  const fragment = document.createDocumentFragment();
+
+  serviceNames.forEach(serviceName => {
+    const serviceRow = findHeatmapService(serviceName);
+    if (!serviceRow) return;
+
+    const rowNodes = [serviceRow];
+    let cell = serviceRow.nextElementSibling;
+    while (cell?.classList.contains('heat-cell')) {
+      rowNodes.push(cell);
+      cell = cell.nextElementSibling;
+    }
+    rowNodes.forEach(node => fragment.appendChild(node));
+  });
+
+  heatmap.appendChild(fragment);
+}
+
+insertExchangeService('新北市政府', ['g','g','g','g','g','g','g','g','g','g','g','g','g','g','g','g','g','g','g','g'], '臺中市政府');
+insertExchangeService('桃園市政府', ['g','g','g','g','g','g','g','g','g','g','g','g','g','g','g','g','g','y','g','g'], '臺中市政府');
+insertExchangeService('臺南市政府', ['g','g','g','g','g','g','g','g','g','g','g','g','g','g','g','g','g','g','g','g'], '國家住都中心');
+insertExchangeService('高雄市政府', ['g','g','g','g','g','g','g','g','g','g','g','g','g','g','g','g','g','y','y','g'], '國家住都中心');
+
+renameHeatmapService('戶政司', '戶政司', '查調');
+renameHeatmapService('財政部', '財政部', '查調');
+renameHeatmapService('地政司', '地政司', '查調');
+insertLookupService('移民署', ['g','g','g','g','g','g','g','g','g','g','g','g','g','g','g','g','g','g','g','g'], '財政部');
+insertLookupService('消防（警政）署', ['g','g','g','g','g','g','g','g','g','g','g','g','g','g','g','g','g','g','g','g'], '財政部');
+insertLookupService('衛福部', ['g','g','g','g','g','g','g','g','g','g','g','g','g','g','g','g','g','g','g','g'], '財政部');
+insertLookupService('集保所', ['g','g','g','g','g','g','g','g','g','g','g','g','g','g','g','g','g','g','g','g'], '地政司');
+insertLookupService('勞動部', ['g','g','g','g','g','g','g','g','g','g','g','g','g','g','g','g','g','y','g','g'], '地政司');
+insertLookupService('國防部', ['g','g','g','g','g','g','g','g','g','g','g','g','g','g','g','g','g','g','g','g'], '地政司');
+reorderHeatmapServices(['戶政司','地政司','移民署','消防（警政）署','衛福部','財政部','集保所','勞動部','國防部']);
+
+const operatorBox = document.getElementById('operatorBox');
+const operatorMenu = document.getElementById('operatorMenu');
+
+operatorMenu.addEventListener('click', () => {
+  const isOpen = operatorBox.classList.toggle('open');
+  operatorMenu.setAttribute('aria-expanded', String(isOpen));
+});
+
+document.addEventListener('click', event => {
+  if (!operatorBox.contains(event.target)) {
+    operatorBox.classList.remove('open');
+    operatorMenu.setAttribute('aria-expanded', 'false');
+  }
+});
+
+document.querySelectorAll('[data-operator-action]').forEach(button => {
+  button.addEventListener('click', () => {
+    const actionText = {
+      profile: '開啟個人資料與帳號設定',
+      role: '開啟登入角色切換',
+      logout: '登出系統'
+    }[button.dataset.operatorAction];
+    alert('示意：' + actionText + '。');
+  });
+});
+
+const tooltip = document.getElementById('heatTooltip');
+const tipTitle = document.getElementById('tipTitle');
+const tipTime = document.getElementById('tipTime');
+const tipRate = document.getElementById('tipRate');
+const tipError = document.getElementById('tipError');
+
+document.querySelectorAll('.heat-cell').forEach(cell => {
+  cell.addEventListener('mouseenter', e => {
+    tipTitle.textContent = cell.dataset.service;
+    tipTime.textContent = '時間區間：' + cell.dataset.time;
+    tipRate.textContent = '成功率：' + cell.dataset.rate;
+    tipError.textContent = '異常筆數：' + cell.dataset.error;
+    tooltip.style.display = 'block';
+  });
+
+  cell.addEventListener('mousemove', e => {
+    const offset = 14;
+    tooltip.style.left = Math.min(e.clientX + offset, window.innerWidth - 230) + 'px';
+    tooltip.style.top = Math.min(e.clientY + offset, window.innerHeight - 120) + 'px';
+  });
+
+  cell.addEventListener('mouseleave', () => {
+    tooltip.style.display = 'none';
+  });
+
+  cell.addEventListener('click', () => {
+    alert(
+      cell.dataset.service + '\n' +
+      '時間區間：' + cell.dataset.time + '\n' +
+      '成功率：' + cell.dataset.rate + '\n' +
+      '異常筆數：' + cell.dataset.error + '\n\n' +
+      '示意：開啟該服務與時段的錯誤明細。'
+    );
+  });
+});
+
+document.getElementById('monitorTimeSearch').addEventListener('click', () => {
+  const startTime = document.getElementById('monitorStartTime').value;
+  const endTime = document.getElementById('monitorEndTime').value;
+
+  if (!startTime || !endTime || new Date(startTime) > new Date(endTime)) {
+    alert('請確認開始時間與結束時間，且開始時間不得晚於結束時間。');
+    return;
+  }
+
+  alert('示意：查詢「' + startTime.replace('T', ' ') + '」至「' + endTime.replace('T', ' ') + '」的平臺監控資料。');
+});
+
+document.querySelectorAll('#rangeControl button').forEach(button => {
+  button.addEventListener('click', () => {
+    document.querySelectorAll('#rangeControl button').forEach(item => item.classList.remove('active'));
+    button.classList.add('active');
+
+    const rangeText = {
+      '24h': '最近 24 小時',
+      '6h': '最近 6 小時',
+      '7d': '最近 7 日',
+      '30d': '最近 30 日'
+    }[button.dataset.range];
+
+    alert('示意：切換為「' + rangeText + '」監控資料。');
+  });
+});
+
+const homeSwitchControl = document.getElementById('homeSwitch');
+const homeSwitchToggle = document.getElementById('homeSwitchToggle');
+homeSwitchToggle.addEventListener('click', event => {
+  event.stopPropagation();
+  const isOpen = homeSwitchControl.classList.toggle('open');
+  homeSwitchToggle.setAttribute('aria-expanded', String(isOpen));
+});
+document.addEventListener('click', event => {
+  if (!homeSwitchControl.contains(event.target)) {
+    homeSwitchControl.classList.remove('open');
+    homeSwitchToggle.setAttribute('aria-expanded', 'false');
+  }
+});
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape') {
+    homeSwitchControl.classList.remove('open');
+    homeSwitchToggle.setAttribute('aria-expanded', 'false');
+  }
+});
+</script></body>
+</html>
