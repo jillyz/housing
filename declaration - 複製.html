@@ -170,7 +170,6 @@
     transform:translateY(-1px);
   }
   .stage-tab-button:focus-visible{outline:3px solid rgba(0,156,154,.24);outline-offset:3px}
-  .stepbar,.stage-tabs,.stage-chip{display:none}
 
   .terms-layout{
     display:grid;
@@ -303,24 +302,6 @@
 
   .contact-stage{display:none}
   .contact-stage.active{display:block}
-
-  .contact-dialog{
-    width:min(760px,calc(100% - 32px));
-    max-height:calc(100dvh - 32px);
-    padding:0;
-    border:0;
-    border-radius:24px;
-    background:#fff;
-    box-shadow:0 28px 80px rgba(0,63,63,.28);
-  }
-  .contact-dialog::backdrop{background:rgba(3,48,47,.48);backdrop-filter:blur(4px)}
-  .contact-modal{position:relative;max-height:calc(100dvh - 32px);padding:30px;overflow:auto}
-  .contact-close{
-    position:absolute;top:14px;right:14px;
-    width:38px;height:38px;border:1px solid #c9e4e1;border-radius:50%;
-    color:var(--primary-dark);background:#f2fbfa;font-size:22px;line-height:1;cursor:pointer;
-  }
-  .contact-close:hover{color:#fff;background:var(--primary);border-color:var(--primary)}
 
   .contact-wrap{
     max-width:700px;
@@ -502,8 +483,6 @@
     .contact-actions{flex-direction:column-reverse}
     .continue-btn{width:100%;min-width:0}
     .secondary-btn{width:100%}
-    .contact-dialog{width:calc(100% - 20px)}
-    .contact-modal{padding:48px 18px 20px}
     .chat-label{display:none}
   }
 
@@ -636,15 +615,27 @@
   </nav>
 </header>
 <div class="page">
+  <div class="stepbar">
+      <div class="step active">1 資料登記／授權同意查調</div>
+      <div class="step">2 需求登記／問卷調查回饋</div>
+      <div class="step">3 完成登記</div>
+  </div>
+
   <main class="main-card">
     <div class="card-head">
       <div>
         <h1>使用條款、個資告知與切結</h1>
         <p>開始填寫申請資料前，請先閱讀服務條款及個人資料保護告知內容，完成同意與切結。</p>
       </div>
+      <div class="stage-chip" id="stageChip">步驟 1／2　條款與切結</div>
     </div>
 
     <div class="content">
+      <div class="stage-tabs">
+        <button class="stage-tab stage-tab-button active" id="tabTerms" type="button" onclick="backToTerms()">1. 閱讀條款並完成切結</button>
+        <div class="stage-tab" id="tabContact">2. 填寫聯絡資訊</div>
+      </div>
+
       <section id="termsStage">
         <div class="terms-layout">
           <article class="terms-card">
@@ -747,13 +738,11 @@
         </div>
       </section>
 
-      <dialog class="contact-dialog" id="contactDialog" aria-labelledby="contactDialogTitle">
-        <div class="contact-modal">
-          <button class="contact-close" type="button" aria-label="關閉聯絡資料面板" onclick="closeContactDialog()">×</button>
+      <section class="contact-stage" id="contactStage">
         <div class="contact-wrap">
           <div class="welcome">
             <div class="welcome-icon">✓</div>
-            <h2 id="contactDialogTitle">開始登記</h2>
+            <h2>切結已完成，請開始登記</h2>
             <p>請填寫本人真實姓名與可接收通知的聯絡方式，後續招租、補件及申請進度將依此資訊通知。</p>
           </div>
 
@@ -765,25 +754,25 @@
             <div class="form-grid">
               <div class="field">
                 <label>真實姓名 <span class="required">*</span></label>
-                <input type="text" id="realName" value="陳ＯＯ" placeholder="請輸入本人真實姓名" autocomplete="name" required />
+                <input type="text" id="realName" value="陳小明" placeholder="請輸入本人真實姓名" />
                 <div class="hint">請填寫與身分證件一致之姓名。</div>
               </div>
 
               <div class="field">
                 <label>身分證字號 <span class="required">*</span></label>
-                <input type="text" id="nationalId" placeholder="例如：A123456789" maxlength="10" autocomplete="off" inputmode="text" required />
+                <input type="text" id="nationalId" value="A123456789" placeholder="例如：A123456789" maxlength="10" autocomplete="off" inputmode="text" />
                 <div class="hint">請填寫本人身分證字號。</div>
               </div>
 
               <div class="field">
                 <label>聯絡手機 <span class="required">*</span></label>
-                <input type="tel" id="mobile" placeholder="例如：0912-345-678" autocomplete="tel" required />
+                <input type="tel" id="mobile" value="0912-345-678" placeholder="例如：0912-345-678" />
                 <div class="hint">用於接收簡訊通知。</div>
               </div>
 
               <div class="field">
                 <label>電子信箱 <span class="required">*</span></label>
-                <input type="email" id="email" placeholder="例如：name@example.com" autocomplete="email" required />
+                <input type="email" id="email" value="chen@example.com" placeholder="例如：name@example.com" />
                 <div class="hint">用於接收招租及申請相關通知。</div>
               </div>
             </div>
@@ -793,8 +782,7 @@
             </div>
           </div>
         </div>
-        </div>
-      </dialog>
+      </section>
     </div>
   </main>
 </div>
@@ -864,7 +852,6 @@
 
   const checks = Array.from(document.querySelectorAll(".agreement-check"));
   const submitButton = document.getElementById("submitAgreement");
-  const contactDialog = document.getElementById("contactDialog");
 
   checks.forEach(check => {
     check.addEventListener("change", () => {
@@ -874,17 +861,28 @@
   submitButton.disabled = !checks.every(item => item.checked);
 
   function submitAgreement(){
-    contactDialog.showModal();
-    document.getElementById("realName").focus();
+    document.getElementById("termsStage").style.display = "none";
+    document.getElementById("contactStage").classList.add("active");
+
+    document.getElementById("tabTerms").classList.remove("active");
+    document.getElementById("tabTerms").classList.add("done");
+    document.getElementById("tabContact").classList.add("active");
+
+    document.getElementById("stageChip").textContent = "步驟 2／2　填寫聯絡資訊";
+    window.scrollTo({top:0,behavior:"smooth"});
   }
 
-  function closeContactDialog(){
-    contactDialog.close();
-  }
+  function backToTerms(){
+    document.getElementById("contactStage").classList.remove("active");
+    document.getElementById("termsStage").style.display = "";
 
-  contactDialog.addEventListener("click", event => {
-    if(event.target === contactDialog) closeContactDialog();
-  });
+    document.getElementById("tabTerms").classList.remove("done");
+    document.getElementById("tabTerms").classList.add("active");
+    document.getElementById("tabContact").classList.remove("active");
+
+    document.getElementById("stageChip").textContent = "步驟 1／2　條款與切結";
+    window.scrollTo({top:0,behavior:"smooth"});
+  }
 
   function continueToForm(){
     const name = document.getElementById("realName").value.trim();

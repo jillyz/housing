@@ -205,15 +205,12 @@
   .room-visual{
     height:178px;
     border-radius:14px;
+    background:
+      radial-gradient(circle at 20% 20%,rgba(255,255,255,.9),transparent 28%),
+      linear-gradient(135deg,#82d7f2,#dff7ff);
+    display:grid;
+    place-items:center;
     overflow:hidden;
-    background:#eaf8f7;
-  }
-
-  .room-visual img{
-    display:block;
-    width:100%;
-    height:100%;
-    object-fit:cover;
   }
 
   .room-label{
@@ -233,6 +230,61 @@
   }
   .room-option.selected .fake-check::after{content:"✓"}
 
+  /* 簡化房型示意圖 */
+  .mini-room{
+    width:150px;height:115px;
+    position:relative;
+    transform:skewY(-4deg);
+    border-radius:12px;
+    background:#f5d99b;
+    border:5px solid #fff5d7;
+    box-shadow:0 13px 22px rgba(95,74,30,.18);
+    overflow:hidden;
+  }
+  .mini-room::before{
+    content:"";
+    position:absolute;left:9px;top:10px;width:50px;height:38px;
+    background:#e9c26a;border-radius:4px;
+    box-shadow:70px 0 0 #e9c26a,0 52px 0 #e9c26a,70px 52px 0 #e9c26a;
+  }
+  .bed{
+    position:absolute;width:42px;height:26px;border-radius:4px;
+    background:#75a957;border:5px solid #e6c889;
+    box-shadow:0 3px 0 rgba(0,0,0,.08);
+  }
+  .bed.b1{left:17px;top:20px}
+  .bed.b2{right:17px;top:20px}
+  .bed.b3{left:17px;bottom:15px}
+  .sofa{
+    position:absolute;width:48px;height:24px;border-radius:7px;
+    background:#738da2;right:18px;bottom:17px;
+  }
+  .table{
+    position:absolute;width:21px;height:21px;border-radius:50%;
+    background:#9c6c36;left:64px;bottom:20px;
+  }
+  .bath{
+    position:absolute;width:28px;height:35px;border-radius:5px;
+    background:#dcecf3;right:12px;top:10px;
+    border:4px solid #fff;
+  }
+
+  .studio .bed.b2,.studio .bed.b3{display:none}
+  .studio .sofa{left:18px;bottom:16px}
+  .studio .table{left:72px;bottom:17px}
+  .one-room .bed.b2,.one-room .bed.b3{display:none}
+  .one-room .sofa{right:18px;bottom:17px}
+  .two-room .bed.b3{display:none}
+  .two-room .bath{right:61px;top:10px}
+  .two-room-plus .bed.b3{display:none}
+  .two-room-plus .bath{right:58px;top:10px;width:34px}
+  .three-room .bath{right:58px;top:10px}
+  .three-room::after{
+    content:"";
+    position:absolute;right:12px;top:10px;width:28px;height:35px;
+    border-radius:5px;background:#dcecf3;border:4px solid #fff;
+  }
+
   .question-footer{
     padding:16px 20px;
     border-top:1px solid var(--line);
@@ -250,18 +302,6 @@
   }
   .nav-btn:hover{background:var(--primary-soft);transform:translateY(-1px)}
   .nav-btn:disabled{opacity:.4;cursor:not-allowed}
-  .next-btn{
-    width:auto;
-    min-width:112px;
-    height:46px;
-    padding:0 18px;
-    border-radius:999px;
-    background:var(--primary);
-    color:#fff;
-    font-size:15px;
-    gap:7px;
-  }
-  .next-btn:hover{background:var(--primary-dark)}
 
   .question-progress{
     display:flex;align-items:center;gap:8px;
@@ -370,14 +410,21 @@
         <div class="question-head">
           <div class="question-number">題目 4</div>
           <h2 class="question-title">請問您預計申請的社會住宅房型為何？</h2>
-          <p class="question-note">可複選房型，所選房型須符合家庭成員數量規定。</p>
+          <p class="question-note">所選房型須符合家庭成員數量規定。</p>
         </div>
 
         <div class="room-grid" id="roomGrid">
           <label class="room-option">
-            <input type="checkbox" name="roomType" value="studio" />
+            <input type="radio" name="roomType" value="studio" />
             <div class="room-visual">
-              <img src="assets/questionnaire-room-types/studio.png" alt="套房型室內格局插畫" />
+              <div class="mini-room studio">
+                <span class="bed b1"></span>
+                <span class="bed b2"></span>
+                <span class="bed b3"></span>
+                <span class="sofa"></span>
+                <span class="table"></span>
+                <span class="bath"></span>
+              </div>
             </div>
             <div class="room-label">
               <span class="fake-check"></span>
@@ -386,9 +433,16 @@
           </label>
 
           <label class="room-option">
-            <input type="checkbox" name="roomType" value="one-room" />
+            <input type="radio" name="roomType" value="one-room" />
             <div class="room-visual">
-              <img src="assets/questionnaire-room-types/one-room.png" alt="一房型室內格局插畫" />
+              <div class="mini-room one-room">
+                <span class="bed b1"></span>
+                <span class="bed b2"></span>
+                <span class="bed b3"></span>
+                <span class="sofa"></span>
+                <span class="table"></span>
+                <span class="bath"></span>
+              </div>
             </div>
             <div class="room-label">
               <span class="fake-check"></span>
@@ -397,9 +451,16 @@
           </label>
 
           <label class="room-option">
-            <input type="checkbox" name="roomType" value="two-room" />
+            <input type="radio" name="roomType" value="two-room" />
             <div class="room-visual">
-              <img src="assets/questionnaire-room-types/two-room.png" alt="二房型室內格局插畫" />
+              <div class="mini-room two-room">
+                <span class="bed b1"></span>
+                <span class="bed b2"></span>
+                <span class="bed b3"></span>
+                <span class="sofa"></span>
+                <span class="table"></span>
+                <span class="bath"></span>
+              </div>
             </div>
             <div class="room-label">
               <span class="fake-check"></span>
@@ -408,9 +469,16 @@
           </label>
 
           <label class="room-option">
-            <input type="checkbox" name="roomType" value="two-room-plus" />
+            <input type="radio" name="roomType" value="two-room-plus" />
             <div class="room-visual">
-              <img src="assets/questionnaire-room-types/two-room-plus.png" alt="二房一廳一點五衛浴型室內格局插畫" />
+              <div class="mini-room two-room-plus">
+                <span class="bed b1"></span>
+                <span class="bed b2"></span>
+                <span class="bed b3"></span>
+                <span class="sofa"></span>
+                <span class="table"></span>
+                <span class="bath"></span>
+              </div>
             </div>
             <div class="room-label">
               <span class="fake-check"></span>
@@ -419,9 +487,16 @@
           </label>
 
           <label class="room-option selected">
-            <input type="checkbox" name="roomType" value="three-room" checked />
+            <input type="radio" name="roomType" value="three-room" checked />
             <div class="room-visual">
-              <img src="assets/questionnaire-room-types/three-room.png" alt="三房型室內格局插畫" />
+              <div class="mini-room three-room">
+                <span class="bed b1"></span>
+                <span class="bed b2"></span>
+                <span class="bed b3"></span>
+                <span class="sofa"></span>
+                <span class="table"></span>
+                <span class="bath"></span>
+              </div>
             </div>
             <div class="room-label">
               <span class="fake-check"></span>
@@ -449,7 +524,7 @@
             </div>
           </div>
 
-          <button class="nav-btn next-btn" type="button" onclick="goNext()">下一題 </button>
+          <button class="nav-btn" type="button" title="下一題" aria-label="下一題" onclick="goNext()">›</button>
         </div>
       </section>
     </div>
@@ -479,9 +554,14 @@
   const roomOptions = document.querySelectorAll(".room-option");
 
   roomOptions.forEach(option => {
-    const checkbox = option.querySelector('input[type="checkbox"]');
-    checkbox.addEventListener("change", () => {
-      option.classList.toggle("selected", checkbox.checked);
+    option.addEventListener("click", () => {
+      roomOptions.forEach(item => item.classList.remove("selected"));
+      option.classList.add("selected");
+      const radio = option.querySelector('input[type="radio"]');
+      radio.checked = true;
+      window.setTimeout(() => {
+        window.location.href = "completion.html";
+      }, 160);
     });
   });
 
