@@ -904,7 +904,7 @@
       Object.entries(mapViews).forEach(([name, view]) => { view.hidden = name !== mode; });
       countyAllButton.hidden = isGoogleMap;
       countyMapTitle.textContent = isGoogleMap ? '社宅位置' : '依縣市瀏覽';
-      mapModeHint.textContent = isGoogleMap ? '三處社宅已全部標示，可直接縮放與平移' : '全臺共 532 件｜點選縣市即可篩選社宅';
+      mapModeHint.textContent = isGoogleMap ? '於地圖查看社宅' : '全臺共 532 件｜點選縣市即可篩選社宅';
       if (isGoogleMap && housingMap) requestAnimationFrame(() => housingMap.invalidateSize());
     };
 
