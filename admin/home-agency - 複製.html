@@ -456,7 +456,7 @@
       .operator-box { min-width: 0; width: 100%; }
       .lower-grid { grid-template-columns: 1fr; }
     }
-    @media (max-width: 760px) {
+    @media (max-width: 720px) {
       body { font-size: 15px; }
       .main { padding-right: 12px; padding-left: 12px; }
       .mobile-admin-bar { margin-right: -12px; margin-left: -12px; padding: 0 12px; }
@@ -486,7 +486,7 @@
       .dialog-actions-group, .dialog-actions .btn { width: 100%; }
       .dialog-actions-group .btn { flex: 1 1 auto; }
     }
-    @media (max-width: 520px) {
+    @media (max-width: 460px) {
       .task-summary { grid-template-columns: 1fr; }
       .task-card { min-height: 0; }
       .case-overview { grid-template-columns: 1fr; }
@@ -595,62 +595,6 @@
   .mobile-admin-bar{margin-right:-12px;margin-left:-12px;padding:0 12px}
 }
 
-/* 承辦工作臺響應式版面強化 */
-html,body{max-width:100%;overflow-x:hidden}
-.layout{grid-template-columns:240px minmax(0,1fr)}
-.main{min-width:0;width:100%}
-.topbar>div:first-child,.home-switch,.home-switch-toggle{min-width:0}
-.home-switch-toggle>span:first-child{max-width:100%;overflow-wrap:anywhere}
-.card,.task-card,.lower-grid>*{min-width:0}
-.table-wrap{max-width:100%}
-@media(max-width:1220px){
-  .layout{grid-template-columns:220px minmax(0,1fr)}
-  .main{padding-right:22px;padding-left:22px}
-  .task-summary{grid-template-columns:repeat(3,minmax(0,1fr))}
-  .workbench-tools{grid-template-columns:1fr 1fr}
-  .tool-actions{grid-column:1/-1;justify-content:flex-end}
-}
-@media(max-width:900px){
-  .layout{grid-template-columns:1fr}
-  .main{padding:18px 18px 42px}
-  .topbar{align-items:stretch;flex-direction:column;gap:16px}
-  .operator-box{width:100%;min-width:0}
-  .lower-grid{grid-template-columns:1fr}
-  .card-head{align-items:stretch;flex-direction:column}
-}
-@media(max-width:760px){
-  .task-summary{grid-template-columns:1fr 1fr}
-  .workbench-tools{grid-template-columns:1fr}
-  .tool-actions{grid-column:auto}
-  .tool-actions .btn{width:100%;min-height:44px}
-  .filter-bar{align-items:stretch;flex-direction:column}
-  .filter-chips{display:grid;grid-template-columns:1fr 1fr}
-  .filter-chip{min-height:44px}
-  .service-notice{align-items:flex-start;flex-direction:column}
-  .notice-link{min-height:44px}
-  .case-overview{grid-template-columns:1fr 1fr}
-}
-@media(max-width:520px){
-  .main{padding:12px 12px 34px}
-  .mobile-admin-bar{margin:0 -12px 16px}
-  .topbar{margin-bottom:14px}
-  .home-switch-toggle{align-items:flex-start;gap:8px}
-  .home-switch-toggle>span:first-child{font-size:24px!important;line-height:1.35}
-  .home-switch-chevron{margin-top:2px}
-  .home-switch-menu{width:min(360px,calc(100vw - 24px));max-height:70vh;overflow-y:auto}
-  .operator-box{grid-template-columns:48px minmax(0,1fr) 44px;padding:10px}
-  .operator-dropdown{right:0;left:0;min-width:0;width:100%}
-  .task-summary,.filter-chips,.case-overview{grid-template-columns:1fr}
-  .task-card{min-height:0}
-  .card{margin-bottom:14px;border-radius:16px}
-  .card-head,.workbench-tools,.filter-bar,.lower-grid .card-body{padding-right:14px;padding-left:14px}
-  .table-wrap{padding:10px;border-radius:12px}
-  td{grid-template-columns:92px minmax(0,1fr);gap:8px;padding:10px}
-  .row-actions{width:100%}
-  .row-actions .btn{min-height:44px}
-  dialog{width:calc(100vw - 24px);max-height:90vh}
-}
-
   </style>
 </head>
 <body>
@@ -661,7 +605,7 @@ html,body{max-width:100%;overflow-x:hidden}
         <div class="brand-title"><strong>全國社宅統一申請登記平臺</strong><span>後臺管理系統</span></div>
       </div>
       <nav class="menu" aria-label="後臺主選單">
-        <a class="active" href="home-agency.html" aria-current="page"><span class="menu-icon material-symbols-rounded" aria-hidden="true">dashboard</span>總覽儀表板</a>
+        <a class="active" href="home-agency.html" aria-current="page"><span class="menu-icon material-symbols-rounded" aria-hidden="true">dashboard</span>首頁審查工作台</a>
         <a href="#"><span class="menu-icon material-symbols-rounded" aria-hidden="true">apartment</span>社宅與招租概況</a>
         <a href="#"><span class="menu-icon material-symbols-rounded" aria-hidden="true">description</span>全國申請進度</a>
         <a href="#"><span class="menu-icon material-symbols-rounded" aria-hidden="true">sync_alt</span>資料交換監控</a>
@@ -673,16 +617,16 @@ html,body{max-width:100%;overflow-x:hidden}
     <button class="sidebar-overlay" id="sidebarOverlay" type="button" aria-label="關閉選單"></button>
 
     <main class="main">
-      <div class="mobile-admin-bar"><strong>權責機關承辦首頁</strong><button class="mobile-menu" id="mobileMenu" type="button" aria-label="開啟後臺選單" aria-expanded="false"><span class="material-symbols-rounded" aria-hidden="true">menu</span></button></div>
+      <div class="mobile-admin-bar"><strong>承辦</strong><button class="mobile-menu" id="mobileMenu" type="button" aria-label="開啟後臺選單" aria-expanded="false"><span class="material-symbols-rounded" aria-hidden="true">menu</span></button></div>
 
       <div class="topbar">
         <div>
-          <div class="crumb">後臺首頁／權責機關承辦首頁</div>
+          <div class="crumb">後臺首頁／承辦審查工作台</div>
           <div class="home-switch" id="homeSwitch">
-            <h1><button class="home-switch-toggle" id="homeSwitchToggle" type="button" aria-expanded="false" aria-controls="homeSwitchMenu"><span>權責機關承辦首頁</span><span class="home-switch-chevron material-symbols-rounded" aria-hidden="true">expand_more</span></button></h1>
+            <h1><button class="home-switch-toggle" id="homeSwitchToggle" type="button" aria-expanded="false" aria-controls="homeSwitchMenu"><span>承辦審查工作台</span><span class="home-switch-chevron material-symbols-rounded" aria-hidden="true">expand_more</span></button></h1>
             <div class="home-switch-menu" id="homeSwitchMenu">
               <a class="home-switch-option" href="home-admin.html"><strong>國土署／管理員首頁</strong><span>全國統計、營運監控與系統管理</span></a>
-              <a class="home-switch-option active" href="home-agency.html" aria-current="page"><strong>權責機關承辦首頁</strong><span>案件交換、跨域查詢與狀態追蹤</span></a>
+              <a class="home-switch-option active" href="home-agency.html" aria-current="page"><strong>承辦審查工作台</strong><span>案件交換、跨域查詢與狀態追蹤</span></a>
             </div>
           </div>
           <p class="subtitle">查詢中央與地方平台間的案件、查調資料版本及狀態交換情形；案件資格仍於地方平台審查。</p>

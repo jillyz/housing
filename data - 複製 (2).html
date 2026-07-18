@@ -1291,56 +1291,57 @@
 <section class="simple-section">
 <div class="simple-section-head">
 <div><h2>3. 家庭成員</h2></div>
-<span class="badge success">查調資料帶入</span>
+<span class="badge">可直接編輯</span>
 </div>
 <div class="simple-section-body">
 <div class="family-intro">
-<p>家庭成員資料由戶政及財稅資料帶入，姓名、出生年月日、身分證字號、所得及身分識別均不可修改；僅需確認家庭成員的「關係」。</p>
+<p>成員資料由戶政及財稅資料帶入。請逐一確認姓名、證號、生日與所得；若有未帶入的成員，可自行新增。</p>
+<button class="btn" id="addFamilyMember" type="button">＋ 新增家庭成員</button>
 </div>
 <div class="table-wrap family-table-wrap">
 <table class="family-table">
 <colgroup><col style="width:14%"/><col style="width:8%"/><col style="width:12%"/><col style="width:15%"/><col style="width:12%"/><col style="width:10%"/><col style="width:17%"/><col style="width:12%"/></colgroup>
-<thead><tr><th>關係</th><th>姓名</th><th>出生年月日</th><th>身分證字號</th><th>最近一年所得</th><th>懷孕胎兒數</th><th>身分／社福識別</th><th>資料來源</th></tr></thead>
+<thead><tr><th>關係</th><th>姓名 *</th><th>出生年月日 *</th><th>身分證字號 *</th><th>最近一年所得</th><th>懷孕胎兒數</th><th>身分／社福識別</th><th>操作</th></tr></thead>
 <tbody id="familyTableBody">
 <tr data-applicant="true" data-lookup-identities="原住民身分">
 <td data-label="關係"><span class="member-relation-text">本人</span><input name="memberRelation[]" type="hidden" value="本人"/></td>
-<td data-label="姓名"><span class="plain-cell-text">陳ＯＯ</span><input class="member-name" name="memberName[]" type="hidden" value="陳ＯＯ"/></td>
-<td data-label="出生年月日"><time class="plain-cell-text" datetime="1988-05-12">1988/05/12</time><input class="member-birth" name="memberBirth[]" type="hidden" value="1988-05-12"/></td>
-<td data-label="身分證字號"><span class="plain-cell-text">N123456789</span><input class="member-id" name="memberId[]" type="hidden" value="N123456789"/></td>
-<td data-label="最近一年所得"><span class="plain-cell-text">720,000 元</span><input class="member-income" name="memberIncome[]" type="hidden" value="720000"/></td>
-<td data-label="懷孕胎兒數"><span class="plain-cell-text">—</span><input class="member-fetus" name="memberFetus[]" type="hidden" value="0"/></td>
+<td data-label="姓名 *"><input class="member-name" name="memberName[]" type="text" value="陳ＯＯ" readonly aria-label="申請人姓名：陳○○"/></td>
+<td data-label="出生年月日 *"><input class="member-birth" name="memberBirth[]" type="date" value="1988-05-12" readonly aria-label="申請人出生年月日：1988年5月12日"/></td>
+<td data-label="身分證字號 *"><input class="member-id" name="memberId[]" type="text" value="N123456789" readonly aria-label="申請人身分證字號"/></td>
+<td data-label="最近一年所得"><input class="member-income" name="memberIncome[]" type="number" min="0" step="1000" value="720000"/></td>
+<td data-label="懷孕胎兒數"><input class="member-fetus" name="memberFetus[]" type="number" min="0" max="9" value="0"/><span class="fetus-not-applicable" aria-label="不適用">—</span></td>
 <td data-label="身分／社福識別"><div class="identity-tags member-identities"><span class="identity-tag">原住民身分</span></div></td>
-<td data-label="資料來源"><span class="plain-cell-text">查調取得</span></td>
+<td data-label="操作"><span class="plain-cell-text">本人／查調取得</span></td>
 </tr>
 <tr data-lookup-member="true" data-lookup-identities="有配偶">
 <td data-label="關係"><span class="member-relation-text">配偶</span><input name="memberRelation[]" type="hidden" value="配偶"/></td>
-<td data-label="姓名"><span class="plain-cell-text">王ＯＯ</span><input class="member-name" name="memberName[]" type="hidden" value="王ＯＯ"/></td>
-<td data-label="出生年月日"><time class="plain-cell-text" datetime="1990-11-18">1990/11/18</time><input class="member-birth" name="memberBirth[]" type="hidden" value="1990-11-18"/></td>
-<td data-label="身分證字號"><span class="plain-cell-text">E234567789</span><input class="member-id" name="memberId[]" type="hidden" value="E234567789"/></td>
-<td data-label="最近一年所得"><span class="plain-cell-text">600,000 元</span><input class="member-income" name="memberIncome[]" type="hidden" value="600000"/></td>
-<td data-label="懷孕胎兒數"><span class="plain-cell-text">1</span><input class="member-fetus" name="memberFetus[]" type="hidden" value="1"/></td>
+<td data-label="姓名 *"><input class="member-name" name="memberName[]" type="text" value="王ＯＯ" required/></td>
+<td data-label="出生年月日 *"><input class="member-birth" name="memberBirth[]" type="date" value="1990-11-18" required/></td>
+<td data-label="身分證字號 *"><input class="member-id" name="memberId[]" type="text" value="E234567789" required/></td>
+<td data-label="最近一年所得"><input class="member-income" name="memberIncome[]" type="number" min="0" step="1000" value="600000"/></td>
+<td data-label="懷孕胎兒數"><input class="member-fetus" name="memberFetus[]" type="number" min="0" max="9" value="1"/><span class="fetus-not-applicable" aria-label="不適用">—</span></td>
 <td data-label="身分／社福識別"><div class="identity-tags member-identities"><span class="identity-tag">有配偶</span></div></td>
-<td data-label="資料來源"><span class="plain-cell-text">查調取得</span></td>
+<td data-label="操作"><span class="plain-cell-text">查調取得</span></td>
 </tr>
-<tr data-lookup-member="true" data-lookup-identities="未成年子女">
+<tr data-lookup-identities="未成年子女">
 <td data-label="關係"><select class="member-relation" name="memberRelation[]" required><option value="">請選擇</option><option>同性伴侶</option><option selected>子女</option><option>父親</option><option>母親</option><option>兄弟姊妹</option><option>兄弟姊妹的配偶</option><option>公公</option><option>婆婆</option><option>媳婦</option><option>岳父</option><option>岳母</option><option>女婿</option><option>祖父</option><option>祖母</option><option>孫</option><option>孫媳</option><option>曾祖父</option><option>曾祖母</option><option>曾孫</option><option>曾孫媳</option><option>配偶之祖父</option><option>配偶之祖母</option><option>配偶之孫</option><option>配偶之兄弟姊妹</option><option>其他</option></select></td>
-<td data-label="姓名"><span class="plain-cell-text">陳ＯＯ</span><input class="member-name" name="memberName[]" type="hidden" value="陳ＯＯ"/></td>
-<td data-label="出生年月日"><time class="plain-cell-text" datetime="2012-04-23">2012/04/23</time><input class="member-birth" name="memberBirth[]" type="hidden" value="2012-04-23"/></td>
-<td data-label="身分證字號"><span class="plain-cell-text">N223456722</span><input class="member-id" name="memberId[]" type="hidden" value="N223456722"/></td>
-<td data-label="最近一年所得"><span class="plain-cell-text">0 元</span><input class="member-income" name="memberIncome[]" type="hidden" value="0"/></td>
-<td data-label="懷孕胎兒數"><span class="plain-cell-text">0</span><input class="member-fetus" name="memberFetus[]" type="hidden" value="0"/></td>
+<td data-label="姓名 *"><input class="member-name" name="memberName[]" type="text" value="陳ＯＯ" required/></td>
+<td data-label="出生年月日 *"><input class="member-birth" name="memberBirth[]" type="date" value="2012-04-23" required/></td>
+<td data-label="身分證字號 *"><input class="member-id" name="memberId[]" type="text" value="N223456722" required/></td>
+<td data-label="最近一年所得"><input class="member-income" name="memberIncome[]" type="number" min="0" step="1000" value="0"/></td>
+<td data-label="懷孕胎兒數"><input class="member-fetus" name="memberFetus[]" type="number" min="0" max="9" value="0"/><span class="fetus-not-applicable" aria-label="不適用">—</span></td>
 <td data-label="身分／社福識別"><div class="identity-tags member-identities"><span class="identity-tag social">未成年子女</span></div></td>
-<td data-label="資料來源"><span class="plain-cell-text">查調取得</span></td>
+<td data-label="操作"><button class="mini-btn danger remove-member" type="button">移除</button></td>
 </tr>
-<tr data-lookup-member="true" data-lookup-identities="65 歲以上老人">
+<tr data-lookup-identities="65 歲以上老人">
 <td data-label="關係"><select class="member-relation" name="memberRelation[]" required><option value="">請選擇</option><option>同性伴侶</option><option>子女</option><option>父親</option><option selected>母親</option><option>兄弟姊妹</option><option>兄弟姊妹的配偶</option><option>公公</option><option>婆婆</option><option>媳婦</option><option>岳父</option><option>岳母</option><option>女婿</option><option>祖父</option><option>祖母</option><option>孫</option><option>孫媳</option><option>曾祖父</option><option>曾祖母</option><option>曾孫</option><option>曾孫媳</option><option>配偶之祖父</option><option>配偶之祖母</option><option>配偶之孫</option><option>配偶之兄弟姊妹</option><option>其他</option></select></td>
-<td data-label="姓名"><span class="plain-cell-text">林ＯＯ</span><input class="member-name" name="memberName[]" type="hidden" value="林ＯＯ"/></td>
-<td data-label="出生年月日"><time class="plain-cell-text" datetime="1958-02-08">1958/02/08</time><input class="member-birth" name="memberBirth[]" type="hidden" value="1958-02-08"/></td>
-<td data-label="身分證字號"><span class="plain-cell-text">B223456780</span><input class="member-id" name="memberId[]" type="hidden" value="B223456780"/></td>
-<td data-label="最近一年所得"><span class="plain-cell-text">180,000 元</span><input class="member-income" name="memberIncome[]" type="hidden" value="180000"/></td>
-<td data-label="懷孕胎兒數"><span class="plain-cell-text">0</span><input class="member-fetus" name="memberFetus[]" type="hidden" value="0"/></td>
+<td data-label="姓名 *"><input class="member-name" name="memberName[]" type="text" value="林ＯＯ" required/></td>
+<td data-label="出生年月日 *"><input class="member-birth" name="memberBirth[]" type="date" value="1958-02-08" required/></td>
+<td data-label="身分證字號 *"><input class="member-id" name="memberId[]" type="text" value="B223456780" required/></td>
+<td data-label="最近一年所得"><input class="member-income" name="memberIncome[]" type="number" min="0" step="1000" value="180000"/></td>
+<td data-label="懷孕胎兒數"><input class="member-fetus" name="memberFetus[]" type="number" min="0" max="9" value="0"/><span class="fetus-not-applicable" aria-label="不適用">—</span></td>
 <td data-label="身分／社福識別"><div class="identity-tags member-identities"><span class="identity-tag social">65 歲以上老人</span></div></td>
-<td data-label="資料來源"><span class="plain-cell-text">查調取得</span></td>
+<td data-label="操作"><button class="mini-btn danger remove-member" type="button">移除</button></td>
 </tr>
 </tbody>
 </table>
@@ -2042,6 +2043,24 @@
     }
     refreshLookup?.addEventListener('click',() => runLookup(true));
 
+    function relationOptions(){
+      return '<option value="" selected>請選擇</option><option>同性伴侶</option><option>子女</option><option>父親</option><option>母親</option><option>兄弟姊妹</option><option>兄弟姊妹的配偶</option><option>公公</option><option>婆婆</option><option>媳婦</option><option>岳父</option><option>岳母</option><option>女婿</option><option>祖父</option><option>祖母</option><option>孫</option><option>孫媳</option><option>曾祖父</option><option>曾祖母</option><option>曾孫</option><option>曾孫媳</option><option>配偶之祖父</option><option>配偶之祖母</option><option>配偶之孫</option><option>配偶之兄弟姊妹</option><option>其他</option>';
+    }
+
+    function createFamilyRow(){
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td data-label="關係"><select class="member-relation" name="memberRelation[]" required>${relationOptions()}</select></td>
+        <td data-label="姓名 *"><input class="member-name" name="memberName[]" type="text" placeholder="請輸入" required></td>
+        <td data-label="出生年月日 *"><input class="member-birth" name="memberBirth[]" type="date" required></td>
+        <td data-label="身分證字號 *"><input class="member-id" name="memberId[]" type="text" placeholder="請輸入" required></td>
+        <td data-label="最近一年所得"><input class="member-income" name="memberIncome[]" type="number" min="0" step="1000" value="0"></td>
+        <td data-label="懷孕胎兒數"><input class="member-fetus" name="memberFetus[]" type="number" min="0" max="9" value="0"><span class="fetus-not-applicable" aria-label="不適用">—</span></td>
+        <td data-label="身分／社福識別"><div class="identity-tags member-identities"><span class="identity-tag neutral">一般身分</span></div></td>
+        <td data-label="操作"><button class="mini-btn danger remove-member" type="button">移除</button></td>`;
+      return row;
+    }
+
     function getAge(dateValue){
       if(!dateValue) return null;
       const birth = new Date(`${dateValue}T00:00:00`);
@@ -2105,6 +2124,21 @@
       file.required = false;
       if(!required) file.value = '';
     }
+
+    document.getElementById('addFamilyMember')?.addEventListener('click',() => {
+      const row = createFamilyRow();
+      familyTableBody.appendChild(row);
+      updateFamilySummary();
+      row.querySelector('.member-relation').focus();
+      row.scrollIntoView({behavior:'smooth',block:'center'});
+    });
+
+    familyTableBody?.addEventListener('click',event => {
+      const removeButton = event.target.closest('.remove-member');
+      if(!removeButton) return;
+      removeButton.closest('tr').remove();
+      updateFamilySummary();
+    });
 
     familyTableBody?.addEventListener('input',event => {
       if(event.target.matches('.member-id')) applyMemberSexState(event.target.closest('tr'));
