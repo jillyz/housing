@@ -991,33 +991,7 @@
     .identity-tag{display:inline-flex;align-items:center;padding:4px 8px;border:1px solid #bde3df;border-radius:999px;background:#edf9f7;color:var(--primary-dark);font-size:11px;font-weight:800;white-space:nowrap}
     .identity-tag.social{border-color:#d7cbed;background:#f5f0ff;color:#654792}
     .identity-tag.neutral{border-color:#dce7e5;background:#f4f7f7;color:#70817f}
-    .identity-tag.system-identity{border-color:#b8dcd8;background:#eaf7f5;color:#075f65}
-    .identity-tag.system-identity::before{content:"🔒";margin-right:4px;font-size:.82em}
-    .identity-tag.user-identity{border-color:#d7cbed;background:#f5f0ff;color:#654792}
     .family-table .identity-tag,.family-table .badge{padding:5px 8px;font-size:16px;line-height:1.35;white-space:normal}
-    .member-identity-cell{display:grid;grid-template-columns:minmax(0,1fr) 30px;align-items:start;gap:5px;min-width:0}
-    .identity-note-trigger{width:30px;height:30px;display:grid;place-items:center;padding:0;border:1px solid #8fc8c4;border-radius:50%;color:#006d75;background:#fff;cursor:pointer}
-    .identity-note-trigger svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-    .identity-note-trigger:hover{border-color:var(--primary);color:#fff;background:var(--primary)}
-    .identity-note-trigger:focus-visible{outline:3px solid rgba(0,121,131,.25);outline-offset:2px}
-    .identity-note-dialog{width:min(780px,calc(100% - 32px));max-height:min(82vh,760px);padding:0;border:0;border-radius:18px;color:var(--text);background:#fff;box-shadow:0 24px 70px rgba(21,66,70,.28)}
-    .identity-note-dialog::backdrop{background:rgba(19,43,47,.52);backdrop-filter:blur(3px)}
-    .identity-dialog-form{display:grid;grid-template-rows:auto auto minmax(0,1fr) auto;max-height:min(82vh,760px)}
-    .identity-dialog-head{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;padding:20px 22px 16px;border-bottom:1px solid var(--line);background:#f5faf9}
-    .identity-dialog-head h2{margin:0;color:var(--primary-deep);font-size:22px}
-    .identity-dialog-head p{margin:6px 0 0;color:var(--muted);font-size:14px}
-    .identity-dialog-close{width:38px;height:38px;display:grid;place-items:center;flex:0 0 auto;padding:0;border:1px solid #cbdedc;border-radius:50%;color:#476260;background:#fff;font-size:24px;line-height:1;cursor:pointer}
-    .identity-dialog-close:hover{color:#fff;background:var(--primary)}
-    .identity-dialog-guidance{display:flex;align-items:flex-start;gap:9px;margin:16px 22px 0;padding:11px 13px;border:1px solid #cce4e1;border-radius:11px;color:#42605e;background:#f3faf8;font-size:14px;line-height:1.6}
-    .identity-option-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;padding:16px 22px 20px;overflow:auto}
-    .identity-note-option{display:flex;align-items:flex-start;gap:10px;margin:0;padding:12px;border:1px solid #d7e5e3;border-radius:12px;color:#354d4b;background:#fff;font-size:15px;line-height:1.5;cursor:pointer}
-    .identity-note-option:hover{border-color:#92cbc7;background:#f8fcfb}
-    .identity-note-option input{width:18px;height:18px;flex:0 0 auto;margin:2px 0 0;accent-color:var(--primary)}
-    .identity-note-option span{min-width:0}
-    .identity-note-option small{display:block;margin-top:3px;color:#657c79;font-size:12px;font-weight:800}
-    .identity-note-option.is-system{border-color:#b8dcd8;background:#edf8f6;cursor:not-allowed}
-    .identity-note-option.is-system small{color:#08717a}
-    .identity-dialog-actions{display:flex;justify-content:flex-end;gap:10px;padding:15px 22px;border-top:1px solid var(--line);background:#fff}
     .row-actions{display:flex;gap:6px;align-items:center;white-space:nowrap}
     .family-summary-bar{display:flex;justify-content:flex-end;gap:24px;margin-top:10px;padding:12px 14px;border-radius:12px;background:#f1f8f7;color:#405654;font-size:16px}
     .family-summary-bar strong{margin-left:5px;color:var(--primary-dark);font-size:19px}
@@ -1172,13 +1146,6 @@
       .pretty-upload-name{max-width:100%}
       .simplified-footer{margin:0 -22px -26px;padding:14px}
       .simplified-footer .next-step-btn{width:100%;min-width:0;white-space:normal}
-      .identity-note-dialog{width:calc(100% - 20px);max-height:88vh;border-radius:15px}
-      .identity-dialog-form{max-height:88vh}
-      .identity-dialog-head{padding:17px 16px 14px}
-      .identity-dialog-head h2{font-size:19px}
-      .identity-dialog-guidance{margin:13px 16px 0}
-      .identity-option-list{grid-template-columns:1fr;padding:13px 16px 17px}
-      .identity-dialog-actions{padding:13px 16px}
     }
 </style>
 <link rel="stylesheet" href="assets/member-shell.css" />
@@ -1328,51 +1295,51 @@
 </div>
 <div class="simple-section-body">
 <div class="family-intro">
-<p>家庭成員資料由戶政及財稅資料帶入。姓名、出生年月日、身分證字號與所得不可修改；身分／社福識別可補充備註，系統判定項目會鎖定且不能修改。</p>
+<p>家庭成員資料由戶政及財稅資料帶入，姓名、出生年月日、身分證字號、所得及身分識別均不可修改；僅需確認家庭成員的「關係」。</p>
 </div>
 <div class="table-wrap family-table-wrap">
 <table class="family-table">
 <colgroup><col style="width:14%"/><col style="width:8%"/><col style="width:12%"/><col style="width:15%"/><col style="width:12%"/><col style="width:10%"/><col style="width:17%"/><col style="width:12%"/></colgroup>
 <thead><tr><th>關係</th><th>姓名</th><th>出生年月日</th><th>身分證字號</th><th>最近一年所得</th><th>懷孕胎兒數</th><th>身分／社福識別</th><th>資料來源</th></tr></thead>
 <tbody id="familyTableBody">
-<tr data-applicant="true" data-lookup-identities="原住民">
+<tr data-applicant="true" data-lookup-identities="原住民身分">
 <td data-label="關係"><span class="member-relation-text">本人</span><input name="memberRelation[]" type="hidden" value="本人"/></td>
 <td data-label="姓名"><span class="plain-cell-text">陳ＯＯ</span><input class="member-name" name="memberName[]" type="hidden" value="陳ＯＯ"/></td>
 <td data-label="出生年月日"><time class="plain-cell-text" datetime="1988-05-12">1988/05/12</time><input class="member-birth" name="memberBirth[]" type="hidden" value="1988-05-12"/></td>
 <td data-label="身分證字號"><span class="plain-cell-text">N123456789</span><input class="member-id" name="memberId[]" type="hidden" value="N123456789"/></td>
 <td data-label="最近一年所得"><span class="plain-cell-text">720,000 元</span><input class="member-income" name="memberIncome[]" type="hidden" value="720000"/></td>
 <td data-label="懷孕胎兒數"><span class="plain-cell-text">—</span><input class="member-fetus" name="memberFetus[]" type="hidden" value="0"/></td>
-<td data-label="身分／社福識別"><div class="identity-tags member-identities"><span class="identity-tag system-identity">原住民</span></div></td>
+<td data-label="身分／社福識別"><div class="identity-tags member-identities"><span class="identity-tag">原住民身分</span></div></td>
 <td data-label="資料來源"><span class="plain-cell-text">查調取得</span></td>
 </tr>
-<tr data-lookup-member="true" data-lookup-identities="">
+<tr data-lookup-member="true" data-lookup-identities="有配偶">
 <td data-label="關係"><span class="member-relation-text">配偶</span><input name="memberRelation[]" type="hidden" value="配偶"/></td>
 <td data-label="姓名"><span class="plain-cell-text">王ＯＯ</span><input class="member-name" name="memberName[]" type="hidden" value="王ＯＯ"/></td>
 <td data-label="出生年月日"><time class="plain-cell-text" datetime="1990-11-18">1990/11/18</time><input class="member-birth" name="memberBirth[]" type="hidden" value="1990-11-18"/></td>
 <td data-label="身分證字號"><span class="plain-cell-text">E234567789</span><input class="member-id" name="memberId[]" type="hidden" value="E234567789"/></td>
 <td data-label="最近一年所得"><span class="plain-cell-text">600,000 元</span><input class="member-income" name="memberIncome[]" type="hidden" value="600000"/></td>
 <td data-label="懷孕胎兒數"><span class="plain-cell-text">1</span><input class="member-fetus" name="memberFetus[]" type="hidden" value="1"/></td>
-<td data-label="身分／社福識別"><div class="identity-tags member-identities"><span class="identity-tag neutral">一般身分</span></div></td>
+<td data-label="身分／社福識別"><div class="identity-tags member-identities"><span class="identity-tag">有配偶</span></div></td>
 <td data-label="資料來源"><span class="plain-cell-text">查調取得</span></td>
 </tr>
-<tr data-lookup-member="true" data-lookup-identities="">
+<tr data-lookup-member="true" data-lookup-identities="未成年子女">
 <td data-label="關係"><select class="member-relation" name="memberRelation[]" required><option value="">請選擇</option><option>同性伴侶</option><option selected>子女</option><option>父親</option><option>母親</option><option>兄弟姊妹</option><option>兄弟姊妹的配偶</option><option>公公</option><option>婆婆</option><option>媳婦</option><option>岳父</option><option>岳母</option><option>女婿</option><option>祖父</option><option>祖母</option><option>孫</option><option>孫媳</option><option>曾祖父</option><option>曾祖母</option><option>曾孫</option><option>曾孫媳</option><option>配偶之祖父</option><option>配偶之祖母</option><option>配偶之孫</option><option>配偶之兄弟姊妹</option><option>其他</option></select></td>
 <td data-label="姓名"><span class="plain-cell-text">陳ＯＯ</span><input class="member-name" name="memberName[]" type="hidden" value="陳ＯＯ"/></td>
 <td data-label="出生年月日"><time class="plain-cell-text" datetime="2012-04-23">2012/04/23</time><input class="member-birth" name="memberBirth[]" type="hidden" value="2012-04-23"/></td>
 <td data-label="身分證字號"><span class="plain-cell-text">N223456722</span><input class="member-id" name="memberId[]" type="hidden" value="N223456722"/></td>
 <td data-label="最近一年所得"><span class="plain-cell-text">0 元</span><input class="member-income" name="memberIncome[]" type="hidden" value="0"/></td>
 <td data-label="懷孕胎兒數"><span class="plain-cell-text">0</span><input class="member-fetus" name="memberFetus[]" type="hidden" value="0"/></td>
-<td data-label="身分／社福識別"><div class="identity-tags member-identities"><span class="identity-tag neutral">一般身分</span></div></td>
+<td data-label="身分／社福識別"><div class="identity-tags member-identities"><span class="identity-tag social">未成年子女</span></div></td>
 <td data-label="資料來源"><span class="plain-cell-text">查調取得</span></td>
 </tr>
-<tr data-lookup-member="true" data-lookup-identities="六十五歲以上之老人">
+<tr data-lookup-member="true" data-lookup-identities="65 歲以上老人">
 <td data-label="關係"><select class="member-relation" name="memberRelation[]" required><option value="">請選擇</option><option>同性伴侶</option><option>子女</option><option>父親</option><option selected>母親</option><option>兄弟姊妹</option><option>兄弟姊妹的配偶</option><option>公公</option><option>婆婆</option><option>媳婦</option><option>岳父</option><option>岳母</option><option>女婿</option><option>祖父</option><option>祖母</option><option>孫</option><option>孫媳</option><option>曾祖父</option><option>曾祖母</option><option>曾孫</option><option>曾孫媳</option><option>配偶之祖父</option><option>配偶之祖母</option><option>配偶之孫</option><option>配偶之兄弟姊妹</option><option>其他</option></select></td>
 <td data-label="姓名"><span class="plain-cell-text">林ＯＯ</span><input class="member-name" name="memberName[]" type="hidden" value="林ＯＯ"/></td>
 <td data-label="出生年月日"><time class="plain-cell-text" datetime="1958-02-08">1958/02/08</time><input class="member-birth" name="memberBirth[]" type="hidden" value="1958-02-08"/></td>
 <td data-label="身分證字號"><span class="plain-cell-text">B223456780</span><input class="member-id" name="memberId[]" type="hidden" value="B223456780"/></td>
 <td data-label="最近一年所得"><span class="plain-cell-text">180,000 元</span><input class="member-income" name="memberIncome[]" type="hidden" value="180000"/></td>
 <td data-label="懷孕胎兒數"><span class="plain-cell-text">0</span><input class="member-fetus" name="memberFetus[]" type="hidden" value="0"/></td>
-<td data-label="身分／社福識別"><div class="identity-tags member-identities"><span class="identity-tag system-identity">六十五歲以上之老人</span></div></td>
+<td data-label="身分／社福識別"><div class="identity-tags member-identities"><span class="identity-tag social">65 歲以上老人</span></div></td>
 <td data-label="資料來源"><span class="plain-cell-text">查調取得</span></td>
 </tr>
 </tbody>
@@ -1439,7 +1406,7 @@
 <div class="conditional-upload" id="specialRoleUpload">
 <label for="specialRoleFile">證明文件</label>
 <div class="pretty-upload"><input id="specialRoleFile" type="file" accept=".pdf,.jpg,.jpeg,.png"/><label class="pretty-upload-button" for="specialRoleFile">＋ 選擇檔案</label><span class="pretty-upload-name" data-file-name-for="specialRoleFile">尚未選擇檔案</span></div>
-<div class="field-help">支援 PDF、JPG、PNG。</div>
+<div class="field-help">支援 PDF、JPG、PNG；Demo 階段為選填，不會阻擋下一步。</div>
 </div>
 </div>
 </div>
@@ -1934,23 +1901,6 @@
 </span>
 </a>
 </aside>
-<dialog class="identity-note-dialog" id="identityNoteDialog" aria-labelledby="identityDialogTitle">
-<form class="identity-dialog-form" method="dialog">
-<header class="identity-dialog-head">
-<div>
-<h2 id="identityDialogTitle">身分／社福識別備註</h2>
-<p>家庭成員：<strong id="identityDialogMemberName"></strong></p>
-</div>
-<button class="identity-dialog-close" type="submit" value="cancel" aria-label="關閉身分備註視窗">×</button>
-</header>
-<div class="identity-dialog-guidance"><span aria-hidden="true">🔒</span><span>系統依查調資料判定的項目已鎖定，無法取消；其餘項目可由申請人補充或修正。</span></div>
-<div class="identity-option-list" id="identityOptionList"></div>
-<footer class="identity-dialog-actions">
-<button class="btn" type="submit" value="cancel">取消</button>
-<button class="btn primary" id="saveIdentityNotes" type="button">儲存備註</button>
-</footer>
-</form>
-</dialog>
 <script>
     const siteHeader = document.querySelector('.site-header');
     const mobileMenu = document.querySelector('.site-mobile-menu');
@@ -2015,33 +1965,12 @@
     const simpleAutosave = document.getElementById('simpleAutosave');
     const registrationDataForm = document.getElementById('registrationDataForm');
     const familyTableBody = document.getElementById('familyTableBody');
-    const identityNoteDialog = document.getElementById('identityNoteDialog');
-    const identityDialogMemberName = document.getElementById('identityDialogMemberName');
-    const identityOptionList = document.getElementById('identityOptionList');
-    const saveIdentityNotes = document.getElementById('saveIdentityNotes');
     const simpleFormError = document.getElementById('simpleFormError');
     const refreshLookup = document.getElementById('refreshLookup');
     const lookupCompletedMessage = document.getElementById('lookupCompletedMessage');
     const lookupUpdatedAt = document.getElementById('lookupUpdatedAt');
     const sameAsRegisteredAddress = document.getElementById('sameAsRegisteredAddress');
     const mailingAddress = document.getElementById('mailingAddress');
-    const specialIdentityOptions = [
-      {number:'一',label:'低收入戶或中低收入戶'},
-      {number:'二',label:'特殊境遇家庭'},
-      {number:'三',label:'育有未成年子女二人以上'},
-      {number:'四',label:'於安置教養機構或寄養家庭結束安置無法返家，未滿二十五歲'},
-      {number:'五',label:'六十五歲以上之老人'},
-      {number:'六',label:'受家庭暴力或性侵害之受害者及其子女'},
-      {number:'七',label:'身心障礙者'},
-      {number:'八',label:'感染人類免疫缺乏病毒者或罹患後天免疫缺乏症候群者'},
-      {number:'九',label:'原住民'},
-      {number:'十',label:'災民'},
-      {number:'十一',label:'遊民'},
-      {number:'十二',label:'因懷孕或生育而遭遇困境之未成年人'},
-      {number:'十三',label:'其他經主管機關認定者'}
-    ];
-    let activeIdentityRow = null;
-    let activeIdentityTrigger = null;
 
     function syncMailingAddress(){
       if(!sameAsRegisteredAddress || !mailingAddress) return;
@@ -2124,127 +2053,21 @@
       return age;
     }
 
-    function getMemberRelation(row){
-      const relationField = row.querySelector('.member-relation, input[name="memberRelation[]"]');
-      return relationField?.value || '';
-    }
-
-    function normalizeSystemIdentity(tag){
-      const aliases = {
-        '原住民身分':'原住民',
-        '65 歲以上老人':'六十五歲以上之老人',
-        '未成年子女':'育有未成年子女二人以上'
-      };
-      return aliases[tag] || tag;
-    }
-
-    function getSystemIdentityTags(row){
-      const allowed = new Set(specialIdentityOptions.map(option => option.label));
-      const tags = (row.dataset.lookupIdentities || '')
-        .split('|')
-        .map(item => normalizeSystemIdentity(item.trim()))
-        .filter(item => item && allowed.has(item));
-      const age = getAge(row.querySelector('.member-birth')?.value);
-      if(age !== null && age >= 65) tags.push('六十五歲以上之老人');
-      if(row.dataset.applicant === 'true' && familyTableBody){
-        const minorChildren = [...familyTableBody.querySelectorAll('tr')].filter(memberRow => {
-          const memberAge = getAge(memberRow.querySelector('.member-birth')?.value);
-          return getMemberRelation(memberRow) === '子女' && memberAge !== null && memberAge < 18;
-        }).length;
-        if(minorChildren >= 2) tags.push('育有未成年子女二人以上');
-      }
-      return [...new Set(tags)];
-    }
-
-    function getUserIdentityTags(row){
-      const allowed = new Set(specialIdentityOptions.map(option => option.label));
-      return [...new Set((row.dataset.userIdentities || '').split('|').map(item => item.trim()).filter(item => item && allowed.has(item)))];
-    }
-
     function updateMemberIdentities(row){
       const container = row.querySelector('.member-identities');
       if(!container) return;
-      const systemTags = getSystemIdentityTags(row);
-      const systemSet = new Set(systemTags);
-      const userTags = getUserIdentityTags(row).filter(tag => !systemSet.has(tag));
-      const tagMarkup = [
-        ...systemTags.map(tag => `<span class="identity-tag system-identity" title="系統判定，不可修改">${tag}</span>`),
-        ...userTags.map(tag => `<span class="identity-tag user-identity" title="申請人補充">${tag}</span>`)
-      ];
-      container.innerHTML = tagMarkup.length ? tagMarkup.join('') : '<span class="identity-tag neutral">一般身分</span>';
+      const tags = (row.dataset.lookupIdentities || '').split('|').map(item => item.trim()).filter(Boolean);
+      const relationField = row.querySelector('.member-relation, input[name="memberRelation[]"]');
+      const relation = relationField?.value || '';
+      const age = getAge(row.querySelector('.member-birth')?.value);
+      if(relation === '配偶') tags.push('有配偶');
+      if(relation === '子女' && age !== null && age < 18) tags.push('未成年子女');
+      if(age !== null && age >= 65) tags.push('65 歲以上老人');
+      const uniqueTags = [...new Set(tags)];
+      container.innerHTML = uniqueTags.length
+        ? uniqueTags.map(tag => `<span class="identity-tag${tag.includes('老人') || tag.includes('未成年') ? ' social' : ''}">${tag}</span>`).join('')
+        : '<span class="identity-tag neutral">一般身分</span>';
     }
-
-    function prepareIdentityControls(){
-      if(!familyTableBody) return;
-      familyTableBody.querySelectorAll('tr').forEach(row => {
-        const container = row.querySelector('.member-identities');
-        const cell = container?.closest('td');
-        if(!container || !cell) return;
-        let wrapper = cell.querySelector('.member-identity-cell');
-        if(!wrapper){
-          wrapper = document.createElement('div');
-          wrapper.className = 'member-identity-cell';
-          container.replaceWith(wrapper);
-          wrapper.append(container);
-        }
-        if(wrapper.querySelector('.identity-note-trigger')) return;
-        const memberName = row.querySelector('.member-name')?.value || '家庭成員';
-        const trigger = document.createElement('button');
-        trigger.className = 'identity-note-trigger';
-        trigger.type = 'button';
-        trigger.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4l11-11a2.8 2.8 0 0 0-4-4L4 16v4Z"/><path d="m13.5 6.5 4 4"/></svg>';
-        trigger.title = '補充備註';
-        trigger.setAttribute('aria-label',`${memberName}：補充身分或社福識別備註`);
-        wrapper.append(trigger);
-      });
-    }
-
-    function renderIdentityOptions(row){
-      if(!identityOptionList) return;
-      const systemTags = new Set(getSystemIdentityTags(row));
-      const userTags = new Set(getUserIdentityTags(row));
-      identityOptionList.innerHTML = specialIdentityOptions.map(option => {
-        const isSystem = systemTags.has(option.label);
-        const isChecked = isSystem || userTags.has(option.label);
-        return `<label class="identity-note-option${isSystem ? ' is-system' : ''}">
-          <input type="checkbox" value="${option.label}"${isChecked ? ' checked' : ''}${isSystem ? ' disabled' : ''}/>
-          <span>${option.number}、${option.label}。<small>${isSystem ? '🔒 系統判定，不可修改' : '可由申請人補充或取消'}</small></span>
-        </label>`;
-      }).join('');
-    }
-
-    function openIdentityNotes(row,trigger){
-      if(!identityNoteDialog || !row) return;
-      activeIdentityRow = row;
-      activeIdentityTrigger = trigger;
-      const memberName = row.querySelector('.member-name')?.value || '家庭成員';
-      identityDialogMemberName.textContent = memberName;
-      renderIdentityOptions(row);
-      if(typeof identityNoteDialog.showModal === 'function') identityNoteDialog.showModal();
-      else identityNoteDialog.setAttribute('open','');
-    }
-
-    familyTableBody?.addEventListener('click',event => {
-      const trigger = event.target.closest('.identity-note-trigger');
-      if(!trigger) return;
-      openIdentityNotes(trigger.closest('tr'),trigger);
-    });
-
-    saveIdentityNotes?.addEventListener('click',() => {
-      if(!activeIdentityRow || !identityOptionList) return;
-      const selected = [...identityOptionList.querySelectorAll('input[type="checkbox"]:checked:not(:disabled)')].map(input => input.value);
-      activeIdentityRow.dataset.userIdentities = selected.join('|');
-      updateMemberIdentities(activeIdentityRow);
-      simpleAutosave.textContent = '已儲存身分／社福識別備註｜剛剛';
-      if(typeof identityNoteDialog.close === 'function') identityNoteDialog.close('saved');
-      else identityNoteDialog.removeAttribute('open');
-    });
-
-    identityNoteDialog?.addEventListener('close',() => {
-      activeIdentityTrigger?.focus();
-      activeIdentityRow = null;
-      activeIdentityTrigger = null;
-    });
 
     function applyMemberSexState(row){
       const idInput = row.querySelector('.member-id');
@@ -2292,7 +2115,6 @@
       if(event.target.matches('.member-relation,.member-birth')) updateFamilySummary();
     });
 
-    prepareIdentityControls();
     updateFamilySummary();
 
     function updatePropertyCalculation(){

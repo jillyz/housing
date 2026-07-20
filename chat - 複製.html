@@ -54,9 +54,6 @@
     .assistant-link.purple{background:linear-gradient(135deg,#7966bd,#574293)}.assistant-link.orange{background:linear-gradient(135deg,#ff8b2c,#e95815)}
     .answer-summary{display:grid;grid-template-columns:auto 1fr;gap:5px 12px;margin:10px 0 0;padding:11px 12px;border-radius:12px;background:#f3f8f7;font-size:13px}.answer-summary dt{color:#728486;font-weight:800}.answer-summary dd{margin:0;color:#36585b;font-weight:800}
     .eligibility-result{margin-top:11px;padding:14px;border:1px solid #addbc3;border-radius:13px;color:#245c3d;background:#edf9f1}.eligibility-result.review{border-color:#efd39a;color:#76571b;background:#fff8e8}.eligibility-result strong{display:block;font-size:18px}.eligibility-result span{display:block;margin-top:5px;font-size:12px;line-height:1.6}
-    .income-input-example{margin-top:10px;padding:11px 12px;border:1px dashed #a9d3d0;border-radius:11px;color:#466568;background:#f6fbfa;font-size:13px;line-height:1.65}.income-input-example code{display:block;margin-top:4px;color:#075f65;font-family:var(--sans);font-weight:900;word-break:break-word}
-    .income-breakdown{display:grid;gap:6px;margin:10px 0 0;padding:11px 12px;border-radius:12px;background:#f3f8f7}.income-breakdown div{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;color:#486467;font-size:13px}.income-breakdown b{color:#23575b}.income-breakdown .income-total{margin-top:4px;padding-top:7px;border-top:1px solid #d4e5e3;font-weight:900}
-    .eligibility-checks{display:grid;gap:7px;margin:10px 0 0;padding:0;list-style:none}.eligibility-checks li{display:grid;grid-template-columns:20px minmax(0,1fr);gap:7px;align-items:start;font-size:13px;line-height:1.55}.eligibility-checks .check-icon{display:grid;place-items:center;width:19px;height:19px;margin-top:1px;border-radius:50%;color:#fff;background:#238b54;font-size:11px;font-weight:900}.eligibility-result.review .eligibility-checks .check-icon.review{background:#c18119}.eligibility-result .result-threshold{margin-top:9px;padding-top:9px;border-top:1px solid rgba(47,126,77,.2);font-weight:800}
     .scenario-number{display:inline-grid;place-items:center;width:25px;height:25px;margin-right:7px;border-radius:50%;color:#fff;background:var(--teal);font-size:12px;font-weight:900;vertical-align:middle}
     .prototype-note{display:block;margin-top:9px;color:#7b8e90;font-size:11px;line-height:1.55}
     .typing{display:none;align-items:center;gap:5px;width:max-content;margin:0 0 18px 44px;padding:10px 14px;border-radius:15px;background:#eaf4f2}.typing.show{display:flex}.typing i{width:6px;height:6px;border-radius:50%;background:#6aa5a3;animation:typing 1s infinite}.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}@keyframes typing{0%,70%,100%{transform:translateY(0);opacity:.55}35%{transform:translateY(-4px);opacity:1}}
@@ -78,7 +75,7 @@
         <div class="assistant-profile"><div class="assistant-avatar"><div class="assistant-face"><span></span></div></div><div><strong>社宅智能客服</strong><small>服務中</small></div></div>
         <div class="conversation-label">目前對話</div>
         <div class="conversation-item"><strong>社宅服務諮詢</strong><span>招租、申請、資格與進度</span></div>
-        <div class="service-note"><strong>可協助的事項</strong>查詢招租社宅、說明申請文件、資格自我檢覈、進度與補件查詢，以及轉介人工客服。</div>
+        <div class="service-note"><strong>可協助的事項</strong>查詢招租社宅、說明申請文件、資格自我檢核、進度與補件查詢，以及轉介人工客服。</div>
       </aside>
       <div class="chat-main">
         <header class="chat-head"><div><h1 id="chatTitle">智能客服</h1><p>請輸入您想詢問的問題</p></div><button class="new-chat" id="newChat" type="button">＋ 新對話</button></header>
@@ -116,12 +113,12 @@
     const scenarioChoices=()=>addChoices([
       {label:'查詢招租中的社宅',action:'scenario',value:'housing'},
       {label:'申請文件與流程',action:'scenario',value:'documents'},
-      {label:'資格自我檢覈',action:'scenario',value:'eligibility'},
+      {label:'資格自我檢核',action:'scenario',value:'eligibility'},
       {label:'進度查詢／補件',action:'scenario',value:'progress'},
       {label:'特殊情況／人工客服',action:'scenario',value:'support'}
     ]);
     const renderWelcome=()=>{
-      addAssistantMessage('<p>您好，我是全國社宅統一登記申請平台的智能客服。</p><p>我可以透過對話協助您查詢招租社宅、準備申請文件、進行資格自我檢覈，或查詢案件進度。請問您想先處理哪一項？</p>');
+      addAssistantMessage('<p>您好，我是全國社宅統一登記申請平台的智能客服。</p><p>我可以透過對話協助您查詢招租社宅、準備申請文件、進行資格自我檢核，或查詢案件進度。請問您想先處理哪一項？</p>');
       scenarioChoices();
     };
 
@@ -158,110 +155,51 @@
       const project=(housingData[city]||[]).find(item=>item.name===name);
       if(!project){showFallback();return}
       addAssistantMessage(`<p><strong>${project.name}</strong>的示意資訊如下：</p><div class="assistant-card"><strong>${city}・${project.name}</strong><span>可申請房型：${project.rooms}<br>權責機關：${project.agency}</span></div><p>若要正式申請，建議先確認申請文件與自身資格。</p><a class="assistant-link" href="housing.html?county=${encodeURIComponent(city)}">前往找社宅頁面 →</a>`);
-      addChoices([{label:'要準備哪些文件？',action:'scenario',value:'documents'},{label:'先做資格檢覈',action:'scenario',value:'eligibility'},{label:'回服務選單',action:'menu',value:'',secondary:true}]);
+      addChoices([{label:'要準備哪些文件？',action:'scenario',value:'documents'},{label:'先做資格檢核',action:'scenario',value:'eligibility'},{label:'回服務選單',action:'menu',value:'',secondary:true}]);
     });
 
     const showDocuments=()=>reply(()=>{
       addAssistantMessage('<p><span class="scenario-number">02</span><strong>申請文件與操作引導</strong></p><p>申請社宅通常需要準備以下資料：</p><ul><li>身分證明文件</li><li>戶籍謄本或戶口名簿</li><li>家庭所得及財產相關資料</li><li>特殊身分或加分資格證明</li><li>各招租公告要求的其他文件</li></ul><p>本平台可透過授權查調減少重複填寫；實際項目仍以招租公告為準。您需要我接著說明申請流程嗎？</p>');
-      addChoices([{label:'需要，說明申請流程',action:'application-flow',value:''},{label:'先做資格檢覈',action:'scenario',value:'eligibility'},{label:'暫時不用',action:'menu',value:'',secondary:true}]);
+      addChoices([{label:'需要，說明申請流程',action:'application-flow',value:''},{label:'先做資格檢核',action:'scenario',value:'eligibility'},{label:'暫時不用',action:'menu',value:'',secondary:true}]);
     });
     const showApplicationFlow=()=>reply(()=>{
       addAssistantMessage('<p>申請流程可以分成 6 個步驟：</p><ol><li>驗證登入並完成電子切結</li><li>填寫基本資料與授權查調</li><li>完成住宅需求問卷</li><li>選擇符合需求的社宅與房型</li><li>確認並提送一筆或多筆申請</li><li>查詢進度並依通知補件</li></ol><a class="assistant-link" href="login.html">開始驗證登入 →</a>');
       addChoices([{label:'我想先確認資格',action:'scenario',value:'eligibility'},{label:'回服務選單',action:'menu',value:'',secondary:true}]);
     });
 
-    const eligibilityIncomeLimit=57509;
-    let eligibilityStage='';
+    const eligibilityQuestions=[
+      {key:'city',question:'想申請哪個縣市的社宅？',options:['臺北市','新北市','桃園市']},
+      {key:'project',question:'是否已經有想申請的招租案？',options:['有','尚未指定']},
+      {key:'registration',question:'戶籍、就業或就學條件是否符合該招租案規定？',options:['是','否','不確定']},
+      {key:'income',question:'家庭年所得大約在哪個區間？',options:['50 萬以下','50–80 萬','80–120 萬','120 萬以上']},
+      {key:'home',question:'您或家庭成員目前是否持有自有住宅？',options:['是','否','不確定']}
+    ];
+    let eligibilityIndex=0;
     let eligibilityAnswers={};
     const startEligibility=()=>{
-      eligibilityStage='residency';
-      eligibilityAnswers={};
-      messageInput.placeholder='輸入訊息……';
+      eligibilityIndex=0;eligibilityAnswers={};
       reply(()=>{
-        addAssistantMessage('<p><span class="scenario-number">03</span><strong>資格自我檢覈</strong></p><p>接下來會確認本市設籍／就業／就學、自有住宅及家庭成員年所得，協助您進行初步試算。</p><span class="prototype-note">試算結果僅供參考，正式資格仍以招租公告、跨機關查調及權責機關審查結果為準。</span>');
-        askEligibilityResidency();
+        addAssistantMessage('<p><span class="scenario-number">03</span><strong>資格自我檢核</strong></p><p>我會用 5 個問題協助您進行初步試算。請依目前情況回答；結果僅供參考，不代表正式審查結果。</p>');
+        askEligibilityQuestion();
       });
     };
-    const askEligibilityResidency=()=>{
-      addAssistantMessage('<p><strong>第 1 題，共 3 題</strong></p><p>您是否設籍臺中市，或在臺中市有就業、就學需求？</p>');
-      addChoices([
-        {label:'有，我設籍臺中市',action:'eligibility-residency',value:'設籍'},
-        {label:'有，我在臺中市就業',action:'eligibility-residency',value:'就業'},
-        {label:'有，我在臺中市就學',action:'eligibility-residency',value:'就學'},
-        {label:'以上皆無',action:'eligibility-residency',value:'無',secondary:true},
-        {label:'不確定',action:'eligibility-residency',value:'不確定',secondary:true}
-      ]);
+    const askEligibilityQuestion=()=>{
+      const item=eligibilityQuestions[eligibilityIndex];
+      addAssistantMessage(`<p><strong>第 ${eligibilityIndex+1} 題，共 5 題</strong></p><p>${item.question}</p>`);
+      addChoices(item.options.map(option=>({label:option,action:'eligibility-answer',value:option})));
     };
-    const answerEligibilityResidency=value=>{
-      eligibilityAnswers.residency=value;
-      eligibilityStage='home';
-      reply(askEligibilityHome);
-    };
-    const askEligibilityHome=()=>{
-      addAssistantMessage('<p><strong>第 2 題，共 3 題</strong></p><p>您與家庭成員在<strong>臺中市、彰化市、南投市</strong>是否持有自有住宅？</p>');
-      addChoices([
-        {label:'都沒有',action:'eligibility-home',value:'無'},
-        {label:'有自有住宅',action:'eligibility-home',value:'有'},
-        {label:'不確定',action:'eligibility-home',value:'不確定',secondary:true}
-      ]);
-    };
-    const answerEligibilityHome=value=>{
-      eligibilityAnswers.home=value;
-      eligibilityStage='income';
-      reply(askEligibilityIncome);
-    };
-    const askEligibilityIncome=()=>{
-      addAssistantMessage('<p><strong>第 3 題，共 3 題</strong></p><p>請告訴我家庭成員，以及每位成員最近一年度的所得。</p><div class="income-input-example">請直接在下方輸入，不需提供姓名或身分證字號。<code>例如：本人 700000、配偶 800000、子女 0、母親 180000</code></div>');
-      messageInput.placeholder='輸入家庭成員與年所得，例如：本人 700000、配偶 800000';
-      messageInput.focus();
-    };
-    const parseHouseholdIncomes=text=>{
-      const entries=[];
-      const pattern=/([^\d,，、；;:\n]+?)\s*[:：]?\s*(\d[\d,，]*)\s*元?/g;
-      let match;
-      while((match=pattern.exec(text))){
-        const member=match[1].trim().replace(/^(家庭成員|成員)\s*/,'');
-        const income=Number(match[2].replace(/[,，]/g,''));
-        if(member&&Number.isFinite(income)&&income>=0) entries.push({member,income});
-      }
-      return entries;
-    };
-    const answerEligibilityIncome=text=>{
-      const entries=parseHouseholdIncomes(text);
-      if(!entries.length){
-        reply(()=>{
-          addAssistantMessage('<p>我還無法辨識家庭成員與所得，請依「成員關係＋年所得」重新輸入。</p><div class="income-input-example"><code>例如：本人 700000、配偶 800000、子女 0、母親 180000</code></div>');
-          messageInput.focus();
-        });
-        return;
-      }
-      eligibilityAnswers.incomes=entries;
-      eligibilityStage='complete';
-      messageInput.placeholder='輸入訊息……';
+    const answerEligibility=value=>{
+      eligibilityAnswers[eligibilityQuestions[eligibilityIndex].key]=value;
+      eligibilityIndex+=1;
+      if(eligibilityIndex<eligibilityQuestions.length){reply(askEligibilityQuestion);return}
       reply(showEligibilityResult);
     };
     const showEligibilityResult=()=>{
-      const format=value=>Number(value).toLocaleString('zh-TW');
-      const entries=eligibilityAnswers.incomes||[];
-      const annualTotal=entries.reduce((sum,item)=>sum+item.income,0);
-      const monthlyAverage=entries.length?Math.round(annualTotal/entries.length/12):0;
-      const residencyPass=['設籍','就業','就學'].includes(eligibilityAnswers.residency);
-      const homePass=eligibilityAnswers.home==='無';
-      const incomePass=monthlyAverage<eligibilityIncomeLimit;
-      const isEligible=residencyPass&&homePass&&incomePass;
-      const residencyLabel={設籍:'設籍臺中市',就業:'在臺中市就業',就學:'在臺中市就學',無:'未符合',不確定:'待確認'}[eligibilityAnswers.residency]||'待確認';
-      const homeLabel={無:'未持有自有住宅',有:'持有自有住宅',不確定:'待確認'}[eligibilityAnswers.home]||'待確認';
-      const breakdown=entries.map(item=>`<div><span>${escapeHtml(item.member)}</span><b>${format(item.income)} 元／年</b></div>`).join('');
-      const incomeSummary=`<div class="income-breakdown">${breakdown}<div class="income-total"><span>家庭年所得合計</span><b>${format(annualTotal)} 元</b></div></div>`;
-      const checkItem=(pass,text)=>`<li><span class="check-icon${pass?'':' review'}">${pass?'✓':'!'}</span><span>${text}</span></li>`;
-      const resultClass=isEligible?'eligibility-result':'eligibility-result review';
-      const resultTitle=isEligible?'資格判斷結果：符合':'資格判斷結果：需要進一步確認';
-      const incomeStatusText=incomePass
-        ? `家庭每人每月平均所得：${format(monthlyAverage)} 元，低於臺中市標準 ${format(eligibilityIncomeLimit)} 元：符合`
-        : `家庭每人每月平均所得：${format(monthlyAverage)} 元，未低於臺中市標準 ${format(eligibilityIncomeLimit)} 元：需進一步確認`;
-      const result=`<div class="${resultClass}"><strong>初步檢覈結果</strong><ul class="eligibility-checks">${checkItem(residencyPass,`設籍／就業／就學：${residencyLabel}`)}${checkItem(homePass,`自有住宅：${homeLabel}`)}${checkItem(incomePass,incomeStatusText)}</ul><div class="result-threshold">${resultTitle}</div><span>實際資格仍以正式申請、跨機關查調及權責機關審查結果為準。</span></div>`;
-      addAssistantMessage(`<p>我已依您提供的家庭成員與所得完成試算：</p>${incomeSummary}<dl class="answer-summary"><dt>家庭人數</dt><dd>${entries.length} 人</dd><dt>家庭年所得</dt><dd>${format(annualTotal)} 元</dd><dt>每人每月平均</dt><dd>${format(monthlyAverage)} 元</dd></dl>${result}`);
-      addChoices([{label:'查看申請文件',action:'scenario',value:'documents'},{label:'重新檢覈',action:'scenario',value:'eligibility'},{label:'詢問人工客服',action:'scenario',value:'support'},{label:'回服務選單',action:'menu',value:'',secondary:true}]);
+      const needsReview=eligibilityAnswers.registration!=='是'||eligibilityAnswers.home!=='否'||eligibilityAnswers.income==='120 萬以上';
+      const summary=`<dl class="answer-summary"><dt>申請縣市</dt><dd>${eligibilityAnswers.city}</dd><dt>指定招租案</dt><dd>${eligibilityAnswers.project}</dd><dt>戶籍／就業條件</dt><dd>${eligibilityAnswers.registration}</dd><dt>家庭年所得</dt><dd>${eligibilityAnswers.income}</dd><dt>持有住宅</dt><dd>${eligibilityAnswers.home}</dd></dl>`;
+      const result=needsReview?'<div class="eligibility-result review"><strong>△ 需要進一步確認</strong><span>部分條件可能受招租地、家庭人口、所得與住宅持有狀況影響，建議查看個別公告或洽詢人工客服。</span></div>':'<div class="eligibility-result"><strong>✓ 可能符合資格</strong><span>依您提供的條件，初步未發現明顯不符項目。正式資格仍以提送申請後的跨機關查調與權責機關審查結果為準。</span></div>';
+      addAssistantMessage(`<p>已完成初步資格檢核：</p>${summary}${result}`);
+      addChoices([{label:'查看申請文件',action:'scenario',value:'documents'},{label:'重新檢核',action:'scenario',value:'eligibility'},{label:'詢問人工客服',action:'scenario',value:'support'},{label:'回服務選單',action:'menu',value:'',secondary:true}]);
     };
 
     const showProgress=()=>reply(()=>{
@@ -284,18 +222,16 @@
 
     const handleAction=(action,value)=>{
       if(action==='scenario'){
-        if(value!=='eligibility'){eligibilityStage='';messageInput.placeholder='輸入訊息……'}
         ({housing:askHousingCounty,documents:showDocuments,eligibility:startEligibility,progress:showProgress,support:showSupport}[value]||showFallback)();
       }else if(action==='housing-city'){showHousingCity(value)}
       else if(action==='housing-detail'){showHousingDetail(value)}
       else if(action==='housing-page'){window.location.href=`housing.html?county=${encodeURIComponent(value)}`}
       else if(action==='housing-all'){window.location.href='housing.html'}
       else if(action==='application-flow'){showApplicationFlow()}
-      else if(action==='eligibility-residency'){answerEligibilityResidency(value)}
-      else if(action==='eligibility-home'){answerEligibilityHome(value)}
+      else if(action==='eligibility-answer'){answerEligibility(value)}
       else if(action==='progress-demo'){showProgressDemo()}
       else if(action==='focus-input'){messageInput.focus()}
-      else if(action==='menu'){eligibilityStage='';messageInput.placeholder='輸入訊息……';reply(()=>{addAssistantMessage('<p>好的，請選擇接下來需要的服務：</p>');scenarioChoices()})}
+      else if(action==='menu'){reply(()=>{addAssistantMessage('<p>好的，請選擇接下來需要的服務：</p>');scenarioChoices()})}
     };
 
     conversation.addEventListener('click',event=>{
@@ -311,20 +247,7 @@
     const sendMessage=text=>{
       const value=text.trim();if(!value)return;
       addUserMessage(value);messageInput.value='';
-      if(eligibilityStage==='residency'){
-        const openChoices=[...conversation.querySelectorAll('.choice-row:not(.used)')];
-        openChoices[openChoices.length-1]?.classList.add('used');
-        const answer=/設籍/.test(value)?'設籍':/就業/.test(value)?'就業':/就學/.test(value)?'就學':/沒有|皆無|都無|不符合/.test(value)?'無':'不確定';
-        answerEligibilityResidency(answer);
-      }
-      else if(eligibilityStage==='home'){
-        const openChoices=[...conversation.querySelectorAll('.choice-row:not(.used)')];
-        openChoices[openChoices.length-1]?.classList.add('used');
-        const answer=/沒有|都無|未持有|無自有/.test(value)?'無':/不確定|不知道/.test(value)?'不確定':/有|持有/.test(value)?'有':'不確定';
-        answerEligibilityHome(answer);
-      }
-      else if(eligibilityStage==='income')answerEligibilityIncome(value);
-      else if(/資格|符合|所得|房產/.test(value))startEligibility();
+      if(/資格|符合|所得|房產/.test(value))startEligibility();
       else if(/進度|補件|申請了|案件/.test(value))showProgress();
       else if(/文件|準備|流程|怎麼申請/.test(value))showDocuments();
       else if(/臺北|台北/.test(value))showHousingCity('臺北市');
@@ -338,7 +261,7 @@
     chatForm.addEventListener('submit',event=>{event.preventDefault();sendMessage(messageInput.value)});
     messageInput.addEventListener('keydown',event=>{if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendMessage(messageInput.value)}});
     document.getElementById('newChat').addEventListener('click',()=>{
-      window.clearTimeout(responseTimer);typing.classList.remove('show');conversation.innerHTML='';messageInput.value='';messageInput.placeholder='輸入訊息……';eligibilityStage='';eligibilityAnswers={};renderWelcome();messageInput.focus();scrollMessages();
+      window.clearTimeout(responseTimer);typing.classList.remove('show');conversation.innerHTML='';messageInput.value='';eligibilityIndex=0;eligibilityAnswers={};renderWelcome();messageInput.focus();scrollMessages();
     });
     renderWelcome();
   </script>
