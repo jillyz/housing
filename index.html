@@ -125,7 +125,7 @@
     }
     .hero-copy h1 { margin: 0; color: #075161; font-family: var(--serif); font-size: clamp(43px, 4.15vw, 66px); line-height: 1.42; letter-spacing: .08em; font-weight: 800; }
     .hero-copy p { margin: 15px 0 20px; color: #525b60; font-size: 17px; letter-spacing: .1em; font-weight: 600; }
-    .start-button { display: inline-flex; align-items: center; gap: 25px; min-width: 245px; height: 61px; padding: 0 26px 0 38px; border-radius: 32px; font-size: 22px; letter-spacing: .1em; }
+    .start-button { display: inline-flex; align-items: center; gap: 25px; min-width: 245px; height: 61px; padding: 0 26px 0 38px; border-radius: 32px; font-size: 22px; letter-spacing: .1em; text-decoration: none; }
     .start-button .arrow { font-size: 34px; font-weight: 300; line-height: 0; margin-top: -4px; }
 
     .search-card {
@@ -468,7 +468,7 @@
       <div class="hero-copy">
         <h1 id="hero-heading">找到適合的家<br>從這裡開始</h1>
         <p>從全國社宅招租、需求登記到申請入住，一個入口陪你完成</p>
-        <button class="primary-button start-button" type="button" data-dialog="registrationDialog">開始登記 <span class="arrow">→</span></button>
+        <a class="primary-button start-button" href="login.html">開始登記 <span class="arrow" aria-hidden="true">→</span></a>
       </div>
       <form class="search-card" id="search" aria-label="社會住宅搜尋">
         <div class="field">
@@ -504,7 +504,7 @@
         <h2 class="journey-title"><span>申請流程</span></h2>
         <div class="steps">
           <a class="step step-link" href="login.html"><div class="step-number">01</div><div class="step-icon"><svg viewBox="0 0 44 44" aria-hidden="true"><rect x="8" y="16" width="28" height="22" rx="2"/><path d="M15 16V12a7 7 0 0 1 14 0v4M17 27l4 4 7-8"/></svg></div><div class="step-label">驗證登入</div></a>
-          <a class="step step-link" href="declaration.html"><div class="step-number">02</div><div class="step-icon"><svg viewBox="0 0 44 44" aria-hidden="true"><rect x="8" y="6" width="23" height="32" rx="2"/><path d="M14 14h10M14 20h7M14 26h7M14 32h10"/><circle cx="34" cy="28" r="6"/><path d="m38 32 3 4M31 27h6M34 24v6"/></svg></div><div class="step-label">資料登記/授權查調</div></a>
+          <a class="step step-link" href="data.html"><div class="step-number">02</div><div class="step-icon"><svg viewBox="0 0 44 44" aria-hidden="true"><rect x="8" y="6" width="23" height="32" rx="2"/><path d="M14 14h10M14 20h7M14 26h7M14 32h10"/><circle cx="34" cy="28" r="6"/><path d="m38 32 3 4M31 27h6M34 24v6"/></svg></div><div class="step-label">資料登記/授權查調</div></a>
           <a class="step step-link" href="questionnaire.html"><div class="step-number">03</div><div class="step-icon"><svg viewBox="0 0 44 44" aria-hidden="true"><rect x="9" y="10" width="26" height="29" rx="2"/><path d="M16 10V6M28 10V6M15 25l5 5 10-11"/></svg></div><div class="step-label">需求登記/問卷回饋</div></a>
           <a class="step step-link" href="apply.html"><div class="step-number">04</div><div class="step-icon"><svg viewBox="0 0 44 44" aria-hidden="true"><path d="M7 38h30M10 38V16h12v22M25 38V7h10v31M14 21h4M14 27h4M29 13h2M29 19h2M29 25h2M29 31h2"/></svg></div><div class="step-label">申請社宅</div></a>
           <a class="step step-link" href="progress.html"><div class="step-number">05</div><div class="step-icon"><svg viewBox="0 0 44 44" aria-hidden="true"><circle cx="20" cy="20" r="12"/><path d="m29 29 8 8"/></svg></div><div class="step-label">進度查詢</div></a>
@@ -639,7 +639,6 @@
     <a class="chat-btn" href="chat.html" target="_blank" rel="noopener noreferrer" aria-label="開啟智能客服對話頁面（另開新分頁）" style="text-decoration:none"><span class="chat-face"><span class="smile"></span></span></a>
   </aside>
 
-  <dialog id="registrationDialog"><div class="dialog-content"><div class="dialog-icon">✓</div><h2>準備開始登記</h2><p>原型已示範登記入口。正式服務將引導你完成身分驗證與需求資料填寫。</p><div class="dialog-actions"><button class="close-dialog" type="button">稍後再說</button><a href="login.html">前往登入</a></div></div></dialog>
   <dialog id="serviceDialog"><div class="dialog-content"><div class="dialog-icon">◉</div><h2>智能客服</h2><p>您好！我可以協助說明社宅申請資格、登記流程與案件進度查詢方式。</p><div class="dialog-actions"><button class="close-dialog" type="button">關閉</button></div></div></dialog>
 
   <script>
