@@ -490,8 +490,8 @@
           <span class="field-label">每月租金</span>
           <div class="range-shell">
             <div class="range-fill"></div>
-            <input id="minRent" type="range" min="5000" max="18000" step="100" value="7000" aria-label="最低租金，每次調整 100 元" />
-            <input id="maxRent" type="range" min="5000" max="18000" step="100" value="16000" aria-label="最高租金，每次調整 100 元" />
+            <input id="minRent" type="range" min="5000" max="45000" step="100" value="7000" aria-label="最低租金，每次調整 100 元" />
+            <input id="maxRent" type="range" min="5000" max="45000" step="100" value="16000" aria-label="最高租金，每次調整 100 元" />
           </div>
           <div class="range-values"><span id="minOutput">NT$ 7,000</span><span id="maxOutput">NT$ 16,000</span></div>
         </div>
@@ -703,8 +703,11 @@
       if (+minRent.value > +maxRent.value) [minRent.value, maxRent.value] = [maxRent.value, minRent.value];
       document.getElementById('minOutput').textContent = formatRent(minRent.value);
       document.getElementById('maxOutput').textContent = formatRent(maxRent.value);
-      const lower = ((minRent.value - 5000) / 13000) * 100;
-      const upper = ((maxRent.value - 5000) / 13000) * 100;
+      const rangeMinimum = Number(minRent.min);
+      const rangeMaximum = Number(maxRent.max);
+      const rangeSpan = rangeMaximum - rangeMinimum;
+      const lower = ((minRent.value - rangeMinimum) / rangeSpan) * 100;
+      const upper = ((maxRent.value - rangeMinimum) / rangeSpan) * 100;
       document.querySelector('.range-fill').style.cssText = `left:${lower}%;right:${100 - upper}%;`;
     };
     [minRent, maxRent].forEach((input) => input.addEventListener('input', updateRent));

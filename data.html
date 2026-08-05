@@ -1328,7 +1328,7 @@
 </div>
 <div class="simple-section-body">
 <div class="family-intro">
-<p>家庭成員資料由戶政及財稅資料帶入。姓名、出生年月日、身分證字號與所得不可修改；身分／社福識別可補充備註，系統判定項目會鎖定且不能修改。</p>
+<p>家庭成員資料由戶政及財稅資料帶入。姓名、出生年月日、身分證字號與所得不可修改；懷孕胎兒數可依現況填寫，家庭人口將同步計算。</p>
 </div>
 <div class="table-wrap family-table-wrap">
 <table class="family-table">
@@ -1351,7 +1351,7 @@
 <td data-label="出生年月日"><time class="plain-cell-text" datetime="1990-11-18">1990/11/18</time><input class="member-birth" name="memberBirth[]" type="hidden" value="1990-11-18"/></td>
 <td data-label="身分證字號"><span class="plain-cell-text">E234567789</span><input class="member-id" name="memberId[]" type="hidden" value="E234567789"/></td>
 <td data-label="最近一年所得"><span class="plain-cell-text">600,000 元</span><input class="member-income" name="memberIncome[]" type="hidden" value="600000"/></td>
-<td data-label="懷孕胎兒數"><span class="plain-cell-text">1</span><input class="member-fetus" name="memberFetus[]" type="hidden" value="1"/></td>
+<td data-label="懷孕胎兒數"><input class="member-fetus" name="memberFetus[]" type="number" min="0" step="1" inputmode="numeric" value="1" aria-label="王ＯＯ懷孕胎兒數"/></td>
 <td data-label="身分／社福識別"><div class="identity-tags member-identities"><span class="identity-tag neutral">一般身分</span></div></td>
 <td data-label="資料來源"><span class="plain-cell-text">查調取得</span></td>
 </tr>
@@ -1361,7 +1361,7 @@
 <td data-label="出生年月日"><time class="plain-cell-text" datetime="2012-04-23">2012/04/23</time><input class="member-birth" name="memberBirth[]" type="hidden" value="2012-04-23"/></td>
 <td data-label="身分證字號"><span class="plain-cell-text">N223456722</span><input class="member-id" name="memberId[]" type="hidden" value="N223456722"/></td>
 <td data-label="最近一年所得"><span class="plain-cell-text">0 元</span><input class="member-income" name="memberIncome[]" type="hidden" value="0"/></td>
-<td data-label="懷孕胎兒數"><span class="plain-cell-text">0</span><input class="member-fetus" name="memberFetus[]" type="hidden" value="0"/></td>
+<td data-label="懷孕胎兒數"><input class="member-fetus" name="memberFetus[]" type="number" min="0" step="1" inputmode="numeric" value="0" aria-label="陳ＯＯ懷孕胎兒數"/></td>
 <td data-label="身分／社福識別"><div class="identity-tags member-identities"><span class="identity-tag neutral">一般身分</span></div></td>
 <td data-label="資料來源"><span class="plain-cell-text">查調取得</span></td>
 </tr>
@@ -1371,7 +1371,7 @@
 <td data-label="出生年月日"><time class="plain-cell-text" datetime="1958-02-08">1958/02/08</time><input class="member-birth" name="memberBirth[]" type="hidden" value="1958-02-08"/></td>
 <td data-label="身分證字號"><span class="plain-cell-text">B223456780</span><input class="member-id" name="memberId[]" type="hidden" value="B223456780"/></td>
 <td data-label="最近一年所得"><span class="plain-cell-text">180,000 元</span><input class="member-income" name="memberIncome[]" type="hidden" value="180000"/></td>
-<td data-label="懷孕胎兒數"><span class="plain-cell-text">0</span><input class="member-fetus" name="memberFetus[]" type="hidden" value="0"/></td>
+<td data-label="懷孕胎兒數"><input class="member-fetus" name="memberFetus[]" type="number" min="0" step="1" inputmode="numeric" value="0" aria-label="林ＯＯ懷孕胎兒數"/></td>
 <td data-label="身分／社福識別"><div class="identity-tags member-identities"><span class="identity-tag system-identity">六十五歲以上之老人</span></div></td>
 <td data-label="資料來源"><span class="plain-cell-text">查調取得</span></td>
 </tr>
@@ -1379,7 +1379,7 @@
 </table>
 </div>
 <div class="family-summary-bar" aria-live="polite">
-<span>家庭人口（含胎兒）<strong id="familyMemberCount">5</strong>人</span>
+<span>家庭人口（含胎兒）數<strong id="familyMemberCount">5</strong>人</span>
 <span>家庭年所得總額<strong id="familyIncomeTotal">1,500,000</strong>元</span>
 <span>每人每月平均<strong id="familyMonthlyAverage">31,250</strong>元</span>
 </div>
@@ -2263,7 +2263,10 @@
       const rows = [...familyTableBody.querySelectorAll('tr')];
       rows.forEach(row => {applyMemberSexState(row);updateMemberIdentities(row)});
       const total = rows.reduce((sum,row) => sum + (Number(row.querySelector('.member-income')?.value) || 0),0);
-      const fetuses = rows.reduce((sum,row) => sum + (Number(row.querySelector('.member-fetus')?.value) || 0),0);
+      const fetuses = rows.reduce((sum,row) => {
+        const value = Number(row.querySelector('.member-fetus')?.value);
+        return sum + (Number.isFinite(value) && value > 0 ? Math.floor(value) : 0);
+      },0);
       const householdSize = rows.length + fetuses;
       const average = householdSize ? Math.round(total / householdSize / 12) : 0;
       const format = value => Number(value).toLocaleString('zh-TW');
@@ -2280,7 +2283,11 @@
       const required = fetusCount > 0;
       row.hidden = !required;
       file.required = false;
-      if(!required) file.value = '';
+      if(!required){
+        file.value = '';
+        const fileName = document.querySelector('[data-file-name-for="fetusDocument"]');
+        if(fileName) fileName.textContent = '尚未選擇檔案';
+      }
     }
 
     familyTableBody?.addEventListener('input',event => {
@@ -2289,7 +2296,11 @@
     });
 
     familyTableBody?.addEventListener('change',event => {
-      if(event.target.matches('.member-relation,.member-birth')) updateFamilySummary();
+      if(event.target.matches('.member-fetus')){
+        const value = Number(event.target.value);
+        event.target.value = String(Number.isFinite(value) && value > 0 ? Math.floor(value) : 0);
+      }
+      if(event.target.matches('.member-relation,.member-birth,.member-fetus')) updateFamilySummary();
     });
 
     prepareIdentityControls();
