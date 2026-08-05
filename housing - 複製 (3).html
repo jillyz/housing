@@ -211,7 +211,7 @@
 
     .housing-explorer { position: relative; z-index: 0; padding: 88px 40px 96px; overflow: hidden; background: #f7fbfa; }
     .housing-explorer::before { content: ""; position: absolute; top: -180px; left: -140px; width: 430px; height: 430px; border-radius: 50%; background: radial-gradient(circle, rgba(34,166,164,.11), transparent 68%); }
-    .explorer-inner { position: relative; width: min(1440px, 100%); margin: 0 auto; }
+    .explorer-inner { position: relative; width: min(1320px, 100%); margin: 0 auto; }
     .explorer-head { text-align: center; }
     .explorer-kicker { display: flex; align-items: center; justify-content: center; gap: 18px; color: var(--teal); font-family: var(--serif); font-size: 28px; font-weight: 900; letter-spacing: .18em; }
     .explorer-kicker::before, .explorer-kicker::after { content: ""; width: 54px; height: 3px; border-radius: 99px; background: linear-gradient(90deg, transparent, #38a6ad); }
@@ -219,43 +219,15 @@
     .explorer-head h2 { margin: 18px 0 0; color: var(--ink); font-family: var(--serif); font-size: clamp(31px, 3.2vw, 43px); letter-spacing: .06em; }
     .explorer-head p { margin: 12px 0 0; color: #657277; font-size: 16px; letter-spacing: .04em; }
 
-    .explorer-filters { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); align-items: end; gap: 18px 14px; margin-top: 38px; padding: 24px; border: 1px solid rgba(116,161,162,.28); border-radius: 22px; background: rgba(255,255,255,.94); box-shadow: 0 16px 35px rgba(41,87,88,.1); scroll-margin-top: 156px; }
+    .explorer-filters { display: grid; grid-template-columns: 1.45fr repeat(3, minmax(150px, .8fr)) 1.35fr auto auto; align-items: end; gap: 14px; margin-top: 38px; padding: 23px; border: 1px solid rgba(116,161,162,.28); border-radius: 22px; background: rgba(255,255,255,.9); box-shadow: 0 16px 35px rgba(41,87,88,.1); scroll-margin-top: 156px; }
     .explorer-field { min-width: 0; display: grid; gap: 8px; }
-    .explorer-field > span, .status-field > span, .multi-select-field > span { color: #31545a; font-size: 13px; font-weight: 900; letter-spacing: .06em; }
+    .explorer-field > span, .status-field > span { color: #31545a; font-size: 13px; font-weight: 900; letter-spacing: .06em; }
     .explorer-field input, .explorer-field select { width: 100%; height: 47px; padding: 0 13px; border: 1px solid #cad9da; border-radius: 11px; color: #41565b; background: #fff; outline: none; }
     .explorer-field input:focus, .explorer-field select:focus { border-color: var(--teal); box-shadow: 0 0 0 4px rgba(0,121,131,.1); }
-    .keyword-field { grid-column: span 3; }
-    .compact-field { grid-column: span 2; }
-    .status-field { min-width: 0; display: grid; grid-column: span 3; gap: 9px; }
+    .status-field { min-width: 205px; display: grid; gap: 9px; }
     .status-options { min-height: 47px; display: flex; align-items: center; gap: 10px; padding: 0 12px; border: 1px solid #cad9da; border-radius: 11px; background: #fff; }
     .status-options label { display: inline-flex; align-items: center; gap: 5px; color: #52656a; white-space: nowrap; font-size: 13px; font-weight: 700; }
     .status-options input { width: 16px; height: 16px; accent-color: var(--teal); }
-    .multi-select-field { position: relative; min-width: 0; display: grid; grid-column: span 4; gap: 8px; }
-    .multi-select { position: relative; }
-    .multi-select summary { height: 47px; display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 0 13px; border: 1px solid #cad9da; border-radius: 11px; color: #41565b; background: #fff; cursor: pointer; list-style: none; transition: border-color .18s ease, box-shadow .18s ease; }
-    .multi-select summary::-webkit-details-marker { display: none; }
-    .multi-select summary::after { content: ""; width: 8px; height: 8px; flex: 0 0 auto; margin: -4px 3px 0 0; border-right: 2px solid #668085; border-bottom: 2px solid #668085; transform: rotate(45deg); transition: transform .18s ease; }
-    .multi-select[open] summary { border-color: var(--teal); box-shadow: 0 0 0 4px rgba(0,121,131,.1); }
-    .multi-select[open] summary::after { margin-top: 4px; transform: rotate(225deg); }
-    .multi-summary { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .multi-count { min-width: 23px; height: 23px; display: grid; place-items: center; margin-left: auto; border-radius: 999px; color: #fff; background: var(--teal); font-size: 11px; font-weight: 900; }
-    .multi-count[hidden] { display: none; }
-    .multi-options { position: absolute; z-index: 650; top: calc(100% + 8px); left: 0; width: max(100%, 270px); max-height: 310px; display: grid; gap: 4px; padding: 10px; overflow: auto; border: 1px solid #cbdcdb; border-radius: 14px; background: #fff; box-shadow: 0 18px 38px rgba(34,74,78,.18); }
-    .multi-options label { display: flex; align-items: flex-start; gap: 10px; padding: 9px 10px; border-radius: 9px; color: #405a5e; cursor: pointer; font-size: 13px; line-height: 1.35; transition: background .16s ease; }
-    .multi-options label:hover { background: #eef8f6; }
-    .multi-options input { width: 17px; height: 17px; flex: 0 0 auto; margin-top: 1px; accent-color: var(--teal); }
-    .multi-options small { display: block; margin-top: 2px; color: #829093; font-size: 11px; }
-    .filter-actions { min-width: 0; display: grid; grid-column: span 4; grid-template-columns: minmax(0, 1fr) minmax(0, .82fr); gap: 10px; }
-    .filter-guidance { grid-column: 1 / -1; display: flex; align-items: center; gap: 7px; margin: -2px 0 0; color: #748589; font-size: 12px; line-height: 1.5; }
-    .filter-guidance::before { content: "i"; width: 18px; height: 18px; flex: 0 0 auto; display: grid; place-items: center; border-radius: 50%; color: #087982; background: #e8f5f3; font-family: Georgia, serif; font-size: 12px; font-weight: 900; }
-    .active-multi-selections { min-width: 0; grid-column: 1 / -1; display: flex; align-items: center; gap: 10px; padding-top: 13px; border-top: 1px solid #e1ecea; }
-    .active-multi-selections[hidden] { display: none; }
-    .active-selection-label { flex: 0 0 auto; color: #31545a; font-size: 12px; font-weight: 900; }
-    .active-selection-chips { min-width: 0; display: flex; flex-wrap: wrap; gap: 7px; }
-    .active-selection-chip { min-height: 30px; display: inline-flex; align-items: center; gap: 5px; padding: 0 9px 0 10px; border: 1px solid #b9d9d6; border-radius: 999px; color: #17686e; background: #eef9f7; font-size: 11px; font-weight: 850; }
-    .active-selection-chip span { color: #708184; font-weight: 700; }
-    .active-selection-chip b { width: 16px; height: 16px; display: grid; place-items: center; border-radius: 50%; color: #fff; background: #278f93; font-size: 12px; line-height: 1; }
-    .active-selection-chip:hover { border-color: #18878c; background: #e4f6f3; }
     .filter-button, .reset-button { height: 47px; padding: 0 22px; border-radius: 24px; font-weight: 900; white-space: nowrap; }
     .filter-button { border: 0; color: #fff; background: linear-gradient(135deg,#078b92,#00646f); box-shadow: 0 8px 17px rgba(0,101,111,.18); }
     .reset-button { border: 1px solid #c8d9da; color: #52666b; background: #fff; }
@@ -263,7 +235,7 @@
     .reset-button:hover { color: var(--teal); border-color: var(--teal); }
     .county-all.active { color: #fff; border-color: var(--teal); background: var(--teal); }
 
-    .explorer-layout { display: grid; grid-template-columns: minmax(560px, 1.14fr) minmax(440px, .86fr); gap: 22px; margin-top: 28px; }
+    .explorer-layout { display: grid; grid-template-columns: minmax(430px, .88fr) minmax(0, 1.42fr); gap: 28px; margin-top: 28px; }
     .county-panel, .housing-results { border: 1px solid rgba(116,161,162,.25); border-radius: 25px; background: rgba(255,255,255,.92); box-shadow: 0 16px 38px rgba(41,87,88,.09); }
     .county-panel { scroll-margin-top: 150px; }
     .panel-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 22px 24px 17px; border-bottom: 1px solid #e0ebea; }
@@ -277,8 +249,8 @@
     .map-mode-button:hover { color: var(--teal); }
     .map-mode-button.active { color: #fff; background: linear-gradient(135deg,#0a9298,#00727b); box-shadow: 0 5px 12px rgba(0,111,120,.2); }
     .map-view[hidden] { display: none !important; }
-    .county-map { position: relative; width: min(500px, 100%); height: 720px; margin: 0 auto; overflow: hidden; }
-    .taiwan-map { display: block; width: auto; max-width: calc(100% - 20px); height: 690px; margin: 14px auto 0; filter: drop-shadow(0 16px 18px rgba(24,99,99,.11)); }
+    .county-map { position: relative; width: min(440px, 100%); height: 650px; margin: 0 auto; overflow: hidden; }
+    .taiwan-map { display: block; width: auto; max-width: calc(100% - 20px); height: 620px; margin: 14px auto 0; filter: drop-shadow(0 16px 18px rgba(24,99,99,.11)); }
     .taiwan-map .city { cursor: pointer; outline: none; }
     .taiwan-map .city path { fill: #dfe8e7 !important; stroke: #fff; stroke-width: 1.3; transition: fill .16s ease, filter .16s ease; }
     .taiwan-map .city:hover path, .taiwan-map .city.active path, .taiwan-map .city:focus-visible path { fill: #00858c !important; filter: brightness(1.03); }
@@ -286,18 +258,9 @@
     .taiwan-map-text { fill: #3c4c54; font-size: 16px; font-weight: 800; pointer-events: none; transition: fill .16s ease; }
     .taiwan-map-text.active { fill: #fff; }
     .island-note { position: absolute; right: 19px; bottom: 12px; color: #849295; font-size: 11px; }
-    .google-map-view { height: 720px; padding: 14px 16px 16px; }
-    .google-map-shell { height: 100%; display: grid; grid-template-rows: auto minmax(0, 1fr) auto; gap: 10px; }
-    .map-facility-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-    .map-facility-copy { min-width: 112px; display: grid; gap: 1px; }
-    .map-facility-copy strong { color: #31545a; font-size: 13px; }
-    .map-facility-copy span { color: #7b8b8e; font-size: 10px; white-space: nowrap; }
-    .facility-filter-chips { min-width: 0; display: flex; align-items: center; justify-content: flex-end; gap: 6px; overflow-x: auto; scrollbar-width: none; }
-    .facility-filter-chips::-webkit-scrollbar { display: none; }
-    .facility-filter-chip { min-height: 32px; flex: 0 0 auto; padding: 0 10px; border: 1px solid #c9dcda; border-radius: 999px; color: #5a7074; background: #fff; font-size: 11px; font-weight: 800; white-space: nowrap; transition: color .16s ease, background .16s ease, border-color .16s ease; }
-    .facility-filter-chip:hover { color: var(--teal); border-color: #79bbb9; }
-    .facility-filter-chip[aria-pressed="true"] { color: #fff; border-color: #087f87; background: #087f87; }
-    .interactive-housing-map { width: 100%; height: 100%; min-height: 560px; display: block; overflow: hidden; border: 1px solid rgba(68,121,122,.18); border-radius: 16px; background: #e9f1f0; box-shadow: inset 0 0 0 1px rgba(68,121,122,.08); cursor: grab; }
+    .google-map-view { height: 650px; padding: 16px; }
+    .google-map-shell { height: 100%; display: grid; grid-template-rows: minmax(0, 1fr) auto; gap: 12px; }
+    .interactive-housing-map { width: 100%; height: 100%; min-height: 540px; display: block; overflow: hidden; border: 1px solid rgba(68,121,122,.18); border-radius: 16px; background: #e9f1f0; box-shadow: inset 0 0 0 1px rgba(68,121,122,.08); cursor: grab; }
     .interactive-housing-map:active { cursor: grabbing; }
     .interactive-housing-map .leaflet-control-zoom a { color: var(--teal); }
     .interactive-housing-map .leaflet-popup-content { margin: 14px 16px; color: #40575b; font-family: var(--sans); line-height: 1.55; }
@@ -308,19 +271,6 @@
     .housing-map-marker .pin-body { fill: #007e88; stroke: #fff; stroke-width: 2; }
     .housing-map-marker .pin-center { fill: #fff; }
     .housing-map-label { margin-top: 4px; padding: 6px 10px; border: 1px solid rgba(0,126,136,.28); border-radius: 999px; color: #005c65; background: rgba(255,255,255,.96); box-shadow: 0 4px 12px rgba(0,72,80,.18); font-size: 13px; font-weight: 900; line-height: 1.25; white-space: nowrap; }
-    .facility-pin-wrapper { width: auto !important; height: auto !important; overflow: visible; border: 0; background: transparent; }
-    .facility-map-marker { --facility-color: #617c80; display: flex; align-items: center; gap: 6px; width: max-content; }
-    .facility-map-marker[data-category="transit"] { --facility-color: #3f72d8; }
-    .facility-map-marker[data-category="education"] { --facility-color: #9b6e21; }
-    .facility-map-marker[data-category="park"] { --facility-color: #358558; }
-    .facility-map-marker[data-category="medical"] { --facility-color: #d45555; }
-    .facility-map-marker[data-category="dining"] { --facility-color: #b65d28; }
-    .facility-map-symbol { width: 31px; height: 31px; flex: 0 0 auto; display: grid; place-items: center; border: 2px solid #fff; border-radius: 50% 50% 50% 8px; color: #fff; background: var(--facility-color); box-shadow: 0 4px 10px rgba(41,72,76,.24); font-size: 14px; font-weight: 900; transform: rotate(-45deg); }
-    .facility-map-symbol span { transform: rotate(45deg); }
-    .facility-map-label { display: grid; gap: 1px; padding: 5px 8px; border: 1px solid color-mix(in srgb, var(--facility-color) 38%, white); border-radius: 8px; color: #334f53; background: rgba(255,255,255,.96); box-shadow: 0 3px 10px rgba(41,72,76,.14); font-size: 11px; font-weight: 850; line-height: 1.2; white-space: nowrap; }
-    .facility-map-name { overflow: hidden; text-overflow: ellipsis; }
-    .facility-map-label small { color: var(--facility-color); font-size: 10px; font-weight: 900; }
-    .facility-distance-note { display: block; margin-top: 5px; color: #6d7f82; font-size: 11px; }
     .google-map-footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; color: #718185; font-size: 12px; }
     .google-map-actions { display: inline-flex; align-items: center; gap: 10px; }
     .map-show-all { min-height: 38px; padding: 0 15px; border: 1px solid #88c5c3; border-radius: 999px; color: #007983; background: #fff; font-size: 13px; font-weight: 900; white-space: nowrap; transition: color .18s ease, background .18s ease, border-color .18s ease; }
@@ -330,10 +280,9 @@
 
     .housing-results { min-width: 0; overflow: hidden; }
     .result-summary strong { color: var(--teal); font-size: 20px; }
-    .housing-list { max-height: 720px; display: grid; gap: 14px; padding: 18px; overflow: auto; scrollbar-color: #8fc1c0 #eef5f4; }
-    .housing-card { display: grid; grid-template-columns: 132px minmax(0,1fr); min-height: 188px; overflow: hidden; border: 1px solid #d9e6e5; border-radius: 18px; background: #fff; transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
+    .housing-list { max-height: 650px; display: grid; gap: 14px; padding: 18px; overflow: auto; scrollbar-color: #8fc1c0 #eef5f4; }
+    .housing-card { display: grid; grid-template-columns: 148px minmax(0,1fr); min-height: 188px; overflow: hidden; border: 1px solid #d9e6e5; border-radius: 18px; background: #fff; transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
     .housing-card:hover { transform: translateY(-2px); border-color: rgba(0,121,131,.36); box-shadow: 0 13px 25px rgba(38,87,88,.1); }
-    .housing-card.is-compare-selected { border-color: #6f83aa; box-shadow: inset 0 0 0 1px #6f83aa, 0 10px 24px rgba(58,76,112,.1); }
     .housing-card-media { position: relative; display: grid; place-items: center; overflow: hidden; color: rgba(255,255,255,.92); background: linear-gradient(145deg,var(--card-a,#3c9ca1),var(--card-b,#175e68)); }
     .housing-card-media::before { content: ""; position: absolute; z-index: 1; inset: 0; opacity: .28; background: repeating-linear-gradient(125deg,transparent 0 20px,rgba(255,255,255,.2) 21px 22px); }
     .housing-card-media.has-photo::before { opacity: 1; background: linear-gradient(180deg,rgba(5,44,49,.2),transparent 42%,rgba(5,44,49,.08)); }
@@ -354,80 +303,28 @@
     .housing-agency strong { font-size: 12px; font-weight: 800; }
     .housing-meta { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 12px; }
     .housing-meta span { padding: 5px 9px; border-radius: 999px; color: #3b686d; background: #edf7f5; font-size: 12px; font-weight: 700; }
-    .housing-fit-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 9px; }
-    .housing-fit-tags span { padding: 4px 7px; border: 1px solid #dbe8e6; border-radius: 6px; color: #60777a; background: #fafcfc; font-size: 10px; font-weight: 800; }
-    .housing-fit-tags span::before { content: "✓"; margin-right: 3px; color: #0b8b91; }
     .housing-card p { display: -webkit-box; margin: 11px 0 0; overflow: hidden; color: #68777b; font-size: 13px; line-height: 1.65; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
     .housing-card-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; margin-top: 13px; padding-top: 12px; border-top: 1px solid #e4eeed; }
-    .detail-link { min-width: 108px; height: 38px; display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 0 12px; border: 1px solid #c2d8d6; border-radius: 999px; color: #315e63; background: #f7fbfa; font-size: 13px; font-weight: 900; letter-spacing: .04em; text-decoration: none; transition: color .18s ease, background .18s ease, border-color .18s ease, transform .18s ease; }
+    .detail-link { min-width: 112px; height: 38px; display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 0 14px; border: 1px solid #c2d8d6; border-radius: 999px; color: #315e63; background: #f7fbfa; font-size: 13px; font-weight: 900; letter-spacing: .04em; text-decoration: none; transition: color .18s ease, background .18s ease, border-color .18s ease, transform .18s ease; }
     .detail-link:hover { color: #fff; border-color: #315e63; background: #315e63; transform: translateY(-1px); }
-    .subscribe-button { min-width: 120px; height: 38px; display: inline-flex; align-items: center; justify-content: center; gap: 7px; padding: 0 12px; border: 1px solid #87c8c5; border-radius: 999px; color: #007983; background: #fff; font-size: 13px; font-weight: 900; letter-spacing: .04em; transition: color .18s ease, background .18s ease, border-color .18s ease, transform .18s ease; }
+    .subscribe-button { min-width: 126px; height: 38px; display: inline-flex; align-items: center; justify-content: center; gap: 7px; padding: 0 15px; border: 1px solid #87c8c5; border-radius: 999px; color: #007983; background: #fff; font-size: 13px; font-weight: 900; letter-spacing: .04em; transition: color .18s ease, background .18s ease, border-color .18s ease, transform .18s ease; }
     .subscribe-button::before { content: "+"; width: 18px; height: 18px; display: grid; place-items: center; border-radius: 50%; color: #fff; background: #13969b; font-size: 15px; line-height: 1; }
     .subscribe-button:hover { border-color: #007983; background: #edf9f7; transform: translateY(-1px); }
     .subscribe-button[aria-pressed="true"] { color: #fff; border-color: #007983; background: linear-gradient(135deg,#13999b,#00717a); box-shadow: 0 6px 14px rgba(0,121,131,.18); }
     .subscribe-button[aria-pressed="true"]::before { content: "✓"; color: #007983; background: #fff; font-size: 12px; font-weight: 900; }
-    .compare-button { min-width: 104px; height: 38px; display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 0 12px; border: 1px solid #c3cfe4; border-radius: 999px; color: #4b5f86; background: #f8f9fd; font-size: 13px; font-weight: 900; letter-spacing: .04em; transition: color .18s ease, background .18s ease, border-color .18s ease, transform .18s ease; }
-    .compare-button::before { content: "⇄"; font-size: 15px; font-weight: 900; }
-    .compare-button:hover { color: #30466f; border-color: #8196c0; background: #f0f3fa; transform: translateY(-1px); }
-    .compare-button[aria-pressed="true"] { color: #fff; border-color: #4d648e; background: linear-gradient(135deg,#647aa4,#40577f); box-shadow: 0 6px 14px rgba(58,76,112,.18); }
-    .compare-button[aria-pressed="true"]::before { content: "✓"; }
     .subscribe-notice { position: fixed; z-index: 1200; right: 28px; bottom: 28px; max-width: calc(100vw - 40px); padding: 12px 18px; border-radius: 13px; color: #fff; background: #075f69; box-shadow: 0 12px 30px rgba(7,68,74,.28); font-size: 14px; font-weight: 800; opacity: 0; transform: translateY(12px); pointer-events: none; transition: opacity .2s ease, transform .2s ease; }
     .subscribe-notice.show { opacity: 1; transform: translateY(0); }
     .housing-empty { display: none; min-height: 300px; place-items: center; padding: 40px; color: #728185; text-align: center; }
     .housing-empty.visible { display: grid; }
 
-    .compare-tray { position: fixed; z-index: 1050; right: 112px; bottom: 18px; left: 50%; width: min(900px, calc(100vw - 160px)); min-height: 70px; display: grid; grid-template-columns: auto minmax(0, 1fr) auto auto; align-items: center; gap: 14px; padding: 12px 14px 12px 18px; border: 1px solid rgba(103,135,157,.32); border-radius: 20px; background: rgba(255,255,255,.97); box-shadow: 0 18px 48px rgba(27,63,70,.22); transform: translateX(-50%); backdrop-filter: blur(16px); }
-    .compare-tray[hidden] { display: none; }
-    .compare-tray-copy { display: grid; gap: 2px; white-space: nowrap; }
-    .compare-tray-copy strong { color: #283f62; font-size: 15px; }
-    .compare-tray-copy span { color: #758286; font-size: 11px; }
-    .compare-selection { min-width: 0; display: flex; align-items: center; gap: 7px; overflow-x: auto; scrollbar-width: none; }
-    .compare-selection::-webkit-scrollbar { display: none; }
-    .compare-project-chip { min-height: 34px; flex: 0 0 auto; display: inline-flex; align-items: center; gap: 6px; padding: 0 8px 0 11px; border: 1px solid #d4dce9; border-radius: 999px; color: #405579; background: #f5f7fb; font-size: 12px; font-weight: 850; }
-    .compare-project-chip button { width: 19px; height: 19px; display: grid; place-items: center; padding: 0; border: 0; border-radius: 50%; color: #657491; background: #e3e8f1; font-size: 14px; line-height: 1; }
-    .compare-project-chip button:hover { color: #fff; background: #526789; }
-    .compare-clear-button { min-height: 38px; padding: 0 12px; border: 0; color: #6e7b80; background: transparent; font-size: 12px; font-weight: 850; white-space: nowrap; }
-    .compare-clear-button:hover { color: #30466f; }
-    .compare-open-button { min-height: 42px; padding: 0 19px; border: 0; border-radius: 999px; color: #fff; background: linear-gradient(135deg,#5d739e,#354e79); box-shadow: 0 8px 18px rgba(53,78,121,.22); font-size: 13px; font-weight: 900; white-space: nowrap; }
-    .compare-open-button:disabled { color: #8a969a; background: #e7ecec; box-shadow: none; cursor: not-allowed; }
-    body.has-compare-selection .chat-support { bottom: 108px; }
-
-    dialog.compare-dialog { width: min(1120px, calc(100% - 32px)); max-height: min(820px, calc(100vh - 40px)); border-radius: 24px; }
-    .compare-dialog-shell { display: grid; grid-template-rows: auto minmax(0, 1fr) auto; max-height: min(820px, calc(100vh - 40px)); background: #f8fbfb; }
-    .compare-dialog-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; padding: 24px 26px 18px; border-bottom: 1px solid #dde8e7; background: #fff; }
-    .compare-dialog-head span { display: block; margin-bottom: 5px; color: #087982; font-size: 12px; font-weight: 900; letter-spacing: .1em; }
-    .compare-dialog-head h2 { margin: 0; color: var(--ink); font-family: var(--serif); font-size: 28px; }
-    .compare-dialog-close { width: 40px; height: 40px; flex: 0 0 auto; display: grid; place-items: center; padding: 0; border: 1px solid #d7e2e1; border-radius: 50%; color: #52666b; background: #fff; font-size: 23px; line-height: 1; }
-    .compare-dialog-close:hover { color: #fff; border-color: #3c557d; background: #3c557d; }
-    .compare-table-wrap { min-height: 0; padding: 18px 22px 10px; overflow: auto; }
-    .compare-table { width: 100%; min-width: 720px; border-collapse: separate; border-spacing: 0; overflow: hidden; border: 1px solid #dce7e6; border-radius: 16px; background: #fff; }
-    .compare-table th, .compare-table td { padding: 14px 15px; border-right: 1px solid #e3ebea; border-bottom: 1px solid #e3ebea; color: #506469; font-size: 13px; line-height: 1.6; text-align: left; vertical-align: top; }
-    .compare-table tr:last-child th, .compare-table tr:last-child td { border-bottom: 0; }
-    .compare-table th:last-child, .compare-table td:last-child { border-right: 0; }
-    .compare-table thead th { position: sticky; z-index: 2; top: 0; color: #2f496e; background: #f3f6fa; font-size: 15px; }
-    .compare-table thead th:first-child { z-index: 4; left: 0; width: 126px; color: #6f7f83; background: #f8fbfb; font-size: 12px; box-shadow: 5px 0 10px rgba(51,77,82,.04); }
-    .compare-project-head { min-width: 175px; display: flex; align-items: center; gap: 11px; }
-    .compare-project-head img { width: 74px; height: 54px; flex: 0 0 auto; border-radius: 10px; object-fit: cover; background: #dfe9e8; box-shadow: 0 2px 8px rgba(45,70,76,.12); }
-    .compare-project-head span { color: #2f496e; font-weight: 900; line-height: 1.4; }
-    .compare-table tbody th { position: sticky; z-index: 1; left: 0; width: 126px; color: #35575d; background: #f8fbfb; box-shadow: 5px 0 10px rgba(51,77,82,.04); font-size: 12px; font-weight: 900; white-space: nowrap; }
-    .compare-table td strong { color: #223e45; }
-    .compare-table td.is-best { color: #087982; background: #f0faf7; font-weight: 900; }
-    .compare-table-badges { display: flex; flex-wrap: wrap; gap: 5px; }
-    .compare-table-badges span { padding: 3px 7px; border-radius: 999px; color: #47666b; background: #eaf5f3; font-size: 11px; font-weight: 800; }
-    .compare-dialog-foot { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 24px 20px; border-top: 1px solid #dde8e7; background: #fff; }
-    .compare-dialog-foot p { margin: 0; color: #77878a; font-size: 11px; line-height: 1.6; }
-    .compare-dialog-foot button { min-height: 40px; flex: 0 0 auto; padding: 0 18px; border: 0; border-radius: 999px; color: #fff; background: #3c557d; font-size: 13px; font-weight: 900; }
-
     @media (max-width: 1180px) {
-      .explorer-filters { grid-template-columns: repeat(6, minmax(0, 1fr)); }
-      .keyword-field, .status-field { grid-column: span 3; }
-      .compact-field { grid-column: span 2; }
-      .multi-select-field, .filter-actions { grid-column: span 3; }
-      .filter-actions .filter-button, .filter-actions .reset-button { width: 100%; }
+      .explorer-filters { grid-template-columns: repeat(3, 1fr); }
+      .explorer-field.keyword-field, .status-field { grid-column: span 2; }
+      .filter-button, .reset-button { width: 100%; }
       .panel-tools .county-all { width: auto; }
-      .explorer-layout { grid-template-columns: minmax(500px,1.05fr) minmax(400px,.95fr); }
+      .explorer-layout { grid-template-columns: minmax(380px,.8fr) minmax(0,1.2fr); }
     }
-    @media (max-width: 1040px) {
+    @media (max-width: 960px) {
       .housing-explorer { padding-right: 25px; padding-left: 25px; }
       .explorer-layout { grid-template-columns: 1fr; }
       .county-map { width: min(520px,100%); }
@@ -439,11 +336,8 @@
       .explorer-kicker::before, .explorer-kicker::after { width: 34px; }
       .explorer-head p { font-size: 14px; line-height: 1.7; }
       .explorer-filters { grid-template-columns: 1fr; padding: 18px; }
-      .keyword-field, .compact-field, .status-field, .multi-select-field, .filter-actions { grid-column: auto; }
+      .explorer-field.keyword-field, .status-field { grid-column: auto; }
       .status-options { justify-content: space-between; }
-      .multi-options { position: static; width: 100%; margin-top: 7px; box-shadow: none; }
-      .filter-guidance { align-items: flex-start; }
-      .active-multi-selections { align-items: flex-start; flex-direction: column; }
       .panel-heading { align-items: flex-start; flex-direction: column; }
       .panel-tools { width: 100%; align-items: stretch; flex-direction: column; }
       .map-mode-switch { width: 100%; }
@@ -452,39 +346,16 @@
       .county-map { height: 620px; }
       .taiwan-map { height: 585px; max-width: 100%; }
       .google-map-view { height: auto; min-height: 560px; padding: 12px; }
-      .google-map-shell { grid-template-rows: auto minmax(460px, 1fr) auto; }
-      .map-facility-bar { align-items: flex-start; flex-direction: column; }
-      .map-facility-copy { width: 100%; }
-      .facility-filter-chips { width: 100%; justify-content: flex-start; padding-bottom: 2px; }
-      .facility-map-name { display: none; }
-      .facility-map-label { padding: 4px 6px; }
-      .interactive-housing-map { min-height: 460px; }
+      .google-map-shell { grid-template-rows: minmax(480px, 1fr) auto; }
+      .interactive-housing-map { min-height: 480px; }
       .google-map-footer { align-items: flex-start; flex-direction: column; }
       .google-map-actions { width: 100%; justify-content: space-between; }
       .housing-card { grid-template-columns: 1fr; }
       .housing-card-media { min-height: 135px; }
       .housing-card-top { flex-direction: column; gap: 7px; }
-      .housing-card-actions { display: grid; grid-template-columns: repeat(3, 1fr); }
-      .detail-link, .subscribe-button, .compare-button { width: 100%; min-width: 0; height: 42px; padding-right: 8px; padding-left: 8px; }
-      .detail-link, .subscribe-button, .compare-button { font-size: 0; }
-      .detail-link::after, .subscribe-button::after, .compare-button::after { font-size: 12px; }
-      .detail-link::after { content: "詳情 ↗"; }
-      .subscribe-button::after { content: "追蹤"; }
-      .subscribe-button[aria-pressed="true"]::after { content: "已追蹤"; }
-      .compare-button::after { content: "比較"; }
-      .compare-button[aria-pressed="true"]::after { content: "已比較"; }
+      .housing-card-actions { display: grid; grid-template-columns: 1fr 1fr; }
+      .detail-link, .subscribe-button { width: 100%; min-width: 0; height: 42px; }
       .subscribe-notice { right: 16px; bottom: 16px; left: 16px; max-width: none; text-align: center; }
-      .compare-tray { right: 12px; bottom: 12px; left: 12px; width: auto; min-height: 0; grid-template-columns: minmax(0, 1fr) auto; gap: 9px; padding: 11px 12px; border-radius: 17px; transform: none; }
-      .compare-tray-copy { display: none; }
-      .compare-selection { grid-column: 1 / -1; }
-      .compare-clear-button { justify-self: end; }
-      .compare-open-button { min-height: 40px; padding: 0 16px; }
-      body.has-compare-selection .chat-support { bottom: 140px; }
-      .compare-dialog-head { padding: 20px 18px 15px; }
-      .compare-dialog-head h2 { font-size: 23px; }
-      .compare-table-wrap { padding: 12px; }
-      .compare-dialog-foot { align-items: stretch; flex-direction: column; padding: 12px 16px 16px; }
-      .compare-dialog-foot button { width: 100%; }
     }
 
     .site-footer { position: relative; padding: 0 48px; overflow: hidden; color: #e7f2f1; background: radial-gradient(circle at 82% -40%, rgba(23,152,157,.3), transparent 38%), linear-gradient(135deg, #123d45, #092d34); }
@@ -700,47 +571,17 @@
         <div class="explorer-head">
           <span class="explorer-kicker">尋找社宅</span>
           <h2 id="housing-title">從縣市與需求，找到適合的社宅</h2>
-          <p>依居住條件與生活需求交叉篩選，直接比較社宅周邊機能與距離。</p>
+          <p>依地區、房型、租金與興建狀態篩選，快速查看各縣市社會住宅資訊。</p>
         </div>
 
         <form class="explorer-filters" id="housingFilters" aria-label="社會住宅查詢條件">
           <label class="explorer-field keyword-field"><span>社宅名稱</span><input id="housingKeyword" type="search" placeholder="請輸入社宅名稱" /></label>
-          <label class="explorer-field compact-field"><span>縣市</span><select id="housingCounty"><option value="">全臺灣</option><option>基隆市</option><option>臺北市</option><option>新北市</option><option>桃園市</option><option>新竹市</option><option>新竹縣</option><option>苗栗縣</option><option>臺中市</option><option>彰化縣</option><option>南投縣</option><option>雲林縣</option><option>嘉義市</option><option>嘉義縣</option><option>臺南市</option><option>高雄市</option><option>屏東縣</option><option>宜蘭縣</option><option>花蓮縣</option><option>臺東縣</option><option>澎湖縣</option><option>金門縣</option><option>連江縣</option></select></label>
-          <label class="explorer-field compact-field"><span>房型</span><select id="housingRoom"><option value="">全部房型</option><option value="套房">套房</option><option value="一房">一房型</option><option value="二房">二房型</option><option value="三房">三房型</option></select></label>
-          <label class="explorer-field compact-field"><span>每月租金</span><select id="housingRent"><option value="">不限租金</option><option value="10000">10,000 元以下</option><option value="20000">20,000 元以下</option><option value="30000">30,000 元以下</option></select></label>
+          <label class="explorer-field"><span>縣市</span><select id="housingCounty"><option value="">全臺灣</option><option>基隆市</option><option>臺北市</option><option>新北市</option><option>桃園市</option><option>新竹市</option><option>新竹縣</option><option>苗栗縣</option><option>臺中市</option><option>彰化縣</option><option>南投縣</option><option>雲林縣</option><option>嘉義市</option><option>嘉義縣</option><option>臺南市</option><option>高雄市</option><option>屏東縣</option><option>宜蘭縣</option><option>花蓮縣</option><option>臺東縣</option><option>澎湖縣</option><option>金門縣</option><option>連江縣</option></select></label>
+          <label class="explorer-field"><span>房型</span><select id="housingRoom"><option value="">全部房型</option><option value="套房">套房</option><option value="一房">一房型</option><option value="二房">二房型</option><option value="三房">三房型</option></select></label>
+          <label class="explorer-field"><span>每月租金</span><select id="housingRent"><option value="">不限租金</option><option value="10000">10,000 元以下</option><option value="20000">20,000 元以下</option><option value="30000">30,000 元以下</option></select></label>
           <div class="status-field"><span>興建狀態</span><div class="status-options"><label><input type="checkbox" name="housingStatus" value="building" checked />興建中</label><label><input type="checkbox" name="housingStatus" value="completed" checked />已完工</label><label><input type="checkbox" name="housingStatus" value="recruiting" checked />招租中</label></div></div>
-          <div class="multi-select-field">
-            <span>需求（可複選）</span>
-            <details class="multi-select" data-multi-select data-default-label="不限需求">
-              <summary><span class="multi-summary">不限需求</span><span class="multi-count" hidden>0</span></summary>
-              <div class="multi-options" role="group" aria-label="需求複選">
-                <label><input type="checkbox" name="housingNeed" value="elderly" /><span>老人日照<small>日間照顧或長者服務</small></span></label>
-                <label><input type="checkbox" name="housingNeed" value="childcare" /><span>托育<small>托嬰、幼兒園或親子服務</small></span></label>
-                <label><input type="checkbox" name="housingNeed" value="welfare" /><span>社福<small>社福據點與社區支持</small></span></label>
-                <label><input type="checkbox" name="housingNeed" value="medical" /><span>醫療<small>診所、醫院或健康照護</small></span></label>
-                <label><input type="checkbox" name="housingNeed" value="commerce" /><span>商業與餐飲<small>市場、商場與生活餐飲</small></span></label>
-              </div>
-            </details>
-          </div>
-          <div class="multi-select-field">
-            <span>附近設施（可複選）</span>
-            <details class="multi-select" data-multi-select data-default-label="不限設施">
-              <summary><span class="multi-summary">不限設施</span><span class="multi-count" hidden>0</span></summary>
-              <div class="multi-options" role="group" aria-label="附近設施複選">
-                <label><input type="checkbox" name="nearbyFacility" value="transit" /><span>大眾運輸<small>捷運、公車或轉運站</small></span></label>
-                <label><input type="checkbox" name="nearbyFacility" value="education" /><span>托育就學<small>托育、幼兒園與學校</small></span></label>
-                <label><input type="checkbox" name="nearbyFacility" value="park" /><span>公園綠地<small>公園、步道與休憩空間</small></span></label>
-                <label><input type="checkbox" name="nearbyFacility" value="medical" /><span>醫療照護<small>醫院、診所與藥局</small></span></label>
-                <label><input type="checkbox" name="nearbyFacility" value="dining" /><span>採買餐飲<small>市場、超市與餐飲商圈</small></span></label>
-              </div>
-            </details>
-          </div>
-          <div class="filter-actions"><button class="filter-button" type="submit">套用條件</button><button class="reset-button" id="housingReset" type="button">全部重設</button></div>
-          <p class="filter-guidance">需求與附近設施可複選；同一組內會篩出「所有勾選條件皆符合」的社宅。</p>
-          <div class="active-multi-selections" id="activeMultiSelections" hidden>
-            <span class="active-selection-label">已選生活條件</span>
-            <div class="active-selection-chips" id="activeSelectionChips"></div>
-          </div>
+          <button class="filter-button" type="submit">搜尋</button>
+          <button class="reset-button" id="housingReset" type="button">重設</button>
         </form>
 
         <div class="explorer-layout">
@@ -763,20 +604,9 @@
             </div>
             <div class="map-view google-map-view" id="googleMapView" role="tabpanel">
               <div class="google-map-shell">
-                <div class="map-facility-bar" aria-label="地圖附近設施圖層">
-                  <div class="map-facility-copy"><strong>附近設施圖層</strong><span id="facilityLayerHint">顯示所有設施・距離為直線估算</span></div>
-                  <div class="facility-filter-chips" id="facilityFilterChips">
-                    <button class="facility-filter-chip" type="button" data-facility-layer="" aria-pressed="true">全部</button>
-                    <button class="facility-filter-chip" type="button" data-facility-layer="transit" aria-pressed="false">運輸</button>
-                    <button class="facility-filter-chip" type="button" data-facility-layer="education" aria-pressed="false">就學</button>
-                    <button class="facility-filter-chip" type="button" data-facility-layer="park" aria-pressed="false">公園</button>
-                    <button class="facility-filter-chip" type="button" data-facility-layer="medical" aria-pressed="false">醫療</button>
-                    <button class="facility-filter-chip" type="button" data-facility-layer="dining" aria-pressed="false">採買</button>
-                  </div>
-                </div>
-                <div class="interactive-housing-map" id="housingInteractiveMap" role="region" aria-label="保二安居、五谷好室 A、三重成功互動位置地圖"></div>
+                <div class="interactive-housing-map" id="housingInteractiveMap" role="region" aria-label="保二安居、五谷好室 A、富貴好室互動位置地圖"></div>
                 <div class="google-map-footer">
-                  <span>點選社宅可聚焦周邊設施；距離採座標直線估算</span>
+                  <span>可直接拖曳、滾輪縮放或點選圖釘查看社宅</span>
                   <div class="google-map-actions">
                     <button class="map-show-all" id="mapShowAll" type="button">顯示全部</button>
                     <a class="google-map-open" id="googleMapOpen" href="https://www.google.com/maps/search/?api=1&amp;query=%E6%96%B0%E5%8C%97%E5%B8%82%E7%A4%BE%E6%9C%83%E4%BD%8F%E5%AE%85" target="_blank" rel="noopener noreferrer">在 Google 地圖查看 ↗</a>
@@ -787,19 +617,19 @@
           </section>
 
           <section class="housing-results" aria-labelledby="result-title">
-            <div class="panel-heading"><div><h3 id="result-title">社宅列表</h3><span id="resultCountyLabel">全臺灣</span></div><div class="result-summary">尋找到 <strong id="housingCount">3</strong> 間社宅</div></div>
+            <div class="panel-heading"><div><h3 id="result-title">社宅列表</h3><span id="resultCountyLabel">全臺灣</span></div><div class="result-summary">尋找到 <strong id="housingCount">7</strong> 間社宅</div></div>
             <div class="housing-list" id="housingList" aria-live="polite">
-              <article class="housing-card" data-name="保二安居" data-county="新北市" data-district="中和區" data-rooms="套房 一房 二房 三房" data-rent="7870" data-status="recruiting" data-needs="childcare welfare medical" data-facilities="transit education park medical dining" data-detail="https://www.socialhousing.tw/portal/BuildDetail?BuildingNo=F02&amp;BuildingType=Normal">
+              <article class="housing-card" data-name="保二安居" data-county="新北市" data-district="中和區" data-rooms="套房 一房 二房 三房" data-rent="7870" data-status="completed" data-detail="https://www.socialhousing.tw/portal/BuildDetail?BuildingNo=F02&amp;BuildingType=Normal">
                 <div class="housing-card-media has-photo"><span class="housing-status">招租中</span><img src="https://www.socialhousing.tw/portal/Building/250728/iyoq1r4d.gmg.JPG" alt="保二安居社會住宅外觀" loading="lazy" /></div>
-                <div class="housing-card-body"><div class="housing-card-top"><h4>保二安居</h4><span class="housing-rent">7,870–30,630 元/月</span></div><button class="housing-location housing-location-button" type="button" data-map-name="保二安居" data-map-query="保二安居 新北市中和區秀士里景平路139號" aria-label="在地圖定位保二安居：新北市中和區秀士里景平路139號">新北市中和區秀士里景平路139號</button><div class="housing-agency"><span>權責機關</span><strong>國家住都中心</strong></div><div class="housing-fit-tags" aria-label="符合需求"><span>托育</span><span>社福</span><span>醫療</span></div><div class="housing-meta"><span>10.63–41.39 坪</span><span>套房／一房型／二房型／三房型</span></div><p>以基層警消居住需求為核心，並配置托育與照顧等社區服務設施。</p></div>
+                <div class="housing-card-body"><div class="housing-card-top"><h4>保二安居</h4><span class="housing-rent">7,870–30,630 元/月</span></div><button class="housing-location housing-location-button" type="button" data-map-name="保二安居" data-map-query="保二安居 新北市中和區秀士里景平路139號" aria-label="在地圖定位保二安居：新北市中和區秀士里景平路139號">新北市中和區秀士里景平路139號</button><div class="housing-agency"><span>權責機關</span><strong>國家住都中心</strong></div><div class="housing-meta"><span>10.63–41.39 坪</span><span>套房／一房型／二房型／三房型</span></div><p>以基層警消居住需求為核心，並配置托育與照顧等社區服務設施。</p></div>
               </article>
-              <article class="housing-card" data-name="三重成功" data-county="新北市" data-district="三重區" data-rooms="套房 二房 三房" data-rent="6300" data-status="recruiting" data-needs="elderly childcare commerce" data-facilities="transit education park medical dining" data-detail="https://www.socialhousing.tw/portal/BuildDetail?BuildingNo=F03&amp;BuildingType=Normal">
-                <div class="housing-card-media has-photo"><span class="housing-status">招租中</span><img src="https://www.socialhousing.tw/portal/Building/251014/rbi31t3h.tpa.JPG" alt="三重成功社會住宅外觀" loading="lazy" /></div>
-                <div class="housing-card-body"><div class="housing-card-top"><h4>三重成功</h4><span class="housing-rent">6,300–38,400 元/月</span></div><button class="housing-location housing-location-button" type="button" data-map-name="三重成功" data-map-query="三重成功 新北市三重區成功路118號" aria-label="在地圖定位三重成功：新北市三重區成功路118號">新北市三重區成功路118號</button><div class="housing-agency"><span>權責機關</span><strong>新北市政府</strong></div><div class="housing-fit-tags" aria-label="符合需求"><span>老人日照</span><span>托育</span><span>商業與餐飲</span></div><div class="housing-meta"><span>17.54–37.49 坪</span><span>套房型／二房型／三房型</span></div><p>鄰近公園與大眾運輸，提供青年及育兒家庭較完整的生活機能。</p></div>
+              <article class="housing-card" data-name="富貴好室" data-county="新北市" data-district="三重區" data-rooms="套房 二房 三房" data-rent="7660" data-status="completed" data-detail="https://www.socialhousing.tw/portal/BuildDetail?BuildingNo=F03&amp;BuildingType=Normal">
+                <div class="housing-card-media has-photo"><span class="housing-status">招租中</span><img src="https://www.socialhousing.tw/portal/Building/251014/rbi31t3h.tpa.JPG" alt="富貴好室社會住宅外觀" loading="lazy" /></div>
+                <div class="housing-card-body"><div class="housing-card-top"><h4>富貴好室</h4><span class="housing-rent">7,660–30,360 元/月</span></div><button class="housing-location housing-location-button" type="button" data-map-name="富貴好室" data-map-query="富貴好室 新北市三重區吉祥街86號" aria-label="在地圖定位富貴好室：新北市三重區吉祥街86號">新北市三重區吉祥街86號</button><div class="housing-agency"><span>權責機關</span><strong>新北市政府</strong></div><div class="housing-meta"><span>17.54–37.49 坪</span><span>套房／二房型／三房型</span></div><p>鄰近公園與大眾運輸，提供青年及育兒家庭較完整的生活機能。</p></div>
               </article>
-              <article class="housing-card" data-name="五谷好室A" data-county="新北市" data-district="三重區" data-rooms="套房 二房 三房" data-rent="7760" data-status="completed" data-needs="elderly childcare welfare commerce" data-facilities="transit education park dining" data-detail="https://www.socialhousing.tw/portal/BuildDetail?BuildingNo=F01&amp;BuildingType=Normal">
+              <article class="housing-card" data-name="五谷好室A" data-county="新北市" data-district="三重區" data-rooms="套房 二房 三房" data-rent="7760" data-status="completed" data-detail="https://www.socialhousing.tw/portal/BuildDetail?BuildingNo=F01&amp;BuildingType=Normal">
                 <div class="housing-card-media has-photo"><span class="housing-status">已完工</span><img src="https://www.socialhousing.tw/portal/Building/250522/1qzl22ln.fvq.jpg" alt="五谷好室 A 社會住宅外觀" loading="lazy" /></div>
-                <div class="housing-card-body"><div class="housing-card-top"><h4>五谷好室 A</h4><span class="housing-rent">7,760–38,160 元/月</span></div><button class="housing-location housing-location-button" type="button" data-map-name="五谷好室 A" data-map-query="五谷好室 A 新北市三重區五谷王北街45巷32弄17號" aria-label="在地圖定位五谷好室 A：新北市三重區五谷王北街45巷32弄17號">新北市三重區五谷王北街45巷32弄17號</button><div class="housing-agency"><span>權責機關</span><strong>國家住都中心</strong></div><div class="housing-fit-tags" aria-label="符合需求"><span>老人日照</span><span>托育</span><span>社福</span><span>商業與餐飲</span></div><div class="housing-meta"><span>16.11–39.95 坪</span><span>套房／二房型／三房型</span></div><p>鄰近二重疏洪道綠地，社區整合托嬰、幼兒園與日間照顧服務。</p></div>
+                <div class="housing-card-body"><div class="housing-card-top"><h4>五谷好室 A</h4><span class="housing-rent">7,760–38,160 元/月</span></div><button class="housing-location housing-location-button" type="button" data-map-name="五谷好室 A" data-map-query="五谷好室 A 新北市三重區五谷王北街45巷32弄17號" aria-label="在地圖定位五谷好室 A：新北市三重區五谷王北街45巷32弄17號">新北市三重區五谷王北街45巷32弄17號</button><div class="housing-agency"><span>權責機關</span><strong>國家住都中心</strong></div><div class="housing-meta"><span>16.11–39.95 坪</span><span>套房／二房型／三房型</span></div><p>鄰近二重疏洪道綠地，社區整合托嬰、幼兒園與日間照顧服務。</p></div>
               </article>
 <!-- 
               <article class="housing-card" data-name="新市安居" data-county="臺南市" data-district="新市區" data-rooms="套房 二房" data-rent="5500" data-status="recruiting" data-detail="https://www.socialhousing.tw/Portal/BuildDetail?BuildingType=Normal&amp;BuildingNo=D02">
@@ -819,7 +649,7 @@
                 <div class="housing-card-body"><div class="housing-card-top"><h4>萬華安居</h4><span class="housing-rent">9,000 元起/月</span></div><div class="housing-location">● 臺北市・萬華區</div><div class="housing-agency"><span>權責機關</span><strong>臺北市政府</strong></div><div class="housing-meta"><span>都市生活圈</span><span>套房／一房型／二房型</span></div><p>鄰近市區交通與生活機能，提供不同家庭規模可選擇的居住空間。</p></div>
               </article>
                -->
-              <div class="housing-empty" id="housingEmpty"><div><strong>目前沒有符合條件的社宅</strong><p>請減少需求或附近設施條件，或調整縣市、房型與租金後再試一次。</p></div></div>
+              <div class="housing-empty" id="housingEmpty"><div><strong>目前沒有符合條件的社宅</strong><p>請調整縣市、房型、租金或興建狀態後再試一次。</p></div></div>
             </div>
           </section>
         </div>
@@ -887,24 +717,6 @@
     <div class="chat-label">智能客服</div>
     <a class="chat-btn" href="chat.html" target="_blank" rel="noopener noreferrer" aria-label="開啟智能客服對話頁面（另開新分頁）" style="text-decoration:none"><span class="chat-face"><span class="smile"></span></span></a>
   </aside>
-
-  <aside class="compare-tray" id="compareTray" aria-label="社宅比較選取列" hidden>
-    <div class="compare-tray-copy"><strong>社宅比一比</strong><span id="compareTrayHint">請選擇 2–3 間社宅</span></div>
-    <div class="compare-selection" id="compareSelection"></div>
-    <button class="compare-clear-button" id="compareClear" type="button">清除全部</button>
-    <button class="compare-open-button" id="compareOpen" type="button" disabled>開始比較</button>
-  </aside>
-
-  <dialog class="compare-dialog" id="compareDialog" aria-labelledby="compareDialogTitle">
-    <div class="compare-dialog-shell">
-      <div class="compare-dialog-head">
-        <div><span>社宅比一比</span><h2 id="compareDialogTitle">快速比較居住條件</h2></div>
-        <button class="compare-dialog-close close-dialog" type="button" aria-label="關閉比較表">×</button>
-      </div>
-      <div class="compare-table-wrap"><table class="compare-table" id="compareTable"></table></div>
-      <div class="compare-dialog-foot"><p>手機可左右滑動比較；租金、坪數與周邊距離為目前頁面資料，正式申請條件仍以各社宅公告為準。</p><button class="close-dialog" type="button">返回列表</button></div>
-    </div>
-  </dialog>
 
   <dialog id="registrationDialog"><div class="dialog-content"><div class="dialog-icon">✓</div><h2>準備開始登記</h2><p>原型已示範登記入口。正式服務將引導你完成身分驗證與需求資料填寫。</p><div class="dialog-actions"><button class="close-dialog" type="button">稍後再說</button><a href="login.html">前往登入</a></div></div></dialog>
   <dialog id="serviceDialog"><div class="dialog-content"><div class="dialog-icon">◉</div><h2>智能客服</h2><p>您好！我可以協助說明社宅申請資格、登記流程與案件進度查詢方式。</p><div class="dialog-actions"><button class="close-dialog" type="button">關閉</button></div></div></dialog>
@@ -999,11 +811,6 @@
     const housingCounty = document.getElementById('housingCounty');
     const housingRoom = document.getElementById('housingRoom');
     const housingRent = document.getElementById('housingRent');
-    const multiSelects = Array.from(document.querySelectorAll('[data-multi-select]'));
-    const needInputs = Array.from(document.querySelectorAll('[name="housingNeed"]'));
-    const facilityInputs = Array.from(document.querySelectorAll('[name="nearbyFacility"]'));
-    const activeMultiSelections = document.getElementById('activeMultiSelections');
-    const activeSelectionChips = document.getElementById('activeSelectionChips');
     const housingCards = Array.from(document.querySelectorAll('.housing-card'));
     const countyButtons = Array.from(document.querySelectorAll('.county-panel [data-county]'));
     const mapCities = Array.from(document.querySelectorAll('#taiwanMap .city'));
@@ -1022,146 +829,21 @@
     const googleMapOpen = document.getElementById('googleMapOpen');
     const mapShowAllButton = document.getElementById('mapShowAll');
     const housingLocationButtons = Array.from(document.querySelectorAll('.housing-location-button'));
-    const facilityLayerHint = document.getElementById('facilityLayerHint');
-    const facilityLayerButtons = Array.from(document.querySelectorAll('[data-facility-layer]'));
-    const compareTray = document.getElementById('compareTray');
-    const compareTrayHint = document.getElementById('compareTrayHint');
-    const compareSelection = document.getElementById('compareSelection');
-    const compareClearButton = document.getElementById('compareClear');
-    const compareOpenButton = document.getElementById('compareOpen');
-    const compareDialog = document.getElementById('compareDialog');
-    const compareTable = document.getElementById('compareTable');
 
     const normalizeHousingName = (name) => String(name || '').replace(/\s+/g, '');
     const housingLocations = [
       { name: '保二安居', address: '新北市中和區秀士里景平路139號', coordinates: [24.992117, 121.514456] },
       { name: '五谷好室 A', address: '新北市三重區五谷王北街45巷32弄17號', coordinates: [25.049257, 121.476560] },
-      { name: '三重成功', address: '新北市三重區成功路118號', coordinates: [25.051798368371262, 121.48637052534272] }
+      { name: '富貴好室', address: '新北市三重區吉祥街86號', coordinates: [25.090942, 121.489934] }
     ];
-    const facilityCategories = {
-      transit: { label: '大眾運輸', symbol: '車' },
-      education: { label: '托育就學', symbol: '學' },
-      park: { label: '公園綠地', symbol: '園' },
-      medical: { label: '醫療照護', symbol: '醫' },
-      dining: { label: '採買餐飲', symbol: '食' }
-    };
-    const nearbyFacilities = [
-      { name: '捷運景平站', category: 'transit', housing: '保二安居', coordinates: [24.99205, 121.51635] },
-      { name: '秀山國小', category: 'education', housing: '保二安居', coordinates: [24.99545, 121.51676] },
-      { name: '中和秀山公園', category: 'park', housing: '保二安居', coordinates: [24.99404, 121.51321] },
-      { name: '衛生福利部雙和醫院', category: 'medical', housing: '保二安居', coordinates: [24.99309, 121.49441] },
-      { name: '景安路生活商圈', category: 'dining', housing: '保二安居', coordinates: [24.99352, 121.50488] },
-      { name: '捷運先嗇宮站', category: 'transit', housing: '五谷好室 A', coordinates: [25.04652, 121.47175] },
-      { name: '興穀國小', category: 'education', housing: '五谷好室 A', coordinates: [25.05072, 121.47422] },
-      { name: '二重疏洪親水公園', category: 'park', housing: '五谷好室 A', coordinates: [25.05302, 121.46739] },
-      { name: '重新路五段商圈', category: 'dining', housing: '五谷好室 A', coordinates: [25.04715, 121.48458] },
-      { name: '捷運三重站', category: 'transit', housing: '三重成功', coordinates: [25.05561, 121.48470] },
-      { name: '集美國小', category: 'education', housing: '三重成功', coordinates: [25.05120, 121.49100] },
-      { name: '集美公園', category: 'park', housing: '三重成功', coordinates: [25.05350, 121.49110] },
-      { name: '新北市立聯合醫院', category: 'medical', housing: '三重成功', coordinates: [25.06131, 121.49064] },
-      { name: '集美街生活商圈', category: 'dining', housing: '三重成功', coordinates: [25.05240, 121.49070] }
-    ];
-    const housingLocationByName = new Map(housingLocations.map((location) => [normalizeHousingName(location.name), location]));
     let housingMap = null;
     const housingMarkers = new Map();
-    const facilityMarkers = [];
-    let activeHousingName = '';
-    let visibleHousingNames = new Set(housingLocations.map((location) => normalizeHousingName(location.name)));
 
-    const getCheckedValues = (inputs) => inputs.filter((input) => input.checked).map((input) => input.value);
-    const distanceInMeters = (from, to) => {
-      const toRadians = (degrees) => degrees * Math.PI / 180;
-      const earthRadius = 6371000;
-      const latitudeDelta = toRadians(to[0] - from[0]);
-      const longitudeDelta = toRadians(to[1] - from[1]);
-      const latitudeA = toRadians(from[0]);
-      const latitudeB = toRadians(to[0]);
-      const haversine = Math.sin(latitudeDelta / 2) ** 2
-        + Math.cos(latitudeA) * Math.cos(latitudeB) * Math.sin(longitudeDelta / 2) ** 2;
-      return earthRadius * 2 * Math.atan2(Math.sqrt(haversine), Math.sqrt(1 - haversine));
-    };
-    const formatDistance = (meters) => meters < 1000
-      ? `約 ${Math.max(10, Math.round(meters / 10) * 10)} 公尺`
-      : `約 ${(meters / 1000).toFixed(meters >= 2000 ? 1 : 2)} 公里`;
-    const getMultiInputLabel = (input) => input.closest('label').querySelector('span').childNodes[0].textContent.trim();
-    const renderActiveMultiSelections = () => {
-      const selectedInputs = [...needInputs, ...facilityInputs].filter((input) => input.checked);
-      activeMultiSelections.hidden = selectedInputs.length === 0;
-      activeSelectionChips.replaceChildren();
-      selectedInputs.forEach((input) => {
-        const groupLabel = input.name === 'housingNeed' ? '需求' : '設施';
-        const itemLabel = getMultiInputLabel(input);
-        const chip = document.createElement('button');
-        chip.className = 'active-selection-chip';
-        chip.type = 'button';
-        chip.setAttribute('aria-label', `移除${groupLabel}條件：${itemLabel}`);
-        chip.innerHTML = `<span>${groupLabel}</span>${itemLabel}<b aria-hidden="true">×</b>`;
-        chip.addEventListener('click', () => {
-          input.checked = false;
-          applyHousingFilters();
-        });
-        activeSelectionChips.appendChild(chip);
-      });
-    };
-    const updateMultiSelectLabels = () => {
-      multiSelects.forEach((details) => {
-        const checked = Array.from(details.querySelectorAll('input:checked'));
-        const checkedLabels = checked.map(getMultiInputLabel);
-        const summary = details.querySelector('.multi-summary');
-        const count = details.querySelector('.multi-count');
-        summary.textContent = checked.length === 0 ? details.dataset.defaultLabel : checkedLabels.join('、');
-        summary.title = checkedLabels.join('、');
-        count.textContent = String(checked.length);
-        count.hidden = checked.length === 0;
-      });
-      renderActiveMultiSelections();
-    };
-    const syncFacilityLayerButtons = () => {
-      const selected = new Set(getCheckedValues(facilityInputs));
-      facilityLayerButtons.forEach((button) => {
-        const category = button.dataset.facilityLayer;
-        button.setAttribute('aria-pressed', String(category ? selected.has(category) : selected.size === 0));
-      });
-    };
-    const setMarkerVisibility = (marker, shouldShow) => {
-      if (!housingMap) return;
-      const isVisible = housingMap.hasLayer(marker);
-      if (shouldShow && !isVisible) marker.addTo(housingMap);
-      if (!shouldShow && isVisible) marker.removeFrom(housingMap);
-    };
-    const refreshMapLayers = () => {
-      if (!housingMap) return;
-      const selectedCategories = new Set(getCheckedValues(facilityInputs));
-      const activeKey = visibleHousingNames.has(activeHousingName) ? activeHousingName : '';
-      let visibleFacilityCount = 0;
-      housingMarkers.forEach((marker, nameKey) => setMarkerVisibility(marker, visibleHousingNames.has(nameKey)));
-      facilityMarkers.forEach(({ marker, facility }) => {
-        const housingKey = normalizeHousingName(facility.housing);
-        const categoryMatch = selectedCategories.size === 0 || selectedCategories.has(facility.category);
-        const housingMatch = visibleHousingNames.has(housingKey) && (!activeKey || housingKey === activeKey);
-        const shouldShow = categoryMatch && housingMatch;
-        setMarkerVisibility(marker, shouldShow);
-        if (shouldShow) visibleFacilityCount += 1;
-      });
-      const activeLocation = housingLocationByName.get(activeKey);
-      facilityLayerHint.textContent = activeLocation
-        ? `${activeLocation.name}周邊 ${visibleFacilityCount} 處・直線估算`
-        : `顯示 ${visibleFacilityCount} 處設施・距離為直線估算`;
-      if (!mapViews.google.hidden) mapModeHint.textContent = `${visibleHousingNames.size} 處社宅・${visibleFacilityCount} 處附近設施`;
-      housingMapContainer.setAttribute('aria-label', `${visibleHousingNames.size} 處社宅與 ${visibleFacilityCount} 處附近設施互動地圖`);
-      syncFacilityLayerButtons();
-    };
     const fitAllHousingLocations = () => {
       if (!housingMap || !window.L) return;
-      const visibleLocations = housingLocations.filter((location) => visibleHousingNames.has(normalizeHousingName(location.name)));
-      if (visibleLocations.length === 0) return;
       housingMap.invalidateSize();
-      if (visibleLocations.length === 1) {
-        housingMap.setView(visibleLocations[0].coordinates, 14, { animate: !reduceMotion });
-        return;
-      }
-      housingMap.fitBounds(window.L.latLngBounds(visibleLocations.map((location) => location.coordinates)), {
-        padding: [40, 40],
+      housingMap.fitBounds(window.L.latLngBounds(housingLocations.map((location) => location.coordinates)), {
+        padding: [36, 36],
         maxZoom: 13,
         animate: !reduceMotion
       });
@@ -1205,38 +887,9 @@
           title: location.name,
           alt: `${location.name}位置`
         }).addTo(housingMap);
-        const locationKey = normalizeHousingName(location.name);
-        marker.bindPopup(`<strong>${location.name}</strong><span>${location.address}</span><span class="facility-distance-note">點選後顯示此社宅周邊設施</span>`);
-        marker.on('click', () => {
-          activeHousingName = locationKey;
-          housingLocationButtons.forEach((item) => item.classList.toggle('is-active-map', normalizeHousingName(item.dataset.mapName) === locationKey));
-          refreshMapLayers();
-        });
-        housingMarkers.set(locationKey, marker);
+        marker.bindPopup(`<strong>${location.name}</strong><span>${location.address}</span>`);
+        housingMarkers.set(normalizeHousingName(location.name), marker);
       });
-      nearbyFacilities.forEach((facility) => {
-        const housingLocation = housingLocationByName.get(normalizeHousingName(facility.housing));
-        const distance = distanceInMeters(housingLocation.coordinates, facility.coordinates);
-        const category = facilityCategories[facility.category];
-        const markerIcon = window.L.divIcon({
-          className: 'facility-pin-wrapper',
-          html: `<span class="facility-map-marker" data-category="${facility.category}" aria-hidden="true">
-            <span class="facility-map-symbol"><span>${category.symbol}</span></span>
-            <span class="facility-map-label"><span class="facility-map-name">${facility.name}</span><small>${formatDistance(distance)}</small></span>
-          </span>`,
-          iconSize: [190, 38],
-          iconAnchor: [16, 32],
-          popupAnchor: [0, -30]
-        });
-        const marker = window.L.marker(facility.coordinates, {
-          icon: markerIcon,
-          title: `${facility.name}，距${facility.housing}${formatDistance(distance)}`,
-          alt: `${facility.name}位置`
-        });
-        marker.bindPopup(`<strong>${facility.name}</strong><span>${category.label}</span><span class="facility-distance-note">距「${facility.housing}」${formatDistance(distance)}（直線距離）</span>`);
-        facilityMarkers.push({ marker, facility });
-      });
-      refreshMapLayers();
       fitAllHousingLocations();
     };
 
@@ -1251,20 +904,14 @@
       Object.entries(mapViews).forEach(([name, view]) => { view.hidden = name !== mode; });
       countyAllButton.hidden = isGoogleMap;
       countyMapTitle.textContent = isGoogleMap ? '社宅位置' : '依縣市瀏覽';
-      if (isGoogleMap) {
-        refreshMapLayers();
-        if (housingMap) requestAnimationFrame(() => housingMap.invalidateSize());
-      } else {
-        mapModeHint.textContent = '全臺共 532 件｜點選縣市即可篩選社宅';
-      }
+      mapModeHint.textContent = isGoogleMap ? '於地圖查看社宅' : '全臺共 532 件｜點選縣市即可篩選社宅';
+      if (isGoogleMap && housingMap) requestAnimationFrame(() => housingMap.invalidateSize());
     };
 
     mapModeButtons.forEach((button) => button.addEventListener('click', () => setMapMode(button.dataset.mapView)));
     const showAllHousingLocations = () => {
-      activeHousingName = '';
       housingLocationButtons.forEach((item) => item.classList.remove('is-active-map'));
       setMapMode('google');
-      refreshMapLayers();
       requestAnimationFrame(fitAllHousingLocations);
       googleMapOpen.href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent('新北市 社會住宅')}`;
     };
@@ -1272,10 +919,8 @@
     housingLocationButtons.forEach((button) => button.addEventListener('click', () => {
       const name = button.dataset.mapName;
       const query = button.dataset.mapQuery;
-      activeHousingName = normalizeHousingName(name);
       housingLocationButtons.forEach((item) => item.classList.toggle('is-active-map', item === button));
       setMapMode('google');
-      refreshMapLayers();
       googleMapOpen.href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
       const marker = housingMarkers.get(normalizeHousingName(name));
       if (housingMap && marker) {
@@ -1285,37 +930,13 @@
           marker.openPopup();
         });
       }
-      if (window.innerWidth <= 1040) document.querySelector('.county-panel').scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+      if (window.innerWidth <= 960) document.querySelector('.county-panel').scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
     }));
-    facilityLayerButtons.forEach((button) => button.addEventListener('click', () => {
-      const category = button.dataset.facilityLayer;
-      if (!category) {
-        facilityInputs.forEach((input) => { input.checked = false; });
-      } else {
-        const input = facilityInputs.find((item) => item.value === category);
-        if (input) input.checked = !input.checked;
-      }
-      updateMultiSelectLabels();
-      applyHousingFilters();
-      setMapMode('google');
-    }));
-    multiSelects.forEach((details) => details.addEventListener('toggle', () => {
-      if (!details.open) return;
-      multiSelects.forEach((other) => { if (other !== details) other.open = false; });
-    }));
-    document.addEventListener('click', (event) => {
-      if (multiSelects.some((details) => details.contains(event.target))) return;
-      multiSelects.forEach((details) => { details.open = false; });
-    });
-    document.addEventListener('keydown', (event) => {
-      if (event.key !== 'Escape') return;
-      multiSelects.forEach((details) => { details.open = false; });
-    });
     initializeHousingMap();
     setMapMode('google');
 
     const scrollToMapAfterSearch = () => {
-      if (window.innerWidth > 1040) return;
+      if (window.innerWidth > 960) return;
       setMapMode('google');
       requestAnimationFrame(() => {
         housingMap?.invalidateSize();
@@ -1353,100 +974,8 @@
       button.textContent = isSubscribed ? '已訂閱追蹤' : '訂閱追蹤';
       button.setAttribute('aria-label', `${isSubscribed ? '取消' : '訂閱'}追蹤 ${button.dataset.housingName}`);
     };
-    const selectedComparisons = new Map();
-    const compareButtons = new Map();
-    const escapeHtml = (value) => String(value ?? '').replace(/[&<>"']/g, (character) => ({
-      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;'
-    })[character]);
-    const getCompareData = (card) => {
-      const nameKey = normalizeHousingName(card.dataset.name);
-      const projectName = card.querySelector('h4').textContent.trim();
-      const projectImage = card.querySelector('.housing-card-media img');
-      const facilityDetails = nearbyFacilities
-        .filter((facility) => normalizeHousingName(facility.housing) === nameKey)
-        .map((facility) => {
-          const housingLocation = housingLocationByName.get(nameKey);
-          return `${facilityCategories[facility.category].label} ${formatDistance(distanceInMeters(housingLocation.coordinates, facility.coordinates))}`;
-        });
-      const meta = Array.from(card.querySelectorAll('.housing-meta span')).map((item) => item.textContent.trim());
-      return {
-        name: projectName,
-        image: projectImage?.currentSrc || projectImage?.src || '',
-        imageAlt: projectImage?.alt || `${projectName}社會住宅外觀`,
-        status: card.querySelector('.housing-status').textContent.trim(),
-        address: card.querySelector('.housing-location').textContent.trim(),
-        rent: card.querySelector('.housing-rent').textContent.trim(),
-        rentValue: Number(card.dataset.rent || Number.MAX_SAFE_INTEGER),
-        agency: card.querySelector('.housing-agency strong').textContent.trim(),
-        size: meta[0] || '依公告',
-        rooms: meta[1] || card.dataset.rooms.replaceAll(' ', '／'),
-        needs: Array.from(card.querySelectorAll('.housing-fit-tags span')).map((item) => item.textContent.trim()),
-        facilities: facilityDetails
-      };
-    };
-    const renderCompareTable = () => {
-      const projects = Array.from(selectedComparisons.values()).map(getCompareData);
-      const lowestRent = Math.min(...projects.map((project) => project.rentValue));
-      const rows = [
-        { label: '招租狀態', key: 'status' },
-        { label: '所在地', key: 'address' },
-        { label: '每月租金', key: 'rent', best: (project) => project.rentValue === lowestRent },
-        { label: '坪數', key: 'size' },
-        { label: '房型', key: 'rooms' },
-        { label: '權責機關', key: 'agency' },
-        { label: '符合需求', key: 'needs', badges: true },
-        { label: '附近設施與距離', key: 'facilities', badges: true }
-      ];
-      const renderValue = (row, project) => row.badges
-        ? `<div class="compare-table-badges">${project[row.key].map((item) => `<span>${escapeHtml(item)}</span>`).join('')}</div>`
-        : escapeHtml(project[row.key]);
-      compareTable.innerHTML = `<thead><tr><th scope="col">比較項目</th>${projects.map((project) => `<th scope="col"><div class="compare-project-head">${project.image ? `<img src="${escapeHtml(project.image)}" alt="${escapeHtml(project.imageAlt)}" />` : ''}<span>${escapeHtml(project.name)}</span></div></th>`).join('')}</tr></thead>
-        <tbody>${rows.map((row) => `<tr><th scope="row">${row.label}</th>${projects.map((project) => `<td${row.best?.(project) ? ' class="is-best"' : ''}>${renderValue(row, project)}</td>`).join('')}</tr>`).join('')}</tbody>`;
-    };
-    const renderCompareTray = () => {
-      const selectionCount = selectedComparisons.size;
-      compareTray.hidden = selectionCount === 0;
-      document.body.classList.toggle('has-compare-selection', selectionCount > 0);
-      compareTrayHint.textContent = selectionCount < 2 ? `已選 ${selectionCount} 間，再選 ${2 - selectionCount} 間即可比較` : `已選 ${selectionCount}／3 間社宅`;
-      compareOpenButton.disabled = selectionCount < 2;
-      compareOpenButton.textContent = selectionCount < 2 ? '至少選 2 間' : `比較 ${selectionCount} 間社宅`;
-      compareSelection.replaceChildren();
-      selectedComparisons.forEach((card, nameKey) => {
-        const name = card.querySelector('h4').textContent.trim();
-        const chip = document.createElement('span');
-        chip.className = 'compare-project-chip';
-        chip.append(document.createTextNode(name));
-        const removeButton = document.createElement('button');
-        removeButton.type = 'button';
-        removeButton.setAttribute('aria-label', `從比較選取列移除 ${name}`);
-        removeButton.textContent = '×';
-        removeButton.addEventListener('click', () => {
-          selectedComparisons.delete(nameKey);
-          renderCompareTray();
-        });
-        chip.appendChild(removeButton);
-        compareSelection.appendChild(chip);
-      });
-      compareButtons.forEach((button, nameKey) => {
-        const isSelected = selectedComparisons.has(nameKey);
-        button.setAttribute('aria-pressed', String(isSelected));
-        button.setAttribute('aria-label', `${isSelected ? '從比較中移除' : '將'} ${button.dataset.housingName} ${isSelected ? '' : '加入比較'}`.trim());
-        button.textContent = isSelected ? '已加入比較' : '加入比較';
-        button.closest('.housing-card').classList.toggle('is-compare-selected', isSelected);
-      });
-    };
-    compareClearButton.addEventListener('click', () => {
-      selectedComparisons.clear();
-      renderCompareTray();
-    });
-    compareOpenButton.addEventListener('click', () => {
-      if (selectedComparisons.size < 2) return;
-      renderCompareTable();
-      compareDialog.showModal();
-    });
     housingCards.forEach((card) => {
       const housingName = card.dataset.name;
-      const housingNameKey = normalizeHousingName(housingName);
       const actions = document.createElement('div');
       actions.className = 'housing-card-actions';
       if (card.dataset.detail) {
@@ -1459,26 +988,6 @@
         detailLink.setAttribute('aria-label', `查看 ${housingName} 詳情（另開新分頁）`);
         actions.appendChild(detailLink);
       }
-      const compareButton = document.createElement('button');
-      compareButton.className = 'compare-button';
-      compareButton.type = 'button';
-      compareButton.dataset.housingName = housingName;
-      compareButton.setAttribute('aria-pressed', 'false');
-      compareButton.setAttribute('aria-label', `將 ${housingName} 加入比較`);
-      compareButton.textContent = '加入比較';
-      compareButton.addEventListener('click', () => {
-        if (selectedComparisons.has(housingNameKey)) {
-          selectedComparisons.delete(housingNameKey);
-        } else if (selectedComparisons.size >= 3) {
-          showSubscribeNotice('最多可同時比較 3 間社宅');
-          return;
-        } else {
-          selectedComparisons.set(housingNameKey, card);
-        }
-        renderCompareTray();
-      });
-      compareButtons.set(housingNameKey, compareButton);
-      actions.appendChild(compareButton);
       const button = document.createElement('button');
       button.className = 'subscribe-button';
       button.type = 'button';
@@ -1502,37 +1011,21 @@
       const roomName = housingRoom.value;
       const rentLimit = Number(housingRent.value || 0);
       const statuses = new Set(Array.from(document.querySelectorAll('[name="housingStatus"]:checked')).map((input) => input.value));
-      const selectedNeeds = getCheckedValues(needInputs);
-      const selectedFacilities = getCheckedValues(facilityInputs);
       let visibleCount = 0;
-      const nextVisibleHousingNames = new Set();
 
       housingCards.forEach((card) => {
         const nameMatch = !keyword || card.dataset.name.toLowerCase().includes(keyword);
         const countyMatch = !countyName || card.dataset.county === countyName;
         const roomMatch = !roomName || card.dataset.rooms.includes(roomName);
         const rentMatch = !rentLimit || Number(card.dataset.rent) <= rentLimit;
-        const statusMatch = statuses.size === 0 || statuses.has(card.dataset.status);
-        const availableNeeds = new Set((card.dataset.needs || '').split(/\s+/).filter(Boolean));
-        const availableFacilities = new Set((card.dataset.facilities || '').split(/\s+/).filter(Boolean));
-        const needsMatch = selectedNeeds.every((need) => availableNeeds.has(need));
-        const facilitiesMatch = selectedFacilities.every((facility) => availableFacilities.has(facility));
-        const isVisible = nameMatch && countyMatch && roomMatch && rentMatch && statusMatch && needsMatch && facilitiesMatch;
+        const statusMatch = statuses.has(card.dataset.status);
+        const isVisible = nameMatch && countyMatch && roomMatch && rentMatch && statusMatch;
         card.hidden = !isVisible;
-        if (isVisible) {
-          visibleCount += 1;
-          nextVisibleHousingNames.add(normalizeHousingName(card.dataset.name));
-        }
+        if (isVisible) visibleCount += 1;
       });
 
-      visibleHousingNames = nextVisibleHousingNames;
-      if (activeHousingName && !visibleHousingNames.has(activeHousingName)) {
-        activeHousingName = '';
-        housingLocationButtons.forEach((item) => item.classList.remove('is-active-map'));
-      }
       housingCount.textContent = String(visibleCount);
-      const extraFilterCount = selectedNeeds.length + selectedFacilities.length;
-      resultCountyLabel.textContent = `${countyName || '全臺灣'}${extraFilterCount ? `・已套用 ${extraFilterCount} 個生活條件` : ''}`;
+      resultCountyLabel.textContent = countyName || '全臺灣';
       housingEmpty.classList.toggle('visible', visibleCount === 0);
       countyButtons.forEach((button) => button.classList.toggle('active', button.dataset.county === countyName));
       mapCities.forEach((mapCity) => mapCity.classList.toggle('active', mapCity.getAttribute('title') === countyName));
@@ -1540,9 +1033,6 @@
         const labelCounty = label.textContent.match(/^(.+?)\s*\(/)?.[1]?.trim();
         label.classList.toggle('active', Boolean(countyName) && labelCounty === countyName);
       });
-      updateMultiSelectLabels();
-      refreshMapLayers();
-      if (!activeHousingName) requestAnimationFrame(fitAllHousingLocations);
     };
 
     const countyCounts = {
@@ -1586,11 +1076,7 @@
     housingFilters.querySelectorAll('select, input[type="checkbox"]').forEach((control) => control.addEventListener('change', applyHousingFilters));
     document.getElementById('housingReset').addEventListener('click', () => {
       housingFilters.reset();
-      activeHousingName = '';
-      housingLocationButtons.forEach((item) => item.classList.remove('is-active-map'));
-      multiSelects.forEach((details) => { details.open = false; });
       applyHousingFilters();
-      requestAnimationFrame(fitAllHousingLocations);
     });
     countyButtons.forEach((button) => button.addEventListener('click', () => {
       housingCounty.value = button.dataset.county;

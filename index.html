@@ -710,20 +710,56 @@
     [minRent, maxRent].forEach((input) => input.addEventListener('input', updateRent));
     updateRent();
     const districts = {
-      taipei: ['中正區', '大安區', '信義區', '內湖區'],
-      'new-taipei': ['板橋區', '三重區', '新店區', '林口區'],
-      taoyuan: ['桃園區', '中壢區', '龜山區', '蘆竹區'],
-      taichung: ['西屯區', '北屯區', '南屯區', '烏日區'],
-      tainan: ['永康區', '安南區', '新市區', '歸仁區'],
-      kaohsiung: ['左營區', '鼓山區', '鳳山區', '楠梓區']
+      taipei: [
+        '中正區', '大同區', '中山區', '松山區', '大安區', '萬華區',
+        '信義區', '士林區', '北投區', '內湖區', '南港區', '文山區'
+      ],
+      'new-taipei': [
+        '板橋區', '三重區', '中和區', '永和區', '新莊區', '新店區',
+        '土城區', '蘆洲區', '汐止區', '樹林區', '鶯歌區', '三峽區',
+        '淡水區', '瑞芳區', '五股區', '泰山區', '林口區', '八里區',
+        '深坑區', '石碇區', '坪林區', '三芝區', '石門區', '金山區',
+        '萬里區', '平溪區', '雙溪區', '貢寮區', '烏來區'
+      ],
+      taoyuan: [
+        '桃園區', '中壢區', '八德區', '平鎮區', '大溪區', '楊梅區',
+        '龜山區', '蘆竹區', '大園區', '觀音區', '新屋區', '龍潭區', '復興區'
+      ],
+      taichung: [
+        '中區', '東區', '西區', '南區', '北區', '西屯區', '南屯區',
+        '北屯區', '豐原區', '大里區', '太平區', '清水區', '沙鹿區',
+        '大甲區', '東勢區', '梧棲區', '烏日區', '神岡區', '大肚區',
+        '大雅區', '后里區', '霧峰區', '潭子區', '龍井區', '外埔區',
+        '和平區', '石岡區', '大安區', '新社區'
+      ],
+      tainan: [
+        '新營區', '鹽水區', '白河區', '柳營區', '後壁區', '東山區',
+        '麻豆區', '下營區', '六甲區', '官田區', '大內區', '佳里區',
+        '學甲區', '西港區', '七股區', '將軍區', '北門區', '新化區',
+        '善化區', '新市區', '安定區', '山上區', '玉井區', '楠西區',
+        '南化區', '左鎮區', '仁德區', '歸仁區', '關廟區', '龍崎區',
+        '永康區', '東區', '南區', '北區', '安南區', '安平區', '中西區'
+      ],
+      kaohsiung: [
+        '鹽埕區', '鼓山區', '左營區', '楠梓區', '三民區', '新興區',
+        '前金區', '苓雅區', '前鎮區', '旗津區', '小港區', '鳳山區',
+        '林園區', '大寮區', '大樹區', '大社區', '仁武區', '鳥松區',
+        '岡山區', '橋頭區', '燕巢區', '田寮區', '阿蓮區', '路竹區',
+        '湖內區', '茄萣區', '永安區', '彌陀區', '梓官區', '旗山區',
+        '美濃區', '六龜區', '甲仙區', '杉林區', '內門區', '茂林區',
+        '桃源區', '那瑪夏區'
+      ]
     };
     const city = document.getElementById('city');
     const district = document.getElementById('district');
-    city.addEventListener('change', () => {
-      district.innerHTML = '<option value="">行政區</option>';
-      (districts[city.value] || []).forEach((name) => district.add(new Option(name, name)));
-      district.disabled = !city.value;
-    });
+    const updateDistrictOptions = () => {
+      const availableDistricts = districts[city.value] || [];
+      district.replaceChildren(new Option('行政區', ''));
+      availableDistricts.forEach((name) => district.add(new Option(name, name)));
+      district.disabled = availableDistricts.length === 0;
+    };
+    city.addEventListener('change', updateDistrictOptions);
+    updateDistrictOptions();
 
     const housingFilters = document.getElementById('housingFilters');
     const housingKeyword = document.getElementById('housingKeyword');
