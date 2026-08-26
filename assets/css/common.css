@@ -1,0 +1,6 @@
+/* 全站低權重基礎樣式；頁面與元件樣式可直接覆寫 */
+:where(*,*::before,*::after){box-sizing:border-box}
+:where(html){scroll-behavior:smooth}
+:where(body){margin:0}
+:where(button,input,select,textarea){font:inherit}
+:where([hidden]){display:none!important}
