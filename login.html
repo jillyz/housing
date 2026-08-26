@@ -189,7 +189,7 @@
   <script>
     const dialog = document.querySelector('#login-dialog');
     const message = document.querySelector('#dialog-message');
-    document.querySelectorAll('[data-method]').forEach((button) => button.addEventListener('click', () => { window.location.href = 'declaration.html'; }));
+    document.querySelectorAll('[data-method]').forEach((button) => button.addEventListener('click', () => { window.location.href = 'questionnaire.html'; }));
     document.querySelectorAll('[data-close]').forEach((button) => button.addEventListener('click', () => dialog.close()));
     dialog.addEventListener('click', (event) => { if (event.target === dialog) dialog.close(); });
     document.querySelector('.back-link').addEventListener('click', () => {

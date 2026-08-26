@@ -6,6 +6,7 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>全國社宅統一申請登記平臺｜中央主管／管理者資訊儀表板</title>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,400,0,0&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet"/>
 <style>
     :root {
       --primary: #009c9a;
@@ -943,8 +944,8 @@ body :is(a,p,span,small,label,input,select,button,th,td){font-size:16px!importan
 }
 .menu a:hover,.menu a.active{color:#fff;background:rgba(255,255,255,.16);opacity:1;font-weight:800}
 .menu .menu-icon{width:22px;flex:0 0 22px;text-align:center;font-size:20px!important}
-.home-switch-chevron.material-symbols-rounded,
-.operator-menu .material-symbols-rounded{font-size:20px!important}
+.home-switch-chevron.fa-solid,
+.operator-menu .fa-solid{font-size:16px!important}
 .sidebar-overlay,.mobile-admin-bar{display:none}
 @media(max-width:900px){
   .layout{grid-template-columns:1fr}
@@ -1007,7 +1008,7 @@ body :is(a,p,span,small,label,input,select,button,th,td){font-size:16px!importan
 <div>
 <div class="crumb">後臺首頁 / 總覽儀表板</div>
 <div class="home-switch" id="homeSwitch">
-<h1><button class="home-switch-toggle" id="homeSwitchToggle" type="button" aria-expanded="false" aria-controls="homeSwitchMenu"><span>中央主管／管理者資訊儀表板</span><span class="home-switch-chevron material-symbols-rounded" aria-hidden="true">expand_more</span></button></h1>
+<h1><button class="home-switch-toggle" id="homeSwitchToggle" type="button" aria-expanded="false" aria-controls="homeSwitchMenu"><span>中央主管／管理者資訊儀表板</span><i class="home-switch-chevron fa-solid fa-chevron-down" aria-hidden="true"></i></button></h1>
 <div class="home-switch-menu" id="homeSwitchMenu">
 <a class="home-switch-option active" href="home-admin.html" aria-current="page"><strong>國土署／管理員首頁</strong><span>全國統計、營運監控與系統管理</span></a>
 <a class="home-switch-option" href="home-agency.html"><strong>權責機關承辦首頁</strong><span>案件交換、跨域查詢與狀態追蹤</span></a>
@@ -1021,7 +1022,7 @@ body :is(a,p,span,small,label,input,select,button,th,td){font-size:16px!importan
 <strong>國土署主管</strong>
 <small>內政部國土管理署</small>
 </div>
-<button class="operator-menu" id="operatorMenu" type="button" aria-label="開啟使用者選單" aria-expanded="false"><span class="material-symbols-rounded" aria-hidden="true">expand_more</span></button>
+<button class="operator-menu" id="operatorMenu" type="button" aria-label="開啟使用者選單" aria-expanded="false"><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></button>
 <div class="operator-dropdown" id="operatorDropdown">
 <button type="button" data-operator-action="profile">個人資料與帳號設定</button>
 <button type="button" data-operator-action="role">切換登入角色</button>
@@ -1636,6 +1637,10 @@ document.addEventListener('click', event => {
 
 document.querySelectorAll('[data-operator-action]').forEach(button => {
   button.addEventListener('click', () => {
+    if (button.dataset.operatorAction === 'logout') {
+      window.location.href = '../index.html';
+      return;
+    }
     const actionText = {
       profile: '開啟個人資料與帳號設定',
       role: '開啟登入角色切換',

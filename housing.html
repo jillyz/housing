@@ -366,6 +366,9 @@
     .subscribe-button:hover { border-color: #007983; background: #edf9f7; transform: translateY(-1px); }
     .subscribe-button[aria-pressed="true"] { color: #fff; border-color: #007983; background: linear-gradient(135deg,#13999b,#00717a); box-shadow: 0 6px 14px rgba(0,121,131,.18); }
     .subscribe-button[aria-pressed="true"]::before { content: "✓"; color: #007983; background: #fff; font-size: 12px; font-weight: 900; }
+    .subscribe-button.application-button { color:#fff; border-color:#007983; background:linear-gradient(135deg,#13999b,#00717a); box-shadow:0 6px 14px rgba(0,121,131,.18); }
+    .subscribe-button.application-button::before { content:"→"; color:#007983; background:#fff; font-size:12px; font-weight:900; }
+    .subscribe-button.application-button:hover { color:#fff; background:linear-gradient(135deg,#0c898b,#005f67); }
     .compare-button { min-width: 104px; height: 38px; display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 0 12px; border: 1px solid #c3cfe4; border-radius: 999px; color: #4b5f86; background: #f8f9fd; font-size: 13px; font-weight: 900; letter-spacing: .04em; transition: color .18s ease, background .18s ease, border-color .18s ease, transform .18s ease; }
     .compare-button::before { content: "⇄"; font-size: 15px; font-weight: 900; }
     .compare-button:hover { color: #30466f; border-color: #8196c0; background: #f0f3fa; transform: translateY(-1px); }
@@ -469,8 +472,9 @@
       .detail-link, .subscribe-button, .compare-button { font-size: 0; }
       .detail-link::after, .subscribe-button::after, .compare-button::after { font-size: 12px; }
       .detail-link::after { content: "詳情 ↗"; }
-      .subscribe-button::after { content: "追蹤"; }
-      .subscribe-button[aria-pressed="true"]::after { content: "已追蹤"; }
+      .subscribe-button::after { content: "招租時通知我"; }
+      .subscribe-button[aria-pressed="true"]::after { content: "已設定通知"; }
+      .subscribe-button.application-button::after { content: "開放登記申請"; }
       .compare-button::after { content: "比較"; }
       .compare-button[aria-pressed="true"]::after { content: "已比較"; }
       .subscribe-notice { right: 16px; bottom: 16px; left: 16px; max-width: none; text-align: center; }
@@ -630,14 +634,12 @@
         <span class="brand-name">全國社宅統一登記申請平台</span>
       </a>
       <div class="nav-group">
-        <a class="nav-link" href="index.html">首頁</a>
         <a class="nav-link active" href="#top" aria-current="page">找社宅</a>
         <a class="nav-link" href="index.html#journey">申請流程</a>
       </div>
       <a class="login-button" href="login.html">登入</a>
       <button class="mobile-menu" type="button" aria-label="開啟選單" aria-controls="mobileNav" aria-expanded="false">☰</button>
       <div class="mobile-nav" id="mobileNav">
-        <a href="index.html">首頁</a>
         <a class="active" href="#top" aria-current="page">找社宅</a>
         <a href="index.html#journey">申請流程</a>
         <a class="login-button" href="login.html">登入</a>
@@ -1350,8 +1352,8 @@
     };
     const updateSubscribeButton = (button, isSubscribed) => {
       button.setAttribute('aria-pressed', String(isSubscribed));
-      button.textContent = isSubscribed ? '已訂閱追蹤' : '訂閱追蹤';
-      button.setAttribute('aria-label', `${isSubscribed ? '取消' : '訂閱'}追蹤 ${button.dataset.housingName}`);
+      button.textContent = isSubscribed ? '已設定招租通知' : '招租時通知我';
+      button.setAttribute('aria-label', `${isSubscribed ? '取消' : '設定'} ${button.dataset.housingName} 招租通知`);
     };
     const selectedComparisons = new Map();
     const compareButtons = new Map();
@@ -1483,15 +1485,24 @@
       button.className = 'subscribe-button';
       button.type = 'button';
       button.dataset.housingName = housingName;
-      updateSubscribeButton(button, subscriptions.has(housingName));
-      button.addEventListener('click', () => {
-        const willSubscribe = button.getAttribute('aria-pressed') !== 'true';
-        if (willSubscribe) subscriptions.add(housingName);
-        else subscriptions.delete(housingName);
-        saveSubscriptions(subscriptions);
-        updateSubscribeButton(button, willSubscribe);
-        showSubscribeNotice(willSubscribe ? `已訂閱追蹤「${housingName}」` : `已取消追蹤「${housingName}」`);
-      });
+      if (card.dataset.status === 'recruiting') {
+        button.classList.add('application-button');
+        button.textContent = '開放登記申請';
+        button.setAttribute('aria-label', `申請招租中的 ${housingName}`);
+        button.addEventListener('click', () => {
+          window.location.href = `apply.html?housing=${encodeURIComponent(housingName)}`;
+        });
+      } else {
+        updateSubscribeButton(button, subscriptions.has(housingName));
+        button.addEventListener('click', () => {
+          const willSubscribe = button.getAttribute('aria-pressed') !== 'true';
+          if (willSubscribe) subscriptions.add(housingName);
+          else subscriptions.delete(housingName);
+          saveSubscriptions(subscriptions);
+          updateSubscribeButton(button, willSubscribe);
+          showSubscribeNotice(willSubscribe ? `已設定「${housingName}」招租通知` : `已取消「${housingName}」招租通知`);
+        });
+      }
       actions.appendChild(button);
       card.querySelector('.housing-card-body').appendChild(actions);
     });

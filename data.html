@@ -1202,10 +1202,9 @@
 <span class="brand-name">全國社宅統一登記申請平台</span>
 </a>
 <div class="member-nav">
-<a class="member-nav-link" href="index.html">首頁</a>
 <a class="member-nav-link" href="housing.html">找社宅</a>
+<a class="member-nav-link" href="questionnaire.html">需求登記</a>
 <a class="member-nav-link active" href="#top" aria-current="page">資料登記</a>
-<a class="member-nav-link" href="questionnaire.html">需求問卷</a>
 <a class="member-nav-link" href="apply.html">申請社宅</a>
 <a class="member-nav-link" href="progress.html">進度查詢/補件</a>
 <a class="member-nav-link" href="#">操作紀錄</a>
@@ -1217,10 +1216,9 @@
 </div>
 <button class="site-mobile-menu" type="button" aria-label="開啟選單" aria-controls="memberMobileNav" aria-expanded="false">☰</button>
 <div class="site-mobile-nav" id="memberMobileNav">
-<a href="index.html">首頁</a>
 <a href="housing.html">找社宅</a>
+<a href="questionnaire.html">需求登記</a>
 <a class="active" href="#top" aria-current="page">資料登記</a>
-<a href="questionnaire.html">需求問卷</a>
 <a href="apply.html">申請社宅</a>
 <a href="progress.html">進度查詢/補件</a>
 <a href="#">操作紀錄</a>
@@ -1229,10 +1227,10 @@
 </nav>
 </header>
 <div class="page">
-<div class="stepbar">
-<div class="step active">1 授權同意查調／資料登記</div>
-<div class="step">2 需求登記／問卷調查回饋</div>
-<div class="step">3 完成登記</div>
+<div class="stepbar application-stepbar" aria-label="社宅申請流程">
+<a class="step active" href="data.html" aria-current="step">1 資料登記</a>
+<a class="step" href="apply.html">2 社宅申請</a>
+<a class="step" href="policy-feedback.html">3 社宅政策回饋</a>
 </div>
 <main class="main-card">
 <div class="card-head">
@@ -1316,6 +1314,21 @@
 <label class="mailing-address-check"><input id="sameAsRegisteredAddress" type="checkbox" checked/>同戶籍地址</label>
 <input id="mailingAddress" name="mailingAddress" type="text" value="臺中市西屯區○○街○巷○號" data-registered-address="臺中市西屯區○○街○巷○號" data-manual-address="臺中市西屯區○○路○段○號" readonly required/>
 </div>
+</div>
+</div>
+<div class="supplement-box">
+<h3>申請人身分類型（可複選）</h3>
+<p>若符合下列身分請勾選；未符合者不需勾選，也不影響前往下一步。</p>
+<div class="simple-checks">
+<label><input class="special-role" type="checkbox" value="就業"/> 因就業而有需住需求者</label>
+<label><input class="special-role" type="checkbox" value="就學"/> 因就學而有需住需求者</label>
+<label><input class="special-role" type="checkbox" value="警消"/> 現任職務為最高職務列等在警正四階（含）以下之警察人員及消防人員</label>
+<label><input class="special-role" type="checkbox" value="軍職"/> 現任職務為最高職務列等在國防部少校階（含士官）之軍職人員、文職薦任六職等以下、聘僱或相當該職務列等以下之人員</label>
+</div>
+<div class="conditional-upload" id="specialRoleUpload">
+<label for="specialRoleFile">證明文件</label>
+<div class="pretty-upload"><input id="specialRoleFile" type="file" accept=".pdf,.jpg,.jpeg,.png"/><label class="pretty-upload-button" for="specialRoleFile">＋ 選擇檔案</label><span class="pretty-upload-name" data-file-name-for="specialRoleFile">尚未選擇檔案</span></div>
+<div class="field-help">支援 PDF、JPG、PNG；可先略過，後續再補件。</div>
 </div>
 </div>
 </div>
@@ -1418,36 +1431,9 @@
 </div>
 </section>
 
-<section class="simple-section">
-<div class="simple-section-head">
-<div><h2>6. 確認其他資格資料</h2><p>只有查調缺漏的項目需要補充。</p></div>
-<span class="badge">查調摘要</span>
-</div>
-<div class="simple-section-body">
-<div class="subsidy-confirm">
-<label><input id="subsidyConsent" type="checkbox" required/><span>本人了解若承租本案社會住宅，應依規定放棄原租金補貼資格。<span class="required">*</span></span></label>
-</div>
-<div class="supplement-box">
-<h3>特殊身分資料未完整取得</h3>
-<p>若您沒有下列身分，不必填寫；勾選後再上傳證明即可。</p>
-<div class="simple-checks">
-<label><input class="special-role" type="checkbox" value="就業"/> 因就業而有需住需求者</label>
-<label><input class="special-role" type="checkbox" value="就學"/> 因就學而有需住需求者</label>
-<label><input class="special-role" type="checkbox" value="警消"/> 現任職務為最高職務列等在警正四階（含）以下之警察人員及消防人員</label>
-<label><input class="special-role" type="checkbox" value="軍職"/> 現任職務為最高職務列等在國防部少校階（含士官）之軍職人員、文職薦任六職等以下、聘僱或相當該職務列等以下之人員</label>
-</div>
-<div class="conditional-upload" id="specialRoleUpload">
-<label for="specialRoleFile">證明文件</label>
-<div class="pretty-upload"><input id="specialRoleFile" type="file" accept=".pdf,.jpg,.jpeg,.png"/><label class="pretty-upload-button" for="specialRoleFile">＋ 選擇檔案</label><span class="pretty-upload-name" data-file-name-for="specialRoleFile">尚未選擇檔案</span></div>
-<div class="field-help">支援 PDF、JPG、PNG。</div>
-</div>
-</div>
-</div>
-</section>
-
 <div class="form-error" id="simpleFormError" role="alert">尚有必填資料或待上傳文件未完成，請確認紅框欄位。</div>
 <div class="simplified-footer">
-<button class="btn next-step-btn" id="simpleNextStep" type="button">下一步：需求登記／問卷調查回饋</button>
+<button class="btn next-step-btn" id="simpleNextStep" type="button">下一步：申請社宅</button>
 </div>
 </form>
 </div>
@@ -2363,8 +2349,9 @@
       }
       simpleFormError.classList.remove('show');
       simpleAutosave.textContent = '資料已儲存｜剛剛';
-      window.location.href = 'questionnaire.html';
+      window.location.href = 'apply.html';
     });
 </script>
+<script src="assets/member-account.js"></script>
 </body>
 </html>

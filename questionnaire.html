@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>全國社宅統一申請登記平臺｜需求登記／問卷調查回饋</title>
+<title>全國社宅統一申請登記平臺｜居住需求登記問卷</title>
 <style>
   :root{
     --primary:#009c9a;
@@ -105,6 +105,7 @@
   }
   .step.done{background:#e8faf8;color:var(--primary-dark)}
   .step.active{background:var(--primary);color:#fff;box-shadow:0 8px 18px rgba(0,156,154,.2)}
+  .stepbar{display:none}
 
   .main-card{
     margin-top:20px;
@@ -139,6 +140,68 @@
     background:#fff;
     overflow:hidden;
   }
+
+  .questions-list{display:grid;gap:14px}
+  .need-question{
+    border:1px solid var(--line);
+    border-radius:18px;
+    background:#fff;
+    overflow:hidden;
+    transition:border-color .18s ease,box-shadow .18s ease;
+  }
+  .need-question[open]{border-color:#9fd8d4;box-shadow:0 10px 24px rgba(0,80,80,.08)}
+  .need-question summary{
+    min-height:68px;
+    display:flex;
+    align-items:center;
+    gap:13px;
+    padding:14px 18px;
+    cursor:pointer;
+    list-style:none;
+    background:linear-gradient(90deg,#f2fbfa,#fff);
+  }
+  .need-question summary::-webkit-details-marker{display:none}
+  .question-index{
+    width:34px;height:34px;display:grid;place-items:center;flex:0 0 auto;
+    border-radius:11px;background:var(--primary-soft);color:var(--primary-dark);
+    font-size:14px;font-weight:900;
+  }
+  .summary-copy{min-width:0;display:grid;gap:3px}
+  .summary-copy strong{color:var(--primary-deep);font-size:17px}
+  .summary-copy small{color:var(--muted);font-size:12px;font-weight:700}
+  .toggle-icon{
+    width:30px;height:30px;display:grid;place-items:center;margin-left:auto;
+    border:1px solid #cce4e1;border-radius:50%;color:var(--primary-dark);
+    font-size:19px;font-weight:900;transition:transform .18s ease;
+  }
+  .need-question[open] .toggle-icon{transform:rotate(180deg)}
+  .question-body{padding:18px 20px 20px;border-top:1px solid var(--line)}
+  .question-body .question-note{margin:0 0 14px}
+  .choice-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+  .choice-card{
+    min-height:48px;display:flex;align-items:center;gap:9px;margin:0;padding:11px 13px;
+    border:1px solid #d8e7e5;border-radius:12px;color:#425d5b;background:#fbfefd;
+    font-size:14px;font-weight:800;cursor:pointer;
+  }
+  .choice-card:hover{border-color:#8fd5d0;background:#f1fbfa}
+  .choice-card input{width:18px;height:18px;flex:0 0 auto;accent-color:var(--primary)}
+  .location-picker{display:grid;gap:14px}
+  .county-field{display:grid;grid-template-columns:90px minmax(0,360px);align-items:center;gap:12px}
+  .county-field span{color:var(--primary-deep);font-weight:900}
+  .county-field select{width:100%;min-height:46px;padding:0 42px 0 14px;border:1px solid #c8dedb;border-radius:12px;color:#315451;background:#fff;font:inherit;font-weight:800;outline:none}
+  .county-field select:focus{border-color:var(--primary);box-shadow:0 0 0 4px rgba(0,156,154,.1)}
+  .district-picker{overflow:hidden;border:1px solid #d8e7e5;border-radius:15px;background:#fbfefd}
+  .district-picker-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px;border-bottom:1px solid #dfecea;background:#f1faf9}
+  .district-picker-head strong{color:var(--primary-deep);font-size:14px}
+  .district-clear{padding:6px 10px;border:0;border-radius:999px;color:var(--primary-dark);background:#dff3f1;font:inherit;font-size:12px;font-weight:900;cursor:pointer}
+  .district-grid{padding:14px}
+  .location-summary{margin:0;padding:11px 13px;border-radius:12px;color:#4f6866;background:#eef8f7;font-size:13px;line-height:1.7}
+  .accessibility-choice{
+    display:flex;align-items:center;gap:10px;margin:0 20px 20px;padding:14px 16px;
+    border:1px solid #b9dfdc;border-radius:14px;background:#effaf8;
+    color:var(--primary-deep);font-size:15px;font-weight:900;cursor:pointer;
+  }
+  .accessibility-choice input{width:20px;height:20px;accent-color:var(--primary)}
 
   .question-head{
     padding:18px 20px;
@@ -252,7 +315,7 @@
   .nav-btn:disabled{opacity:.4;cursor:not-allowed}
   .next-btn{
     width:auto;
-    min-width:112px;
+    min-width:260px;
     height:46px;
     padding:0 18px;
     border-radius:999px;
@@ -262,6 +325,37 @@
     gap:7px;
   }
   .next-btn:hover{background:var(--primary-dark)}
+  .finish-footer{justify-content:center}
+
+  .completion-dialog{
+    width:min(620px,calc(100% - 28px));padding:0;border:0;border-radius:24px;
+    color:var(--text);background:#fff;box-shadow:0 30px 90px rgba(0,55,55,.3);
+  }
+  .completion-dialog::backdrop{background:rgba(0,42,45,.5);backdrop-filter:blur(3px)}
+  .completion-dialog-shell{position:relative;padding:28px}
+  .completion-mark{
+    width:64px;height:64px;display:grid;place-items:center;margin:0 0 16px;
+    border-radius:50%;color:#fff;background:linear-gradient(145deg,#2fb875,#178f58);
+    box-shadow:0 10px 24px rgba(23,143,88,.24);font-size:32px;font-weight:900;
+  }
+  .dialog-close{
+    position:absolute;right:16px;top:16px;width:38px;height:38px;border:1px solid var(--line);
+    border-radius:50%;color:var(--muted);background:#fff;font-size:22px;cursor:pointer;
+  }
+  .completion-dialog h2{margin:0 46px 8px 0;color:var(--primary-deep);font-size:24px}
+  .completion-dialog p{margin:0;color:var(--muted);font-size:14px;line-height:1.7}
+  .completion-actions{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}
+  .completion-choice{
+    min-height:112px;display:flex;flex-direction:column;justify-content:center;gap:6px;
+    padding:18px;border:1px solid #b8dfdc;border-radius:17px;background:#f2fbfa;
+    color:var(--primary-deep);text-decoration:none;transition:.18s ease;
+  }
+  .completion-choice strong{font-size:16px}
+  .match-badge{display:inline-flex;width:max-content;margin-top:2px;padding:4px 9px;border-radius:999px;color:#006f6d;background:#fff;font-size:12px;font-weight:900}
+  .completion-choice span{color:var(--muted);font-size:13px;line-height:1.5}
+  .completion-choice:hover{transform:translateY(-2px);border-color:var(--primary);box-shadow:0 10px 20px rgba(0,111,109,.12)}
+  .completion-choice.primary{border-color:var(--primary);color:#fff;background:linear-gradient(135deg,var(--primary),var(--primary-dark))}
+  .completion-choice.primary span{color:#dbfffc}
 
   .question-progress{
     display:flex;align-items:center;gap:8px;
@@ -301,6 +395,7 @@
   @media(max-width:980px){
     .nav{display:none}
     .room-grid{grid-template-columns:repeat(2,1fr)}
+    .choice-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   }
 
   @media(max-width:680px){
@@ -316,6 +411,11 @@
     .question-footer{padding:14px}
     .room-option{min-height:auto}
     .room-visual{height:160px}
+    .choice-grid,.completion-actions{grid-template-columns:1fr}
+    .county-field{grid-template-columns:1fr;gap:7px}
+    .need-question summary{padding:13px 14px}
+    .question-body{padding:15px}
+    .accessibility-choice{margin:0 14px 16px}
     .chat-label{display:none}
   }
 </style>
@@ -334,8 +434,8 @@
   <nav class="site-main-nav" id="primaryNavigation" aria-label="會員主要導覽">
     <a class="brand" href="index.html" aria-label="全國社宅統一登記申請平台首頁"><img class="brand-mark" src="assets/platform-logo-elegant.svg" alt=""/><span class="brand-name">全國社宅統一登記申請平台</span></a>
     <div class="member-nav">
-      <a class="member-nav-link" href="index.html">首頁</a><a class="member-nav-link" href="housing.html">找社宅</a><a class="member-nav-link" href="data.html">資料登記</a>
-      <a class="member-nav-link active" href="#top" aria-current="page">需求問卷</a><a class="member-nav-link" href="apply.html">申請社宅</a><a class="member-nav-link" href="progress.html">進度查詢/補件</a><a class="member-nav-link" href="#">操作紀錄</a>
+      <a class="member-nav-link" href="housing.html">找社宅</a><a class="member-nav-link active" href="#top" aria-current="page">需求登記</a>
+      <a class="member-nav-link" href="data.html">資料登記</a><a class="member-nav-link" href="apply.html">申請社宅</a><a class="member-nav-link" href="progress.html">進度查詢/補件</a><a class="member-nav-link" href="#">操作紀錄</a>
     </div>
     <div class="member-actions">
       <div class="login-user"><span class="login-user-label">登入者</span><strong>陳ＯＯ</strong></div>
@@ -344,13 +444,13 @@
     </div>
     <button class="site-mobile-menu" type="button" aria-label="開啟選單" aria-controls="memberMobileNav" aria-expanded="false">☰</button>
     <div class="site-mobile-nav" id="memberMobileNav">
-      <a href="index.html">首頁</a><a href="housing.html">找社宅</a><a href="data.html">資料登記</a><a class="active" href="#top" aria-current="page">需求問卷</a><a href="apply.html">申請社宅</a><a href="progress.html">進度查詢/補件</a><a href="#">操作紀錄</a>
+      <a href="housing.html">找社宅</a><a class="active" href="#top" aria-current="page">需求登記</a><a href="data.html">資料登記</a><a href="apply.html">申請社宅</a><a href="progress.html">進度查詢/補件</a><a href="#">操作紀錄</a>
       <div class="mobile-member"><div class="login-user"><span class="login-user-label">登入者</span><strong>陳ＯＯ</strong></div><div class="mobile-member-actions"><button class="member-icon" type="button" aria-label="查看通知"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg></button><a class="member-icon" href="index.html" aria-label="登出"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 17l5-5-5-5M15 12H3M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/></svg></a></div></div>
     </div>
   </nav>
 </header>
 <div class="page">
-  <div class="stepbar">
+  <div class="stepbar" hidden>
       <div class="step done">1 資料登記／授權同意查調</div>
       <div class="step active">2 需求登記／問卷調查回饋</div>
       <div class="step">3 完成登記</div>
@@ -359,102 +459,103 @@
   <main class="main-card">
     <div class="card-head">
       <div>
-        <h1>社會住宅需求調查</h1>
-        <p>請依您的實際居住需求填答，系統將自動儲存作答內容。</p>
+        <h1>居住需求登記問卷</h1>
+        <p>請依實際居住需求完成五項登記；點選題目標題即可展開或收合。</p>
       </div>
-      <div class="progress-chip">題目 4／10</div>
+      <div class="progress-chip">共 5 項需求</div>
     </div>
 
     <div class="content">
-      <section class="question-panel">
-        <div class="question-head">
-          <div class="question-number">題目 4</div>
-          <h2 class="question-title">請問您預計申請的社會住宅房型為何？</h2>
-          <p class="question-note">可複選房型，所選房型須符合家庭成員數量規定。</p>
+      <form id="needsForm">
+        <div class="questions-list">
+          <details class="need-question">
+            <summary><span class="question-index">1</span><span class="summary-copy"><strong>區位需求</strong><small>先選縣市，再選行政區（可複選）</small></span><span class="toggle-icon" aria-hidden="true"><i class="fa-solid fa-chevron-down"></i></span></summary>
+            <div class="question-body">
+              <p class="question-note">先選擇縣市，再勾選希望入住的行政區；行政區可複選，切換縣市後選擇仍會保留。</p>
+              <div class="location-picker">
+                <label class="county-field" for="countySelect"><span>縣市</span><select id="countySelect" name="county"><option value="">請選擇縣市</option></select></label>
+                <div class="district-picker">
+                  <div class="district-picker-head"><strong id="districtPickerTitle">請先選擇縣市</strong><button class="district-clear" id="clearDistricts" type="button">清除此縣市</button></div>
+                  <div class="choice-grid district-grid" id="districtOptions" aria-live="polite"></div>
+                </div>
+                <p class="location-summary" id="selectedDistrictSummary" aria-live="polite">尚未選擇行政區</p>
+              </div>
+            </div>
+          </details>
+
+          <details class="need-question" open>
+            <summary><span class="question-index">2</span><span class="summary-copy"><strong>房型需求</strong><small>目前展開，可複選房型</small></span><span class="toggle-icon" aria-hidden="true"><i class="fa-solid fa-chevron-down"></i></span></summary>
+            <div class="question-body" style="padding:0">
+              <p class="question-note" style="padding:18px 20px 0">所選房型須符合家庭成員數量規定。</p>
+              <div class="room-grid" id="roomGrid">
+                <label class="room-option"><input type="checkbox" name="roomType" value="studio" /><div class="room-visual"><img src="assets/questionnaire-room-types/studio.png" alt="套房型室內格局插畫" /></div><div class="room-label"><span class="fake-check"></span><span>套房型（1房＋1衛浴）</span></div></label>
+                <label class="room-option"><input type="checkbox" name="roomType" value="one-room" /><div class="room-visual"><img src="assets/questionnaire-room-types/one-room.png" alt="一房型室內格局插畫" /></div><div class="room-label"><span class="fake-check"></span><span>一房型（1房＋1廳＋1衛浴）</span></div></label>
+                <label class="room-option selected"><input type="checkbox" name="roomType" value="two-room" checked /><div class="room-visual"><img src="assets/questionnaire-room-types/two-room.png" alt="二房型室內格局插畫" /></div><div class="room-label"><span class="fake-check"></span><span>二房型（2房＋1廳＋1衛浴）</span></div></label>
+                <label class="room-option"><input type="checkbox" name="roomType" value="two-room-plus" /><div class="room-visual"><img src="assets/questionnaire-room-types/two-room-plus.png" alt="二房一廳一點五衛浴型室內格局插畫" /></div><div class="room-label"><span class="fake-check"></span><span>二房型（2房＋1廳＋1.5衛浴）</span></div></label>
+                <label class="room-option selected"><input type="checkbox" name="roomType" value="three-room" checked /><div class="room-visual"><img src="assets/questionnaire-room-types/three-room.png" alt="三房型室內格局插畫" /></div><div class="room-label"><span class="fake-check"></span><span>三房型（3房＋1廳＋2衛浴）</span></div></label>
+              </div>
+              <label class="accessibility-choice"><input type="checkbox" name="accessibleRoom" value="yes" />需要無障礙房型</label>
+            </div>
+          </details>
+
+          <details class="need-question">
+            <summary><span class="question-index">3</span><span class="summary-copy"><strong>公共設施需求</strong><small>選擇重視的社區或生活設施，可複選</small></span><span class="toggle-icon" aria-hidden="true"><i class="fa-solid fa-chevron-down"></i></span></summary>
+            <div class="question-body"><div class="choice-grid">
+              <label class="choice-card"><input type="checkbox" name="facility" value="托育設施" checked />托育設施</label>
+              <label class="choice-card"><input type="checkbox" name="facility" value="長照日照" />長照／日照空間</label>
+              <label class="choice-card"><input type="checkbox" name="facility" value="社區活動" />社區活動空間</label>
+              <label class="choice-card"><input type="checkbox" name="facility" value="共用廚房" />共用廚房</label>
+              <label class="choice-card"><input type="checkbox" name="facility" value="運動空間" />運動空間</label>
+              <label class="choice-card"><input type="checkbox" name="facility" value="商業服務" />商業與生活服務</label>
+              <label class="choice-card"><input type="checkbox" name="facility" value="無特別需求" />無特別需求</label>
+            </div></div>
+          </details>
+
+          <details class="need-question">
+            <summary><span class="question-index">4</span><span class="summary-copy"><strong>租金範圍需求</strong><small>選擇每月可負擔的租金上限</small></span><span class="toggle-icon" aria-hidden="true"><i class="fa-solid fa-chevron-down"></i></span></summary>
+            <div class="question-body"><div class="choice-grid">
+              <label class="choice-card"><input type="radio" name="rentRange" value="8000" />8,000 元以下</label>
+              <label class="choice-card"><input type="radio" name="rentRange" value="12000" />8,001～12,000 元</label>
+              <label class="choice-card"><input type="radio" name="rentRange" value="16000" checked />12,001～16,000 元</label>
+              <label class="choice-card"><input type="radio" name="rentRange" value="20000" />16,001～20,000 元</label>
+              <label class="choice-card"><input type="radio" name="rentRange" value="over" />20,001 元以上</label>
+              <label class="choice-card"><input type="radio" name="rentRange" value="flexible" />可依條件彈性調整</label>
+            </div></div>
+          </details>
+
+          <details class="need-question">
+            <summary><span class="question-index">5</span><span class="summary-copy"><strong>希望入住時間</strong><small>選擇最符合目前規劃的時間</small></span><span class="toggle-icon" aria-hidden="true"><i class="fa-solid fa-chevron-down"></i></span></summary>
+            <div class="question-body"><div class="choice-grid">
+              <label class="choice-card"><input type="radio" name="moveIn" value="立即" />有合適房源即可入住</label>
+              <label class="choice-card"><input type="radio" name="moveIn" value="3個月" checked />預計 3 個月內</label>
+              <label class="choice-card"><input type="radio" name="moveIn" value="6個月" />預計 3～6 個月</label>
+              <label class="choice-card"><input type="radio" name="moveIn" value="1年" />預計 6～12 個月</label>
+              <label class="choice-card"><input type="radio" name="moveIn" value="1年以上" />一年以上</label>
+              <label class="choice-card"><input type="radio" name="moveIn" value="未定" />尚未確定</label>
+            </div></div>
+          </details>
         </div>
 
-        <div class="room-grid" id="roomGrid">
-          <label class="room-option">
-            <input type="checkbox" name="roomType" value="studio" />
-            <div class="room-visual">
-              <img src="assets/questionnaire-room-types/studio.png" alt="套房型室內格局插畫" />
-            </div>
-            <div class="room-label">
-              <span class="fake-check"></span>
-              <span>套房型（1房＋1衛浴）</span>
-            </div>
-          </label>
-
-          <label class="room-option">
-            <input type="checkbox" name="roomType" value="one-room" />
-            <div class="room-visual">
-              <img src="assets/questionnaire-room-types/one-room.png" alt="一房型室內格局插畫" />
-            </div>
-            <div class="room-label">
-              <span class="fake-check"></span>
-              <span>一房型（1房＋1廳＋1衛浴）</span>
-            </div>
-          </label>
-
-          <label class="room-option">
-            <input type="checkbox" name="roomType" value="two-room" />
-            <div class="room-visual">
-              <img src="assets/questionnaire-room-types/two-room.png" alt="二房型室內格局插畫" />
-            </div>
-            <div class="room-label">
-              <span class="fake-check"></span>
-              <span>二房型（2房＋1廳＋1衛浴）</span>
-            </div>
-          </label>
-
-          <label class="room-option">
-            <input type="checkbox" name="roomType" value="two-room-plus" />
-            <div class="room-visual">
-              <img src="assets/questionnaire-room-types/two-room-plus.png" alt="二房一廳一點五衛浴型室內格局插畫" />
-            </div>
-            <div class="room-label">
-              <span class="fake-check"></span>
-              <span>二房型（2房＋1廳＋1.5衛浴）</span>
-            </div>
-          </label>
-
-          <label class="room-option selected">
-            <input type="checkbox" name="roomType" value="three-room" checked />
-            <div class="room-visual">
-              <img src="assets/questionnaire-room-types/three-room.png" alt="三房型室內格局插畫" />
-            </div>
-            <div class="room-label">
-              <span class="fake-check"></span>
-              <span>三房型（3房＋1廳＋2衛浴）</span>
-            </div>
-          </label>
+        <div class="question-footer finish-footer" style="margin-top:18px;border:1px solid var(--line);border-radius:16px">
+          <button class="nav-btn next-btn" type="submit">完成需求登記</button>
         </div>
-
-        <div class="question-footer">
-          <button class="nav-btn" type="button" title="上一題" aria-label="上一題" onclick="goPrev()">‹</button>
-
-          <div class="question-progress">
-            <span>4／10</span>
-            <div class="dots" aria-hidden="true">
-              <span class="dot"></span>
-              <span class="dot"></span>
-              <span class="dot"></span>
-              <span class="dot active"></span>
-              <span class="dot"></span>
-              <span class="dot"></span>
-              <span class="dot"></span>
-              <span class="dot"></span>
-              <span class="dot"></span>
-              <span class="dot"></span>
-            </div>
-          </div>
-
-          <button class="nav-btn next-btn" type="button" onclick="goNext()">下一題 </button>
-        </div>
-      </section>
+      </form>
     </div>
   </main>
 </div>
+
+<dialog class="completion-dialog" id="completionDialog" aria-labelledby="completionDialogTitle">
+  <div class="completion-dialog-shell">
+    <button class="dialog-close" type="button" aria-label="關閉" data-close-completion>×</button>
+    <div class="completion-mark" aria-hidden="true">✓</div>
+    <h2 id="completionDialogTitle">居住需求登記完成</h2>
+    <p>接下來您可以先瀏覽推薦社宅，或直接進入符合需求的社宅申請。</p>
+    <div class="completion-actions">
+      <a class="completion-choice" href="housing.html"><strong>推薦我符合需求的社宅</strong><span>依區位、房型與租金需求瀏覽社宅</span></a>
+      <a class="completion-choice primary" href="data.html"><strong>申請符合需求的社宅</strong><b class="match-badge">3 筆符合</b><span>登記資料並送社宅申請</span></a>
+    </div>
+  </div>
+</dialog>
 
 <footer class="site-footer" id="siteFooter">
   <div class="footer-inner">
@@ -476,7 +577,58 @@
 </aside>
 
 <script>
+  const administrativeDistricts = {"臺北市":["松山區","信義區","大安區","中山區","中正區","大同區","萬華區","文山區","南港區","內湖區","士林區","北投區"],"臺中市":["中區","東區","南區","西區","北區","西屯區","南屯區","北屯區","豐原區","東勢區","大甲區","清水區","沙鹿區","梧棲區","后里區","神岡區","潭子區","大雅區","新社區","石岡區","外埔區","大安區","烏日區","大肚區","龍井區","霧峰區","太平區","大里區","和平區"],"基隆市":["中正區","七堵區","暖暖區","仁愛區","中山區","安樂區","信義區"],"臺南市":["新營區","鹽水區","白河區","柳營區","後壁區","東山區","麻豆區","下營區","六甲區","官田區","大內區","佳里區","學甲區","西港區","七股區","將軍區","北門區","新化區","善化區","新市區","安定區","山上區","玉井區","楠西區","南化區","左鎮區","仁德區","歸仁區","關廟區","龍崎區","永康區","東區","南區","北區","安南區","安平區","中西區"],"高雄市":["鹽埕區","鼓山區","左營區","楠梓區","三民區","新興區","前金區","苓雅區","前鎮區","旗津區","小港區","鳳山區","林園區","大寮區","大樹區","大社區","仁武區","鳥松區","岡山區","橋頭區","燕巢區","田寮區","阿蓮區","路竹區","湖內區","茄萣區","永安區","彌陀區","梓官區","旗山區","美濃區","六龜區","甲仙區","杉林區","內門區","茂林區","桃源區","那瑪夏區"],"新北市":["板橋區","三重區","中和區","永和區","新莊區","新店區","樹林區","鶯歌區","三峽區","淡水區","汐止區","瑞芳區","土城區","蘆洲區","五股區","泰山區","林口區","深坑區","石碇區","坪林區","三芝區","石門區","八里區","平溪區","雙溪區","貢寮區","金山區","萬里區","烏來區"],"宜蘭縣":["宜蘭市","羅東鎮","蘇澳鎮","頭城鎮","礁溪鄉","壯圍鄉","員山鄉","冬山鄉","五結鄉","三星鄉","大同鄉","南澳鄉"],"桃園市":["桃園區","中壢區","大溪區","楊梅區","蘆竹區","大園區","龜山區","八德區","龍潭區","平鎮區","新屋區","觀音區","復興區"],"嘉義市":["東區","西區"],"新竹縣":["竹北市","竹東鎮","新埔鎮","關西鎮","湖口鄉","新豐鄉","芎林鄉","橫山鄉","北埔鄉","寶山鄉","峨眉鄉","尖石鄉","五峰鄉"],"苗栗縣":["苗栗市","苑裡鎮","通霄鎮","竹南鎮","頭份市","後龍鎮","卓蘭鎮","大湖鄉","公館鄉","銅鑼鄉","南庄鄉","頭屋鄉","三義鄉","西湖鄉","造橋鄉","三灣鄉","獅潭鄉","泰安鄉"],"南投縣":["南投市","埔里鎮","草屯鎮","竹山鎮","集集鎮","名間鄉","鹿谷鄉","中寮鄉","魚池鄉","國姓鄉","水里鄉","信義鄉","仁愛鄉"],"彰化縣":["彰化市","鹿港鎮","和美鎮","線西鄉","伸港鄉","福興鄉","秀水鄉","花壇鄉","芬園鄉","員林市","溪湖鎮","田中鎮","大村鄉","埔鹽鄉","埔心鄉","永靖鄉","社頭鄉","二水鄉","北斗鎮","二林鎮","田尾鄉","埤頭鄉","芳苑鄉","大城鄉","竹塘鄉","溪州鄉"],"新竹市":["東區","北區","香山區"],"雲林縣":["斗六市","斗南鎮","虎尾鎮","西螺鎮","土庫鎮","北港鎮","古坑鄉","大埤鄉","莿桐鄉","林內鄉","二崙鄉","崙背鄉","麥寮鄉","東勢鄉","褒忠鄉","臺西鄉","元長鄉","四湖鄉","口湖鄉","水林鄉"],"嘉義縣":["太保市","朴子市","布袋鎮","大林鎮","民雄鄉","溪口鄉","新港鄉","六腳鄉","東石鄉","義竹鄉","鹿草鄉","水上鄉","中埔鄉","竹崎鄉","梅山鄉","番路鄉","大埔鄉","阿里山鄉"],"屏東縣":["屏東市","潮州鎮","東港鎮","恆春鎮","萬丹鄉","長治鄉","麟洛鄉","九如鄉","里港鄉","鹽埔鄉","高樹鄉","萬巒鄉","內埔鄉","竹田鄉","新埤鄉","枋寮鄉","新園鄉","崁頂鄉","林邊鄉","南州鄉","佳冬鄉","琉球鄉","車城鄉","滿州鄉","枋山鄉","三地門鄉","霧臺鄉","瑪家鄉","泰武鄉","來義鄉","春日鄉","獅子鄉","牡丹鄉"],"花蓮縣":["花蓮市","鳳林鎮","玉里鎮","新城鄉","吉安鄉","壽豐鄉","光復鄉","豐濱鄉","瑞穗鄉","富里鄉","秀林鄉","萬榮鄉","卓溪鄉"],"臺東縣":["臺東市","成功鎮","關山鎮","卑南鄉","鹿野鄉","池上鄉","東河鄉","長濱鄉","太麻里鄉","大武鄉","綠島鄉","海端鄉","延平鄉","金峰鄉","達仁鄉","蘭嶼鄉"],"金門縣":["金城鎮","金沙鎮","金湖鎮","金寧鄉","烈嶼鄉","烏坵鄉"],"澎湖縣":["馬公市","湖西鄉","白沙鄉","西嶼鄉","望安鄉","七美鄉"],"連江縣":["南竿鄉","北竿鄉","莒光鄉","東引鄉"]};
+  const countySelect = document.getElementById('countySelect');
+  const districtOptions = document.getElementById('districtOptions');
+  const districtPickerTitle = document.getElementById('districtPickerTitle');
+  const selectedDistrictSummary = document.getElementById('selectedDistrictSummary');
+  const clearDistricts = document.getElementById('clearDistricts');
+  const selectedDistricts = new Set(['新北市|板橋區']);
+
+  Object.keys(administrativeDistricts).forEach(county => countySelect.add(new Option(county,county)));
+  countySelect.value = '新北市';
+
+  function updateDistrictSummary(){
+    const selected = [...selectedDistricts];
+    if(!selected.length){
+      selectedDistrictSummary.textContent = '尚未選擇行政區';
+      return;
+    }
+    const labels = selected.map(item => item.replace('|',' '));
+    selectedDistrictSummary.textContent = `已選擇 ${selected.length} 個行政區：${labels.join('、')}`;
+  }
+
+  function renderDistrictOptions(){
+    const county = countySelect.value;
+    const districts = administrativeDistricts[county] || [];
+    districtPickerTitle.textContent = county ? `${county}行政區（可複選）` : '請先選擇縣市';
+    clearDistricts.disabled = !county;
+    districtOptions.innerHTML = districts.length ? districts.map(district => {
+      const value = `${county}|${district}`;
+      return `<label class="choice-card"><input type="checkbox" name="district" value="${value}" ${selectedDistricts.has(value)?'checked':''}/>${district}</label>`;
+    }).join('') : '<span class="question-note">選擇縣市後顯示行政區。</span>';
+    districtOptions.querySelectorAll('input[name="district"]').forEach(input => {
+      input.addEventListener('change',() => {
+        if(input.checked) selectedDistricts.add(input.value);
+        else selectedDistricts.delete(input.value);
+        updateDistrictSummary();
+      });
+    });
+  }
+
+  countySelect.addEventListener('change',renderDistrictOptions);
+  clearDistricts.addEventListener('click',() => {
+    const prefix = `${countySelect.value}|`;
+    [...selectedDistricts].forEach(value => {if(value.startsWith(prefix))selectedDistricts.delete(value)});
+    renderDistrictOptions();
+    updateDistrictSummary();
+  });
+  renderDistrictOptions();
+  updateDistrictSummary();
+
   const roomOptions = document.querySelectorAll(".room-option");
+  const needsForm = document.getElementById("needsForm");
+  const completionDialog = document.getElementById("completionDialog");
 
   roomOptions.forEach(option => {
     const checkbox = option.querySelector('input[type="checkbox"]');
@@ -485,19 +637,26 @@
     });
   });
 
-  function goPrev(){
-    alert("示意：返回題目 3");
-  }
-
-  function goNext(){
+  needsForm.addEventListener("submit", (event) => {
+    event.preventDefault();
     const selected = document.querySelector('input[name="roomType"]:checked');
     if(!selected){
       alert("請先選擇預計申請的房型。");
+      document.querySelector('.need-question:nth-child(2)').open = true;
+      document.getElementById('roomGrid').scrollIntoView({behavior:'smooth',block:'center'});
       return;
     }
-    window.location.href = "completion.html";
-  }
+    completionDialog.showModal();
+  });
+
+  document.querySelectorAll('[data-close-completion]').forEach((button) => {
+    button.addEventListener('click', () => completionDialog.close());
+  });
+  completionDialog.addEventListener('click', (event) => {
+    if(event.target === completionDialog) completionDialog.close();
+  });
 </script>
 <script src="assets/member-shell.js"></script>
+<script src="assets/member-account.js"></script>
 </body>
 </html>
