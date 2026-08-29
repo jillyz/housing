@@ -162,7 +162,7 @@
   }
   .summary-copy{min-width:0;display:grid;gap:3px}
   .summary-copy strong{color:var(--primary-deep);font-size:17px}
-  .summary-copy small{color:var(--muted);font-size:12px;font-weight:700}
+  .summary-copy small{overflow:hidden;color:var(--muted);font-size:12px;font-weight:700;text-overflow:ellipsis;white-space:nowrap}
   .toggle-icon{
     width:30px;height:30px;display:grid;place-items:center;margin-left:auto;
     border:1px solid #cce4e1;border-radius:50%;color:var(--primary-dark);
@@ -178,18 +178,56 @@
     font-size:14px;font-weight:800;cursor:pointer;
   }
   .choice-card:hover{border-color:#8fd5d0;background:#f1fbfa}
+  .choice-card.is-selected{border-color:var(--primary);color:var(--primary-deep);background:#eaf9f7;box-shadow:inset 0 0 0 1px var(--primary)}
   .choice-card input{width:18px;height:18px;flex:0 0 auto;accent-color:var(--primary)}
   .location-picker{display:grid;gap:14px}
-  .county-field{display:grid;grid-template-columns:90px minmax(0,360px);align-items:center;gap:12px}
-  .county-field span{color:var(--primary-deep);font-weight:900}
-  .county-field select{width:100%;min-height:46px;padding:0 42px 0 14px;border:1px solid #c8dedb;border-radius:12px;color:#315451;background:#fff;font:inherit;font-weight:800;outline:none}
-  .county-field select:focus{border-color:var(--primary);box-shadow:0 0 0 4px rgba(0,156,154,.1)}
-  .district-picker{overflow:hidden;border:1px solid #d8e7e5;border-radius:15px;background:#fbfefd}
-  .district-picker-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px;border-bottom:1px solid #dfecea;background:#f1faf9}
-  .district-picker-head strong{color:var(--primary-deep);font-size:14px}
-  .district-clear{padding:6px 10px;border:0;border-radius:999px;color:var(--primary-dark);background:#dff3f1;font:inherit;font-size:12px;font-weight:900;cursor:pointer}
-  .district-grid{padding:14px}
-  .location-summary{margin:0;padding:11px 13px;border-radius:12px;color:#4f6866;background:#eef8f7;font-size:13px;line-height:1.7}
+  .county-multi-select{overflow:hidden;border:1px solid #c8dedb;border-radius:15px;background:#fff}
+  .county-multi-select[open]{border-color:#7dcac5;box-shadow:0 0 0 4px rgba(0,156,154,.08)}
+  .county-multi-trigger{min-height:58px;display:flex;align-items:center;gap:12px;padding:10px 14px;list-style:none;cursor:pointer}
+  .county-multi-trigger::-webkit-details-marker{display:none}
+  .county-multi-trigger:focus-visible,.county-district-panel > summary:focus-visible{outline:3px solid rgba(0,156,154,.28);outline-offset:-3px}
+  .county-trigger-copy{min-width:0;display:grid;gap:3px}
+  .county-trigger-copy small{color:var(--muted);font-size:12px;font-weight:800}
+  .county-trigger-copy strong{overflow:hidden;color:var(--primary-deep);font-size:15px;text-overflow:ellipsis;white-space:nowrap}
+  .county-trigger-count{margin-left:auto;padding:5px 9px;border-radius:999px;color:var(--primary-dark);background:#e8f7f5;font-size:12px;font-weight:900;white-space:nowrap}
+  .county-trigger-icon{width:30px;height:30px;display:grid;place-items:center;flex:0 0 auto;border:1px solid #cce4e1;border-radius:50%;color:var(--primary-dark);transition:transform .18s ease}
+  .county-multi-select[open] .county-trigger-icon{transform:rotate(180deg)}
+  .county-multi-panel{padding:14px;border-top:1px solid #dfecea;background:#fbfefd}
+  .county-choice-fieldset{min-width:0;margin:0;padding:0;border:0}
+  .county-choice-fieldset legend{margin:0 0 10px;padding:0;color:var(--primary-deep);font-size:14px;font-weight:900}
+  .county-option-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px}
+  .county-option{min-height:52px;display:flex;align-items:center;gap:9px;padding:9px 11px;border:1px solid #d8e7e5;border-radius:12px;color:#425d5b;background:#fff;cursor:pointer;transition:border-color .18s ease,background .18s ease,box-shadow .18s ease}
+  .county-option:hover{border-color:#8fd5d0;background:#f1fbfa}
+  .county-option.is-selected{border-color:var(--primary);background:#eaf9f7;box-shadow:inset 0 0 0 1px var(--primary)}
+  .county-option input{width:19px;height:19px;flex:0 0 auto;accent-color:var(--primary)}
+  .county-option-copy{min-width:0;display:grid;gap:1px}
+  .county-option-copy strong{font-size:14px}
+  .county-option-copy small{min-height:15px;color:var(--muted);font-size:11px;font-weight:700}
+  .county-option.is-selected .county-option-copy small{color:var(--primary-dark)}
+  .county-done{display:block;min-height:42px;margin:14px 0 0 auto;padding:0 18px;border:0;border-radius:999px;color:#fff;background:var(--primary);font:inherit;font-size:14px;font-weight:900;cursor:pointer}
+  .county-done:hover{background:var(--primary-dark)}
+  .county-districts{display:grid;gap:10px}
+  .county-district-panel{overflow:hidden;border:1px solid #d8e7e5;border-radius:15px;background:#fbfefd}
+  .county-district-panel[open]{border-color:#a8d9d5;box-shadow:0 8px 18px rgba(0,80,80,.06)}
+  .county-district-panel > summary{min-height:60px;display:flex;align-items:center;gap:10px;padding:10px 14px;list-style:none;background:#f1faf9;cursor:pointer}
+  .county-district-panel > summary::-webkit-details-marker{display:none}
+  .county-district-copy{min-width:0;display:grid;gap:3px}
+  .county-district-copy strong{color:var(--primary-deep);font-size:15px}
+  .county-district-copy small{overflow:hidden;color:var(--muted);font-size:12px;font-weight:700;text-overflow:ellipsis;white-space:nowrap}
+  .county-district-count{margin-left:auto;padding:5px 9px;border-radius:999px;color:var(--primary-dark);background:#dff3f1;font-size:12px;font-weight:900;white-space:nowrap}
+  .county-district-chevron{width:28px;height:28px;display:grid;place-items:center;flex:0 0 auto;border:1px solid #cce4e1;border-radius:50%;color:var(--primary-dark);transition:transform .18s ease}
+  .county-district-panel[open] .county-district-chevron{transform:rotate(180deg)}
+  .county-district-body{border-top:1px solid #dfecea;background:#fbfefd}
+  .county-district-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 14px 0;color:var(--primary-deep);font-size:13px;font-weight:900}
+  .district-actions{display:flex;gap:7px}
+  .district-action{min-height:38px;padding:0 13px;border:0;border-radius:999px;color:var(--primary-dark);background:#dff3f1;font:inherit;font-size:12px;font-weight:900;cursor:pointer}
+  .district-action:hover{background:#ccece9}
+  .district-action:disabled{opacity:.45;cursor:not-allowed}
+  .district-grid{grid-template-columns:repeat(4,minmax(0,1fr));padding:12px 14px 14px}
+  .district-empty-message{margin:0;padding:18px;border:1px dashed #c7ddda;border-radius:14px;color:var(--muted);background:#fbfefd;font-size:13px;text-align:center}
+  .location-summary{display:grid;gap:4px;margin:0;padding:11px 13px;border-radius:12px;color:#4f6866;background:#eef8f7;font-size:13px;line-height:1.7}
+  .location-summary strong{color:var(--primary-deep);font-size:14px}
+  .location-summary span{overflow-wrap:anywhere}
   .accessibility-choice{
     display:flex;align-items:center;gap:10px;margin:0 20px 20px;padding:14px 16px;
     border:1px solid #b9dfdc;border-radius:14px;background:#effaf8;
@@ -390,6 +428,7 @@
     .nav{display:none}
     .room-grid{grid-template-columns:repeat(2,1fr)}
     .choice-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .county-option-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
   }
 
   @media(max-width:680px){
@@ -406,9 +445,22 @@
     .room-option{min-height:auto}
     .room-visual{height:160px}
     .choice-grid,.completion-actions{grid-template-columns:1fr}
-    .county-field{grid-template-columns:1fr;gap:7px}
+    .county-option-grid,.district-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .county-multi-trigger{padding:10px 11px}
+    .county-multi-panel{padding:12px}
+    .county-option{min-height:50px;padding:8px 9px}
+    .county-option-copy strong{font-size:13px}
+    .county-done{width:100%;min-height:46px}
+    .county-district-panel > summary{min-height:64px;padding:10px 11px}
+    .county-district-copy small{white-space:normal}
+    .county-district-toolbar{align-items:flex-start;flex-direction:column;padding:11px 12px 0}
+    .district-actions{width:100%}
+    .district-action{flex:1;min-height:42px}
+    .district-grid{padding:12px}
+    .district-grid .choice-card{min-height:46px;padding:9px 10px}
     .need-question summary{padding:13px 14px}
     .question-body{padding:15px}
     .accessibility-choice{margin:0 14px 16px}
+    .chat-support{right:6px;bottom:12px}
     .chat-label{display:none}
   }

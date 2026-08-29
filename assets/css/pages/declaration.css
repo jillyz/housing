@@ -265,6 +265,12 @@
     line-height:1.65;
     color:#425755;
   }
+  .lookup-agreement-row{
+    border-color:#9fd9d5;
+    background:#f0fbfa;
+  }
+  .lookup-agreement-row strong{display:block;color:var(--primary-deep)}
+  .lookup-agreement-row small{display:block;margin-top:5px;color:var(--muted);font-size:12px;line-height:1.6}
 
   .submit-area{
     margin-top:16px;

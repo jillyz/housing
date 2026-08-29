@@ -211,25 +211,32 @@
     .explorer-head h2 { margin: 18px 0 0; color: var(--ink); font-family: var(--serif); font-size: clamp(31px, 3.2vw, 43px); letter-spacing: .06em; }
     .explorer-head p { margin: 12px 0 0; color: #657277; font-size: 16px; letter-spacing: .04em; }
 
-    .explorer-filters { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); align-items: end; gap: 18px 14px; margin-top: 38px; padding: 24px; border: 1px solid rgba(116,161,162,.28); border-radius: 22px; background: rgba(255,255,255,.94); box-shadow: 0 16px 35px rgba(41,87,88,.1); scroll-margin-top: 156px; }
+    .explorer-filters { display: grid; grid-template-columns: repeat(14, minmax(0, 1fr)); align-items: end; gap: 18px 14px; margin-top: 38px; padding: 24px; border: 1px solid rgba(116,161,162,.28); border-radius: 22px; background: rgba(255,255,255,.94); box-shadow: 0 16px 35px rgba(41,87,88,.1); scroll-margin-top: 156px; }
     .explorer-field { min-width: 0; display: grid; gap: 8px; }
     .explorer-field > span, .status-field > span, .multi-select-field > span { color: #31545a; font-size: 13px; font-weight: 900; letter-spacing: .06em; }
     .explorer-field input, .explorer-field select { width: 100%; height: 47px; padding: 0 13px; border: 1px solid #cad9da; border-radius: 11px; color: #41565b; background: #fff; outline: none; }
     .explorer-field input:focus, .explorer-field select:focus { border-color: var(--teal); box-shadow: 0 0 0 4px rgba(0,121,131,.1); }
     .keyword-field { grid-column: span 3; }
     .compact-field { grid-column: span 2; }
-    .status-field { min-width: 0; display: grid; grid-column: span 3; gap: 9px; }
+    .county-field { grid-column: span 2; }
+    .room-field, .rent-field { grid-column: span 2; }
+    .status-field { min-width: 0; display: grid; grid-column: span 5; gap: 9px; }
     .status-options { min-height: 47px; display: flex; align-items: center; gap: 10px; padding: 0 12px; border: 1px solid #cad9da; border-radius: 11px; background: #fff; }
     .status-options label { display: inline-flex; align-items: center; gap: 5px; color: #52656a; white-space: nowrap; font-size: 13px; font-weight: 700; }
     .status-options input { width: 16px; height: 16px; accent-color: var(--teal); }
     .multi-select-field { position: relative; min-width: 0; display: grid; grid-column: span 4; gap: 8px; }
+    .district-select-field { grid-column: span 4; }
+    .amenity-needs-field { grid-column: span 4; }
+    .nearby-facility-field { grid-column: span 3; }
     .multi-select { position: relative; }
-    .multi-select summary { height: 47px; display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 0 13px; border: 1px solid #cad9da; border-radius: 11px; color: #41565b; background: #fff; cursor: pointer; list-style: none; transition: border-color .18s ease, box-shadow .18s ease; }
+    .multi-select summary { min-width: 0; height: 47px; display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 0 13px; border: 1px solid #cad9da; border-radius: 11px; color: #41565b; background: #fff; cursor: pointer; list-style: none; transition: border-color .18s ease, box-shadow .18s ease; }
     .multi-select summary::-webkit-details-marker { display: none; }
     .multi-select summary::after { content: ""; width: 8px; height: 8px; flex: 0 0 auto; margin: -4px 3px 0 0; border-right: 2px solid #668085; border-bottom: 2px solid #668085; transform: rotate(45deg); transition: transform .18s ease; }
     .multi-select[open] summary { border-color: var(--teal); box-shadow: 0 0 0 4px rgba(0,121,131,.1); }
     .multi-select[open] summary::after { margin-top: 4px; transform: rotate(225deg); }
-    .multi-summary { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .multi-select.is-disabled summary { color: #92a09f; background: #f2f6f5; cursor: not-allowed; }
+    .multi-select.is-disabled summary::after { opacity: .45; }
+    .multi-summary { min-width: 0; flex: 1 1 auto; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     .multi-count { min-width: 23px; height: 23px; display: grid; place-items: center; margin-left: auto; border-radius: 999px; color: #fff; background: var(--teal); font-size: 11px; font-weight: 900; }
     .multi-count[hidden] { display: none; }
     .multi-options { position: absolute; z-index: 650; top: calc(100% + 8px); left: 0; width: max(100%, 270px); max-height: 310px; display: grid; gap: 4px; padding: 10px; overflow: auto; border: 1px solid #cbdcdb; border-radius: 14px; background: #fff; box-shadow: 0 18px 38px rgba(34,74,78,.18); }
@@ -237,7 +244,8 @@
     .multi-options label:hover { background: #eef8f6; }
     .multi-options input { width: 17px; height: 17px; flex: 0 0 auto; margin-top: 1px; accent-color: var(--teal); }
     .multi-options small { display: block; margin-top: 2px; color: #829093; font-size: 11px; }
-    .filter-actions { min-width: 0; display: grid; grid-column: span 4; grid-template-columns: minmax(0, 1fr) minmax(0, .82fr); gap: 10px; }
+    .multi-empty-option { margin: 0; padding: 10px; color: #7b8b89; font-size: 12px; text-align: center; }
+    .filter-actions { min-width: 0; display: grid; grid-column: span 3; grid-template-columns: minmax(0, 1fr) minmax(0, .82fr); gap: 10px; }
     .filter-guidance { grid-column: 1 / -1; display: flex; align-items: center; gap: 7px; margin: -2px 0 0; color: #748589; font-size: 12px; line-height: 1.5; }
     .filter-guidance::before { content: "i"; width: 18px; height: 18px; flex: 0 0 auto; display: grid; place-items: center; border-radius: 50%; color: #087982; background: #e8f5f3; font-family: Georgia, serif; font-size: 12px; font-weight: 900; }
     .active-multi-selections { min-width: 0; grid-column: 1 / -1; display: flex; align-items: center; gap: 10px; padding-top: 13px; border-top: 1px solid #e1ecea; }
@@ -368,8 +376,25 @@
     .compare-button[aria-pressed="true"]::before { content: "✓"; }
     .subscribe-notice { position: fixed; z-index: 1200; right: 28px; bottom: 28px; max-width: calc(100vw - 40px); padding: 12px 18px; border-radius: 13px; color: #fff; background: #075f69; box-shadow: 0 12px 30px rgba(7,68,74,.28); font-size: 14px; font-weight: 800; opacity: 0; transform: translateY(12px); pointer-events: none; transition: opacity .2s ease, transform .2s ease; }
     .subscribe-notice.show { opacity: 1; transform: translateY(0); }
-    .housing-empty { display: none; min-height: 300px; place-items: center; padding: 40px; color: #728185; text-align: center; }
+    .housing-empty { display: none; min-height: 430px; place-items: center; padding: 30px; color: #728185; text-align: center; }
     .housing-empty.visible { display: grid; }
+    .housing-empty-card { width: min(540px,100%); padding: 22px 18px; }
+    .housing-empty-icon { width: 66px; height: 66px; display: grid; place-items: center; margin: 0 auto 15px; border-radius: 22px; color: #168e91; background: #e1f5f2; }
+    .housing-empty-icon svg { width: 34px; height: 34px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .housing-empty-card>strong { display: block; color: #244e4e; font-size: 21px; }
+    .housing-empty-card>p { margin: 9px auto 0; color: #657b79; font-size: 14px; line-height: 1.75; }
+    .housing-empty-filters { display: flex; flex-wrap: wrap; justify-content: center; gap: 7px; margin-top: 17px; }
+    .housing-empty-filter { padding: 6px 10px; border: 1px solid #c7dfdc; border-radius: 999px; color: #466361; background: #fff; font-size: 12px; font-weight: 800; }
+    .housing-empty-actions { display: flex; justify-content: center; gap: 10px; margin-top: 20px; }
+    .empty-subscribe-button,.empty-reset-button { min-height: 44px; display: inline-flex; align-items: center; justify-content: center; gap: 7px; padding: 0 17px; border-radius: 999px; font-size: 14px; font-weight: 900; cursor: pointer; transition: .18s; }
+    .empty-subscribe-button { border: 1px solid #087b82; color: #fff; background: linear-gradient(135deg,#13999b,#00717a); box-shadow: 0 8px 18px rgba(0,121,131,.2); }
+    .empty-subscribe-button::before { content: "+"; width: 19px; height: 19px; display: grid; place-items: center; border-radius: 50%; color: #007983; background: #fff; font-size: 15px; line-height: 1; }
+    .empty-subscribe-button:hover { transform: translateY(-1px); box-shadow: 0 11px 22px rgba(0,121,131,.24); }
+    .empty-subscribe-button[aria-pressed="true"] { color: #075f69; border-color: #82cbc6; background: #dff5f2; box-shadow: none; }
+    .empty-subscribe-button[aria-pressed="true"]::before { content: "✓"; color: #fff; background: #0a8b8d; font-size: 12px; font-weight: 900; }
+    .empty-reset-button { border: 1px solid #cbdedc; color: #496461; background: #fff; }
+    .empty-reset-button:hover { color: #006f75; border-color: #86c6c2; background: #f0faf8; }
+    .housing-empty-card>small { display: block; margin-top: 13px; color: #7a8d8b; font-size: 11px; line-height: 1.6; }
 
     .compare-tray { position: fixed; z-index: 1050; right: 112px; bottom: 18px; left: 50%; width: min(900px, calc(100vw - 160px)); min-height: 70px; display: grid; grid-template-columns: auto minmax(0, 1fr) auto auto; align-items: center; gap: 14px; padding: 12px 14px 12px 18px; border: 1px solid rgba(103,135,157,.32); border-radius: 20px; background: rgba(255,255,255,.97); box-shadow: 0 18px 48px rgba(27,63,70,.22); transform: translateX(-50%); backdrop-filter: blur(16px); }
     .compare-tray[hidden] { display: none; }
@@ -415,9 +440,10 @@
 
     @media (max-width: 1180px) {
       .explorer-filters { grid-template-columns: repeat(6, minmax(0, 1fr)); }
-      .keyword-field, .status-field { grid-column: span 3; }
-      .compact-field { grid-column: span 2; }
-      .multi-select-field, .filter-actions { grid-column: span 3; }
+      .keyword-field, .county-field, .district-select-field, .status-field { grid-column: span 3; }
+      .room-field, .rent-field { grid-column: span 1; }
+      .amenity-needs-field { grid-column: span 4; }
+      .nearby-facility-field, .filter-actions { grid-column: span 3; }
       .filter-actions .filter-button, .filter-actions .reset-button { width: 100%; }
       .panel-tools .county-all { width: auto; }
       .explorer-layout { grid-template-columns: minmax(500px,1.05fr) minmax(400px,.95fr); }
@@ -470,6 +496,10 @@
       .compare-button::after { content: "比較"; }
       .compare-button[aria-pressed="true"]::after { content: "已比較"; }
       .subscribe-notice { right: 16px; bottom: 16px; left: 16px; max-width: none; text-align: center; }
+      .housing-empty { min-height: 390px; padding: 12px 0; }
+      .housing-empty-card { padding: 20px 8px; }
+      .housing-empty-actions { align-items: stretch; flex-direction: column; }
+      .empty-subscribe-button,.empty-reset-button { width: 100%; }
       .compare-tray { right: 12px; bottom: 12px; left: 12px; width: auto; min-height: 0; grid-template-columns: minmax(0, 1fr) auto; gap: 9px; padding: 11px 12px; border-radius: 17px; transform: none; }
       .compare-tray-copy { display: none; }
       .compare-selection { grid-column: 1 / -1; }

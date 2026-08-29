@@ -56,51 +56,64 @@
     <div class="content">
       <form id="needsForm">
         <div class="questions-list">
-          <details class="need-question">
-            <summary><span class="question-index">1</span><span class="summary-copy"><strong>區位需求</strong><small>先選縣市，再選行政區（可複選）</small></span><span class="toggle-icon" aria-hidden="true"><i class="fa-solid fa-chevron-down"></i></span></summary>
+          <details class="need-question" id="locationQuestion">
+            <summary><span class="question-index">1</span><span class="summary-copy"><strong>區位需求</strong><small id="locationQuestionSummary">新北市：板橋區</small></span><span class="toggle-icon" aria-hidden="true"><i class="fa-solid fa-chevron-down"></i></span></summary>
             <div class="question-body">
-              <p class="question-note">先選擇縣市，再勾選希望入住的行政區；行政區可複選，切換縣市後選擇仍會保留。</p>
+              <p class="question-note">縣市與行政區皆可複選；需要設定其他縣市時，可隨時展開縣市選單。</p>
               <div class="location-picker">
-                <label class="county-field" for="countySelect"><span>縣市</span><select id="countySelect" name="county"><option value="">請選擇縣市</option></select></label>
-                <div class="district-picker">
-                  <div class="district-picker-head"><strong id="districtPickerTitle">請先選擇縣市</strong><button class="district-clear" id="clearDistricts" type="button">清除此縣市</button></div>
-                  <div class="choice-grid district-grid" id="districtOptions" aria-live="polite"></div>
-                </div>
-                <p class="location-summary" id="selectedDistrictSummary" aria-live="polite">尚未選擇行政區</p>
+                <details class="county-multi-select" id="countyMultiSelect">
+                  <summary class="county-multi-trigger">
+                    <span class="county-trigger-copy"><small>縣市（可複選）</small><strong id="countyMultiLabel">新北市</strong></span>
+                    <span class="county-trigger-count" id="countySelectedCount">已選 1 個</span>
+                    <span class="county-trigger-icon" aria-hidden="true"><i class="fa-solid fa-chevron-down"></i></span>
+                  </summary>
+                  <div class="county-multi-panel">
+                    <fieldset class="county-choice-fieldset">
+                      <legend>選擇希望入住的縣市</legend>
+                      <div class="county-option-grid" id="countyOptions"></div>
+                    </fieldset>
+                    <button class="county-done" id="countyDone" type="button">完成縣市選擇</button>
+                  </div>
+                </details>
+
+                <div class="county-districts" id="countyDistrictPanels" aria-label="已選縣市的行政區"></div>
+                <div class="location-summary" id="selectedDistrictSummary" aria-live="polite"><strong>已選 1 個縣市、1 個行政區</strong><span>新北市：板橋區</span></div>
+                <div id="locationFormValues" hidden></div>
               </div>
             </div>
           </details>
 
           <details class="need-question" open>
-            <summary><span class="question-index">2</span><span class="summary-copy"><strong>房型需求</strong><small>目前展開，可複選房型</small></span><span class="toggle-icon" aria-hidden="true"><i class="fa-solid fa-chevron-down"></i></span></summary>
+            <summary><span class="question-index">2</span><span class="summary-copy"><strong>房型需求</strong><small id="roomQuestionSummary">二房型（1 衛浴）、三房型</small></span><span class="toggle-icon" aria-hidden="true"><i class="fa-solid fa-chevron-down"></i></span></summary>
             <div class="question-body inline-style-41d7d7e25b">
               <p class="question-note inline-style-bb9e9f74bb">所選房型須符合家庭成員數量規定。</p>
               <div class="room-grid" id="roomGrid">
-                <label class="room-option"><input type="checkbox" name="roomType" value="studio" /><div class="room-visual"><img src="assets/questionnaire-room-types/studio.png" alt="套房型室內格局插畫" /></div><div class="room-label"><span class="fake-check"></span><span>套房型（1房＋1衛浴）</span></div></label>
-                <label class="room-option"><input type="checkbox" name="roomType" value="one-room" /><div class="room-visual"><img src="assets/questionnaire-room-types/one-room.png" alt="一房型室內格局插畫" /></div><div class="room-label"><span class="fake-check"></span><span>一房型（1房＋1廳＋1衛浴）</span></div></label>
-                <label class="room-option selected"><input type="checkbox" name="roomType" value="two-room" checked /><div class="room-visual"><img src="assets/questionnaire-room-types/two-room.png" alt="二房型室內格局插畫" /></div><div class="room-label"><span class="fake-check"></span><span>二房型（2房＋1廳＋1衛浴）</span></div></label>
-                <label class="room-option"><input type="checkbox" name="roomType" value="two-room-plus" /><div class="room-visual"><img src="assets/questionnaire-room-types/two-room-plus.png" alt="二房一廳一點五衛浴型室內格局插畫" /></div><div class="room-label"><span class="fake-check"></span><span>二房型（2房＋1廳＋1.5衛浴）</span></div></label>
-                <label class="room-option selected"><input type="checkbox" name="roomType" value="three-room" checked /><div class="room-visual"><img src="assets/questionnaire-room-types/three-room.png" alt="三房型室內格局插畫" /></div><div class="room-label"><span class="fake-check"></span><span>三房型（3房＋1廳＋2衛浴）</span></div></label>
+                <label class="room-option"><input type="checkbox" name="roomType" value="studio" data-summary-label="套房型" /><div class="room-visual"><img src="assets/questionnaire-room-types/studio.png" alt="套房型室內格局插畫" /></div><div class="room-label"><span class="fake-check"></span><span>套房型（1房＋1衛浴）</span></div></label>
+                <label class="room-option"><input type="checkbox" name="roomType" value="one-room" data-summary-label="一房型" /><div class="room-visual"><img src="assets/questionnaire-room-types/one-room.png" alt="一房型室內格局插畫" /></div><div class="room-label"><span class="fake-check"></span><span>一房型（1房＋1廳＋1衛浴）</span></div></label>
+                <label class="room-option selected"><input type="checkbox" name="roomType" value="two-room" data-summary-label="二房型（1 衛浴）" checked /><div class="room-visual"><img src="assets/questionnaire-room-types/two-room.png" alt="二房型室內格局插畫" /></div><div class="room-label"><span class="fake-check"></span><span>二房型（2房＋1廳＋1衛浴）</span></div></label>
+                <label class="room-option"><input type="checkbox" name="roomType" value="two-room-plus" data-summary-label="二房型（1.5 衛浴）" /><div class="room-visual"><img src="assets/questionnaire-room-types/two-room-plus.png" alt="二房一廳一點五衛浴型室內格局插畫" /></div><div class="room-label"><span class="fake-check"></span><span>二房型（2房＋1廳＋1.5衛浴）</span></div></label>
+                <label class="room-option selected"><input type="checkbox" name="roomType" value="three-room" data-summary-label="三房型" checked /><div class="room-visual"><img src="assets/questionnaire-room-types/three-room.png" alt="三房型室內格局插畫" /></div><div class="room-label"><span class="fake-check"></span><span>三房型（3房＋1廳＋2衛浴）</span></div></label>
               </div>
-              <label class="accessibility-choice"><input type="checkbox" name="accessibleRoom" value="yes" />需要無障礙房型</label>
+              <label class="accessibility-choice"><input type="checkbox" name="accessibleRoom" value="yes" data-summary-label="需要無障礙房型" />需要無障礙房型</label>
             </div>
           </details>
 
           <details class="need-question">
-            <summary><span class="question-index">3</span><span class="summary-copy"><strong>公共設施需求</strong><small>選擇重視的社區或生活設施，可複選</small></span><span class="toggle-icon" aria-hidden="true"><i class="fa-solid fa-chevron-down"></i></span></summary>
+            <summary><span class="question-index">3</span><span class="summary-copy"><strong>公設及服務需求</strong><small id="facilityQuestionSummary">托育／兒童活動空間</small></span><span class="toggle-icon" aria-hidden="true"><i class="fa-solid fa-chevron-down"></i></span></summary>
             <div class="question-body"><div class="choice-grid">
-              <label class="choice-card"><input type="checkbox" name="facility" value="托育設施" checked />托育設施</label>
-              <label class="choice-card"><input type="checkbox" name="facility" value="長照日照" />長照／日照空間</label>
-              <label class="choice-card"><input type="checkbox" name="facility" value="社區活動" />社區活動空間</label>
-              <label class="choice-card"><input type="checkbox" name="facility" value="共用廚房" />共用廚房</label>
-              <label class="choice-card"><input type="checkbox" name="facility" value="運動空間" />運動空間</label>
-              <label class="choice-card"><input type="checkbox" name="facility" value="商業服務" />商業與生活服務</label>
-              <label class="choice-card"><input type="checkbox" name="facility" value="無特別需求" />無特別需求</label>
+              <label class="choice-card"><input type="checkbox" name="facility" value="托育兒童" checked />托育／兒童活動空間</label>
+              <label class="choice-card"><input type="checkbox" name="facility" value="長照日照" />長照／日間照顧服務</label>
+              <label class="choice-card"><input type="checkbox" name="facility" value="社區活動" />社區交誼／活動空間</label>
+              <label class="choice-card"><input type="checkbox" name="facility" value="運動健身" />運動健身空間</label>
+              <label class="choice-card"><input type="checkbox" name="facility" value="共用餐敘" />共用廚房／餐敘空間</label>
+              <label class="choice-card"><input type="checkbox" name="facility" value="生活服務" />生活服務／商店</label>
+              <!-- <label class="choice-card"><input type="checkbox" name="facility" value="物業服務" />包裹代收／物業服務</label> -->
+              <label class="choice-card"><input type="checkbox" name="facility" value="無特別需求" data-none-option />無特別需求</label>
             </div></div>
           </details>
 
           <details class="need-question">
-            <summary><span class="question-index">4</span><span class="summary-copy"><strong>租金範圍需求</strong><small>選擇每月可負擔的租金上限</small></span><span class="toggle-icon" aria-hidden="true"><i class="fa-solid fa-chevron-down"></i></span></summary>
+            <summary><span class="question-index">4</span><span class="summary-copy"><strong>租金範圍需求</strong><small id="rentQuestionSummary">12,001～16,000 元</small></span><span class="toggle-icon" aria-hidden="true"><i class="fa-solid fa-chevron-down"></i></span></summary>
             <div class="question-body"><div class="choice-grid">
               <label class="choice-card"><input type="radio" name="rentRange" value="8000" />8,000 元以下</label>
               <label class="choice-card"><input type="radio" name="rentRange" value="12000" />8,001～12,000 元</label>
@@ -112,7 +125,7 @@
           </details>
 
           <details class="need-question">
-            <summary><span class="question-index">5</span><span class="summary-copy"><strong>希望入住時間</strong><small>選擇最符合目前規劃的時間</small></span><span class="toggle-icon" aria-hidden="true"><i class="fa-solid fa-chevron-down"></i></span></summary>
+            <summary><span class="question-index">5</span><span class="summary-copy"><strong>希望入住時間</strong><small id="moveInQuestionSummary">預計 3 個月內</small></span><span class="toggle-icon" aria-hidden="true"><i class="fa-solid fa-chevron-down"></i></span></summary>
             <div class="question-body"><div class="choice-grid">
               <label class="choice-card"><input type="radio" name="moveIn" value="立即" />有合適房源即可入住</label>
               <label class="choice-card"><input type="radio" name="moveIn" value="3個月" checked />預計 3 個月內</label>
@@ -140,7 +153,7 @@
     <p>接下來您可以先瀏覽推薦社宅，或直接進入符合需求的社宅申請。</p>
     <div class="completion-actions">
       <a class="completion-choice" href="housing.html"><strong>推薦我符合需求的社宅</strong><span>依區位、房型與租金需求瀏覽社宅</span></a>
-      <a class="completion-choice primary" href="data.html"><strong>申請符合需求的社宅</strong><b class="match-badge">3 筆符合</b><span>登記資料並送社宅申請</span></a>
+      <a class="completion-choice primary" href="declaration.html"><strong>申請符合需求的社宅</strong><b class="match-badge">3 筆符合</b><span>登記資料並送社宅申請</span></a>
     </div>
   </div>
 </dialog>
@@ -166,67 +179,289 @@
 
 <script>
   const administrativeDistricts = {"臺北市":["松山區","信義區","大安區","中山區","中正區","大同區","萬華區","文山區","南港區","內湖區","士林區","北投區"],"臺中市":["中區","東區","南區","西區","北區","西屯區","南屯區","北屯區","豐原區","東勢區","大甲區","清水區","沙鹿區","梧棲區","后里區","神岡區","潭子區","大雅區","新社區","石岡區","外埔區","大安區","烏日區","大肚區","龍井區","霧峰區","太平區","大里區","和平區"],"基隆市":["中正區","七堵區","暖暖區","仁愛區","中山區","安樂區","信義區"],"臺南市":["新營區","鹽水區","白河區","柳營區","後壁區","東山區","麻豆區","下營區","六甲區","官田區","大內區","佳里區","學甲區","西港區","七股區","將軍區","北門區","新化區","善化區","新市區","安定區","山上區","玉井區","楠西區","南化區","左鎮區","仁德區","歸仁區","關廟區","龍崎區","永康區","東區","南區","北區","安南區","安平區","中西區"],"高雄市":["鹽埕區","鼓山區","左營區","楠梓區","三民區","新興區","前金區","苓雅區","前鎮區","旗津區","小港區","鳳山區","林園區","大寮區","大樹區","大社區","仁武區","鳥松區","岡山區","橋頭區","燕巢區","田寮區","阿蓮區","路竹區","湖內區","茄萣區","永安區","彌陀區","梓官區","旗山區","美濃區","六龜區","甲仙區","杉林區","內門區","茂林區","桃源區","那瑪夏區"],"新北市":["板橋區","三重區","中和區","永和區","新莊區","新店區","樹林區","鶯歌區","三峽區","淡水區","汐止區","瑞芳區","土城區","蘆洲區","五股區","泰山區","林口區","深坑區","石碇區","坪林區","三芝區","石門區","八里區","平溪區","雙溪區","貢寮區","金山區","萬里區","烏來區"],"宜蘭縣":["宜蘭市","羅東鎮","蘇澳鎮","頭城鎮","礁溪鄉","壯圍鄉","員山鄉","冬山鄉","五結鄉","三星鄉","大同鄉","南澳鄉"],"桃園市":["桃園區","中壢區","大溪區","楊梅區","蘆竹區","大園區","龜山區","八德區","龍潭區","平鎮區","新屋區","觀音區","復興區"],"嘉義市":["東區","西區"],"新竹縣":["竹北市","竹東鎮","新埔鎮","關西鎮","湖口鄉","新豐鄉","芎林鄉","橫山鄉","北埔鄉","寶山鄉","峨眉鄉","尖石鄉","五峰鄉"],"苗栗縣":["苗栗市","苑裡鎮","通霄鎮","竹南鎮","頭份市","後龍鎮","卓蘭鎮","大湖鄉","公館鄉","銅鑼鄉","南庄鄉","頭屋鄉","三義鄉","西湖鄉","造橋鄉","三灣鄉","獅潭鄉","泰安鄉"],"南投縣":["南投市","埔里鎮","草屯鎮","竹山鎮","集集鎮","名間鄉","鹿谷鄉","中寮鄉","魚池鄉","國姓鄉","水里鄉","信義鄉","仁愛鄉"],"彰化縣":["彰化市","鹿港鎮","和美鎮","線西鄉","伸港鄉","福興鄉","秀水鄉","花壇鄉","芬園鄉","員林市","溪湖鎮","田中鎮","大村鄉","埔鹽鄉","埔心鄉","永靖鄉","社頭鄉","二水鄉","北斗鎮","二林鎮","田尾鄉","埤頭鄉","芳苑鄉","大城鄉","竹塘鄉","溪州鄉"],"新竹市":["東區","北區","香山區"],"雲林縣":["斗六市","斗南鎮","虎尾鎮","西螺鎮","土庫鎮","北港鎮","古坑鄉","大埤鄉","莿桐鄉","林內鄉","二崙鄉","崙背鄉","麥寮鄉","東勢鄉","褒忠鄉","臺西鄉","元長鄉","四湖鄉","口湖鄉","水林鄉"],"嘉義縣":["太保市","朴子市","布袋鎮","大林鎮","民雄鄉","溪口鄉","新港鄉","六腳鄉","東石鄉","義竹鄉","鹿草鄉","水上鄉","中埔鄉","竹崎鄉","梅山鄉","番路鄉","大埔鄉","阿里山鄉"],"屏東縣":["屏東市","潮州鎮","東港鎮","恆春鎮","萬丹鄉","長治鄉","麟洛鄉","九如鄉","里港鄉","鹽埔鄉","高樹鄉","萬巒鄉","內埔鄉","竹田鄉","新埤鄉","枋寮鄉","新園鄉","崁頂鄉","林邊鄉","南州鄉","佳冬鄉","琉球鄉","車城鄉","滿州鄉","枋山鄉","三地門鄉","霧臺鄉","瑪家鄉","泰武鄉","來義鄉","春日鄉","獅子鄉","牡丹鄉"],"花蓮縣":["花蓮市","鳳林鎮","玉里鎮","新城鄉","吉安鄉","壽豐鄉","光復鄉","豐濱鄉","瑞穗鄉","富里鄉","秀林鄉","萬榮鄉","卓溪鄉"],"臺東縣":["臺東市","成功鎮","關山鎮","卑南鄉","鹿野鄉","池上鄉","東河鄉","長濱鄉","太麻里鄉","大武鄉","綠島鄉","海端鄉","延平鄉","金峰鄉","達仁鄉","蘭嶼鄉"],"金門縣":["金城鎮","金沙鎮","金湖鎮","金寧鄉","烈嶼鄉","烏坵鄉"],"澎湖縣":["馬公市","湖西鄉","白沙鄉","西嶼鄉","望安鄉","七美鄉"],"連江縣":["南竿鄉","北竿鄉","莒光鄉","東引鄉"]};
-  const countySelect = document.getElementById('countySelect');
-  const districtOptions = document.getElementById('districtOptions');
-  const districtPickerTitle = document.getElementById('districtPickerTitle');
+  const countyOrder = ['基隆市','臺北市','新北市','桃園市','新竹市','新竹縣','苗栗縣','臺中市','彰化縣','南投縣','雲林縣','嘉義市','嘉義縣','臺南市','高雄市','屏東縣','宜蘭縣','花蓮縣','臺東縣','澎湖縣','金門縣','連江縣'];
+  const locationQuestion = document.getElementById('locationQuestion');
+  const locationQuestionSummary = document.getElementById('locationQuestionSummary');
+  const countyMultiSelect = document.getElementById('countyMultiSelect');
+  const countyMultiLabel = document.getElementById('countyMultiLabel');
+  const countySelectedCount = document.getElementById('countySelectedCount');
+  const countyOptions = document.getElementById('countyOptions');
+  const countyDone = document.getElementById('countyDone');
+  const countyDistrictPanels = document.getElementById('countyDistrictPanels');
   const selectedDistrictSummary = document.getElementById('selectedDistrictSummary');
-  const clearDistricts = document.getElementById('clearDistricts');
+  const locationFormValues = document.getElementById('locationFormValues');
+  const selectedCounties = new Set(['新北市']);
   const selectedDistricts = new Set(['新北市|板橋區']);
+  const expandedCounties = new Set(['新北市']);
 
-  Object.keys(administrativeDistricts).forEach(county => countySelect.add(new Option(county,county)));
-  countySelect.value = '新北市';
-
-  function updateDistrictSummary(){
-    const selected = [...selectedDistricts];
-    if(!selected.length){
-      selectedDistrictSummary.textContent = '尚未選擇行政區';
-      return;
-    }
-    const labels = selected.map(item => item.replace('|',' '));
-    selectedDistrictSummary.textContent = `已選擇 ${selected.length} 個行政區：${labels.join('、')}`;
+  function getSelectedCounties(){
+    return countyOrder.filter(county => selectedCounties.has(county));
   }
 
-  function renderDistrictOptions(){
-    const county = countySelect.value;
-    const districts = administrativeDistricts[county] || [];
-    districtPickerTitle.textContent = county ? `${county}行政區（可複選）` : '請先選擇縣市';
-    clearDistricts.disabled = !county;
-    districtOptions.innerHTML = districts.length ? districts.map(district => {
-      const value = `${county}|${district}`;
-      return `<label class="choice-card"><input type="checkbox" name="district" value="${value}" ${selectedDistricts.has(value)?'checked':''}/>${district}</label>`;
-    }).join('') : '<span class="question-note">選擇縣市後顯示行政區。</span>';
-    districtOptions.querySelectorAll('input[name="district"]').forEach(input => {
+  function getSelectedDistricts(county){
+    const prefix = `${county}|`;
+    return [...selectedDistricts]
+      .filter(value => value.startsWith(prefix))
+      .map(value => value.slice(prefix.length));
+  }
+
+  function renderCountyOptions(){
+    countyOptions.innerHTML = countyOrder.map((county,index) => {
+      const districtCount = getSelectedDistricts(county).length;
+      const isSelected = selectedCounties.has(county);
+      const status = !isSelected ? '' : districtCount ? `已選 ${districtCount} 區` : '待選行政區';
+      return `<label class="county-option${isSelected?' is-selected':''}" for="countyOption${index}"><input id="countyOption${index}" type="checkbox" name="county" value="${county}" ${isSelected?'checked':''}/><span class="county-option-copy"><strong>${county}</strong><small>${status}</small></span></label>`;
+    }).join('');
+
+    countyOptions.querySelectorAll('input[name="county"]').forEach(input => {
       input.addEventListener('change',() => {
-        if(input.checked) selectedDistricts.add(input.value);
-        else selectedDistricts.delete(input.value);
-        updateDistrictSummary();
+        const county = input.value;
+        if(input.checked){
+          selectedCounties.add(county);
+          expandedCounties.clear();
+          expandedCounties.add(county);
+        }else{
+          selectedCounties.delete(county);
+          expandedCounties.delete(county);
+          const prefix = `${county}|`;
+          [...selectedDistricts].forEach(value => {
+            if(value.startsWith(prefix)) selectedDistricts.delete(value);
+          });
+          if(!expandedCounties.size && selectedCounties.size) expandedCounties.add(getSelectedCounties()[0]);
+        }
+        updateCountyOptionStates();
+        renderDistrictPanels();
+        updateLocationSummary();
+        syncLocationFormValues();
       });
     });
   }
 
-  countySelect.addEventListener('change',renderDistrictOptions);
-  clearDistricts.addEventListener('click',() => {
-    const prefix = `${countySelect.value}|`;
-    [...selectedDistricts].forEach(value => {if(value.startsWith(prefix))selectedDistricts.delete(value)});
-    renderDistrictOptions();
-    updateDistrictSummary();
+  function updateCountyOptionStates(){
+    countyOptions.querySelectorAll('input[name="county"]').forEach(input => {
+      const county = input.value;
+      const isSelected = selectedCounties.has(county);
+      const districtCount = getSelectedDistricts(county).length;
+      input.checked = isSelected;
+      input.closest('.county-option').classList.toggle('is-selected',isSelected);
+      input.closest('.county-option').querySelector('small').textContent = !isSelected
+        ? ''
+        : districtCount ? `已選 ${districtCount} 區` : '待選行政區';
+    });
+  }
+
+  function getDistrictStatus(county){
+    const districts = getSelectedDistricts(county);
+    if(!districts.length) return '尚未選擇行政區';
+    if(districts.length === administrativeDistricts[county].length) return `全市（${districts.length} 區）`;
+    const visible = districts.slice(0,3).join('、');
+    return `${visible}${districts.length > 3 ? `等 ${districts.length} 區` : ''}`;
+  }
+
+  function updateDistrictPanelStatus(county){
+    const panel = [...countyDistrictPanels.querySelectorAll('.county-district-panel')]
+      .find(item => item.dataset.county === county);
+    if(!panel) return;
+    const districtCount = getSelectedDistricts(county).length;
+    panel.querySelector('.county-district-status').textContent = getDistrictStatus(county);
+    panel.querySelector('.county-district-count').textContent = districtCount ? `${districtCount} 區` : '待選';
+  }
+
+  function renderDistrictPanels(){
+    const counties = getSelectedCounties();
+    if(!counties.length){
+      countyDistrictPanels.innerHTML = '<div class="district-empty-message">請先從上方選擇至少一個縣市。</div>';
+      return;
+    }
+
+    countyDistrictPanels.innerHTML = counties.map(county => {
+      const districtCount = getSelectedDistricts(county).length;
+      const districtChoices = administrativeDistricts[county].map(district => {
+        const value = `${county}|${district}`;
+        return `<label class="choice-card${selectedDistricts.has(value)?' is-selected':''}"><input type="checkbox" value="${value}" data-county="${county}" ${selectedDistricts.has(value)?'checked':''}/><span>${district}</span></label>`;
+      }).join('');
+      return `<details class="county-district-panel" data-county="${county}" ${expandedCounties.has(county)?'open':''}>
+        <summary><span class="county-district-copy"><strong>${county}</strong><small class="county-district-status">${getDistrictStatus(county)}</small></span><span class="county-district-count">${districtCount?`${districtCount} 區`:'待選'}</span><span class="county-district-chevron" aria-hidden="true"><i class="fa-solid fa-chevron-down"></i></span></summary>
+        <div class="county-district-body"><div class="county-district-toolbar"><span>行政區（可複選）</span><div class="district-actions"><button class="district-action" type="button" data-district-action="all" data-county="${county}">全選</button><button class="district-action" type="button" data-district-action="clear" data-county="${county}">清除</button></div></div><div class="choice-grid district-grid">${districtChoices}</div></div>
+      </details>`;
+    }).join('');
+
+    countyDistrictPanels.querySelectorAll('.county-district-panel').forEach(panel => {
+      panel.addEventListener('toggle',() => {
+        if(panel.open) expandedCounties.add(panel.dataset.county);
+        else expandedCounties.delete(panel.dataset.county);
+      });
+    });
+
+    countyDistrictPanels.querySelectorAll('.district-grid input[type="checkbox"]').forEach(input => {
+      input.addEventListener('change',() => {
+        if(input.checked) selectedDistricts.add(input.value);
+        else selectedDistricts.delete(input.value);
+        input.closest('.choice-card').classList.toggle('is-selected',input.checked);
+        updateCountyOptionStates();
+        updateDistrictPanelStatus(input.dataset.county);
+        updateLocationSummary();
+        syncLocationFormValues();
+      });
+    });
+
+    countyDistrictPanels.querySelectorAll('[data-district-action]').forEach(button => {
+      button.addEventListener('click',() => {
+        const county = button.dataset.county;
+        const prefix = `${county}|`;
+        if(button.dataset.districtAction === 'all'){
+          administrativeDistricts[county].forEach(district => selectedDistricts.add(`${county}|${district}`));
+        }else{
+          [...selectedDistricts].forEach(value => {if(value.startsWith(prefix)) selectedDistricts.delete(value)});
+        }
+        renderDistrictPanels();
+        updateCountyOptionStates();
+        updateLocationSummary();
+        syncLocationFormValues();
+      });
+    });
+  }
+
+  function updateLocationSummary(){
+    const counties = getSelectedCounties();
+    const districtTotal = selectedDistricts.size;
+    countyMultiLabel.textContent = counties.length
+      ? counties.length <= 2 ? counties.join('、') : `${counties.slice(0,2).join('、')}等 ${counties.length} 個縣市`
+      : '請選擇縣市';
+    countySelectedCount.textContent = counties.length ? `已選 ${counties.length} 個` : '尚未選擇';
+
+    if(!counties.length){
+      locationQuestionSummary.textContent = '尚未選擇';
+      locationQuestionSummary.removeAttribute('title');
+      selectedDistrictSummary.innerHTML = '<strong>尚未選擇縣市</strong><span>請先展開縣市選單。</span>';
+      return;
+    }
+
+    const labels = counties.map(county => {
+      const districts = getSelectedDistricts(county);
+      if(!districts.length) return `${county}：尚未選擇行政區`;
+      if(districts.length === administrativeDistricts[county].length) return `${county}：全市`;
+      const visible = districts.slice(0,3).join('、');
+      return `${county}：${visible}${districts.length > 3 ? `等 ${districts.length} 區` : ''}`;
+    });
+    locationQuestionSummary.textContent = labels.join('；');
+    locationQuestionSummary.title = labels.join('；');
+    selectedDistrictSummary.innerHTML = `<strong>已選 ${counties.length} 個縣市、${districtTotal} 個行政區</strong><span>${labels.join('；')}</span>`;
+  }
+
+  function syncLocationFormValues(){
+    locationFormValues.innerHTML = [...selectedDistricts]
+      .map(value => `<input type="hidden" name="district" value="${value}">`)
+      .join('');
+  }
+
+  function updateLocationUI(){
+    updateCountyOptionStates();
+    renderDistrictPanels();
+    updateLocationSummary();
+    syncLocationFormValues();
+  }
+
+  countyDone.addEventListener('click',() => {
+    countyMultiSelect.open = false;
+    countyDistrictPanels.querySelector('.county-district-panel > summary')?.focus();
   });
-  renderDistrictOptions();
-  updateDistrictSummary();
+  renderCountyOptions();
+  updateLocationUI();
 
   const roomOptions = document.querySelectorAll(".room-option");
+  const roomQuestionSummary = document.getElementById('roomQuestionSummary');
+  const accessibleRoom = document.querySelector('input[name="accessibleRoom"]');
+  const facilityOptions = [...document.querySelectorAll('input[name="facility"]')];
+  const facilityQuestionSummary = document.getElementById('facilityQuestionSummary');
+  const rentOptions = [...document.querySelectorAll('input[name="rentRange"]')];
+  const rentQuestionSummary = document.getElementById('rentQuestionSummary');
+  const moveInOptions = [...document.querySelectorAll('input[name="moveIn"]')];
+  const moveInQuestionSummary = document.getElementById('moveInQuestionSummary');
   const needsForm = document.getElementById("needsForm");
   const completionDialog = document.getElementById("completionDialog");
+
+  function getOptionLabel(input){
+    return input.dataset.summaryLabel || input.closest('label')?.textContent.trim().replace(/\s+/g,' ') || input.value;
+  }
+
+  function formatQuestionSummary(labels,emptyText='尚未選擇',limit=3){
+    if(!labels.length) return emptyText;
+    return labels.length > limit ? `${labels.slice(0,limit).join('、')}等 ${labels.length} 項` : labels.join('、');
+  }
+
+  function updateRoomSummary(){
+    const labels = [...document.querySelectorAll('input[name="roomType"]:checked')].map(getOptionLabel);
+    if(accessibleRoom.checked) labels.push(getOptionLabel(accessibleRoom));
+    roomQuestionSummary.textContent = formatQuestionSummary(labels,'尚未選擇房型');
+    roomQuestionSummary.title = labels.join('、');
+  }
+
+  function updateChoiceCardStates(inputs){
+    inputs.forEach(input => input.closest('.choice-card')?.classList.toggle('is-selected',input.checked));
+  }
+
+  function updateFacilitySummary(){
+    const labels = facilityOptions.filter(input => input.checked).map(getOptionLabel);
+    facilityQuestionSummary.textContent = formatQuestionSummary(labels,'尚未選擇公設或服務');
+    facilityQuestionSummary.title = labels.join('、');
+    updateChoiceCardStates(facilityOptions);
+  }
+
+  function updateSingleChoiceSummary(inputs,summaryElement){
+    const selected = inputs.find(input => input.checked);
+    summaryElement.textContent = selected ? getOptionLabel(selected) : '尚未選擇';
+    updateChoiceCardStates(inputs);
+  }
 
   roomOptions.forEach(option => {
     const checkbox = option.querySelector('input[type="checkbox"]');
     checkbox.addEventListener("change", () => {
       option.classList.toggle("selected", checkbox.checked);
+      updateRoomSummary();
     });
   });
 
+  accessibleRoom.addEventListener('change',updateRoomSummary);
+  facilityOptions.forEach(input => {
+    input.addEventListener('change',() => {
+      if(input.checked && input.hasAttribute('data-none-option')){
+        facilityOptions.forEach(option => {if(option !== input) option.checked = false});
+      }else if(input.checked){
+        const noneOption = facilityOptions.find(option => option.hasAttribute('data-none-option'));
+        if(noneOption) noneOption.checked = false;
+      }
+      updateFacilitySummary();
+    });
+  });
+  rentOptions.forEach(input => input.addEventListener('change',() => updateSingleChoiceSummary(rentOptions,rentQuestionSummary)));
+  moveInOptions.forEach(input => input.addEventListener('change',() => updateSingleChoiceSummary(moveInOptions,moveInQuestionSummary)));
+  updateRoomSummary();
+  updateFacilitySummary();
+  updateSingleChoiceSummary(rentOptions,rentQuestionSummary);
+  updateSingleChoiceSummary(moveInOptions,moveInQuestionSummary);
+
   needsForm.addEventListener("submit", (event) => {
     event.preventDefault();
+    if(!selectedCounties.size){
+      alert("請先選擇至少一個希望入住的縣市。");
+      locationQuestion.open = true;
+      countyMultiSelect.open = true;
+      countyMultiSelect.scrollIntoView({behavior:'smooth',block:'center'});
+      return;
+    }
+    const incompleteCounty = getSelectedCounties().find(county => !getSelectedDistricts(county).length);
+    if(incompleteCounty){
+      alert(`請選擇${incompleteCounty}至少一個行政區。`);
+      expandedCounties.add(incompleteCounty);
+      locationQuestion.open = true;
+      countyMultiSelect.open = false;
+      renderDistrictPanels();
+      const incompletePanel = [...countyDistrictPanels.querySelectorAll('.county-district-panel')]
+        .find(panel => panel.dataset.county === incompleteCounty);
+      incompletePanel?.scrollIntoView({behavior:'smooth',block:'center'});
+      return;
+    }
     const selected = document.querySelector('input[name="roomType"]:checked');
     if(!selected){
       alert("請先選擇預計申請的房型。");

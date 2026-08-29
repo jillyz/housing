@@ -17,15 +17,25 @@
         <a class="utility-link" href="index.html#journey" aria-label="網站導覽">
           <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="2.5" width="6" height="5" rx="1.2"/><rect x="2" y="16.5" width="6" height="5" rx="1.2"/><rect x="9" y="16.5" width="6" height="5" rx="1.2"/><rect x="16" y="16.5" width="6" height="5" rx="1.2"/><path d="M12 7.5V12M5 16.5V12h14v4.5M12 12v4.5"/></svg><span>網站導覽</span>
         </a>
-        <a class="utility-link" href="chat.html" aria-label="聯絡我們">
+        <a class="utility-link" href="index.html#service" aria-label="聯絡我們">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13v-1a8 8 0 0 1 16 0v1"/><path d="M4 12H2v5c0 1.1.9 2 2 2h2v-7H4Zm16 0h2v5c0 1.1-.9 2-2 2h-2v-7h2Z"/><path d="M18 19c0 2-2 3-5 3"/></svg><span>聯絡我們</span>
         </a>
       </div>
     </div>
-    <div class="login-header-inner">
+    <nav class="main-nav" id="primaryNavigation" aria-label="主要導覽">
       <a class="brand" href="index.html" aria-label="全國社宅統一登記申請平台首頁"><img class="brand-mark" src="assets/platform-logo-elegant.svg" alt="" /><span class="brand-name">全國社宅統一登記申請平台</span></a>
-      <button class="back-link" type="button">← 返回上頁</button>
-    </div>
+      <div class="nav-group">
+        <a class="nav-link" href="housing.html">找社宅</a>
+        <a class="nav-link" href="index.html#journey">申請流程</a>
+      </div>
+      <a class="login-button" href="#top" aria-current="page">登入</a>
+      <button class="mobile-menu" type="button" aria-label="開啟選單" aria-controls="mobileNav" aria-expanded="false">☰</button>
+      <div class="mobile-nav" id="mobileNav">
+        <a href="housing.html">找社宅</a>
+        <a href="index.html#journey">申請流程</a>
+        <a class="login-button" href="#top" aria-current="page">登入</a>
+      </div>
+    </nav>
   </header>
 
   <main class="page" id="top">
@@ -36,26 +46,26 @@
       <article class="card">
         <div class="visual"><img src="assets/login-illustrations/phone-verification.png" alt="使用手機進行電信驗證的插畫" /></div>
         <h2>手機電信驗證</h2><ul class="benefits"><li>我的手機已綁定本人門號</li><li>僅使用 4G／5G 行動網路驗證</li><li>驗證快速，適合手機操作</li></ul>
-        <button class="login" type="button" data-method="手機電信驗證">點我登入</button><a class="register" href="#register">前往註冊</a>
+        <button class="login" type="button" data-method="手機電信驗證">點我登入</button><span class="register-placeholder" aria-hidden="true"></span>
       </article>
       <article class="card">
         <div class="visual"><img src="assets/login-illustrations/mobile-certificate.png" alt="行動自然人憑證手機與盾牌插畫" /></div>
         <h2>行動自然人憑證</h2><ul class="benefits"><li>我已綁定行動自然人憑證</li><li>需先安裝行動自然人憑證 APP</li><li>可搭配手機進行驗證</li></ul>
-        <button class="login" type="button" data-method="行動自然人憑證">點我登入</button><a class="register" href="#register">前往註冊</a>
+        <button class="login" type="button" data-method="行動自然人憑證">點我登入</button><a class="register" href="https://fido.moi.gov.tw/pt/main/login" target="_blank" rel="noopener noreferrer">前往註冊</a>
       </article>
       <article class="card">
         <div class="visual"><img src="assets/login-illustrations/card-certificate.png" alt="讀卡機與自然人憑證插畫" /></div>
         <h2>實體自然人憑證</h2><ul class="benefits"><li>我已有自然人憑證讀卡機</li><li>需於電腦端完成驗證</li><li>適合桌機或筆電使用</li></ul>
-        <button class="login" type="button" data-method="實體自然人憑證">點我登入</button><a class="register" href="#register">前往註冊</a>
+        <button class="login" type="button" data-method="實體自然人憑證">點我登入</button><a class="register" href="https://moica.nat.gov.tw/rac.html" target="_blank" rel="noopener noreferrer">前往註冊</a>
       </article>
       <article class="card">
         <div class="visual"><img src="assets/login-illustrations/health-card.png" alt="健保卡讀卡機登入插畫" /></div>
         <h2>健保卡</h2><ul class="benefits"><li>我已有健保卡與讀卡機</li><li>需完成相關元件安裝</li><li>可於電腦完成驗證</li></ul>
-        <button class="login" type="button" data-method="健保卡">點我登入</button><a class="register" href="#register">前往註冊</a>
+        <button class="login" type="button" data-method="健保卡">點我登入</button><a class="register" href="https://cloudicweb.nhi.gov.tw/cloudic/System/UserAction.aspx" target="_blank" rel="noopener noreferrer">前往註冊</a>
       </article>
     </section>
 
-    <p class="notice" id="register"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>登入資料將受到加密保護。尚未完成註冊？請從任一驗證方式前往註冊。</p>
+    <p class="notice" id="register"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>登入資料將受到加密保護。尚未完成註冊？請從對應的驗證方式前往官方網站註冊。</p>
   </main>
 
   <footer class="site-footer">
@@ -87,15 +97,34 @@
 
   <dialog id="login-dialog" aria-labelledby="dialog-title"><div class="dialog-body"><div class="dialog-mark">✓</div><h2 id="dialog-title">準備進行登入驗證</h2><p id="dialog-message">即將為您開啟登入驗證流程。</p><div class="dialog-actions"><button class="cancel" type="button" data-close>取消</button><button type="button" data-close>繼續</button></div></div></dialog>
   <script>
+    const siteHeader = document.querySelector('.site-header');
+    const updateHeaderState = () => siteHeader.classList.toggle('is-scrolled', window.scrollY > 8);
+    window.addEventListener('scroll', updateHeaderState, { passive: true });
+    updateHeaderState();
+    const mobileMenuButton = document.querySelector('.mobile-menu');
+    const mobileNav = document.getElementById('mobileNav');
+    const closeMobileNav = () => {
+      mobileNav.classList.remove('open');
+      mobileMenuButton.setAttribute('aria-expanded', 'false');
+      mobileMenuButton.textContent = '☰';
+    };
+    mobileMenuButton.addEventListener('click', () => {
+      const isOpen = mobileNav.classList.toggle('open');
+      mobileMenuButton.setAttribute('aria-expanded', String(isOpen));
+      mobileMenuButton.textContent = isOpen ? '×' : '☰';
+    });
+    mobileNav.querySelectorAll('a').forEach((item) => item.addEventListener('click', closeMobileNav));
+    document.addEventListener('click', (event) => {
+      if (!event.target.closest('.main-nav')) closeMobileNav();
+    });
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 1120) closeMobileNav();
+    });
     const dialog = document.querySelector('#login-dialog');
     const message = document.querySelector('#dialog-message');
     document.querySelectorAll('[data-method]').forEach((button) => button.addEventListener('click', () => { window.location.href = 'questionnaire.html'; }));
     document.querySelectorAll('[data-close]').forEach((button) => button.addEventListener('click', () => dialog.close()));
     dialog.addEventListener('click', (event) => { if (event.target === dialog) dialog.close(); });
-    document.querySelector('.back-link').addEventListener('click', () => {
-      if (window.history.length > 1) window.history.back();
-      else window.location.href = 'index.html';
-    });
   </script>
 </body>
 </html>

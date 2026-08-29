@@ -182,6 +182,7 @@
     .step:first-child .step-icon::before, .step:last-child .step-icon::after { display: none; }
     .step-icon svg { width: 46px; height: 46px; stroke: currentColor; stroke-width: 1.9; fill: none; }
     .step-label { color: #5d6265; font-size: 17px; letter-spacing: .1em; font-weight: 700; white-space: nowrap; }
+    .step-login-tag { position: absolute; z-index: 3; top: 66px; left: calc(100% + var(--step-gap) / 2); min-width: 52px; min-height: 27px; display: inline-grid; place-items: center; padding: 3px 10px; border: 1px solid #9bcac9; border-radius: 999px; color: #087680; background: #eff6f5; font-size: 12px; font-weight: 900; letter-spacing: .08em; transform: translateX(-50%); }
 
     .value-section { position: relative; z-index: 0; padding: 92px 48px 108px; overflow: hidden; background: linear-gradient(180deg, #f8fbfa, #edf6f4); }
     .value-section::before { content: ""; position: absolute; top: -160px; right: -130px; width: 390px; height: 390px; border-radius: 50%; background: radial-gradient(circle, rgba(52,166,170,.1), transparent 68%); }
@@ -401,7 +402,7 @@
       .step-icon { width: 88px; height: 88px; }
       .step-icon svg { width: 42px; height: 42px; }
       .step-label { font-size: 15px; letter-spacing: .06em; }
-      .step:last-child { grid-column: 1 / -1; }
+      .step-login-tag { position: static; min-width: 48px; min-height: 24px; margin: 8px auto 0; padding: 2px 8px; transform: none; }
       .value-section { padding: 66px 20px 74px; }
       .value-kicker { gap: 12px; font-size: 26px; }
       .value-kicker::before, .value-kicker::after { width: 34px; }
