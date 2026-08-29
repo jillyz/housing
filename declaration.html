@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>全國社宅統一申請登記平臺｜條款切結與聯絡資訊</title>
+<title>全國社宅統一申請登記平臺｜條款與電子切結</title>
 <link rel="stylesheet" href="assets/css/common.css" />
 <link rel="stylesheet" href="assets/css/pages/declaration.css" />
 <link rel="stylesheet" href="assets/member-shell.css" />
@@ -23,11 +23,8 @@
     <a class="brand" href="index.html" aria-label="全國社宅統一登記申請平台首頁"><img class="brand-mark" src="assets/platform-logo-elegant.svg" alt=""/><span class="brand-name">全國社宅統一登記申請平台</span></a>
     <div class="member-nav">
       <a class="member-nav-link" href="housing.html">找社宅</a>
-      <a class="member-nav-link" href="questionnaire.html">需求登記</a>
-      <a class="member-nav-link active" href="data.html" aria-current="page">資料登記</a>
-      <a class="member-nav-link" href="apply.html">申請社宅</a>
-      <a class="member-nav-link" href="progress.html">進度查詢/補件</a>
-      <a class="member-nav-link" href="#">操作紀錄</a>
+      <a class="member-nav-link active" href="apply.html">申請社宅</a>
+      <a class="member-nav-link" href="progress.html">進度查詢</a>
     </div>
     <div class="member-actions">
       <div class="login-user"><span class="login-user-label">登入者</span><strong>陳ＯＯ</strong></div>
@@ -36,18 +33,22 @@
     </div>
     <button class="site-mobile-menu" type="button" aria-label="開啟選單" aria-controls="memberMobileNav" aria-expanded="false">☰</button>
     <div class="site-mobile-nav" id="memberMobileNav">
-      <a href="housing.html">找社宅</a><a href="questionnaire.html">需求登記</a>
-      <a class="active" href="data.html" aria-current="page">資料登記</a><a href="apply.html">申請社宅</a><a href="progress.html">進度查詢/補件</a><a href="#">操作紀錄</a>
+      <a href="housing.html">找社宅</a><a class="active" href="apply.html">申請社宅</a><a href="progress.html">進度查詢</a>
       <div class="mobile-member"><div class="login-user"><span class="login-user-label">登入者</span><strong>陳ＯＯ</strong></div><div class="mobile-member-actions"><button class="member-icon" type="button" aria-label="查看通知"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg></button><a class="member-icon" href="index.html" aria-label="登出"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 17l5-5-5-5M15 12H3M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/></svg></a></div></div>
     </div>
   </nav>
 </header>
 <div class="page">
+  <div class="application-stepbar" aria-label="社宅申請流程">
+    <a class="step done" href="apply.html">1 選社宅房型</a>
+    <a class="step active" href="declaration.html" aria-current="step">2 電子切結</a>
+    <a class="step" href="data.html">3 申請資料</a>
+  </div>
   <main class="main-card">
     <div class="card-head">
       <div>
-        <h1>使用條款、個資告知與切結</h1>
-        <p>開始填寫申請資料前，請先閱讀服務條款及個人資料保護告知內容，完成同意與切結。</p>
+        <h1>條款與電子切結</h1>
+        <p>您已完成社宅選擇；開始填寫申請資料前，請閱讀服務條款及個資告知內容並完成電子切結。</p>
       </div>
     </div>
 
@@ -63,9 +64,9 @@
             <div class="terms-scroll">
               <h3>一、服務目的與適用範圍</h3>
               <ol>
-                <li>本平臺提供社會住宅資訊查詢、需求登記、申請資料登記、資料授權查調、補件及案件進度查詢等服務。</li>
-                <li>完成本平臺登記僅代表建立基本資料與接收招租通知，不等同完成任何社會住宅正式申請。</li>
-                <li>正式招租期間，申請人仍須依公告內容主動提出申請，並配合權責機關辦理審查、補件及後續作業。</li>
+                <li>本平臺提供社會住宅資訊查詢、居住需求登記、社宅選擇、申請資料、資料查調、補件及案件進度查詢等服務。</li>
+                <li>完成本申請流程代表送出申請資料；實際資格、配租順位與結果仍以權責機關審查及公告為準。</li>
+                <li>申請人仍須依公告內容配合權責機關辦理資格審查、補件及後續作業。</li>
               </ol>
 
               <h3>二、個人資料蒐集、處理及利用</h3>
@@ -140,7 +141,7 @@
 
                 <label class="check-row">
                   <input type="checkbox" class="agreement-check" checked />
-                  <span>我了解完成本平臺登記不等同完成正式社宅申請，仍須於招租期間另行提出申請。</span>
+                  <span>我了解完成本申請流程後，仍須經權責機關進行資格審查及後續配租程序。</span>
                 </label>
 
                 <label class="check-row">
@@ -155,7 +156,7 @@
 
               <div class="submit-area">
                 <button class="btn primary" id="submitAgreement" type="button" onclick="submitAgreement()">
-                  送出切結
+                  完成電子切結，確認聯絡資料
                 </button>
               </div>
             </div>
@@ -169,13 +170,13 @@
         <div class="contact-wrap">
           <div class="welcome">
             <div class="welcome-icon">✓</div>
-            <h2 id="contactDialogTitle">開始登記</h2>
-            <p>請填寫本人真實姓名與可接收通知的聯絡方式，後續招租、補件及申請進度將依此資訊通知。</p>
+        <h2 id="contactDialogTitle">確認聯絡資料</h2>
+        <p>請確認本人真實姓名與可接收通知的聯絡方式，後續補件及申請進度將依此資訊通知。</p>
           </div>
 
           <div class="contact-card">
             <div class="contact-note">
-              完成準申請人登記後，系統將依您提供的手機與電子信箱發送社宅招租通知。請確認資料正確，以免影響後續通知。
+              系統將使用您提供的手機與電子信箱發送補件、審查結果及申請進度通知。請確認資料正確。
             </div>
 
             <div class="form-grid">
@@ -192,20 +193,36 @@
               </div>
 
               <div class="field">
-                <label>聯絡手機 <span class="required">*</span></label>
-                <input type="tel" id="mobile" value="0912345678" placeholder="例如：0912-345-678" autocomplete="tel" required />
-                <div class="hint">用於接收簡訊通知。</div>
+                <div class="field-label-row">
+                  <label for="mobile">聯絡手機 <span class="required">*</span></label>
+                  <span class="verification-status is-verified"><span aria-hidden="true">✓</span> 已驗證</span>
+                </div>
+                <input class="is-verified" type="tel" id="mobile" value="0912345678" placeholder="例如：0912-345-678" autocomplete="tel" aria-describedby="mobileHint" required />
+                <div class="hint" id="mobileHint">已透過登入資料完成手機驗證，用於接收簡訊通知。</div>
               </div>
 
-              <div class="field">
-                <label>電子信箱 <span class="required">*</span></label>
-                <input type="email" id="email" value="example@gmail.com" placeholder="例如：name@example.com" autocomplete="email" required />
-                <div class="hint">用於接收招租及申請相關通知。</div>
+              <div class="field" id="emailField">
+                <div class="field-label-row">
+                  <label for="email">電子信箱 <span class="required">*</span></label>
+                  <span class="verification-status" id="emailVerificationStatus">尚未驗證</span>
+                </div>
+                <div class="input-with-action">
+                  <input type="email" id="email" value="example@gmail.com" placeholder="例如：name@example.com" autocomplete="email" aria-describedby="emailHint" required />
+                  <button class="verification-button" id="sendEmailVerification" type="button">寄送驗證信</button>
+                </div>
+                <div class="hint" id="emailHint" aria-live="polite">完成信箱驗證後，才能繼續填寫申請資料。</div>
+                <div class="email-verification-panel" id="emailVerificationPanel" hidden aria-live="polite">
+                  <div class="email-verification-copy">
+                    <strong id="emailVerificationTitle">驗證信已寄出</strong>
+                    <span id="emailVerificationMessage"></span>
+                  </div>
+                  <button class="verification-link-demo" id="simulateEmailVerification" type="button">原型操作：點擊信中驗證連結</button>
+                </div>
               </div>
             </div>
 
             <div class="contact-actions">
-              <button class="btn continue-btn" type="button" onclick="continueToForm()">確認並開始資料登記</button>
+              <button class="btn continue-btn" type="button" onclick="continueToForm()">確認聯絡資料，下一步申請資料</button>
             </div>
           </div>
         </div>
@@ -281,6 +298,54 @@
   const checks = Array.from(document.querySelectorAll(".agreement-check"));
   const submitButton = document.getElementById("submitAgreement");
   const contactDialog = document.getElementById("contactDialog");
+  const emailInput = document.getElementById("email");
+  const emailVerificationStatus = document.getElementById("emailVerificationStatus");
+  const emailVerificationPanel = document.getElementById("emailVerificationPanel");
+  const emailVerificationTitle = document.getElementById("emailVerificationTitle");
+  const emailVerificationMessage = document.getElementById("emailVerificationMessage");
+  const sendEmailVerification = document.getElementById("sendEmailVerification");
+  const simulateEmailVerification = document.getElementById("simulateEmailVerification");
+  let verifiedEmail = "";
+
+  const normalizeEmail = value => value.trim().toLowerCase();
+  const setEmailVerificationState = state => {
+    const isPending = state === "pending";
+    const isVerified = state === "verified";
+    emailVerificationStatus.classList.toggle("is-pending",isPending);
+    emailVerificationStatus.classList.toggle("is-verified",isVerified);
+    emailVerificationStatus.textContent = isVerified ? "✓ 已驗證" : isPending ? "等待驗證" : "尚未驗證";
+    emailInput.classList.toggle("is-verified",isVerified);
+    emailVerificationPanel.hidden = state === "idle";
+    emailVerificationPanel.classList.toggle("is-verified",isVerified);
+    simulateEmailVerification.hidden = isVerified;
+    sendEmailVerification.textContent = isVerified ? "重新驗證" : isPending ? "重新寄送" : "寄送驗證信";
+    document.getElementById("emailHint").textContent = isVerified
+      ? "電子信箱驗證完成，可接收招租及申請相關通知。"
+      : isPending ? "請前往信箱點擊驗證連結；若未收到，可重新寄送。" : "完成信箱驗證後，才能繼續填寫申請資料。";
+  };
+
+  sendEmailVerification.addEventListener("click",() => {
+    if(!emailInput.value.trim() || !emailInput.checkValidity()){
+      emailInput.reportValidity();
+      emailInput.focus();
+      return;
+    }
+    verifiedEmail = "";
+    emailVerificationTitle.textContent = "驗證信已寄出";
+    emailVerificationMessage.textContent = `已寄至 ${emailInput.value.trim()}，請收信並點擊驗證連結。`;
+    setEmailVerificationState("pending");
+  });
+
+  simulateEmailVerification.addEventListener("click",() => {
+    verifiedEmail = normalizeEmail(emailInput.value);
+    emailVerificationTitle.textContent = "電子信箱驗證完成";
+    emailVerificationMessage.textContent = `${emailInput.value.trim()} 已完成驗證。`;
+    setEmailVerificationState("verified");
+  });
+
+  emailInput.addEventListener("input",() => {
+    setEmailVerificationState(verifiedEmail && normalizeEmail(emailInput.value) === verifiedEmail ? "verified" : "idle");
+  });
 
   checks.forEach(check => {
     check.addEventListener("change", () => {
@@ -310,6 +375,18 @@
 
     if(!name || !nationalId || !mobile || !email){
       alert("請完整填寫真實姓名、身分證字號、聯絡手機及電子信箱。");
+      return;
+    }
+
+    if(!emailInput.checkValidity()){
+      emailInput.reportValidity();
+      emailInput.focus();
+      return;
+    }
+
+    if(normalizeEmail(email) !== verifiedEmail){
+      alert("請先完成電子信箱驗證，再繼續填寫申請資料。");
+      sendEmailVerification.focus();
       return;
     }
 

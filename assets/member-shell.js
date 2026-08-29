@@ -3,10 +3,6 @@
   const mobileMenu=document.querySelector('.site-mobile-menu');
   const mobileNav=document.getElementById('memberMobileNav');
 
-  document.querySelectorAll('.member-nav a[href="data.html"],.site-mobile-nav>a[href="data.html"]').forEach(link=>{
-    link.textContent='登記申請社宅';
-  });
-
   function closeMemberMenu(){
     if(!mobileMenu||!mobileNav)return;
     mobileNav.classList.remove('open');

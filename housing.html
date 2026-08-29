@@ -32,7 +32,12 @@
         <a class="nav-link active" href="#top" aria-current="page">找社宅</a>
         <a class="nav-link" href="index.html#journey">申請流程</a>
       </div>
-      <a class="login-button" href="login.html">登入</a>
+      <div class="header-actions">
+        <button class="application-cart-button" id="applicationCartButton" type="button" aria-controls="applicationTray" aria-expanded="false" disabled>
+          <span aria-hidden="true">▤</span>申請清單 <b id="applicationCartCount">0</b>
+        </button>
+        <a class="login-button" href="login.html">登入</a>
+      </div>
       <button class="mobile-menu" type="button" aria-label="開啟選單" aria-controls="mobileNav" aria-expanded="false">☰</button>
       <div class="mobile-nav" id="mobileNav">
         <a class="active" href="#top" aria-current="page">找社宅</a>
@@ -84,10 +89,11 @@
         <h2 class="journey-title"><span>申請流程</span></h2>
         <div class="steps">
           <a class="step step-link" href="login.html"><div class="step-number">01</div><div class="step-icon"><svg viewBox="0 0 44 44" aria-hidden="true"><rect x="8" y="16" width="28" height="22" rx="2"/><path d="M15 16V12a7 7 0 0 1 14 0v4M17 27l4 4 7-8"/></svg></div><div class="step-label">驗證登入</div></a>
-          <article class="step"><div class="step-number">02</div><div class="step-icon"><svg viewBox="0 0 44 44" aria-hidden="true"><rect x="8" y="6" width="23" height="32" rx="2"/><path d="M14 14h10M14 20h7M14 26h7M14 32h10"/><circle cx="34" cy="28" r="6"/><path d="m38 32 3 4M31 27h6M34 24v6"/></svg></div><div class="step-label">資料登記/授權查調</div></article>
-          <article class="step"><div class="step-number">03</div><div class="step-icon"><svg viewBox="0 0 44 44" aria-hidden="true"><rect x="9" y="10" width="26" height="29" rx="2"/><path d="M16 10V6M28 10V6M15 25l5 5 10-11"/></svg></div><div class="step-label">需求登記/問卷回饋</div></article>
-          <article class="step"><div class="step-number">04</div><div class="step-icon"><svg viewBox="0 0 44 44" aria-hidden="true"><path d="M7 38h30M10 38V16h12v22M25 38V7h10v31M14 21h4M14 27h4M29 13h2M29 19h2M29 25h2M29 31h2"/></svg></div><div class="step-label">申請社宅</div></article>
-          <article class="step"><div class="step-number">05</div><div class="step-icon"><svg viewBox="0 0 44 44" aria-hidden="true"><circle cx="20" cy="20" r="12"/><path d="m29 29 8 8"/></svg></div><div class="step-label">進度查詢</div></article>
+          <article class="step"><div class="step-number">02</div><div class="step-icon"><svg viewBox="0 0 44 44" aria-hidden="true"><rect x="8" y="6" width="23" height="32" rx="2"/><path d="M14 14h10M14 20h7M14 26h7M14 32h10"/><circle cx="34" cy="28" r="6"/><path d="m38 32 3 4M31 27h6M34 24v6"/></svg></div><div class="step-label">首次填寫居住需求</div></article>
+          <article class="step"><div class="step-number">03</div><div class="step-icon"><svg viewBox="0 0 44 44" aria-hidden="true"><path d="M7 38h30M10 38V16h12v22M25 38V7h10v31M14 21h4M14 27h4M29 13h2M29 19h2M29 25h2M29 31h2"/></svg></div><div class="step-label">選擇社宅</div></article>
+          <article class="step"><div class="step-number">04</div><div class="step-icon"><svg viewBox="0 0 44 44" aria-hidden="true"><rect x="9" y="10" width="26" height="29" rx="2"/><path d="M16 10V6M28 10V6M15 25l5 5 10-11"/></svg></div><div class="step-label">條款與電子切結</div></article>
+          <article class="step"><div class="step-number">05</div><div class="step-icon"><svg viewBox="0 0 44 44" aria-hidden="true"><rect x="8" y="7" width="28" height="31" rx="2"/><path d="M14 15h16M14 22h16M14 29h10"/></svg></div><div class="step-label">填寫申請資料</div></article>
+          <article class="step"><div class="step-number">06</div><div class="step-icon"><svg viewBox="0 0 44 44" aria-hidden="true"><circle cx="20" cy="20" r="12"/><path d="m29 29 8 8"/></svg></div><div class="step-label">社宅政策回饋</div></article>
         </div>
       </div>
     </section>
@@ -191,6 +197,10 @@
 
           <section class="housing-results" aria-labelledby="result-title">
             <div class="panel-heading"><div><h3 id="result-title">社宅列表</h3><span id="resultCountyLabel">全臺灣</span></div><div class="result-summary">尋找到 <strong id="housingCount">3</strong> 間社宅</div></div>
+            <div class="housing-selection-guidance" aria-label="社宅比較與申請說明">
+              <strong>想申請就加入申請清單；想比較則加入比一比</strong>
+              <span>兩份清單分開管理，比一比選 2–3 間即可使用，不需登入。</span>
+            </div>
             <div class="housing-list" id="housingList" aria-live="polite">
               <article class="housing-card" data-name="保二安居" data-county="新北市" data-district="中和區" data-rooms="套房 一房 二房 三房" data-rent="7870" data-status="recruiting" data-needs="childcare welfare medical" data-facilities="transit education park medical dining" data-detail="https://www.socialhousing.tw/portal/BuildDetail?BuildingNo=F02&amp;BuildingType=Normal">
                 <div class="housing-card-media has-photo"><span class="housing-status">招租中</span><img src="https://www.socialhousing.tw/portal/Building/250728/iyoq1r4d.gmg.JPG" alt="保二安居社會住宅外觀" loading="lazy" /></div>
@@ -246,7 +256,7 @@
         <header class="value-head">
           <span class="value-kicker">平臺服務價值</span>
           <h2 id="value-title">把複雜流程，留給系統處理</h2>
-          <p>以民眾申租旅程為核心，整合資料登記、授權查調、需求問卷、招租通知與進度查詢。</p>
+          <p>以民眾申租旅程為核心，整合居住需求、社宅選擇、電子切結、申請資料、招租通知與進度查詢。</p>
         </header>
         <div class="value-grid">
           <article class="value-card">
@@ -303,11 +313,24 @@
     <a class="chat-btn inline-style-80d654f9c8" href="chat.html" target="_blank" rel="noopener noreferrer" aria-label="開啟智能客服對話頁面（另開新分頁）"><span class="chat-face"><span class="smile"></span></span></a>
   </aside>
 
-  <aside class="compare-tray" id="compareTray" aria-label="社宅比較選取列" hidden>
-    <div class="compare-tray-copy"><strong>社宅比一比</strong><span id="compareTrayHint">請選擇 2–3 間社宅</span></div>
+  <aside class="application-tray" id="applicationTray" aria-labelledby="applicationTrayTitle" hidden>
+    <div class="application-tray-head">
+      <div><span>準備申請</span><h2 id="applicationTrayTitle">申請清單 <b id="applicationTrayCount">0</b></h2></div>
+      <button class="application-tray-close" id="applicationTrayClose" type="button" aria-label="關閉申請清單">×</button>
+    </div>
+    <div class="application-selection" id="applicationSelection"></div>
+    <p id="applicationTrayHint">加入招租中的社宅後，可一次進入申請流程。</p>
+    <div class="application-tray-actions">
+      <button class="application-clear-button" id="applicationClear" type="button">清空清單</button>
+      <button class="application-open-button" id="applicationOpen" type="button">登入後開始申請</button>
+    </div>
+  </aside>
+
+  <aside class="compare-tray" id="compareTray" aria-label="比一比清單" hidden>
+    <div class="compare-tray-copy"><strong>比一比 <b id="selectedHousingCount">0</b></strong><span id="compareTrayHint">再加入 1 間即可比較</span></div>
     <div class="compare-selection" id="compareSelection"></div>
-    <button class="compare-clear-button" id="compareClear" type="button">清除全部</button>
-    <button class="compare-open-button" id="compareOpen" type="button" disabled>開始比較</button>
+    <button class="compare-clear-button" id="compareClear" type="button">清空</button>
+    <button class="compare-open-button" id="compareOpen" type="button" disabled>比一比（限 2–3 間）</button>
   </aside>
 
   <dialog class="compare-dialog" id="compareDialog" aria-labelledby="compareDialogTitle">
@@ -321,7 +344,7 @@
     </div>
   </dialog>
 
-  <dialog id="registrationDialog"><div class="dialog-content"><div class="dialog-icon">✓</div><h2>準備開始登記</h2><p>原型已示範登記入口。正式服務將引導你完成身分驗證與需求資料填寫。</p><div class="dialog-actions"><button class="close-dialog" type="button">稍後再說</button><a href="login.html">前往登入</a></div></div></dialog>
+  <dialog id="registrationDialog"><div class="dialog-content"><div class="dialog-icon">✓</div><h2>準備開始申請</h2><p>您可以先將有興趣的社宅加入申請清單；登入後會先完成居住需求登記，再確認要申請的社宅。</p><div class="dialog-actions"><button class="close-dialog" type="button">先找社宅</button><a href="login.html">登入並開始申請</a></div></div></dialog>
   <dialog id="serviceDialog"><div class="dialog-content"><div class="dialog-icon">◉</div><h2>智能客服</h2><p>您好！我可以協助說明社宅申請資格、登記流程與案件進度查詢方式。</p><div class="dialog-actions"><button class="close-dialog" type="button">關閉</button></div></div></dialog>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
@@ -451,6 +474,15 @@
     const compareSelection = document.getElementById('compareSelection');
     const compareClearButton = document.getElementById('compareClear');
     const compareOpenButton = document.getElementById('compareOpen');
+    const applicationCartButton = document.getElementById('applicationCartButton');
+    const applicationCartCount = document.getElementById('applicationCartCount');
+    const applicationTray = document.getElementById('applicationTray');
+    const applicationTrayCloseButton = document.getElementById('applicationTrayClose');
+    const applicationTrayCount = document.getElementById('applicationTrayCount');
+    const applicationSelection = document.getElementById('applicationSelection');
+    const applicationClearButton = document.getElementById('applicationClear');
+    const applicationOpenButton = document.getElementById('applicationOpen');
+    const selectedHousingCount = document.getElementById('selectedHousingCount');
     const compareDialog = document.getElementById('compareDialog');
     const compareTable = document.getElementById('compareTable');
 
@@ -864,7 +896,9 @@
     });
     emptyResetButton.addEventListener('click', () => document.getElementById('housingReset').click());
     const selectedComparisons = new Map();
+    const selectedApplications = new Map();
     const compareButtons = new Map();
+    const applicationButtons = new Map();
     const escapeHtml = (value) => String(value ?? '').replace(/[&<>"']/g, (character) => ({
       '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;'
     })[character]);
@@ -913,46 +947,101 @@
       compareTable.innerHTML = `<thead><tr><th scope="col">比較項目</th>${projects.map((project) => `<th scope="col"><div class="compare-project-head">${project.image ? `<img src="${escapeHtml(project.image)}" alt="${escapeHtml(project.imageAlt)}" />` : ''}<span>${escapeHtml(project.name)}</span></div></th>`).join('')}</tr></thead>
         <tbody>${rows.map((row) => `<tr><th scope="row">${row.label}</th>${projects.map((project) => `<td${row.best?.(project) ? ' class="is-best"' : ''}>${renderValue(row, project)}</td>`).join('')}</tr>`).join('')}</tbody>`;
     };
-    const renderCompareTray = () => {
+    const appendSelectionChip = (container, card, actionLabel, onRemove) => {
+      const name = card.querySelector('h4').textContent.trim();
+      const chip = document.createElement('span');
+      chip.className = 'compare-project-chip';
+      chip.append(document.createTextNode(name));
+      const removeButton = document.createElement('button');
+      removeButton.type = 'button';
+      removeButton.setAttribute('aria-label', `${actionLabel} ${name}`);
+      removeButton.textContent = '×';
+      removeButton.addEventListener('click', onRemove);
+      chip.appendChild(removeButton);
+      container.appendChild(chip);
+    };
+    const renderCompareSelection = () => {
       const selectionCount = selectedComparisons.size;
+      const canCompare = selectionCount >= 2 && selectionCount <= 3;
       compareTray.hidden = selectionCount === 0;
       document.body.classList.toggle('has-compare-selection', selectionCount > 0);
-      compareTrayHint.textContent = selectionCount < 2 ? `已選 ${selectionCount} 間，再選 ${2 - selectionCount} 間即可比較` : `已選 ${selectionCount}／3 間社宅`;
-      compareOpenButton.disabled = selectionCount < 2;
-      compareOpenButton.textContent = selectionCount < 2 ? '至少選 2 間' : `比較 ${selectionCount} 間社宅`;
+      selectedHousingCount.textContent = String(selectionCount);
+      compareOpenButton.disabled = !canCompare;
+      compareOpenButton.textContent = canCompare ? `開始比較 ${selectionCount} 間` : '比一比（限 2–3 間）';
+      compareTrayHint.textContent = selectionCount === 1 ? '再加入 1 間即可比較' : '已可比較，最多加入 3 間';
       compareSelection.replaceChildren();
       selectedComparisons.forEach((card, nameKey) => {
-        const name = card.querySelector('h4').textContent.trim();
-        const chip = document.createElement('span');
-        chip.className = 'compare-project-chip';
-        chip.append(document.createTextNode(name));
-        const removeButton = document.createElement('button');
-        removeButton.type = 'button';
-        removeButton.setAttribute('aria-label', `從比較選取列移除 ${name}`);
-        removeButton.textContent = '×';
-        removeButton.addEventListener('click', () => {
+        appendSelectionChip(compareSelection, card, '移出比一比', () => {
           selectedComparisons.delete(nameKey);
-          renderCompareTray();
+          renderCompareSelection();
         });
-        chip.appendChild(removeButton);
-        compareSelection.appendChild(chip);
       });
       compareButtons.forEach((button, nameKey) => {
         const isSelected = selectedComparisons.has(nameKey);
         button.setAttribute('aria-pressed', String(isSelected));
-        button.setAttribute('aria-label', `${isSelected ? '從比較中移除' : '將'} ${button.dataset.housingName} ${isSelected ? '' : '加入比較'}`.trim());
-        button.textContent = isSelected ? '已加入比較' : '加入比較';
-        button.closest('.housing-card').classList.toggle('is-compare-selected', isSelected);
+        button.textContent = isSelected ? '已加入比一比' : '加入比一比';
       });
+    };
+    const setApplicationTrayOpen = (isOpen) => {
+      const shouldOpen = isOpen && selectedApplications.size > 0;
+      applicationTray.hidden = !shouldOpen;
+      applicationCartButton.setAttribute('aria-expanded', String(shouldOpen));
+      document.body.classList.toggle('application-tray-open', shouldOpen);
+    };
+    const renderApplicationCart = () => {
+      const selectionCount = selectedApplications.size;
+      applicationCartCount.textContent = String(selectionCount);
+      applicationTrayCount.textContent = String(selectionCount);
+      applicationCartButton.disabled = selectionCount === 0;
+      applicationCartButton.setAttribute('aria-label', `申請清單，共 ${selectionCount} 間社宅`);
+      applicationOpenButton.textContent = `登入後開始申請（${selectionCount} 間）`;
+      applicationOpenButton.disabled = selectionCount === 0;
+      applicationSelection.replaceChildren();
+      selectedApplications.forEach((card, nameKey) => {
+        appendSelectionChip(applicationSelection, card, '移出申請清單', () => {
+          selectedApplications.delete(nameKey);
+          renderApplicationCart();
+        });
+      });
+      applicationButtons.forEach((button, nameKey) => {
+        const isSelected = selectedApplications.has(nameKey);
+        button.setAttribute('aria-pressed', String(isSelected));
+        button.textContent = isSelected ? '已加入申請' : '加入申請';
+      });
+      if (selectionCount === 0) setApplicationTrayOpen(false);
     };
     compareClearButton.addEventListener('click', () => {
       selectedComparisons.clear();
-      renderCompareTray();
+      renderCompareSelection();
     });
     compareOpenButton.addEventListener('click', () => {
-      if (selectedComparisons.size < 2) return;
+      if (selectedComparisons.size < 2 || selectedComparisons.size > 3) return;
       renderCompareTable();
       compareDialog.showModal();
+    });
+    applicationCartButton.addEventListener('click', () => setApplicationTrayOpen(applicationTray.hidden));
+    applicationTrayCloseButton.addEventListener('click', () => setApplicationTrayOpen(false));
+    document.addEventListener('click', (event) => {
+      if (!applicationTray.hidden && !event.target.closest('#applicationTray') && !event.target.closest('#applicationCartButton')) setApplicationTrayOpen(false);
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !applicationTray.hidden) setApplicationTrayOpen(false);
+    });
+    applicationClearButton.addEventListener('click', () => {
+      selectedApplications.clear();
+      renderApplicationCart();
+    });
+    applicationOpenButton.addEventListener('click', () => {
+      const selectedCards = Array.from(selectedApplications.values());
+      if (!selectedCards.length) return;
+      const pendingApplications = selectedCards.map((card) => ({
+        name: card.querySelector('h4').textContent.trim(),
+        county: card.dataset.county,
+        district: card.dataset.district,
+        rooms: card.dataset.rooms
+      }));
+      sessionStorage.setItem('pendingHousingApplications', JSON.stringify(pendingApplications));
+      window.location.href = 'login.html?returnTo=apply.html&source=housing';
     });
     housingCards.forEach((card) => {
       const housingName = card.dataset.name;
@@ -970,37 +1059,43 @@
         actions.appendChild(detailLink);
       }
       const compareButton = document.createElement('button');
-      compareButton.className = 'compare-button';
       compareButton.type = 'button';
-      compareButton.dataset.housingName = housingName;
+      compareButton.className = 'compare-button';
       compareButton.setAttribute('aria-pressed', 'false');
-      compareButton.setAttribute('aria-label', `將 ${housingName} 加入比較`);
-      compareButton.textContent = '加入比較';
+      compareButton.textContent = '加入比一比';
       compareButton.addEventListener('click', () => {
-        if (selectedComparisons.has(housingNameKey)) {
-          selectedComparisons.delete(housingNameKey);
-        } else if (selectedComparisons.size >= 3) {
-          showSubscribeNotice('最多可同時比較 3 間社宅');
+        if (selectedComparisons.has(housingNameKey)) selectedComparisons.delete(housingNameKey);
+        else if (selectedComparisons.size >= 3) {
+          showSubscribeNotice('比一比最多加入 3 間社宅');
           return;
-        } else {
-          selectedComparisons.set(housingNameKey, card);
-        }
-        renderCompareTray();
+        } else selectedComparisons.set(housingNameKey, card);
+        renderCompareSelection();
       });
       compareButtons.set(housingNameKey, compareButton);
       actions.appendChild(compareButton);
-      const button = document.createElement('button');
-      button.className = 'subscribe-button';
-      button.type = 'button';
-      button.dataset.housingName = housingName;
-      if (card.dataset.status === 'recruiting' && housingName !== '三重成功') {
-        button.classList.add('application-button');
-        button.textContent = '開放登記申請';
-        button.setAttribute('aria-label', `申請招租中的 ${housingName}`);
-        button.addEventListener('click', () => {
-          window.location.href = 'data.html';
+
+      if (card.dataset.status === 'recruiting') {
+        const applicationButton = document.createElement('button');
+        applicationButton.type = 'button';
+        applicationButton.className = 'application-select-button';
+        applicationButton.setAttribute('aria-pressed', 'false');
+        applicationButton.textContent = '加入申請';
+        applicationButton.addEventListener('click', () => {
+          const willAdd = !selectedApplications.has(housingNameKey);
+          if (willAdd) selectedApplications.set(housingNameKey, card);
+          else selectedApplications.delete(housingNameKey);
+          renderApplicationCart();
+          showSubscribeNotice(willAdd ? `已將「${housingName}」加入申請清單` : `已將「${housingName}」移出申請清單`);
         });
-      } else {
+        applicationButtons.set(housingNameKey, applicationButton);
+        actions.appendChild(applicationButton);
+      }
+
+      if (card.dataset.status !== 'recruiting') {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.dataset.housingName = housingName;
+        button.className = 'subscribe-button';
         updateSubscribeButton(button, subscriptions.has(housingName));
         button.addEventListener('click', () => {
           const willSubscribe = button.getAttribute('aria-pressed') !== 'true';
@@ -1010,10 +1105,12 @@
           updateSubscribeButton(button, willSubscribe);
           showSubscribeNotice(willSubscribe ? `已設定「${housingName}」招租通知` : `已取消「${housingName}」招租通知`);
         });
+        actions.appendChild(button);
       }
-      actions.appendChild(button);
       card.querySelector('.housing-card-body').appendChild(actions);
     });
+    renderCompareSelection();
+    renderApplicationCart();
 
     const applyHousingFilters = () => {
       const keywordText = housingKeyword.value.trim();

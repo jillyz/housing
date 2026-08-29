@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>全國社宅統一申請登記平臺｜居住需求登記問卷</title>
+<title>全國社宅統一申請登記平臺｜居住需求登記</title>
 <link rel="stylesheet" href="assets/css/common.css" />
 <link rel="stylesheet" href="assets/css/pages/questionnaire.css" />
 <link rel="stylesheet" href="assets/member-shell.css" />
@@ -22,8 +22,7 @@
   <nav class="site-main-nav" id="primaryNavigation" aria-label="會員主要導覽">
     <a class="brand" href="index.html" aria-label="全國社宅統一登記申請平台首頁"><img class="brand-mark" src="assets/platform-logo-elegant.svg" alt=""/><span class="brand-name">全國社宅統一登記申請平台</span></a>
     <div class="member-nav">
-      <a class="member-nav-link" href="housing.html">找社宅</a><a class="member-nav-link active" href="#top" aria-current="page">需求登記</a>
-      <a class="member-nav-link" href="data.html">資料登記</a><a class="member-nav-link" href="apply.html">申請社宅</a><a class="member-nav-link" href="progress.html">進度查詢/補件</a><a class="member-nav-link" href="#">操作紀錄</a>
+      <a class="member-nav-link" href="housing.html">找社宅</a><a class="member-nav-link" href="apply.html">申請社宅</a><a class="member-nav-link" href="progress.html">進度查詢</a>
     </div>
     <div class="member-actions">
       <div class="login-user"><span class="login-user-label">登入者</span><strong>陳ＯＯ</strong></div>
@@ -32,23 +31,17 @@
     </div>
     <button class="site-mobile-menu" type="button" aria-label="開啟選單" aria-controls="memberMobileNav" aria-expanded="false">☰</button>
     <div class="site-mobile-nav" id="memberMobileNav">
-      <a href="housing.html">找社宅</a><a class="active" href="#top" aria-current="page">需求登記</a><a href="data.html">資料登記</a><a href="apply.html">申請社宅</a><a href="progress.html">進度查詢/補件</a><a href="#">操作紀錄</a>
+      <a href="housing.html">找社宅</a><a href="apply.html">申請社宅</a><a href="progress.html">進度查詢</a>
       <div class="mobile-member"><div class="login-user"><span class="login-user-label">登入者</span><strong>陳ＯＯ</strong></div><div class="mobile-member-actions"><button class="member-icon" type="button" aria-label="查看通知"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg></button><a class="member-icon" href="index.html" aria-label="登出"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 17l5-5-5-5M15 12H3M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/></svg></a></div></div>
     </div>
   </nav>
 </header>
 <div class="page">
-  <div class="stepbar" hidden>
-      <div class="step done">1 資料登記／授權同意查調</div>
-      <div class="step active">2 需求登記／問卷調查回饋</div>
-      <div class="step">3 完成登記</div>
-  </div>
-
   <main class="main-card">
     <div class="card-head">
       <div>
-        <h1>居住需求登記問卷</h1>
-        <p>請依實際居住需求完成五項登記；點選題目標題即可展開或收合。</p>
+        <h1>居住需求登記</h1>
+        <p>居住需求只需登記一次，之後可直接選擇社宅申請；需求改變時仍可回來更新。</p>
       </div>
       <div class="progress-chip">共 5 項需求</div>
     </div>
@@ -138,7 +131,7 @@
         </div>
 
         <div class="question-footer finish-footer inline-style-dc55b0ffbe">
-          <button class="nav-btn next-btn" type="submit">完成需求登記</button>
+          <button class="nav-btn next-btn" type="submit">儲存需求</button>
         </div>
       </form>
     </div>
@@ -149,11 +142,11 @@
   <div class="completion-dialog-shell">
     <button class="dialog-close" type="button" aria-label="關閉" data-close-completion>×</button>
     <div class="completion-mark" aria-hidden="true">✓</div>
-    <h2 id="completionDialogTitle">居住需求登記完成</h2>
-    <p>接下來您可以先瀏覽推薦社宅，或直接進入符合需求的社宅申請。</p>
+    <h2 id="completionDialogTitle">居住需求已儲存</h2>
+    <p>已完成一次性登記。之後申請可直接選擇社宅，不必重填；需求改變時仍可回來更新。</p>
     <div class="completion-actions">
-      <a class="completion-choice" href="housing.html"><strong>推薦我符合需求的社宅</strong><span>依區位、房型與租金需求瀏覽社宅</span></a>
-      <a class="completion-choice primary" href="declaration.html"><strong>申請符合需求的社宅</strong><b class="match-badge">3 筆符合</b><span>登記資料並送社宅申請</span></a>
+      <a class="completion-choice primary" href="housing.html"><strong>查看推薦社宅</strong><span>查看符合居住需求的社宅介紹</span></a>
+      <a class="completion-choice primary" href="apply.html"><div class="completion-choice-heading"><strong>前往申請社宅</strong><b class="match-badge">3 座社宅招租中</b></div><span>確認要申請的社宅與房型</span></a>
     </div>
   </div>
 </dialog>
@@ -469,6 +462,7 @@
       document.getElementById('roomGrid').scrollIntoView({behavior:'smooth',block:'center'});
       return;
     }
+    localStorage.setItem('housingNeedsCompleted', 'true');
     completionDialog.showModal();
   });
 

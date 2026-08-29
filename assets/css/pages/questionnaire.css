@@ -30,7 +30,7 @@
   button{font-family:inherit}
 
   .page{
-    width:min(1180px,calc(100% - 40px));
+    width:min(1320px,calc(100% - 40px));
     margin:0 auto;
     padding:0 0 48px;
   }
@@ -380,9 +380,10 @@
   .completion-choice{
     min-height:112px;display:flex;flex-direction:column;justify-content:center;gap:6px;
     padding:18px;border:1px solid #b8dfdc;border-radius:17px;background:#f2fbfa;
-    color:var(--primary-deep);text-decoration:none;transition:.18s ease;
+    color:var(--primary-deep);font:inherit;text-align:left;text-decoration:none;cursor:pointer;transition:.18s ease;
   }
   .completion-choice strong{font-size:16px}
+  .completion-choice-heading{display:flex;align-items:center;gap:8px;white-space:nowrap}
   .match-badge{display:inline-flex;width:max-content;margin-top:2px;padding:4px 9px;border-radius:999px;color:#006f6d;background:#fff;font-size:12px;font-weight:900}
   .completion-choice span{color:var(--muted);font-size:13px;line-height:1.5}
   .completion-choice:hover{transform:translateY(-2px);border-color:var(--primary);box-shadow:0 10px 20px rgba(0,111,109,.12)}

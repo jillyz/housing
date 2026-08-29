@@ -4,11 +4,45 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>全國社宅統一申請登記平臺｜申請資料登記</title>
+<title>全國社宅統一申請登記平臺｜補件資料</title>
 <link rel="stylesheet" href="assets/css/common.css" />
 <link rel="stylesheet" href="assets/css/pages/data.css" />
 <link rel="stylesheet" href="assets/member-shell.css" />
 <link rel="stylesheet" href="assets/css/inline-utilities.css" />
+<style>
+.supplement-alert{
+  margin:0 0 20px;padding:0;border:2px solid #dc3545;border-radius:18px;
+  background:linear-gradient(135deg,#fff1f2,#fff9f4);box-shadow:0 12px 28px rgba(173,34,50,.14);overflow:hidden
+}
+.supplement-alert-head{
+  display:flex;align-items:center;gap:12px;padding:16px 20px;background:#b42332;color:#fff
+}
+.supplement-alert-icon{
+  display:grid;place-items:center;width:34px;height:34px;flex:0 0 auto;border-radius:50%;
+  background:#fff;color:#b42332;font-size:22px;font-weight:900
+}
+.supplement-alert-head h2{margin:0;color:#fff;font-size:22px}
+.supplement-alert-head p{margin:3px 0 0;color:#ffe7e9;font-size:13px}
+.supplement-alert-body{padding:18px 20px;color:#563137}
+.supplement-case-meta{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.supplement-case-meta span{
+  padding:5px 10px;border:1px solid #efb5bc;border-radius:999px;background:#fff;color:#7d2833;font-size:13px;font-weight:800
+}
+.supplement-reason{
+  margin:0 0 14px;padding:12px 14px;border-left:5px solid #b42332;border-radius:0 10px 10px 0;background:#fff
+}
+.supplement-reason strong{display:block;margin-bottom:4px;color:#8f1d2b;font-size:15px}
+.supplement-alert-body h3{margin:0 0 8px;color:#7d2833;font-size:16px}
+.supplement-alert-body ol{margin:0;padding-left:22px;line-height:1.75}
+.supplement-alert-body li+li{margin-top:4px}
+.supplement-deadline{color:#c62828!important}
+@media(max-width:700px){
+  .supplement-alert-head{align-items:flex-start;padding:14px 16px}
+  .supplement-alert-head h2{font-size:20px}
+  .supplement-alert-body{padding:15px 16px}
+}
+</style>
+<script>if(new URLSearchParams(location.search).get('mode')==='edit')document.documentElement.classList.add('account-edit-mode');</script>
 </head>
 <body id="top">
 <header class="site-header">
@@ -30,11 +64,8 @@
 </a>
 <div class="member-nav">
 <a class="member-nav-link" href="housing.html">找社宅</a>
-<a class="member-nav-link" href="questionnaire.html">需求登記</a>
-<a class="member-nav-link active" href="#top" aria-current="page">資料登記</a>
 <a class="member-nav-link" href="apply.html">申請社宅</a>
-<a class="member-nav-link" href="progress.html">進度查詢/補件</a>
-<a class="member-nav-link" href="#">操作紀錄</a>
+<a class="member-nav-link active" href="progress.html" aria-current="page">進度查詢</a>
 </div>
 <div class="member-actions">
 <div class="login-user"><span class="login-user-label">登入者</span><strong>陳ＯＯ</strong></div>
@@ -44,63 +75,76 @@
 <button class="site-mobile-menu" type="button" aria-label="開啟選單" aria-controls="memberMobileNav" aria-expanded="false">☰</button>
 <div class="site-mobile-nav" id="memberMobileNav">
 <a href="housing.html">找社宅</a>
-<a href="questionnaire.html">需求登記</a>
-<a class="active" href="#top" aria-current="page">資料登記</a>
 <a href="apply.html">申請社宅</a>
-<a href="progress.html">進度查詢/補件</a>
-<a href="#">操作紀錄</a>
+<a class="active" href="progress.html" aria-current="page">進度查詢</a>
 <div class="mobile-member"><div class="login-user"><span class="login-user-label">登入者</span><strong>陳ＯＯ</strong></div><div class="mobile-member-actions"><button class="member-icon" type="button" aria-label="查看通知"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg></button><a class="member-icon" href="index.html" aria-label="登出"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 17l5-5-5-5M15 12H3M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/></svg></a></div></div>
 </div>
 </nav>
 </header>
 <div class="page">
-<div class="stepbar application-stepbar" aria-label="社宅申請流程">
-<a class="step active" href="data.html" aria-current="step">1 資料登記</a>
-<a class="step" href="apply.html">2 社宅申請</a>
-<a class="step" href="policy-feedback.html">3 社宅政策回饋</a>
-</div>
+<!-- <div class="stepbar application-stepbar" aria-label="社宅申請流程">
+<a class="step done" href="apply.html">1 選社宅房型</a>
+<a class="step done" href="declaration.html">2 電子切結</a>
+<a class="step active" href="supplement.html" aria-current="step">3 補件資料</a>
+</div> -->
 <main class="main-card">
 <div class="card-head">
 <div>
-<h1>申請資料登記</h1>
-<p>您已完成電子切結與查調授權；系統將分批帶入各機關回傳資料，已取得的部分可先確認。</p>
+<h1>補件資料</h1>
+<p>請依審查通知補齊指定文件；原申請資料與查調結果已完整保留。</p>
 </div>
-<div class="autosave" id="simpleAutosave">背景查調進行中</div>
+<div class="autosave" id="simpleAutosave">補件資料自動儲存中</div>
 </div>
 <div class="content">
+<section class="supplement-alert" aria-labelledby="supplementNoticeTitle">
+<div class="supplement-alert-head">
+<span class="supplement-alert-icon" aria-hidden="true">!</span>
+<div><h2 id="supplementNoticeTitle">本案需要補件</h2><p>請在期限前上傳完整、清晰且可辨識的文件，以利承辦人員續行審查。</p></div>
+</div>
+<div class="supplement-alert-body">
+<div class="supplement-case-meta"><span>案件編號：TB-NAA-116-000123-B</span><span>西屯安居社會住宅／三房型</span><span>補件期限：<strong class="supplement-deadline">116/03/25</strong></span></div>
+<div class="supplement-reason"><strong>補件原因</strong>您以婚育戶身分申請，原提供的證明影像有缺頁且部分文字模糊，無法確認戶籍詳細記事及胎兒加計人口數。</div>
+<h3>需要補交的資料</h3>
+<ol>
+<li><strong>近 1 個月內之全戶戶籍謄本</strong>：須含詳細記事、完整頁面，且姓名與登記日期清楚可辨識。</li>
+<li><strong>懷孕證明文件</strong>：請提供診斷證明書，或孕婦健康手冊簽名頁與產檢內頁。</li>
+</ol>
+</div>
+</section>
 <section class="simple-section lookup-progress-section" id="lookupProgressSection">
 <div class="simple-section-head">
 <div><h2>資料查調進度</h2></div>
-<span class="badge warn" id="lookupOverallStatus">分批查調中</span>
+<span class="badge success" id="lookupOverallStatus">查調完成</span>
 </div>
 <div class="simple-section-body">
 <div class="lookup-progress-card" aria-live="polite">
 <div class="lookup-progress-main">
-<span class="lookup-spinner lookup-progress-spinner" aria-hidden="true"></span>
+<span class="lookup-spinner lookup-progress-spinner is-complete" aria-hidden="true"></span>
 <div class="lookup-progress-copy">
-<strong id="lookupProgressTitle">建立查調作業</strong>
-<span id="lookupProgressMessage">等待第一批資料回傳</span>
-<small id="lookupUpdatedAt">正在建立查調作業…</small>
+<strong id="lookupProgressTitle">查調完成</strong>
+<span id="lookupProgressMessage">10 項皆已取得，請確認下方資料。</span>
+<small id="lookupUpdatedAt">本案查調資料已全數取得，無須重新查調。</small>
 </div>
-<div class="lookup-progress-count"><strong id="lookupCompletedCount">0</strong><span>／10 項已取得</span></div>
+<div class="lookup-progress-count"><strong id="lookupCompletedCount">10</strong><span>／10 項已取得</span></div>
 <div class="lookup-progress-actions">
-<button class="btn" id="refreshLookup" type="button">重查未完成</button>
-<button class="btn lookup-restart-button" id="restartLookup" type="button">重新查調</button>
+<span class="badge success">查調資料已鎖定</span>
+<button class="btn" id="refreshLookup" type="button" hidden disabled>重查未完成</button>
+<button class="btn lookup-restart-button" id="restartLookup" type="button" hidden disabled>重新查調</button>
 </div>
 </div>
 </div>
 
 <div class="lookup-agency-grid" id="lookupAgencyGrid" aria-label="查調機關與進度">
-<article class="lookup-agency-card" data-agency="household"><div class="lookup-agency-card-head"><strong>戶政司（內政部）</strong><span class="agency-lookup-state is-querying">查調中</span></div><p>家庭成員、歸戶資料</p></article>
-<article class="lookup-agency-card" data-agency="immigration"><div class="lookup-agency-card-head"><strong>移民署（內政部）</strong><span class="agency-lookup-state is-querying">查調中</span></div><p>外配居留證號</p></article>
-<article class="lookup-agency-card" data-agency="police"><div class="lookup-agency-card-head"><strong>消防／警政署</strong><span class="agency-lookup-state is-querying">查調中</span></div><p>人員職務列等</p></article>
-<article class="lookup-agency-card" data-agency="defense"><div class="lookup-agency-card-head"><strong>國防部</strong><span class="agency-lookup-state is-querying">查調中</span></div><p>人員職務列等</p></article>
-<article class="lookup-agency-card" data-agency="labor"><div class="lookup-agency-card-head"><strong>勞動部</strong><span class="agency-lookup-state is-querying">查調中</span></div><p>被保險人資料</p></article>
-<article class="lookup-agency-card" data-agency="health"><div class="lookup-agency-card-head"><strong>衛福部</strong><span class="agency-lookup-state is-querying">查調中</span></div><p>弱勢資格</p></article>
-<article class="lookup-agency-card" data-agency="finance"><div class="lookup-agency-card-head"><strong>財政部</strong><span class="agency-lookup-state is-querying">查調中</span></div><p>所得、不動產</p></article>
-<article class="lookup-agency-card" data-agency="land"><div class="lookup-agency-card-head"><strong>地政司（內政部）</strong><span class="agency-lookup-state is-querying">查調中</span></div><p>持有建物資訊</p></article>
-<article class="lookup-agency-card" data-agency="tdcc"><div class="lookup-agency-card-head"><strong>集保所</strong><span class="agency-lookup-state is-querying">查調中</span></div><p>有價證券</p></article>
-<article class="lookup-agency-card" data-agency="subsidy"><div class="lookup-agency-card-head"><strong>各類補貼系統</strong><span class="agency-lookup-state is-querying">查調中</span></div><p>申請人及家庭成員有無接受住宅補貼</p></article>
+<article class="lookup-agency-card" data-agency="household" data-state="complete"><div class="lookup-agency-card-head"><strong>戶政司（內政部）</strong><span class="agency-lookup-state is-complete">✓ 已取得</span></div><p>家庭成員、歸戶資料</p></article>
+<article class="lookup-agency-card" data-agency="immigration" data-state="complete"><div class="lookup-agency-card-head"><strong>移民署（內政部）</strong><span class="agency-lookup-state is-complete">✓ 已取得</span></div><p>外配居留證號</p></article>
+<article class="lookup-agency-card" data-agency="police" data-state="complete"><div class="lookup-agency-card-head"><strong>消防／警政署</strong><span class="agency-lookup-state is-complete">✓ 已取得</span></div><p>人員職務列等</p></article>
+<article class="lookup-agency-card" data-agency="defense" data-state="complete"><div class="lookup-agency-card-head"><strong>國防部</strong><span class="agency-lookup-state is-complete">✓ 已取得</span></div><p>人員職務列等</p></article>
+<article class="lookup-agency-card" data-agency="labor" data-state="complete"><div class="lookup-agency-card-head"><strong>勞動部</strong><span class="agency-lookup-state is-complete">✓ 已取得</span></div><p>被保險人資料</p></article>
+<article class="lookup-agency-card" data-agency="health" data-state="complete"><div class="lookup-agency-card-head"><strong>衛福部</strong><span class="agency-lookup-state is-complete">✓ 已取得</span></div><p>弱勢資格</p></article>
+<article class="lookup-agency-card" data-agency="finance" data-state="complete"><div class="lookup-agency-card-head"><strong>財政部</strong><span class="agency-lookup-state is-complete">✓ 已取得</span></div><p>所得、不動產</p></article>
+<article class="lookup-agency-card" data-agency="land" data-state="complete"><div class="lookup-agency-card-head"><strong>地政司（內政部）</strong><span class="agency-lookup-state is-complete">✓ 已取得</span></div><p>持有建物資訊</p></article>
+<article class="lookup-agency-card" data-agency="tdcc" data-state="complete"><div class="lookup-agency-card-head"><strong>集保所</strong><span class="agency-lookup-state is-complete">✓ 已取得</span></div><p>有價證券</p></article>
+<article class="lookup-agency-card" data-agency="subsidy" data-state="complete"><div class="lookup-agency-card-head"><strong>各類補貼系統</strong><span class="agency-lookup-state is-complete">✓ 已取得</span></div><p>申請人及家庭成員有無接受住宅補貼</p></article>
 </div>
 </div>
 </section>
@@ -108,7 +152,7 @@
 <div id="lookupResult">
 <div class="lookup-complete lookup-partial-result" role="status">
 <span aria-hidden="true">✓</span>
-<div><strong id="lookupResultTitle">已收到第一批資料</strong><span id="lookupCompletedMessage">下方已回傳資料可以先確認；其餘資料仍在背景查調並會自動補入。</span></div>
+<div><strong id="lookupResultTitle">資料查調完成</strong><span id="lookupCompletedMessage">所有機關資料均已回傳，請確認內容並補上審查通知指定的文件。</span></div>
 </div>
 
 <form id="registrationDataForm" novalidate>
@@ -143,8 +187,9 @@
 <label for="mailingCounty">通訊地址 <span class="required">*</span></label>
 <div class="mailing-address-control">
 <label class="mailing-address-check"><input id="sameAsRegisteredAddress" type="checkbox" checked/>同戶籍地址</label>
-<div class="mailing-address-fields">
-<input id="mailingPostalCode" type="text" value="407" aria-label="通訊地址郵遞區號" readonly/>
+<output class="mailing-address-readonly" id="mailingAddressDisplay">407 臺中市西屯區○○街○巷○號</output>
+<div class="mailing-address-fields" id="mailingAddressFields">
+<output class="mailing-postal-code" id="mailingPostalCode" aria-label="通訊地址郵遞區號">407</output>
 <select id="mailingCounty" aria-label="通訊地址縣市" required><option value="臺中市" selected>臺中市</option></select>
 <select id="mailingDistrict" aria-label="通訊地址行政區" required><option value="西屯區" selected>西屯區</option></select>
 <input id="mailingAddressDetail" type="text" value="○○街○巷○號" aria-label="通訊地址詳細地址" required/>
@@ -164,6 +209,21 @@
 <label class="role-option-wide"><input class="special-role" type="checkbox" value="軍職"/> 現任職務為最高職務列等在國防部少校階（含士官）之軍職人員、文職薦任六職等以下、聘僱或相當該職務列等以下之人員</label>
 </div>
 </div>
+
+<section class="application-identity-supplement" id="applicationIdentitySupplement" aria-labelledby="applicationIdentitySupplementTitle" hidden>
+<div class="application-identity-head">
+<div><h3 id="applicationIdentitySupplementTitle">依申請身分補充資料</h3><p>已依您在「申請社宅」選擇的身分帶入，請完成下列必填資料。</p></div>
+<span id="applicationIdentitySummary"></span>
+</div>
+<div class="application-service-fields" id="applicationServiceFields" hidden>
+<label class="application-service-field"><span>服務單位全銜 <b>*</b></span><input id="applicationServiceUnit" name="applicationServiceUnit" type="text" autocomplete="organization" placeholder="例如：○○市政府警察局○○分局" disabled/></label>
+<label class="application-service-field"><span>職稱 <b>*</b></span><input id="applicationJobTitle" name="applicationJobTitle" type="text" placeholder="請填寫目前職稱" disabled/></label>
+<label class="application-service-field" id="applicationPoliceRankField" hidden><span>警消職等 <b>*</b></span><select id="applicationPoliceRank" name="applicationPoliceRank" disabled><option value="" selected>請選擇職等</option><option>警正四階</option><option>警佐一階</option><option>警佐二階</option><option>警佐三階</option><option>警佐四階</option></select></label>
+<label class="application-service-field" id="applicationMilitaryTypeField" hidden><span>軍職級職類型 <b>*</b></span><select id="applicationMilitaryType" name="applicationMilitaryType" disabled><option value="" selected>請選擇級職類型</option><option value="軍職">軍職</option><option value="文職">文職</option><option value="約聘雇">約聘雇</option></select></label>
+<label class="application-service-field" id="applicationMilitaryRankField" hidden><span id="applicationMilitaryRankLabel">級職／職等 <b>*</b></span><select id="applicationMilitaryRank" name="applicationMilitaryRank" disabled></select></label>
+<label class="application-service-field" id="applicationMilitaryContractField" hidden><span>約聘雇級職／職等 <b>*</b></span><input id="applicationMilitaryContractRank" name="applicationMilitaryContractRank" type="text" placeholder="請填寫約聘或約僱職等" disabled/></label>
+</div>
+</section>
 </div>
 </section>
 
@@ -172,29 +232,12 @@
 <div><h2>2. 家庭成員</h2></div>
 <div class="simple-section-actions">
 <span class="badge success">查調資料帶入</span>
-<button class="btn family-add-toggle" id="toggleFamilyAdd" type="button" aria-expanded="false" aria-controls="familyAddPanel">＋ 新增家庭成員</button>
+<button class="btn family-add-toggle" id="addFamilyMember" type="button">＋ 新增家庭成員</button>
 </div>
 </div>
 <div class="simple-section-body">
 <div class="family-intro">
 <p>家庭成員資料由戶政及財稅資料帶入。姓名、出生年月日、身分證字號與所得不可修改；懷孕胎兒數可依現況填寫，家庭人口將同步計算。</p>
-</div>
-<div class="family-add-panel" id="familyAddPanel" hidden>
-<div class="family-add-panel-head"><strong>新增家庭成員</strong><span>填寫基本資料及居住狀況</span></div>
-<div class="family-add-grid">
-<div class="simple-field"><label for="newMemberRelation">關係 <span class="required">*</span></label><select id="newMemberRelation" required disabled><option value="">請選擇</option><option>同性伴侶</option><option>子女</option><option>父親</option><option>母親</option><option>兄弟姊妹</option><option>其他</option></select></div>
-<div class="simple-field"><label for="newMemberName">姓名 <span class="required">*</span></label><input id="newMemberName" type="text" required disabled/></div>
-<div class="simple-field"><label for="newMemberBirth">出生年月日 <span class="required">*</span></label><input id="newMemberBirth" type="date" required disabled/></div>
-<div class="simple-field"><label for="newMemberId">身分證字號 <span class="required">*</span></label><input id="newMemberId" type="text" maxlength="10" required disabled/></div>
-<div class="simple-field"><label for="newMemberIncome">最近一年所得</label><div class="money-control"><input id="newMemberIncome" type="number" min="0" value="0" disabled/><span>元</span></div></div>
-<div class="simple-field"><label for="newMemberFetus">懷孕胎兒數</label><input id="newMemberFetus" type="number" min="0" step="1" value="0" disabled/></div>
-<div class="family-add-residence">
-<span>居住狀況</span>
-<label><input id="newMemberSameHousehold" type="checkbox" disabled/> 同戶籍</label>
-<label><input id="newMemberCohabiting" type="checkbox" disabled/> 同住</label>
-</div>
-</div>
-<div class="family-add-actions"><button class="btn ghost" id="cancelFamilyAdd" type="button">取消</button><button class="btn primary" id="submitFamilyAdd" type="button">新增成員</button></div>
 </div>
 <div class="table-wrap family-table-wrap">
 <table class="family-table">
@@ -208,9 +251,9 @@
 <td data-label="身分證字號"><span class="plain-cell-text">N123456789</span><input class="member-id" name="memberId[]" type="hidden" value="N123456789"/></td>
 <td data-label="最近一年所得"><span class="plain-cell-text">720,000 元</span><input class="member-income" name="memberIncome[]" type="hidden" value="720000"/></td>
 <td data-label="懷孕胎兒數"><span class="plain-cell-text">—</span><input class="member-fetus" name="memberFetus[]" type="hidden" value="0"/></td>
-<td data-label="同戶籍／同住"><div class="family-residence-options"><label><input class="member-same-household" name="memberSameHousehold[]" type="checkbox" checked disabled/>同戶籍</label><label><input class="member-cohabiting" name="memberCohabiting[]" type="checkbox" checked disabled/>同住</label></div></td>
+<td data-label="同戶籍／同住"><div class="readonly-status-list"><span class="readonly-status is-yes">同戶籍</span><span class="readonly-status is-yes">同住</span></div></td>
 <td data-label="身分／社福識別"><div class="identity-tags member-identities"><span class="identity-tag system-identity">原住民</span></div></td>
-<td data-label="操作"><button class="row-delete-button" type="button" disabled aria-label="申請人本人不可刪除" title="申請人本人不可刪除"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M9 7V4h6v3M7 7l1 13h8l1-13M10 11v5M14 11v5"/></svg></button></td>
+<td class="locked-row-action" aria-hidden="true"></td>
 </tr>
 <tr data-lookup-member="true" data-lookup-identities="">
 <td data-label="關係"><span class="member-relation-text">配偶</span><input name="memberRelation[]" type="hidden" value="配偶"/></td>
@@ -221,7 +264,7 @@
 <td data-label="懷孕胎兒數"><input class="member-fetus" name="memberFetus[]" type="number" min="0" step="1" inputmode="numeric" value="1" aria-label="王ＯＯ懷孕胎兒數"/></td>
 <td data-label="同戶籍／同住"><div class="family-residence-options"><label><input class="member-same-household" name="memberSameHousehold[]" type="checkbox" checked/>同戶籍</label><label><input class="member-cohabiting" name="memberCohabiting[]" type="checkbox" checked/>同住</label></div></td>
 <td data-label="身分／社福識別"><div class="identity-tags member-identities"><span class="identity-tag neutral">一般身分</span></div></td>
-<td data-label="操作"><button class="row-delete-button" type="button" disabled aria-label="配偶不可刪除" title="配偶不可刪除"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M9 7V4h6v3M7 7l1 13h8l1-13M10 11v5M14 11v5"/></svg></button></td>
+<td class="locked-row-action" aria-hidden="true"></td>
 </tr>
 <tr data-lookup-member="true" data-lookup-identities="">
 <td data-label="關係"><select class="member-relation" name="memberRelation[]" required><option value="">請選擇</option><option>同性伴侶</option><option selected>子女</option><option>父親</option><option>母親</option><option>兄弟姊妹</option><option>兄弟姊妹的配偶</option><option>公公</option><option>婆婆</option><option>媳婦</option><option>岳父</option><option>岳母</option><option>女婿</option><option>祖父</option><option>祖母</option><option>孫</option><option>孫媳</option><option>曾祖父</option><option>曾祖母</option><option>曾孫</option><option>曾孫媳</option><option>配偶之祖父</option><option>配偶之祖母</option><option>配偶之孫</option><option>配偶之兄弟姊妹</option><option>其他</option></select></td>
@@ -279,7 +322,7 @@
 <th>項次</th>
 <th>持有者</th>
 <th>類別</th>
-<th>房屋座落<br/><span class="table-head-note">土地填地號／房屋填建號</span></th>
+<th>地段地號建號／座落位址</th>
 <th>戶籍地</th>
 <th>持分比</th>
 <th>房地面積<br/>（平方公尺）</th>
@@ -291,27 +334,27 @@
 <tbody id="realEstateTableBody">
 <tr class="real-estate-row is-locked">
 <td class="row-index" data-label="項次">1</td>
-<td data-label="持有者"><select aria-label="持有者" disabled><option selected>陳ＯＯ</option><option>王ＯＯ</option><option>林ＯＯ</option></select></td>
-<td data-label="類別"><select class="estate-type" aria-label="類別" disabled><option selected>房屋</option><option>土地</option></select></td>
-<td data-label="房屋座落"><input class="estate-location-input" type="text" value="00123-000" aria-label="房屋建號" readonly/></td>
-<td data-label="戶籍地"><input class="asset-check" type="checkbox" checked disabled aria-label="此筆為戶籍地"/></td>
-<td data-label="持分比"><div class="share-control"><input type="number" value="5" min="1" aria-label="持分分母" readonly/><span>分之</span><input type="number" value="2" min="0" aria-label="持分分子" readonly/></div></td>
-<td data-label="房地面積"><input class="estate-area-input" type="number" value="36" min="0" step="0.01" aria-label="房地面積，平方公尺" readonly/></td>
-<td data-label="房地現值金額"><div class="money-control"><input class="estate-value-input" type="number" value="1200000" min="0" step="1" aria-label="房地現值金額" readonly/><span>元</span></div></td>
-<td data-label="是否為公同共有"><input class="asset-check" type="checkbox" disabled aria-label="是否為公同共有"/></td>
-<td data-label="操作"><button class="row-delete-button property-delete-button" type="button" aria-label="刪除此筆房屋資料" title="刪除此筆不動產"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M9 7V4h6v3M7 7l1 13h8l1-13M10 11v5M14 11v5"/></svg></button></td>
+<td data-label="持有者"><span class="readonly-cell-data">陳ＯＯ</span></td>
+<td data-label="類別"><span class="readonly-cell-data">房屋</span><input class="estate-type" type="hidden" value="房屋"/></td>
+<td data-label="地段地號建號／座落位址"><span class="readonly-cell-data">臺中市／西屯段／00123-000</span><input class="estate-location-input" type="hidden" value="00123-000"/></td>
+<td data-label="戶籍地"><span class="readonly-status is-yes">是</span></td>
+<td data-label="持分比"><span class="readonly-cell-data">5 分之 2</span></td>
+<td data-label="房地面積"><span class="readonly-cell-data">36</span><input class="estate-area-input" type="hidden" value="36"/></td>
+<td data-label="房地現值金額"><span class="readonly-cell-data">1,200,000 元</span><input class="estate-value-input" type="hidden" value="1200000"/></td>
+<td data-label="是否為公同共有"><span class="readonly-status is-no">否</span></td>
+<td class="locked-row-action" aria-hidden="true"></td>
 </tr>
 <tr class="real-estate-row is-locked">
 <td class="row-index" data-label="項次">2</td>
-<td data-label="持有者"><select aria-label="持有者" disabled><option>陳ＯＯ</option><option selected>王ＯＯ</option><option>林ＯＯ</option></select></td>
-<td data-label="類別"><select class="estate-type" aria-label="類別" disabled><option>房屋</option><option selected>土地</option></select></td>
-<td data-label="房屋座落"><input class="estate-location-input" type="text" value="0427-0013" aria-label="土地地號" readonly/></td>
-<td data-label="戶籍地"><input class="asset-check" type="checkbox" disabled aria-label="此筆不是戶籍地"/></td>
-<td data-label="持分比"><div class="share-control"><input type="number" value="100" min="1" aria-label="持分分母" readonly/><span>分之</span><input type="number" value="5" min="0" aria-label="持分分子" readonly/></div></td>
-<td data-label="房地面積"><input class="estate-area-input" type="number" value="18.5" min="0" step="0.01" aria-label="土地面積，平方公尺" readonly/></td>
-<td data-label="房地現值金額"><div class="money-control"><input class="estate-value-input" type="number" value="320000" min="0" step="1" aria-label="土地現值金額" readonly/><span>元</span></div></td>
-<td data-label="是否為公同共有"><input class="asset-check" type="checkbox" disabled aria-label="不是公司共有"/></td>
-<td data-label="操作"><button class="row-delete-button property-delete-button" type="button" aria-label="刪除此筆土地資料" title="刪除此筆不動產"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M9 7V4h6v3M7 7l1 13h8l1-13M10 11v5M14 11v5"/></svg></button></td>
+<td data-label="持有者"><span class="readonly-cell-data">王ＯＯ</span></td>
+<td data-label="類別"><span class="readonly-cell-data">土地</span><input class="estate-type" type="hidden" value="土地"/></td>
+<td data-label="地段地號建號／座落位址"><span class="readonly-cell-data">南投縣／南投段／0427-0013</span><input class="estate-location-input" type="hidden" value="0427-0013"/></td>
+<td data-label="戶籍地"><span class="readonly-status is-no">否</span></td>
+<td data-label="持分比"><span class="readonly-cell-data">100 分之 5</span></td>
+<td data-label="房地面積"><span class="readonly-cell-data">18.5</span><input class="estate-area-input" type="hidden" value="18.5"/></td>
+<td data-label="房地現值金額"><span class="readonly-cell-data">320,000 元</span><input class="estate-value-input" type="hidden" value="320000"/></td>
+<td data-label="是否為公同共有"><span class="readonly-status is-no">否</span></td>
+<td class="locked-row-action" aria-hidden="true"></td>
 </tr>
 </tbody>
 </table>
@@ -335,26 +378,29 @@
 </ol>
 <p class="locked-data-note"><span aria-hidden="true">🔒</span> 下列資料為查調取得，無法直接修改。</p>
 </div>
+<button class="btn primary property-add-button" id="addMovableAsset" type="button"><span aria-hidden="true">＋</span> 新增動產資料</button>
 </div>
 <div class="table-wrap property-entry-wrap">
 <table class="asset-entry-table movable-asset-table">
-<thead><tr><th>姓名</th><th>利息（存款本金）</th><th>是否為<br/>優惠利率</th><th>中獎所得</th><th>其他所得</th><th>小計</th></tr></thead>
+<thead><tr><th>姓名</th><th>利息（存款本金）</th><th>是否為<br/>優惠利率</th><th>中獎所得</th><th>其他所得</th><th>小計</th><th>操作</th></tr></thead>
 <tbody id="movableAssetTableBody">
-<tr class="movable-asset-row">
-<td data-label="姓名"><input type="text" value="陳ＯＯ" readonly aria-label="姓名"/></td>
-<td data-label="利息（存款本金）"><div class="money-control"><input class="movable-interest" type="number" value="2000" min="0" readonly aria-label="利息所得"/><span>元</span></div></td>
-<td data-label="是否為優惠利率"><input class="asset-check movable-preferential" type="checkbox" checked disabled aria-label="是優惠利率"/></td>
-<td data-label="中獎所得"><div class="money-control"><input class="movable-prize" type="number" value="2000" min="0" readonly aria-label="中獎所得"/><span>元</span></div></td>
-<td data-label="其他所得"><div class="money-control"><input class="movable-other" type="number" value="0" min="0" readonly aria-label="其他所得"/><span>元</span></div></td>
+<tr class="movable-asset-row is-locked">
+<td data-label="姓名"><span class="readonly-cell-data">陳ＯＯ</span></td>
+<td data-label="利息（存款本金）"><span class="readonly-cell-data">2,000 元</span><input class="movable-interest" type="hidden" value="2000"/></td>
+<td data-label="是否為優惠利率"><span class="readonly-status is-yes">是</span></td>
+<td data-label="中獎所得"><span class="readonly-cell-data">2,000 元</span><input class="movable-prize" type="hidden" value="2000"/></td>
+<td data-label="其他所得"><span class="readonly-cell-data">0 元</span><input class="movable-other" type="hidden" value="0"/></td>
 <td data-label="小計"><output class="movable-subtotal">121,760 元</output></td>
+<td class="locked-row-action" aria-hidden="true"></td>
 </tr>
-<tr class="movable-asset-row">
-<td data-label="姓名"><input type="text" value="王ＯＯ" readonly aria-label="姓名"/></td>
-<td data-label="利息（存款本金）"><div class="money-control"><input class="movable-interest" type="number" value="4000" min="0" readonly aria-label="利息所得"/><span>元</span></div></td>
-<td data-label="是否為優惠利率"><input class="asset-check movable-preferential" type="checkbox" disabled aria-label="不是優惠利率"/></td>
-<td data-label="中獎所得"><div class="money-control"><input class="movable-prize" type="number" value="0" min="0" readonly aria-label="中獎所得"/><span>元</span></div></td>
-<td data-label="其他所得"><div class="money-control"><input class="movable-other" type="number" value="0" min="0" readonly aria-label="其他所得"/><span>元</span></div></td>
+<tr class="movable-asset-row is-locked">
+<td data-label="姓名"><span class="readonly-cell-data">王ＯＯ</span></td>
+<td data-label="利息（存款本金）"><span class="readonly-cell-data">4,000 元</span><input class="movable-interest" type="hidden" value="4000"/></td>
+<td data-label="是否為優惠利率"><span class="readonly-status is-no">否</span></td>
+<td data-label="中獎所得"><span class="readonly-cell-data">0 元</span><input class="movable-prize" type="hidden" value="0"/></td>
+<td data-label="其他所得"><span class="readonly-cell-data">0 元</span><input class="movable-other" type="hidden" value="0"/></td>
 <td data-label="小計"><output class="movable-subtotal">239,520 元</output></td>
+<td class="locked-row-action" aria-hidden="true"></td>
 </tr>
 </tbody>
 </table>
@@ -366,7 +412,7 @@
 
 <section class="simple-section">
 <div class="simple-section-head">
-<div><h2>4. 我的檢附文件</h2><p>查調取得的文件已自動附加；只有待補項目需要自行上傳。</p></div>
+<div><h2>4. 我的檢附文件</h2><p>查調取得的文件已自動附加；畫面中出現的上傳項目皆為必填。</p></div>
 <span class="badge">自動附加 4 份</span>
 </div>
 <div class="simple-section-body">
@@ -375,16 +421,20 @@
 <div class="document-row"><div><strong>最近一年度所得資料清單</strong><small>本人及家庭成員最近一年度綜合所得稅各類所得資料。</small></div><a class="document-file locked download-document" href="#" data-file-name="N123456789_財稅查調_所得資料清單.pdf">N123456789_財稅查調_所得資料清單.pdf</a><div class="document-action"><span class="badge success">查調取得／鎖定</span></div></div>
 <div class="document-row"><div><strong>配偶所得資料清單</strong><small>配偶或共同居住家庭成員之所得資料，作為家戶所得計算依據。</small></div><a class="document-file locked download-document" href="#" data-file-name="E234567789_財稅查調_所得資料清單.pdf">E234567789_財稅查調_所得資料清單.pdf</a><div class="document-action"><span class="badge success">查調取得／鎖定</span></div></div>
 <div class="document-row"><div><strong>全國財產稅總歸戶清單</strong><small>本人及家庭成員財產歸戶資料，系統帶入不可刪除。</small></div><a class="document-file locked download-document" href="#" data-file-name="N123456789_財稅查調_財產歸戶清單.pdf">N123456789_財稅查調_財產歸戶清單.pdf</a><div class="document-action"><span class="badge success">查調取得／鎖定</span></div></div>
-<div class="document-row" id="employmentDocumentRow" hidden><div><strong>就業證明</strong><small>具本市就業有居住需求者，應檢附資格證明文件。</small></div><div class="pretty-upload"><input id="employmentDocument" type="file" accept=".pdf,.jpg,.jpeg,.png"/><label class="pretty-upload-button" for="employmentDocument">＋ 選擇檔案</label><span class="pretty-upload-name" data-file-name-for="employmentDocument">尚未選擇檔案</span></div><div class="document-action"><span class="badge warn">必填</span></div></div>
-<div class="document-row" id="schoolDocumentRow" hidden><div><strong>就學證明</strong><small>具本市就學有居住需求者，應檢附資格證明文件。</small></div><div class="pretty-upload"><input id="schoolDocument" type="file" accept=".pdf,.jpg,.jpeg,.png"/><label class="pretty-upload-button" for="schoolDocument">＋ 選擇檔案</label><span class="pretty-upload-name" data-file-name-for="schoolDocument">尚未選擇檔案</span></div><div class="document-action"><span class="badge warn">必填</span></div></div>
-<div class="document-row" id="fetusDocumentRow"><div><strong>懷孕證明文件</strong><small>已填寫懷孕胎兒數時，需補充診斷證明或孕婦健康手冊等佐證。</small></div><div class="pretty-upload"><input id="fetusDocument" type="file" accept=".pdf,.jpg,.jpeg,.png"/><label class="pretty-upload-button" for="fetusDocument">＋ 選擇檔案</label><span class="pretty-upload-name" data-file-name-for="fetusDocument">尚未選擇檔案</span></div><div class="document-action"><span class="badge gray">選填</span></div></div>
+<div class="document-row upload-document-row application-role-document" id="applicationMarriageDocumentRow" hidden><div><strong>婚育戶</strong><small>應檢附申請人距申請日前 1 個月內含詳細記事之全戶戶籍謄本；育有學齡前子女為胎兒者，應檢附診斷證明書，或孕婦健康手冊簽名頁及產檢內頁。</small></div><div class="pretty-upload"><input id="applicationMarriageDocument" type="file" accept=".pdf,.jpg,.jpeg,.png" disabled/><label class="pretty-upload-button" for="applicationMarriageDocument">＋ 選擇檔案</label><span class="pretty-upload-name" data-file-name-for="applicationMarriageDocument">尚未選擇檔案</span></div></div>
+<div class="document-row upload-document-row application-role-document" id="applicationPoliceDocumentRow" hidden><div><strong>警消戶身分證明</strong><small>應檢附警察、消防人員之身分證明證件，及距申請日前 1 個月可辨認最高職務列等與現任職等之證明文件。</small></div><div class="pretty-upload"><input id="applicationPoliceDocument" type="file" accept=".pdf,.jpg,.jpeg,.png" disabled/><label class="pretty-upload-button" for="applicationPoliceDocument">＋ 選擇檔案</label><span class="pretty-upload-name" data-file-name-for="applicationPoliceDocument">尚未選擇檔案</span></div></div>
+<div class="document-row upload-document-row application-role-document" id="applicationMilitaryDocumentRow" hidden><div><strong>軍職戶身分證明</strong><small>應檢附軍人身分證、國軍聘雇人員服務證或國防部公務人員服務證等可辨認職等之文件；服務單位無法辨識為國防部者，另附在職證明。</small></div><div class="pretty-upload"><input id="applicationMilitaryDocument" type="file" accept=".pdf,.jpg,.jpeg,.png" disabled/><label class="pretty-upload-button" for="applicationMilitaryDocument">＋ 選擇檔案</label><span class="pretty-upload-name" data-file-name-for="applicationMilitaryDocument">尚未選擇檔案</span></div></div>
+<div id="identityDocumentAnchor" hidden></div>
+<div class="document-row upload-document-row" id="employmentDocumentRow" hidden><div><strong>就業證明</strong><small>具本市就業有居住需求者，應檢附資格證明文件。</small></div><div class="pretty-upload"><input id="employmentDocument" type="file" accept=".pdf,.jpg,.jpeg,.png"/><label class="pretty-upload-button" for="employmentDocument">＋ 選擇檔案</label><span class="pretty-upload-name" data-file-name-for="employmentDocument">尚未選擇檔案</span></div></div>
+<div class="document-row upload-document-row" id="schoolDocumentRow" hidden><div><strong>就學證明</strong><small>具本市就學有居住需求者，應檢附資格證明文件。</small></div><div class="pretty-upload"><input id="schoolDocument" type="file" accept=".pdf,.jpg,.jpeg,.png"/><label class="pretty-upload-button" for="schoolDocument">＋ 選擇檔案</label><span class="pretty-upload-name" data-file-name-for="schoolDocument">尚未選擇檔案</span></div></div>
+<div class="document-row upload-document-row" id="fetusDocumentRow"><div><strong>懷孕證明文件</strong><small>已填寫懷孕胎兒數時，可補充診斷證明或孕婦健康手冊等佐證。</small></div><div class="pretty-upload"><input id="fetusDocument" type="file" accept=".pdf,.jpg,.jpeg,.png"/><label class="pretty-upload-button" for="fetusDocument">＋ 選擇檔案</label><span class="pretty-upload-name" data-file-name-for="fetusDocument">尚未選擇檔案</span></div></div>
 </div>
 </div>
 </section>
 
-<div class="form-error" id="simpleFormError" role="alert">尚有必填資料或待上傳文件未完成，請確認紅框欄位。</div>
+<div class="form-error" id="simpleFormError" role="alert">尚有必填資料未完成，請確認紅框欄位。</div>
 <div class="simplified-footer">
-<button class="btn next-step-btn" id="simpleNextStep" type="button">下一步：申請社宅</button>
+<button class="btn next-step-btn" id="simpleNextStep" type="button">送出補件資料</button>
 </div>
 </form>
 </div>
@@ -392,7 +442,7 @@
 <div class="legacy-data-flow" hidden>
 <div class="notice">
 <strong>ℹ</strong>
-<div>查調授權已於電子切結完成。標示「查調取得」之欄位不可修改；標示「民眾填寫」或「查調失敗」之欄位可由申請人補充。</div>
+<div>查調授權已於電子切結完成，所有查調資料皆已取得；標示「民眾填寫」之欄位仍可由申請人補充。</div>
 </div>
 <section class="section">
 <div class="section-title">
@@ -402,7 +452,7 @@
 <div class="section-body">
 <div class="consent-box"><div class="consent-text">查調授權已於電子切結完成，系統將依資格審查需要分批取得相關資料。</div></div>
 <div class="auth-head">
-<div class="hint">查調結果將帶入下方欄位及檢附文件；若資料查調失敗，系統將提示可補填或上傳佐證資料。</div>
+<div class="hint">所有查調結果均已帶入下方欄位及檢附文件；本頁僅需補上審查通知指定的佐證資料。</div>
 <button class="btn primary" onclick="refreshData()">重新取得查調資料</button>
 </div>
 <div class="status-cards"><div class="status-card">
@@ -418,8 +468,8 @@
 <div class="top"><strong>住宅補貼紀錄</strong><span class="status-tag done">已取得</span></div>
 <p>查調結果顯示目前領有租屋補貼。</p>
 </div><div class="status-card">
-<div class="top"><strong>警消／軍職資料</strong><span class="status-tag fail">查調失敗</span></div>
-<p>未取得警消及軍職資料，開放申請人勾選並補充相關證明。</p>
+<div class="top"><strong>警消／軍職資料</strong><span class="status-tag done">已取得</span></div>
+<p>已取得警消及軍職資料，相關結果已帶入申請資料。</p>
 </div></div><div class="subsidy-consent">
 <div class="result-line">
 <span class="badge warn">查調結果</span>
@@ -497,11 +547,11 @@
 </label>
 <label class="identity-option">
 <input checked="" type="checkbox"/>
-<span>現任職務為最高職務列等在警正四階（含）以下之警察人員及消防人員。<span class="source self">查調失敗／民眾填寫</span></span>
+<span>現任職務為最高職務列等在警正四階（含）以下之警察人員及消防人員。<span class="source lock">查調取得</span></span>
 </label>
 <label class="identity-option">
 <input type="checkbox"/>
-<span>現任職務為最高職務列等在國防部少校階（含士官）之軍職人員、文職薦任六職等以下、聘僱或相當該職務列等以下之人員。<span class="source self">查調失敗／民眾填寫</span></span>
+<span>現任職務為最高職務列等在國防部少校階（含士官）之軍職人員、文職薦任六職等以下、聘僱或相當該職務列等以下之人員。<span class="source lock">查調取得</span></span>
 </label>
 </div>
 </div>
@@ -589,7 +639,7 @@
 </div>
 <div class="family-reminder plain-reminder">
 <strong>提醒</strong>
-<div>同戶籍家庭成員由戶政資料帶入且不可修改；非同戶籍但依法須納入計算者，或查調失敗者，才開放申請人補充編輯。</div>
+<div>同戶籍家庭成員由戶政資料帶入且不可修改；非同戶籍但依法須納入計算者，才開放申請人補充編輯。</div>
 </div>
 <div class="family-form-panel"><div class="family-form-title">新增／編輯家庭成員</div><div class="grid">
 <div class="field span-3">
@@ -735,7 +785,7 @@
 <section class="section">
 <div class="section-title">
 <h2>五、檢附上傳文件</h2>
-<span class="badge gray">查調取得鎖定，查調失敗才補件</span>
+<span class="badge success">查調資料皆已取得／鎖定</span>
 </div>
 <div class="section-body">
 <div class="table-wrap">
@@ -806,10 +856,10 @@
 <tr>
 <td>
 <div class="file-name">警消 / 軍職在職證明</div>
-<div class="file-note">身分資料查調失敗或需人工確認時，開放補充證明文件。</div>
+<div class="file-note">身分資料需人工確認時，開放補充證明文件。</div>
 </td>
 <td><span class="file-name">尚未上傳</span></td>
-<td><span class="badge fail">查調失敗 / 可上傳</span></td>
+<td><span class="badge fail">人工確認 / 可上傳</span></td>
 <td><button class="mini-btn">上傳檔案</button></td>
 </tr>
 </tbody>
@@ -875,7 +925,7 @@
 </div>
 <button class="identity-dialog-close" type="submit" value="cancel" aria-label="關閉身分備註視窗">×</button>
 </header>
-<div class="identity-dialog-guidance"><span aria-hidden="true">🔒</span><span>系統依查調資料判定的項目已鎖定，無法取消；其餘項目可由申請人補充或修正。</span></div>
+<div class="identity-dialog-guidance"><span aria-hidden="true">i</span><span>標示「需上傳證明」的項目，勾選並儲存後會自動加入檢附文件；其餘項目由系統查調或依戶籍資料判定。</span></div>
 <div class="identity-option-list" id="identityOptionList"></div>
 <footer class="identity-dialog-actions">
 <button class="btn" type="submit" value="cancel">取消</button>
@@ -883,6 +933,7 @@
 </footer>
 </form>
 </dialog>
+<script src="assets/application-identity-state.js"></script>
 <script>
     const siteHeader = document.querySelector('.site-header');
     const mobileMenu = document.querySelector('.site-mobile-menu');
@@ -947,22 +998,12 @@
     const simpleAutosave = document.getElementById('simpleAutosave');
     const registrationDataForm = document.getElementById('registrationDataForm');
     const familyTableBody = document.getElementById('familyTableBody');
-    const toggleFamilyAdd = document.getElementById('toggleFamilyAdd');
-    const familyAddPanel = document.getElementById('familyAddPanel');
-    const cancelFamilyAdd = document.getElementById('cancelFamilyAdd');
-    const submitFamilyAdd = document.getElementById('submitFamilyAdd');
-    const newMemberRelation = document.getElementById('newMemberRelation');
-    const newMemberName = document.getElementById('newMemberName');
-    const newMemberBirth = document.getElementById('newMemberBirth');
-    const newMemberId = document.getElementById('newMemberId');
-    const newMemberIncome = document.getElementById('newMemberIncome');
-    const newMemberFetus = document.getElementById('newMemberFetus');
-    const newMemberSameHousehold = document.getElementById('newMemberSameHousehold');
-    const newMemberCohabiting = document.getElementById('newMemberCohabiting');
+    const addFamilyMember = document.getElementById('addFamilyMember');
     const identityNoteDialog = document.getElementById('identityNoteDialog');
     const identityDialogMemberName = document.getElementById('identityDialogMemberName');
     const identityOptionList = document.getElementById('identityOptionList');
     const saveIdentityNotes = document.getElementById('saveIdentityNotes');
+    const identityDocumentAnchor = document.getElementById('identityDocumentAnchor');
     const simpleFormError = document.getElementById('simpleFormError');
     const refreshLookup = document.getElementById('refreshLookup');
     const restartLookup = document.getElementById('restartLookup');
@@ -971,10 +1012,95 @@
     const lookupUpdatedAt = document.getElementById('lookupUpdatedAt');
     const sameAsRegisteredAddress = document.getElementById('sameAsRegisteredAddress');
     const mailingAddress = document.getElementById('mailingAddress');
+    const mailingAddressDisplay = document.getElementById('mailingAddressDisplay');
+    const mailingAddressFields = document.getElementById('mailingAddressFields');
     const mailingPostalCode = document.getElementById('mailingPostalCode');
     const mailingCounty = document.getElementById('mailingCounty');
     const mailingDistrict = document.getElementById('mailingDistrict');
     const mailingAddressDetail = document.getElementById('mailingAddressDetail');
+    const applicationIdentitySupplement = document.getElementById('applicationIdentitySupplement');
+    const applicationIdentitySummary = document.getElementById('applicationIdentitySummary');
+    const applicationServiceFields = document.getElementById('applicationServiceFields');
+    const applicationServiceUnit = document.getElementById('applicationServiceUnit');
+    const applicationJobTitle = document.getElementById('applicationJobTitle');
+    const applicationPoliceRankField = document.getElementById('applicationPoliceRankField');
+    const applicationPoliceRank = document.getElementById('applicationPoliceRank');
+    const applicationMilitaryTypeField = document.getElementById('applicationMilitaryTypeField');
+    const applicationMilitaryType = document.getElementById('applicationMilitaryType');
+    const applicationMilitaryRankField = document.getElementById('applicationMilitaryRankField');
+    const applicationMilitaryRankLabel = document.getElementById('applicationMilitaryRankLabel');
+    const applicationMilitaryRank = document.getElementById('applicationMilitaryRank');
+    const applicationMilitaryContractField = document.getElementById('applicationMilitaryContractField');
+    const applicationMilitaryContractRank = document.getElementById('applicationMilitaryContractRank');
+    const applicationMilitaryRankOptions = {
+      '軍職':['少校','上尉','中尉','少尉','一等士官長','二等士官長','三等士官長','上士','中士','下士','上等兵','一等兵','二等兵'],
+      '文職':['薦任六職等','委任五職等','委任四職等','委任三職等','委任二職等','委任一職等']
+    };
+    const selectedApplicationIdentities = new Set([...window.HousingApplicationIdentityState.load(),'婚育戶']);
+
+    function setApplicationControlState(control,active){
+      control.disabled = !active;
+      control.required = active;
+    }
+
+    function syncApplicationMilitaryRank(){
+      const militarySelected = selectedApplicationIdentities.has('軍職戶');
+      const positionType = applicationMilitaryType.value;
+      const usesRankSelect = militarySelected && Boolean(applicationMilitaryRankOptions[positionType]);
+      const usesContractInput = militarySelected && positionType === '約聘雇';
+      applicationMilitaryRankField.hidden = !usesRankSelect;
+      applicationMilitaryContractField.hidden = !usesContractInput;
+      setApplicationControlState(applicationMilitaryRank,usesRankSelect);
+      setApplicationControlState(applicationMilitaryContractRank,usesContractInput);
+      if(usesRankSelect && applicationMilitaryRank.dataset.positionType !== positionType){
+        applicationMilitaryRank.replaceChildren(
+          new Option(positionType === '軍職' ? '請選擇軍職職等' : '請選擇文職職等','',true,true),
+          ...applicationMilitaryRankOptions[positionType].map(rank => new Option(rank,rank))
+        );
+        applicationMilitaryRank.dataset.positionType = positionType;
+      }
+      applicationMilitaryRankLabel.innerHTML = positionType === '軍職' ? '軍職職等 <b>*</b>' : '文職職等 <b>*</b>';
+    }
+
+    function setApplicationRoleDocument(identity,rowId,inputId){
+      const visible = selectedApplicationIdentities.has(identity);
+      const row = document.getElementById(rowId);
+      const input = document.getElementById(inputId);
+      row.hidden = !visible;
+      setApplicationControlState(input,visible);
+      if(!visible){
+        input.value = '';
+        const fileName = document.querySelector(`[data-file-name-for="${inputId}"]`);
+        if(fileName) fileName.textContent = '尚未選擇檔案';
+      }
+    }
+
+    function initializeApplicationIdentityFields(){
+      const supportedIdentities = ['婚育戶','警消戶','軍職戶'].filter(identity => selectedApplicationIdentities.has(identity));
+      const policeSelected = selectedApplicationIdentities.has('警消戶');
+      const militarySelected = selectedApplicationIdentities.has('軍職戶');
+      const needsServiceFields = policeSelected || militarySelected;
+      applicationIdentitySupplement.hidden = supportedIdentities.length === 0;
+      applicationIdentitySummary.textContent = supportedIdentities.join('、');
+      applicationServiceFields.hidden = !needsServiceFields;
+      setApplicationControlState(applicationServiceUnit,needsServiceFields);
+      setApplicationControlState(applicationJobTitle,needsServiceFields);
+      applicationPoliceRankField.hidden = !policeSelected;
+      setApplicationControlState(applicationPoliceRank,policeSelected);
+      applicationMilitaryTypeField.hidden = !militarySelected;
+      setApplicationControlState(applicationMilitaryType,militarySelected);
+      syncApplicationMilitaryRank();
+      setApplicationRoleDocument('婚育戶','applicationMarriageDocumentRow','applicationMarriageDocument');
+      setApplicationRoleDocument('警消戶','applicationPoliceDocumentRow','applicationPoliceDocument');
+      setApplicationRoleDocument('軍職戶','applicationMilitaryDocumentRow','applicationMilitaryDocument');
+      const policeRoleCheckbox = document.querySelector('.special-role[value="警消"]');
+      const militaryRoleCheckbox = document.querySelector('.special-role[value="軍職"]');
+      if(policeRoleCheckbox) policeRoleCheckbox.checked = policeSelected;
+      if(militaryRoleCheckbox) militaryRoleCheckbox.checked = militarySelected;
+    }
+
+    applicationMilitaryType?.addEventListener('change',syncApplicationMilitaryRank);
+    initializeApplicationIdentityFields();
     const mailingAddressData = {
       '臺北市':[['100','中正區'],['103','大同區'],['104','中山區'],['105','松山區'],['106','大安區'],['108','萬華區'],['110','信義區'],['111','士林區'],['112','北投區'],['114','內湖區'],['115','南港區'],['116','文山區']],
       '新北市':[['207','萬里區'],['208','金山區'],['220','板橋區'],['221','汐止區'],['222','深坑區'],['223','石碇區'],['224','瑞芳區'],['226','平溪區'],['227','雙溪區'],['228','貢寮區'],['231','新店區'],['232','坪林區'],['233','烏來區'],['234','永和區'],['235','中和區'],['236','土城區'],['237','三峽區'],['238','樹林區'],['239','鶯歌區'],['241','三重區'],['242','新莊區'],['243','泰山區'],['244','林口區'],['247','蘆洲區'],['248','五股區'],['249','八里區'],['251','淡水區'],['252','三芝區'],['253','石門區']],
@@ -1014,6 +1140,47 @@
       {number:'十二',label:'因懷孕或生育而遭遇困境之未成年人'},
       {number:'十三',label:'其他經主管機關認定者'}
     ];
+    const familyRelationOptions = [
+      '同性伴侶','子女','父親','母親','兄弟姊妹','兄弟姊妹的配偶','公公','婆婆','媳婦','岳父','岳母','女婿',
+      '祖父','祖母','孫','孫媳','曾祖父','曾祖母','曾孫','曾孫媳','配偶之祖父','配偶之祖母','配偶之孫','配偶之兄弟姊妹','其他'
+    ];
+    const manualIdentityDocumentRules = {
+      '於安置教養機構或寄養家庭結束安置無法返家，未滿二十五歲':{
+        title:'安置／寄養結束證明',
+        help:'請上傳直轄市、縣（市）社會福利主管機關出具的證明。'
+      },
+      '受家庭暴力或性侵害之受害者及其子女':{
+        title:'家庭暴力或性侵害受害證明',
+        help:'可上傳保護令、判決書、防治中心證明或其他足資證明文件。'
+      },
+      '感染人類免疫缺乏病毒者或罹患後天免疫缺乏症候群者':{
+        title:'感染者身分證明',
+        help:'請上傳醫療院所、衛生單位出具的證明或全國醫療服務卡。'
+      },
+      '災民':{
+        title:'災民身分證明',
+        help:'請上傳受災一年內由相關主管機關核發的認定文件。'
+      },
+      '遊民':{
+        title:'遊民身分證明',
+        help:'請上傳直轄市、縣（市）社政主管機關核發的認定文件。'
+      },
+      '因懷孕或生育而遭遇困境之未成年人':{
+        title:'困境未成年人身分證明',
+        help:'請上傳相關主管機關核發的認定文件。'
+      },
+      '其他經主管機關認定者':{
+        title:'其他弱勢身分認定文件',
+        help:'請上傳主管機關核發的社會或經濟弱勢身分認定文件。'
+      }
+    };
+    const estateSectionData = {
+      '臺中市':['西屯段','惠來厝段','上石碑段','何安段'],
+      '南投縣':['南投段','草屯段','埔里段','竹山段'],
+      '彰化縣':['彰化段','員林段','鹿港段','和美段'],
+      '苗栗縣':['苗栗段','竹南段','頭份段','苑裡段']
+    };
+    let familyMemberKeySequence = 0;
     let activeIdentityRow = null;
     let activeIdentityTrigger = null;
 
@@ -1034,6 +1201,7 @@
       const districtData = (mailingAddressData[mailingCounty.value] || []).find(([,district]) => district === mailingDistrict.value);
       mailingPostalCode.value = districtData?.[0] || '';
       mailingAddress.value = `${mailingPostalCode.value} ${mailingCounty.value}${mailingDistrict.value}${mailingAddressDetail.value}`.trim();
+      if(mailingAddressDisplay) mailingAddressDisplay.value = mailingAddress.value;
       if(!sameAsRegisteredAddress.checked){
         manualMailingAddress = {postalCode:mailingPostalCode.value,county:mailingCounty.value,district:mailingDistrict.value,detail:mailingAddressDetail.value};
       }
@@ -1052,6 +1220,8 @@
       const useRegisteredAddress = sameAsRegisteredAddress.checked;
       [mailingCounty,mailingDistrict,mailingAddressDetail].forEach(control => {control.disabled = useRegisteredAddress});
       applyMailingAddress(useRegisteredAddress ? registeredMailingAddress : manualMailingAddress);
+      if(mailingAddressDisplay) mailingAddressDisplay.hidden = !useRegisteredAddress;
+      if(mailingAddressFields) mailingAddressFields.hidden = useRegisteredAddress;
       if(!useRegisteredAddress) mailingAddressDetail.focus();
     }
 
@@ -1067,10 +1237,6 @@
     syncMailingAddress();
 
     const lookupBatches = [
-      [],
-      ['household','labor','finance','land'],
-      ['household','labor','finance','land','immigration','health','subsidy'],
-      ['household','labor','finance','land','immigration','health','subsidy','police','defense'],
       ['household','immigration','police','defense','labor','health','finance','land','tdcc','subsidy']
     ];
     let lookupBatchIndex = 0;
@@ -1100,7 +1266,7 @@
       });
 
       lookupCompletedCount.textContent = String(completedCount);
-      lookupUpdatedAt.textContent = `更新：${formatLookupTime()}｜每 60 秒自動更新｜可離頁等待，部分機關可能超過 30 分鐘`;
+      lookupUpdatedAt.textContent = `確認時間：${formatLookupTime()}｜本案 10 項查調資料皆已取得`;
       document.querySelector('.lookup-progress-spinner')?.classList.toggle('is-complete',isComplete);
 
       if(isComplete){
@@ -1271,13 +1437,66 @@
       const userTags = new Set(getUserIdentityTags(row));
       identityOptionList.innerHTML = specialIdentityOptions.map(option => {
         const isSystem = systemTags.has(option.label);
-        const isChecked = isSystem || userTags.has(option.label);
-        return `<label class="identity-note-option${isSystem ? ' is-system' : ''}">
-          <input type="checkbox" value="${option.label}"${isChecked ? ' checked' : ''}${isSystem ? ' disabled' : ''}/>
-          // <span>${option.number}、${option.label}。<small>${isSystem ? '🔒 系統判定，不可修改' : '可由申請人補充或取消'}</small></span>
-          <span>${option.number}、${option.label}。<small>${isSystem ? '🔒 系統判定，不可修改' : ''}</small></span>
+        const requiresDocument = Boolean(manualIdentityDocumentRules[option.label]);
+        if(isSystem){
+          return `<div class="identity-note-option is-system">
+            <span class="identity-readonly-mark" aria-hidden="true">✓</span>
+            <span>${option.number}、${option.label}<small>查調取得</small></span>
+          </div>`;
+        }
+        return `<label class="identity-note-option${requiresDocument ? ' requires-document' : ''}">
+          <input type="checkbox" value="${option.label}"${userTags.has(option.label) ? ' checked' : ''}/>
+          <span>${option.number}、${option.label}<small>${requiresDocument ? '需上傳證明' : '由系統查調／判定'}</small></span>
         </label>`;
       }).join('');
+    }
+
+    function ensureFamilyMemberKey(row){
+      if(!row.dataset.memberKey) row.dataset.memberKey = `member-${++familyMemberKeySequence}`;
+      return row.dataset.memberKey;
+    }
+
+    function updateIdentityDocuments(){
+      if(!familyTableBody || !identityDocumentAnchor) return;
+      const desiredDocuments = new Map();
+      familyTableBody.querySelectorAll('tr').forEach(row => {
+        const memberKey = ensureFamilyMemberKey(row);
+        const memberName = row.querySelector('.member-name')?.value.trim() || '';
+        const relation = getMemberRelation(row);
+        const memberLabel = [relation,memberName].filter(Boolean).join(' ') || '家庭成員';
+        getUserIdentityTags(row).forEach(identity => {
+          const rule = manualIdentityDocumentRules[identity];
+          if(!rule) return;
+          const identityIndex = specialIdentityOptions.findIndex(option => option.label === identity) + 1;
+          const key = `${memberKey}-${identityIndex}`;
+          desiredDocuments.set(key,{memberLabel,rule,identityIndex});
+        });
+      });
+
+      const existingDocuments = new Map(
+        [...document.querySelectorAll('[data-identity-doc-key]')].map(row => [row.dataset.identityDocKey,row])
+      );
+      existingDocuments.forEach((row,key) => {
+        if(!desiredDocuments.has(key)) row.remove();
+      });
+
+      desiredDocuments.forEach(({memberLabel,rule,identityIndex},key) => {
+        let documentRow = existingDocuments.get(key);
+        if(!documentRow){
+          const inputId = `identityDocument_${key.replaceAll('-','_')}`;
+          documentRow = document.createElement('div');
+          documentRow.className = 'document-row upload-document-row identity-document-row';
+          documentRow.dataset.identityDocKey = key;
+          documentRow.innerHTML = `<div><strong></strong><small></small></div>
+            <div class="pretty-upload"><input id="${inputId}" type="file" accept=".pdf,.jpg,.jpeg,.png"/>
+            <label class="pretty-upload-button" for="${inputId}">＋ 選擇檔案</label>
+            <span class="pretty-upload-name" data-file-name-for="${inputId}">尚未選擇檔案</span></div>`;
+          identityDocumentAnchor.before(documentRow);
+        }
+        documentRow.querySelector('strong').textContent = `${memberLabel}－${rule.title}`;
+        documentRow.querySelector('small').textContent = rule.help;
+        documentRow.dataset.identityIndex = String(identityIndex);
+      });
     }
 
     function openIdentityNotes(row,trigger){
@@ -1302,6 +1521,7 @@
       const selected = [...identityOptionList.querySelectorAll('input[type="checkbox"]:checked:not(:disabled)')].map(input => input.value);
       activeIdentityRow.dataset.userIdentities = selected.join('|');
       updateMemberIdentities(activeIdentityRow);
+      updateIdentityDocuments();
       simpleAutosave.textContent = '已儲存身分／社福識別備註｜剛剛';
       if(typeof identityNoteDialog.close === 'function') identityNoteDialog.close('saved');
       else identityNoteDialog.removeAttribute('open');
@@ -1341,16 +1561,17 @@
       document.getElementById('familyIncomeTotal').textContent = format(total);
       document.getElementById('familyMonthlyAverage').textContent = format(average);
       updateFetusDocument(fetuses);
+      updateIdentityDocuments();
     }
 
     function updateFetusDocument(fetusCount){
       const row = document.getElementById('fetusDocumentRow');
       const file = document.getElementById('fetusDocument');
       if(!row || !file) return;
-      const required = fetusCount > 0;
-      row.hidden = !required;
-      file.required = false;
-      if(!required){
+      const shouldShow = fetusCount > 0;
+      row.hidden = !shouldShow;
+      file.required = shouldShow;
+      if(!shouldShow){
         file.value = '';
         const fileName = document.querySelector('[data-file-name-for="fetusDocument"]');
         if(fileName) fileName.textContent = '尚未選擇檔案';
@@ -1360,6 +1581,7 @@
     familyTableBody?.addEventListener('input',event => {
       if(event.target.matches('.member-id')) applyMemberSexState(event.target.closest('tr'));
       if(event.target.matches('.member-income,.member-fetus,.member-id,.member-birth')) updateFamilySummary();
+      if(event.target.matches('.member-name')) updateIdentityDocuments();
     });
 
     familyTableBody?.addEventListener('change',event => {
@@ -1380,81 +1602,27 @@
       simpleAutosave.textContent = `已刪除家庭成員 ${memberName}｜尚未儲存`;
     });
 
-    function setFamilyAddOpen(open){
-      if(!familyAddPanel || !toggleFamilyAdd) return;
-      familyAddPanel.hidden = !open;
-      familyAddPanel.querySelectorAll('input,select').forEach(field => {field.disabled = !open});
-      toggleFamilyAdd.setAttribute('aria-expanded',String(open));
-      toggleFamilyAdd.textContent = open ? '收合新增表單' : '＋ 新增家庭成員';
-      if(open) newMemberRelation?.focus();
-    }
-
-    function resetFamilyAddFields(){
-      if(newMemberRelation) newMemberRelation.value = '';
-      if(newMemberName) newMemberName.value = '';
-      if(newMemberBirth) newMemberBirth.value = '';
-      if(newMemberId) newMemberId.value = '';
-      if(newMemberIncome) newMemberIncome.value = '0';
-      if(newMemberFetus) newMemberFetus.value = '0';
-      if(newMemberSameHousehold) newMemberSameHousehold.checked = false;
-      if(newMemberCohabiting) newMemberCohabiting.checked = false;
-    }
-
-    toggleFamilyAdd?.addEventListener('click',() => setFamilyAddOpen(familyAddPanel?.hidden !== false));
-    cancelFamilyAdd?.addEventListener('click',() => {resetFamilyAddFields();setFamilyAddOpen(false)});
-
-    submitFamilyAdd?.addEventListener('click',() => {
-      const requiredFields = [newMemberRelation,newMemberName,newMemberBirth,newMemberId];
-      const invalidField = requiredFields.find(field => !field?.checkValidity());
-      if(invalidField){
-        invalidField.reportValidity();
-        invalidField.focus();
-        return;
-      }
-
-      const relation = newMemberRelation.value;
-      const memberName = newMemberName.value.trim();
-      const birth = newMemberBirth.value;
-      const idNumber = newMemberId.value.trim().toUpperCase();
-      const income = Math.max(0,Number(newMemberIncome.value) || 0);
-      const fetus = Math.max(0,Math.floor(Number(newMemberFetus.value) || 0));
+    addFamilyMember?.addEventListener('click',() => {
       const row = document.createElement('tr');
+      row.className = 'family-new-row';
       row.dataset.lookupIdentities = '';
+      row.dataset.userIdentities = '';
       row.innerHTML = `
-        <td data-label="關係"><span class="member-relation-text"></span><input name="memberRelation[]" type="hidden"/></td>
-        <td data-label="姓名"><span class="plain-cell-text member-name-display"></span><input class="member-name" name="memberName[]" type="hidden"/></td>
-        <td data-label="出生年月日"><time class="plain-cell-text member-birth-display"></time><input class="member-birth" name="memberBirth[]" type="hidden"/></td>
-        <td data-label="身分證字號"><span class="plain-cell-text member-id-display"></span><input class="member-id" name="memberId[]" type="hidden"/></td>
-        <td data-label="最近一年所得"><span class="plain-cell-text member-income-display"></span><input class="member-income" name="memberIncome[]" type="hidden"/></td>
-        <td data-label="懷孕胎兒數"><input class="member-fetus" name="memberFetus[]" type="number" min="0" step="1" inputmode="numeric" aria-label="懷孕胎兒數"/></td>
+        <td data-label="關係"><select class="member-relation" name="memberRelation[]" required aria-label="新成員關係"><option value="">請選擇</option>${familyRelationOptions.map(option => `<option>${option}</option>`).join('')}</select></td>
+        <td data-label="姓名"><input class="member-name" name="memberName[]" type="text" required aria-label="新成員姓名" placeholder="請輸入"/></td>
+        <td data-label="出生年月日"><input class="member-birth" name="memberBirth[]" type="date" required aria-label="新成員出生年月日"/></td>
+        <td data-label="身分證字號"><input class="member-id" name="memberId[]" type="text" maxlength="10" required aria-label="新成員身分證字號" placeholder="請輸入"/></td>
+        <td data-label="最近一年所得"><input class="member-income" name="memberIncome[]" type="number" min="0" step="1" value="0" aria-label="新成員最近一年所得"/></td>
+        <td data-label="懷孕胎兒數"><input class="member-fetus" name="memberFetus[]" type="number" min="0" step="1" inputmode="numeric" value="0" aria-label="新成員懷孕胎兒數"/><span class="fetus-not-applicable">不適用</span></td>
         <td data-label="同戶籍／同住"><div class="family-residence-options"><label><input class="member-same-household" name="memberSameHousehold[]" type="checkbox"/>同戶籍</label><label><input class="member-cohabiting" name="memberCohabiting[]" type="checkbox"/>同住</label></div></td>
         <td data-label="身分／社福識別"><div class="identity-tags member-identities"><span class="identity-tag neutral">一般身分</span></div></td>
-        <td data-label="操作"><button class="row-delete-button family-delete-button" type="button" title="刪除家庭成員"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M9 7V4h6v3M7 7l1 13h8l1-13M10 11v5M14 11v5"/></svg></button></td>`;
-
-      row.querySelector('.member-relation-text').textContent = relation;
-      row.querySelector('input[name="memberRelation[]"]').value = relation;
-      row.querySelector('.member-name-display').textContent = memberName;
-      row.querySelector('.member-name').value = memberName;
-      const birthDisplay = row.querySelector('.member-birth-display');
-      birthDisplay.textContent = birth.replaceAll('-','/');
-      birthDisplay.dateTime = birth;
-      row.querySelector('.member-birth').value = birth;
-      row.querySelector('.member-id-display').textContent = idNumber;
-      row.querySelector('.member-id').value = idNumber;
-      row.querySelector('.member-income-display').textContent = `${income.toLocaleString('zh-TW')} 元`;
-      row.querySelector('.member-income').value = String(income);
-      row.querySelector('.member-fetus').value = String(fetus);
-      row.querySelector('.member-same-household').checked = newMemberSameHousehold.checked;
-      row.querySelector('.member-cohabiting').checked = newMemberCohabiting.checked;
-      const deleteButton = row.querySelector('.family-delete-button');
-      deleteButton.setAttribute('aria-label',`刪除家庭成員${memberName}`);
+        <td data-label="操作"><button class="row-delete-button family-delete-button" type="button" aria-label="刪除新增家庭成員" title="刪除家庭成員"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M9 7V4h6v3M7 7l1 13h8l1-13M10 11v5M14 11v5"/></svg></button></td>`;
 
       familyTableBody.append(row);
       prepareIdentityControls();
       updateFamilySummary();
-      resetFamilyAddFields();
-      setFamilyAddOpen(false);
-      simpleAutosave.textContent = `已新增家庭成員 ${memberName}｜尚未儲存`;
+      row.querySelector('.member-relation')?.focus();
+      simpleAutosave.textContent = '已新增一筆家庭成員資料｜尚未儲存';
     });
 
     prepareIdentityControls();
@@ -1492,21 +1660,38 @@
       if(movableAssetTotal) movableAssetTotal.textContent = formatNumber(total);
     }
 
+    function renderEstateSections(row){
+      const county = row?.querySelector('.estate-county')?.value || '';
+      const sectionSelect = row?.querySelector('.estate-section');
+      if(!sectionSelect) return;
+      const sections = estateSectionData[county] || (county ? ['地段名'] : []);
+      sectionSelect.replaceChildren(
+        new Option('請選擇地段',''),
+        ...sections.map(section => new Option(section,section))
+      );
+      sectionSelect.disabled = !county;
+    }
+
     document.getElementById('addRealEstate')?.addEventListener('click',() => {
       const row = document.createElement('tr');
       row.className = 'real-estate-row';
       row.innerHTML = `
         <td class="row-index" data-label="項次"></td>
-        <td data-label="持有者"><select aria-label="持有者"><option>陳ＯＯ</option><option>王ＯＯ</option><option>林ＯＯ</option></select></td>
-        <td data-label="類別"><select class="estate-type" aria-label="類別"><option>房屋</option><option>土地</option></select></td>
-        <td data-label="房屋座落"><input class="estate-location-input" type="text" aria-label="房屋建號" placeholder="請輸入建號"/></td>
+        <td data-label="持有者"><select aria-label="持有者" required><option>陳ＯＯ</option><option>王ＯＯ</option><option>林ＯＯ</option></select></td>
+        <td data-label="類別"><select class="estate-type" aria-label="類別" required><option>房屋</option><option>土地</option></select></td>
+        <td data-label="地段地號建號／座落"><div class="estate-location-control">
+          <select class="estate-county" aria-label="不動產縣市" required><option value="">請選擇縣市</option>${Object.keys(mailingAddressData).map(county => `<option>${county}</option>`).join('')}</select>
+          <select class="estate-section" aria-label="不動產地段" required disabled><option value="">請選擇地段</option></select>
+          <input class="estate-location-input" type="text" aria-label="房屋建號" placeholder="請輸入建號" required/>
+        </div></td>
         <td data-label="戶籍地"><input class="asset-check" type="checkbox" aria-label="此筆為戶籍地"/></td>
-        <td data-label="持分比"><div class="share-control"><input type="number" value="1" min="1" aria-label="持分分母"/><span>分之</span><input type="number" value="1" min="0" aria-label="持分分子"/></div></td>
+        <td data-label="持分比"><div class="share-control"><input type="number" min="1" placeholder="分母" aria-label="持分分母" required/><span>分之</span><input type="number" min="0" placeholder="分子" aria-label="持分分子" required/></div></td>
         <td data-label="房地面積"><input class="estate-area-input" type="number" min="0" step="0.01" value="0" aria-label="房地面積，平方公尺"/></td>
         <td data-label="房地現值金額"><div class="money-control"><input class="estate-value-input" type="number" min="0" step="1" value="0" aria-label="房地現值金額"/><span>元</span></div></td>
         <td data-label="是否為公同共有"><input class="asset-check" type="checkbox" aria-label="是否為公同共有"/></td>
         <td data-label="操作"><button class="row-delete-button property-delete-button" type="button" aria-label="刪除此筆不動產" title="刪除此筆不動產"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M9 7V4h6v3M7 7l1 13h8l1-13M10 11v5M14 11v5"/></svg></button></td>`;
       realEstateTableBody?.append(row);
+      renderEstateSections(row);
       updateRealEstateSummary();
       row.querySelector('select')?.focus();
       simpleAutosave.textContent = '已新增不動產資料｜尚未儲存';
@@ -1521,8 +1706,12 @@
     });
     realEstateTableBody?.addEventListener('input',updateRealEstateSummary);
     realEstateTableBody?.addEventListener('change',event => {
-      if(!event.target.matches('.estate-type')) return;
       const row = event.target.closest('.real-estate-row');
+      if(event.target.matches('.estate-county')){
+        renderEstateSections(row);
+        return;
+      }
+      if(!event.target.matches('.estate-type')) return;
       const identifier = row?.querySelector('.estate-location-input');
       const isLand = event.target.value === '土地';
       if(identifier){
@@ -1530,6 +1719,29 @@
         identifier.placeholder = isLand ? '請輸入地號' : '請輸入建號';
         identifier.setAttribute('aria-label',isLand ? '土地地號' : '房屋建號');
       }
+    });
+    document.getElementById('addMovableAsset')?.addEventListener('click',() => {
+      const row = document.createElement('tr');
+      row.className = 'movable-asset-row';
+      row.innerHTML = `
+        <td data-label="姓名"><select aria-label="動產持有者" required><option>陳ＯＯ</option><option>王ＯＯ</option><option>林ＯＯ</option></select></td>
+        <td data-label="利息（存款本金）"><div class="money-control"><input class="movable-interest" type="number" min="0" step="1" value="0" aria-label="利息或存款本金" required/><span>元</span></div></td>
+        <td data-label="是否為優惠利率"><input class="asset-check movable-preferential" type="checkbox" aria-label="是否為優惠利率"/></td>
+        <td data-label="中獎所得"><div class="money-control"><input class="movable-prize" type="number" min="0" step="1" value="0" aria-label="中獎所得" required/><span>元</span></div></td>
+        <td data-label="其他所得"><div class="money-control"><input class="movable-other" type="number" min="0" step="1" value="0" aria-label="其他所得" required/><span>元</span></div></td>
+        <td data-label="小計"><output class="movable-subtotal">0 元</output></td>
+        <td data-label="操作"><button class="row-delete-button movable-delete-button" type="button" aria-label="刪除此筆動產" title="刪除此筆動產"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M9 7V4h6v3M7 7l1 13h8l1-13M10 11v5M14 11v5"/></svg></button></td>`;
+      movableAssetTableBody?.append(row);
+      updateMovableAssetSummary();
+      row.querySelector('select')?.focus();
+      simpleAutosave.textContent = '已新增動產資料｜尚未儲存';
+    });
+    movableAssetTableBody?.addEventListener('click',event => {
+      const button = event.target.closest('.movable-delete-button');
+      if(!button) return;
+      button.closest('.movable-asset-row')?.remove();
+      updateMovableAssetSummary();
+      simpleAutosave.textContent = '已更新動產資料｜尚未儲存';
     });
     movableAssetTableBody?.addEventListener('input',updateMovableAssetSummary);
     updateRealEstateSummary();
@@ -1542,11 +1754,11 @@
       });
     });
 
-    document.querySelectorAll('.pretty-upload input[type="file"]').forEach(input => {
-      input.addEventListener('change',() => {
-        const name = document.querySelector(`[data-file-name-for="${input.id}"]`);
-        if(name) name.textContent = input.files?.[0]?.name || '尚未選擇檔案';
-      });
+    registrationDataForm?.addEventListener('change',event => {
+      const input = event.target.closest('.pretty-upload input[type="file"]');
+      if(!input) return;
+      const name = document.querySelector(`[data-file-name-for="${input.id}"]`);
+      if(name) name.textContent = input.files?.[0]?.name || '尚未選擇檔案';
     });
 
     const specialRoleInputs = [...document.querySelectorAll('.special-role')];
@@ -1555,7 +1767,7 @@
       const input = document.getElementById(inputId);
       if(!row || !input) return;
       row.hidden = !visible;
-      input.required = visible;
+      input.required = false;
       if(!visible){
         input.value = '';
         const fileName = document.querySelector(`[data-file-name-for="${inputId}"]`);
@@ -1571,7 +1783,14 @@
     specialRoleInputs.forEach(input => input.addEventListener('change',updateSpecialRoleDocuments));
     updateSpecialRoleDocuments();
 
-    document.getElementById('simpleNextStep')?.addEventListener('click',() => {
+    const accountEditMode = new URLSearchParams(window.location.search).get('mode') === 'edit';
+    const simpleNextStepButton = document.getElementById('simpleNextStep');
+    if(accountEditMode){
+      simpleNextStepButton.textContent = '儲存資料';
+      simpleAutosave.textContent = '資料編輯模式｜已啟用自動儲存';
+    }
+
+    simpleNextStepButton?.addEventListener('click',() => {
       registrationDataForm.classList.add('was-validated');
       if(!registrationDataForm.checkValidity()){
         simpleFormError.classList.add('show');
@@ -1580,8 +1799,15 @@
         return;
       }
       simpleFormError.classList.remove('show');
-      simpleAutosave.textContent = '資料已儲存｜剛剛';
-      window.location.href = 'apply.html';
+      simpleAutosave.textContent = '申請資料已儲存｜剛剛';
+      if(accountEditMode){
+        simpleNextStepButton.textContent = '已儲存';
+        window.setTimeout(() => { simpleNextStepButton.textContent = '儲存資料'; },1800);
+        return;
+      }
+      simpleNextStepButton.textContent = '補件資料已送出';
+      simpleNextStepButton.disabled = true;
+      window.setTimeout(() => { window.location.href = 'progress.html'; },1200);
     });
 </script>
 <script src="assets/member-account.js"></script>

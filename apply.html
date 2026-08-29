@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>全國社宅統一申請登記平臺｜申請社宅</title>
+<title>全國社宅統一申請登記平臺｜選擇社宅</title>
 <link rel="stylesheet" href="assets/css/common.css" />
 <link rel="stylesheet" href="assets/css/pages/apply.css" />
 <link rel="stylesheet" href="assets/member-shell.css" />
@@ -21,44 +21,56 @@
 </div>
 <nav class="site-main-nav" id="primaryNavigation" aria-label="會員主要導覽">
 <a class="brand" href="index.html" aria-label="全國社宅統一登記申請平台首頁"><img class="brand-mark" src="assets/platform-logo-elegant.svg" alt=""/><span class="brand-name">全國社宅統一登記申請平台</span></a>
-<div class="member-nav"><a class="member-nav-link" href="housing.html">找社宅</a><a class="member-nav-link" href="questionnaire.html">需求登記</a><a class="member-nav-link" href="data.html">資料登記</a><a class="member-nav-link active" href="#top" aria-current="page">申請社宅</a><a class="member-nav-link" href="progress.html">進度查詢/補件</a><a class="member-nav-link" href="#">操作紀錄</a></div>
+<div class="member-nav"><a class="member-nav-link" href="housing.html">找社宅</a><a class="member-nav-link active" href="apply.html" aria-current="page">申請社宅</a><a class="member-nav-link" href="progress.html">進度查詢</a></div>
 <div class="member-actions"><div class="login-user"><span class="login-user-label">登入者</span><strong>陳ＯＯ</strong></div><button class="member-icon" type="button" title="通知" aria-label="查看通知"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg></button><a class="member-icon" href="index.html" title="登出" aria-label="登出"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 17l5-5-5-5M15 12H3M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/></svg></a></div>
 <button class="site-mobile-menu" type="button" aria-label="開啟選單" aria-controls="memberMobileNav" aria-expanded="false">☰</button>
-<div class="site-mobile-nav" id="memberMobileNav"><a href="housing.html">找社宅</a><a href="questionnaire.html">需求登記</a><a href="data.html">登記申請</a><a class="active" href="#top" aria-current="page">申請社宅</a><a href="progress.html">進度查詢/補件</a><a href="#">操作紀錄</a><div class="mobile-member"><div class="login-user"><span class="login-user-label">登入者</span><strong>陳ＯＯ</strong></div><div class="mobile-member-actions"><button class="member-icon" type="button" aria-label="查看通知"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg></button><a class="member-icon" href="index.html" aria-label="登出"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 17l5-5-5-5M15 12H3M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/></svg></a></div></div></div>
+<div class="site-mobile-nav" id="memberMobileNav"><a href="housing.html">找社宅</a><a class="active" href="apply.html" aria-current="page">申請社宅</a><a href="progress.html">進度查詢</a><div class="mobile-member"><div class="login-user"><span class="login-user-label">登入者</span><strong>陳ＯＯ</strong></div><div class="mobile-member-actions"><button class="member-icon" type="button" aria-label="查看通知"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg></button><a class="member-icon" href="index.html" aria-label="登出"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 17l5-5-5-5M15 12H3M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/></svg></a></div></div></div>
 </nav>
 </header>
 <div class="page">
 <div class="application-stepbar" aria-label="社宅申請流程">
-  <a class="step done" href="data.html">1 資料登記</a>
-  <a class="step active" href="apply.html" aria-current="step">2 社宅申請</a>
-  <a class="step" href="policy-feedback.html">3 社宅政策回饋</a>
+  <a class="step active" href="apply.html" aria-current="step">1 選社宅房型</a>
+  <a class="step" href="declaration.html">2 電子切結</a>
+  <a class="step" href="data.html">3 申請資料</a>
 </div>
 <main class="main-card">
+<section class="batch-intro" aria-labelledby="apply-title">
+  <div class="batch-intro-head">
+    <div>
+      <span class="batch-kicker" id="applicationMatchKicker">符合您的需求 3 間</span>
+      <h1 id="apply-title">選擇要申請的社宅</h1>
+      <p>系統依您的居住需求帶入符合條件的社宅；可複選案場，並確認房型、無障礙需求與申請身分。</p>
+    </div>
+    <a class="edit-needs" href="questionnaire.html" aria-label="編輯我的住宅需求">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4l11-11-4-4L4 16v4Z"/><path d="m13.5 6.5 4 4M12 20h8"/></svg>
+      編輯需求
+    </a>
+  </div>
+  <div class="needs-grid" aria-label="我的住宅需求條件">
+    <div class="need-chip"><span>縣市</span><strong>新北市</strong></div>
+    <div class="need-chip"><span>行政區</span><strong>不限行政區</strong></div>
+    <div class="need-chip"><span>房型</span><strong>二房型、三房型</strong></div>
+    <div class="need-chip"><span>預計入住</span><strong>3 人</strong></div>
+    <div class="need-chip"><span>每月租金</span><strong>18,000 元以下</strong></div>
+    <div class="need-chip"><span>特殊需求</span><strong>可選無障礙房型</strong></div>
+  </div>
+</section>
+<section class="application-empty" aria-labelledby="applicationEmptyTitle" hidden>
+  <div class="application-empty-visual" aria-hidden="true">
+    <svg viewBox="0 0 96 96"><path d="M17 48 48 23l31 25"/><path d="M25 45v29h46V45M39 74V55h18v19"/><circle cx="70" cy="29" r="12"/><path d="m79 38 9 9"/></svg>
+  </div>
+  <h2 id="applicationEmptyTitle">目前沒有符合需求且開放招租中的社宅</h2>
+  <p class="application-empty-copy">您的居住需求已保留。可以先完成資料登記，待合適的社宅開放時快速申請；也可以設定招租通知，開放後再回來申請。</p>
+  <div class="application-empty-actions">
+    <a class="application-empty-button primary" href="declaration.html">預先登記資料</a>
+    <button class="application-empty-button secondary" id="emptySubscribeButton" type="button">招租時通知我</button>
+  </div>
+  <p class="application-empty-status" id="emptySubscribeStatus" role="status" aria-live="polite"></p>
+  <button class="application-empty-edit" id="showAvailableScenario" type="button">demo: 有符合結果</button>
+</section>
 <div class="batch-apply">
-  <section class="batch-intro" aria-labelledby="apply-title">
-    <div class="batch-intro-head">
-      <div>
-        <span class="batch-kicker">符合您的需求 4 間</span>
-        <h1 id="apply-title">社宅申請，可跨案場聯合申請</h1>
-        <p>系統依您登記的居住需求篩選以下社宅；請勾選欲申請的社宅，並分別確認房型、無障礙需求與申請身分。</p>
-      </div>
-      <a class="edit-needs" href="questionnaire.html" aria-label="編輯我的住宅需求">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4l11-11-4-4L4 16v4Z"/><path d="m13.5 6.5 4 4M12 20h8"/></svg>
-        編輯需求
-      </a>
-    </div>
-    <div class="needs-grid" aria-label="我的住宅需求條件">
-      <div class="need-chip"><span>縣市</span><strong>新北市</strong></div>
-      <div class="need-chip"><span>行政區</span><strong>不限行政區</strong></div>
-      <div class="need-chip"><span>房型</span><strong>二房型、三房型</strong></div>
-      <div class="need-chip"><span>預計入住</span><strong>3 人</strong></div>
-      <div class="need-chip"><span>每月租金</span><strong>18,000 元以下</strong></div>
-      <div class="need-chip"><span>特殊需求</span><strong>可選無障礙房型</strong></div>
-    </div>
-  </section>
-
   <div class="batch-content">
-    <div class="batch-note"><strong>申請提醒</strong><span>同一社宅僅能送出一筆申請；房型仍須依家庭人口數及各招租公告規定辦理，實際配租結果以權責機關審查為準。</span></div>
+    <div class="batch-note"><strong>選擇提醒</strong><span>本頁只確認要申請的社宅與房型，尚未正式送出；下一步將進行條款閱讀及電子切結。</span></div>
     <form id="batchHousingForm">
       <div class="batch-toolbar">
         <label class="select-all"><input id="selectAllHousing" type="checkbox" />全選符合需求的社宅</label>
@@ -80,11 +92,11 @@
           <div class="apply-options"><label class="apply-field"><span>申請房型（人數條件）</span><select class="room-choice" aria-label="五谷好室 A 申請房型"><option value="二房型">二房型（2–4 人）</option><option value="三房型" selected>三房型（3 人以上）</option></select></label><label class="apply-field"><span>無障礙需求</span><span class="accessible-check"><input class="accessible-choice" type="checkbox" aria-label="五谷好室 A 需要無障礙房" />需無障礙房</span></label><label class="apply-field"><span>申請身分</span><select class="identity-choice" aria-label="五谷好室 A 申請身分"><option selected>一般戶</option><option>睦鄰戶</option><option>婚育戶</option><option>警消戶</option><option>軍職戶</option><option>特殊戶</option><option>其他</option></select></label></div>
         </article>
 
-        <article class="match-card" data-housing-name="富貴好室">
-          <label class="match-check" aria-label="選擇富貴好室"><input class="housing-checkbox" name="housing" type="checkbox" value="富貴好室" checked /></label>
-          <div class="match-photo"><span class="match-status">招租中</span><img src="https://www.socialhousing.tw/portal/Building/251014/rbi31t3h.tpa.JPG" alt="富貴好室社會住宅外觀" loading="lazy" /></div>
-          <div class="match-info"><h2>富貴好室</h2><div class="match-location">新北市・三重區</div><div class="agency"><span>權責機關</span>國家住宅及都市更新中心</div><a class="external-detail" href="https://www.socialhousing.tw/portal/BuildDetail?BuildingNo=F03&amp;BuildingType=Normal" target="_blank" rel="noopener noreferrer">查看社宅詳情 ↗</a></div>
-          <div class="apply-options"><label class="apply-field"><span>申請房型（人數條件）</span><select class="room-choice" aria-label="富貴好室申請房型"><option value="二房型">二房型（2–4 人）</option><option value="三房型" selected>三房型（3 人以上）</option></select></label><label class="apply-field"><span>無障礙需求</span><span class="accessible-check"><input class="accessible-choice" type="checkbox" aria-label="富貴好室需要無障礙房" />需無障礙房</span></label><label class="apply-field"><span>申請身分</span><select class="identity-choice" aria-label="富貴好室申請身分"><option selected>一般戶</option><option>睦鄰戶</option><option>婚育戶</option><option>警消戶</option><option>軍職戶</option><option>特殊戶</option><option>其他</option></select></label></div>
+        <article class="match-card" data-housing-name="三重成功">
+          <label class="match-check" aria-label="選擇三重成功"><input class="housing-checkbox" name="housing" type="checkbox" value="三重成功" checked /></label>
+          <div class="match-photo"><span class="match-status">招租中</span><img src="https://www.socialhousing.tw/portal/Building/251014/rbi31t3h.tpa.JPG" alt="三重成功社會住宅外觀" loading="lazy" /></div>
+          <div class="match-info"><h2>三重成功</h2><div class="match-location">新北市・三重區</div><div class="agency"><span>權責機關</span>新北市政府</div><a class="external-detail" href="https://www.socialhousing.tw/portal/BuildDetail?BuildingNo=F03&amp;BuildingType=Normal" target="_blank" rel="noopener noreferrer">查看社宅詳情 ↗</a></div>
+          <div class="apply-options"><label class="apply-field"><span>申請房型（人數條件）</span><select class="room-choice" aria-label="三重成功申請房型"><option value="二房型">二房型（2–4 人）</option><option value="三房型" selected>三房型（3 人以上）</option></select></label><label class="apply-field"><span>無障礙需求</span><span class="accessible-check"><input class="accessible-choice" type="checkbox" aria-label="三重成功需要無障礙房" />需無障礙房</span></label><label class="apply-field"><span>申請身分</span><select class="identity-choice" aria-label="三重成功申請身分"><option selected>一般戶</option><option>睦鄰戶</option><option>婚育戶</option><option>警消戶</option><option>軍職戶</option><option>特殊戶</option><option>其他</option></select></label></div>
         </article>
 
         <!-- <article class="match-card" data-housing-name="新市安居">
@@ -95,71 +107,25 @@
         </article> -->
       </div>
 
-      <section class="service-information-section" id="serviceInformationSection" aria-labelledby="serviceInformationTitle" hidden>
-        <div class="service-information-head">
-          <div><h2 id="serviceInformationTitle">本人任職資料</h2><p>選擇警消戶或軍職戶時，請填寫目前服務資料。</p></div>
-          <span>必填資料</span>
-        </div>
-        <div class="service-information-grid">
-          <label class="service-field service-unit-field" for="serviceUnitFullName"><span>服務單位全銜 <b>*</b></span><input id="serviceUnitFullName" name="serviceUnitFullName" type="text" autocomplete="organization" placeholder="例如：○○市政府警察局○○分局" disabled/></label>
-          <label class="service-field service-title-field" for="serviceJobTitle"><span>職稱 <b>*</b></span><input id="serviceJobTitle" name="serviceJobTitle" type="text" placeholder="請填寫目前職稱" disabled/></label>
-          <label class="service-field police-rank-field" id="policeRankField" for="policeRank" hidden><span>警消職等 <b>*</b></span><select id="policeRank" name="policeRank" disabled><option value="" selected>請選擇職等</option><option>警正四階</option><option>警佐一階</option><option>警佐二階</option><option>警佐三階</option><option>警佐四階</option></select></label>
-          <div class="military-service-fields" id="militaryServiceFields" hidden>
-            <label class="service-field military-type-field" for="militaryPositionType"><span>軍職級職類型 <b>*</b></span><select id="militaryPositionType" name="militaryPositionType" disabled><option value="" selected>請選擇級職類型</option><option value="軍職">軍職</option><option value="文職">文職</option><option value="約聘雇">約聘雇</option></select></label>
-            <label class="service-field military-rank-field" id="militaryRankSelectField" for="militaryRank" hidden><span id="militaryRankLabel">級職／職等 <b>*</b></span><select id="militaryRank" name="militaryRank" disabled></select></label>
-            <label class="service-field military-rank-field" id="militaryContractRankField" for="militaryContractRank" hidden><span>約聘雇級職／職等 <b>*</b></span><input id="militaryContractRank" name="militaryContractRank" type="text" placeholder="請填寫約聘或約僱職等" disabled/></label>
-          </div>
-        </div>
-      </section>
-
-      <section class="identity-document-section" id="identityDocumentSection" aria-labelledby="identityDocumentTitle" hidden>
-        <div class="identity-document-head">
-          <div><h2 id="identityDocumentTitle">申請身分檢附文件</h2><p id="identityDocumentContext">系統會依已選社宅的申請身分顯示應上傳的資格證明。</p></div>
-          <span>PDF、JPG、PNG</span>
-        </div>
-        <div class="identity-document-list">
-          <div class="identity-document-row" id="marriageDocumentRow" hidden>
-            <div><strong>婚育戶</strong><small>應檢附申請人距申請日前 1 個月內含詳細記事之全戶戶籍謄本；但育有學齡前之子女為胎兒者，應檢附醫院診所開立且距申請日前 1 個月內之診斷證明書，或孕婦健康手冊簽名頁及產檢內頁。</small></div>
-            <div class="identity-upload"><input id="marriageDocument" type="file" accept=".pdf,.jpg,.jpeg,.png"/><label for="marriageDocument">＋ 選擇檔案</label><span data-application-file-name-for="marriageDocument">尚未選擇檔案</span></div>
-            <b>必填</b>
-          </div>
-          <div class="identity-document-row" id="policeDocumentRow" hidden>
-            <div><strong>申請人現任職務為警察人員、消防人員或相當職務人員</strong><small>應檢附警察、消防人員之身分證明證件及距申請日前 1 個月可資辨認最高職務列等及現任職等之證明文件。</small></div>
-            <div class="identity-upload"><input id="policeDocument" type="file" accept=".pdf,.jpg,.jpeg,.png"/><label for="policeDocument">＋ 選擇檔案</label><span data-application-file-name-for="policeDocument">尚未選擇檔案</span></div>
-            <b>必填</b>
-          </div>
-          <div class="identity-document-row" id="militaryDocumentRow" hidden>
-            <div><strong>軍職身分證明文件</strong><small>應檢附中華民國軍人身分證、國軍聘雇人員服務證或國防部公務人員服務證等可資辨認最高職務列等及現任職等之證明文件。如服務單位不可辨識為國防部者，應檢附足資辨識之在職證明。</small></div>
-            <div class="identity-upload"><input id="militaryDocument" type="file" accept=".pdf,.jpg,.jpeg,.png"/><label for="militaryDocument">＋ 選擇檔案</label><span data-application-file-name-for="militaryDocument">尚未選擇檔案</span></div>
-            <b>必填</b>
-          </div>
-        </div>
-      </section>
-
       <div class="batch-submit-bar">
-        <div class="batch-submit-copy"><strong id="batchSummary">準備送出 3 間社宅申請</strong><span>送出後可至「進度查詢／補件」查看每一筆案件。</span></div>
-        <button class="batch-submit-btn" id="batchSubmitButton" type="submit">確認提送申請</button>
+        <div class="batch-submit-copy"><strong id="batchSummary">已選擇 3 間社宅</strong><span>確認後進入條款閱讀與電子切結，尚未正式送出申請。</span></div>
+        <button class="batch-submit-btn" id="batchSubmitButton" type="submit">確認選擇，下一步電子切結</button>
       </div>
     </form>
   </div>
+  <div class="batch-demo-switch"><button class="application-empty-edit" id="showEmptyScenario" type="button">demo: 無符合結果</button></div>
 </div>
 </main>
 </div>
 <dialog class="application-dialog" id="applicationDialog" aria-labelledby="applicationDialogTitle">
   <div class="application-dialog-body" id="applicationReviewPanel">
-    <h2 id="applicationDialogTitle">確認提送社宅申請</h2>
-    <p>請再次確認以下申請內容。正式送出後，可至「進度查詢／補件」查看案件狀態。</p>
+    <h2 id="applicationDialogTitle">確認選擇的社宅</h2>
+    <p>請再次確認社宅、房型及申請身分。下一步將進行條款閱讀與電子切結，現在尚未送出申請。</p>
     <ul class="application-review-list" id="applicationReviewList"></ul>
     <div class="application-dialog-actions">
       <button class="dialog-button" id="cancelApplicationSend" type="button">返回修改</button>
-      <button class="dialog-button primary" id="confirmApplicationSend" type="button">確認送出申請</button>
+      <button class="dialog-button primary" id="confirmApplicationSend" type="button">確認並前往電子切結</button>
     </div>
-  </div>
-  <div class="application-dialog-body application-success" id="applicationSuccessPanel" hidden>
-    <div class="success-mark" aria-hidden="true">✓</div>
-    <h2>社宅申請已成功送出</h2>
-    <p>為協助後續住宅政策規劃，請繼續完成社宅政策意見回饋。</p>
-    <a class="feedback-link" href="policy-feedback.html">確定，前往社宅政策意見回饋</a>
   </div>
 </dialog>
 <footer class="site-footer" id="siteFooter">
@@ -173,7 +139,32 @@
 <div class="chat-label">智能客服</div>
 <a class="chat-btn inline-style-80d654f9c8" href="chat.html" target="_blank" rel="noopener noreferrer" aria-label="開啟智能客服對話頁面（另開新分頁）"><span class="chat-face"><span class="smile"></span></span></a>
 </aside>
+<script src="assets/application-identity-state.js"></script>
 <script>
+const applicationEmpty=document.querySelector(".application-empty");
+const batchApply=document.querySelector(".batch-apply");
+const applicationMatchKicker=document.getElementById("applicationMatchKicker");
+const showAvailableScenario=document.getElementById("showAvailableScenario");
+const showEmptyScenario=document.getElementById("showEmptyScenario");
+
+function setApplicationScenario(scenario){
+  const showAvailable=scenario==="available";
+  applicationEmpty.hidden=showAvailable;
+  batchApply.hidden=!showAvailable;
+  applicationMatchKicker.textContent=showAvailable?`符合您的需求 ${document.querySelectorAll(".match-card").length} 間`:"目前無符合需求的招租案場";
+}
+
+showAvailableScenario.addEventListener("click",()=>setApplicationScenario("available"));
+showEmptyScenario.addEventListener("click",()=>setApplicationScenario("empty"));
+
+const emptySubscribeButton=document.getElementById("emptySubscribeButton");
+const emptySubscribeStatus=document.getElementById("emptySubscribeStatus");
+emptySubscribeButton.addEventListener("click",()=>{
+  emptySubscribeButton.textContent="已設定招租通知 ✓";
+  emptySubscribeButton.disabled=true;
+  emptySubscribeStatus.textContent="設定完成，符合需求的社宅開放招租時將通知您。";
+});
+
 const batchForm=document.getElementById("batchHousingForm");
 const matchCards=Array.from(document.querySelectorAll(".match-card"));
 const housingCheckboxes=matchCards.map(card=>card.querySelector(".housing-checkbox"));
@@ -183,33 +174,9 @@ const batchSummary=document.getElementById("batchSummary");
 const batchSubmitButton=document.getElementById("batchSubmitButton");
 const applicationDialog=document.getElementById("applicationDialog");
 const applicationReviewPanel=document.getElementById("applicationReviewPanel");
-const applicationSuccessPanel=document.getElementById("applicationSuccessPanel");
 const applicationReviewList=document.getElementById("applicationReviewList");
 const cancelApplicationSend=document.getElementById("cancelApplicationSend");
 const confirmApplicationSend=document.getElementById("confirmApplicationSend");
-const serviceInformationSection=document.getElementById("serviceInformationSection");
-const serviceUnitFullName=document.getElementById("serviceUnitFullName");
-const serviceJobTitle=document.getElementById("serviceJobTitle");
-const policeRankField=document.getElementById("policeRankField");
-const policeRank=document.getElementById("policeRank");
-const militaryServiceFields=document.getElementById("militaryServiceFields");
-const militaryPositionType=document.getElementById("militaryPositionType");
-const militaryRankSelectField=document.getElementById("militaryRankSelectField");
-const militaryRankLabel=document.getElementById("militaryRankLabel");
-const militaryRank=document.getElementById("militaryRank");
-const militaryContractRankField=document.getElementById("militaryContractRankField");
-const militaryContractRank=document.getElementById("militaryContractRank");
-const identityDocumentSection=document.getElementById("identityDocumentSection");
-const identityDocumentContext=document.getElementById("identityDocumentContext");
-const identityDocumentConfig={
-  "婚育戶":{rowId:"marriageDocumentRow",inputId:"marriageDocument"},
-  "警消戶":{rowId:"policeDocumentRow",inputId:"policeDocument"},
-  "軍職戶":{rowId:"militaryDocumentRow",inputId:"militaryDocument"}
-};
-const militaryRankOptions={
-  "軍職":["少校","上尉","中尉","少尉","一等士官長","二等士官長","三等士官長","上士","中士","下士","上等兵","一等兵","二等兵"],
-  "文職":["薦任六職等","委任五職等","委任四職等","委任三職等","委任二職等","委任一職等"]
-};
 
 function getSelectedIdentities(){
   return new Set(matchCards
@@ -217,71 +184,8 @@ function getSelectedIdentities(){
     .map(card=>card.querySelector(".identity-choice").value));
 }
 
-function setRequiredControl(control,active){
-  control.disabled=!active;
-  control.required=active;
-}
-
-function syncMilitaryRankControls(militarySelected){
-  const positionType=militaryPositionType.value;
-  const usesRankSelect=militarySelected&&Boolean(militaryRankOptions[positionType]);
-  const usesContractInput=militarySelected&&positionType==="約聘雇";
-  militaryRankSelectField.hidden=!usesRankSelect;
-  militaryContractRankField.hidden=!usesContractInput;
-  setRequiredControl(militaryRank,usesRankSelect);
-  setRequiredControl(militaryContractRank,usesContractInput);
-  if(usesRankSelect&&militaryRank.dataset.positionType!==positionType){
-    militaryRank.replaceChildren(
-      new Option(positionType==="軍職"?"請選擇軍職職等":"請選擇文職職等","",true,true),
-      ...militaryRankOptions[positionType].map(rank=>new Option(rank,rank))
-    );
-    militaryRank.dataset.positionType=positionType;
-  }
-  militaryRankLabel.innerHTML=positionType==="軍職"?"軍職職等 <b>*</b>":"文職職等 <b>*</b>";
-}
-
-function updateServiceInformation(selectedIdentities){
-  const policeSelected=selectedIdentities.has("警消戶");
-  const militarySelected=selectedIdentities.has("軍職戶");
-  const needsServiceInformation=policeSelected||militarySelected;
-  serviceInformationSection.hidden=!needsServiceInformation;
-  serviceInformationSection.classList.toggle("has-police",policeSelected);
-  serviceInformationSection.classList.toggle("has-military",militarySelected);
-  setRequiredControl(serviceUnitFullName,needsServiceInformation);
-  setRequiredControl(serviceJobTitle,needsServiceInformation);
-  policeRankField.hidden=!policeSelected;
-  setRequiredControl(policeRank,policeSelected);
-  militaryServiceFields.hidden=!militarySelected;
-  setRequiredControl(militaryPositionType,militarySelected);
-  syncMilitaryRankControls(militarySelected);
-}
-
-function updateIdentityDocuments(){
-  const selectedIdentities=getSelectedIdentities();
-  const documentApplications=matchCards
-    .filter(card=>card.querySelector(".housing-checkbox").checked)
-    .map(card=>({name:card.dataset.housingName,identity:card.querySelector(".identity-choice").value}))
-    .filter(application=>Object.prototype.hasOwnProperty.call(identityDocumentConfig,application.identity));
-  const requiredDocumentIdentities=new Set(
-    documentApplications.map(application=>application.identity)
-  );
-  Object.entries(identityDocumentConfig).forEach(([identity,config])=>{
-    const row=document.getElementById(config.rowId);
-    const input=document.getElementById(config.inputId);
-    const visible=requiredDocumentIdentities.has(identity);
-    row.hidden=!visible;
-    input.required=visible;
-    if(!visible){
-      input.value="";
-      const fileName=document.querySelector(`[data-application-file-name-for="${config.inputId}"]`);
-      if(fileName) fileName.textContent="尚未選擇檔案";
-    }
-  });
-  identityDocumentSection.hidden=requiredDocumentIdentities.size===0;
-  identityDocumentContext.textContent=documentApplications.length
-    ? `目前需檢附：${documentApplications.map(application=>`${application.name}（${application.identity}）`).join("、")}`
-    : "目前已選案場皆不需檢附申請身分文件。";
-  updateServiceInformation(selectedIdentities);
+function persistSelectedIdentities(){
+  window.HousingApplicationIdentityState.save([...getSelectedIdentities()]);
 }
 
 function updateBatchSelection(){
@@ -295,22 +199,15 @@ function updateBatchSelection(){
   selectAllHousing.checked=count===matchCards.length;
   selectAllHousing.indeterminate=count>0&&count<matchCards.length;
   selectedHousingCount.textContent=String(count);
-  batchSummary.textContent=count?`準備送出 ${count} 間社宅申請`:"尚未選擇要申請的社宅";
-  batchSubmitButton.textContent="確認提送申請";
+  batchSummary.textContent=count?`已選擇 ${count} 間社宅`:"尚未選擇要申請的社宅";
+  batchSubmitButton.textContent="確認選擇，下一步電子切結";
   batchSubmitButton.disabled=count===0;
-  updateIdentityDocuments();
+  persistSelectedIdentities();
 }
 
 housingCheckboxes.forEach(checkbox=>checkbox.addEventListener("change",updateBatchSelection));
 batchForm.addEventListener("change",event=>{
-  if(event.target.matches(".identity-choice")) updateIdentityDocuments();
-});
-militaryPositionType.addEventListener("change",()=>syncMilitaryRankControls(true));
-document.querySelectorAll(".identity-upload input[type=\"file\"]").forEach(input=>{
-  input.addEventListener("change",()=>{
-    const fileName=document.querySelector(`[data-application-file-name-for="${input.id}"]`);
-    if(fileName) fileName.textContent=input.files?.[0]?.name||"尚未選擇檔案";
-  });
+  if(event.target.matches(".identity-choice")) persistSelectedIdentities();
 });
 selectAllHousing.addEventListener("change",()=>{
   housingCheckboxes.forEach(checkbox=>{checkbox.checked=selectAllHousing.checked});
@@ -338,34 +235,30 @@ batchForm.addEventListener("submit",event=>{
     listItem.append(title,document.createElement("br"),document.createTextNode(`${item.room}／申請身分：${item.identity}／需無障礙房：${item.accessible}`));
     applicationReviewList.appendChild(listItem);
   });
-  const selectedIdentities=getSelectedIdentities();
-  if(selectedIdentities.has("警消戶")||selectedIdentities.has("軍職戶")){
-    const serviceDetails=[`服務單位：${serviceUnitFullName.value}`,`職稱：${serviceJobTitle.value}`];
-    if(selectedIdentities.has("警消戶")) serviceDetails.push(`警消職等：${policeRank.value}`);
-    if(selectedIdentities.has("軍職戶")){
-      const militaryGrade=militaryPositionType.value==="約聘雇"?militaryContractRank.value:militaryRank.value;
-      serviceDetails.push(`軍職級職／職等：${militaryPositionType.value}・${militaryGrade}`);
-    }
-    const serviceItem=document.createElement("li");
-    const serviceTitle=document.createElement("strong");
-    serviceTitle.textContent="本人任職資料";
-    serviceItem.append(serviceTitle,document.createElement("br"),document.createTextNode(serviceDetails.join("／")));
-    applicationReviewList.appendChild(serviceItem);
-  }
+  persistSelectedIdentities();
   applicationReviewPanel.hidden=false;
-  applicationSuccessPanel.hidden=true;
   applicationDialog.showModal();
 });
 
 cancelApplicationSend.addEventListener("click",()=>applicationDialog.close());
 confirmApplicationSend.addEventListener("click",()=>{
-  applicationReviewPanel.hidden=true;
-  applicationSuccessPanel.hidden=false;
+  window.location.href="declaration.html";
 });
 applicationDialog.addEventListener("click",event=>{
-  if(event.target===applicationDialog&&applicationSuccessPanel.hidden)applicationDialog.close();
+  if(event.target===applicationDialog)applicationDialog.close();
 });
 
+try{
+  const pendingApplications=JSON.parse(sessionStorage.getItem("pendingHousingApplications")||"[]");
+  if(Array.isArray(pendingApplications)&&pendingApplications.length){
+    const pendingNames=new Set(pendingApplications.map(item=>String(item.name||"").replace(/\s+/g,"")));
+    housingCheckboxes.forEach(checkbox=>{
+      checkbox.checked=pendingNames.has(String(checkbox.value||"").replace(/\s+/g,""));
+    });
+  }
+}catch(error){
+  console.warn("無法讀取先前選擇的社宅",error);
+}
 updateBatchSelection();
 </script>
 <script src="assets/member-shell.js"></script>

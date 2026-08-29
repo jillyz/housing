@@ -31,7 +31,7 @@
   button,input{font:inherit}
 
   .page{
-    width:min(1180px,calc(100% - 40px));
+    width:min(1320px,calc(100% - 40px));
     margin:0 auto;
     padding:0 0 48px;
   }
@@ -178,6 +178,7 @@
     background:#fff;
     overflow:hidden;
   }
+  .terms-card{display:flex;flex-direction:column}
 
   .panel-head{
     padding:15px 17px;
@@ -198,7 +199,9 @@
   }
 
   .terms-scroll{
-    height:530px;
+    height:0;
+    min-height:0;
+    flex:1 1 0;
     overflow-y:auto;
     padding:18px 20px;
     line-height:1.85;
@@ -377,6 +380,7 @@
 
   .field{min-width:0}
   .field.full{grid-column:1/-1}
+  .field-label-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:7px}
   .field label{
     display:block;
     margin-bottom:7px;
@@ -384,7 +388,11 @@
     font-size:13px;
     font-weight:900;
   }
+  .field-label-row label{margin-bottom:0}
   .required{color:var(--danger)}
+  .verification-status{min-height:24px;display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border:1px solid #d3dfdd;border-radius:999px;color:#71817f;background:#f3f7f6;font-size:11px;font-weight:900;letter-spacing:.04em;white-space:nowrap}
+  .verification-status.is-pending{border-color:#f0d19b;color:#8b5b09;background:#fff8e8}
+  .verification-status.is-verified{border-color:#a9d7c4;color:#177249;background:#eaf8f0}
   .field input{
     width:100%;
     border:1px solid #d3e1df;
@@ -395,15 +403,28 @@
     background:#fff;
     outline:none;
   }
+  .field input.is-verified{border-color:#9fd2bb;background:#fbfffc}
   .field input:focus{
     border-color:var(--primary);
     box-shadow:0 0 0 4px rgba(0,156,154,.10);
   }
+  .input-with-action{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px}
+  .verification-button{min-width:118px;padding:0 13px;border:1px solid #88c9c5;border-radius:12px;color:#08706f;background:#eef9f7;font-size:13px;font-weight:900;white-space:nowrap;cursor:pointer;transition:.18s ease}
+  .verification-button:hover{color:#fff;border-color:var(--primary);background:var(--primary)}
+  .verification-button:focus-visible,.verification-link-demo:focus-visible{outline:3px solid rgba(0,156,154,.25);outline-offset:2px}
   .hint{
     margin-top:5px;
     color:var(--muted);
     font-size:12px;
   }
+  .email-verification-panel{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:9px;padding:11px 12px;border:1px solid #efd49f;border-radius:12px;background:#fff9eb}
+  .email-verification-panel[hidden]{display:none}
+  .email-verification-panel.is-verified{border-color:#acd8c4;background:#edf9f2}
+  .email-verification-copy{min-width:0;display:grid;gap:2px;color:#6c5a36;font-size:12px;line-height:1.55}
+  .email-verification-copy strong{color:#75520d;font-size:13px}
+  .email-verification-panel.is-verified .email-verification-copy,.email-verification-panel.is-verified .email-verification-copy strong{color:#236748}
+  .verification-link-demo{flex:0 0 auto;padding:7px 10px;border:0;border-radius:9px;color:#fff;background:#b17812;font-size:11px;font-weight:900;cursor:pointer}
+  .verification-link-demo:hover{background:#8d5d0d}
 
   .contact-actions{
     display:flex;
@@ -485,7 +506,8 @@
   @media(max-width:980px){
     .nav{display:none}
     .terms-layout{grid-template-columns:1fr}
-    .terms-scroll{height:420px}
+    .terms-card{display:block}
+    .terms-scroll{height:520px;min-height:auto}
   }
 
   @media(max-width:680px){
@@ -496,9 +518,14 @@
     .stepbar{flex-direction:column;border-radius:0 0 20px 20px}
     .card-head{flex-direction:column}
     .content{padding:16px}
+    .terms-scroll{height:420px}
     .stage-tabs{flex-direction:column}
     .form-grid{grid-template-columns:1fr}
     .field.full{grid-column:auto}
+    .input-with-action{grid-template-columns:1fr}
+    .verification-button{min-height:43px;width:100%}
+    .email-verification-panel{align-items:stretch;flex-direction:column}
+    .verification-link-demo{width:100%;min-height:38px}
     .contact-actions{flex-direction:column-reverse}
     .continue-btn{width:100%;min-width:0}
     .secondary-btn{width:100%}

@@ -7,6 +7,7 @@
   <title>全國社宅統一登記申請平台</title>
   <link rel="stylesheet" href="assets/css/common.css" />
 <link rel="stylesheet" href="assets/css/pages/index.css" />
+<link rel="stylesheet" href="assets/css/rental-news.css" />
 <link rel="stylesheet" href="assets/css/inline-utilities.css" />
 </head>
 <body>
@@ -80,12 +81,43 @@
 
     <section class="journey" id="journey" aria-label="申請流程">
       <div class="journey-inner">
-        <h2 class="journey-title"><span>申請流程</span></h2>
+        <div class="journey-heading">
+          <h2 class="journey-title"><span>申請流程</span></h2>
+          <p class="journey-intro">資料一次登記、申請多處社宅；授權查調減少重複填寫。招租通知、補件與審查進度集中掌握。</p>
+        </div>
         <div class="steps">
-          <a class="step step-link" href="housing.html"><div class="step-number">01</div><div class="step-icon"><svg viewBox="0 0 44 44" aria-hidden="true"><path d="M7 21 22 9l15 12M11 19v18h22V19M17 37V26h10v11"/><circle cx="33" cy="11" r="5"/><path d="m37 15 4 4"/></svg></div><div class="step-label">找社宅</div><span class="step-login-tag">登入</span></a>
-          <a class="step step-link" href="login.html"><div class="step-number">02</div><div class="step-icon"><svg viewBox="0 0 44 44" aria-hidden="true"><rect x="8" y="6" width="28" height="32" rx="2"/><path d="M15 14h14M15 21h8M15 28l4 4 10-11"/></svg></div><div class="step-label">居住需求登記</div></a>
-          <a class="step step-link" href="declaration.html"><div class="step-number">03</div><div class="step-icon"><svg viewBox="0 0 44 44" aria-hidden="true"><path d="M9 6h21l6 6v26H9zM30 6v7h6M15 20h15M15 27h15M15 34h9"/><path d="m28 31 3 3 7-8"/></svg></div><div class="step-label">切結／申請社宅</div></a>
-          <a class="step step-link" href="progress.html"><div class="step-number">04</div><div class="step-icon"><svg viewBox="0 0 44 44" aria-hidden="true"><circle cx="20" cy="20" r="12"/><path d="m29 29 8 8M14 20l4 4 8-9"/></svg></div><div class="step-label">進度查詢／補件</div></a>
+          <div class="step">
+            <div class="step-number">01</div>
+            <a class="step-action" href="housing.html" aria-label="找社宅：依需求快速篩選社宅">
+              <div class="step-icon"><svg viewBox="0 0 44 44" aria-hidden="true"><path d="M7 21 22 9l15 12M11 19v18h22V19M17 37V26h10v11"/><circle cx="33" cy="11" r="5"/><path d="m37 15 4 4"/></svg></div>
+              <div class="step-label">找社宅</div>
+            </a>
+            <span class="step-login-tag">登入</span><p class="step-benefit">依需求快速篩選社宅</p>
+          </div>
+          <div class="step">
+            <div class="step-number">02</div>
+            <a class="step-action" href="login.html" aria-label="居住需求登記：一次登記，多案共用">
+              <div class="step-icon"><svg viewBox="0 0 44 44" aria-hidden="true"><rect x="8" y="6" width="28" height="32" rx="2"/><path d="M15 14h14M15 21h8M15 28l4 4 10-11"/></svg></div>
+              <div class="step-label">居住需求登記</div>
+            </a>
+            <p class="step-benefit">推薦社宅、招租通知</p>
+          </div>
+          <div class="step">
+            <div class="step-number">03</div>
+            <a class="step-action" href="declaration.html" aria-label="切結與申請社宅：授權查調，減少填寫">
+              <div class="step-icon"><svg viewBox="0 0 44 44" aria-hidden="true"><path d="M9 6h21l6 6v26H9zM30 6v7h6M15 20h15M15 27h15M15 34h9"/><path d="m28 31 3 3 7-8"/></svg></div>
+              <div class="step-label">切結／申請社宅</div>
+            </a>
+            <p class="step-benefit">授權查調，減少填寫<br>一份資料跨社宅申請</p>
+          </div>
+          <div class="step">
+            <div class="step-number">04</div>
+            <a class="step-action" href="progress.html" aria-label="進度查詢與補件：通知、補件與進度集中掌握">
+              <div class="step-icon"><svg viewBox="0 0 44 44" aria-hidden="true"><circle cx="20" cy="20" r="12"/><path d="m29 29 8 8M14 20l4 4 8-9"/></svg></div>
+              <div class="step-label">進度查詢／補件</div>
+            </a>
+            <p class="step-benefit">通知、補件與進度集中掌握</p>
+          </div>
         </div>
       </div>
     </section>
@@ -155,32 +187,63 @@
       </div>
     </section>
 
-    <section class="value-section" aria-labelledby="value-title">
-      <div class="value-inner">
-        <header class="value-head">
-          <span class="value-kicker">平臺服務價值</span>
-          <h2 id="value-title">把複雜流程，留給系統處理</h2>
-          <p>以民眾申租旅程為核心，整合資料登記、授權查調、需求問卷、招租通知與進度查詢。</p>
+    <section class="rental-news-section" aria-labelledby="rental-news-title">
+      <div class="rental-news-inner">
+        <header class="rental-news-head">
+          <div class="rental-news-heading">
+            <h2 id="rental-news-title">招租資訊</h2>
+            <p>掌握各地社會住宅最新招租、候補與受理申請公告。</p>
+          </div>
         </header>
-        <div class="value-grid">
-          <article class="value-card">
-            <div class="value-card-head"><span class="value-number">01</span><span class="value-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><rect x="5" y="3.5" width="19" height="25" rx="3"/><path d="M10 9h9M10 14h9M10 19h5"/><path d="M25 18.5a5 5 0 1 1-4.2-2.4"/><path d="m20.5 12.8.3 3.3 3.3-.4"/></svg></span></div>
-            <h3>一次登記，持續使用</h3>
-            <p>建立基本資料與住宅需求後，後續可隨時更新，不必每次重新填寫相同內容。</p>
+
+        <div class="rental-news-grid">
+          <article class="rental-news-item">
+            <a class="rental-news-link" href="rental-news.html#notice-20260828">
+              <time class="rental-news-date" datetime="2026-08-28">2026.08.28</time>
+              <div class="rental-news-copy"><span class="rental-news-badge">公開招租</span><h3>「保二安居」社會住宅第一梯次公開招租公告</h3><p>國家住宅及都市更新中心</p></div>
+              <span class="rental-news-arrow" aria-hidden="true">→</span>
+            </a>
           </article>
-          <article class="value-card">
-            <div class="value-card-head"><span class="value-number">02</span><span class="value-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M16 3.5 25 7v6.3c0 7-3.8 12-9 15.2-5.2-3.2-9-8.2-9-15.2V7l9-3.5Z"/><path d="m11.5 15.5 3 3 6.5-7"/></svg></span></div>
-            <h3>授權查調，減少負擔</h3>
-            <p>可由政府資料取得的戶政、財稅、社福、地政與補貼資料，原則上不再要求重複填報或檢附。</p>
+          <article class="rental-news-item">
+            <a class="rental-news-link" href="rental-news.html#notice-20260825">
+              <time class="rental-news-date" datetime="2026-08-25">2026.08.25</time>
+              <div class="rental-news-copy"><span class="rental-news-badge">受理申請</span><h3>「新市安居」社會住宅受理申請公告</h3><p>臺南市政府都市發展局</p></div>
+              <span class="rental-news-arrow" aria-hidden="true">→</span>
+            </a>
           </article>
-          <article class="value-card">
-            <div class="value-card-head"><span class="value-number">03</span><span class="value-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M8 21.5h16l-2.2-3.2v-5.1a5.8 5.8 0 0 0-11.6 0v5.1L8 21.5Z"/><path d="M13.5 25a3 3 0 0 0 5 0M23.5 7.5l2-2M8.5 7.5l-2-2"/></svg></span></div>
-            <h3>主動通知，掌握時程</h3>
-            <p>符合需求的社宅開放招租時，系統依聯絡方式主動通知，降低錯過招租與補件期限的風險。</p>
+          <article class="rental-news-item">
+            <a class="rental-news-link" href="rental-news.html#notice-20260820">
+              <time class="rental-news-date" datetime="2026-08-20">2026.08.20</time>
+              <div class="rental-news-copy"><span class="rental-news-badge">公開招租</span><h3>「福山安居」社宅招租資格與申請須知</h3><p>高雄市政府都市發展局</p></div>
+              <span class="rental-news-arrow" aria-hidden="true">→</span>
+            </a>
+          </article>
+          <article class="rental-news-item">
+            <a class="rental-news-link" href="rental-news.html#notice-20260815">
+              <time class="rental-news-date" datetime="2026-08-15">2026.08.15</time>
+              <div class="rental-news-copy"><span class="rental-news-badge preview">招租預告</span><h3>「慈文安居」社會住宅招租說明會與預告登記資訊</h3><p>桃園市政府住宅發展處</p></div>
+              <span class="rental-news-arrow" aria-hidden="true">→</span>
+            </a>
+          </article>
+          <article class="rental-news-item">
+            <a class="rental-news-link" href="rental-news.html#notice-20260808">
+              <time class="rental-news-date" datetime="2026-08-08">2026.08.08</time>
+              <div class="rental-news-copy"><span class="rental-news-badge">公開招租</span><h3>「萬華安居」社會住宅公開招租公告</h3><p>臺北市政府都市發展局</p></div>
+              <span class="rental-news-arrow" aria-hidden="true">→</span>
+            </a>
+          </article>
+          <article class="rental-news-item">
+            <a class="rental-news-link" href="rental-news.html#notice-20260801">
+              <time class="rental-news-date" datetime="2026-08-01">2026.08.01</time>
+              <div class="rental-news-copy"><span class="rental-news-badge waiting">候補招租</span><h3>「五谷好室 A」社會住宅候補招租公告</h3><p>新北市政府城鄉發展局</p></div>
+              <span class="rental-news-arrow" aria-hidden="true">→</span>
+            </a>
           </article>
         </div>
+        <div class="rental-news-footer"><a class="rental-news-all" href="rental-news.html">查看全部公告 <span aria-hidden="true">→</span></a></div>
       </div>
     </section>
+
   </main>
 
   <footer class="site-footer">
@@ -226,10 +289,35 @@
     window.addEventListener('scroll', updateHeaderState, { passive: true });
     updateHeaderState();
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const journeySection = document.getElementById('journey');
+    const journeyHeading = journeySection.querySelector('.journey-heading');
+    const positionJourneyBelowHeader = (behavior = 'smooth') => {
+      const headerHeight = siteHeader.getBoundingClientRect().height;
+      const headingTop = journeyHeading.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({
+        top: Math.max(0, headingTop - headerHeight - 28),
+        behavior: reduceMotion ? 'auto' : behavior
+      });
+    };
+    const queueJourneyPosition = (behavior = 'auto') => {
+      requestAnimationFrame(() => requestAnimationFrame(() => positionJourneyBelowHeader(behavior)));
+    };
+    document.querySelectorAll('a[href="#journey"]').forEach((link) => link.addEventListener('click', (event) => {
+      event.preventDefault();
+      if (window.location.hash !== '#journey') history.pushState(null, '', '#journey');
+      positionJourneyBelowHeader();
+    }));
+    window.addEventListener('hashchange', () => {
+      if (window.location.hash === '#journey') queueJourneyPosition();
+    });
+    if (window.location.hash === '#journey') {
+      if (document.readyState === 'complete') queueJourneyPosition();
+      else window.addEventListener('load', () => queueJourneyPosition(), { once: true });
+    }
     if (!reduceMotion && 'IntersectionObserver' in window) {
       const revealGroups = [
         document.querySelectorAll('.steps .step'),
-        document.querySelectorAll('.value-head h2, .value-head p, .value-card')
+        document.querySelectorAll('.journey-title, .journey-intro')
       ];
       const contentObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach((entry) => {

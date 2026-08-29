@@ -1,14 +1,4 @@
 (function(){
-  const mainMenuLinks=[...document.querySelectorAll('.member-nav a,.site-mobile-nav>a')];
-  mainMenuLinks.forEach(link=>{
-    const label=link.textContent.trim();
-    if(label==='需求登記'||label==='申請社宅'||label==='操作紀錄'){
-      link.remove();
-      return;
-    }
-    if(link.getAttribute('href')==='data.html'||label==='資料登記'||label==='登記申請')link.textContent='登記申請社宅';
-  });
-
   const accountMenus=[];
   const closeAccountMenus=(except=null)=>{
     accountMenus.forEach(({button,panel})=>{
@@ -29,11 +19,11 @@
         <span class="login-user-label">登入者</span><strong>${name}</strong><span class="account-chevron" aria-hidden="true"><i class="fa-solid fa-chevron-down"></i></span>
       </button>
       <div class="account-panel" id="${menuId}" role="menu" hidden>
-        <a class="account-menu-item" role="menuitem" href="data.html">編輯申請資料</a>
-        <a class="account-menu-item" role="menuitem" href="questionnaire.html">編輯居住需求/政策回饋</a>
-        <button class="account-menu-item" role="menuitem" type="button">操作歷程</button>
+        <a class="account-menu-item" role="menuitem" href="data.html?mode=edit">編輯申請資料</a>
+        <a class="account-menu-item" role="menuitem" href="questionnaire.html">編輯居住需求</a>
+        <a class="account-menu-item" role="menuitem" href="activity-log.html">操作紀錄</a>
         <div class="account-menu-divider" aria-hidden="true"></div>
-        <a class="account-menu-item management" role="menuitem" href="admin/home-admin.html">營運管理平台</a>
+        <a class="account-menu-item management" role="menuitem" href="admin/home-admin.html" target="_blank" rel="noopener noreferrer">營運管理平台 <span class="account-external-mark" aria-hidden="true">↗</span></a>
         <div class="account-menu-divider" aria-hidden="true"></div>
         <a class="account-menu-item logout" role="menuitem" href="index.html">登出</a>
       </div>`;
