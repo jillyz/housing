@@ -996,6 +996,25 @@
     .simple-field label{margin-bottom:7px}
     .simple-grid input,.simple-grid select{min-height:44px;padding:9px 10px;font-size:16px}
     .field-help{margin-top:5px;color:var(--muted);font-size:12px;line-height:1.5}
+    .contact-notification-note{display:flex;align-items:flex-start;gap:10px;margin:16px 0;padding:12px 14px;border:1px solid #bfe3df;border-radius:12px;color:#3f605d;background:#f1faf8;font-size:13px;line-height:1.65}
+    .contact-notification-note>span{width:21px;height:21px;display:grid;place-items:center;flex:0 0 21px;margin-top:1px;border-radius:50%;color:#fff;background:var(--primary-dark);font-size:12px;font-weight:900;font-family:Georgia,serif}
+    .contact-notification-note p{margin:0}
+    .simple-field.contact-verification-field{grid-column:span 6}
+    .contact-field-label{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:7px}
+    .contact-field-label label{margin:0}
+    .verified-input-control{position:relative}
+    .verified-input-control input{padding-right:50px}
+    .simple-grid .verified-input-control input.is-contact-verified{border-color:#8dcdb0;background:#fbfffd}
+    .verified-check-icon{position:absolute;top:50%;right:13px;display:grid;place-items:center;width:25px;height:25px;transform:translateY(-50%);border-radius:50%;color:#fff;background:#24965e;box-shadow:0 2px 7px rgba(36,150,94,.24);pointer-events:none}
+    .verified-check-icon[hidden]{display:none!important}
+    .verified-check-icon svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+    .contact-input-action,.email-verification-panel{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px}
+    .contact-input-action button,.email-verification-panel button{min-width:116px;min-height:44px;padding:0 14px;border:1px solid #88c9c5;border-radius:10px;color:var(--primary-dark);background:#f1fbfa;font-size:13px;font-weight:900;cursor:pointer}
+    .contact-input-action button:hover,.email-verification-panel button:hover{color:#fff;border-color:var(--primary-dark);background:var(--primary-dark)}
+    .email-verification-panel{margin-top:8px;padding:10px;border:1px solid #c7e2df;border-radius:11px;background:#f6fbfa}
+    .email-verification-panel[hidden]{display:none!important}
+    .contact-verification-help{margin:6px 0 0;color:var(--muted);font-size:12px;line-height:1.5}
+    .contact-verification-help.is-success{color:#167047;font-weight:800}
     .family-intro{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
     .family-intro p{margin:0;color:var(--muted);font-size:16px;line-height:1.65}
     .family-table-wrap{width:100%;overflow:visible}
@@ -1259,6 +1278,9 @@
       .lookup-profile .profile-address{grid-column:span 1}
       .asset-overview{grid-template-columns:1fr}
       .simple-field,.simple-field.wide{grid-column:1/-1}
+      .simple-field.contact-verification-field{grid-column:1/-1}
+      .contact-input-action,.email-verification-panel{grid-template-columns:1fr}
+      .contact-input-action button,.email-verification-panel button{width:100%}
       .simple-section-actions{width:100%;justify-content:flex-start}
       .simple-section-actions .family-add-toggle{width:100%}
       .applicant-role-checks{grid-template-columns:1fr}

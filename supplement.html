@@ -24,19 +24,25 @@
 .supplement-alert-head h2{margin:0;color:#fff;font-size:22px}
 .supplement-alert-head p{margin:3px 0 0;color:#ffe7e9;font-size:13px}
 .supplement-alert-body{padding:18px 20px;color:#563137}
-.supplement-case-meta{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
-.supplement-case-meta span{
-  padding:5px 10px;border:1px solid #efb5bc;border-radius:999px;background:#fff;color:#7d2833;font-size:13px;font-weight:800
-}
+.supplement-case-summary{margin:0 0 20px;padding:18px 20px;border:1px solid #d9e2e4;border-radius:16px;background:#f7faf9}
+.supplement-case-summary h2{margin:0 0 14px;color:#263f48;font-size:18px}
+.supplement-case-grid{display:grid;grid-template-columns:1.15fr 1.25fr 1.35fr .9fr 1fr;gap:12px}
+.supplement-case-item{min-width:0;padding:12px 14px;border:1px solid #e0e7e8;border-radius:12px;background:#fff}
+.supplement-case-item span{display:block;margin-bottom:5px;color:#66787e;font-size:12px;font-weight:700}
+.supplement-case-item strong{display:block;color:#253f48;font-size:15px;line-height:1.45;overflow-wrap:anywhere}
 .supplement-reason{
   margin:0 0 14px;padding:12px 14px;border-left:5px solid #b42332;border-radius:0 10px 10px 0;background:#fff
 }
 .supplement-reason strong{display:block;margin-bottom:4px;color:#8f1d2b;font-size:15px}
+.supplement-deadline-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 14px;padding:10px 14px;border:1px solid #efb5bc;border-radius:10px;background:#fff}
+.supplement-deadline-row span{color:#7d2833;font-size:14px;font-weight:800}
 .supplement-alert-body h3{margin:0 0 8px;color:#7d2833;font-size:16px}
 .supplement-alert-body ol{margin:0;padding-left:22px;line-height:1.75}
 .supplement-alert-body li+li{margin-top:4px}
 .supplement-deadline{color:#c62828!important}
 @media(max-width:700px){
+  .supplement-case-summary{padding:16px}
+  .supplement-case-grid{grid-template-columns:1fr}
   .supplement-alert-head{align-items:flex-start;padding:14px 16px}
   .supplement-alert-head h2{font-size:20px}
   .supplement-alert-body{padding:15px 16px}
@@ -96,14 +102,24 @@
 <div class="autosave" id="simpleAutosave">補件資料自動儲存中</div>
 </div>
 <div class="content">
+<section class="supplement-case-summary" aria-labelledby="supplementCaseTitle">
+<h2 id="supplementCaseTitle">案件摘要</h2>
+<div class="supplement-case-grid">
+<div class="supplement-case-item"><span>案件編號</span><strong>TB-NAA-116-000123-B</strong></div>
+<div class="supplement-case-item"><span>申請社宅</span><strong>西屯安居社會住宅</strong></div>
+<div class="supplement-case-item"><span>申請房型</span><strong>三房型／非無障礙房</strong></div>
+<div class="supplement-case-item"><span>申請身分</span><strong>婚育戶</strong></div>
+<div class="supplement-case-item"><span>送件時間</span><strong>116/03/18 10:32</strong></div>
+</div>
+</section>
 <section class="supplement-alert" aria-labelledby="supplementNoticeTitle">
 <div class="supplement-alert-head">
 <span class="supplement-alert-icon" aria-hidden="true">!</span>
 <div><h2 id="supplementNoticeTitle">本案需要補件</h2><p>請在期限前上傳完整、清晰且可辨識的文件，以利承辦人員續行審查。</p></div>
 </div>
 <div class="supplement-alert-body">
-<div class="supplement-case-meta"><span>案件編號：TB-NAA-116-000123-B</span><span>西屯安居社會住宅／三房型</span><span>補件期限：<strong class="supplement-deadline">116/03/25</strong></span></div>
 <div class="supplement-reason"><strong>補件原因</strong>您以婚育戶身分申請，原提供的證明影像有缺頁且部分文字模糊，無法確認戶籍詳細記事及胎兒加計人口數。</div>
+<div class="supplement-deadline-row"><span>補件期限</span><strong class="supplement-deadline">116/03/25</strong></div>
 <h3>需要補交的資料</h3>
 <ol>
 <li><strong>近 1 個月內之全戶戶籍謄本</strong>：須含詳細記事、完整頁面，且姓名與登記日期清楚可辨識。</li>
@@ -174,14 +190,21 @@
 <div class="profile-address"><span>戶籍地址</span><strong>407 臺中市西屯區○○街○巷○號</strong></div>
 <div><span>設籍日期</span><strong>2019-08-15</strong></div>
 </div>
+<div class="contact-notification-note" role="note"><span aria-hidden="true">i</span><p>系統將使用您提供的手機與電子信箱發送補件、審查結果及申請進度通知。請確認資料正確。</p></div>
 <div class="simple-grid">
-<div class="simple-field">
-<label for="contactPhone">聯絡電話 <span class="required">*</span><span class="source self">請填寫</span></label>
-<input id="contactPhone" name="contactPhone" type="tel" value="0912-345-678" required/>
+<div class="simple-field contact-verification-field">
+<div class="contact-field-label"><label for="contactPhone">聯絡手機 <span class="required">*</span><span class="source self">請填寫</span></label></div>
+<div class="verified-input-control">
+<input class="is-contact-verified" id="contactPhone" name="contactPhone" type="tel" value="0912-345-678" required/>
+<span class="verified-check-icon" role="img" aria-label="聯絡手機已驗證"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6.5 12.5 3.4 3.4 7.6-8"/></svg></span>
 </div>
-<div class="simple-field">
-<label for="contactEmail">電子郵件 <span class="required">*</span><span class="source self">請填寫</span></label>
-<input id="contactEmail" name="contactEmail" type="email" value="example@mail.com" required/>
+</div>
+<div class="simple-field contact-verification-field">
+<div class="contact-field-label"><label for="contactEmail">電子郵件 <span class="required">*</span><span class="source self">請填寫</span></label></div>
+<div class="verified-input-control">
+<input class="is-contact-verified" id="contactEmail" name="contactEmail" type="email" value="example@mail.com" required/>
+<span class="verified-check-icon" role="img" aria-label="電子郵件已驗證"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6.5 12.5 3.4 3.4 7.6-8"/></svg></span>
+</div>
 </div>
 <div class="simple-field full">
 <label for="mailingCounty">通訊地址 <span class="required">*</span></label>
@@ -308,7 +331,7 @@
 <section class="property-category" aria-labelledby="realEstateTitle">
 <div class="property-category-head">
 <div>
-<h3 id="realEstateTitle">4-1. 家庭成員/共居者 不動產</h3>
+<h3 id="realEstateTitle">家庭成員/共居者 不動產</h3>
 <p>以下為系統查調取得的不動產資料；如資料與實際情況不符，請檢附相關說明文件。</p>
 <p class="locked-data-note"><span aria-hidden="true">🔒</span> 下列資料為查調取得，無法直接修改。</p>
 </div>
@@ -369,7 +392,7 @@
 <section class="property-category movable-category" aria-labelledby="movableAssetTitle">
 <div class="property-category-head">
 <div>
-<h3 id="movableAssetTitle">4-2. 家庭成員/共居者 動產</h3>
+<h3 id="movableAssetTitle">家庭成員/共居者 動產</h3>
 <ol class="movable-rules">
 <li>家庭成員持有之動產價值應低於南投縣動產限額 3,310,000 元；計算公式為：（利息 ÷ 1.67%）＋中獎所得＋其他所得。</li>
 <li>利息（存款本金）以最近 1 年度財稅資料顯示之利息所得推算；優惠利率存款依實際利率計算。</li>

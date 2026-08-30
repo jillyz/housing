@@ -125,14 +125,26 @@
 <div class="profile-address"><span>戶籍地址</span><strong>407 臺中市西屯區○○街○巷○號</strong></div>
 <div><span>設籍日期</span><strong>2019-08-15</strong></div>
 </div>
+<div class="contact-notification-note" role="note"><span aria-hidden="true">i</span><p>系統將使用您提供的手機與電子信箱發送補件、審查結果及申請進度通知。請確認資料正確。</p></div>
 <div class="simple-grid">
-<div class="simple-field">
-<label for="contactPhone">聯絡電話 <span class="required">*</span><span class="source self">請填寫</span></label>
-<input id="contactPhone" name="contactPhone" type="tel" value="0912-345-678" required/>
+<div class="simple-field contact-verification-field">
+<div class="contact-field-label"><label for="contactPhone">聯絡手機 <span class="required">*</span><span class="source self">請填寫</span></label></div>
+<div class="verified-input-control">
+<input class="is-contact-verified" id="contactPhone" name="contactPhone" type="tel" value="0912-345-678" required/>
+<span class="verified-check-icon" role="img" aria-label="聯絡手機已驗證"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6.5 12.5 3.4 3.4 7.6-8"/></svg></span>
 </div>
-<div class="simple-field">
-<label for="contactEmail">電子郵件 <span class="required">*</span><span class="source self">請填寫</span></label>
+</div>
+<div class="simple-field contact-verification-field" id="contactEmailField">
+<div class="contact-field-label"><label for="contactEmail">電子郵件 <span class="required">*</span><span class="source self">請填寫</span></label></div>
+<div class="contact-input-action">
+<div class="verified-input-control">
 <input id="contactEmail" name="contactEmail" type="email" value="example@mail.com" required/>
+<span class="verified-check-icon" id="contactEmailVerifiedIcon" role="img" aria-label="電子郵件已驗證" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6.5 12.5 3.4 3.4 7.6-8"/></svg></span>
+</div>
+<button id="sendContactEmailCode" type="button">寄送驗證信</button>
+</div>
+<div class="email-verification-panel" id="contactEmailCodePanel" hidden><input id="contactEmailCode" type="text" inputmode="numeric" maxlength="6" autocomplete="one-time-code" aria-label="電子郵件驗證碼" placeholder="輸入 6 位驗證碼"/><button id="verifyContactEmailCode" type="button">確認驗證</button></div>
+<p class="contact-verification-help" id="contactEmailVerificationMessage" aria-live="polite">電子信箱需完成驗證。</p>
 </div>
 <div class="simple-field full">
 <label for="mailingCounty">通訊地址 <span class="required">*</span></label>
@@ -259,7 +271,7 @@
 <section class="property-category" aria-labelledby="realEstateTitle">
 <div class="property-category-head">
 <div>
-<h3 id="realEstateTitle">4-1. 家庭成員/共居者 不動產</h3>
+<h3 id="realEstateTitle">家庭成員/共居者 不動產</h3>
 <p>以下為系統查調取得的不動產資料；如資料與實際情況不符，請檢附相關說明文件。</p>
 <p class="locked-data-note"><span aria-hidden="true">🔒</span> 下列資料為查調取得，無法直接修改。</p>
 </div>
@@ -320,7 +332,7 @@
 <section class="property-category movable-category" aria-labelledby="movableAssetTitle">
 <div class="property-category-head">
 <div>
-<h3 id="movableAssetTitle">4-2. 家庭成員/共居者 動產</h3>
+<h3 id="movableAssetTitle">家庭成員/共居者 動產</h3>
 <ol class="movable-rules">
 <li>家庭成員持有之動產價值應低於南投縣動產限額 3,310,000 元；計算公式為：（利息 ÷ 1.67%）＋中獎所得＋其他所得。</li>
 <li>利息（存款本金）以最近 1 年度財稅資料顯示之利息所得推算；優惠利率存款依實際利率計算。</li>
@@ -952,6 +964,14 @@
     const lookupAgencyGrid = document.getElementById('lookupAgencyGrid');
     const simpleAutosave = document.getElementById('simpleAutosave');
     const registrationDataForm = document.getElementById('registrationDataForm');
+    const accountEditMode = new URLSearchParams(window.location.search).get('mode') === 'edit';
+    const contactEmail = document.getElementById('contactEmail');
+    const contactEmailVerifiedIcon = document.getElementById('contactEmailVerifiedIcon');
+    const contactEmailVerificationMessage = document.getElementById('contactEmailVerificationMessage');
+    const contactEmailCodePanel = document.getElementById('contactEmailCodePanel');
+    const contactEmailCode = document.getElementById('contactEmailCode');
+    const sendContactEmailCode = document.getElementById('sendContactEmailCode');
+    const verifyContactEmailCode = document.getElementById('verifyContactEmailCode');
     const familyTableBody = document.getElementById('familyTableBody');
     const addFamilyMember = document.getElementById('addFamilyMember');
     const identityNoteDialog = document.getElementById('identityNoteDialog');
@@ -1056,6 +1076,74 @@
 
     applicationMilitaryType?.addEventListener('change',syncApplicationMilitaryRank);
     initializeApplicationIdentityFields();
+
+    let verifiedContactEmail = '';
+    const normalizeContactEmail = value => String(value || '').trim().toLowerCase();
+
+    function setContactEmailUnverified(message = '電子信箱需完成驗證。'){
+      verifiedContactEmail = '';
+      contactEmail.classList.remove('is-contact-verified');
+      contactEmail.setCustomValidity('請先完成電子郵件驗證');
+      contactEmailVerifiedIcon.hidden = true;
+      contactEmailVerificationMessage.classList.remove('is-success');
+      contactEmailVerificationMessage.textContent = message;
+    }
+
+    sendContactEmailCode?.addEventListener('click',() => {
+      contactEmail.setCustomValidity('');
+      if(!contactEmail.checkValidity()){
+        contactEmail.setCustomValidity('請輸入有效的電子郵件');
+        contactEmail.reportValidity();
+        return;
+      }
+      contactEmail.setCustomValidity('請先完成電子郵件驗證');
+      contactEmailCode.value = '';
+      contactEmailCode.setCustomValidity('');
+      contactEmailCodePanel.hidden = false;
+      sendContactEmailCode.textContent = '重新寄送';
+      contactEmailVerificationMessage.classList.remove('is-success');
+      contactEmailVerificationMessage.textContent = '驗證信已寄出（原型驗證碼：123456），請輸入信中的驗證碼。';
+      contactEmailCode.focus();
+    });
+
+    verifyContactEmailCode?.addEventListener('click',() => {
+      if(contactEmailCode.value.trim() !== '123456'){
+        contactEmailCode.setCustomValidity('驗證碼錯誤，請輸入 123456');
+        contactEmailCode.reportValidity();
+        return;
+      }
+      contactEmailCode.setCustomValidity('');
+      verifiedContactEmail = normalizeContactEmail(contactEmail.value);
+      contactEmail.setCustomValidity('');
+      contactEmail.classList.add('is-contact-verified');
+      contactEmailVerifiedIcon.hidden = false;
+      contactEmailVerificationMessage.classList.add('is-success');
+      contactEmailVerificationMessage.textContent = '電子信箱驗證完成。';
+      contactEmailCodePanel.hidden = true;
+      sendContactEmailCode.textContent = '重新驗證';
+    });
+
+    contactEmail?.addEventListener('input',() => {
+      if(normalizeContactEmail(contactEmail.value) !== verifiedContactEmail){
+        contactEmailCodePanel.hidden = true;
+        sendContactEmailCode.textContent = '寄送驗證信';
+        setContactEmailUnverified('電子信箱已變更，請重新完成驗證。');
+      }
+    });
+
+    if(accountEditMode){
+      verifiedContactEmail = normalizeContactEmail(contactEmail.value);
+      contactEmail.setCustomValidity('');
+      contactEmail.classList.add('is-contact-verified');
+      contactEmailVerifiedIcon.hidden = false;
+      contactEmailCodePanel.hidden = true;
+      contactEmailVerificationMessage.classList.add('is-success');
+      contactEmailVerificationMessage.textContent = '電子郵件已完成驗證。修改後需重新驗證。';
+      sendContactEmailCode.textContent = '重新驗證';
+    }else{
+      setContactEmailUnverified();
+    }
+
     const mailingAddressData = {
       '臺北市':[['100','中正區'],['103','大同區'],['104','中山區'],['105','松山區'],['106','大安區'],['108','萬華區'],['110','信義區'],['111','士林區'],['112','北投區'],['114','內湖區'],['115','南港區'],['116','文山區']],
       '新北市':[['207','萬里區'],['208','金山區'],['220','板橋區'],['221','汐止區'],['222','深坑區'],['223','石碇區'],['224','瑞芳區'],['226','平溪區'],['227','雙溪區'],['228','貢寮區'],['231','新店區'],['232','坪林區'],['233','烏來區'],['234','永和區'],['235','中和區'],['236','土城區'],['237','三峽區'],['238','樹林區'],['239','鶯歌區'],['241','三重區'],['242','新莊區'],['243','泰山區'],['244','林口區'],['247','蘆洲區'],['248','五股區'],['249','八里區'],['251','淡水區'],['252','三芝區'],['253','石門區']],
@@ -1742,7 +1830,6 @@
     specialRoleInputs.forEach(input => input.addEventListener('change',updateSpecialRoleDocuments));
     updateSpecialRoleDocuments();
 
-    const accountEditMode = new URLSearchParams(window.location.search).get('mode') === 'edit';
     const simpleNextStepButton = document.getElementById('simpleNextStep');
     if(accountEditMode){
       simpleNextStepButton.textContent = '儲存資料';

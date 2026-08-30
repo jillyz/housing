@@ -185,7 +185,7 @@ function toggleChat(){
   document.getElementById("chatPanel").classList.toggle("open");
 }
 function viewCase(caseNo){
-  alert("示意：開啟申請案件資料檢視頁\n" + caseNo);
+  window.location.href = "application-detail.html?case=" + encodeURIComponent(caseNo);
 }
 </script>
 <script src="assets/member-shell.js"></script>

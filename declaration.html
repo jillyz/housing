@@ -156,7 +156,7 @@
 
               <div class="submit-area">
                 <button class="btn primary" id="submitAgreement" type="button" onclick="submitAgreement()">
-                  完成電子切結，確認聯絡資料
+                  完成電子切結
                 </button>
               </div>
             </div>
@@ -164,70 +164,6 @@
         </div>
       </section>
 
-      <dialog class="contact-dialog" id="contactDialog" aria-labelledby="contactDialogTitle">
-        <div class="contact-modal">
-          <button class="contact-close" type="button" aria-label="關閉聯絡資料面板" onclick="closeContactDialog()">×</button>
-        <div class="contact-wrap">
-          <div class="welcome">
-            <div class="welcome-icon">✓</div>
-        <h2 id="contactDialogTitle">確認聯絡資料</h2>
-        <p>請確認本人真實姓名與可接收通知的聯絡方式，後續補件及申請進度將依此資訊通知。</p>
-          </div>
-
-          <div class="contact-card">
-            <div class="contact-note">
-              系統將使用您提供的手機與電子信箱發送補件、審查結果及申請進度通知。請確認資料正確。
-            </div>
-
-            <div class="form-grid">
-              <div class="field">
-                <label>真實姓名 <span class="required">*</span></label>
-                <input type="text" id="realName" value="陳ＯＯ" placeholder="請輸入本人真實姓名" autocomplete="name" required />
-                <div class="hint">請填寫與身分證件一致之姓名。</div>
-              </div>
-
-              <div class="field">
-                <label>身分證字號 <span class="required">*</span></label>
-                <input type="text" id="nationalId" value="A123456789" placeholder="例如：A123456789" maxlength="10" autocomplete="off" inputmode="text" required />
-                <div class="hint">請填寫本人身分證字號。</div>
-              </div>
-
-              <div class="field">
-                <div class="field-label-row">
-                  <label for="mobile">聯絡手機 <span class="required">*</span></label>
-                  <span class="verification-status is-verified"><span aria-hidden="true">✓</span> 已驗證</span>
-                </div>
-                <input class="is-verified" type="tel" id="mobile" value="0912345678" placeholder="例如：0912-345-678" autocomplete="tel" aria-describedby="mobileHint" required />
-                <div class="hint" id="mobileHint">已透過登入資料完成手機驗證，用於接收簡訊通知。</div>
-              </div>
-
-              <div class="field" id="emailField">
-                <div class="field-label-row">
-                  <label for="email">電子信箱 <span class="required">*</span></label>
-                  <span class="verification-status" id="emailVerificationStatus">尚未驗證</span>
-                </div>
-                <div class="input-with-action">
-                  <input type="email" id="email" value="example@gmail.com" placeholder="例如：name@example.com" autocomplete="email" aria-describedby="emailHint" required />
-                  <button class="verification-button" id="sendEmailVerification" type="button">寄送驗證信</button>
-                </div>
-                <div class="hint" id="emailHint" aria-live="polite">完成信箱驗證後，才能繼續填寫申請資料。</div>
-                <div class="email-verification-panel" id="emailVerificationPanel" hidden aria-live="polite">
-                  <div class="email-verification-copy">
-                    <strong id="emailVerificationTitle">驗證信已寄出</strong>
-                    <span id="emailVerificationMessage"></span>
-                  </div>
-                  <button class="verification-link-demo" id="simulateEmailVerification" type="button">原型操作：點擊信中驗證連結</button>
-                </div>
-              </div>
-            </div>
-
-            <div class="contact-actions">
-              <button class="btn continue-btn" type="button" onclick="continueToForm()">確認聯絡資料，下一步申請資料</button>
-            </div>
-          </div>
-        </div>
-        </div>
-      </dialog>
     </div>
   </main>
 </div>
@@ -297,55 +233,6 @@
 
   const checks = Array.from(document.querySelectorAll(".agreement-check"));
   const submitButton = document.getElementById("submitAgreement");
-  const contactDialog = document.getElementById("contactDialog");
-  const emailInput = document.getElementById("email");
-  const emailVerificationStatus = document.getElementById("emailVerificationStatus");
-  const emailVerificationPanel = document.getElementById("emailVerificationPanel");
-  const emailVerificationTitle = document.getElementById("emailVerificationTitle");
-  const emailVerificationMessage = document.getElementById("emailVerificationMessage");
-  const sendEmailVerification = document.getElementById("sendEmailVerification");
-  const simulateEmailVerification = document.getElementById("simulateEmailVerification");
-  let verifiedEmail = "";
-
-  const normalizeEmail = value => value.trim().toLowerCase();
-  const setEmailVerificationState = state => {
-    const isPending = state === "pending";
-    const isVerified = state === "verified";
-    emailVerificationStatus.classList.toggle("is-pending",isPending);
-    emailVerificationStatus.classList.toggle("is-verified",isVerified);
-    emailVerificationStatus.textContent = isVerified ? "✓ 已驗證" : isPending ? "等待驗證" : "尚未驗證";
-    emailInput.classList.toggle("is-verified",isVerified);
-    emailVerificationPanel.hidden = state === "idle";
-    emailVerificationPanel.classList.toggle("is-verified",isVerified);
-    simulateEmailVerification.hidden = isVerified;
-    sendEmailVerification.textContent = isVerified ? "重新驗證" : isPending ? "重新寄送" : "寄送驗證信";
-    document.getElementById("emailHint").textContent = isVerified
-      ? "電子信箱驗證完成，可接收招租及申請相關通知。"
-      : isPending ? "請前往信箱點擊驗證連結；若未收到，可重新寄送。" : "完成信箱驗證後，才能繼續填寫申請資料。";
-  };
-
-  sendEmailVerification.addEventListener("click",() => {
-    if(!emailInput.value.trim() || !emailInput.checkValidity()){
-      emailInput.reportValidity();
-      emailInput.focus();
-      return;
-    }
-    verifiedEmail = "";
-    emailVerificationTitle.textContent = "驗證信已寄出";
-    emailVerificationMessage.textContent = `已寄至 ${emailInput.value.trim()}，請收信並點擊驗證連結。`;
-    setEmailVerificationState("pending");
-  });
-
-  simulateEmailVerification.addEventListener("click",() => {
-    verifiedEmail = normalizeEmail(emailInput.value);
-    emailVerificationTitle.textContent = "電子信箱驗證完成";
-    emailVerificationMessage.textContent = `${emailInput.value.trim()} 已完成驗證。`;
-    setEmailVerificationState("verified");
-  });
-
-  emailInput.addEventListener("input",() => {
-    setEmailVerificationState(verifiedEmail && normalizeEmail(emailInput.value) === verifiedEmail ? "verified" : "idle");
-  });
 
   checks.forEach(check => {
     check.addEventListener("change", () => {
@@ -355,41 +242,6 @@
   submitButton.disabled = !checks.every(item => item.checked);
 
   function submitAgreement(){
-    contactDialog.showModal();
-    document.getElementById("realName").focus();
-  }
-
-  function closeContactDialog(){
-    contactDialog.close();
-  }
-
-  contactDialog.addEventListener("click", event => {
-    if(event.target === contactDialog) closeContactDialog();
-  });
-
-  function continueToForm(){
-    const name = document.getElementById("realName").value.trim();
-    const nationalId = document.getElementById("nationalId").value.trim();
-    const mobile = document.getElementById("mobile").value.trim();
-    const email = document.getElementById("email").value.trim();
-
-    if(!name || !nationalId || !mobile || !email){
-      alert("請完整填寫真實姓名、身分證字號、聯絡手機及電子信箱。");
-      return;
-    }
-
-    if(!emailInput.checkValidity()){
-      emailInput.reportValidity();
-      emailInput.focus();
-      return;
-    }
-
-    if(normalizeEmail(email) !== verifiedEmail){
-      alert("請先完成電子信箱驗證，再繼續填寫申請資料。");
-      sendEmailVerification.focus();
-      return;
-    }
-
     window.location.href = "data.html";
   }
 </script>
