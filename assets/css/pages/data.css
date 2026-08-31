@@ -984,11 +984,19 @@
     .lookup-status-item strong{display:block;color:var(--primary-deep);font-size:14px}
     .lookup-status-item span{display:block;margin-top:5px;color:var(--success);font-size:12px;font-weight:800}
     .lookup-status-item.attention span{color:#b65f00}
-    .lookup-profile{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--line);margin-bottom:18px}
+    .lookup-profile{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--line);margin-bottom:10px}
     .lookup-profile div{padding:13px 14px;background:#f7fbfa}
     .lookup-profile .profile-address{grid-column:span 3}
     .lookup-profile span{display:block;color:var(--muted);font-size:12px}
     .lookup-profile strong{display:block;margin-top:4px;color:#344b49;font-size:14px}
+    .lookup-address-stack{display:grid;gap:1px;margin-bottom:18px;overflow:hidden;border:1px solid var(--line);border-radius:14px;background:var(--line)}
+    .lookup-address-row{padding:13px 14px;background:#f7fbfa}
+    .lookup-registered-address{display:grid;grid-template-columns:minmax(0,1fr) 180px;align-items:start;gap:18px}
+    .lookup-address-row span,.lookup-address-label{display:block;color:var(--muted);font-size:14px;font-weight:700}
+    .lookup-address-row strong{display:block;margin-top:4px;color:var(--text);font-size:16px;line-height:1.5}
+    .lookup-mailing-address{display:grid;gap:9px}
+    .lookup-address-label{display:flex;align-items:baseline;gap:4px;margin:0}
+    .lookup-address-label .required{display:inline;color:var(--danger);font-weight:900}
     .simple-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}
     .simple-field{grid-column:span 4}
     .simple-field.wide{grid-column:span 8}
@@ -1062,7 +1070,7 @@
     .identity-tag.system-identity::before{content:"🔒";margin-right:4px;font-size:.82em}
     .identity-tag.user-identity{border-color:#d7cbed;background:#f5f0ff;color:#654792}
     .family-table .identity-tag,.family-table .badge{padding:5px 8px;font-size:16px;line-height:1.35;white-space:normal}
-    .member-identity-cell{display:grid;grid-template-columns:minmax(0,1fr) 30px;align-items:start;gap:5px;min-width:0}
+    .member-identity-cell{display:grid;grid-template-columns:30px minmax(0,1fr);align-items:start;gap:7px;min-width:0}
     .identity-note-trigger{width:30px;height:30px;display:grid;place-items:center;padding:0;border:1px solid #8fc8c4;border-radius:50%;color:#006d75;background:#fff;cursor:pointer}
     .identity-note-trigger svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
     .identity-note-trigger:hover{border-color:var(--primary);color:#fff;background:var(--primary)}
@@ -1091,10 +1099,10 @@
     .row-actions{display:flex;gap:6px;align-items:center;white-space:nowrap}
     .family-summary-bar{display:flex;justify-content:flex-end;gap:24px;margin-top:10px;padding:12px 14px;border-radius:12px;background:#f1f8f7;color:#405654;font-size:16px}
     .family-summary-bar strong{margin-left:5px;color:var(--primary-dark);font-size:19px}
-    .mailing-address-control{display:grid;gap:10px}
+    .mailing-address-control{display:block}
     .mailing-address-check{display:inline-flex!important;align-items:center;gap:7px;margin:0!important;color:#3b5553;font-size:16px!important;font-weight:700;white-space:nowrap;cursor:pointer}
     .mailing-address-check input{width:18px;height:18px;min-height:0;margin:0;padding:0;accent-color:var(--primary)}
-    .mailing-address-fields{display:grid;grid-template-columns:90px 150px 150px minmax(220px,1fr);gap:10px}
+    .mailing-address-fields{display:grid;grid-template-columns:max-content 80px 140px 140px minmax(220px,1fr);align-items:center;gap:10px}
     .mailing-postal-code{display:flex;align-items:center;min-height:44px;padding:9px 10px;border-radius:9px;background:#f1f6f5;color:#405754;font-size:16px;font-weight:800}
     .mailing-address-fields input,.mailing-address-fields select{width:100%;min-width:0}
     .mailing-address-fields input:disabled,.mailing-address-fields select:disabled{border-color:#d9e5e3;color:#526765;background:#f1f5f4;opacity:1}
@@ -1103,33 +1111,36 @@
     .data-summary-card{padding:15px;border:1px solid var(--line);border-radius:13px;background:#f8fcfb}
     .data-summary-card span{display:block;color:var(--muted);font-size:12px}
     .data-summary-card strong{display:block;margin-top:7px;color:var(--primary-deep);font-size:18px}
-    .supplement-box{margin-top:14px;padding:16px;border:1px solid #f0d4ad;border-radius:14px;background:#fffaf3}
-    .supplement-box h3{margin:0 0 5px;color:#714614;font-size:15px}
-    .supplement-box p{margin:0 0 12px;color:#876a48;font-size:12px;line-height:1.6}
-    .application-identity-supplement{margin-top:16px;padding:17px;border:1px solid #b8dcda;border-radius:15px;background:#f4fbfa}
-    .application-identity-supplement[hidden],.application-service-fields[hidden],.application-service-field[hidden]{display:none!important}
-    .application-identity-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:14px}
-    .application-identity-head h3{margin:0;color:var(--primary-deep);font-size:17px}
-    .application-identity-head p{margin:5px 0 0;color:var(--muted);font-size:13px;line-height:1.6}
-    .application-identity-head>span{flex:0 0 auto;padding:6px 10px;border-radius:999px;color:var(--primary-dark);background:#dff3f1;font-size:12px;font-weight:900}
-    .application-service-fields{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;align-items:end}
-    .application-service-field{display:grid;gap:6px;min-width:0;color:#405957;font-size:13px;font-weight:900}
-    .application-service-field:first-child{grid-column:span 2}
+    .applicant-qualification-form{margin-top:20px}
+    .applicant-qualification-form>h3{margin:0 0 17px;color:var(--primary-deep);font-size:17px}
+    .application-service-fields[hidden],.application-service-field[hidden]{display:none!important}
+    .application-service-fields{display:grid;grid-template-columns:minmax(250px,1.7fr) repeat(3,minmax(150px,1fr));gap:14px;align-items:end;margin-top:16px}
+    .application-service-field{display:grid;gap:7px;min-width:0;color:#405957;font-size:16px;font-weight:800}
+    .application-service-field:first-child{grid-column:auto}
     .application-service-field>span b{color:var(--danger)}
-    .application-service-field input,.application-service-field select{width:100%;min-width:0;height:44px;padding:8px 10px;border:1px solid #c7dcda;border-radius:10px;color:#314e4c;background:#fff;font:inherit;font-weight:600}
+    .application-service-field input,.application-service-field select{width:100%;min-width:0;min-height:44px;padding:9px 10px;border:1px solid #c7dcda;border-radius:10px;color:#314e4c;background:#fff;font:inherit;font-weight:600}
     .application-role-document{border-color:#bcdedb;background:#f7fcfb}
     .simple-checks{display:flex;flex-wrap:wrap;gap:10px 18px}
     .simple-checks label{margin:0;font-size:13px}
     .simple-checks input{width:auto;accent-color:var(--primary)}
-    .applicant-role-groups{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:10px}
-    .applicant-role-group{min-width:0;margin:0;padding:9px 10px 10px;border:1px solid #ead9bf;border-radius:11px;background:rgba(255,255,255,.82)}
-    .applicant-role-group legend{display:flex;align-items:center;gap:8px;padding:0 5px;color:#714614}
-    .applicant-role-group legend strong{font-size:14px}.applicant-role-group legend span{padding:2px 7px;border-radius:999px;color:#8a5b22;background:#fff0d9;font-size:11px;font-weight:800;white-space:nowrap}
-    .applicant-role-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin-top:2px}
-    .service-role-group .applicant-role-options{grid-template-columns:1fr}
-    .applicant-role-options label{display:flex;align-items:flex-start;gap:7px;margin:0;padding:6px 8px;border:1px solid #efe1cc;border-radius:8px;color:#3b5553;background:#fff;font-size:14px;line-height:1.45;cursor:pointer}
-    .applicant-role-options label:has(input:checked){border-color:#73bbb5;color:#174f4c;background:#eaf8f6;box-shadow:inset 0 0 0 1px rgba(0,128,123,.08)}
-    .applicant-role-options input{flex:0 0 auto;width:17px!important;height:17px!important;min-height:0!important;margin:2px 0 0;padding:0;accent-color:var(--primary)}
+    .applicant-role-groups{display:grid;grid-template-columns:1fr;gap:16px}
+    .applicant-role-group{min-width:0;margin:0;padding:0;border:0;background:transparent}
+    .applicant-role-group legend{display:flex;align-items:baseline;gap:10px;width:100%;margin:0 0 11px;padding:0;color:#344b49}
+    .applicant-role-group legend strong{font-size:16px}.applicant-role-group legend span{color:var(--muted);font-size:14px;font-weight:700}
+    .city-qualification-list{display:grid;gap:0}
+    .city-qualification-row{display:grid;grid-template-columns:88px 78px minmax(0,1fr);align-items:center;gap:12px;min-width:0;padding:10px 12px;border-bottom:1px solid #dce9e7;background:#f8fbfb}
+    .city-qualification-row:last-child{border-bottom:0}
+    .city-qualification-heading{display:contents}
+    .city-qualification-heading strong{color:#344b49;font-size:16px}
+    .qualification-status{color:#617471;font-size:16px;font-weight:800}
+    .qualification-status.is-registered{color:#17704a}
+    .city-qualification-row>.city-qualification-options,.city-qualification-choice{grid-column:3}
+    .city-qualification-choice{display:flex;align-items:center;flex-wrap:wrap;gap:8px 14px;min-width:0}
+    .city-qualification-options{display:flex;align-items:center;flex-wrap:wrap;gap:10px 22px;min-width:0}
+    .city-qualification-options label,.applicant-role-options label{display:inline-flex;align-items:flex-start;gap:8px;margin:0;color:#3b5553;font-size:16px;line-height:1.5;cursor:pointer}
+    .city-qualification-options label small,.qualification-choice-hint{color:var(--muted);font-size:14px;font-weight:700}
+    .city-qualification-options input,.applicant-role-options input{flex:0 0 auto;width:18px!important;height:18px!important;min-height:0!important;margin:3px 0 0;padding:0;accent-color:var(--primary)}
+    .applicant-role-options{display:grid;grid-template-columns:1fr;gap:10px}
     .conditional-upload{display:none;margin-top:13px}
     .conditional-upload.show{display:block}
     .subsidy-confirm{margin-top:14px;padding:13px 14px;border:1px solid #f0d4ad;border-radius:12px;background:#fff}
@@ -1230,8 +1241,6 @@
     .pretty-upload-button{font-size:15px}
     .pretty-upload-name{color:var(--muted);font-size:14px}
     .subsidy-confirm label,.simple-checks label{color:#3b5553;font-size:16px}
-    .supplement-box h3{color:#714614;font-size:17px}
-    .supplement-box p{color:#876a48;font-size:14px;line-height:1.65}
     .form-error{font-size:14px;line-height:1.6}
     .simplified-footer .next-step-btn{font-size:16px}
 
@@ -1243,8 +1252,7 @@
       .lookup-profile .profile-address{grid-column:span 2}
       .lookup-agency-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
       .simple-field,.simple-field.wide{grid-column:span 6}
-      .applicant-role-groups{grid-template-columns:1fr}
-      .mailing-address-fields{grid-template-columns:90px 1fr 1fr}
+      .mailing-address-fields{grid-template-columns:max-content 80px 1fr 1fr}
       .mailing-address-fields #mailingAddressDetail{grid-column:1/-1}
     }
     @media(max-width:1180px){
@@ -1278,6 +1286,7 @@
       .authorization-action .btn{width:100%}
       .lookup-status-grid,.lookup-profile,.data-summary-grid{grid-template-columns:1fr}
       .lookup-profile .profile-address{grid-column:span 1}
+      .lookup-registered-address{grid-template-columns:1fr;gap:10px}
       .asset-overview{grid-template-columns:1fr}
       .simple-field,.simple-field.wide{grid-column:1/-1}
       .simple-field.contact-verification-field{grid-column:1/-1}
@@ -1285,16 +1294,23 @@
       .contact-input-action button{width:100%}
       .simple-section-actions{width:100%;justify-content:flex-start}
       .simple-section-actions .family-add-toggle{width:100%}
-      .applicant-role-options{grid-template-columns:1fr}
-      .mailing-address-control,.mailing-address-fields{grid-template-columns:1fr}
-      .mailing-address-fields #mailingAddressDetail{grid-column:auto}
+      .applicant-role-group legend{align-items:flex-start;flex-wrap:wrap}
+      .city-qualification-row{grid-template-columns:1fr;gap:8px}
+      .city-qualification-heading{display:flex;align-items:center;gap:14px;grid-column:1/-1}
+      .city-qualification-row>.city-qualification-options,.city-qualification-choice{grid-column:1/-1}
+      .city-qualification-choice{align-items:flex-start;flex-direction:column;gap:7px}
+      .mailing-address-control{display:block}
+      .mailing-address-fields{grid-template-columns:max-content minmax(0,1fr)}
+      .mailing-address-check{grid-column:1}
+      .mailing-postal-code{grid-column:2}
+      .mailing-address-fields #mailingCounty,.mailing-address-fields #mailingDistrict{grid-column:auto}
+      .mailing-address-fields #mailingAddressDetail{grid-column:1/-1}
       .lookup-complete{align-items:flex-start;flex-wrap:wrap}
       .lookup-complete .refresh-lookup{width:100%;margin-left:0}
       .family-intro{align-items:flex-start;flex-direction:column}
       .family-table tr{grid-template-columns:1fr;padding:14px;gap:8px}
       .family-summary-bar{align-items:flex-start;flex-direction:column;gap:6px}
       .document-row{grid-template-columns:1fr;gap:8px}
-      .application-identity-head{align-items:flex-start;flex-direction:column}
       .application-service-fields{grid-template-columns:1fr}
       .application-service-field:first-child{grid-column:auto}
       .document-action{justify-content:flex-start;flex-wrap:wrap}
@@ -1402,3 +1418,13 @@
       .property-category-head h3{font-size:18px}
       .property-category-head p,.movable-rules,.property-rule-box p,.property-rule-box label{font-size:13px}
     }
+
+    /* 申請資料第 1～4 區：所有閱讀與操作文字至少 16px */
+    #registrationDataForm .simple-section{font-size:16px}
+    #registrationDataForm .simple-section :is(p,small,label,legend,span,button,input,select,textarea,th,td,output,a){font-size:16px!important}
+    #registrationDataForm .simple-section .lookup-profile strong,
+    #registrationDataForm .simple-section .document-row strong,
+    #registrationDataForm .simple-section .applicant-role-group legend strong,
+    #registrationDataForm .simple-section .property-count,
+    #registrationDataForm .simple-section li{font-size:16px!important}
+    #registrationDataForm .simple-section :is(.family-table td,.asset-entry-table td)::before{font-size:16px!important}

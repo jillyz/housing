@@ -46,7 +46,7 @@
     <p>系統依您的居住需求帶入符合條件的社宅；可複選案場，並確認房型、無障礙需求與申請身分。</p>
   </div>
   <div class="needs-grid" aria-label="我的住宅需求條件">
-    <div class="need-chip"><span>縣市</span><strong>新北市</strong></div>
+    <div class="need-chip"><span>縣市</span><strong>新北市、臺北市</strong></div>
     <div class="need-chip"><span>行政區</span><strong>不限行政區</strong></div>
     <div class="need-chip"><span>房型</span><strong>二房型、三房型</strong></div>
     <div class="need-chip"><span>預計入住</span><strong>3 人</strong></div>
@@ -72,8 +72,8 @@
     <div class="batch-note"><strong>選擇提醒</strong><span>本頁只確認要申請的社宅與房型，尚未正式送出；下一步將進行條款閱讀及電子切結。</span></div>
     <form id="batchHousingForm">
       <div class="batch-toolbar">
-        <label class="select-all"><input id="selectAllHousing" type="checkbox" /><span>全選符合需求的社宅 <b>共 3 間</b></span></label>
-        <div class="match-count">已選擇 <strong id="selectedHousingCount" aria-live="polite">3</strong> 間</div>
+        <label class="select-all"><input id="selectAllHousing" type="checkbox" /><span>全選符合需求的社宅 <b>共 4 間</b></span></label>
+        <div class="match-count">已選擇 <strong id="selectedHousingCount" aria-live="polite">4</strong> 間</div>
       </div>
 
       <div class="match-list">
@@ -98,6 +98,13 @@
           <div class="apply-options no-identity"><label class="apply-field"><span>申請房型（人數條件）</span><select class="room-choice" aria-label="三重成功申請房型"><option value="二房型">二房型（2–4 人）</option><option value="三房型" selected>三房型（3 人以上）</option></select></label><label class="apply-field"><span>無障礙需求</span><span class="accessible-check"><input class="accessible-choice" type="checkbox" aria-label="三重成功需要無障礙房" />需無障礙房</span></label></div>
         </article>
 
+        <article class="match-card" data-housing-name="青年社會住宅">
+          <label class="match-check" aria-label="選擇青年社會住宅"><input class="housing-checkbox" name="housing" type="checkbox" value="青年社會住宅" checked /></label>
+          <div class="match-photo"><span class="match-status">招租中</span><img src="assets/home-pic-2.png" alt="青年社會住宅示意圖" loading="lazy" /></div>
+          <div class="match-info"><div class="match-title-row"><h2>青年社會住宅</h2><span class="recruitment-type large-recruitment">大招租</span></div><div class="match-location">臺北市・萬華區</div><div class="agency">臺北市政府都市發展局</div><div class="match-links"><a class="external-detail" href="housing.html">查看社宅資料</a></div></div>
+          <div class="apply-options"><label class="apply-field"><span>申請房型（人數條件）</span><select class="room-choice" aria-label="青年社會住宅申請房型"><option value="一房型">一房型（1–2 人）</option><option value="二房型" selected>二房型（2–4 人）</option><option value="三房型">三房型（3 人以上）</option></select></label><label class="apply-field"><span>無障礙需求</span><span class="accessible-check"><input class="accessible-choice" type="checkbox" aria-label="青年社會住宅需要無障礙房" />需無障礙房</span></label><label class="apply-field"><span>申請身分</span><select class="identity-choice" aria-label="青年社會住宅申請身分"><option selected>一般戶</option><option>睦鄰戶</option><option>婚育戶</option><option>警消戶</option><option>軍職戶</option><option>特殊戶</option><option>其他</option></select></label></div>
+        </article>
+
         <!-- <article class="match-card" data-housing-name="新市安居">
           <label class="match-check" aria-label="選擇新市安居"><input class="housing-checkbox" name="housing" type="checkbox" value="新市安居" /></label>
           <div class="match-photo"><span class="match-status">招租中</span><img src="https://www.socialhousing.tw/Portal/Building/260508/ugqzb2ty.qev.jpg" alt="新市安居社會住宅外觀" loading="lazy" /></div>
@@ -107,7 +114,7 @@
       </div>
 
       <div class="batch-submit-bar">
-        <div class="batch-submit-copy"><strong id="batchSummary">已選擇 3 間社宅</strong><span>確認後進入條款閱讀與電子切結，尚未正式送出申請。</span></div>
+        <div class="batch-submit-copy"><strong id="batchSummary">已選擇 4 間社宅</strong><span>確認後進入條款閱讀與電子切結，尚未正式送出申請。</span></div>
         <button class="batch-submit-btn" id="batchSubmitButton" type="submit">確認選擇，下一步電子切結</button>
       </div>
     </form>

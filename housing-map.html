@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="assets/css/pages/housing.css" />
   <link rel="stylesheet" href="assets/css/pages/housinglist.css?v=18" />
   <link rel="stylesheet" href="assets/css/pages/houaing-map.css?v=1" />
-  <link rel="stylesheet" href="assets/css/pages/housing-map2.css?v=16" />
+  <link rel="stylesheet" href="assets/css/pages/housing-map2.css?v=24" />
 </head>
 <body class="housing-page housing-list-page housing-map-page housing-map2-page drawer-pinned">
   <header>
@@ -172,33 +172,56 @@
     </section>
   </main>
 
-  <aside class="filter-drawer is-open" id="filterDrawer" aria-labelledby="filterDrawerTitle" aria-hidden="false">
-    <div class="filter-drawer-head">
-      <div><span>精準搜尋</span><h2 id="filterDrawerTitle">篩選條件</h2></div>
-      <button class="filter-close-button" id="filterCloseButton" type="button" aria-label="關閉篩選條件">×</button>
+  <aside class="filter-drawer is-open" id="filterDrawer" aria-label="查詢條件" aria-hidden="false">
+    <div class="filter-drawer-actions filter-drawer-toolbar">
+      <div class="filter-toolbar-actions">
+        <button class="filter-reset-button" id="filterResetButton" type="button">清除</button>
+        <span class="filter-toolbar-divider" aria-hidden="true"></span>
+        <button class="filter-apply-button" id="filterApplyButton" type="submit" form="filterForm">查詢</button>
+      </div>
+      <button class="filter-close-button" id="filterCloseButton" type="button" aria-label="關閉查詢條件"><span aria-hidden="true">×</span></button>
     </div>
     <form class="filter-drawer-form" id="filterForm">
       <div class="drawer-group">
         <label class="drawer-field"><span>社宅名稱</span><input id="filterKeyword" type="search" placeholder="輸入社宅名稱" /></label>
-        <label class="drawer-field"><span>縣市</span>
+        <label class="drawer-field"><span>縣市／生活圈</span>
           <select id="filterCounty">
             <option value="">全臺灣</option>
-            <option>基隆市</option><option>臺北市</option><option selected>新北市</option><option>桃園市</option>
-            <option>新竹市</option><option>新竹縣</option><option>苗栗縣</option><option>臺中市</option>
-            <option>彰化縣</option><option>南投縣</option><option>雲林縣</option><option>嘉義市</option>
-            <option>嘉義縣</option><option>臺南市</option><option>高雄市</option><option>屏東縣</option>
-            <option>宜蘭縣</option><option>花蓮縣</option><option>臺東縣</option><option>澎湖縣</option>
-            <option>金門縣</option><option>連江縣</option>
+            <optgroup label="生活圈">
+              <option value="life:keelung-taipei-newtaipei-taoyuan" selected>基北北桃生活圈</option>
+              <option value="life:taoyuan-hsinchu-miaoli">桃竹竹苗生活圈</option>
+              <option value="life:taipei-newtaipei-yilan">北北宜生活圈</option>
+              <option value="life:taichung-changhua-nantou-miaoli">中彰投苗生活圈</option>
+              <option value="life:yunlin-chiayi-tainan">雲嘉南生活圈</option>
+              <option value="life:tainan-kaohsiung-pingtung">南高屏生活圈</option>
+              <option value="life:taitung">臺東生活圈</option>
+            </optgroup>
+            <optgroup label="縣市">
+              <option>基隆市</option><option>臺北市</option><option>新北市</option><option>桃園市</option>
+              <option>新竹市</option><option>新竹縣</option><option>苗栗縣</option><option>臺中市</option>
+              <option>彰化縣</option><option>南投縣</option><option>雲林縣</option><option>嘉義市</option>
+              <option>嘉義縣</option><option>臺南市</option><option>高雄市</option><option>屏東縣</option>
+              <option>宜蘭縣</option><option>花蓮縣</option><option>臺東縣</option><option>澎湖縣</option>
+              <option>金門縣</option><option>連江縣</option>
+            </optgroup>
           </select>
         </label>
         <div class="drawer-field">
           <span>行政區（可複選）</span>
-          <div class="drawer-check-grid district-checks" id="districtChecks"></div>
+          <div class="district-multiselect" id="districtMultiselect">
+            <button class="district-select-trigger" id="districtSelectButton" type="button" aria-haspopup="listbox" aria-controls="districtSelectPanel" aria-expanded="false">
+              <span id="districtSelectSummary">不限定行政區</span><span class="district-select-chevron" aria-hidden="true">⌄</span>
+            </button>
+            <div class="district-select-panel" id="districtSelectPanel" hidden>
+              <div class="district-county-tabs" id="districtCountyTabs" role="tablist" aria-label="選擇要查看的縣市"></div>
+              <div class="district-checks" id="districtChecks" role="group" aria-label="行政區選項"></div>
+            </div>
+          </div>
         </div>
       </div>
 
       <div class="drawer-group">
-        <div class="drawer-group-title"><strong>招租條件</strong><small>可同時複選</small></div>
+        <div class="drawer-group-title"><strong>招租條件</strong></div>
         <div class="drawer-check-grid status-grid">
           <label class="drawer-check"><input type="checkbox" name="filterStatus" value="recruiting" checked />招租中</label>
           <label class="drawer-check"><input type="checkbox" name="filterStatus" value="completed" checked />已完工</label>
@@ -242,10 +265,6 @@
         </div>
       </div>
     </form>
-    <div class="filter-drawer-actions">
-      <button class="filter-reset-button" id="filterResetButton" type="button">全部重設</button>
-      <button class="filter-apply-button" id="filterApplyButton" type="submit" form="filterForm">套用條件・查看結果</button>
-    </div>
   </aside>
 
   <aside class="compare-bar" id="compareBar" aria-label="比一比清單" hidden>
@@ -383,6 +402,15 @@
         kitchen: "共用廚房／餐敘空間",
         retail: "生活服務／商店"
       };
+      var lifeCircleCounties = {
+        "life:keelung-taipei-newtaipei-taoyuan": ["基隆市", "臺北市", "新北市", "桃園市"],
+        "life:taoyuan-hsinchu-miaoli": ["桃園市", "新竹市", "新竹縣", "苗栗縣"],
+        "life:taipei-newtaipei-yilan": ["臺北市", "新北市", "宜蘭縣"],
+        "life:taichung-changhua-nantou-miaoli": ["臺中市", "彰化縣", "南投縣", "苗栗縣"],
+        "life:yunlin-chiayi-tainan": ["雲林縣", "嘉義市", "嘉義縣", "臺南市"],
+        "life:tainan-kaohsiung-pingtung": ["臺南市", "高雄市", "屏東縣"],
+        "life:taitung": ["臺東縣"]
+      };
       var selectedCompare = new Set();
       var selectedApplications = new Set();
       var visibleProjectKeys = new Set(projects.map(function (project) { return project.key; }));
@@ -398,6 +426,11 @@
       var filterCloseButton = document.getElementById("filterCloseButton");
       var filterForm = document.getElementById("filterForm");
       var filterCounty = document.getElementById("filterCounty");
+      var districtMultiselect = document.getElementById("districtMultiselect");
+      var districtSelectButton = document.getElementById("districtSelectButton");
+      var districtSelectPanel = document.getElementById("districtSelectPanel");
+      var districtSelectSummary = document.getElementById("districtSelectSummary");
+      var districtCountyTabs = document.getElementById("districtCountyTabs");
       var districtChecks = document.getElementById("districtChecks");
       var activeFilterArea = document.getElementById("activeFilterArea");
       var toolbarFilterCount = document.getElementById("toolbarFilterCount");
@@ -443,6 +476,7 @@
       }
 
       function closeDrawer() {
+        setDistrictDropdownOpen(false);
         filterDrawer.classList.remove("is-open");
         filterDrawer.setAttribute("aria-hidden", "true");
         filterOpenButton.setAttribute("aria-expanded", "false");
@@ -450,59 +484,165 @@
         filterOpenButton.focus();
       }
 
-      function renderDistricts() {
-        var data = window.TaiwanAdministrativeDistricts || {};
-        var districts = data[filterCounty.value] || [];
-        districtChecks.replaceChildren();
-        if (!districts.length) {
-          var hint = document.createElement("span");
-          hint.className = "active-filter-placeholder";
-          hint.textContent = filterCounty.value ? "此縣市尚無行政區資料" : "選擇縣市後顯示行政區";
-          districtChecks.appendChild(hint);
+      function countiesForSelection(value) {
+        if (!value) return [];
+        return lifeCircleCounties[value] ? lifeCircleCounties[value].slice() : [value];
+      }
+
+      function selectedCountyLabel() {
+        var option = filterCounty.options[filterCounty.selectedIndex];
+        return option ? option.textContent : "全臺灣";
+      }
+
+      function setDistrictDropdownOpen(isOpen) {
+        var shouldOpen = Boolean(isOpen && !districtSelectButton.disabled);
+        districtSelectPanel.hidden = !shouldOpen;
+        districtSelectButton.setAttribute("aria-expanded", String(shouldOpen));
+        districtMultiselect.classList.toggle("is-open", shouldOpen);
+      }
+
+      function updateDistrictSummary() {
+        var selected = Array.from(districtChecks.querySelectorAll('[name="filterDistrict"]:checked'));
+        var districtNameCounts = selected.reduce(function (counts, input) {
+          var district = input.dataset.district || input.value.split("|")[1] || input.value;
+          if (district === "*") return counts;
+          counts[district] = (counts[district] || 0) + 1;
+          return counts;
+        }, {});
+        var labels = selected.map(function (input) {
+          var county = input.dataset.county || input.value.split("|")[0] || "";
+          var district = input.dataset.district || input.value.split("|")[1] || input.value;
+          if (district === "*") return county + "全區";
+          return districtNameCounts[district] > 1 ? county + "｜" + district : district;
+        });
+        var fullLabels = selected.map(function (input) { return input.dataset.label || input.value.replace("|", "｜"); });
+        if (!labels.length) {
+          districtSelectSummary.textContent = filterCounty.value ? "不限定行政區" : "請先選擇縣市／生活圈";
+          districtSelectButton.title = districtSelectSummary.textContent;
           return;
         }
+        districtSelectSummary.textContent = labels.length <= 2 ? labels.join("、") : labels[0] + " ＋" + (labels.length - 1);
+        districtSelectButton.title = fullLabels.join("、");
+      }
 
-        var allLabel = document.createElement("label");
-        allLabel.className = "drawer-check district-all-check";
-        var allInput = document.createElement("input");
-        allInput.type = "checkbox";
-        allInput.id = "filterDistrictAll";
-        allInput.checked = true;
-        var allText = document.createElement("span");
-        allText.textContent = "全區";
-        allLabel.append(allInput, allText);
-        districtChecks.appendChild(allLabel);
-
-        allInput.addEventListener("change", function () {
-          if (allInput.checked) {
-            document.querySelectorAll('[name="filterDistrict"]').forEach(function (input) { input.checked = false; });
-          } else if (!document.querySelector('[name="filterDistrict"]:checked')) {
-            allInput.checked = true;
-          }
-        });
-
-        districts.forEach(function (district) {
-          var label = document.createElement("label");
-          label.className = "drawer-check";
-          var input = document.createElement("input");
-          input.type = "checkbox";
-          input.name = "filterDistrict";
-          input.value = district;
-          var text = document.createElement("span");
-          text.textContent = district;
-          input.addEventListener("change", function () {
-            if (input.checked) allInput.checked = false;
-            syncDistrictAllOption();
+      function updateDistrictCountyTabs() {
+        districtCountyTabs.querySelectorAll(".district-county-tab").forEach(function (button) {
+          var county = button.dataset.county;
+          var group = Array.from(districtChecks.querySelectorAll(".district-option-group")).find(function (item) {
+            return item.dataset.county === county;
           });
-          label.append(input, text);
-          districtChecks.appendChild(label);
+          var selected = group ? Array.from(group.querySelectorAll('[name="filterDistrict"]:checked')) : [];
+          var fullCounty = selected.some(function (input) { return input.dataset.district === "*"; });
+          var badge = button.querySelector(".district-county-tab-count");
+          badge.textContent = fullCounty ? "全區" : String(selected.length);
+          badge.hidden = selected.length === 0;
+          button.classList.toggle("has-selection", selected.length > 0);
         });
       }
 
-      function syncDistrictAllOption() {
-        var allInput = document.getElementById("filterDistrictAll");
-        if (!allInput) return;
-        allInput.checked = !document.querySelector('[name="filterDistrict"]:checked');
+      function setActiveDistrictCounty(county) {
+        districtCountyTabs.querySelectorAll(".district-county-tab").forEach(function (button) {
+          var active = button.dataset.county === county;
+          button.classList.toggle("is-active", active);
+          button.setAttribute("aria-selected", String(active));
+          button.tabIndex = active ? 0 : -1;
+        });
+        districtChecks.querySelectorAll(".district-option-group").forEach(function (group) {
+          group.hidden = group.dataset.county !== county;
+        });
+      }
+
+      function renderDistricts() {
+        var data = window.TaiwanAdministrativeDistricts || {};
+        var counties = countiesForSelection(filterCounty.value);
+        districtCountyTabs.replaceChildren();
+        districtChecks.replaceChildren();
+        setDistrictDropdownOpen(false);
+
+        if (!counties.length) {
+          districtSelectButton.disabled = true;
+          updateDistrictSummary();
+          return;
+        }
+
+        districtSelectButton.disabled = false;
+        counties.forEach(function (county) {
+          var tab = document.createElement("button");
+          tab.type = "button";
+          tab.className = "district-county-tab";
+          tab.dataset.county = county;
+          tab.setAttribute("role", "tab");
+          tab.setAttribute("aria-controls", "districtGroup" + county);
+          var tabLabel = document.createElement("span");
+          tabLabel.textContent = county;
+          var tabCount = document.createElement("small");
+          tabCount.className = "district-county-tab-count";
+          tabCount.hidden = true;
+          tab.append(tabLabel, tabCount);
+          tab.addEventListener("click", function () { setActiveDistrictCounty(county); });
+          districtCountyTabs.appendChild(tab);
+
+          var group = document.createElement("section");
+          group.className = "district-option-group";
+          group.dataset.county = county;
+          group.id = "districtGroup" + county;
+          group.setAttribute("role", "tabpanel");
+
+          var allLabel = document.createElement("label");
+          allLabel.className = "drawer-check district-all-check";
+          allLabel.dataset.search = county + " 全區";
+          var allInput = document.createElement("input");
+          allInput.type = "checkbox";
+          allInput.name = "filterDistrict";
+          allInput.value = county + "|*";
+          allInput.dataset.label = county + "全區";
+          allInput.dataset.county = county;
+          allInput.dataset.district = "*";
+          var allText = document.createElement("span");
+          allText.textContent = county + "全區";
+          allInput.addEventListener("change", function () {
+            if (allInput.checked) {
+              group.querySelectorAll(".district-option input").forEach(function (input) { input.checked = false; });
+            }
+            syncDistrictSelection();
+          });
+          allLabel.append(allInput, allText);
+
+          var groupList = document.createElement("div");
+          groupList.className = "district-option-group-list";
+          groupList.appendChild(allLabel);
+
+          (data[county] || []).forEach(function (district) {
+            var displayLabel = county + "｜" + district;
+            var label = document.createElement("label");
+            label.className = "drawer-check district-option";
+            label.dataset.search = county + " " + district + " " + displayLabel;
+            var input = document.createElement("input");
+            input.type = "checkbox";
+            input.name = "filterDistrict";
+            input.value = county + "|" + district;
+            input.dataset.label = displayLabel;
+            input.dataset.county = county;
+            input.dataset.district = district;
+            var text = document.createElement("span");
+            text.textContent = district;
+            input.addEventListener("change", function () {
+              if (input.checked) allInput.checked = false;
+              syncDistrictSelection();
+            });
+            label.append(input, text);
+            groupList.appendChild(label);
+          });
+          group.appendChild(groupList);
+          districtChecks.appendChild(group);
+        });
+        setActiveDistrictCounty(counties[0]);
+        syncDistrictSelection();
+      }
+
+      function syncDistrictSelection() {
+        updateDistrictSummary();
+        updateDistrictCountyTabs();
       }
 
       function checkedValues(name) {
@@ -549,17 +689,26 @@
         }
         if (state.county) {
           count += 1;
-          appendFilterChip(state.county, function () {
+          appendFilterChip(selectedCountyLabel(), function () {
             filterCounty.value = "";
             renderDistricts();
           });
         }
+        var districtNameCounts = state.districts.reduce(function (counts, district) {
+          var districtName = district.split("|")[1] || district;
+          if (districtName === "*") return counts;
+          counts[districtName] = (counts[districtName] || 0) + 1;
+          return counts;
+        }, {});
         state.districts.forEach(function (district) {
           count += 1;
-          appendFilterChip(district, function () {
-            var input = document.querySelector('[name="filterDistrict"][value="' + district + '"]');
+          var districtParts = district.split("|");
+          var districtName = districtParts[1] || district;
+          var districtLabel = districtName === "*" ? districtParts[0] + "全區" : (districtNameCounts[districtName] > 1 ? districtParts[0] + "｜" + districtName : districtName);
+          appendFilterChip(districtLabel, function () {
+            var input = Array.from(document.querySelectorAll('[name="filterDistrict"]')).find(function (item) { return item.value === district; });
             if (input) input.checked = false;
-            syncDistrictAllOption();
+            syncDistrictSelection();
           });
         });
         if (state.room) {
@@ -601,8 +750,12 @@
 
       function projectMatches(card, state) {
         var keywordMatch = !state.keyword || card.dataset.name.indexOf(state.keyword) !== -1;
-        var countyMatch = !state.county || card.dataset.county === state.county;
-        var districtMatch = !state.districts.length || state.districts.indexOf(card.dataset.district) !== -1;
+        var selectedCounties = countiesForSelection(state.county);
+        var countyMatch = !state.county || selectedCounties.indexOf(card.dataset.county) !== -1;
+        var districtMatch = !state.districts.length || state.districts.some(function (district) {
+          var parts = district.split("|");
+          return parts[0] === card.dataset.county && (parts[1] === "*" || parts[1] === card.dataset.district);
+        });
         var statusMatch = state.statuses.indexOf(card.dataset.status) !== -1;
         var roomMatch = !state.room || card.dataset.rooms.indexOf(state.room) !== -1;
         var rentMatch = !state.rent || Number(card.dataset.rent) <= state.rent;
@@ -641,7 +794,7 @@
 
       function resetFilters() {
         filterForm.reset();
-        filterCounty.value = "新北市";
+        filterCounty.value = "";
         renderDistricts();
         applyFilters(false);
       }
@@ -934,6 +1087,9 @@
       filterOpenButton.addEventListener("click", openDrawer);
       filterCloseButton.addEventListener("click", closeDrawer);
       filterCounty.addEventListener("change", renderDistricts);
+      districtSelectButton.addEventListener("click", function () {
+        setDistrictDropdownOpen(districtSelectPanel.hidden);
+      });
       filterForm.addEventListener("submit", function (event) {
         event.preventDefault();
         applyFilters(true);
@@ -1001,6 +1157,9 @@
         window.location.href = "login.html?returnTo=apply.html&source=housing-map";
       });
       document.addEventListener("click", function (event) {
+        if (!districtSelectPanel.hidden && !event.target.closest("#districtMultiselect")) {
+          setDistrictDropdownOpen(false);
+        }
         if (!applicationTray.hidden && !event.target.closest("#applicationTray") && !event.target.closest("#applicationCartButton")) {
           setApplicationTrayOpen(false);
         }
@@ -1015,6 +1174,11 @@
       });
 
       document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape" && !districtSelectPanel.hidden) {
+          setDistrictDropdownOpen(false);
+          districtSelectButton.focus();
+          return;
+        }
         if (event.key === "Escape" && !applicationTray.hidden) setApplicationTrayOpen(false);
         if (event.key === "Escape" && filterDrawer.classList.contains("is-open")) closeDrawer();
       });
@@ -1023,6 +1187,12 @@
       }, { passive: true });
 
       renderDistricts();
+      var initialDistrict = districtChecks.querySelector('[name="filterDistrict"][value="新北市|*"]');
+      if (initialDistrict) {
+        initialDistrict.checked = true;
+        setActiveDistrictCounty("新北市");
+        syncDistrictSelection();
+      }
       renderActiveFilters(getFilterState());
       sortCards();
       updateApplications();

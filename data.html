@@ -86,14 +86,14 @@
 </div>
 
 <div class="lookup-agency-grid" id="lookupAgencyGrid" aria-label="查調機關與進度">
-<article class="lookup-agency-card" data-agency="household"><div class="lookup-agency-card-head"><strong>戶政司（內政部）</strong><span class="agency-lookup-state is-querying">查調中</span></div><p>家庭成員、歸戶資料</p></article>
-<article class="lookup-agency-card" data-agency="immigration"><div class="lookup-agency-card-head"><strong>移民署（內政部）</strong><span class="agency-lookup-state is-querying">查調中</span></div><p>外配居留證號</p></article>
+<article class="lookup-agency-card" data-agency="household"><div class="lookup-agency-card-head"><strong>內政部戶政司</strong><span class="agency-lookup-state is-querying">查調中</span></div><p>家庭成員、歸戶資料</p></article>
+<article class="lookup-agency-card" data-agency="immigration"><div class="lookup-agency-card-head"><strong>內政部移民署</strong><span class="agency-lookup-state is-querying">查調中</span></div><p>外配居留證號</p></article>
 <article class="lookup-agency-card" data-agency="police"><div class="lookup-agency-card-head"><strong>消防／警政署</strong><span class="agency-lookup-state is-querying">查調中</span></div><p>人員職務列等</p></article>
 <article class="lookup-agency-card" data-agency="defense"><div class="lookup-agency-card-head"><strong>國防部</strong><span class="agency-lookup-state is-querying">查調中</span></div><p>人員職務列等</p></article>
 <article class="lookup-agency-card" data-agency="labor"><div class="lookup-agency-card-head"><strong>勞動部</strong><span class="agency-lookup-state is-querying">查調中</span></div><p>被保險人資料</p></article>
 <article class="lookup-agency-card" data-agency="health"><div class="lookup-agency-card-head"><strong>衛福部</strong><span class="agency-lookup-state is-querying">查調中</span></div><p>弱勢資格</p></article>
 <article class="lookup-agency-card" data-agency="finance"><div class="lookup-agency-card-head"><strong>財政部</strong><span class="agency-lookup-state is-querying">查調中</span></div><p>所得、不動產</p></article>
-<article class="lookup-agency-card" data-agency="land"><div class="lookup-agency-card-head"><strong>地政司（內政部）</strong><span class="agency-lookup-state is-querying">查調中</span></div><p>持有建物資訊</p></article>
+<article class="lookup-agency-card" data-agency="land"><div class="lookup-agency-card-head"><strong>內政部地政司</strong><span class="agency-lookup-state is-querying">查調中</span></div><p>持有建物資訊</p></article>
 <article class="lookup-agency-card" data-agency="tdcc"><div class="lookup-agency-card-head"><strong>集保所</strong><span class="agency-lookup-state is-querying">查調中</span></div><p>有價證券</p></article>
 <article class="lookup-agency-card" data-agency="subsidy"><div class="lookup-agency-card-head"><strong>各類補貼系統</strong><span class="agency-lookup-state is-querying">查調中</span></div><p>申請人及家庭成員有無接受住宅補貼</p></article>
 </div>
@@ -121,9 +121,27 @@
 <div><span>婚姻狀況</span><strong>有配偶</strong></div>
 <div><span>結婚登記日期</span><strong>2017-06-18</strong></div>
 <div><span>戶口名簿戶號</span><strong>B1234567</strong></div>
-<div><span>是否設籍</span><strong>是</strong></div>
-<div class="profile-address"><span>戶籍地址</span><strong>407 臺中市西屯區○○街○巷○號</strong></div>
-<div><span>設籍日期</span><strong>2019-08-15</strong></div>
+<!-- <div><span>是否設籍</span><strong>是</strong></div> -->
+ <div class="lookup-address-date"><span>設籍日期</span><strong>2019-08-15</strong></div>
+</div>
+<div class="lookup-address-stack">
+<div class="lookup-address-row lookup-registered-address">
+<div><span>戶籍地址</span><strong>241 新北市三重區○○街○巷○號</strong></div>
+<!-- <div class="lookup-address-date"><span>設籍日期</span><strong>2019-08-15</strong></div> -->
+</div>
+<div class="lookup-address-row lookup-mailing-address">
+<label class="lookup-address-label" for="mailingCounty">通訊地址 <span class="required">*</span></label>
+<div class="mailing-address-control">
+<div class="mailing-address-fields" id="mailingAddressFields">
+<label class="mailing-address-check"><input id="sameAsRegisteredAddress" type="checkbox" checked/>同戶籍地址</label>
+<output class="mailing-postal-code" id="mailingPostalCode" aria-label="通訊地址郵遞區號">241</output>
+<select id="mailingCounty" aria-label="通訊地址縣市" required disabled><option value="新北市" selected>新北市</option></select>
+<select id="mailingDistrict" aria-label="通訊地址行政區" required disabled><option value="三重區" selected>三重區</option></select>
+<input id="mailingAddressDetail" type="text" value="○○街○巷○號" aria-label="通訊地址詳細地址" required disabled/>
+<input id="mailingAddress" name="mailingAddress" type="hidden" value="241 新北市三重區○○街○巷○號"/>
+</div>
+</div>
+</div>
 </div>
 <div class="contact-notification-note" role="note"><span aria-hidden="true">i</span><p>系統將使用您提供的手機與電子信箱發送補件、審查結果及申請進度通知。請確認資料正確。</p></div>
 <div class="simple-grid">
@@ -145,46 +163,31 @@
 </div>
 <p class="contact-verification-help" id="contactEmailVerificationMessage" aria-live="polite">電子信箱需完成驗證。</p>
 </div>
-<div class="simple-field full">
-<label for="mailingCounty">通訊地址 <span class="required">*</span></label>
-<div class="mailing-address-control">
-<label class="mailing-address-check"><input id="sameAsRegisteredAddress" type="checkbox" checked/>同戶籍地址</label>
-<div class="mailing-address-fields" id="mailingAddressFields">
-<output class="mailing-postal-code" id="mailingPostalCode" aria-label="通訊地址郵遞區號">407</output>
-<select id="mailingCounty" aria-label="通訊地址縣市" required disabled><option value="臺中市" selected>臺中市</option></select>
-<select id="mailingDistrict" aria-label="通訊地址行政區" required disabled><option value="西屯區" selected>西屯區</option></select>
-<input id="mailingAddressDetail" type="text" value="○○街○巷○號" aria-label="通訊地址詳細地址" required disabled/>
-<input id="mailingAddress" name="mailingAddress" type="hidden" value="407 臺中市西屯區○○街○巷○號"/>
 </div>
-</div>
-</div>
-</div>
-<div class="supplement-box">
-<h3>申請人身分類型</h3>
+<div class="applicant-qualification-form">
+<h3>申請人身分</h3>
 <div class="applicant-role-groups">
-<fieldset class="applicant-role-group local-role-group">
-<legend><strong>設籍／就業就學資格</strong><span>以下擇一填寫</span></legend>
-<div class="applicant-role-options">
-<label><input class="special-role" name="localQualification" type="radio" value="設籍於本市" required/> <span>設籍於本市</span></label>
-<label><input class="special-role" name="localQualification" type="radio" value="設籍於本市且為本市勞工"/> <span>設籍於本市且為本市勞工</span></label>
-<label><input class="special-role" name="localQualification" type="radio" value="於本市就業但未設籍"/> <span>於本市就業但未設籍</span></label>
-<label><input class="special-role" name="localQualification" type="radio" value="於本市就學但未設籍"/> <span>於本市就學但未設籍</span></label>
+<fieldset class="applicant-role-group local-role-group" aria-label="設籍、就業及就學資格">
+<div class="city-qualification-list">
+<div class="city-qualification-row">
+<div class="city-qualification-heading"><strong>新北市</strong><span class="qualification-status is-registered">已設籍</span></div>
+<div class="city-qualification-options"><label><input class="special-role" name="newTaipeiWorker" type="checkbox" value="設籍於本市且為本市勞工"/> <span>設籍新北市且為新北市勞工</span></label></div>
+</div>
+<div class="city-qualification-row">
+<div class="city-qualification-heading"><strong>臺北市</strong><span class="qualification-status is-unregistered">未設籍</span></div>
+<div class="city-qualification-choice" role="group" aria-label="臺北市就業或就學資格">
+<div class="city-qualification-options">
+<label><input class="special-role" name="taipeiQualification" type="radio" value="於本市就業但未設籍" required checked> <span>於台北市就業</span></label>
+<label><input class="special-role" name="taipeiQualification" type="radio" value="於本市就學但未設籍"/> <span>於台北市就學</span></label>
+</div>
+</div>
+</div>
 </div>
 </fieldset>
-<fieldset class="applicant-role-group service-role-group">
-<legend><strong>警消／軍職資格</strong><span>以下擇一填寫</span></legend>
+<fieldset class="applicant-role-group service-role-group" aria-label="警消或軍職資格">
 <div class="applicant-role-options">
-<label><input class="special-role" name="serviceQualification" type="radio" value="警消" required/> <span>現任職務為最高職務列等在警正四階（含）以下之警察人員及消防人員</span></label>
-<label><input class="special-role" name="serviceQualification" type="radio" value="軍職"/> <span>現任職務為最高職務列等在國防部少校階（含士官）之軍職人員、文職薦任六職等以下、聘僱或相當該職務列等以下之人員</span></label>
-</div>
-</fieldset>
-</div>
-</div>
-
-<section class="application-identity-supplement" id="applicationIdentitySupplement" aria-labelledby="applicationIdentitySupplementTitle" hidden>
-<div class="application-identity-head">
-<div><h3 id="applicationIdentitySupplementTitle">依申請身分補充資料</h3><p>已依您在「申請社宅」選擇的身分帶入，請完成下列必填資料。</p></div>
-<span id="applicationIdentitySummary"></span>
+<label><input class="special-role service-qualification" name="serviceQualification" type="checkbox" value="警消"/> <span>現任職務為最高職務列等在警正四階（含）以下之警察人員及消防人員</span></label>
+<label><input class="special-role service-qualification" name="serviceQualification" type="checkbox" value="軍職"/> <span>現任職務為最高職務列等在國防部少校階（含士官）之軍職人員、文職薦任六職等以下、聘僱或相當該職務列等以下之人員</span></label>
 </div>
 <div class="application-service-fields" id="applicationServiceFields" hidden>
 <label class="application-service-field"><span>服務單位全銜 <b>*</b></span><input id="applicationServiceUnit" name="applicationServiceUnit" type="text" autocomplete="organization" placeholder="例如：○○市政府警察局○○分局" disabled/></label>
@@ -194,7 +197,9 @@
 <label class="application-service-field" id="applicationMilitaryRankField" hidden><span id="applicationMilitaryRankLabel">級職／職等 <b>*</b></span><select id="applicationMilitaryRank" name="applicationMilitaryRank" disabled></select></label>
 <label class="application-service-field" id="applicationMilitaryContractField" hidden><span>約聘雇級職／職等 <b>*</b></span><input id="applicationMilitaryContractRank" name="applicationMilitaryContractRank" type="text" placeholder="請填寫約聘或約僱職等" disabled/></label>
 </div>
-</section>
+</fieldset>
+</div>
+</div>
 </div>
 </section>
 
@@ -383,7 +388,7 @@
 
 <section class="simple-section">
 <div class="simple-section-head">
-<div><h2>4. 我的檢附文件</h2><p>查調取得的文件已自動附加；畫面中出現的上傳項目皆為必填。</p></div>
+<div><h2>4. 我的檢附文件</h2><p>查調取得的文件已自動附加；Demo 模式可略過文件上傳直接繼續。</p></div>
 <span class="badge">自動附加 4 份</span>
 </div>
 <div class="simple-section-body">
@@ -393,12 +398,13 @@
 <div class="document-row"><div><strong>配偶所得資料清單</strong><small>配偶或共同居住家庭成員之所得資料，作為家戶所得計算依據。</small></div><a class="document-file locked download-document" href="#" data-file-name="E234567789_財稅查調_所得資料清單.pdf">E234567789_財稅查調_所得資料清單.pdf</a><div class="document-action"><span class="badge success">查調取得／鎖定</span></div></div>
 <div class="document-row"><div><strong>全國財產稅總歸戶清單</strong><small>本人及家庭成員財產歸戶資料，系統帶入不可刪除。</small></div><a class="document-file locked download-document" href="#" data-file-name="N123456789_財稅查調_財產歸戶清單.pdf">N123456789_財稅查調_財產歸戶清單.pdf</a><div class="document-action"><span class="badge success">查調取得／鎖定</span></div></div>
 <div class="document-row upload-document-row application-role-document" id="applicationMarriageDocumentRow" hidden><div><strong>婚育戶</strong><small>應檢附申請人距申請日前 1 個月內含詳細記事之全戶戶籍謄本；育有學齡前子女為胎兒者，應檢附診斷證明書，或孕婦健康手冊簽名頁及產檢內頁。</small></div><div class="pretty-upload"><input id="applicationMarriageDocument" type="file" accept=".pdf,.jpg,.jpeg,.png" disabled/><label class="pretty-upload-button" for="applicationMarriageDocument">＋ 選擇檔案</label><span class="pretty-upload-name" data-file-name-for="applicationMarriageDocument">尚未選擇檔案</span></div></div>
-<div class="document-row upload-document-row application-role-document" id="applicationPoliceDocumentRow" hidden><div><strong>警消戶身分證明</strong><small>應檢附警察、消防人員之身分證明證件，及距申請日前 1 個月可辨認最高職務列等與現任職等之證明文件。</small></div><div class="pretty-upload"><input id="applicationPoliceDocument" type="file" accept=".pdf,.jpg,.jpeg,.png" disabled/><label class="pretty-upload-button" for="applicationPoliceDocument">＋ 選擇檔案</label><span class="pretty-upload-name" data-file-name-for="applicationPoliceDocument">尚未選擇檔案</span></div></div>
-<div class="document-row upload-document-row application-role-document" id="applicationMilitaryDocumentRow" hidden><div><strong>軍職戶身分證明</strong><small>應檢附軍人身分證、國軍聘雇人員服務證或國防部公務人員服務證等可辨認職等之文件；服務單位無法辨識為國防部者，另附在職證明。</small></div><div class="pretty-upload"><input id="applicationMilitaryDocument" type="file" accept=".pdf,.jpg,.jpeg,.png" disabled/><label class="pretty-upload-button" for="applicationMilitaryDocument">＋ 選擇檔案</label><span class="pretty-upload-name" data-file-name-for="applicationMilitaryDocument">尚未選擇檔案</span></div></div>
+<div class="document-row upload-document-row application-role-document" id="applicationPoliceDocumentRow" hidden><div><strong>申請人現任職務為警察人員、消防人員或相當職務人員</strong><small>應檢附警察、消防人員之身分證明證件及距申請日前 1 個月可資辨認最高職務列等及現任職等之證明文件。</small></div><div class="pretty-upload"><input id="applicationPoliceDocument" type="file" accept=".pdf,.jpg,.jpeg,.png" disabled/><label class="pretty-upload-button" for="applicationPoliceDocument">＋ 選擇檔案</label><span class="pretty-upload-name" data-file-name-for="applicationPoliceDocument">尚未選擇檔案</span></div></div>
+<div class="document-row upload-document-row application-role-document" id="applicationMilitaryDocumentRow" hidden><div><strong>申請人現任職務為軍職人員或相當職務人員</strong><small>應檢附中華民國軍人身分證、國軍聘雇人員服務證或國防部公務人員服務證等可資辨認最高職務列等及現任職等之證明文件。如服務單位不可辨識為國防部者，應檢附足資辨識之在職證明。</small></div><div class="pretty-upload"><input id="applicationMilitaryDocument" type="file" accept=".pdf,.jpg,.jpeg,.png" disabled/><label class="pretty-upload-button" for="applicationMilitaryDocument">＋ 選擇檔案</label><span class="pretty-upload-name" data-file-name-for="applicationMilitaryDocument">尚未選擇檔案</span></div></div>
 <div id="identityDocumentAnchor" hidden></div>
 <div class="document-row upload-document-row" id="employmentDocumentRow" hidden><div><strong>就業證明</strong><small>具本市就業有居住需求者，應檢附資格證明文件。</small></div><div class="pretty-upload"><input id="employmentDocument" type="file" accept=".pdf,.jpg,.jpeg,.png"/><label class="pretty-upload-button" for="employmentDocument">＋ 選擇檔案</label><span class="pretty-upload-name" data-file-name-for="employmentDocument">尚未選擇檔案</span></div></div>
 <div class="document-row upload-document-row" id="schoolDocumentRow" hidden><div><strong>就學證明</strong><small>具本市就學有居住需求者，應檢附資格證明文件。</small></div><div class="pretty-upload"><input id="schoolDocument" type="file" accept=".pdf,.jpg,.jpeg,.png"/><label class="pretty-upload-button" for="schoolDocument">＋ 選擇檔案</label><span class="pretty-upload-name" data-file-name-for="schoolDocument">尚未選擇檔案</span></div></div>
 <div class="document-row upload-document-row" id="fetusDocumentRow"><div><strong>懷孕證明文件</strong><small>已填寫懷孕胎兒數時，可補充診斷證明或孕婦健康手冊等佐證。</small></div><div class="pretty-upload"><input id="fetusDocument" type="file" accept=".pdf,.jpg,.jpeg,.png"/><label class="pretty-upload-button" for="fetusDocument">＋ 選擇檔案</label><span class="pretty-upload-name" data-file-name-for="fetusDocument">尚未選擇檔案</span></div></div>
+<div class="document-row upload-document-row" id="propertyExemptLandDocumentRow" hidden><div><strong>原住民保留地或道路用地</strong><small>原住民保留地及道路用地之土地價值得不計入不動產價值總額計算，如有請檢附該財產可資證明之土地謄本。</small></div><div class="pretty-upload"><input id="propertyExemptLandDocument" type="file" accept=".pdf,.jpg,.jpeg,.png" disabled/><label class="pretty-upload-button" for="propertyExemptLandDocument">＋ 選擇檔案</label><span class="pretty-upload-name" data-file-name-for="propertyExemptLandDocument">尚未選擇檔案</span></div></div>
 </div>
 </div>
 </section>
@@ -492,10 +498,10 @@
 <label>戶籍地址 <span class="required">*</span><span class="source lock">查調取得</span></label>
 <div class="address-row">
 <select disabled="">
-<option selected="">臺中市</option>
+<option selected="">新北市</option>
 </select>
 <select disabled="">
-<option selected="">西屯區</option>
+<option selected="">三重區</option>
 </select>
 <input readonly="" type="text" value="○○街○巷○號"/>
 </div>
@@ -511,7 +517,7 @@
 </div>
 <div class="field span-4">
 <label>通訊地址 <span class="required">*</span><span class="source self">民眾填寫</span></label>
-<input type="text" value="臺中市西屯區○○路○段○號"/>
+<input type="text" value="新北市三重區○○路○段○號"/>
 </div>
 <div class="field span-12">
 <label>身分</label>
@@ -984,6 +990,9 @@
     const identityOptionList = document.getElementById('identityOptionList');
     const saveIdentityNotes = document.getElementById('saveIdentityNotes');
     const identityDocumentAnchor = document.getElementById('identityDocumentAnchor');
+    const propertyContainsExemptLand = document.getElementById('propertyContainsExemptLand');
+    const propertyExemptLandDocumentRow = document.getElementById('propertyExemptLandDocumentRow');
+    const propertyExemptLandDocument = document.getElementById('propertyExemptLandDocument');
     const simpleFormError = document.getElementById('simpleFormError');
     const refreshLookup = document.getElementById('refreshLookup');
     const restartLookup = document.getElementById('restartLookup');
@@ -997,8 +1006,6 @@
     const mailingCounty = document.getElementById('mailingCounty');
     const mailingDistrict = document.getElementById('mailingDistrict');
     const mailingAddressDetail = document.getElementById('mailingAddressDetail');
-    const applicationIdentitySupplement = document.getElementById('applicationIdentitySupplement');
-    const applicationIdentitySummary = document.getElementById('applicationIdentitySummary');
     const applicationServiceFields = document.getElementById('applicationServiceFields');
     const applicationServiceUnit = document.getElementById('applicationServiceUnit');
     const applicationJobTitle = document.getElementById('applicationJobTitle');
@@ -1015,6 +1022,10 @@
       '軍職':['少校','上尉','中尉','少尉','一等士官長','二等士官長','三等士官長','上士','中士','下士','上等兵','一等兵','二等兵'],
       '文職':['薦任六職等','委任五職等','委任四職等','委任三職等','委任二職等','委任一職等']
     };
+    const demoServiceDefaults = {
+      police:{serviceUnit:'新北市政府警察局三重分局',jobTitle:'警員',rank:'警佐一階'},
+      military:{serviceUnit:'國防部陸軍司令部',jobTitle:'連長',positionType:'軍職',rank:'少校'}
+    };
     const selectedApplicationIdentities = new Set(window.HousingApplicationIdentityState.load());
 
     function setApplicationControlState(control,active){
@@ -1022,8 +1033,15 @@
       control.required = active;
     }
 
+    function getServiceQualificationState(){
+      return {
+        policeSelected:Boolean(document.querySelector('.service-qualification[value="警消"]')?.checked),
+        militarySelected:Boolean(document.querySelector('.service-qualification[value="軍職"]')?.checked)
+      };
+    }
+
     function syncApplicationMilitaryRank(){
-      const militarySelected = selectedApplicationIdentities.has('軍職戶');
+      const {militarySelected} = getServiceQualificationState();
       const positionType = applicationMilitaryType.value;
       const usesRankSelect = militarySelected && Boolean(applicationMilitaryRankOptions[positionType]);
       const usesContractInput = militarySelected && positionType === '約聘雇';
@@ -1041,12 +1059,12 @@
       applicationMilitaryRankLabel.innerHTML = positionType === '軍職' ? '軍職職等 <b>*</b>' : '文職職等 <b>*</b>';
     }
 
-    function setApplicationRoleDocument(identity,rowId,inputId){
-      const visible = selectedApplicationIdentities.has(identity);
+    function setApplicationRoleDocument(rowId,inputId,visible){
       const row = document.getElementById(rowId);
       const input = document.getElementById(inputId);
       row.hidden = !visible;
-      setApplicationControlState(input,visible);
+      input.disabled = !visible;
+      input.required = false;
       if(!visible){
         input.value = '';
         const fileName = document.querySelector(`[data-file-name-for="${inputId}"]`);
@@ -1054,13 +1072,36 @@
       }
     }
 
-    function initializeApplicationIdentityFields(){
-      const supportedIdentities = ['婚育戶','警消戶','軍職戶'].filter(identity => selectedApplicationIdentities.has(identity));
-      const policeSelected = selectedApplicationIdentities.has('警消戶');
-      const militarySelected = selectedApplicationIdentities.has('軍職戶');
+    function applyDemoServiceDefaults(serviceMode){
+      const previousMode = applicationServiceFields.dataset.demoServiceMode || '';
+      if(previousMode === serviceMode) return false;
+      applicationServiceFields.dataset.demoServiceMode = serviceMode;
+      if(!serviceMode){
+        applicationServiceUnit.value = '';
+        applicationJobTitle.value = '';
+        applicationPoliceRank.value = '';
+        applicationMilitaryType.value = '';
+        applicationMilitaryRank.replaceChildren();
+        applicationMilitaryContractRank.value = '';
+        return true;
+      }
+      const defaults = demoServiceDefaults[serviceMode];
+      applicationServiceUnit.value = defaults.serviceUnit;
+      applicationJobTitle.value = defaults.jobTitle;
+      if(serviceMode === 'police'){
+        applicationPoliceRank.value = defaults.rank;
+        applicationMilitaryType.value = '';
+      }else{
+        applicationMilitaryType.value = defaults.positionType;
+        applicationPoliceRank.value = '';
+      }
+      return true;
+    }
+
+    function syncApplicationIdentityFields(){
+      const {policeSelected,militarySelected} = getServiceQualificationState();
       const needsServiceFields = policeSelected || militarySelected;
-      applicationIdentitySupplement.hidden = supportedIdentities.length === 0;
-      applicationIdentitySummary.textContent = supportedIdentities.join('、');
+      const serviceMode = policeSelected ? 'police' : militarySelected ? 'military' : '';
       applicationServiceFields.hidden = !needsServiceFields;
       setApplicationControlState(applicationServiceUnit,needsServiceFields);
       setApplicationControlState(applicationJobTitle,needsServiceFields);
@@ -1068,14 +1109,27 @@
       setApplicationControlState(applicationPoliceRank,policeSelected);
       applicationMilitaryTypeField.hidden = !militarySelected;
       setApplicationControlState(applicationMilitaryType,militarySelected);
+      const defaultsChanged = applyDemoServiceDefaults(serviceMode);
       syncApplicationMilitaryRank();
-      setApplicationRoleDocument('婚育戶','applicationMarriageDocumentRow','applicationMarriageDocument');
-      setApplicationRoleDocument('警消戶','applicationPoliceDocumentRow','applicationPoliceDocument');
-      setApplicationRoleDocument('軍職戶','applicationMilitaryDocumentRow','applicationMilitaryDocument');
+      if(defaultsChanged && militarySelected) applicationMilitaryRank.value = demoServiceDefaults.military.rank;
+      setApplicationRoleDocument('applicationMarriageDocumentRow','applicationMarriageDocument',selectedApplicationIdentities.has('婚育戶'));
+      setApplicationRoleDocument('applicationPoliceDocumentRow','applicationPoliceDocument',policeSelected);
+      setApplicationRoleDocument('applicationMilitaryDocumentRow','applicationMilitaryDocument',militarySelected);
+      if(!policeSelected) applicationPoliceRank.value = '';
+      if(!militarySelected){
+        applicationMilitaryType.value = '';
+        applicationMilitaryRank.replaceChildren();
+        applicationMilitaryContractRank.value = '';
+      }
+    }
+
+    function initializeApplicationIdentityFields(){
       const policeRoleCheckbox = document.querySelector('.special-role[value="警消"]');
       const militaryRoleCheckbox = document.querySelector('.special-role[value="軍職"]');
-      if(policeRoleCheckbox) policeRoleCheckbox.checked = policeSelected;
-      if(militaryRoleCheckbox) militaryRoleCheckbox.checked = militarySelected;
+      if(policeRoleCheckbox) policeRoleCheckbox.checked = selectedApplicationIdentities.has('警消戶');
+      if(militaryRoleCheckbox) militaryRoleCheckbox.checked = selectedApplicationIdentities.has('軍職戶');
+      if(policeRoleCheckbox?.checked && militaryRoleCheckbox?.checked) militaryRoleCheckbox.checked = false;
+      syncApplicationIdentityFields();
     }
 
     applicationMilitaryType?.addEventListener('change',syncApplicationMilitaryRank);
@@ -1212,8 +1266,8 @@
     let activeIdentityRow = null;
     let activeIdentityTrigger = null;
 
-    const registeredMailingAddress = {postalCode:'407',county:'臺中市',district:'西屯區',detail:'○○街○巷○號'};
-    let manualMailingAddress = {postalCode:'407',county:'臺中市',district:'西屯區',detail:'○○路○段○號'};
+    const registeredMailingAddress = {postalCode:'241',county:'新北市',district:'三重區',detail:'○○街○巷○號'};
+    let manualMailingAddress = {postalCode:'241',county:'新北市',district:'三重區',detail:'○○路○段○號'};
 
     function renderMailingCounties(selectedCounty){
       mailingCounty.replaceChildren(...Object.keys(mailingAddressData).map(county => new Option(county,county,false,county === selectedCounty)));
@@ -1251,8 +1305,8 @@
       if(!useRegisteredAddress) mailingAddressDetail.focus();
     }
 
-    renderMailingCounties('臺中市');
-    renderMailingDistricts('臺中市','西屯區');
+    renderMailingCounties('新北市');
+    renderMailingDistricts('新北市','三重區');
     mailingCounty?.addEventListener('change',() => {
       renderMailingDistricts(mailingCounty.value,'');
       updateMailingAddressValue();
@@ -1455,9 +1509,9 @@
         trigger.className = 'identity-note-trigger';
         trigger.type = 'button';
         trigger.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4l11-11a2.8 2.8 0 0 0-4-4L4 16v4Z"/><path d="m13.5 6.5 4 4"/></svg>';
-        trigger.title = '補充備註';
-        trigger.setAttribute('aria-label',`${memberName}：補充身分或社福識別備註`);
-        wrapper.append(trigger);
+        trigger.title = '編輯身分／社福識別';
+        trigger.setAttribute('aria-label',`${memberName}：編輯身分／社福識別`);
+        wrapper.prepend(trigger);
       });
     }
 
@@ -1777,6 +1831,21 @@
     updateRealEstateSummary();
     updateMovableAssetSummary();
 
+    function syncPropertyExemptLandDocument(){
+      const visible = Boolean(propertyContainsExemptLand?.checked);
+      if(!propertyExemptLandDocumentRow || !propertyExemptLandDocument) return;
+      propertyExemptLandDocumentRow.hidden = !visible;
+      propertyExemptLandDocument.disabled = !visible;
+      propertyExemptLandDocument.required = false;
+      if(!visible){
+        propertyExemptLandDocument.value = '';
+        const fileName = document.querySelector('[data-file-name-for="propertyExemptLandDocument"]');
+        if(fileName) fileName.textContent = '尚未選擇檔案';
+      }
+    }
+    propertyContainsExemptLand?.addEventListener('change',syncPropertyExemptLandDocument);
+    syncPropertyExemptLandDocument();
+
     document.querySelectorAll('.download-document').forEach(link => {
       link.addEventListener('click',event => {
         event.preventDefault();
@@ -1792,6 +1861,7 @@
     });
 
     const specialRoleInputs = [...document.querySelectorAll('.special-role')];
+    const serviceQualificationInputs = [...document.querySelectorAll('.service-qualification')];
     function setRoleDocument(rowId,inputId,visible){
       const row = document.getElementById(rowId);
       const input = document.getElementById(inputId);
@@ -1810,8 +1880,26 @@
       setRoleDocument('employmentDocumentRow','employmentDocument',needsEmploymentDocument);
       setRoleDocument('schoolDocumentRow','schoolDocument',selectedRoles.has('於本市就學但未設籍'));
     }
-    specialRoleInputs.forEach(input => input.addEventListener('change',updateSpecialRoleDocuments));
+    function enforceSingleServiceQualification(changedInput){
+      if(!changedInput.matches('.service-qualification') || !changedInput.checked) return;
+      serviceQualificationInputs.forEach(input => {
+        if(input !== changedInput) input.checked = false;
+      });
+    }
+    specialRoleInputs.forEach(input => input.addEventListener('change',() => {
+      enforceSingleServiceQualification(input);
+      updateSpecialRoleDocuments();
+      syncApplicationIdentityFields();
+    }));
     updateSpecialRoleDocuments();
+
+    function disableDemoUploadValidation(){
+      registrationDataForm?.querySelectorAll('input[type="file"]').forEach(input => {
+        input.required = false;
+        input.setCustomValidity('');
+      });
+    }
+    disableDemoUploadValidation();
 
     const simpleNextStepButton = document.getElementById('simpleNextStep');
     if(accountEditMode){
@@ -1820,6 +1908,7 @@
     }
 
     simpleNextStepButton?.addEventListener('click',() => {
+      disableDemoUploadValidation();
       registrationDataForm.classList.add('was-validated');
       if(!registrationDataForm.checkValidity()){
         simpleFormError.classList.add('show');
