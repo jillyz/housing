@@ -148,7 +148,7 @@
 <div class="simple-field contact-verification-field">
 <div class="contact-field-label"><label for="contactPhone">聯絡手機 <span class="required">*</span><span class="source self">請填寫</span></label></div>
 <div class="verified-input-control">
-<input class="is-contact-verified" id="contactPhone" name="contactPhone" type="tel" value="0912-345-678" required/>
+<input class="is-contact-verified" id="contactPhone" name="contactPhone" type="tel" value="0912345678" required/>
 <span class="verified-check-icon" role="img" aria-label="聯絡手機已驗證"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6.5 12.5 3.4 3.4 7.6-8"/></svg></span>
 </div>
 </div>
@@ -213,21 +213,23 @@
 </div>
 <div class="simple-section-body">
 <div class="family-intro">
-<p>家庭成員資料由戶政及財稅資料帶入。姓名、出生年月日、身分證字號與所得不可修改；懷孕胎兒數可依現況填寫，家庭人口將同步計算。</p>
+<p>家庭成員資料由戶政及財稅資料帶入。姓名、出生年月日、身分證字號與所得不可修改；手機號碼、懷孕胎兒數及居住狀態可依現況填寫，家庭人口將同步計算。</p>
 </div>
 <div class="table-wrap family-table-wrap">
 <table class="family-table">
-<colgroup><col class="family-col-relation"/><col class="family-col-name"/><col class="family-col-birth"/><col class="family-col-id"/><col class="family-col-income"/><col class="family-col-fetus"/><col class="family-col-residence"/><col class="family-col-identity"/><col class="family-col-action"/></colgroup>
-<thead><tr><th>關係</th><th>姓名</th><th>出生年月日</th><th>身分證字號</th><th>最近一年所得</th><th>懷孕胎兒數</th><th>同戶籍／同住</th><th>身分／社福識別</th><th>操作</th></tr></thead>
+<colgroup><col class="family-col-relation"/><col class="family-col-name"/><col class="family-col-birth"/><col class="family-col-id"/><col class="family-col-phone"/><col class="family-col-income"/><col class="family-col-fetus"/><col class="family-col-household"/><col class="family-col-cohabiting"/><col class="family-col-identity"/><col class="family-col-action"/></colgroup>
+<thead><tr><th>關係</th><th>姓名</th><th>出生年月日</th><th>身分證字號</th><th>手機號碼</th><th>最近一年所得</th><th>胎兒數</th><th class="family-check-heading">同戶籍</th><th class="family-check-heading">同住</th><th>身分／社福識別</th><th>操作</th></tr></thead>
 <tbody id="familyTableBody">
 <tr data-applicant="true" data-lookup-identities="原住民">
 <td data-label="關係"><span class="member-relation-text">本人</span><input name="memberRelation[]" type="hidden" value="本人"/></td>
 <td data-label="姓名"><span class="plain-cell-text">陳ＯＯ</span><input class="member-name" name="memberName[]" type="hidden" value="陳ＯＯ"/></td>
 <td data-label="出生年月日"><time class="plain-cell-text" datetime="1988-05-12">1988/05/12</time><input class="member-birth" name="memberBirth[]" type="hidden" value="1988-05-12"/></td>
 <td data-label="身分證字號"><span class="plain-cell-text">N123456789</span><input class="member-id" name="memberId[]" type="hidden" value="N123456789"/></td>
+<td data-label="手機號碼"><span class="plain-cell-text member-phone-display">0912345678</span><input class="member-phone" name="memberPhone[]" type="hidden" value="0912-345-678"/></td>
 <td data-label="最近一年所得"><span class="plain-cell-text">720,000 元</span><input class="member-income" name="memberIncome[]" type="hidden" value="720000"/></td>
 <td data-label="懷孕胎兒數"><span class="plain-cell-text">—</span><input class="member-fetus" name="memberFetus[]" type="hidden" value="0"/></td>
-<td data-label="同戶籍／同住"><div class="readonly-status-list"><span class="readonly-status is-yes">同戶籍</span><span class="readonly-status is-yes">同住</span></div></td>
+<td data-label="同戶籍"><span class="readonly-status is-yes">是</span></td>
+<td data-label="同住"><span class="readonly-status is-yes">是</span></td>
 <td data-label="身分／社福識別"><div class="identity-tags member-identities"><span class="identity-tag system-identity">原住民</span></div></td>
 <td class="locked-row-action" aria-hidden="true"></td>
 </tr>
@@ -236,9 +238,11 @@
 <td data-label="姓名"><span class="plain-cell-text">王ＯＯ</span><input class="member-name" name="memberName[]" type="hidden" value="王ＯＯ"/></td>
 <td data-label="出生年月日"><time class="plain-cell-text" datetime="1990-11-18">1990/11/18</time><input class="member-birth" name="memberBirth[]" type="hidden" value="1990-11-18"/></td>
 <td data-label="身分證字號"><span class="plain-cell-text">E234567789</span><input class="member-id" name="memberId[]" type="hidden" value="E234567789"/></td>
+<td data-label="手機號碼"><input class="member-phone" name="memberPhone[]" type="tel" inputmode="tel" value="0922345678" aria-label="王ＯＯ手機號碼"/></td>
 <td data-label="最近一年所得"><span class="plain-cell-text">600,000 元</span><input class="member-income" name="memberIncome[]" type="hidden" value="600000"/></td>
 <td data-label="懷孕胎兒數"><input class="member-fetus" name="memberFetus[]" type="number" min="0" step="1" inputmode="numeric" value="1" aria-label="王ＯＯ懷孕胎兒數"/></td>
-<td data-label="同戶籍／同住"><div class="family-residence-options"><label><input class="member-same-household" name="memberSameHousehold[]" type="checkbox" checked/>同戶籍</label><label><input class="member-cohabiting" name="memberCohabiting[]" type="checkbox" checked/>同住</label></div></td>
+<td data-label="同戶籍"><label class="family-residence-checkbox"><input class="member-same-household" name="memberSameHousehold[]" type="checkbox" checked/><span class="visually-hidden">王ＯＯ同戶籍</span></label></td>
+<td data-label="同住"><label class="family-residence-checkbox"><input class="member-cohabiting" name="memberCohabiting[]" type="checkbox" checked/><span class="visually-hidden">王ＯＯ同住</span></label></td>
 <td data-label="身分／社福識別"><div class="identity-tags member-identities"><span class="identity-tag neutral">一般身分</span></div></td>
 <td class="locked-row-action" aria-hidden="true"></td>
 </tr>
@@ -247,9 +251,11 @@
 <td data-label="姓名"><span class="plain-cell-text">陳ＯＯ</span><input class="member-name" name="memberName[]" type="hidden" value="陳ＯＯ"/></td>
 <td data-label="出生年月日"><time class="plain-cell-text" datetime="2012-04-23">2012/04/23</time><input class="member-birth" name="memberBirth[]" type="hidden" value="2012-04-23"/></td>
 <td data-label="身分證字號"><span class="plain-cell-text">N223456722</span><input class="member-id" name="memberId[]" type="hidden" value="N223456722"/></td>
+<td data-label="手機號碼"><input class="member-phone" name="memberPhone[]" type="tel" inputmode="tel" placeholder="未提供" aria-label="陳ＯＯ手機號碼"/></td>
 <td data-label="最近一年所得"><span class="plain-cell-text">0 元</span><input class="member-income" name="memberIncome[]" type="hidden" value="0"/></td>
 <td data-label="懷孕胎兒數"><input class="member-fetus" name="memberFetus[]" type="number" min="0" step="1" inputmode="numeric" value="0" aria-label="陳ＯＯ懷孕胎兒數"/></td>
-<td data-label="同戶籍／同住"><div class="family-residence-options"><label><input class="member-same-household" name="memberSameHousehold[]" type="checkbox" checked/>同戶籍</label><label><input class="member-cohabiting" name="memberCohabiting[]" type="checkbox" checked/>同住</label></div></td>
+<td data-label="同戶籍"><label class="family-residence-checkbox"><input class="member-same-household" name="memberSameHousehold[]" type="checkbox" checked/><span class="visually-hidden">陳ＯＯ同戶籍</span></label></td>
+<td data-label="同住"><label class="family-residence-checkbox"><input class="member-cohabiting" name="memberCohabiting[]" type="checkbox" checked/><span class="visually-hidden">陳ＯＯ同住</span></label></td>
 <td data-label="身分／社福識別"><div class="identity-tags member-identities"><span class="identity-tag neutral">一般身分</span></div></td>
 <td data-label="操作"><button class="row-delete-button family-delete-button" type="button" aria-label="刪除家庭成員陳ＯＯ" title="刪除家庭成員"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M9 7V4h6v3M7 7l1 13h8l1-13M10 11v5M14 11v5"/></svg></button></td>
 </tr>
@@ -258,9 +264,11 @@
 <td data-label="姓名"><span class="plain-cell-text">林ＯＯ</span><input class="member-name" name="memberName[]" type="hidden" value="林ＯＯ"/></td>
 <td data-label="出生年月日"><time class="plain-cell-text" datetime="1958-02-08">1958/02/08</time><input class="member-birth" name="memberBirth[]" type="hidden" value="1958-02-08"/></td>
 <td data-label="身分證字號"><span class="plain-cell-text">B223456780</span><input class="member-id" name="memberId[]" type="hidden" value="B223456780"/></td>
+<td data-label="手機號碼"><input class="member-phone" name="memberPhone[]" type="tel" inputmode="tel" value="0933456780" aria-label="林ＯＯ手機號碼"/></td>
 <td data-label="最近一年所得"><span class="plain-cell-text">180,000 元</span><input class="member-income" name="memberIncome[]" type="hidden" value="180000"/></td>
 <td data-label="懷孕胎兒數"><input class="member-fetus" name="memberFetus[]" type="number" min="0" step="1" inputmode="numeric" value="0" aria-label="林ＯＯ懷孕胎兒數"/></td>
-<td data-label="同戶籍／同住"><div class="family-residence-options"><label><input class="member-same-household" name="memberSameHousehold[]" type="checkbox"/>同戶籍</label><label><input class="member-cohabiting" name="memberCohabiting[]" type="checkbox" checked/>同住</label></div></td>
+<td data-label="同戶籍"><label class="family-residence-checkbox"><input class="member-same-household" name="memberSameHousehold[]" type="checkbox"/><span class="visually-hidden">林ＯＯ同戶籍</span></label></td>
+<td data-label="同住"><label class="family-residence-checkbox"><input class="member-cohabiting" name="memberCohabiting[]" type="checkbox" checked/><span class="visually-hidden">林ＯＯ同住</span></label></td>
 <td data-label="身分／社福識別"><div class="identity-tags member-identities"><span class="identity-tag system-identity">六十五歲以上之老人</span></div></td>
 <td data-label="操作"><button class="row-delete-button family-delete-button" type="button" aria-label="刪除家庭成員林ＯＯ" title="刪除家庭成員"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M9 7V4h6v3M7 7l1 13h8l1-13M10 11v5M14 11v5"/></svg></button></td>
 </tr>
@@ -979,6 +987,7 @@
     const simpleAutosave = document.getElementById('simpleAutosave');
     const registrationDataForm = document.getElementById('registrationDataForm');
     const accountEditMode = new URLSearchParams(window.location.search).get('mode') === 'edit';
+    const contactPhone = document.getElementById('contactPhone');
     const contactEmail = document.getElementById('contactEmail');
     const contactEmailVerifiedIcon = document.getElementById('contactEmailVerifiedIcon');
     const contactEmailVerificationMessage = document.getElementById('contactEmailVerificationMessage');
@@ -1182,6 +1191,18 @@
     }else{
       setContactEmailUnverified();
     }
+
+    function syncApplicantFamilyPhone(){
+      const applicantRow = familyTableBody?.querySelector('tr[data-applicant="true"]');
+      const familyPhone = applicantRow?.querySelector('.member-phone');
+      const familyPhoneDisplay = applicantRow?.querySelector('.member-phone-display');
+      if(!familyPhone || !contactPhone) return;
+      familyPhone.value = contactPhone.value;
+      if(familyPhoneDisplay) familyPhoneDisplay.textContent = contactPhone.value || '未提供';
+    }
+
+    contactPhone?.addEventListener('input',syncApplicantFamilyPhone);
+    syncApplicantFamilyPhone();
 
     const mailingAddressData = {
       '臺北市':[['100','中正區'],['103','大同區'],['104','中山區'],['105','松山區'],['106','大安區'],['108','萬華區'],['110','信義區'],['111','士林區'],['112','北投區'],['114','內湖區'],['115','南港區'],['116','文山區']],
@@ -1696,9 +1717,11 @@
         <td data-label="姓名"><input class="member-name" name="memberName[]" type="text" required aria-label="新成員姓名" placeholder="請輸入"/></td>
         <td data-label="出生年月日"><input class="member-birth" name="memberBirth[]" type="date" required aria-label="新成員出生年月日"/></td>
         <td data-label="身分證字號"><input class="member-id" name="memberId[]" type="text" maxlength="10" required aria-label="新成員身分證字號" placeholder="請輸入"/></td>
+        <td data-label="手機號碼"><input class="member-phone" name="memberPhone[]" type="tel" inputmode="tel" aria-label="新成員手機號碼" placeholder="未提供"/></td>
         <td data-label="最近一年所得"><input class="member-income" name="memberIncome[]" type="number" min="0" step="1" value="0" aria-label="新成員最近一年所得"/></td>
         <td data-label="懷孕胎兒數"><input class="member-fetus" name="memberFetus[]" type="number" min="0" step="1" inputmode="numeric" value="0" aria-label="新成員懷孕胎兒數"/><span class="fetus-not-applicable">不適用</span></td>
-        <td data-label="同戶籍／同住"><div class="family-residence-options"><label><input class="member-same-household" name="memberSameHousehold[]" type="checkbox"/>同戶籍</label><label><input class="member-cohabiting" name="memberCohabiting[]" type="checkbox"/>同住</label></div></td>
+        <td data-label="同戶籍"><label class="family-residence-checkbox"><input class="member-same-household" name="memberSameHousehold[]" type="checkbox"/><span class="visually-hidden">新成員同戶籍</span></label></td>
+        <td data-label="同住"><label class="family-residence-checkbox"><input class="member-cohabiting" name="memberCohabiting[]" type="checkbox"/><span class="visually-hidden">新成員同住</span></label></td>
         <td data-label="身分／社福識別"><div class="identity-tags member-identities"><span class="identity-tag neutral">一般身分</span></div></td>
         <td data-label="操作"><button class="row-delete-button family-delete-button" type="button" aria-label="刪除新增家庭成員" title="刪除家庭成員"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M9 7V4h6v3M7 7l1 13h8l1-13M10 11v5M14 11v5"/></svg></button></td>`;
 

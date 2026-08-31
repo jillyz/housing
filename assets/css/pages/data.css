@@ -1033,18 +1033,22 @@
     .family-table th{padding:0 6px 7px;color:#4d6461;font-size:16px;line-height:1.4;white-space:normal}
     .family-table td{display:table-cell;min-width:0;padding:7px 6px;background:#f7fbfa;overflow:hidden;vertical-align:middle}
     .family-table td::before{display:none}
-    .family-table .family-col-relation{width:10%}
-    .family-table .family-col-name{width:8%}
-    .family-table .family-col-birth{width:10%}
-    .family-table .family-col-id{width:13%}
-    .family-table .family-col-income{width:11%}
-    .family-table .family-col-fetus{width:8%}
-    .family-table .family-col-residence{width:13%}
-    .family-table .family-col-identity{width:19%}
-    .family-table .family-col-action{width:8%}
+    .family-table .family-col-relation{width:9%}
+    .family-table .family-col-name{width:7%}
+    .family-table .family-col-birth{width:9%}
+    .family-table .family-col-id{width:11%}
+    .family-table .family-col-phone{width:12%}
+    .family-table .family-col-income{width:10%}
+    .family-table .family-col-fetus{width:5%}
+    .family-table .family-col-household{width:7%}
+    .family-table .family-col-cohabiting{width:7%}
+    .family-table .family-col-identity{width:17%}
+    .family-table .family-col-action{width:6%}
+    .family-table .family-check-heading{text-align:center}
     .family-table td[data-label="操作"]{overflow:visible;text-align:center}
     .family-table input,.family-table select{width:100%;min-width:0;min-height:44px;padding:9px 8px;border-radius:9px;background:#fff;font-size:16px}
-    .family-table .member-name,.family-table .member-id,.family-table .member-relation,.family-table .member-income,.family-table .member-fetus{min-width:0}
+    .family-table .member-name,.family-table .member-id,.family-table .member-phone,.family-table .member-relation,.family-table .member-income,.family-table .member-fetus{min-width:0}
+    .family-table .member-phone{padding-right:6px;padding-left:6px;font-variant-numeric:tabular-nums}
     .member-relation-text,.plain-cell-text{display:inline;color:var(--text);font-size:16px;font-weight:400}
     .fetus-not-applicable{display:none;color:var(--text);font-size:16px;text-align:left;font-weight:400}
     .family-table tr.is-male .member-fetus{display:none}
@@ -1053,10 +1057,9 @@
     .family-add-toggle{background:#fff}
     .family-table tr.family-new-row td{background:#fffaf2}
     .family-table tr.family-new-row td:first-child{box-shadow:inset 4px 0 0 #e7a244}
-    .family-residence-options label{display:inline-flex;align-items:center;gap:5px;margin:0;white-space:nowrap;cursor:pointer}
-    .family-residence-options input{width:18px!important;height:18px!important;min-height:0!important;margin:0;padding:0;accent-color:var(--primary)}
-    .family-residence-options{display:grid;gap:5px;justify-content:start}
-    .family-residence-options label{font-size:13px!important;font-weight:700}
+    .family-table td[data-label="同戶籍"],.family-table td[data-label="同住"]{overflow:visible;text-align:center}
+    .family-residence-checkbox{display:flex;align-items:center;justify-content:center;width:100%;margin:0;cursor:pointer}
+    .family-residence-checkbox input{width:20px!important;height:20px!important;min-height:0!important;margin:0;padding:0;accent-color:var(--primary)}
     .readonly-status-list{display:flex;flex-wrap:wrap;gap:5px}
     .readonly-status{display:inline-flex;align-items:center;padding:4px 8px;border-radius:999px;background:#f0f4f3;color:#526866;font-size:13px;font-weight:800;line-height:1.25;white-space:nowrap}
     .readonly-status.is-yes{background:#e9f7ef;color:#176744}
