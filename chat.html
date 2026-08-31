@@ -96,7 +96,7 @@
       const [city,name]=value.split('|');
       const project=(housingData[city]||[]).find(item=>item.name===name);
       if(!project){showFallback();return}
-      addAssistantMessage(`<p><strong>${project.name}</strong>的示意資訊如下：</p><div class="assistant-card"><strong>${city}・${project.name}</strong><span>可申請房型：${project.rooms}<br>權責機關：${project.agency}</span></div><p>若要正式申請，建議先確認申請文件與自身資格。</p><a class="assistant-link" href="housing.html?county=${encodeURIComponent(city)}">前往找社宅頁面 →</a>`);
+      addAssistantMessage(`<p><strong>${project.name}</strong>的示意資訊如下：</p><div class="assistant-card"><strong>${city}・${project.name}</strong><span>可申請房型：${project.rooms}<br>權責機關：${project.agency}</span></div><p>若要正式申請，建議先確認申請文件與自身資格。</p><a class="assistant-link" href="housing-map.html?county=${encodeURIComponent(city)}">前往找社宅頁面 →</a>`);
       addChoices([{label:'要準備哪些文件？',action:'scenario',value:'documents'},{label:'先做資格檢覈',action:'scenario',value:'eligibility'},{label:'回服務選單',action:'menu',value:'',secondary:true}]);
     });
 
@@ -227,8 +227,8 @@
         ({housing:askHousingCounty,documents:showDocuments,eligibility:startEligibility,progress:showProgress,support:showSupport}[value]||showFallback)();
       }else if(action==='housing-city'){showHousingCity(value)}
       else if(action==='housing-detail'){showHousingDetail(value)}
-      else if(action==='housing-page'){window.location.href=`housing.html?county=${encodeURIComponent(value)}`}
-      else if(action==='housing-all'){window.location.href='housing.html'}
+      else if(action==='housing-page'){window.location.href=`housing-map.html?county=${encodeURIComponent(value)}`}
+      else if(action==='housing-all'){window.location.href='housing-map.html'}
       else if(action==='application-flow'){showApplicationFlow()}
       else if(action==='eligibility-residency'){answerEligibilityResidency(value)}
       else if(action==='eligibility-home'){answerEligibilityHome(value)}

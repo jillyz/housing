@@ -1,0 +1,222 @@
+.housing-map-page .search-workspace,
+.housing-map-page .site-footer,
+.housing-map-page.drawer-pinned .search-workspace,
+.housing-map-page.drawer-pinned .site-footer {
+  margin-left: 0;
+}
+
+.housing-map-page .workspace-inner {
+  width: min(1500px, calc(100% - 48px));
+  display: grid;
+  grid-template-columns: minmax(0, 55fr) minmax(0, 45fr);
+  grid-template-areas:
+    "toolbar toolbar"
+    "results map";
+  align-items: start;
+  gap: 18px;
+}
+
+.housing-map-page .search-toolbar {
+  grid-area: toolbar;
+  grid-template-columns: minmax(0, 1fr) auto auto auto;
+  margin-bottom: 0;
+}
+
+.active-query-summary {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.active-query-label {
+  flex: 0 0 auto;
+  color: #526d72;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.active-query-summary .active-filter-area {
+  flex: 1 1 auto;
+}
+
+.housing-map-page .toolbar-result-count {
+  padding: 0 4px;
+}
+
+.housing-map-page .map-stage {
+  grid-area: map;
+  position: sticky;
+  top: 227px;
+  align-self: start;
+  scroll-margin-top: 227px;
+}
+
+.housing-map-page .results-section {
+  grid-area: results;
+  min-width: 0;
+  margin-top: 0;
+}
+
+.housing-map-page #housingListMap {
+  height: calc(100vh - 303px);
+  min-height: 520px;
+  max-height: 700px;
+}
+
+.housing-map-page .map-stage-header {
+  padding: 10px 12px;
+}
+
+.housing-map-page .map-layer-tools {
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  overflow-x: auto;
+}
+
+.housing-map-page .map-layer-button,
+.housing-map-page .map-show-all-button {
+  flex: 0 0 auto;
+}
+
+.housing-map-page .list-housing-card {
+  grid-template-columns: minmax(180px, 28%) minmax(0, 1fr);
+}
+
+.housing-map-page .list-card-body {
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "top"
+    "address"
+    "data"
+    "intro"
+    "nearby"
+    "actions";
+  gap: 9px;
+  padding: 16px;
+}
+
+.housing-map-page .list-card-top {
+  grid-template-columns: minmax(220px, 1fr) minmax(160px, 190px);
+  gap: 8px;
+}
+
+.housing-map-page .list-card-data span {
+  padding: 0 8px;
+}
+
+.housing-map-page .filter-drawer {
+  top: 227px;
+  right: max(24px, calc((100vw - 1500px) / 2));
+  bottom: 18px;
+  left: auto;
+  width: min(675px, calc(45vw - 42px));
+  border: 1px solid #cddfdd;
+  border-radius: 22px;
+  box-shadow: -18px 20px 58px rgba(17, 47, 50, .28);
+  transform: translateX(calc(100% + max(32px, calc((100vw - 1500px) / 2))));
+}
+
+.housing-map-page .filter-drawer.is-open {
+  transform: translateX(0);
+}
+
+@media (max-width: 1100px) {
+  .housing-map-page .workspace-inner {
+    width: min(100% - 32px, 980px);
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "toolbar"
+      "map"
+      "results";
+  }
+
+  .housing-map-page .map-stage {
+    position: relative;
+    top: auto;
+  }
+
+  .housing-map-page #housingListMap {
+    height: 500px;
+    min-height: 0;
+  }
+
+  .housing-map-page .filter-drawer {
+    right: 16px;
+    width: min(480px, calc(100% - 32px));
+    transform: translateX(calc(100% + 24px));
+  }
+
+  .housing-map-page .filter-drawer.is-open {
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 760px) {
+  .housing-map-page .workspace-inner {
+    width: calc(100% - 24px);
+    gap: 12px;
+  }
+
+  .housing-map-page .search-toolbar {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .housing-map-page .active-query-summary {
+    grid-column: 1 / -1;
+  }
+
+  .housing-map-page .toolbar-result-count {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .housing-map-page .filter-open-button {
+    grid-column: 2;
+  }
+
+  .housing-map-page .search-toolbar > label {
+    grid-column: 1 / -1;
+    grid-row: auto;
+    width: 100%;
+  }
+
+  .housing-map-page .sort-control {
+    width: 100%;
+  }
+
+  .housing-map-page .list-housing-card {
+    grid-template-columns: 1fr;
+  }
+
+  .housing-map-page .list-card-media {
+    min-height: 210px;
+    max-height: 240px;
+    aspect-ratio: 16 / 9;
+  }
+
+  .housing-map-page .list-card-top {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .housing-map-page .list-service-block {
+    width: 100%;
+  }
+
+  .housing-map-page .list-card-top .list-need-tags {
+    justify-content: flex-start;
+  }
+
+  .housing-map-page #housingListMap {
+    height: 430px;
+  }
+
+  .housing-map-page .filter-drawer {
+    top: 106px;
+    right: 0;
+    bottom: 0;
+    width: min(430px, 100%);
+    border-radius: 0;
+  }
+}

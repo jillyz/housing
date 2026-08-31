@@ -30,7 +30,7 @@
 <span class="brand-name">全國社宅統一登記申請平台</span>
 </a>
 <div class="member-nav">
-<a class="member-nav-link" href="housing.html">找社宅</a>
+<a class="member-nav-link" href="housing-map.html">找社宅</a>
 <a class="member-nav-link active" href="apply.html">申請社宅</a>
 <a class="member-nav-link" href="progress.html">進度查詢</a>
 </div>
@@ -41,7 +41,7 @@
 </div>
 <button class="site-mobile-menu" type="button" aria-label="開啟選單" aria-controls="memberMobileNav" aria-expanded="false">☰</button>
 <div class="site-mobile-nav" id="memberMobileNav">
-<a href="housing.html">找社宅</a>
+<a href="housing-map.html">找社宅</a>
 <a class="active" href="apply.html">申請社宅</a>
 <a href="progress.html">進度查詢</a>
 <div class="mobile-member"><div class="login-user"><span class="login-user-label">登入者</span><strong>陳ＯＯ</strong></div><div class="mobile-member-actions"><button class="member-icon" type="button" aria-label="查看通知"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg></button><a class="member-icon" href="index.html" aria-label="登出"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 17l5-5-5-5M15 12H3M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/></svg></a></div></div>
@@ -141,21 +141,19 @@
 <input id="contactEmail" name="contactEmail" type="email" value="example@mail.com" required/>
 <span class="verified-check-icon" id="contactEmailVerifiedIcon" role="img" aria-label="電子郵件已驗證" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6.5 12.5 3.4 3.4 7.6-8"/></svg></span>
 </div>
-<button id="sendContactEmailCode" type="button">寄送驗證信</button>
+<button id="sendContactEmailLink" type="button">寄送驗證連結</button>
 </div>
-<div class="email-verification-panel" id="contactEmailCodePanel" hidden><input id="contactEmailCode" type="text" inputmode="numeric" maxlength="6" autocomplete="one-time-code" aria-label="電子郵件驗證碼" placeholder="輸入 6 位驗證碼"/><button id="verifyContactEmailCode" type="button">確認驗證</button></div>
 <p class="contact-verification-help" id="contactEmailVerificationMessage" aria-live="polite">電子信箱需完成驗證。</p>
 </div>
 <div class="simple-field full">
 <label for="mailingCounty">通訊地址 <span class="required">*</span></label>
 <div class="mailing-address-control">
 <label class="mailing-address-check"><input id="sameAsRegisteredAddress" type="checkbox" checked/>同戶籍地址</label>
-<output class="mailing-address-readonly" id="mailingAddressDisplay">407 臺中市西屯區○○街○巷○號</output>
 <div class="mailing-address-fields" id="mailingAddressFields">
 <output class="mailing-postal-code" id="mailingPostalCode" aria-label="通訊地址郵遞區號">407</output>
-<select id="mailingCounty" aria-label="通訊地址縣市" required><option value="臺中市" selected>臺中市</option></select>
-<select id="mailingDistrict" aria-label="通訊地址行政區" required><option value="西屯區" selected>西屯區</option></select>
-<input id="mailingAddressDetail" type="text" value="○○街○巷○號" aria-label="通訊地址詳細地址" required/>
+<select id="mailingCounty" aria-label="通訊地址縣市" required disabled><option value="臺中市" selected>臺中市</option></select>
+<select id="mailingDistrict" aria-label="通訊地址行政區" required disabled><option value="西屯區" selected>西屯區</option></select>
+<input id="mailingAddressDetail" type="text" value="○○街○巷○號" aria-label="通訊地址詳細地址" required disabled/>
 <input id="mailingAddress" name="mailingAddress" type="hidden" value="407 臺中市西屯區○○街○巷○號"/>
 </div>
 </div>
@@ -163,13 +161,23 @@
 </div>
 <div class="supplement-box">
 <h3>申請人身分類型</h3>
-<div class="simple-checks applicant-role-checks">
-<label><input class="special-role" type="checkbox" value="設籍於本市"/> 設籍於本市</label>
-<label><input class="special-role" type="checkbox" value="設籍於本市且為本市勞工"/> 設籍於本市且為本市勞工</label>
-<label><input class="special-role" type="checkbox" value="於本市就業但未設籍"/> 於本市就業但未設籍</label>
-<label><input class="special-role" type="checkbox" value="於本市就學但未設籍"/> 於本市就學但未設籍</label>
-<label class="role-option-wide"><input class="special-role" type="checkbox" value="警消"/> 現任職務為最高職務列等在警正四階（含）以下之警察人員及消防人員</label>
-<label class="role-option-wide"><input class="special-role" type="checkbox" value="軍職"/> 現任職務為最高職務列等在國防部少校階（含士官）之軍職人員、文職薦任六職等以下、聘僱或相當該職務列等以下之人員</label>
+<div class="applicant-role-groups">
+<fieldset class="applicant-role-group local-role-group">
+<legend><strong>設籍／就業就學資格</strong><span>以下擇一填寫</span></legend>
+<div class="applicant-role-options">
+<label><input class="special-role" name="localQualification" type="radio" value="設籍於本市" required/> <span>設籍於本市</span></label>
+<label><input class="special-role" name="localQualification" type="radio" value="設籍於本市且為本市勞工"/> <span>設籍於本市且為本市勞工</span></label>
+<label><input class="special-role" name="localQualification" type="radio" value="於本市就業但未設籍"/> <span>於本市就業但未設籍</span></label>
+<label><input class="special-role" name="localQualification" type="radio" value="於本市就學但未設籍"/> <span>於本市就學但未設籍</span></label>
+</div>
+</fieldset>
+<fieldset class="applicant-role-group service-role-group">
+<legend><strong>警消／軍職資格</strong><span>以下擇一填寫</span></legend>
+<div class="applicant-role-options">
+<label><input class="special-role" name="serviceQualification" type="radio" value="警消" required/> <span>現任職務為最高職務列等在警正四階（含）以下之警察人員及消防人員</span></label>
+<label><input class="special-role" name="serviceQualification" type="radio" value="軍職"/> <span>現任職務為最高職務列等在國防部少校階（含士官）之軍職人員、文職薦任六職等以下、聘僱或相當該職務列等以下之人員</span></label>
+</div>
+</fieldset>
 </div>
 </div>
 
@@ -968,10 +976,7 @@
     const contactEmail = document.getElementById('contactEmail');
     const contactEmailVerifiedIcon = document.getElementById('contactEmailVerifiedIcon');
     const contactEmailVerificationMessage = document.getElementById('contactEmailVerificationMessage');
-    const contactEmailCodePanel = document.getElementById('contactEmailCodePanel');
-    const contactEmailCode = document.getElementById('contactEmailCode');
-    const sendContactEmailCode = document.getElementById('sendContactEmailCode');
-    const verifyContactEmailCode = document.getElementById('verifyContactEmailCode');
+    const sendContactEmailLink = document.getElementById('sendContactEmailLink');
     const familyTableBody = document.getElementById('familyTableBody');
     const addFamilyMember = document.getElementById('addFamilyMember');
     const identityNoteDialog = document.getElementById('identityNoteDialog');
@@ -987,7 +992,6 @@
     const lookupUpdatedAt = document.getElementById('lookupUpdatedAt');
     const sameAsRegisteredAddress = document.getElementById('sameAsRegisteredAddress');
     const mailingAddress = document.getElementById('mailingAddress');
-    const mailingAddressDisplay = document.getElementById('mailingAddressDisplay');
     const mailingAddressFields = document.getElementById('mailingAddressFields');
     const mailingPostalCode = document.getElementById('mailingPostalCode');
     const mailingCounty = document.getElementById('mailingCounty');
@@ -1085,48 +1089,30 @@
       contactEmail.classList.remove('is-contact-verified');
       contactEmail.setCustomValidity('請先完成電子郵件驗證');
       contactEmailVerifiedIcon.hidden = true;
+      sendContactEmailLink.hidden = false;
       contactEmailVerificationMessage.classList.remove('is-success');
       contactEmailVerificationMessage.textContent = message;
     }
 
-    sendContactEmailCode?.addEventListener('click',() => {
+    sendContactEmailLink?.addEventListener('click',() => {
       contactEmail.setCustomValidity('');
       if(!contactEmail.checkValidity()){
         contactEmail.setCustomValidity('請輸入有效的電子郵件');
         contactEmail.reportValidity();
         return;
       }
-      contactEmail.setCustomValidity('請先完成電子郵件驗證');
-      contactEmailCode.value = '';
-      contactEmailCode.setCustomValidity('');
-      contactEmailCodePanel.hidden = false;
-      sendContactEmailCode.textContent = '重新寄送';
-      contactEmailVerificationMessage.classList.remove('is-success');
-      contactEmailVerificationMessage.textContent = '驗證信已寄出（原型驗證碼：123456），請輸入信中的驗證碼。';
-      contactEmailCode.focus();
-    });
-
-    verifyContactEmailCode?.addEventListener('click',() => {
-      if(contactEmailCode.value.trim() !== '123456'){
-        contactEmailCode.setCustomValidity('驗證碼錯誤，請輸入 123456');
-        contactEmailCode.reportValidity();
-        return;
-      }
-      contactEmailCode.setCustomValidity('');
       verifiedContactEmail = normalizeContactEmail(contactEmail.value);
       contactEmail.setCustomValidity('');
       contactEmail.classList.add('is-contact-verified');
       contactEmailVerifiedIcon.hidden = false;
       contactEmailVerificationMessage.classList.add('is-success');
-      contactEmailVerificationMessage.textContent = '電子信箱驗證完成。';
-      contactEmailCodePanel.hidden = true;
-      sendContactEmailCode.textContent = '重新驗證';
+      contactEmailVerificationMessage.textContent = '驗證連結已寄出；此原型已模擬點擊連結，電子信箱驗證完成。';
+      sendContactEmailLink.hidden = true;
     });
 
     contactEmail?.addEventListener('input',() => {
       if(normalizeContactEmail(contactEmail.value) !== verifiedContactEmail){
-        contactEmailCodePanel.hidden = true;
-        sendContactEmailCode.textContent = '寄送驗證信';
+        sendContactEmailLink.textContent = '寄送驗證連結';
         setContactEmailUnverified('電子信箱已變更，請重新完成驗證。');
       }
     });
@@ -1136,10 +1122,9 @@
       contactEmail.setCustomValidity('');
       contactEmail.classList.add('is-contact-verified');
       contactEmailVerifiedIcon.hidden = false;
-      contactEmailCodePanel.hidden = true;
       contactEmailVerificationMessage.classList.add('is-success');
       contactEmailVerificationMessage.textContent = '電子郵件已完成驗證。修改後需重新驗證。';
-      sendContactEmailCode.textContent = '重新驗證';
+      sendContactEmailLink.hidden = true;
     }else{
       setContactEmailUnverified();
     }
@@ -1244,7 +1229,6 @@
       const districtData = (mailingAddressData[mailingCounty.value] || []).find(([,district]) => district === mailingDistrict.value);
       mailingPostalCode.value = districtData?.[0] || '';
       mailingAddress.value = `${mailingPostalCode.value} ${mailingCounty.value}${mailingDistrict.value}${mailingAddressDetail.value}`.trim();
-      if(mailingAddressDisplay) mailingAddressDisplay.value = mailingAddress.value;
       if(!sameAsRegisteredAddress.checked){
         manualMailingAddress = {postalCode:mailingPostalCode.value,county:mailingCounty.value,district:mailingDistrict.value,detail:mailingAddressDetail.value};
       }
@@ -1263,8 +1247,7 @@
       const useRegisteredAddress = sameAsRegisteredAddress.checked;
       [mailingCounty,mailingDistrict,mailingAddressDetail].forEach(control => {control.disabled = useRegisteredAddress});
       applyMailingAddress(useRegisteredAddress ? registeredMailingAddress : manualMailingAddress);
-      if(mailingAddressDisplay) mailingAddressDisplay.hidden = !useRegisteredAddress;
-      if(mailingAddressFields) mailingAddressFields.hidden = useRegisteredAddress;
+      mailingAddressFields?.classList.toggle('is-locked',useRegisteredAddress);
       if(!useRegisteredAddress) mailingAddressDetail.focus();
     }
 

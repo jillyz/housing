@@ -25,13 +25,13 @@
     <nav class="main-nav" id="primaryNavigation" aria-label="主要導覽">
       <a class="brand" href="index.html" aria-label="全國社宅統一登記申請平台首頁"><img class="brand-mark" src="assets/platform-logo-elegant.svg" alt="" /><span class="brand-name">全國社宅統一登記申請平台</span></a>
       <div class="nav-group">
-        <a class="nav-link" href="housing.html">找社宅</a>
+        <a class="nav-link" href="housing-map.html">找社宅</a>
         <a class="nav-link" href="index.html#journey">申請流程</a>
       </div>
       <a class="login-button" href="#top" aria-current="page">登入</a>
       <button class="mobile-menu" type="button" aria-label="開啟選單" aria-controls="mobileNav" aria-expanded="false">☰</button>
       <div class="mobile-nav" id="mobileNav">
-        <a href="housing.html">找社宅</a>
+        <a href="housing-map.html">找社宅</a>
         <a href="index.html#journey">申請流程</a>
         <a class="login-button" href="#top" aria-current="page">登入</a>
       </div>
@@ -122,8 +122,11 @@
     });
     const dialog = document.querySelector('#login-dialog');
     const message = document.querySelector('#dialog-message');
+    const requestedReturnPage = new URLSearchParams(window.location.search).get('returnTo');
+    const allowedReturnPage = /^(?:apply|housinglist|housing-map|houaing-map|housing-map2)\.html(?:\?.*)?$/;
+    const loginDestination = requestedReturnPage && allowedReturnPage.test(requestedReturnPage) ? requestedReturnPage : 'questionnaire.html';
     document.querySelectorAll('[data-method]').forEach((button) => button.addEventListener('click', () => {
-      window.location.href = 'questionnaire.html';
+      window.location.href = loginDestination;
     }));
     document.querySelectorAll('[data-close]').forEach((button) => button.addEventListener('click', () => dialog.close()));
     dialog.addEventListener('click', (event) => { if (event.target === dialog) dialog.close(); });

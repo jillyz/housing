@@ -21,10 +21,10 @@
 </div>
 <nav class="site-main-nav" id="primaryNavigation" aria-label="會員主要導覽">
 <a class="brand" href="index.html" aria-label="全國社宅統一登記申請平台首頁"><img class="brand-mark" src="assets/platform-logo-elegant.svg" alt=""/><span class="brand-name">全國社宅統一登記申請平台</span></a>
-<div class="member-nav"><a class="member-nav-link" href="housing.html">找社宅</a><a class="member-nav-link active" href="apply.html" aria-current="page">申請社宅</a><a class="member-nav-link" href="progress.html">進度查詢</a></div>
+<div class="member-nav"><a class="member-nav-link" href="housing-map.html">找社宅</a><a class="member-nav-link active" href="apply.html" aria-current="page">申請社宅</a><a class="member-nav-link" href="progress.html">進度查詢</a></div>
 <div class="member-actions"><div class="login-user"><span class="login-user-label">登入者</span><strong>陳ＯＯ</strong></div><button class="member-icon" type="button" title="通知" aria-label="查看通知"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg></button><a class="member-icon" href="index.html" title="登出" aria-label="登出"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 17l5-5-5-5M15 12H3M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/></svg></a></div>
 <button class="site-mobile-menu" type="button" aria-label="開啟選單" aria-controls="memberMobileNav" aria-expanded="false">☰</button>
-<div class="site-mobile-nav" id="memberMobileNav"><a href="housing.html">找社宅</a><a class="active" href="apply.html" aria-current="page">申請社宅</a><a href="progress.html">進度查詢</a><div class="mobile-member"><div class="login-user"><span class="login-user-label">登入者</span><strong>陳ＯＯ</strong></div><div class="mobile-member-actions"><button class="member-icon" type="button" aria-label="查看通知"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg></button><a class="member-icon" href="index.html" aria-label="登出"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 17l5-5-5-5M15 12H3M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/></svg></a></div></div></div>
+<div class="site-mobile-nav" id="memberMobileNav"><a href="housing-map.html">找社宅</a><a class="active" href="apply.html" aria-current="page">申請社宅</a><a href="progress.html">進度查詢</a><div class="mobile-member"><div class="login-user"><span class="login-user-label">登入者</span><strong>陳ＯＯ</strong></div><div class="mobile-member-actions"><button class="member-icon" type="button" aria-label="查看通知"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg></button><a class="member-icon" href="index.html" aria-label="登出"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 17l5-5-5-5M15 12H3M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/></svg></a></div></div></div>
 </nav>
 </header>
 <div class="page">
@@ -36,15 +36,14 @@
 <main class="main-card">
 <section class="batch-intro" aria-labelledby="apply-title">
   <div class="batch-intro-head">
-    <div>
-      <span class="batch-kicker" id="applicationMatchKicker">符合您的需求 3 間</span>
+    <div class="batch-title-row">
       <h1 id="apply-title">選擇要申請的社宅</h1>
-      <p>系統依您的居住需求帶入符合條件的社宅；可複選案場，並確認房型、無障礙需求與申請身分。</p>
+      <a class="edit-needs" href="questionnaire.html" aria-label="編輯我的住宅需求">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4l11-11-4-4L4 16v4Z"/><path d="m13.5 6.5 4 4M12 20h8"/></svg>
+        編輯我的住宅需求
+      </a>
     </div>
-    <a class="edit-needs" href="questionnaire.html" aria-label="編輯我的住宅需求">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4l11-11-4-4L4 16v4Z"/><path d="m13.5 6.5 4 4M12 20h8"/></svg>
-      編輯需求
-    </a>
+    <p>系統依您的居住需求帶入符合條件的社宅；可複選案場，並確認房型、無障礙需求與申請身分。</p>
   </div>
   <div class="needs-grid" aria-label="我的住宅需求條件">
     <div class="need-chip"><span>縣市</span><strong>新北市</strong></div>
@@ -73,30 +72,30 @@
     <div class="batch-note"><strong>選擇提醒</strong><span>本頁只確認要申請的社宅與房型，尚未正式送出；下一步將進行條款閱讀及電子切結。</span></div>
     <form id="batchHousingForm">
       <div class="batch-toolbar">
-        <label class="select-all"><input id="selectAllHousing" type="checkbox" />全選符合需求的社宅</label>
-        <div class="match-count">已選擇 <strong id="selectedHousingCount" aria-live="polite">3</strong>／3 間</div>
+        <label class="select-all"><input id="selectAllHousing" type="checkbox" /><span>全選符合需求的社宅 <b>共 3 間</b></span></label>
+        <div class="match-count">已選擇 <strong id="selectedHousingCount" aria-live="polite">3</strong> 間</div>
       </div>
 
       <div class="match-list">
         <article class="match-card" data-housing-name="保二安居">
           <label class="match-check" aria-label="選擇保二安居"><input class="housing-checkbox" name="housing" type="checkbox" value="保二安居" checked /></label>
           <div class="match-photo"><span class="match-status">招租中</span><img src="https://www.socialhousing.tw/portal/Building/250728/iyoq1r4d.gmg.JPG" alt="保二安居社會住宅外觀" loading="lazy" /></div>
-          <div class="match-info"><h2>保二安居</h2><div class="match-location">新北市・中和區</div><div class="agency"><span>權責機關</span>國家住宅及都市更新中心</div><a class="external-detail" href="https://www.socialhousing.tw/portal/BuildDetail?BuildingNo=F02&amp;BuildingType=Normal" target="_blank" rel="noopener noreferrer">查看社宅詳情 ↗</a></div>
+          <div class="match-info"><div class="match-title-row"><h2>保二安居</h2><span class="recruitment-type large-recruitment">大招租</span></div><div class="match-location">新北市・中和區</div><div class="agency">國家住宅及都市更新中心</div><div class="match-links"><a class="external-detail" href="https://www.socialhousing.tw/portal/BuildDetail?BuildingNo=F02&amp;BuildingType=Normal" target="_blank" rel="noopener noreferrer">社宅詳情 ↗</a><a class="external-detail document-link" href="https://www.socialhousing.tw/Portal/NewsFile/260804/bfhex4iv.k4f.pdf" target="_blank" rel="noopener noreferrer" aria-label="另開分頁查看保二安居招租文件 PDF">招租文件 PDF ↗</a></div></div>
           <div class="apply-options"><label class="apply-field"><span>申請房型（人數條件）</span><select class="room-choice" aria-label="保二安居申請房型"><option value="一房型">一房型（1–2 人）</option><option value="二房型">二房型（2–4 人）</option><option value="三房型" selected>三房型（3 人以上）</option></select></label><label class="apply-field"><span>無障礙需求</span><span class="accessible-check"><input class="accessible-choice" type="checkbox" aria-label="保二安居需要無障礙房" />需無障礙房</span></label><label class="apply-field"><span>申請身分</span><select class="identity-choice" aria-label="保二安居申請身分"><option selected>一般戶</option><option>睦鄰戶</option><option>婚育戶</option><option>警消戶</option><option>軍職戶</option><option>特殊戶</option><option>其他</option></select></label></div>
         </article>
 
         <article class="match-card" data-housing-name="五谷好室 A">
           <label class="match-check" aria-label="選擇五谷好室 A"><input class="housing-checkbox" name="housing" type="checkbox" value="五谷好室 A" checked /></label>
           <div class="match-photo"><span class="match-status">招租中</span><img src="https://www.socialhousing.tw/portal/Building/250522/1qzl22ln.fvq.jpg" alt="五谷好室 A 社會住宅外觀" loading="lazy" /></div>
-          <div class="match-info"><h2>五谷好室 A</h2><div class="match-location">新北市・三重區</div><div class="agency"><span>權責機關</span>國家住宅及都市更新中心</div><a class="external-detail" href="https://www.socialhousing.tw/portal/BuildDetail?BuildingNo=F01&amp;BuildingType=Normal" target="_blank" rel="noopener noreferrer">查看社宅詳情 ↗</a></div>
+          <div class="match-info"><div class="match-title-row"><h2>五谷好室 A</h2><span class="recruitment-type large-recruitment">大招租</span></div><div class="match-location">新北市・三重區</div><div class="agency">國家住宅及都市更新中心</div><div class="match-links"><a class="external-detail" href="https://www.socialhousing.tw/portal/BuildDetail?BuildingNo=F01&amp;BuildingType=Normal" target="_blank" rel="noopener noreferrer">社宅詳情 ↗</a><a class="external-detail document-link" href="https://www.socialhousing.tw/Portal/NewsFile/260804/bfhex4iv.k4f.pdf" target="_blank" rel="noopener noreferrer" aria-label="另開分頁查看五谷好室 A 招租文件 PDF">招租文件 PDF ↗</a></div></div>
           <div class="apply-options"><label class="apply-field"><span>申請房型（人數條件）</span><select class="room-choice" aria-label="五谷好室 A 申請房型"><option value="二房型">二房型（2–4 人）</option><option value="三房型" selected>三房型（3 人以上）</option></select></label><label class="apply-field"><span>無障礙需求</span><span class="accessible-check"><input class="accessible-choice" type="checkbox" aria-label="五谷好室 A 需要無障礙房" />需無障礙房</span></label><label class="apply-field"><span>申請身分</span><select class="identity-choice" aria-label="五谷好室 A 申請身分"><option selected>一般戶</option><option>睦鄰戶</option><option>婚育戶</option><option>警消戶</option><option>軍職戶</option><option>特殊戶</option><option>其他</option></select></label></div>
         </article>
 
-        <article class="match-card" data-housing-name="三重成功">
+        <article class="match-card" data-housing-name="三重成功" data-requires-identity="false">
           <label class="match-check" aria-label="選擇三重成功"><input class="housing-checkbox" name="housing" type="checkbox" value="三重成功" checked /></label>
           <div class="match-photo"><span class="match-status">招租中</span><img src="https://www.socialhousing.tw/portal/Building/251014/rbi31t3h.tpa.JPG" alt="三重成功社會住宅外觀" loading="lazy" /></div>
-          <div class="match-info"><h2>三重成功</h2><div class="match-location">新北市・三重區</div><div class="agency"><span>權責機關</span>新北市政府</div><a class="external-detail" href="https://www.socialhousing.tw/portal/BuildDetail?BuildingNo=F03&amp;BuildingType=Normal" target="_blank" rel="noopener noreferrer">查看社宅詳情 ↗</a></div>
-          <div class="apply-options"><label class="apply-field"><span>申請房型（人數條件）</span><select class="room-choice" aria-label="三重成功申請房型"><option value="二房型">二房型（2–4 人）</option><option value="三房型" selected>三房型（3 人以上）</option></select></label><label class="apply-field"><span>無障礙需求</span><span class="accessible-check"><input class="accessible-choice" type="checkbox" aria-label="三重成功需要無障礙房" />需無障礙房</span></label><label class="apply-field"><span>申請身分</span><select class="identity-choice" aria-label="三重成功申請身分"><option selected>一般戶</option><option>睦鄰戶</option><option>婚育戶</option><option>警消戶</option><option>軍職戶</option><option>特殊戶</option><option>其他</option></select></label></div>
+          <div class="match-info"><div class="match-title-row"><h2>三重成功</h2><span class="recruitment-type rolling-recruitment">隨到隨辦</span></div><div class="match-location">新北市・三重區</div><div class="agency">新北市政府</div><div class="match-links"><a class="external-detail" href="https://www.socialhousing.tw/portal/BuildDetail?BuildingNo=F03&amp;BuildingType=Normal" target="_blank" rel="noopener noreferrer">社宅詳情 ↗</a><a class="external-detail document-link" href="https://www.socialhousing.tw/Portal/NewsFile/260804/bfhex4iv.k4f.pdf" target="_blank" rel="noopener noreferrer" aria-label="另開分頁查看三重成功招租文件 PDF">招租文件 PDF ↗</a></div></div>
+          <div class="apply-options no-identity"><label class="apply-field"><span>申請房型（人數條件）</span><select class="room-choice" aria-label="三重成功申請房型"><option value="二房型">二房型（2–4 人）</option><option value="三房型" selected>三房型（3 人以上）</option></select></label><label class="apply-field"><span>無障礙需求</span><span class="accessible-check"><input class="accessible-choice" type="checkbox" aria-label="三重成功需要無障礙房" />需無障礙房</span></label></div>
         </article>
 
         <!-- <article class="match-card" data-housing-name="新市安居">
@@ -143,7 +142,6 @@
 <script>
 const applicationEmpty=document.querySelector(".application-empty");
 const batchApply=document.querySelector(".batch-apply");
-const applicationMatchKicker=document.getElementById("applicationMatchKicker");
 const showAvailableScenario=document.getElementById("showAvailableScenario");
 const showEmptyScenario=document.getElementById("showEmptyScenario");
 
@@ -151,7 +149,6 @@ function setApplicationScenario(scenario){
   const showAvailable=scenario==="available";
   applicationEmpty.hidden=showAvailable;
   batchApply.hidden=!showAvailable;
-  applicationMatchKicker.textContent=showAvailable?`符合您的需求 ${document.querySelectorAll(".match-card").length} 間`:"目前無符合需求的招租案場";
 }
 
 showAvailableScenario.addEventListener("click",()=>setApplicationScenario("available"));
@@ -167,6 +164,13 @@ emptySubscribeButton.addEventListener("click",()=>{
 
 const batchForm=document.getElementById("batchHousingForm");
 const matchCards=Array.from(document.querySelectorAll(".match-card"));
+matchCards.forEach(card=>{
+  const isNewTaipeiHousing=card.querySelector(".agency")?.textContent.trim()==="新北市政府";
+  if(!isNewTaipeiHousing)return;
+  card.dataset.requiresIdentity="false";
+  card.querySelector(".apply-options")?.classList.add("no-identity");
+  card.querySelector(".identity-choice")?.closest(".apply-field")?.remove();
+});
 const housingCheckboxes=matchCards.map(card=>card.querySelector(".housing-checkbox"));
 const selectAllHousing=document.getElementById("selectAllHousing");
 const selectedHousingCount=document.getElementById("selectedHousingCount");
@@ -181,7 +185,8 @@ const confirmApplicationSend=document.getElementById("confirmApplicationSend");
 function getSelectedIdentities(){
   return new Set(matchCards
     .filter(card=>card.querySelector(".housing-checkbox").checked)
-    .map(card=>card.querySelector(".identity-choice").value));
+    .map(card=>card.querySelector(".identity-choice")?.value)
+    .filter(Boolean));
 }
 
 function persistSelectedIdentities(){
@@ -225,14 +230,17 @@ batchForm.addEventListener("submit",event=>{
     name:card.dataset.housingName,
     room:card.querySelector(".room-choice").value,
     accessible:card.querySelector(".accessible-choice").checked?"是":"否",
-    identity:card.querySelector(".identity-choice").value
+    identity:card.querySelector(".identity-choice")?.value||""
   }));
   applicationReviewList.replaceChildren();
   applications.forEach(item=>{
     const listItem=document.createElement("li");
     const title=document.createElement("strong");
     title.textContent=item.name;
-    listItem.append(title,document.createElement("br"),document.createTextNode(`${item.room}／申請身分：${item.identity}／需無障礙房：${item.accessible}`));
+    const details=[item.room];
+    if(item.identity)details.push(`申請身分：${item.identity}`);
+    details.push(`需無障礙房：${item.accessible}`);
+    listItem.append(title,document.createElement("br"),document.createTextNode(details.join("／")));
     applicationReviewList.appendChild(listItem);
   });
   persistSelectedIdentities();
