@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="assets/css/pages/index.css" />
 <link rel="stylesheet" href="assets/css/rental-news.css" />
 <link rel="stylesheet" href="assets/css/inline-utilities.css" />
+<link rel="stylesheet" href="assets/css/budget-range.css?v=2" />
 </head>
 <body>
   <header>
@@ -66,14 +67,15 @@
             <option>選擇房型</option><option>套房</option><option>1 房</option><option>2 房</option><option>3 房以上</option>
           </select>
         </label>
-        <div class="field range-field">
-          <span class="field-label">每月租金</span>
-          <div class="range-shell">
-            <div class="range-fill"></div>
-            <input id="minRent" type="range" min="5000" max="18000" step="100" value="7000" aria-label="最低租金，每次調整 100 元" />
-            <input id="maxRent" type="range" min="5000" max="18000" step="100" value="16000" aria-label="最高租金，每次調整 100 元" />
+        <div class="field budget-field">
+          <span class="field-label" id="quickBudgetLabel">預算範圍</span>
+          <div class="budget-range" id="quickBudget" role="group" aria-labelledby="quickBudgetLabel">
+            <div class="budget-track">
+              <input id="minRent" data-budget-slider="min" type="range" min="0" max="40000" step="1000" value="5000" aria-label="預算下限拉霸" />
+              <input id="maxRent" data-budget-slider="max" type="range" min="0" max="40000" step="1000" value="16000" aria-label="預算上限拉霸" />
+            </div>
+            <output class="budget-value" data-budget-output for="minRent maxRent">5,000～16,000 元</output>
           </div>
-          <div class="range-values"><span id="minOutput">NT$ 7,000</span><span id="maxOutput">NT$ 16,000</span></div>
         </div>
         <button class="primary-button search-button" type="submit">找社宅</button>
       </form>
@@ -92,7 +94,7 @@
               <div class="step-icon"><svg viewBox="0 0 44 44" aria-hidden="true"><path d="M7 21 22 9l15 12M11 19v18h22V19M17 37V26h10v11"/><circle cx="33" cy="11" r="5"/><path d="m37 15 4 4"/></svg></div>
               <div class="step-label">找社宅</div>
             </a>
-            <span class="step-login-tag">登入</span><p class="step-benefit">依需求快速篩選社宅</p>
+            <span class="step-login-tag">登入</span><p class="step-benefit">依需求快速篩選社宅<br>生活機能地圖<br>比一比、訂閱通知<br>加入申請清單</p>
           </div>
           <div class="step">
             <div class="step-number">02</div>
@@ -100,15 +102,15 @@
               <div class="step-icon"><svg viewBox="0 0 44 44" aria-hidden="true"><rect x="8" y="6" width="28" height="32" rx="2"/><path d="M15 14h14M15 21h8M15 28l4 4 10-11"/></svg></div>
               <div class="step-label">登記居住需求</div>
             </a>
-            <p class="step-benefit">推薦社宅、招租通知</p>
+            <p class="step-benefit">推薦社宅、招租通知<br>依需求媒合可申請社宅</p>
           </div>
           <div class="step">
             <div class="step-number">03</div>
             <a class="step-action" href="declaration.html" aria-label="切結與申請社宅：授權查調，減少填寫">
               <div class="step-icon"><svg viewBox="0 0 44 44" aria-hidden="true"><path d="M9 6h21l6 6v26H9zM30 6v7h6M15 20h15M15 27h15M15 34h9"/><path d="m28 31 3 3 7-8"/></svg></div>
-              <div class="step-label">切結／申請社宅</div>
+              <div class="step-label">切結／申請社宅／回饋</div>
             </a>
-            <p class="step-benefit">授權查調，減少填寫<br>一份資料跨社宅申請</p>
+            <p class="step-benefit">電子切結<br>授權查調，減少填寫<br>一份資料跨社宅申請<br>回饋社宅政策意見</p>
           </div>
           <div class="step">
             <div class="step-number">04</div>
@@ -134,7 +136,16 @@
           <label class="explorer-field keyword-field"><span>社宅名稱</span><input id="housingKeyword" type="search" placeholder="請輸入社宅名稱" /></label>
           <label class="explorer-field"><span>縣市</span><select id="housingCounty"><option value="">全臺灣</option><option>基隆市</option><option>臺北市</option><option>新北市</option><option>桃園市</option><option>新竹市</option><option>新竹縣</option><option>苗栗縣</option><option>臺中市</option><option>彰化縣</option><option>南投縣</option><option>雲林縣</option><option>嘉義市</option><option>嘉義縣</option><option>臺南市</option><option>高雄市</option><option>屏東縣</option><option>宜蘭縣</option><option>花蓮縣</option><option>臺東縣</option><option>澎湖縣</option><option>金門縣</option><option>連江縣</option></select></label>
           <label class="explorer-field"><span>房型</span><select id="housingRoom"><option value="">全部房型</option><option value="套房">套房</option><option value="一房">一房型</option><option value="二房">二房型</option><option value="三房">三房型</option></select></label>
-          <label class="explorer-field"><span>每月租金</span><select id="housingRent"><option value="">不限租金</option><option value="10000">10,000 元以下</option><option value="20000">20,000 元以下</option><option value="30000">30,000 元以下</option></select></label>
+          <div class="explorer-field budget-field">
+            <span id="housingBudgetLabel">預算範圍</span>
+            <div class="budget-range" id="housingBudget" role="group" aria-labelledby="housingBudgetLabel">
+              <div class="budget-track">
+                <input data-budget-slider="min" type="range" min="0" max="40000" step="1000" value="5000" aria-label="預算下限拉霸" />
+                <input data-budget-slider="max" type="range" min="0" max="40000" step="1000" value="16000" aria-label="預算上限拉霸" />
+              </div>
+              <output class="budget-value" data-budget-output>5,000～16,000 元</output>
+            </div>
+          </div>
           <div class="status-field"><span>興建狀態</span><div class="status-options"><label><input type="checkbox" name="housingStatus" value="completed" checked />已完工</label><label><input type="checkbox" name="housingStatus" value="building" checked />興建中</label><label><input type="checkbox" name="housingStatus" value="recruiting" checked />招租中</label></div></div>
           <button class="filter-button" type="submit">搜尋</button>
           <button class="reset-button" id="housingReset" type="button">重設</button>
@@ -152,23 +163,23 @@
           <section class="housing-results" aria-labelledby="result-title">
             <div class="panel-heading"><div><h3 id="result-title">社宅列表</h3><span id="resultCountyLabel">全臺灣</span></div><div class="result-summary">尋找到 <strong id="housingCount">7</strong> 間社宅</div></div>
             <div class="housing-list" id="housingList" aria-live="polite">
-              <article class="housing-card" data-name="保二安居" data-county="新北市" data-district="中和區" data-rooms="套房 一房 二房 三房" data-rent="7870" data-status="completed">
+              <article class="housing-card" data-name="保二安居" data-county="新北市" data-district="中和區" data-rooms="套房 一房 二房 三房" data-rent="7870" data-rent-max="30630" data-status="completed">
                 <div class="housing-card-media inline-style-3d7a15e861"><span class="housing-status">已完工</span><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M9 55h46M14 55V18h21v37M39 55V9h12v46M20 26h8M20 34h8M20 42h8M44 17h3M44 25h3M44 33h3M44 41h3"/></svg></div>
                 <div class="housing-card-body"><div class="housing-card-top"><h4>保二安居</h4><span class="housing-rent">7,870–30,630 元/月</span></div><div class="housing-location">● 新北市・中和區</div><div class="housing-meta"><span>10.63–41.39 坪</span><span>套房／一至三房型</span></div><p>以基層警消居住需求為核心，並配置托育與照顧等社區服務設施。</p></div>
               </article>
-              <article class="housing-card" data-name="五谷好室A" data-county="新北市" data-district="三重區" data-rooms="套房 二房 三房" data-rent="7760" data-status="completed">
+              <article class="housing-card" data-name="五谷好室A" data-county="新北市" data-district="三重區" data-rooms="套房 二房 三房" data-rent="7760" data-rent-max="38160" data-status="completed">
                 <div class="housing-card-media inline-style-5f072ddfbf"><span class="housing-status">已完工</span><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M9 55h46M14 55V18h21v37M39 55V9h12v46M20 26h8M20 34h8M20 42h8M44 17h3M44 25h3M44 33h3M44 41h3"/></svg></div>
                 <div class="housing-card-body"><div class="housing-card-top"><h4>五谷好室 A</h4><span class="housing-rent">7,760–38,160 元/月</span></div><div class="housing-location">● 新北市・三重區</div><div class="housing-meta"><span>16.11–39.95 坪</span><span>套房／二至三房型</span></div><p>鄰近二重疏洪道綠地，社區整合托嬰、幼兒園與日間照顧服務。</p></div>
               </article>
-              <article class="housing-card" data-name="富貴好室" data-county="新北市" data-district="三重區" data-rooms="套房 二房 三房" data-rent="7660" data-status="completed">
+              <article class="housing-card" data-name="富貴好室" data-county="新北市" data-district="三重區" data-rooms="套房 二房 三房" data-rent="7660" data-rent-max="30360" data-status="completed">
                 <div class="housing-card-media inline-style-d693ebdbbf"><span class="housing-status">已完工</span><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M9 55h46M14 55V18h21v37M39 55V9h12v46M20 26h8M20 34h8M20 42h8M44 17h3M44 25h3M44 33h3M44 41h3"/></svg></div>
                 <div class="housing-card-body"><div class="housing-card-top"><h4>富貴好室</h4><span class="housing-rent">7,660–30,360 元/月</span></div><div class="housing-location">● 新北市・三重區</div><div class="housing-meta"><span>17.54–37.49 坪</span><span>套房／二至三房型</span></div><p>鄰近公園與大眾運輸，提供青年及育兒家庭較完整的生活機能。</p></div>
               </article>
-              <article class="housing-card" data-name="新市安居" data-county="臺南市" data-district="新市區" data-rooms="套房 二房" data-rent="5500" data-status="recruiting">
+              <article class="housing-card" data-name="新市安居" data-county="臺南市" data-district="新市區" data-rooms="套房 二房" data-rent="5500" data-rent-max="16090" data-status="recruiting">
                 <div class="housing-card-media inline-style-5c1f845440"><span class="housing-status">招租中</span><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M9 55h46M14 55V18h21v37M39 55V9h12v46M20 26h8M20 34h8M20 42h8M44 17h3M44 25h3M44 33h3M44 41h3"/></svg></div>
                 <div class="housing-card-body"><div class="housing-card-top"><h4>新市安居</h4><span class="housing-rent">5,500–16,090 元/月</span></div><div class="housing-location">● 臺南市・新市區</div><div class="housing-meta"><span>16–29.16 坪</span><span>套房／二房型</span></div><p>鄰近南部科學園區與生活商圈，提供單身青年及小家庭多元房型。</p></div>
               </article>
-              <article class="housing-card" data-name="福山安居" data-county="高雄市" data-district="左營區" data-rooms="套房 二房 三房" data-rent="5460" data-status="recruiting">
+              <article class="housing-card" data-name="福山安居" data-county="高雄市" data-district="左營區" data-rooms="套房 二房 三房" data-rent="5460" data-rent-max="21630" data-status="recruiting">
                 <div class="housing-card-media inline-style-bb94029efe"><span class="housing-status">招租中</span><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M9 55h46M14 55V18h21v37M39 55V9h12v46M20 26h8M20 34h8M20 42h8M44 17h3M44 25h3M44 33h3M44 41h3"/></svg></div>
                 <div class="housing-card-body"><div class="housing-card-top"><h4>福山安居</h4><span class="housing-rent">5,460–21,630 元/月</span></div><div class="housing-location">● 高雄市・左營區</div><div class="housing-meta"><span>13.36–34.61 坪</span><span>套房／二至三房型</span></div><p>位於三鐵共構生活圈，鄰近醫療、學校、公園與主要就業區域。</p></div>
               </article>
@@ -282,6 +293,7 @@
 
   <dialog id="serviceDialog"><div class="dialog-content"><div class="dialog-icon">◉</div><h2>智能客服</h2><p>您好！我可以協助說明社宅申請資格、登記流程與案件進度查詢方式。</p><div class="dialog-actions"><button class="close-dialog" type="button">關閉</button></div></div></dialog>
 
+  <script src="assets/budget-range.js?v=2"></script>
   <script>
     const dialogs = document.querySelectorAll('dialog');
     const siteHeader = document.querySelector('header');
@@ -358,23 +370,7 @@
     document.querySelectorAll('.close-dialog').forEach((button) => button.addEventListener('click', () => button.closest('dialog').close()));
     dialogs.forEach((dialog) => dialog.addEventListener('click', (event) => { if (event.target === dialog) dialog.close(); }));
 
-    const minRent = document.getElementById('minRent');
-    const maxRent = document.getElementById('maxRent');
-    const rentStep = 100;
-    const snapRent = (amount) => Math.round(Number(amount) / rentStep) * rentStep;
-    const formatRent = (amount) => `NT$ ${Number(amount).toLocaleString('en-US')}`;
-    const updateRent = () => {
-      minRent.value = snapRent(minRent.value);
-      maxRent.value = snapRent(maxRent.value);
-      if (+minRent.value > +maxRent.value) [minRent.value, maxRent.value] = [maxRent.value, minRent.value];
-      document.getElementById('minOutput').textContent = formatRent(minRent.value);
-      document.getElementById('maxOutput').textContent = formatRent(maxRent.value);
-      const lower = ((minRent.value - 5000) / 13000) * 100;
-      const upper = ((maxRent.value - 5000) / 13000) * 100;
-      document.querySelector('.range-fill').style.cssText = `left:${lower}%;right:${100 - upper}%;`;
-    };
-    [minRent, maxRent].forEach((input) => input.addEventListener('input', updateRent));
-    updateRent();
+    const quickBudget = window.createBudgetRange(document.getElementById('quickBudget'));
     const districts = {
       taipei: [
         '中正區', '大同區', '中山區', '松山區', '大安區', '萬華區',
@@ -431,7 +427,7 @@
     const housingKeyword = document.getElementById('housingKeyword');
     const housingCounty = document.getElementById('housingCounty');
     const housingRoom = document.getElementById('housingRoom');
-    const housingRent = document.getElementById('housingRent');
+    const housingBudget = window.createBudgetRange(document.getElementById('housingBudget'));
     const housingCards = Array.from(document.querySelectorAll('.housing-card'));
     const countyButtons = Array.from(document.querySelectorAll('.county-panel [data-county]'));
     const mapCities = Array.from(document.querySelectorAll('#taiwanMap .city'));
@@ -443,7 +439,7 @@
       const keyword = housingKeyword.value.trim().toLowerCase();
       const countyName = housingCounty.value;
       const roomName = housingRoom.value;
-      const rentLimit = Number(housingRent.value || 0);
+      const budget = housingBudget.get();
       const statuses = new Set(Array.from(document.querySelectorAll('[name="housingStatus"]:checked')).map((input) => input.value));
       let visibleCount = 0;
 
@@ -451,7 +447,7 @@
         const nameMatch = !keyword || card.dataset.name.toLowerCase().includes(keyword);
         const countyMatch = !countyName || card.dataset.county === countyName;
         const roomMatch = !roomName || card.dataset.rooms.includes(roomName);
-        const rentMatch = !rentLimit || Number(card.dataset.rent) <= rentLimit;
+        const rentMatch = Number(card.dataset.rent) <= budget.max && Number(card.dataset.rentMax || card.dataset.rent) >= budget.min;
         const statusMatch = statuses.has(card.dataset.status);
         const isVisible = nameMatch && countyMatch && roomMatch && rentMatch && statusMatch;
         card.hidden = !isVisible;
@@ -483,8 +479,10 @@
       applyHousingFilters();
     });
     housingFilters.querySelectorAll('select, input[type="checkbox"]').forEach((control) => control.addEventListener('change', applyHousingFilters));
+    document.getElementById('housingBudget').addEventListener('change', applyHousingFilters);
     document.getElementById('housingReset').addEventListener('click', () => {
       housingFilters.reset();
+      housingBudget.reset();
       applyHousingFilters();
     });
     countyButtons.forEach((button) => button.addEventListener('click', () => {
@@ -512,9 +510,11 @@
       const quickRoom = document.getElementById('quickRoom').value;
       const roomValue = quickRoom.includes('3') ? '三房' : quickRoom.includes('2') ? '二房' : quickRoom.includes('1') ? '一房' : quickRoom.includes('套') ? '套房' : '';
       if (quickCounty) query.set('county', quickCounty);
+      if (quickCounty && district.value) query.set('district', district.value);
       if (roomValue) query.set('room', roomValue);
-      query.set('rent', maxRent.value);
-      window.location.href = `housing-map.html?${query.toString()}#housingFilters`;
+      query.set('budgetMin', quickBudget.get().min);
+      query.set('budgetMax', quickBudget.get().max);
+      window.location.href = `housing-map.html?${query.toString()}`;
     });
     applyHousingFilters();
   </script>

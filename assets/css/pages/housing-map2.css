@@ -379,6 +379,19 @@
   transform: translateX(0);
 }
 
+.housing-map2-page .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.housing-map2-page .filter-drawer-form .budget-field { margin-top: 16px; }
+
 .housing-map2-page .filter-drawer-toolbar {
   min-height: 54px;
   display: flex;
@@ -624,6 +637,7 @@
 
 @media (max-width: 1100px) {
   .housing-map2-page {
+    --mobile-header-height: 137px;
     height: auto;
     min-height: 100vh;
     overflow: visible;
@@ -654,6 +668,8 @@
   }
 
   .housing-map2-page .search-toolbar {
+    position: sticky;
+    top: var(--mobile-header-height);
     height: auto;
     min-height: 72px;
     border: 1px solid rgba(173, 204, 201, .75);
@@ -672,7 +688,8 @@
   }
 
   .housing-map2-page .filter-drawer {
-    top: 137px;
+    z-index: 980;
+    top: var(--mobile-header-height);
     bottom: 16px;
     right: auto;
     left: 16px;
@@ -680,10 +697,34 @@
     border: 1px solid #cddfdd;
     border-radius: 22px;
     transform: translateX(calc(-100% - 24px));
+    max-height: calc(100dvh - var(--mobile-header-height) - 16px);
+    overflow: hidden;
+    visibility: hidden;
   }
 
   .housing-map2-page .filter-drawer.is-open {
     transform: translateX(0);
+    visibility: visible;
+  }
+
+  .housing-map2-page .filter-drawer-toolbar {
+    position: relative;
+    z-index: 2;
+    flex-shrink: 0;
+    background: #fff;
+  }
+
+  .housing-map2-page .filter-drawer-toolbar .filter-reset-button,
+  .housing-map2-page .filter-drawer-toolbar .filter-apply-button,
+  .housing-map2-page .filter-drawer-toolbar .filter-close-button {
+    min-height: 44px;
+    height: 44px;
+  }
+
+  .housing-map2-page .filter-drawer-form {
+    min-height: 0;
+    overscroll-behavior-y: contain;
+    padding-bottom: calc(24px + env(safe-area-inset-bottom));
   }
 
   .housing-map2-page .results-section {
@@ -694,7 +735,24 @@
   }
 }
 
+@media (max-width: 900px) {
+  .housing-map2-page { --mobile-header-height: 106px; }
+}
+
 @media (max-width: 760px) {
+  .housing-map2-page { min-width: 0; }
+  .housing-map2-page .workspace-inner { width: 100%; }
+
+  .housing-map2-page .search-toolbar {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-rows: auto auto auto;
+    gap: 8px;
+    padding: 10px 12px;
+    border-radius: 0;
+  }
+
+  .housing-map2-page .search-toolbar > * { min-width: 0; }
+
   .housing-map2-page header .brand-name {
     font-size: clamp(13px, 4vw, 15px) !important;
     line-height: 1.2;
@@ -710,29 +768,66 @@
   .housing-map2-page .filter-open-button {
     grid-column: 1;
     grid-row: 1;
+    justify-self: start;
+    padding: 0 10px;
+    gap: 6px;
+    white-space: nowrap;
   }
 
   .housing-map2-page .active-query-summary {
-    grid-column: 2;
-    grid-row: 1;
+    grid-column: 1 / -1;
+    grid-row: 3;
+    overflow: hidden;
+  }
+
+  .housing-map2-page .active-filter-area {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding: 3px 0;
+  }
+
+  .housing-map2-page .active-filter-chip { flex-shrink: 0; }
+
+  .housing-map2-page .active-query-label { display: none; }
+
+  .housing-map2-page .sort-control {
+    width: 100%;
+    min-width: 0;
+    min-height: 44px;
   }
 
   .housing-map2-page .toolbar-result-count {
-    grid-column: 1;
+    grid-column: 1 / -1;
     grid-row: 2;
+    margin: 0;
   }
 
   .housing-map2-page .search-toolbar > label {
     grid-column: 2;
-    grid-row: 2;
+    grid-row: 1;
   }
 
   .housing-map2-page .filter-drawer {
-    top: 106px;
+    top: var(--mobile-header-height);
     bottom: 0;
     right: auto;
     left: 0;
     width: min(430px, 100%);
     border-radius: 0;
+    max-height: calc(100dvh - var(--mobile-header-height));
   }
+
+  .housing-map2-page .filter-drawer-form { padding: 0 16px calc(24px + env(safe-area-inset-bottom)); }
+  .housing-map2-page .status-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .housing-map2-page .status-grid .drawer-check { padding: 8px 4px; gap: 5px; white-space: nowrap; }
+  .housing-map2-page .map-stage,
+  .housing-map2-page .results-section { margin: 0 12px; }
+}
+
+@media (max-width: 400px) {
+  .housing-map2-page .brand-name { max-width: 132px; white-space: normal; }
+  .housing-map2-page .main-nav { padding-right: 10px; padding-left: 10px; gap: 6px; }
+  .housing-map2-page .header-actions { gap: 6px; }
+  .housing-map2-page .district-county-tabs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .housing-map2-page .district-select-panel .drawer-check { padding-right: 5px; padding-left: 5px; }
 }

@@ -1,0 +1,120 @@
+.budget-range {
+  --budget-start: 0%;
+  --budget-end: 100%;
+  min-width: 0;
+  color: #345a60;
+  font-family: "Microsoft JhengHei", "Microsoft JhengHei UI", sans-serif;
+  font-size: 16px;
+}
+
+.budget-range .budget-value {
+  display: block;
+  color: #245e65;
+  font-weight: 700;
+  line-height: 1.5;
+  font-variant-numeric: tabular-nums;
+}
+
+.budget-range .budget-inputs {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: 8px;
+  align-items: center;
+}
+
+.budget-range .budget-number {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  border: 1px solid #b9cfcc;
+  border-radius: 9px;
+  background: #fff;
+  padding: 0 8px;
+}
+
+.budget-range .budget-number input {
+  width: 100%;
+  min-width: 0;
+  height: 44px;
+  min-height: 44px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 9px;
+  background: transparent;
+  color: #245e65;
+  font: inherit;
+  font-weight: 800;
+  text-align: center;
+  appearance: textfield;
+}
+
+.budget-range .budget-number input::-webkit-inner-spin-button,
+.budget-range .budget-number input::-webkit-outer-spin-button { appearance: none; margin: 0; }
+
+.budget-range .budget-number span { flex-shrink: 0; }
+.budget-range .budget-number:focus-within { outline: 3px solid #b3ddda; outline-offset: 2px; }
+.budget-range .budget-number input:focus { outline: none; }
+
+.budget-range .budget-track {
+  position: relative;
+  height: 44px;
+  margin: 4px 0 0;
+}
+
+.budget-range .budget-track::before {
+  content: "";
+  position: absolute;
+  top: 19px;
+  right: 14px;
+  left: 14px;
+  height: 6px;
+  border-radius: 99px;
+  background: linear-gradient(to right, #d5e3e1 var(--budget-start), #087b82 var(--budget-start), #087b82 var(--budget-end), #d5e3e1 var(--budget-end));
+}
+
+.budget-range .budget-track input[type="range"] {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 44px;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-shadow: none;
+  background: transparent;
+  appearance: none;
+  pointer-events: none;
+}
+
+.budget-range input[type="range"]::-webkit-slider-runnable-track { height: 6px; background: transparent; }
+.budget-range input[type="range"]::-moz-range-track { height: 6px; background: transparent; }
+.budget-range input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  width: 28px;
+  height: 28px;
+  margin-top: -11px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  background: #087b82;
+  box-shadow: 0 0 0 1px #087b82, 0 2px 5px #175c6326;
+  pointer-events: auto;
+  touch-action: pan-y;
+  cursor: grab;
+}
+.budget-range input[type="range"]::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  background: #087b82;
+  box-shadow: 0 0 0 1px #087b82;
+  pointer-events: auto;
+  touch-action: pan-y;
+  cursor: grab;
+}
+.budget-range .budget-track input:focus-visible { outline: 2px solid #087b82; outline-offset: 2px; border-radius: 8px; }
+.budget-range .budget-limits { display: flex; justify-content: space-between; gap: 8px; color: #536f74; }
+.budget-range .budget-hint { margin: 6px 0 0; color: #607579; font-size: 16px; }
+.budget-field > .budget-label { display: block; margin: 0 0 9px; font-weight: 700; color: #536f74; }

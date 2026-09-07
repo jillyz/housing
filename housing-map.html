@@ -10,7 +10,8 @@
   <link rel="stylesheet" href="assets/css/pages/housing.css" />
   <link rel="stylesheet" href="assets/css/pages/housinglist.css?v=18" />
   <link rel="stylesheet" href="assets/css/pages/houaing-map.css?v=1" />
-  <link rel="stylesheet" href="assets/css/pages/housing-map2.css?v=24" />
+  <link rel="stylesheet" href="assets/css/pages/housing-map2.css?v=30" />
+  <link rel="stylesheet" href="assets/css/budget-range.css?v=1" />
 </head>
 <body class="housing-page housing-list-page housing-map-page housing-map2-page drawer-pinned">
   <header>
@@ -230,16 +231,24 @@
         <label class="drawer-field"><span>房型</span>
           <select id="filterRoom">
             <option value="">全部房型</option><option value="套房">套房</option><option value="一房">一房型</option>
-            <option value="二房">二房型</option><option value="三房">三房型</option>
+            <option value="二房">二房型</option><option value="三房">三房型</option><option value="四房">四房型</option>
           </select>
         </label>
-        <label class="drawer-field"><span>每月租金上限</span>
-          <select id="filterRent">
-            <option value="">不限租金</option><option value="10000">10,000 元以下</option>
-            <option value="20000">20,000 元以下</option><option value="30000">30,000 元以下</option>
-            <option value="45000">45,000 元以下</option>
-          </select>
-        </label>
+        <div class="budget-field">
+          <span class="budget-label" id="filterBudgetLabel">預算範圍</span>
+          <div class="budget-range" id="filterBudget" role="group" aria-labelledby="filterBudgetLabel" aria-describedby="filterBudgetHint">
+            <div class="budget-inputs">
+              <label class="budget-number"><input id="filterBudgetMin" data-budget-input="min" type="number" inputmode="numeric" min="0" max="40000" step="1000" value="0" aria-label="預算起始金額" /><span>元</span></label>
+              <span aria-hidden="true">～</span>
+              <label class="budget-number"><input id="filterBudgetMax" data-budget-input="max" type="number" inputmode="numeric" min="0" max="40000" step="1000" value="40000" aria-label="預算結束金額" /><span>元</span></label>
+            </div>
+            <div class="budget-track">
+              <input data-budget-slider="min" type="range" min="0" max="40000" step="1000" value="0" aria-label="預算下限拉霸" />
+              <input data-budget-slider="max" type="range" min="0" max="40000" step="1000" value="40000" aria-label="預算上限拉霸" />
+            </div>
+            <div class="budget-limits" aria-hidden="true"><span>0 元</span><span>40,000 元</span></div>
+          </div>
+        </div>
       </div>
 
       <div class="drawer-group">
@@ -305,6 +314,7 @@
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <script src="assets/taiwan-districts.js"></script>
+  <script src="assets/budget-range.js?v=1"></script>
   <script>
     (function () {
       "use strict";
@@ -321,6 +331,7 @@
           coordinates: [24.992117, 121.514456],
           rent: "7,870–30,630 元/月",
           minRent: 7870,
+          maxRent: 30630,
           size: "10.63–41.39 坪",
           rooms: "套房／一房型／二房型／三房型",
           agency: "國家住都中心",
@@ -340,6 +351,7 @@
           coordinates: [25.051798368371262, 121.48637052534272],
           rent: "6,300–38,400 元/月",
           minRent: 6300,
+          maxRent: 38400,
           size: "17.54–37.49 坪",
           rooms: "套房型／二房型／三房型",
           agency: "新北市政府",
@@ -359,6 +371,7 @@
           coordinates: [25.049257, 121.476560],
           rent: "7,760–38,160 元/月",
           minRent: 7760,
+          maxRent: 38160,
           size: "16.11–39.95 坪",
           rooms: "套房／二房型／三房型",
           agency: "國家住都中心",
@@ -425,6 +438,7 @@
       var filterOpenButton = document.getElementById("filterOpenButton");
       var filterCloseButton = document.getElementById("filterCloseButton");
       var filterForm = document.getElementById("filterForm");
+      var budgetRange = window.createBudgetRange(document.getElementById("filterBudget"));
       var filterCounty = document.getElementById("filterCounty");
       var districtMultiselect = document.getElementById("districtMultiselect");
       var districtSelectButton = document.getElementById("districtSelectButton");
@@ -658,7 +672,8 @@
           districts: checkedValues("filterDistrict"),
           statuses: checkedValues("filterStatus"),
           room: document.getElementById("filterRoom").value,
-          rent: Number(document.getElementById("filterRent").value || 0),
+          budgetMin: budgetRange.get().min,
+          budgetMax: budgetRange.get().max,
           needs: checkedValues("filterNeed"),
           facilities: checkedValues("filterFacility")
         };
@@ -715,9 +730,9 @@
           count += 1;
           appendFilterChip(state.room + "型", function () { document.getElementById("filterRoom").value = ""; });
         }
-        if (state.rent) {
+        if (state.budgetMin !== 0 || state.budgetMax !== 40000) {
           count += 1;
-          appendFilterChip(state.rent.toLocaleString("zh-TW") + " 元以下", function () { document.getElementById("filterRent").value = ""; });
+          appendFilterChip("預算：" + state.budgetMin.toLocaleString("zh-TW") + "～" + state.budgetMax.toLocaleString("zh-TW") + " 元", function () { budgetRange.reset(); });
         }
         state.needs.forEach(function (need) {
           count += 1;
@@ -758,7 +773,8 @@
         });
         var statusMatch = state.statuses.indexOf(card.dataset.status) !== -1;
         var roomMatch = !state.room || card.dataset.rooms.indexOf(state.room) !== -1;
-        var rentMatch = !state.rent || Number(card.dataset.rent) <= state.rent;
+        var project = getProject(card.dataset.key);
+        var rentMatch = project.minRent <= state.budgetMax && project.maxRent >= state.budgetMin;
         var cardNeeds = card.dataset.needs.split(" ");
         var needsMatch = state.needs.every(function (need) { return cardNeeds.indexOf(need) !== -1; });
         var cardFacilities = card.dataset.facilities.split(" ");
@@ -794,6 +810,7 @@
 
       function resetFilters() {
         filterForm.reset();
+        budgetRange.reset();
         filterCounty.value = "";
         renderDistricts();
         applyFilters(false);
@@ -1186,17 +1203,27 @@
         document.querySelector("header").classList.toggle("is-scrolled", window.scrollY > 16);
       }, { passive: true });
 
+      var initialQuery = new URLSearchParams(window.location.search);
+      var hasSearchQuery = ['county', 'district', 'room', 'budgetMin', 'budgetMax', 'rent'].some(function (key) { return initialQuery.has(key); });
+      if (hasSearchQuery) {
+        var queryCounty = initialQuery.get('county') || '';
+        filterCounty.value = Array.from(filterCounty.options).some(function (option) { return option.value === queryCounty; }) ? queryCounty : '';
+        var queryRoom = initialQuery.get('room') || '';
+        var roomControl = document.getElementById('filterRoom');
+        roomControl.value = Array.from(roomControl.options).some(function (option) { return option.value === queryRoom; }) ? queryRoom : '';
+        budgetRange.set(initialQuery.get('budgetMin') || 0, initialQuery.get('budgetMax') || initialQuery.get('rent') || 40000);
+      }
       renderDistricts();
-      var initialDistrict = districtChecks.querySelector('[name="filterDistrict"][value="新北市|*"]');
+      var initialDistrictValue = hasSearchQuery ? filterCounty.value + '|' + initialQuery.get('district') : '新北市|*';
+      var initialDistrict = Array.from(districtChecks.querySelectorAll('[name="filterDistrict"]')).find(function (input) { return input.value === initialDistrictValue; });
       if (initialDistrict) {
         initialDistrict.checked = true;
-        setActiveDistrictCounty("新北市");
+        setActiveDistrictCounty(initialDistrict.dataset.county);
         syncDistrictSelection();
       }
-      renderActiveFilters(getFilterState());
-      sortCards();
       updateApplications();
       initMap();
+      applyFilters(false);
       if (window.innerWidth <= 1100) {
         filterDrawer.classList.remove("is-open");
         filterDrawer.setAttribute("aria-hidden", "true");
