@@ -84,11 +84,11 @@
               <div class="map-layer-tools" aria-label="地圖圖層">
                 <span class="map-layer-label">生活機能</span>
                 <button class="map-layer-button" type="button" data-layer="" aria-pressed="true">全部</button>
-                <button class="map-layer-button" type="button" data-layer="transit" aria-pressed="false">運輸</button>
+                <button class="map-layer-button" type="button" data-layer="transit" aria-pressed="false">交通</button>
                 <button class="map-layer-button" type="button" data-layer="education" aria-pressed="false">就學</button>
                 <button class="map-layer-button" type="button" data-layer="park" aria-pressed="false">公園</button>
                 <button class="map-layer-button" type="button" data-layer="medical" aria-pressed="false">醫療</button>
-                <button class="map-layer-button" type="button" data-layer="dining" aria-pressed="false">採買</button>
+                <button class="map-layer-button" type="button" data-layer="dining" aria-pressed="false">購物</button>
                 <button class="map-show-all-button" id="showAllMapButton" type="button">顯示全部社宅</button>
               </div>
             </div>
@@ -266,11 +266,11 @@
       <div class="drawer-group">
         <div class="drawer-group-title"><strong>生活機能</strong></div>
         <div class="drawer-check-grid">
-          <label class="drawer-check"><input type="checkbox" name="filterFacility" value="transit" />大眾運輸</label>
+          <label class="drawer-check"><input type="checkbox" name="filterFacility" value="transit" />交通</label>
           <label class="drawer-check"><input type="checkbox" name="filterFacility" value="education" />托育就學</label>
           <label class="drawer-check"><input type="checkbox" name="filterFacility" value="park" />公園綠地</label>
           <label class="drawer-check"><input type="checkbox" name="filterFacility" value="medical" />醫療照護</label>
-          <label class="drawer-check"><input type="checkbox" name="filterFacility" value="dining" />採買餐飲</label>
+          <label class="drawer-check"><input type="checkbox" name="filterFacility" value="dining" />購物</label>
         </div>
       </div>
     </form>
@@ -400,11 +400,11 @@
       ];
 
       var categoryNames = {
-        transit: "大眾運輸",
+        transit: "交通",
         education: "托育就學",
         park: "公園綠地",
         medical: "醫療照護",
-        dining: "採買餐飲"
+        dining: "購物"
       };
       var categorySymbols = { transit: "車", education: "學", park: "園", medical: "醫", dining: "食" };
       var needNames = {
