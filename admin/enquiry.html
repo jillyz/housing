@@ -64,8 +64,8 @@
       <div class="enquiry-editor-panel" id="enquiryEditor" hidden>
       <section class="card target-card" aria-labelledby="targetTitle">
         <div class="card-head">
-          <div><h2 id="targetTitle">新增查調</h2><p>建立查調案件；配偶及戶籍成員查得時自動帶入。</p></div>
-          <div class="target-card-actions"><span class="target-count" id="targetCount">共 4 人</span><button class="btn" id="cancelEnquiry" type="button">關閉</button></div>
+          <div><h2 id="targetTitle">新增查調</h2><p>查調配偶與戶籍後，確認名單再送出。</p></div>
+          <div class="target-card-actions"><span class="target-count" id="targetCount" title="包含申請人與胎兒">共 0 人</span><button class="btn" id="cancelEnquiry" type="button">返回清單</button></div>
         </div>
         <form id="enquiryForm" novalidate>
           <div class="target-body">
@@ -74,15 +74,12 @@
                 <label for="caseNumber">案件編號 <span class="required">*</span></label>
                 <input id="caseNumber" name="caseNumber" type="text" value="ENQ-116-000123" maxlength="30" autocomplete="off" aria-describedby="caseNumberError" />
                 <span class="field-error" id="caseNumberError" role="alert"></span>
+                <button class="text-action" id="openExistingCase" type="button" hidden>開啟既有案件</button>
               </div>
               <div class="field applicant-id-field">
-                <label for="applicantId" id="applicantInputTitle">申請人身分證字號（限本國人） <span class="required">*</span></label>
-                <input id="applicantId" name="applicantId" type="text" value="N123456789" maxlength="10" autocomplete="off" aria-describedby="applicantIdError" />
+                <label for="applicantId" id="applicantInputTitle">申請人 <span class="required">*</span></label>
+                <input id="applicantId" name="applicantId" type="text" value="N123456789" maxlength="10" autocomplete="off" aria-describedby="applicantIdError" placeholder="身分證字號" />
                 <span class="field-error" id="applicantIdError" role="alert"></span>
-              </div>
-              <div class="field spouse-field" id="spouseTarget">
-                <label for="spouseId">配偶 ID</label>
-                <input id="spouseId" name="spouseId" type="text" value="E234567789" maxlength="10" autocomplete="off" placeholder="查得時帶入，也可輸入" />
               </div>
               <button class="btn enquiry-submit" id="runEnquiry" type="button"><span class="material-symbols-rounded" aria-hidden="true">manage_search</span>查調配偶／戶籍</button>
             </section>
@@ -90,19 +87,22 @@
             <div id="queryState" role="status" aria-live="polite" hidden></div>
 
             <section class="additional-targets compact-targets" aria-label="家庭成員或共居者清單">
+              <span class="list-type-label" id="targetTypeLabel">對象類型</span>
               <div class="target-list-toolbar">
                 <div class="list-type-group" role="radiogroup" aria-labelledby="targetTypeLabel">
-                  <span class="list-type-label" id="targetTypeLabel">對象類型</span>
                   <label class="list-type-option"><input type="radio" name="targetGroupType" value="family" checked /><span>家庭成員</span></label>
                   <label class="list-type-option"><input type="radio" name="targetGroupType" value="cohabitant" /><span>共居者</span></label>
                 </div>
                 <button class="btn" id="addTarget" type="button"><span class="material-symbols-rounded" aria-hidden="true">add</span>新增一筆</button>
               </div>
               <div class="target-list" id="targetList"></div>
+              <p class="target-empty" id="targetEmpty">查得的配偶與戶籍成員會顯示於此，也可自行新增。</p>
+              <label class="cohabitant-confirm" id="cohabitantConfirmation" hidden><input id="confirmCohabitants" type="checkbox" />已確認名單中的人員同住</label>
+              <p class="field-error" id="targetListError" role="alert" hidden></p>
             </section>
             <div class="enquiry-form-actions">
-              <span>確認帶入資料後，可新增共居者再完成案件。</span>
-              <button class="btn primary" id="saveEnquiry" type="submit"><span class="material-symbols-rounded" aria-hidden="true">check</span>完成並查看結果</button>
+              <span id="draftStatus" role="status">未送出的內容會保留為草稿。</span>
+              <button class="btn primary" id="saveEnquiry" type="submit"><span class="material-symbols-rounded" aria-hidden="true">send</span>送出查調</button>
             </div>
           </div>
         </form>
@@ -117,11 +117,14 @@
         <div class="history-controls" aria-label="查調案件篩選">
           <div class="history-filters" role="group" aria-label="依狀態篩選">
             <button class="history-filter is-active" type="button" data-history-filter="all">全部</button>
+            <button class="history-filter" type="button" data-history-filter="draft">待送出</button>
             <button class="history-filter" type="button" data-history-filter="running">查調中</button>
             <button class="history-filter" type="button" data-history-filter="complete">已完成</button>
           </div>
           <label class="history-search"><span class="material-symbols-rounded" aria-hidden="true">search</span><input id="historySearch" type="search" placeholder="搜尋案件編號或 ID" /></label>
         </div>
+        <p class="storage-notice" id="storageNotice" role="alert" hidden></p>
+        <button class="resume-draft" id="resumeDraft" type="button" hidden><span class="material-symbols-rounded" aria-hidden="true">edit_note</span>繼續未完成的新查調</button>
         <div class="history-list-wrap">
           <div class="case-list" id="historyRows"></div>
           <div class="history-empty" id="historyEmpty" hidden>目前尚無查調案件。</div>
@@ -137,20 +140,21 @@
 
         <div class="result-pending" id="resultPending" hidden>
           <span class="material-symbols-rounded result-pending-icon" aria-hidden="true">hourglass_top</span>
-          <div><h3>資料分批查調中</h3><p id="resultPendingMessage">案件已送出，可先處理其他工作，稍後再由左側案件清單查看。</p></div>
+          <div><h3 id="resultPendingTitle">資料分批查調中</h3><p id="resultPendingMessage">案件已送出，可先處理其他工作，稍後再由左側案件清單查看。</p></div>
           <button class="btn" id="refreshCaseStatus" type="button"><span class="material-symbols-rounded" aria-hidden="true">refresh</span>更新狀態</button>
+          <button class="btn" id="continueCase" type="button" hidden>繼續確認名單</button>
         </div>
 
         <section class="result-section" aria-labelledby="applicantResultTitle">
           <div class="result-section-head"><div><h3 id="applicantResultTitle">1. 申請人資料</h3><p>戶政、身分資格及戶籍查調資料。</p></div><span class="source-tag">查調取得</span></div>
           <div class="result-section-body">
             <div class="applicant-data-grid">
-              <div class="data-item"><span>姓名</span><strong>陳ＯＯ</strong></div>
+              <div class="data-item"><span>姓名</span><strong id="applicantResultName">陳ＯＯ</strong></div>
               <div class="data-item"><span>身分證字號</span><strong id="applicantResultId">N123456789</strong></div>
               <div class="data-item"><span>出生年月日</span><strong>1988-05-12</strong></div>
               <div class="data-item"><span>原住民身分</span><strong><span class="check-mark" role="img" aria-label="是"><i class="material-symbols-rounded" aria-hidden="true">check</i></span></strong></div>
-              <div class="data-item"><span>婚姻狀況</span><strong>有配偶</strong></div>
-              <div class="data-item"><span>結婚登記日期</span><strong>2017-06-18</strong></div>
+              <div class="data-item"><span>婚姻狀況</span><strong id="marriageResult">有配偶</strong></div>
+              <div class="data-item"><span>結婚登記日期</span><strong id="marriageDateResult">2017-06-18</strong></div>
               <div class="data-item"><span>戶口名簿戶號</span><strong>B1234567</strong></div>
               <div class="data-item"><span>設籍日期</span><strong>2019-08-15</strong></div>
               <div class="data-item wide"><span>戶籍地址</span><strong>241 新北市三重區○○街○巷○號</strong></div>
@@ -211,509 +215,19 @@
 
   <template id="targetRowTemplate">
     <div class="target-row" data-target-row>
-      <input class="target-id" type="text" maxlength="10" placeholder="ID／居留證號" aria-label="身分證字號或居留證號" />
-      <label class="inline-fetus"><span>胎兒</span><input class="target-fetus" type="number" min="0" step="1" value="0" inputmode="numeric" /></label>
-      <div class="target-row-meta"><span class="source-tag row-source" hidden>自行新增</span><button class="remove-target" type="button" aria-label="刪除此查調對象" title="刪除"><span class="material-symbols-rounded" aria-hidden="true">delete</span></button></div>
+      <div class="target-person">
+        <div class="target-person-name" hidden><span class="target-relation"></span><strong class="target-name"></strong></div>
+        <select class="target-relation-select" aria-label="與申請人關係"><option value="">成員</option><option value="配偶">配偶</option></select>
+        <span class="target-id-value" hidden></span>
+        <input class="target-id" type="text" maxlength="10" placeholder="ID／居留證號" aria-label="身分證字號或居留證號" autocomplete="off" />
+      </div>
+      <label class="inline-fetus"><span>胎兒</span><input class="target-fetus" type="number" min="0" step="1" value="0" inputmode="numeric" aria-label="胎兒數" /></label>
+      <button class="remove-target" type="button" aria-label="刪除此查調對象" title="刪除"><span class="material-symbols-rounded" aria-hidden="true">delete</span></button>
     </div>
   </template>
 
-  <script>
-    (() => {
-      const form = document.getElementById('enquiryForm');
-      const caseNumber = document.getElementById('caseNumber');
-      const caseNumberError = document.getElementById('caseNumberError');
-      const applicantId = document.getElementById('applicantId');
-      const applicantIdError = document.getElementById('applicantIdError');
-      const spouseId = document.getElementById('spouseId');
-      const enquiryEditor = document.getElementById('enquiryEditor');
-      const targetTitle = document.getElementById('targetTitle');
-      const newEnquiry = document.getElementById('newEnquiry');
-      const cancelEnquiry = document.getElementById('cancelEnquiry');
-      const targetTypeInputs = [...document.querySelectorAll('input[name="targetGroupType"]')];
-      const targetList = document.getElementById('targetList');
-      const targetTemplate = document.getElementById('targetRowTemplate');
-      const targetCount = document.getElementById('targetCount');
-      const familyResultTitle = document.getElementById('familyResultTitle');
-      const realEstateTitle = document.getElementById('realEstateTitle');
-      const movableTitle = document.getElementById('movableTitle');
-      const familyResultRows = document.getElementById('familyResultRows');
-      const familyResultCount = document.getElementById('familyResultCount');
-      const familyPopulation = document.getElementById('familyPopulation');
-      const familyIncome = document.getElementById('familyIncome');
-      const monthlyAverage = document.getElementById('monthlyAverage');
-      const queryState = document.getElementById('queryState');
-      const runEnquiry = document.getElementById('runEnquiry');
-      const saveEnquiry = document.getElementById('saveEnquiry');
-      const resultArea = document.getElementById('resultArea');
-      const resultTime = document.getElementById('resultTime');
-      const resultCaseNumber = document.getElementById('resultCaseNumber');
-      const resultStatus = document.getElementById('resultStatus');
-      const resultPending = document.getElementById('resultPending');
-      const resultPendingMessage = document.getElementById('resultPendingMessage');
-      const refreshCaseStatus = document.getElementById('refreshCaseStatus');
-      const applicantResultId = document.getElementById('applicantResultId');
-      const historyRows = document.getElementById('historyRows');
-      const historyCount = document.getElementById('historyCount');
-      const historyEmpty = document.getElementById('historyEmpty');
-      const historySearch = document.getElementById('historySearch');
-      const historyFilterButtons = [...document.querySelectorAll('[data-history-filter]')];
-      let historyFilter = 'all';
-      let currentCaseNumber = 'ENQ-116-000123';
-      const samplePeople = {
-        N223456722: { relation: '子女', name: '陳ＯＯ', birth: '2012-04-23', income: 0, identity: '一般身分' },
-        B223456780: { relation: '母親', name: '林ＯＯ', birth: '1958-02-08', income: 180000, identity: '六十五歲以上之老人' }
-      };
-      const basePeople = [
-        { relation: '本人', name: '陳ＯＯ', birth: '1988-05-12', id: 'N123456789', income: 720000, fetus: 0, type: 'family', household: true, cohabiting: true, identity: '原住民' },
-        { relation: '配偶', name: '王ＯＯ', birth: '1990-11-18', id: 'E234567789', income: 600000, fetus: 1, type: 'family', household: true, cohabiting: true, identity: '一般身分' }
-      ];
-      const normalizeId = value => String(value || '').trim().toUpperCase();
-      const formatNumber = value => Number(value || 0).toLocaleString('zh-TW');
-      const escapeHtml = value => String(value ?? '').replace(/[&<>"']/g, character => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' })[character]);
-      const checkMarkup = checked => checked ? '<span class="check-mark" role="img" aria-label="是"><i class="material-symbols-rounded" aria-hidden="true">check</i></span>' : '<span class="empty-boolean" role="img" aria-label="否"></span>';
-      const defaultHistory = [{
-        caseNumber: 'ENQ-116-000123',
-        applicantId: 'N123456789',
-        spouseId: 'E234567789',
-        targetType: 'family',
-        targets: [
-          { type: 'family', id: 'N223456722', fetus: 0, source: '戶籍查得' },
-          { type: 'family', id: 'B223456780', fetus: 0, source: '自行新增' }
-        ],
-        targetTotal: 4,
-        populationTotal: 5,
-        lastQuery: '116/07/03 13:49',
-        status: '查調完成',
-        progress: '10/10'
-      }, {
-        caseNumber: 'ENQ-116-000127',
-        applicantId: 'A123456789',
-        spouseId: '',
-        targetType: 'cohabitant',
-        targets: [
-          { type: 'cohabitant', id: 'B223456780', fetus: 0, source: '自行新增' }
-        ],
-        targetTotal: 2,
-        populationTotal: 2,
-        lastQuery: '116/07/03 14:12',
-        status: '查調完成',
-        progress: '10/10'
-      }];
-      let caseHistory = loadCaseHistory();
-
-      function loadCaseHistory() {
-        try {
-          const saved = JSON.parse(localStorage.getItem('housingEnquiryCases') || 'null');
-          const records = Array.isArray(saved) && saved.length ? saved : defaultHistory;
-          return records.map(record => ({ ...record, status: '查調完成', progress: '10/10' }));
-        } catch (error) {
-          return defaultHistory;
-        }
-      }
-
-      function saveCaseHistory() {
-        try { localStorage.setItem('housingEnquiryCases', JSON.stringify(caseHistory.slice(0, 20))); } catch (error) { /* 靜態原型仍可於本次瀏覽使用 */ }
-      }
-
-      function formatRocDateTime(date = new Date()) {
-        return `${date.getFullYear() - 1911}/${String(date.getMonth() + 1).padStart(2, '0')}/${String(date.getDate()).padStart(2, '0')} ${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}`;
-      }
-
-      function addTargetRow({ id = '', fetus = 0, source = '自行新增' } = {}) {
-        const row = targetTemplate.content.firstElementChild.cloneNode(true);
-        row.querySelector('.target-id').value = id;
-        row.querySelector('.target-fetus').value = String(fetus);
-        const sourceTag = row.querySelector('.row-source');
-        sourceTag.textContent = source;
-        sourceTag.hidden = source !== '戶籍查得';
-        if (source === '戶籍查得') {
-          row.classList.add('is-detected');
-          row.title = '戶籍查得';
-        }
-        targetList.append(row);
-        updateTargetCount();
-        return row;
-      }
-
-      function hydrateDemoTargets() {
-        setTargetGroupType('family');
-        hydrateTargets([
-          { type: 'family', id: 'N223456722', fetus: 0, source: '戶籍查得' },
-          { type: 'family', id: 'B223456780', fetus: 0, source: '自行新增' }
-        ]);
-        setSpouseId('E234567789');
-      }
-
-      function simulateRelationshipLookup() {
-        if (!normalizeId(spouseId.value)) setSpouseId('E234567789');
-        const existingIds = new Set([...targetList.querySelectorAll('.target-id')].map(input => normalizeId(input.value)).filter(Boolean));
-        [
-          { id: 'N223456722', fetus: 0, source: '戶籍查得' },
-          { id: 'B223456780', fetus: 0, source: '戶籍查得' }
-        ].forEach(target => {
-          if (!existingIds.has(target.id)) {
-            addTargetRow(target);
-            existingIds.add(target.id);
-          }
-        });
-        updateTargetCount();
-      }
-
-      function setSpouseId(value = '') {
-        spouseId.value = value;
-        updateTargetCount();
-      }
-
-      function getTargetGroupType() {
-        return targetTypeInputs.find(input => input.checked)?.value || 'family';
-      }
-
-      function getTargetTypeText(type = getTargetGroupType()) {
-        return type === 'cohabitant' ? '共居者' : '家庭成員';
-      }
-
-      function updateTargetTypeCopy() {
-        const typeText = getTargetTypeText();
-        familyResultTitle.textContent = `2. ${typeText}`;
-        realEstateTitle.textContent = `3-1. ${typeText}不動產`;
-        movableTitle.textContent = `3-2. ${typeText}動產`;
-      }
-
-      function setTargetGroupType(type = 'family') {
-        targetTypeInputs.forEach(input => { input.checked = input.value === type; });
-      }
-
-      function readTargetSettings() {
-        const type = getTargetGroupType();
-        return [...targetList.querySelectorAll('[data-target-row]')].map(row => ({
-          type,
-          id: normalizeId(row.querySelector('.target-id').value),
-          fetus: Math.max(0, Math.floor(Number(row.querySelector('.target-fetus').value) || 0)),
-          source: row.querySelector('.row-source').textContent.trim() || '自行新增'
-        })).filter(target => target.id);
-      }
-
-      function hydrateTargets(targets = []) {
-        targetList.replaceChildren();
-        targets.forEach(target => addTargetRow(target));
-        updateTargetCount();
-      }
-
-      function updateTargetCount() {
-        const rows = [...targetList.querySelectorAll('[data-target-row]')];
-        const spouseFetus = normalizeId(spouseId.value) ? Number(basePeople[1].fetus || 0) : 0;
-        const rowFetuses = rows.reduce((sum, row) => sum + Math.max(0, Math.floor(Number(row.querySelector('.target-fetus').value) || 0)), 0);
-        const total = 1 + (normalizeId(spouseId.value) ? 1 : 0) + rows.length + spouseFetus + rowFetuses;
-        targetCount.textContent = `共 ${total} 人`;
-      }
-
-      function getRecordPopulation(record) {
-        const savedPopulation = Number(record.populationTotal);
-        if (savedPopulation > 0) return savedPopulation;
-        const personTotal = Number(record.targetTotal) || 1 + (record.spouseId ? 1 : 0) + (record.targets?.length || 0);
-        const spouseFetus = record.spouseId ? Number(basePeople[1].fetus || 0) : 0;
-        const targetFetuses = (record.targets || []).reduce((sum, target) => sum + Math.max(0, Number(target.fetus) || 0), 0);
-        return personTotal + spouseFetus + targetFetuses;
-      }
-
-      function getStatusMeta(status) {
-        if (status === '查調中') return { filter: 'running', className: 'is-running', icon: 'hourglass_top', label: '查調中' };
-        if (status === '查調異常') return { filter: 'failed', className: 'is-failed', icon: 'error', label: '查調異常' };
-        return { filter: 'complete', className: 'is-complete', icon: 'check_circle', label: '查調完成' };
-      }
-
-      function renderCaseHistory() {
-        const keyword = normalizeId(historySearch.value);
-        const filteredRecords = caseHistory.map((record, index) => ({ record, index })).filter(({ record }) => {
-          const statusMeta = getStatusMeta(record.status);
-          const matchesStatus = historyFilter === 'all' || statusMeta.filter === historyFilter;
-          const matchesKeyword = !keyword || normalizeId(`${record.caseNumber} ${record.applicantId}`).includes(keyword);
-          return matchesStatus && matchesKeyword;
-        });
-        historyRows.innerHTML = filteredRecords.map(({ record, index }) => {
-          const statusMeta = getStatusMeta(record.status);
-          const progressText = statusMeta.filter === 'running' && record.progress ? ` ${record.progress}` : '';
-          return `<article class="case-list-item ${record.caseNumber === currentCaseNumber ? 'is-selected' : ''}">
-            <button class="case-list-main" type="button" data-history-action="view" data-history-index="${index}" aria-current="${record.caseNumber === currentCaseNumber}" aria-label="查看 ${escapeHtml(record.caseNumber)} 的${statusMeta.filter === 'complete' ? '結果' : '進度'}">
-              <span class="case-list-heading"><strong>${escapeHtml(record.caseNumber)}</strong><span class="history-status ${statusMeta.className}"><i class="material-symbols-rounded" aria-hidden="true">${statusMeta.icon}</i>${statusMeta.label}${escapeHtml(progressText)}</span></span>
-              <span class="case-list-meta"><span>${escapeHtml(record.applicantId)} + ${getTargetTypeText(record.targetType || record.targets?.[0]?.type)}</span><span title="人數含胎兒">| 共${formatNumber(getRecordPopulation(record))}人</span></span>
-            </button>
-            <div class="case-list-foot"><span title="最後更新時間">${escapeHtml(record.lastQuery)}</span><div class="history-row-actions"><button type="button" data-history-action="edit" data-history-index="${index}" title="編輯" aria-label="編輯 ${escapeHtml(record.caseNumber)}"><span class="material-symbols-rounded" aria-hidden="true">edit</span></button><button type="button" data-history-action="rerun" data-history-index="${index}" title="重新查調" aria-label="重新查調 ${escapeHtml(record.caseNumber)}"><span class="material-symbols-rounded" aria-hidden="true">refresh</span></button></div></div>
-          </article>`;
-        }).join('');
-        historyCount.textContent = `共 ${caseHistory.length} 案`;
-        historyEmpty.textContent = keyword || historyFilter !== 'all' ? '找不到符合條件的查調案件。' : '目前尚無查調案件。';
-        historyEmpty.hidden = filteredRecords.length > 0;
-      }
-
-      function recordCurrentCase(lastQuery, status = '查調完成', progress = '10/10') {
-        const targets = readTargetSettings();
-        const record = {
-          caseNumber: caseNumber.value.trim(),
-          applicantId: normalizeId(applicantId.value),
-          spouseId: normalizeId(spouseId.value),
-          targetType: getTargetGroupType(),
-          targets,
-          targetTotal: 1 + (normalizeId(spouseId.value) ? 1 : 0) + targets.length,
-          populationTotal: 1 + (normalizeId(spouseId.value) ? 1 : 0) + targets.length + (normalizeId(spouseId.value) ? Number(basePeople[1].fetus || 0) : 0) + targets.reduce((sum, target) => sum + Math.max(0, Number(target.fetus) || 0), 0),
-          lastQuery,
-          status,
-          progress
-        };
-        caseHistory = [record, ...caseHistory.filter(item => item.caseNumber !== record.caseNumber)].slice(0, 20);
-        currentCaseNumber = record.caseNumber;
-        saveCaseHistory();
-        renderCaseHistory();
-        return record;
-      }
-
-      function loadHistoryCase(record, shouldScroll = true) {
-        resultArea.hidden = false;
-        caseNumber.value = record.caseNumber;
-        applicantId.value = record.applicantId;
-        applicantIdError.textContent = '';
-        caseNumberError.textContent = '';
-        setSpouseId(record.spouseId || '');
-        setTargetGroupType(record.targetType || record.targets?.[0]?.type || 'family');
-        hydrateTargets(record.targets || []);
-        currentCaseNumber = record.caseNumber;
-        resultCaseNumber.textContent = record.caseNumber;
-        resultTime.textContent = record.lastQuery;
-        const statusMeta = getStatusMeta(record.status);
-        const isPending = statusMeta.filter !== 'complete';
-        resultArea.classList.toggle('is-pending', isPending);
-        resultPending.hidden = !isPending;
-        resultStatus.className = `result-status ${statusMeta.className}`;
-        resultStatus.innerHTML = `<i class="material-symbols-rounded" aria-hidden="true">${statusMeta.icon}</i><span>${statusMeta.label}</span>`;
-        if (isPending) {
-          const progressText = record.progress ? `目前已取得 ${escapeHtml(record.progress)} 項資料。` : '';
-          resultPendingMessage.innerHTML = `${progressText} 可先處理其他工作，稍後再由左側案件清單查看。`;
-        } else {
-          renderFamilyResults();
-        }
-        queryState.textContent = '';
-        renderCaseHistory();
-        if (shouldScroll) {
-          resultArea.scrollTo({ top: 0, behavior: 'smooth' });
-          resultArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      }
-
-      function readAdditionalPeople() {
-        const type = getTargetGroupType();
-        return [...targetList.querySelectorAll('[data-target-row]')].map((row, index) => {
-          const id = normalizeId(row.querySelector('.target-id').value);
-          const fetus = Math.max(0, Math.floor(Number(row.querySelector('.target-fetus').value) || 0));
-          const known = samplePeople[id] || {};
-          return {
-            relation: known.relation || (type === 'family' ? '家庭成員' : '共居者'),
-            name: known.name || `查調對象 ${index + 1}`,
-            birth: known.birth || '待回傳',
-            id: id || '未輸入',
-            income: known.income || 0,
-            fetus,
-            type,
-            household: type === 'family',
-            cohabiting: true,
-            identity: known.identity || '待回傳'
-          };
-        }).filter(person => person.id !== '未輸入');
-      }
-
-      function renderFamilyResults() {
-        updateTargetTypeCopy();
-        const applicant = { ...basePeople[0], id: normalizeId(applicantId.value) || basePeople[0].id };
-        const spouseValue = normalizeId(spouseId.value);
-        const spouse = { ...basePeople[1], id: spouseValue };
-        const people = [applicant, ...(spouseValue ? [spouse] : []), ...readAdditionalPeople()];
-        applicantResultId.textContent = applicant.id;
-        familyResultRows.innerHTML = people.map(person => {
-          return `<tr>
-            <td data-label="關係"><span class="relation-tag">${escapeHtml(person.relation)}</span></td>
-            <td data-label="姓名"><strong>${escapeHtml(person.name)}</strong></td>
-            <td data-label="出生年月日">${escapeHtml(person.birth)}</td>
-            <td data-label="ID">${escapeHtml(person.id)}</td>
-            <td data-label="最近一年所得">${formatNumber(person.income)} 元</td>
-            <td data-label="胎兒數">${person.fetus || '—'}</td>
-            <td class="boolean-cell" data-label="同戶籍">${checkMarkup(person.household)}</td>
-            <td class="boolean-cell" data-label="同住">${checkMarkup(person.cohabiting)}</td>
-            <td data-label="身分／社福識別">${escapeHtml(person.identity)}</td>
-          </tr>`;
-        }).join('');
-        const fetuses = people.reduce((sum, person) => sum + person.fetus, 0);
-        const income = people.reduce((sum, person) => sum + person.income, 0);
-        const population = people.length + fetuses;
-        familyResultCount.textContent = `共 ${population} 人（含胎兒）`;
-        familyPopulation.textContent = formatNumber(population);
-        familyIncome.textContent = formatNumber(income);
-        monthlyAverage.textContent = formatNumber(Math.round(income / Math.max(1, population) / 12));
-      }
-
-      function validateApplicantId() {
-        const value = normalizeId(applicantId.value);
-        const valid = /^[A-Z][12][0-9]{8}$/.test(value);
-        applicantId.value = value;
-        applicantId.classList.toggle('is-invalid', !valid);
-        applicantIdError.textContent = valid ? '' : '請輸入正確的國民身分證字號格式。';
-        return valid;
-      }
-
-      function validateCaseNumber() {
-        const value = caseNumber.value.trim();
-        const valid = value.length >= 3;
-        caseNumber.classList.toggle('is-invalid', !valid);
-        caseNumberError.textContent = valid ? '' : '請輸入案件編號。';
-        return valid;
-      }
-
-      function startNewEnquiry() {
-        targetTitle.textContent = '新增查調';
-        caseNumber.value = '';
-        applicantId.value = '';
-        setSpouseId('');
-        setTargetGroupType('family');
-        hydrateTargets([]);
-        caseNumberError.textContent = '';
-        applicantIdError.textContent = '';
-        caseNumber.classList.remove('is-invalid');
-        applicantId.classList.remove('is-invalid');
-        currentCaseNumber = '';
-        runEnquiry.innerHTML = '<span class="material-symbols-rounded" aria-hidden="true">manage_search</span>查調配偶／戶籍';
-        saveEnquiry.innerHTML = '<span class="material-symbols-rounded" aria-hidden="true">check</span>完成並查看結果';
-        renderCaseHistory();
-        enquiryEditor.hidden = false;
-        enquiryEditor.scrollTop = 0;
-        window.setTimeout(() => caseNumber.focus(), 250);
-      }
-
-      document.getElementById('addTarget').addEventListener('click', () => {
-        const row = addTargetRow();
-        row.querySelector('.target-id').focus();
-      });
-      targetList.addEventListener('click', event => {
-        const button = event.target.closest('.remove-target');
-        if (!button) return;
-        button.closest('[data-target-row]').remove();
-        updateTargetCount();
-      });
-      targetList.addEventListener('input', () => {
-        updateTargetCount();
-        renderFamilyResults();
-      });
-      targetTypeInputs.forEach(input => input.addEventListener('change', renderFamilyResults));
-      spouseId.addEventListener('input', () => {
-        updateTargetCount();
-        renderFamilyResults();
-      });
-      historyRows.addEventListener('click', event => {
-        const button = event.target.closest('[data-history-index]');
-        if (!button) return;
-        const record = caseHistory[Number(button.dataset.historyIndex)];
-        if (!record) return;
-        const action = button.dataset.historyAction || 'view';
-        if (action === 'edit') {
-          loadHistoryCase(record, false);
-          targetTitle.textContent = '編輯查調';
-          runEnquiry.innerHTML = '<span class="material-symbols-rounded" aria-hidden="true">refresh</span>重新查調配偶／戶籍';
-          saveEnquiry.innerHTML = '<span class="material-symbols-rounded" aria-hidden="true">save</span>儲存並查看結果';
-          enquiryEditor.hidden = false;
-          enquiryEditor.scrollTop = 0;
-          return;
-        }
-        if (action === 'rerun') {
-          loadHistoryCase(record, false);
-          targetTitle.textContent = '重新查調';
-          form.requestSubmit();
-          return;
-        }
-        enquiryEditor.hidden = true;
-        targetTitle.textContent = '查調設定';
-        loadHistoryCase(record);
-      });
-      newEnquiry.addEventListener('click', startNewEnquiry);
-      cancelEnquiry.addEventListener('click', () => { enquiryEditor.hidden = true; });
-      historyFilterButtons.forEach(button => button.addEventListener('click', () => {
-        historyFilter = button.dataset.historyFilter;
-        historyFilterButtons.forEach(item => {
-          const isActive = item === button;
-          item.classList.toggle('is-active', isActive);
-          item.setAttribute('aria-pressed', String(isActive));
-        });
-        renderCaseHistory();
-      }));
-      historySearch.addEventListener('input', renderCaseHistory);
-      refreshCaseStatus.addEventListener('click', () => {
-        const record = caseHistory.find(item => item.caseNumber === currentCaseNumber);
-        if (!record || record.status !== '查調中') return;
-        record.progress = record.progress && record.progress !== '0/10' ? record.progress : '3/10';
-        record.lastQuery = formatRocDateTime();
-        saveCaseHistory();
-        loadHistoryCase(record, false);
-        queryState.innerHTML = '<span class="query-state-dot"></span><div><strong>進度已更新</strong><small>資料仍在分批查調，可稍後再回來查看。</small></div>';
-      });
-
-      caseNumber.addEventListener('input', () => {
-        caseNumberError.textContent = '';
-        caseNumber.classList.remove('is-invalid');
-      });
-
-      applicantId.addEventListener('input', () => {
-        applicantIdError.textContent = '';
-        applicantId.classList.remove('is-invalid');
-        const isDemoApplicant = normalizeId(applicantId.value) === 'N123456789';
-        if (!isDemoApplicant) {
-          setSpouseId('');
-          targetList.replaceChildren();
-          updateTargetCount();
-          queryState.className = 'query-state';
-          queryState.innerHTML = '<span class="query-state-dot"></span><div><strong>尚未查調</strong><small>執行後將自動帶入婚姻與戶籍關係。</small></div>';
-        }
-      });
-
-      runEnquiry.addEventListener('click', () => {
-        if (!validateCaseNumber()) {
-          caseNumber.focus();
-          return;
-        }
-        if (!validateApplicantId()) {
-          applicantId.focus();
-          return;
-        }
-        simulateRelationshipLookup();
-        runEnquiry.innerHTML = '<span class="material-symbols-rounded" aria-hidden="true">check</span>已帶入，可重新查調';
-      });
-
-      form.addEventListener('submit', event => {
-        event.preventDefault();
-        if (!validateCaseNumber()) {
-          caseNumber.focus();
-          return;
-        }
-        if (!validateApplicantId()) {
-          applicantId.focus();
-          return;
-        }
-        simulateRelationshipLookup();
-        const timestamp = formatRocDateTime();
-        const record = recordCurrentCase(timestamp, '查調完成', '10/10');
-        loadHistoryCase(record, false);
-        queryState.textContent = '';
-        enquiryEditor.hidden = true;
-        resultArea.classList.add('is-refreshed');
-        window.setTimeout(() => resultArea.classList.remove('is-refreshed'), 900);
-        resultArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
-
-      document.querySelectorAll('[data-preview]').forEach(button => button.addEventListener('click', () => alert(`示意：開啟 ${button.dataset.preview}。`)));
-      const initialRecord = caseHistory.find(record => record.status === '查調完成') || caseHistory[0];
-      if (initialRecord) loadHistoryCase(initialRecord, false);
-      else {
-        hydrateDemoTargets();
-        renderFamilyResults();
-        renderCaseHistory();
-      }
-    })();
-  </script>
+  <script src="../assets/enquiry-model.js"></script>
+  <script src="../assets/admin-enquiry.js"></script>
   <script src="../assets/admin-shell.js"></script>
 </body>
 </html>

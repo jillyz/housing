@@ -43,7 +43,7 @@
     <section class="intro" aria-labelledby="page-title"><h1 id="page-title">請選擇以下方式登入</h1><p>安全・便捷・值得信賴的政府數位服務</p></section>
 
     <section class="methods" aria-label="登入驗證方式">
-      <article class="card">
+      <article class="card" id="phoneLoginMethod" hidden>
         <div class="visual"><img src="assets/login-illustrations/phone-verification.png" alt="使用手機進行電信驗證的插畫" /></div>
         <h2>手機電信驗證</h2><ul class="benefits"><li>我的手機已綁定本人門號</li><li>僅使用 4G／5G 行動網路驗證</li><li>驗證快速，適合手機操作</li></ul>
         <button class="login" type="button" data-method="手機電信驗證">使用此方式登入</button><span class="register-placeholder" aria-hidden="true"></span>
@@ -125,7 +125,7 @@
     const requestedReturnPage = new URLSearchParams(window.location.search).get('returnTo');
     const allowedReturnPage = /^(?:apply|housinglist|housing-map|houaing-map|housing-map2)\.html(?:\?.*)?$/;
     const loginDestination = requestedReturnPage && allowedReturnPage.test(requestedReturnPage) ? requestedReturnPage : 'questionnaire.html';
-    document.querySelectorAll('[data-method]').forEach((button) => button.addEventListener('click', () => {
+    document.querySelectorAll('.methods > .card:not([hidden]) [data-method]').forEach((button) => button.addEventListener('click', () => {
       window.location.href = loginDestination;
     }));
     document.querySelectorAll('[data-close]').forEach((button) => button.addEventListener('click', () => dialog.close()));
