@@ -2,6 +2,7 @@
 (() => {
   'use strict';
   const M = window.EnquiryModel;
+  const page = window.EnquiryPage || {};
   const $ = id => document.getElementById(id);
   const escapeHtml = value => String(value ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' })[c]);
   const number = value => Number(value || 0).toLocaleString('zh-TW');
@@ -17,13 +18,13 @@
   const resultArea = $('resultArea');
   const typeInputs = [...document.querySelectorAll('[name="targetGroupType"]')];
   const sections = {
-    applicant: $('applicantResultTitle').closest('.result-section'),
-    family: $('familyResultTitle').closest('.result-section'),
-    property: $('propertyResultTitle').closest('.result-section'),
-    documents: $('documentResultTitle').closest('.result-section')
+    applicant: page.renderPeople ? null : $('applicantResultTitle')?.closest('.result-section'),
+    family: $('familyResultTitle')?.closest('.result-section'),
+    property: $('propertyResultTitle')?.closest('.result-section'),
+    documents: $('documentResultTitle')?.closest('.result-section')
   };
-  const casesKey = 'housingEnquiryCases';
-  const draftsKey = 'housingEnquiryDrafts';
+  const casesKey = page.casesKey || 'housingEnquiryCases';
+  const draftsKey = page.draftsKey || 'housingEnquiryDrafts';
   let storageFailed = false;
 
   function storageError() {
@@ -50,7 +51,7 @@
   let drafts = readStorage(draftsKey, {});
   if (!drafts || Array.isArray(drafts) || typeof drafts !== 'object') drafts = {};
   if (Array.isArray(saved) && saved.some(record => record.schemaVersion !== 2)) writeStorage(casesKey + '_v1_backup', saved);
-  writeStorage(casesKey, records);
+  if (!page.readOnly) writeStorage(casesKey, records);
   let selectedId = records[0]?.recordId || '';
   let activeDraft = null;
   let dirty = false;
@@ -219,6 +220,7 @@
 
   function renderSection(key, received, waitingText) {
     const section = sections[key];
+    if (!section) return;
     const body = section.querySelector('.result-section-body');
     let waiting = section.querySelector('.section-waiting');
     if (!waiting) { waiting = document.createElement('p'); waiting.className = 'section-waiting'; section.append(waiting); }
@@ -247,27 +249,30 @@
     $('resultPendingTitle').textContent = record.status === '待確認名單' ? '待確認名單' : record.status === '查調異常' ? '部分資料查調異常' : '資料分批查調中';
     $('resultPendingMessage').textContent = record.status === '待確認名單' ? '戶籍資料已取得，確認名單後即可送出查調。' : '已取得的資料可先查看；重新查調期間保留上次結果，可稍後回案件清單查看。';
     $('refreshCaseStatus').hidden = record.status === '待確認名單' || record.phase === 'relationship';
-    $('continueCase').hidden = record.status !== '待確認名單' && record.phase !== 'relationship';
+    if ($('continueCase')) $('continueCase').hidden = record.status !== '待確認名單' && record.phase !== 'relationship';
     Object.keys(sections).forEach(key => renderSection(key, received[key], record.status === '待確認名單' ? '確認名單並送出後取得。' : '資料查調中，已回傳的其他區塊可先查看。'));
+    if (page.renderPeople) page.renderPeople(record);
     if (!result) return;
-    if (received.applicant) {
-      $('applicantResultName').textContent = result.applicant.name;
-      $('applicantResultId').textContent = result.applicant.id;
-      $('marriageResult').textContent = result.marriageSource === 'manual' ? '有配偶（自行補填）' : result.marriage === 'married' ? '有配偶' : result.marriage === 'single' ? '無配偶' : '尚未取得';
-      $('marriageDateResult').textContent = result.marriage === 'married' && result.marriageSource !== 'manual' ? '2017-06-18' : '—';
-    }
     const group = M.typeText(result.targetType);
-    $('familyResultTitle').textContent = `2. ${group}`;
-    $('realEstateTitle').textContent = `3-1. ${group}不動產`;
-    $('movableTitle').textContent = `3-2. ${group}動產`;
-    if (received.family) {
-      renderTable('#familyResultRows', result.people.map(person => [person.relation, person.name, person.birth, person.id, `${number(person.income)} 元`, person.fetus || '—', person.household, person.cohabiting, person.identity]), ['關係', '姓名', '出生年月日', 'ID', '最近一年所得', '胎兒數', '同戶籍', '同住', '身分／社福識別']);
-      const total = result.people.reduce((sum, person) => sum + 1 + M.fetusNumber(person.fetus), 0);
-      const income = result.people.reduce((sum, person) => sum + Number(person.income || 0), 0);
-      $('familyResultCount').textContent = `共 ${number(total)} 人（含胎兒）`;
-      $('familyPopulation').textContent = number(total);
-      $('familyIncome').textContent = number(income);
-      $('monthlyAverage').textContent = number(Math.round(income / Math.max(1, total) / 12));
+    if (!page.renderPeople) {
+      if (received.applicant) {
+        $('applicantResultName').textContent = result.applicant.name;
+        $('applicantResultId').textContent = result.applicant.id;
+        $('marriageResult').textContent = result.marriageSource === 'manual' ? '有配偶（自行補填）' : result.marriage === 'married' ? '有配偶' : result.marriage === 'single' ? '無配偶' : '尚未取得';
+        $('marriageDateResult').textContent = result.marriage === 'married' && result.marriageSource !== 'manual' ? '2017-06-18' : '—';
+      }
+      $('familyResultTitle').textContent = `2. ${group}`;
+      $('realEstateTitle').textContent = `3-1. ${group}不動產`;
+      $('movableTitle').textContent = `3-2. ${group}動產`;
+      if (received.family) {
+        renderTable('#familyResultRows', result.people.map(person => [person.relation, person.name, person.birth, person.id, `${number(person.income)} 元`, person.fetus || '—', person.household, person.cohabiting, person.identity]), ['關係', '姓名', '出生年月日', 'ID', '最近一年所得', '胎兒數', '同戶籍', '同住', '身分／社福識別']);
+        const total = result.people.reduce((sum, person) => sum + 1 + M.fetusNumber(person.fetus), 0);
+        const income = result.people.reduce((sum, person) => sum + Number(person.income || 0), 0);
+        $('familyResultCount').textContent = `共 ${number(total)} 人（含胎兒）`;
+        $('familyPopulation').textContent = number(total);
+        $('familyIncome').textContent = number(income);
+        $('monthlyAverage').textContent = number(Math.round(income / Math.max(1, total) / 12));
+      }
     }
     if (received.property) {
       renderTable('.property-result-table tbody', result.realEstate.map(item => [item.owner, item.category, item.address, item.household, item.share, item.area, `${number(item.value)} 元`, item.common]), ['持有者', '類別', '地段地號建號／座落', '戶籍地', '持分比', '房地面積', '房地現值金額', '公同共有']);
@@ -279,7 +284,7 @@
       movableBlock.querySelector('.asset-block-head>span').textContent = `${result.movable.length} 筆`;
       movableBlock.querySelector('.result-summary strong').textContent = number(result.movable.reduce((sum, item) => sum + item.subtotal, 0));
     }
-    if (received.documents) {
+    if (received.documents && sections.documents) {
       sections.documents.querySelector('.source-tag').textContent = `共 ${result.documents.length} 份`;
       document.querySelector('.document-result-list').innerHTML = result.documents.map(([label, filename]) => `<div class="document-result-row"><strong>${escapeHtml(label)}</strong><button type="button" data-preview="${escapeHtml(filename)}">${escapeHtml(filename)}</button><span>查調取得</span></div>`).join('');
     }
@@ -300,6 +305,44 @@
     const complete = M.finishRequery(running, timestamp());
     upsert(complete);
     selectRecord(complete);
+  }
+
+  // 純結果頁不初始化案件清單與編輯表單，也不重新送出查調。
+  if (page.readOnly) {
+    const searchForm = $('hubSearchForm');
+    const applicantName = record => record.result?.applicant?.name || record.applicantName || '';
+    const searchRecords = () => {
+      const latest = readStorage(casesKey, records);
+      if (Array.isArray(latest)) records = latest.map(M.migrate);
+      const keyword = $('hubSearchInput').value.trim().toLocaleLowerCase();
+      const matches = records.filter(record => !keyword || String(record.caseNumber || '').toLocaleLowerCase().includes(keyword));
+      const selected = matches.find(record => record.recordId === selectedId) || matches[0];
+      selectedId = selected?.recordId || '';
+      $('hubSearchStatus').textContent = matches.length ? '' : '查無符合的案件，請調整統一案件編號。';
+      $('hubSearchChoices').hidden = matches.length < 2;
+      $('hubSearchSelect').innerHTML = matches.map(record => `<option value="${escapeHtml(record.recordId)}">${escapeHtml(record.caseNumber)}${applicantName(record) ? ` / ${escapeHtml(applicantName(record))}` : ''}</option>`).join('');
+      $('hubSearchSelect').value = selectedId;
+      renderResults(selected);
+    };
+    const refreshResult = () => {
+      if (searchForm) { searchRecords(); return; }
+      const latest = readStorage(casesKey, records);
+      const record = Array.isArray(latest) ? latest.find(item => item.recordId === selectedId) : null;
+      renderResults(record ? M.migrate(record) : records.find(item => item.recordId === selectedId));
+    };
+    refreshResult();
+    searchForm?.addEventListener('submit', event => { event.preventDefault(); searchRecords(); });
+    $('hubSearchClear')?.addEventListener('click', () => {
+      $('hubSearchInput').value = '';
+      searchRecords();
+      $('hubSearchInput').focus();
+    });
+    $('hubSearchSelect')?.addEventListener('change', event => {
+      selectedId = event.target.value;
+      renderResults(records.find(record => record.recordId === selectedId));
+    });
+    $('refreshCaseStatus')?.addEventListener('click', refreshResult);
+    return;
   }
 
   $('caseNumber').addEventListener('input', () => { activeDraft.caseNumber = $('caseNumber').value; changed(); });

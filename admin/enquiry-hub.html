@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#075364" />
+  <title>全國社宅統一申請登記平臺｜查調結果</title>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,400,0,0&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/common.css" />
+  <link rel="stylesheet" href="../assets/css/pages/admin-home-agency.css" />
+  <link rel="stylesheet" href="../assets/css/pages/admin-enquiry.css" />
+  <link rel="stylesheet" href="../assets/css/pages/admin-enquiry-hub.css" />
+</head>
+<body class="enquiry-page enquiry-hub-page">
+  <div class="layout">
+    <main class="main">
+      <p class="storage-notice" id="storageNotice" role="alert" hidden></p>
+      <form class="hub-search" id="hubSearchForm" role="search" aria-label="查詢查調案件">
+        <label for="hubSearchInput">查詢</label>
+        <input id="hubSearchInput" type="search" placeholder="統一案件編號" aria-label="統一案件編號" autocomplete="off" />
+        <button class="btn primary" type="submit">查詢</button>
+        <button class="btn" type="button" id="hubSearchClear">清除</button>
+        <span id="hubSearchStatus" role="status" aria-live="polite"></span>
+        <div id="hubSearchChoices" hidden><label for="hubSearchSelect">符合案件</label><select id="hubSearchSelect"></select></div>
+      </form>
+      <div class="enquiry-workspace">
+      <section class="result-area" id="resultArea" aria-labelledby="resultTitle">
+        <div class="result-heading">
+          <div><h1 id="resultTitle">查調結果</h1></div>
+          <div class="result-meta"><span class="result-case">統一案件編號 <strong id="resultCaseNumber">TA-116-000123-B</strong></span><span class="result-status" id="resultStatus"><i class="material-symbols-rounded" aria-hidden="true">check_circle</i><span>查調完成</span></span><span id="resultTime">2026/10/08 21:34</span></div>
+        </div>
+
+        <div class="result-pending" id="resultPending" hidden>
+          <span class="material-symbols-rounded result-pending-icon" aria-hidden="true">hourglass_top</span>
+          <div><h3 id="resultPendingTitle">資料分批查調中</h3><p id="resultPendingMessage">案件已送出，資料將分批回傳，可稍後更新狀態。</p></div>
+          <button class="btn" id="refreshCaseStatus" type="button"><span class="material-symbols-rounded" aria-hidden="true">refresh</span>更新狀態</button>
+        </div>
+
+        <section class="result-section household-result-section" aria-label="申請人與家庭成員查調結果">
+          <div class="result-section-body" id="householdResultBody"></div>
+          <p class="section-waiting" id="householdResultWaiting" hidden>資料查調中，尚未取得申請人資料。</p>
+        </section>
+
+        <section class="result-section" aria-labelledby="propertyResultTitle">
+          <div class="result-section-head"><div><h3 id="propertyResultTitle">3. 財產清單</h3></div><span class="source-tag">財稅查調</span></div>
+          <div class="result-section-body asset-results">
+            <section class="asset-block" aria-labelledby="realEstateTitle">
+              <div class="asset-block-head"><h4 id="realEstateTitle">3-1. 家庭成員不動產</h4><span>2 筆</span></div>
+              <div class="result-table-wrap"><table class="result-table property-result-table"><thead><tr><th>持有者</th><th>類別</th><th>地段地號建號／座落</th><th class="boolean-heading">戶籍地</th><th>持分比</th><th>房地面積</th><th>房地現值金額</th><th class="boolean-heading">公同共有</th></tr></thead><tbody>
+                <tr><td data-label="持有者"><strong>張忠政</strong></td><td data-label="類別">房屋</td><td data-label="地段地號建號／座落">新北市／三重段／00123-000</td><td class="boolean-cell" data-label="戶籍地"><span class="check-mark" role="img" aria-label="是"><i class="material-symbols-rounded" aria-hidden="true">check</i></span></td><td data-label="持分比">5 分之 2</td><td data-label="房地面積">36 平方公尺</td><td data-label="房地現值金額">1,200,000 元</td><td class="boolean-cell" data-label="公同共有"><span class="check-mark" role="img" aria-label="是"><i class="material-symbols-rounded" aria-hidden="true">check</i></span></td></tr>
+                <tr><td data-label="持有者"><strong>劉欣慧</strong></td><td data-label="類別">土地</td><td data-label="地段地號建號／座落">南投縣／南投段／0427-0013</td><td class="boolean-cell" data-label="戶籍地"><span class="empty-boolean" role="img" aria-label="否"></span></td><td data-label="持分比">100 分之 5</td><td data-label="房地面積">18.5 平方公尺</td><td data-label="房地現值金額">320,000 元</td><td class="boolean-cell" data-label="公同共有"><span class="empty-boolean" role="img" aria-label="否"></span></td></tr>
+              </tbody></table></div>
+              <div class="result-summary hub-financial-summary"><span>不動產總額</span><span><strong>1,520,000</strong>元</span></div>
+            </section>
+            <section class="asset-block" aria-labelledby="movableTitle">
+              <div class="asset-block-head"><h4 id="movableTitle">3-2. 家庭成員動產</h4><span>2 筆</span></div>
+              <div class="result-table-wrap"><table class="result-table movable-result-table"><thead><tr><th>姓名</th><th>利息（存款本金）</th><th class="boolean-heading">優惠利率</th><th>中獎所得</th><th>其他所得</th><th>小計</th></tr></thead><tbody>
+                <tr><td data-label="姓名"><strong>張忠政</strong></td><td data-label="利息（存款本金）">2,000 元</td><td class="boolean-cell" data-label="優惠利率"><span class="check-mark" role="img" aria-label="是"><i class="material-symbols-rounded" aria-hidden="true">check</i></span></td><td data-label="中獎所得">2,000 元</td><td data-label="其他所得">0 元</td><td data-label="小計"><strong>121,760 元</strong></td></tr>
+                <tr><td data-label="姓名"><strong>劉欣慧</strong></td><td data-label="利息（存款本金）">4,000 元</td><td class="boolean-cell" data-label="優惠利率"><span class="empty-boolean" role="img" aria-label="否"></span></td><td data-label="中獎所得">0 元</td><td data-label="其他所得">0 元</td><td data-label="小計"><strong>239,520 元</strong></td></tr>
+              </tbody></table></div>
+              <div class="result-summary hub-financial-summary"><span>動產總額</span><span><strong>361,280</strong>元</span></div>
+            </section>
+          </div>
+        </section>
+
+
+      </section>
+      </div>
+    </main>
+  </div>
+
+
+
+  <script src="../assets/enquiry-model.js"></script>
+  <script src="../assets/admin-enquiry-hub.js"></script>
+  <script src="../assets/admin-enquiry.js"></script>
+
+</body>
+</html>

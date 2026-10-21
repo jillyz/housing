@@ -1,0 +1,126 @@
+/* 申請摘要與分戶資料僅作用於 enquiry-hub。 */
+body.enquiry-hub-page{--hub-section-gap:28px;--hub-subsection-gap:24px;--hub-title-gap:12px;--hub-accent:#006b70;--hub-amount:#965114;--muted:#596e72;height:auto;min-height:100dvh;overflow:visible;font-size:16px}
+.enquiry-hub-page .layout{display:block;height:auto;min-height:100dvh}
+.enquiry-hub-page .main{display:block;width:100%;max-width:none;height:auto;margin:0;padding:24px;overflow:visible}
+.hub-search{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin:0 0 24px;padding:12px 16px;border:1px solid var(--line);border-radius:12px;background:#fff}
+.hub-search label{font-weight:700;white-space:nowrap}
+.hub-search input,.hub-search select{min-width:0;padding:9px 12px;border:1px solid var(--line);border-radius:6px;background:#fff;color:var(--text);font:inherit}
+.hub-search input{flex:1;max-width:440px;min-width:220px}
+.hub-search input:focus-visible,.hub-search select:focus-visible{outline:2px solid var(--hub-accent);outline-offset:2px}
+#hubSearchStatus{color:var(--muted)}
+#hubSearchChoices{flex-basis:100%}
+#hubSearchChoices label{margin-right:10px}
+.hub-search select{max-width:100%}
+.enquiry-hub-page .enquiry-workspace{display:block;overflow:visible}
+.enquiry-hub-page .enquiry-workspace>.result-area{overflow:visible;padding:0;scrollbar-gutter:auto}
+.enquiry-hub-page .result-heading h1{margin:0;color:var(--primary-deep);font-size:32px;font-weight:800;line-height:1.3}
+.enquiry-hub-page .hub-summary-block + .hub-summary-block{margin-top:var(--hub-subsection-gap)}
+.enquiry-hub-page .hub-summary-block h3{margin:0 0 var(--hub-title-gap);color:var(--primary-deep);font-size:24px;font-weight:800;line-height:1.35}
+.hub-case-grid,.hub-applicant-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin:0;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#f8fbfa}
+.hub-applicant-grid{background:#fff}
+.hub-detail{min-width:0;padding:8px 12px;border-bottom:1px solid #e5eeec}
+.hub-detail dt{margin:0 0 2px;color:var(--muted);font-size:16px}
+.hub-detail dd{margin:0;color:var(--text);font-size:16px;font-weight:500;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
+.hub-case-grid .hub-detail:first-child dd,.hub-applicant-grid .hub-detail:first-child dd{color:var(--hub-accent);font-weight:700}
+.hub-detail-wide{grid-column:span 2}
+.hub-family-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:var(--hub-section-gap) 0 var(--hub-title-gap)}
+.hub-family-heading h3{margin:0;color:var(--primary-deep);font-size:24px;font-weight:800;line-height:1.35}
+.hub-family-heading p{margin:6px 0 0;color:var(--muted);font-size:16px}
+.hub-count{flex-shrink:0;color:var(--primary-dark);font-size:16px;font-weight:700;white-space:nowrap}
+.hub-household{margin-top:10px;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.hub-household+.hub-household{margin-top:var(--hub-subsection-gap)}
+.hub-household-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:9px 12px;background:#edf6f4;border-bottom:1px solid var(--line)}
+.hub-household-head h4{display:flex;align-items:center;flex-wrap:wrap;gap:8px 16px;margin:0;color:var(--primary-deep);font-size:18px}
+.hub-household-head h4 span{font-size:16px;font-weight:500}
+.hub-household-head p{margin:3px 0 0;overflow-wrap:anywhere}
+.hub-household-head p>span{margin-right:12px;color:var(--muted)}
+.enquiry-hub-page .hub-table-scroll{position:relative;border:0;border-radius:0;overflow-x:auto;padding:0;scrollbar-color:#a4c8c1 #edf5f3}
+.enquiry-hub-page .hub-household-table{min-width:1320px;table-layout:fixed}
+/* 固定欄寬，僅最右側「個人詳細記事」分配剩餘空間，兩戶表格對齊。 */
+.hub-household-table col:nth-child(1){width:84px}
+.hub-household-table col:nth-child(2){width:64px}
+.hub-household-table col:nth-child(3){width:100px}
+.hub-household-table col:nth-child(4){width:132px}
+.hub-household-table col:nth-child(5){width:116px}
+.hub-household-table col:nth-child(6),.hub-household-table col:nth-child(7){width:88px}
+.hub-household-table col:nth-child(8){width:80px}
+.hub-household-table col:nth-child(9){width:128px}
+.hub-household-table col:nth-child(10){width:200px}
+.enquiry-hub-page .hub-household-table th{padding:8px 10px;background:#f6f9f8}
+.enquiry-hub-page .hub-household-table td{padding:8px 10px;white-space:nowrap;vertical-align:top;line-height:1.45}
+.enquiry-hub-page .hub-household-table td:nth-child(10),.enquiry-hub-page .hub-household-table td:last-child{white-space:normal;overflow-wrap:anywhere}
+.enquiry-hub-page .hub-household-table .hub-key-member td{background:#f3faf8}
+.hub-role{display:inline-block;justify-self:start;padding:2px 8px;border-radius:5px;background:#dcefe9;color:#16594d;font-weight:700}
+.hub-member-name{display:inline-flex;align-items:center;gap:4px;white-space:nowrap}
+.hub-person-cell{display:block;min-width:0}
+.hub-fetus-count{color:var(--hub-accent);font-weight:700;white-space:nowrap}
+.hub-case-member-tag{display:inline-block;flex-shrink:0;color:rgb(150, 81, 20);font-size:9px;line-height:1;vertical-align:middle}
+.enquiry-hub-page .hub-income{text-align:right;font-variant-numeric:tabular-nums}
+.hub-unit,.hub-muted,.hub-note{color:var(--muted)}
+.hub-qualifications{display:grid;gap:2px;padding:0;margin:0;list-style:none}
+.hub-sr-only{position:absolute;top:0;left:0;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.enquiry-hub-page .result-heading{margin:0 0 20px;gap:12px;flex-wrap:wrap}
+.enquiry-hub-page .result-meta{gap:6px 12px;flex-wrap:wrap}
+.enquiry-hub-page .result-section{margin-bottom:var(--hub-section-gap);border-radius:12px}
+.enquiry-hub-page .result-section-head{min-height:0;padding:18px 16px;gap:10px}
+.enquiry-hub-page .result-section-head h3{color:var(--primary-deep);font-size:24px;font-weight:800;line-height:1.35}
+.enquiry-hub-page .result-section-body{padding:20px 16px 16px}
+.enquiry-hub-page .result-section-head p{margin-top:6px}
+.enquiry-hub-page .result-table th{padding:8px 10px}
+.enquiry-hub-page .result-table td{padding:8px 10px;line-height:1.45}
+.enquiry-hub-page .asset-results{gap:16px}
+.enquiry-hub-page .asset-block+.asset-block{padding-top:16px}
+.enquiry-hub-page .asset-block-head{margin-bottom:var(--hub-title-gap)}
+.enquiry-hub-page .asset-block-head h4{color:var(--primary-deep);font-size:20px;font-weight:700;line-height:1.4}
+.enquiry-hub-page .result-summary{margin-top:8px;padding:8px 12px;gap:8px 20px}
+.enquiry-hub-page .result-summary strong{font-size:20px;font-weight:700;font-variant-numeric:tabular-nums}
+.hub-income-summaries{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 16px}
+.enquiry-hub-page .hub-financial-summary{display:flex;flex-direction:row;flex-wrap:wrap;justify-content:flex-start;align-items:center;gap:4px 8px;min-width:0;background:rgb(244, 250, 249);border:0;border-radius:8px}
+.enquiry-hub-page .hub-financial-summary strong{color:var(--hub-amount);font-size:24px;font-weight:800}
+.enquiry-hub-page .hub-financial-summary>span:first-child{color:var(--text);font-weight:600;white-space:normal}
+.enquiry-hub-page .hub-population-summary{flex-direction:row;flex-wrap:wrap;align-items:center;justify-content:flex-start;gap:6px 10px;margin:0 0 10px}
+.hub-occupancy-total{display:inline-block;padding:3px 10px;border-radius:8px;background:rgb(244, 250, 249);color:rgb(150, 81, 20);font-weight:700}
+.enquiry-hub-page .hub-occupancy-total strong{color:rgb(150, 81, 20);font-size:24px;font-weight:800}
+.enquiry-hub-page .result-case strong{color:var(--hub-accent);font-weight:700}
+@media(min-width:1100px){
+  .hub-case-grid{grid-template-columns:repeat(5,minmax(0,1fr))}
+  .hub-applicant-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .hub-household-head>div{display:flex;align-items:baseline;gap:20px;flex-wrap:wrap}
+  .hub-household-head p{margin:0}
+}
+@media(max-width:900px){
+  .hub-case-grid,.hub-applicant-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:760px){
+  body.enquiry-hub-page{--hub-section-gap:24px;--hub-subsection-gap:20px;--hub-title-gap:10px}
+  .enquiry-hub-page .result-heading h1{font-size:28px}
+  .enquiry-hub-page .result-section-head h3,.enquiry-hub-page .hub-summary-block h3,.hub-family-heading h3{font-size:22px}
+  .hub-income-summaries{grid-template-columns:minmax(0,1fr);gap:0}
+  .enquiry-hub-page .result-heading,.enquiry-hub-page .result-section-head{gap:6px}
+  .enquiry-hub-page .result-section-head{padding:16px 12px}
+  .enquiry-hub-page .result-meta{flex-direction:row;align-items:center}
+  .enquiry-hub-page .result-section-body{padding:16px 10px 10px}
+  .enquiry-hub-page .result-table td{padding:6px 9px}
+  .hub-family-heading{gap:6px}
+
+  .enquiry-hub-page .main{padding:12px 10px}
+  .hub-detail{padding:7px 10px}
+  .hub-household-head{padding:8px 10px}
+  .hub-family-heading{align-items:flex-start;flex-direction:column}
+  .enquiry-hub-page .hub-table-scroll{overflow:visible;padding:6px;background:#f3f7f6}
+  .enquiry-hub-page .hub-household-table{min-width:0}
+  .hub-household-table colgroup{display:none}
+  .enquiry-hub-page .hub-household-table td{padding:6px 9px;white-space:normal;overflow-wrap:anywhere}
+  .enquiry-hub-page .hub-household-table .hub-key-member{border-color:#9ecabc}
+  .enquiry-hub-page .hub-household-table .hub-key-member td{background:transparent}
+  .enquiry-hub-page .hub-household-table td::before{font-size:16px}
+}
+@media(max-width:480px){
+  .hub-search{padding:10px}
+  .hub-search input{min-width:0;max-width:none;flex-basis:calc(100% - 60px)}
+  .hub-detail{display:grid;grid-template-columns:112px minmax(0,1fr);align-items:baseline;gap:8px}
+  .hub-detail dt{margin:0}
+
+  .hub-case-grid,.hub-applicant-grid{grid-template-columns:minmax(0,1fr)}
+  .hub-detail-wide{grid-column:auto}
+}
