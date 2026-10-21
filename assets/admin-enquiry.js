@@ -59,6 +59,7 @@
   let duplicateId = '';
 
   function statusMeta(record, withDraft = false) {
+    if (page.statusMeta) return page.statusMeta(record);
     if ((withDraft && drafts[record.recordId]) || record.status === '待確認名單') return { label: '待送出', filter: 'draft', className: 'is-draft', icon: 'edit_note' };
     if (record.status === '查調中') return { label: '查調中', filter: 'running', className: 'is-running', icon: 'hourglass_top' };
     if (record.status === '查調異常') return { label: '查調異常', filter: 'running', className: 'is-failed', icon: 'error' };
@@ -248,10 +249,11 @@
     $('resultPending').hidden = !pending && !partial;
     $('resultPendingTitle').textContent = record.status === '待確認名單' ? '待確認名單' : record.status === '查調異常' ? '部分資料查調異常' : '資料分批查調中';
     $('resultPendingMessage').textContent = record.status === '待確認名單' ? '戶籍資料已取得，確認名單後即可送出查調。' : '已取得的資料可先查看；重新查調期間保留上次結果，可稍後回案件清單查看。';
-    $('refreshCaseStatus').hidden = record.status === '待確認名單' || record.phase === 'relationship';
+    if ($('refreshCaseStatus')) $('refreshCaseStatus').hidden = record.status === '待確認名單' || record.phase === 'relationship';
     if ($('continueCase')) $('continueCase').hidden = record.status !== '待確認名單' && record.phase !== 'relationship';
     Object.keys(sections).forEach(key => renderSection(key, received[key], record.status === '待確認名單' ? '確認名單並送出後取得。' : '資料查調中，已回傳的其他區塊可先查看。'));
     if (page.renderPeople) page.renderPeople(record);
+    if (page.renderStatus) page.renderStatus(record);
     if (!result) return;
     const group = M.typeText(result.targetType);
     if (!page.renderPeople) {
@@ -309,6 +311,10 @@
 
   // 純結果頁不初始化案件清單與編輯表單，也不重新送出查調。
   if (page.readOnly) {
+    if (page.initReadOnly) {
+      page.initReadOnly({ readRecords: () => readStorage(casesKey, records), writeRecords: value => writeStorage(casesKey, value), renderResults });
+      return;
+    }
     const searchForm = $('hubSearchForm');
     const applicantName = record => record.result?.applicant?.name || record.applicantName || '';
     const searchRecords = () => {

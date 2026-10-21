@@ -14,12 +14,12 @@
   // 案件原始名單獨立保存，不以戶籍補入或查調回傳名單推定。
   const sampleCaseMemberIds = ['E123456789', applicantId, 'B234567890', 'A287654329', 'B123456789'];
   const members = [
-    { id: 'E123456789', name: '張大富', title: '戶長', birth: '1951/09/10', father: '張勇', mother: '張鄭平', income: 0, identity: '5.65歲以上老人\n7.身心障礙(輕度)', notes: '經法院裁定受輔助宣告，選定張忠政為張大富之輔助人。' },
-    { id: applicantId, name: '張忠政', title: '長子', birth: '1980/02/05', father: '張大富', mother: '張陳梅', income: 700000, identity: '3.育有未成年子女(2人)\n9.平地原住民 阿美族', role: '申請人' },
+    { id: 'E123456789', name: '張大富', title: '戶長', birth: '1951/09/10', father: '張勇', mother: '張鄭平', income: 0, identity: '5.65歲以上老人\n7.身心障礙', notes: '經法院裁定受輔助宣告，選定張忠政為張大富之輔助人。' },
+    { id: applicantId, name: '張忠政', title: '長子', birth: '1980/02/05', father: '張大富', mother: '張陳梅', income: 700000, identity: '9.平地原住民 阿美族', role: '申請人' },
     { id: 'B234567890', name: '張曉雯', title: '孫', birth: '2012/12/23', father: '張忠政', mother: '劉欣慧', income: 0, identity: '' },
     { id: 'N123456789', name: '陳OO', title: '寄居', birth: '2013/11/12', father: '陳OO', mother: '莊OO', income: 0, identity: '' },
     { id: 'N222567828', name: '廖OO', title: '寄居', birth: '2018/04/06', father: '廖OO', mother: '賴OO', income: 0, identity: '' },
-    { id: 'A287654329', name: '劉欣慧', title: '戶長', birth: '1989/05/07', father: '劉OO', mother: '林OO', income: 600000, identity: '3.育有未成年子女(2人)', role: '配偶', fetus: 1 },
+    { id: 'A287654329', name: '劉欣慧', title: '戶長', birth: '1989/05/07', father: '劉OO', mother: '林OO', income: 600000, identity: '', role: '配偶', fetus: 1 },
     { id: 'B123456789', name: '張曉晨', title: '兒子', birth: '2014/12/23', father: '張忠政', mother: '劉欣慧', income: 0, identity: '' }
   ];
   members.forEach(person => { M.knownPeople[person.id] = { ...person }; });
@@ -35,6 +35,9 @@
   function updateSampleDetails(record) {
     if (record.caseNumber !== sampleCaseNumber || record.applicantId !== applicantId) return record;
     for (const person of [...record.targets, ...(record.result?.people || [])]) {
+      if (typeof person.identity === 'string') person.identity = person.identity.split('\n')
+        .filter(text => text !== '3.育有未成年子女(2人)')
+        .map(text => text.replace('7.身心障礙(輕度)', '7.身心障礙')).join('\n');
       if (person.id === 'A287654329') person.fetus = 1;
       if (person.id === 'E123456789') person.notes = members[0].notes;
     }
@@ -42,14 +45,37 @@
       if (property.owner === '張忠政') property.common = true;
     }
     record.populationTotal = M.population(record);
+    if (record.status === '查調完成') record.status = '查調中';
     return record;
   }
   const originalMigrate = M.migrate;
   M.migrate = record => updateSampleDetails(originalMigrate(record));
-  M.defaults = () => [updateSampleDetails({ ...M.submit({
+  const primaryDemo = () => updateSampleDetails({ ...M.submit({
     ...M.newDraft(), caseNumber: sampleCaseNumber, applicantId, targetType: 'family',
     targets: sampleTargets(), relationshipApplicant: applicantId, marriage: 'married'
-  }, null, '2026/10/08 21:34'), caseMemberIds: [...sampleCaseMemberIds] })];
+  }, null, '2026/10/08 21:34'), recordId: 'hub-demo-123', caseMemberIds: [...sampleCaseMemberIds] });
+  M.defaults = () => {
+    const examples = [
+      ['124', '王怡君', 'A123456789', '查調資料申請中'],
+      ['125', '林志明', 'A123456780', '待查調'],
+      ['126', '陳怡安', 'A123456781', '查調中'],
+      ['127', '李雅雯', 'A123456782', '已完成']
+    ].map(([suffix, name, id, status]) => {
+      M.knownPeople[id] = { name, birth: '1985/06/15', income: 480000, identity: '' };
+      const record = M.submit({ ...M.newDraft(), caseNumber: `TA-116-000${suffix}-B`, applicantId: id,
+        targetType: 'family', relationshipApplicant: id, marriage: 'single' }, null, '2026/10/08 20:30');
+      if (status === '查調資料申請中') {
+        record.result.received.property = false;
+        record.result.received.documents = false;
+        record.result.realEstate = [];
+        record.result.movable = [];
+        record.result.documents = [];
+      }
+      return { ...record, recordId: `hub-demo-${suffix}`, applicantName: name, status,
+        caseMemberIds: [id], result: record.result };
+    });
+    return [primaryDemo(), ...examples];
+  };
   const originalLookup = M.lookupRelationships;
   M.lookupRelationships = draft => {
     if (M.normalizeId(draft.applicantId) !== applicantId) return originalLookup(draft);
@@ -67,7 +93,7 @@
 
   const detail = (label, value, wide = false) => `<div class="hub-detail${wide ? ' hub-detail-wide' : ''}"><dt>${esc(label)}</dt><dd>${esc(value || '')}</dd></div>`;
   function householdTable(household, caseMemberIds, result, index) {
-    const headers = ['', '稱謂', '姓名', '身分證字號', '生日', '父／養父', '母／養母', '胎兒數', '近一年所得', '弱勢戶資格', '個人詳細記事'];
+    const headers = ['', '稱謂', '姓名', '身分證字號', '生日', '父/養父', '母/養母', '胎兒數', '近一年所得', '弱勢戶資格', '個人詳細記事'];
     return `<section class="hub-household" aria-labelledby="hubHousehold${index}">
       <div class="hub-household-head"><div><h4 id="hubHousehold${index}">戶號 ${esc(household.number)}</h4><p><span>戶籍地址</span>${esc(household.address)}</p></div><span class="hub-count">${household.members.length} 人</span></div>
       <div class="result-table-wrap hub-table-scroll" role="region" aria-label="戶號 ${esc(household.number)} 成員資料" tabindex="0">
@@ -145,7 +171,114 @@
         <div class="hub-income-summaries">
           <div class="result-summary hub-financial-summary"><span>總所得（年）</span><span><strong id="familyIncome">${annualIncome == null ? '待資料齊全' : number(annualIncome)}</strong>${annualIncome == null ? '' : '元'}</span></div>
           <div class="result-summary hub-financial-summary" title="總所得（年）÷ 人數（含胎兒）；四捨五入至整數"><span>每人每月平均所得</span><span><strong id="monthlyAverage">${monthlyAverage == null ? '待資料齊全' : number(Math.round(monthlyAverage))}</strong>${monthlyAverage == null ? '' : '元'}</span></div>
-        </div>` : '<p class="section-waiting">家庭成員資料待查調完成後顯示。</p>'}`;
+        </div>` : '<p class="section-waiting">家庭成員資料等待資料來源機關回傳。</p>'}`;
   }
-  window.EnquiryPage = { readOnly: true, casesKey: 'housingEnquiryHubCasesV1', draftsKey: 'housingEnquiryHubDraftsV1', renderPeople };
+  function statusMeta(record) {
+    // 舊模型的「查調完成」只代表資料取得，不能視為人員已確認。
+    const label = record.status === '查調完成' ? '待查調' : record.status === '待確認名單' ? '查調資料申請中' : record.status;
+    const styles = {
+      '查調資料申請中': ['is-requesting', 'hourglass_top', '尚有部分查調資料在等待資料來源機關回傳'],
+      '待查調': ['is-queued', 'inventory', '全部查調資料皆已回傳'],
+      '查調中': ['is-running', 'visibility', '人員正在查看查調結果'],
+      '已完成': ['is-complete', 'check_circle', '人員已作確認']
+    };
+    const [className, icon, description] = styles[label] || ['is-failed', 'error', '請查看案件最新狀態'];
+    return { label, className, icon, description };
+  }
+  function canView(record) {
+    return ['待查調', '查調中', '已完成'].includes(statusMeta(record).label);
+  }
+  function canComplete(record) {
+    return ['待查調', '查調中'].includes(statusMeta(record).label)
+      && ['applicant', 'family', 'property', 'documents'].every(key => record.result?.received[key]);
+  }
+  function renderStatus(record) {
+    const { label, icon, description } = statusMeta(record);
+    $('resultPending').hidden = false;
+    $('resultPendingTitle').textContent = label;
+    $('resultPendingMessage').textContent = description;
+    $('hubStatusIcon').textContent = icon;
+    $('completeCase').disabled = !canComplete(record);
+    $('completeCase').title = label === '已完成' ? '此案件已由人員確認' : canComplete(record) ? '確認查調結果並標記為已完成' : '全部查調資料回傳後才能確認完成';
+    if (!record.result?.received.applicant) $('householdResultWaiting').textContent = '尚未取得申請人資料，等待資料來源機關回傳。';
+    if (!record.result?.received.property) {
+      const waiting = $('propertyResultTitle').closest('.result-section').querySelector('.section-waiting');
+      if (waiting) waiting.textContent = '尚未取得財產資料，等待資料來源機關回傳。';
+    }
+  }
+  function initReadOnly({ readRecords, writeRecords, renderResults }) {
+    // 瀏覽時補入示範案件；僅在人員確認完成時儲存。
+    const demos = M.defaults();
+    let selectedId = '';
+    let visible = [];
+    const renderList = () => {
+      $('hubCaseList').innerHTML = visible.map(record => {
+        const status = statusMeta(record);
+        return `<button type="button" class="hub-case-item${record.recordId === selectedId ? ' is-selected' : ''}" data-case-id="${esc(record.recordId)}" aria-pressed="${record.recordId === selectedId}"${canView(record) ? '' : ' disabled title="資料尚未全數回傳，暫不可查看查調結果"'}>
+          <strong>${esc(record.caseNumber)}</strong>
+          <span class="hub-case-item-meta"><span>${esc(record.result?.applicant?.name || record.applicantName || M.knownPeople[record.applicantId]?.name || '申請人資料待回傳')}</span><span class="hub-case-status ${status.className}" title="${esc(status.description)}">${esc(status.label)}</span></span>
+        </button>`;
+      }).join('');
+    };
+    const loadRecords = () => {
+      const saved = readRecords();
+      const records = Array.isArray(saved) ? saved.map(M.migrate) : [];
+      for (const demo of demos) if (!records.some(record => M.caseKey(record.caseNumber) === M.caseKey(demo.caseNumber))) records.push(demo);
+      return records;
+    };
+    const search = () => {
+      const records = loadRecords();
+      const keyword = $('hubSearchInput').value.trim().toLocaleLowerCase();
+      const filter = $('hubStatusFilter').value;
+      visible = records.filter(record => (!keyword || String(record.caseNumber).toLocaleLowerCase().includes(keyword))
+        && (filter === 'all' || statusMeta(record).label === filter));
+      const available = visible.filter(canView);
+      const selected = available.find(record => record.recordId === selectedId) || available[0];
+      selectedId = selected?.recordId || '';
+      $('hubSearchStatus').textContent = visible.length ? '' : '查無符合案件，請調整編號或狀態。';
+      renderList();
+      renderResults(selected);
+      $('hubResultEmpty').hidden = Boolean(selected);
+      $('hubResultEmpty').textContent = visible.length ? '目前符合條件的案件尚未開放查看，請待資料全數回傳。' : '查無符合案件，請調整編號或狀態。';
+    };
+    $('hubSearchForm').addEventListener('submit', event => { event.preventDefault(); search(); });
+    $('hubStatusFilter').addEventListener('change', search);
+    $('hubSearchClear').addEventListener('click', () => {
+      $('hubSearchInput').value = '';
+      $('hubStatusFilter').value = 'all';
+      search();
+      $('hubSearchInput').focus();
+    });
+    $('hubCaseList').addEventListener('click', event => {
+      const button = event.target.closest('[data-case-id]');
+      const record = button && visible.find(item => item.recordId === button.dataset.caseId);
+      if (!record || !canView(record)) return;
+      selectedId = record.recordId;
+      // 保留目前按鈕焦點，讓鍵盤可繼續切換案件。
+      $('hubCaseList').querySelectorAll('[data-case-id]').forEach(item => {
+        const selected = item.dataset.caseId === selectedId;
+        item.classList.toggle('is-selected', selected);
+        item.setAttribute('aria-pressed', String(selected));
+      });
+      renderResults(record);
+    });
+    $('completeCase').addEventListener('click', () => {
+      const record = loadRecords().find(item => item.recordId === selectedId);
+      if (!record || !canComplete(record)) return;
+      if (!window.confirm(`確定已確認案件「${record.caseNumber}」的查調結果，並將狀態改為「已完成」嗎？`)) return;
+      const latest = loadRecords();
+      const current = latest.find(item => item.recordId === record.recordId);
+      if (!current || !canComplete(current)) { search(); return; }
+      const completed = { ...current, status: '已完成', confirmedAt: new Date().toISOString() };
+      if (!writeRecords(latest.map(item => item.recordId === current.recordId ? completed : item))) {
+        $('storageNotice').hidden = false;
+        $('storageNotice').textContent = '完成狀態未能儲存，案件尚未標記為已完成，請重試。';
+        return;
+      }
+      if ($('hubStatusFilter').value !== 'all') $('hubStatusFilter').value = '已完成';
+      search();
+    });
+    search();
+  }
+  window.EnquiryPage = { readOnly: true, casesKey: 'housingEnquiryHubCasesV1', draftsKey: 'housingEnquiryHubDraftsV1', renderPeople, statusMeta, renderStatus, initReadOnly };
 })();
