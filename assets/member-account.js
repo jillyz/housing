@@ -75,7 +75,7 @@
         <a class="account-menu-item" role="menuitem" href="questionnaire.html">編輯居住需求</a>
         <a class="account-menu-item" role="menuitem" href="activity-log.html">操作紀錄</a>
         <div class="account-menu-divider" aria-hidden="true"></div>
-        <a class="account-menu-item management" role="menuitem" href="admin/home-admin.html" target="_blank" rel="noopener noreferrer">營運管理平台 <span class="account-external-mark" aria-hidden="true">↗</span></a>
+        <a class="account-menu-item management" role="menuitem" href="backend/enquiry-hub.html" target="_blank" rel="noopener noreferrer">查調工作台 <span class="account-external-mark" aria-hidden="true">↗</span></a>
         <div class="account-menu-divider" aria-hidden="true"></div>
         <a class="account-menu-item logout" role="menuitem" href="index.html">登出</a>
       </div>`;
