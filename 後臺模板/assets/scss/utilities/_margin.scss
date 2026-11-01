@@ -1,0 +1,46 @@
+// 負數
+@each $name , $spacer in $spacers{    
+    @if $name != 0 {
+        .m{
+            &t-n#{$name}{
+                margin-top: $spacer * -1 !important;
+            }
+            &b-n#{$name}{
+                margin-bottom: $spacer * -1 !important;
+            }
+            &s-n#{$name}{
+                margin-left: $spacer * -1 !important;
+            }
+            &e-n#{$name}{
+                margin-right: $spacer * -1 !important;
+            }
+        } 
+    }
+}
+$margin-n-sizes: 45;
+@each $name , $spacer in $margin-n-sizes{    
+    @if $name != 0 {
+        .m{
+            &t-n#{$name}{
+                margin-top: -#{$name}px !important;
+            }
+            &b-n#{$name}{
+                margin-bottom: -#{$name}px !important;
+            }
+            &s-n#{$name}{
+                margin-left: -#{$name}px !important;
+            }
+            &e-n#{$name}{
+                margin-right: -#{$name}px !important;
+            }
+            &x-n#{$name}{
+                margin-left: -#{$name}px !important;
+                margin-right: -#{$name}px !important;
+            }
+            &y-n#{$name}{
+                margin-top: -#{$name}px !important;
+                margin-bottom: -#{$name}px !important;
+            }
+        } 
+    }
+}

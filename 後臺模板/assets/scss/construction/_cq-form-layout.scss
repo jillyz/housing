@@ -1,0 +1,45 @@
+/* Form layout */
+.cq-form-layout{
+    container-type: inline-size;    
+
+    > .inner{
+        display: grid;
+        gap: 20px;
+        grid-template-columns: 1fr;
+        
+        @include container(null, 400px){
+            grid-template-columns: auto 1fr;
+        }
+        @include container(null, 800px){
+            grid-template-columns: 1fr 1fr;
+        }
+
+        // Item
+        > .item{
+            @include container(null, 400px){
+                display: contents;
+            }
+            @include container(null, 800px){
+                display: block;
+            }
+            &:has(.full){
+                grid-column: 1 / -1;
+            }
+            
+            // 修正 form-label 位置
+            &:has(.form-control){
+                .form-label{
+                    @include container(null, 400px){
+                        margin-top: 8px;
+                    }
+                    @include container(null, 800px){
+                        margin-top: 0px;
+                    }
+                }
+            }
+        }
+    }   
+    .full{
+        grid-column: 1 / -1;
+    } 
+}

@@ -1,0 +1,29 @@
+.sticky-alert{
+    position: fixed;
+    right: 0;
+    top: 40%;
+    z-index: 5;
+
+    &-link{
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 8px;
+        padding-left: 16px;
+
+        color: white;
+        background-color: #A80000;
+        font-size: 18px;
+        text-decoration: none;
+        border-radius: 999rem 0 0 999rem;
+        line-height: 1.25;
+
+        .icon{
+            font-size: 30px;
+        }
+        .space{
+            display: inline-block;
+            width: 1em;
+        }
+    }
+}

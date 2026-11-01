@@ -1,0 +1,106 @@
+$progress-color: map-get($neutrals, '400');
+$progress-color-active: map-get($primaries, '700');
+$progress-border: map-get($primaries, '200');
+$progress-border-active: map-get($primaries, '500');
+
+/* 進度條 - 桌機版 */
+.progress-bar{
+    color: $progress-color-active; 
+    font-weight: 500;
+    line-height: 29px;
+    
+    @include breakpoint($lg){
+        font-size: 1.125rem; // 18px ÷ 16
+    }
+    
+    .steps{
+        display: flex;
+        justify-content: space-evenly;
+        color: $progress-color;       
+        
+        // Active
+        &:has(.step-1.active)> *:nth-child(-n + 3),
+        &:has(.step-2.active)> *:nth-child(-n + 7),
+        &:has(.step-3.active)> *:nth-child(-n + 11),
+        &:has(.step-4.active)> *:nth-child(-n + 15),
+        &:has(.step-5.active)> *:nth-child(-n + 19),
+        &:has(.step-6.active)> *{
+            color: $progress-color-active;
+            border-color: $progress-border-active;
+        }
+        
+        // Item
+         > * {
+            display: block;
+            padding-top: 8px;
+            padding-bottom: 16px;             
+            border-bottom: 4px solid $progress-border;                
+        }
+        // step
+        .step{
+            flex: 1;
+            text-decoration: none;
+            color: inherit;
+        }
+        // 分隔箭頭
+        .divider{
+            width: 20px;
+        }
+        // space
+        > span:not(.divider){
+            flex: 1;
+        }
+    }
+
+}
+/* 進度條 - 手機版 */
+.progress-bar-sm{
+    position: relative;
+    display: grid;
+    gap: 12px;  
+
+    padding-top: 20px;
+    color: $progress-color-active;  
+    line-height: 12px;
+    font-weight: 500;
+
+    // 狀態 active
+    &:has(.step-1.active) .step-1 span,
+    &:has(.step-2.active) .step-2 span,
+    &:has(.step-3.active) .step-3 span,
+    &:has(.step-4.active) .step-4 span,
+    &:has(.step-5.active) .step-5 span,
+    &:has(.step-6.active) .step-6 span{
+        display: block;
+    }
+    &:has(.step-1.active) .steps > *:nth-child(-n + 1),
+    &:has(.step-2.active) .steps > *:nth-child(-n + 2),
+    &:has(.step-3.active) .steps > *:nth-child(-n + 3),
+    &:has(.step-4.active) .steps > *:nth-child(-n + 4),
+    &:has(.step-5.active) .steps > *:nth-child(-n + 5),
+    &:has(.step-6.active) .steps > *:nth-child(-n + 6){
+        background-color: $progress-border-active;
+    }    
+    
+    // Steps
+    .steps{
+        display: flex;
+        gap: 12px;        
+        
+        // Item
+        .step{
+            flex: 1;
+            display: block;
+            height: 4px;
+            background-color: $progress-border;
+            color: inherit;
+            
+            span{
+                position: absolute;
+                top: 0;
+                left: 0;
+                display: none;
+            }
+        }
+    }
+}

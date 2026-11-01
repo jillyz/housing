@@ -1,0 +1,24 @@
+
+// BS setting
+@import "../vendor/bootstrap-5.3.3/scss/functions";
+@import "../vendor/bootstrap-5.3.3/scss/variables";
+@import "../vendor/bootstrap-5.3.3/scss/variables-dark";     
+@import "../vendor/bootstrap-5.3.3/scss/maps";
+@import "../vendor/bootstrap-5.3.3/scss/mixins";
+
+// Custom setting
+@import 'variables';
+@import 'mixins';
+
+// Header
+@import 'layout';
+
+// Body
+@import 'components';
+@import 'helpers';
+@import 'construction';
+@import 'conditionals';
+
+// Footer
+@import 'utilities';
+@import '../vendor/utils/photoLightbox/photoLightbox';

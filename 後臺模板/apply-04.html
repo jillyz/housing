@@ -1,0 +1,896 @@
+<!doctype html>
+<html class="no-js" lang="zh-Hant">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4. 檢附文件 | 桃園市住宅及都市更新中心營運管理平台</title>
+  <!-- jQuery -->
+  <script src="assets/vendor/jquery-3.7.1.min.js"></script>
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="assets/vendor/bootstrap-5.3.3/dist/css/bootstrap.min.css">
+  <script src="assets/vendor/bootstrap-5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="assets/vendor/fontawesome-pro-6.5.2-web/css/all.css">
+  <!-- Rubik (數字字型) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap">
+  <!-- Tom Select -->
+  <link rel="stylesheet" href="assets/vendor/tom-select-2.2.2/tom-select.bootstrap5.min.css">
+  <script src="assets/vendor/tom-select-2.2.2/tom-select.complete.js"></script>
+  <!-- Menu -->
+  <script src="assets/vendor/utils/menu/menu.js"></script>
+  <!-- 自訂 -->
+  <link rel="stylesheet" href="assets/css/main.css">
+  <script src="assets/js/customJS.js"></script>
+</head>
+
+<body>
+  <div class="wrapper multi-column | column-with-menu">
+    <!-- Top -->
+    <div class="top">
+      <header class="header">
+        <!-- logo -->
+        <a class="logo" href="index.html" title="回首頁">
+          <div class="img-wrap"><img src="assets/img/brand-logo.svg"></div>
+          <h2 class="">桃園市住宅及都市更新中心<span>營運管理平台</span></h2>
+        </a>
+        <!-- 手機版漢堡 -->
+        <div class="d-lg-none">
+          <div class="menu-hamburger-toggle">
+            <a class="btn-icon" data-bs-toggle="collapse" href=".js-nav-collapse">
+              <span class="is-close"><i class="fas fa-bars"></i></span>
+              <span class="is-open"><i class="fas fa-times"></i></span>
+            </a>
+          </div>
+        </div>
+      </header>
+    </div>
+    <!-- Center -->
+    <div class="center">
+      <!-- Left -->
+      <div class="left">
+        <aside class="aside">
+          <!-- 桌機版漢堡 -->
+          <div class="d-none d-lg-block">
+              <div class="menu-hamburger | js-menu-hamburger">
+                <a class="btn btn-icon" title="選單收闔"><i class="fas fa-bars"></i></a>
+              </div>
+            </div>
+          <!-- Nav collapse -->
+          <div class="nav-collapse | collapse js-nav-collapse">
+            <!-- 上方輔助功能 -->
+            <div class="top-helper-wrapper">
+              <div class="top-helper">
+                <div class="warning-bell">
+                  <button><i class="fa-solid fa-bell"></i></button>
+                  <span class="badge">8</span>
+                </div>
+                <div class="dropdown">
+                  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    歡迎OOOOO科OOO登入系統
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="#">編輯個人資料</a></li>
+                    <li><a class="dropdown-item" href="#">變更密碼</a></li>
+                    <li><a class="dropdown-item" href="#">操作手冊下載</a></li>
+                    <li><a class="dropdown-item" href="#">登出</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <!-- Menu -->
+            <ul class="menu menu-vertical | scroll isMenuOpen js-menu-vertical">
+              <!-- 首頁 -->
+              <li>
+                  <a href="index.html" >
+                    <span class="icon-text">首頁</span>
+                  </a>
+              </li>
+              <!-- 招租作業 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">招租作業*</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="apply-01.html" class="active">專案申請*</a>
+                      </li>
+                      <li>
+                          <a href="application-query.html" >申請案件查詢*</a>
+                      </li>
+                      <li>
+                          <a href="application-review.html" >申請案件審核*</a>
+                      </li>
+                      <li>
+                          <a href="shop-rent.html" >店鋪招租</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 選屋作業管理 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">選屋作業管理*</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="online-selection-rank-query.html" >選屋查詢*</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 點交簽約管理 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">點交簽約管理*</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="handover-management.html" >點交簽約查詢*</a>
+                      </li>
+                      <li>
+                          <a href="handover-details-query.html" >點交作業*</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 租約管理 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">租約管理</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="tenant-lease-management.html" >住戶租約管理</a>
+                      </li>
+                      <li>
+                          <a href="tenant-termination-management.html" >住戶退租管理</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 店鋪招商管理 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">店鋪招商管理</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="#" >店鋪公告管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >店鋪點交簽約查詢</a>
+                      </li>
+                      <li>
+                          <a href="#" >店鋪點交作業</a>
+                      </li>
+                      <li>
+                          <a href="#" >潛在店鋪管理</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 場地租借審核 -->
+              <li>
+                  <a href="#" >
+                    <span class="icon-text">場地租借審核</span>
+                  </a>
+              </li>
+              <!-- 帳務管理 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">帳務管理</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="#" >收費管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >銷貨收入</a>
+                      </li>
+                      <li>
+                          <a href="#" >帳款作廢</a>
+                      </li>
+                      <span>銀行委扣管理</span>
+                      <li>
+                          <a href="#" >銀行委扣授權</a>
+                      </li>
+                      <li>
+                          <a href="#" >銀行委扣扣款</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 資料查詢與匯出 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">資料查詢與匯出</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="#" >金流統計</a>
+                      </li>
+                      <li>
+                          <a href="#" >案件申請統計</a>
+                      </li>
+                      <li>
+                          <a href="#" >車位統計</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 物業管理功能 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">物業管理功能</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="#" >公告管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >包裹管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >扣點紀錄</a>
+                      </li>
+                      <li>
+                          <a href="#" >工作日誌</a>
+                      </li>
+                      <li>
+                          <a href="#" >場地租借管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >人員差勤管理</a>
+                      </li>
+                      <span>報修案件管理</span>
+                      <li>
+                          <a href="#" >報修案件查詢</a>
+                      </li>
+                      <li>
+                          <a href="#" >報修廠商管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >備品統計</a>
+                      </li>
+                      <li>
+                          <a href="#" >報表查詢</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 系統查詢與匯出 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">系統查詢與匯出</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="#" >通知類型設定</a>
+                      </li>        
+                  </ul>
+              </li>
+              <!-- 系統維護管理 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">系統維護管理*</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <span>社宅管理</span>
+                      <li>
+                          <a href="building-management.html" >大樓管理*</a>
+                      </li>
+                      <li>
+                          <a href="#" >大樓戶號管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >大樓車位管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >大樓場地管理</a>
+                      </li>
+                      <li>
+                          <a href="layout-config.html" >空間格局管理*</a>
+                      </li>
+                      <span>使用者權限管理</span>
+                      <li>
+                          <a href="user-data-management.html" >人員資料管理</a>
+                      </li>
+                      <li>
+                          <a href="permission-management.html" >權限管理</a>
+                      </li>
+                      <span>招租管理</span>
+                      <li>
+                          <a href="evaluation-type-settings.html" >評點類型審核設定</a>
+                      </li>
+                      <li>
+                          <a href="schedule-management.html" >社宅時程管理</a>
+                      </li>
+                      <li>
+                          <a href="schedule-management.html" >店鋪標案管理</a>
+                      </li>
+                      <li>
+                          <a href="reviewer-settings.html" >審核人員設定</a>
+                      </li>
+                      <li>
+                          <a href="document-template-settings.html" >文件範本設定</a>
+                      </li>
+                      <span>資產與營運管理</span>
+                      <li>
+                          <a href="outsourcing-management.html" >資產管理</a>
+                      </li>        
+                  </ul>
+              </li>
+              
+              <li>
+                  <a href="furniture-maintenance.html" >家具清單維護管理*</a>
+              </li>
+              
+              <li>
+                  <a href="_components.html" target="_blank">
+                    <span class="icon-text"><i class="fa-solid fa-cubes-stacked"></i>組件表</span>
+                  </a>
+              </li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+      <!-- Right -->
+      <div class="right">
+        <!-- 麵包屑 -->
+        <div class="breadcrumb-wrapper">
+            <div class="breadcrumb-inner">
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb">
+                  <li class="breadcrumb-item">招租作業</li>
+                  <li class="breadcrumb-item"><a href="apply-01.html">專案申請</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">4. 檢附文件</li>
+                </ol>
+              </nav>
+            </div>
+        </div>
+        <!-- Content -->
+        <div class="content | sticky-top-scroll">
+            <!-- Head info -->
+            <div class="mb-4">
+                <div class="flex-item-wrap | row-gap-2 column-gap-4">    
+                     <h4 class="mb-0">新招租線上申請</h4> 
+                    <!-- 狀態 -->
+                    <div class="pill-state">
+                      <div class="pill-state-text">尚未完成申請</div>
+                    </div>
+                </div>
+            </div>
+            <!-- 進度條 -->
+            <div class="">
+                <!-- 手機板 -->
+                <div class="d-md-none">
+                    <div class="progress-bar-sm">
+                        <div class="steps">
+                            <div class="step step-1 "><span>1. 基本資料</span></div>
+                            <div class="step step-2 "><span>2. 家庭成員資料</span></div>
+                            <div class="step step-3 "><span>3. 所得及財產資料</span></div>
+                            <div class="step step-4 active"><span>4. 檢附文件</span></div>
+                            <div class="step step-5 "><span>5. 選擇社宅</span></div>
+                            <div class="step step-6 "><span>6. 確認資料</span></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 桌機版 -->
+                <div class="d-none d-md-block">
+                    <div class="progress-bar">
+                        <div class="steps">
+                            <span class="space"></span>
+                            <div class="step step-1 ">1. 基本資料</div>
+                            <!-- 區隔 -->
+                            <span class="space"></span>
+                            <span class="divider"><i class="fa-solid fa-angle-right" aria-hidden="true"></i></span>
+                            <span class="space"></span>
+                            <!-- 區隔 end -->
+                            <div class="step step-2 ">2. 家庭成員資料</div>
+                            <!-- 區隔 -->
+                            <span class="space"></span>
+                            <span class="divider"><i class="fa-solid fa-angle-right" aria-hidden="true"></i></span>
+                            <span class="space"></span>
+                            <!-- 區隔 end -->
+                            <div class="step step-3 ">3. 所得及財產資料</div>
+                            <!-- 區隔 -->
+                            <span class="space"></span>
+                            <span class="divider"><i class="fa-solid fa-angle-right" aria-hidden="true"></i></span>
+                            <span class="space"></span>
+                            <!-- 區隔 end -->
+                            <div class="step step-4 active">4. 檢附文件</div>
+                            <!-- 區隔 -->
+                            <span class="space"></span>
+                            <span class="divider"><i class="fa-solid fa-angle-right" aria-hidden="true"></i></span>
+                            <span class="space"></span>
+                            <!-- 區隔 end -->
+                            <div class="step step-5 ">5. 選擇社宅</div>
+                            <!-- 區隔 -->
+                            <span class="space"></span>
+                            <span class="divider"><i class="fa-solid fa-angle-right" aria-hidden="true"></i></span>
+                            <span class="space"></span>
+                            <!-- 區隔 end -->
+                            <div class="step step-6 ">6. 確認資料</div>
+                            <span class="space"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+        <div class="content">
+            <form class="needs-validation" novalidate>
+                <div class="vstack gap-5">
+                    <!-- 檢附文件上傳說明 -->
+                    <div class="item">
+                        <!-- Head -->
+                        <div class="head | title-border-bottom">
+                            <h2 class="title-name">檢附文件上傳說明</h2>
+                        </div>
+                        <!-- Body -->
+                        <div class="body">
+                            <div class="text-primary">整合 MyData 資料後（MyData資料與實際情況可能會有3~5天的落差情況）</div>
+                            依前面階段勾選項目，檢附下列文件：<br>
+                            [註1]檢附文件格式限.jpg、.jpeg、.png、.pdf，上限為50MB<br>
+                            [註2]已檢附項目，若需更改請於上一頁修正。
+                        </div>
+                    </div>
+                    <div class="item">
+                        <!-- 已檢附項目 -->
+                        <div>
+                            <table class="table table-list mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <div class="flex-item-wrap column-gap-4">
+                                                <button type="button" class="triger| collapse-icon" data-bs-toggle="collapse"
+                                                    data-bs-target="#uploadedCollapse" aria-expanded="true">
+                                                    <!-- False -->
+                                                    <span class="icon | expanded-false">
+                                                        <img src="assets/img/icon-square-plus.svg" alt="展開內容">
+                                                    </span>
+                                                    <!-- True -->
+                                                    <span class="icon | expanded-true">
+                                                        <img src="assets/img/icon-square-minus.svg" alt="收合內容">
+                                                    </span>
+                                                </button>
+                                                <div class="fs-3">已檢附項目</div>
+                                                <div class="tag tag-orange">1</div>
+                                            </div>
+                                        </th>
+                                    </tr>
+                                </thead>
+                            </table>
+                            <div class="collapse show" id="uploadedCollapse">
+                                <div class="table-responsive">
+                                    <table class="table table-list table-rwd  mb-0" style="--divider: ''">
+                                        <tbody>
+                                            <tr>
+                                                <td data-th="" class="col-lg-3 fw-medium">家庭成員之最近一年綜合所得稅各類所得資料清單</td>
+                                                <td data-th="" class="col-lg-4">
+                                                </td>
+                                                <td data-th="">
+                                                    <div class="vstack gap-1 ">
+                                                        <div class="form-file">
+                                                            <a href="#" class="name" title="下載檔案名稱.JPG">
+                                                                <i class="fa-solid fa-paperclip" aria-hidden="true"></i>
+                                                                案名稱檔案名稱檔案名稱檔案名稱檔案名稱.JPG
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td data-th="" class="fw-medium">家庭成員之財產歸屬資料清單</td>
+                                                <td data-th="">
+                                                </td>
+                                                <td data-th="">
+                                                    <div class="vstack gap-1 ">
+                                                        <div class="form-file">
+                                                            <a href="#" class="name" title="下載檔案名稱.JPG">
+                                                                <i class="fa-solid fa-paperclip" aria-hidden="true"></i>
+                                                                案名稱檔案名稱檔案名稱檔案名稱檔案名稱.JPG
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 基本條件檢附項目 -->
+                        <div>
+                            <table class="table table-list mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <div class="flex-item-wrap column-gap-4">
+                                                <button type="button" class="triger| collapse-icon" data-bs-toggle="collapse"
+                                                    data-bs-target="#basicRequirementFilesCollapse" aria-expanded="true">
+                                                    <!-- False -->
+                                                    <span class="icon | expanded-false">
+                                                        <img src="assets/img/icon-square-plus.svg" alt="展開內容">
+                                                    </span>
+                                                    <!-- True -->
+                                                    <span class="icon | expanded-true">
+                                                        <img src="assets/img/icon-square-minus.svg" alt="收合內容">
+                                                    </span>
+                                                </button>
+                                                <div class="fs-3">基本條件檢附項目</div>
+                                                <div class="tag tag-orange">2</div>
+                                            </div>
+                                        </th>
+                                    </tr>
+                                </thead>
+                            </table>
+                            <div class="collapse show" id="basicRequirementFilesCollapse">
+                                <div class="table-responsive">
+                                    <table class="table table-list table-rwd  mb-0" style="--divider: ''">
+                                    
+                                        <tbody>
+                                            <tr>
+                                                <td data-th="" class="col-lg-3 fw-medium">家庭成員之戶口名簿影本、全戶電子戶籍謄本</td>
+                                                <td data-th="" class="col-lg-4">註：如與配偶分戶者，應另檢具該配偶戶籍資料。</td>
+                                                <td data-th="">
+                                                    <div class="vstack gap-1 ">
+                                                        <div>
+                                                            <label for="fileInput" class="btn btn-sm btn-primary" role="button" tabindex="0">選擇檢附檔案</label>
+                                                            <input type="file" id="fileInput" class="visually-hidden"
+                                                                accept=".jpg, .jpeg, .png, .gif, .pdf">
+                                                        </div>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                                        <div class="vstack gap-1 ">
+                                                            <div class="form-file">
+                                                                <a href="#" class="name" title="下載檔案名稱.JPG">
+                                                                    <i class="fa-solid fa-paperclip" aria-hidden="true"></i>
+                                                                    案名稱檔案名稱檔案名稱檔案名稱檔案名稱.JPG
+                                                                </a>
+                                                                <button class="btn-icon btn-sm" title="刪除檔案" aria-label="刪除檔案"><i class="fa-solid fa-xmark"
+                                                                        aria-hidden="true"></i></button>
+                                                            </div>
+                                                        </div>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                                    </div>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td data-th="" class="fw-medium">符合資格之證明文件(具本市就業或就學有居住需求者，應檢附資格證明文件)</td>
+                                                <td data-th="">
+                                                    就業： 需檢附「在職服務證明書」正本。<br>
+                                                    就學： 需檢附「大專院校在學證明」正本。
+                                                </td>
+                                                <td data-th="">
+                                                    <div class="vstack gap-1 ">
+                                                        <div>
+                                                            <label for="fileInput-2" class="btn btn-sm btn-primary" role="button"
+                                                                tabindex="0">選擇檢附檔案</label>
+                                                            <input type="file" id="fileInput-2" class="visually-hidden"
+                                                                accept=".jpg, .jpeg, .png, .gif, .pdf">
+                                                        </div>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                                        <div class="vstack gap-1 ">
+                                                            <div class="form-file">
+                                                                <a href="#" class="name" title="下載檔案名稱.JPG">
+                                                                    <i class="fa-solid fa-paperclip" aria-hidden="true"></i>
+                                                                    案名稱檔案名稱檔案名稱檔案名稱檔案名稱.JPG
+                                                                </a>
+                                                                <button class="btn-icon btn-sm" title="刪除檔案" aria-label="刪除檔案"><i class="fa-solid fa-xmark"
+                                                                        aria-hidden="true"></i></button>
+                                                            </div>
+                                                        </div>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                                    </div>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 其他證明文件 -->
+                        <div>
+                            <table class="table table-list mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <div class="flex-item-wrap column-gap-4">
+                                                <button type="button" class="triger| collapse-icon" data-bs-toggle="collapse"
+                                                    data-bs-target="#otherProofDocumentsCollapse" aria-expanded="true">
+                                                    <!-- False -->
+                                                    <span class="icon | expanded-false">
+                                                        <img src="assets/img/icon-square-plus.svg" alt="展開內容">
+                                                    </span>
+                                                    <!-- True -->
+                                                    <span class="icon | expanded-true">
+                                                        <img src="assets/img/icon-square-minus.svg" alt="收合內容">
+                                                    </span>
+                                                </button>
+                                                <div class="fs-3">其他證明文件</div>
+                                                <div class="tag tag-orange">3</div>
+                                            </div>
+                                        </th>
+                                    </tr>
+                                </thead>
+                            </table>
+                            <div class="collapse show" id="otherProofDocumentsCollapse">
+                                <div class="table-responsive">
+                                    <table class="table table-list table-rwd  mb-0" style="--divider: ''">
+                                        <tbody>
+                                            <tr>
+                                                <td data-th="" class="col-lg-3 fw-medium">申請人為結束安置之經濟或社會弱勢之未成年人</td>
+                                                <td data-th="" class="col-lg-4">需檢附「結束安置之未成年證明」正本。</td>
+                                                <td data-th="">
+                                                    <div class="vstack gap-1 ">
+                                                        <div>
+                                                            <label for="fileInput" class="btn btn-sm btn-primary" role="button" tabindex="0">選擇檢附檔案</label>
+                                                            <input type="file" id="fileInput" class="visually-hidden"
+                                                                accept=".jpg, .jpeg, .png, .gif, .pdf">
+                                                        </div>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                                        <div class="vstack gap-1 ">
+                                                            <div class="form-file">
+                                                                <a href="#" class="name" title="下載檔案名稱.JPG">
+                                                                    <i class="fa-solid fa-paperclip" aria-hidden="true"></i>
+                                                                    案名稱檔案名稱檔案名稱檔案名稱檔案名稱.JPG
+                                                                </a>
+                                                                <button class="btn-icon btn-sm" title="刪除檔案" aria-label="刪除檔案"><i class="fa-solid fa-xmark"
+                                                                        aria-hidden="true"></i></button>
+                                                            </div>
+                                                        </div>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                                    </div>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td data-th="" class="fw-medium">已懷孕者(領有國民健康署編印之孕婦健康手冊)</td>
+                                                <td data-th="">
+                                                    領有國民健康署編印之孕婦健康手冊。
+                                                </td>
+                                                <td data-th="">
+                                                    <div class="vstack gap-1 ">
+                                                        <div>
+                                                            <label for="fileInput-2" class="btn btn-sm btn-primary" role="button"
+                                                                tabindex="0">選擇檢附檔案</label>
+                                                            <input type="file" id="fileInput-2" class="visually-hidden"
+                                                                accept=".jpg, .jpeg, .png, .gif, .pdf">
+                                                        </div>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                                        <div class="vstack gap-1 ">
+                                                            <div class="form-file">
+                                                                <a href="#" class="name" title="下載檔案名稱.JPG">
+                                                                    <i class="fa-solid fa-paperclip" aria-hidden="true"></i>
+                                                                    案名稱檔案名稱檔案名稱檔案名稱檔案名稱.JPG
+                                                                </a>
+                                                                <button class="btn-icon btn-sm" title="刪除檔案" aria-label="刪除檔案"><i class="fa-solid fa-xmark"
+                                                                        aria-hidden="true"></i></button>
+                                                            </div>
+                                                        </div>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                                    </div>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td data-th="" class="fw-medium">外籍人士</td>
+                                                <td data-th="">
+                                                    家庭成員為外籍人士、大陸地區人民、香港或澳門居民，檢附居留證及出入國（境）相關資料。<br>
+                                                    ＊相關證明文件顯示未曾入境者，視為無該家庭成員。
+                                                </td>
+                                                <td data-th="">
+                                                    <div class="vstack gap-1 ">
+                                                        <div>
+                                                            <label for="fileInput-2" class="btn btn-sm btn-primary" role="button"
+                                                                tabindex="0">選擇檢附檔案</label>
+                                                            <input type="file" id="fileInput-2" class="visually-hidden"
+                                                                accept=".jpg, .jpeg, .png, .gif, .pdf">
+                                                        </div>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                                        <div class="vstack gap-1 ">
+                                                            <div class="form-file">
+                                                                <a href="#" class="name" title="下載檔案名稱.JPG">
+                                                                    <i class="fa-solid fa-paperclip" aria-hidden="true"></i>
+                                                                    案名稱檔案名稱檔案名稱檔案名稱檔案名稱.JPG
+                                                                </a>
+                                                                <button class="btn-icon btn-sm" title="刪除檔案" aria-label="刪除檔案"><i class="fa-solid fa-xmark"
+                                                                        aria-hidden="true"></i></button>
+                                                            </div>
+                                                        </div>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                                    </div>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- CTA -->
+                    <div class="item">
+                        <div class="btn-cta-group pb-4">
+                            <a href="apply-03.html" class="btn btn-pill-outline-primary">上一步</a>
+                            <a href="#" class="btn btn-pill-outline-primary">儲存</a>
+                            <a href="apply-05.html" class="btn btn-pill-primary">下一步</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+      </div>
+    </div>
+    <!-- Bottom -->
+    <div class="bottom">
+      <footer class="footer">
+          <div class="img-wrap">
+            <img src="assets/img/footer-brand-logo.svg">
+          </div>
+          <div class="text">
+            <div><i class="fa-duotone fa-user-headset fa-fw me-1"></i><label class="d-none d-lg-inline-block">客服人員：</label>天思數位科技 (04)2451-6669 #6?? X小姐</div>
+            <div><i class="fad fa-browser fa-fw me-1"></i><label class="d-none d-lg-inline-block">最佳瀏覽環境：</label>Edge、Firefox 、Google Chrome ,螢幕解析度1280*768以上</div>
+            <div class="d-none d-lg-inline-block"><i class="fad fa-copyright fa-fw me-1"></i> Copyright 桃園市住宅及都市更新中心</div>
+          </div>
+      </footer>
+    </div>
+  </div> 
+  <!-- /.wrapper  -->
+
+  <!-- 回到最上面 -->
+  <div class="go-top | js-go-top">
+      <a href="#" class="" title="回到最上面">TOP</a>
+  </div>
+
+  <!-- Modal -->
+  
+  <!-- JS -->
+</body>
+
+</html>

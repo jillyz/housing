@@ -1,0 +1,36 @@
+$breadcrumb-border: var(--breadcrumb-border, #{1px solid rgba(black, 0.1)});
+//--
+/* Breadcrumb */
+.breadcrumb {
+    margin-bottom: 0;
+    padding: 13px 1.5rem;
+    border-bottom: 1px solid rgba(black, 0.1);
+    border-radius: 0;    
+    color: #212529;
+    
+    &::before {
+        font-family: $font-awesome;
+        font-weight: 900;
+        content: "\f277";
+        // content: "\f015"; //房子
+    
+        margin-right: 0.7em;
+    }
+    
+    a {
+        color: inherit;
+        text-decoration: underline;
+    }
+    // Wrapper
+    &-wrapper{
+        background-color: white;
+        width: 100%;
+        max-width: $page-max-width;
+        margin: 0 auto;
+        
+        @include breakpoint($lg){
+            transition: .3s all;        
+        }
+    }
+}
+  

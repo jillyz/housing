@@ -1,0 +1,38 @@
+/* 左側寬度自適 grid-left-auto */
+.grid-left-auto{
+    display: grid;
+    gap: 8px;
+    grid-template-columns: auto 1fr;
+}
+//RWD
+@each $name, $value in $construction-breakpoint-sizes {    
+    .grid-#{$name}-left-auto{
+        display: grid;
+        gap: 8px;
+        @include breakpoint($value){
+            grid-template-columns: auto 1fr;
+        }
+    }
+}
+
+
+.test{
+    // container: sidebar / inline-size;
+}
+
+.form-comp-date-duration{
+    .text{
+        display: block;
+        text-align: center;
+        padding-block: 6px;
+    }
+    
+    @container (min-width: 350px) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+    }
+}
+
+

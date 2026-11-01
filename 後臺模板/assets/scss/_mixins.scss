@@ -1,0 +1,60 @@
+// 斷點
+@mixin breakpoint($size) {
+    @media (min-width: $size) {
+        @content;
+    }
+}
+// Container
+@mixin container($name, $size) {
+    // 判斷是否有帶入容器名稱
+    @if ($name != null) {
+        @container #{$name} (min-width: #{$size}) {
+            @content;
+        }
+    } @else {
+        @container (min-width: #{$size}) {
+            @content;
+        }
+    }
+}
+// 方形
+@mixin rect($size, $color: currentColor) {
+    width: $size;
+    height: $size;
+    background-color: $color;
+}
+// 圓形
+@mixin circle($size, $color: currentColor) {
+    @include rect($size);
+    border-radius: 999rem;
+    background-color: $color;
+}
+// 三角形
+@mixin triangle-left($w, $h:$w, $color:currentColor){
+    width: 0;
+    height: 0;
+    border-top: calc($h / 2) solid transparent;
+    border-right: $w solid $color;
+    border-bottom: calc($h / 2) solid transparent;
+}
+@mixin triangle-right($w, $h:$w, $color:currentColor){
+    width: 0;
+    height: 0;
+    border-top: calc($h / 2) solid transparent;
+    border-left: $w solid $color;
+    border-bottom: calc($h / 2) solid transparent;
+}
+@mixin triangle-up($w, $h:$w, $color:currentColor){
+    width: 0;
+    height: 0;
+    border-left: calc($w / 2) solid transparent;
+    border-right: calc($w / 2) solid transparent;
+    border-bottom: $h solid $color;
+}
+@mixin triangle-down($w, $h:$w, $color:currentColor){
+    width: 0;
+    height: 0;
+    border-left: calc($w / 2) solid transparent;
+    border-right: calc($w / 2) solid transparent;
+    border-top: $h solid $color;
+}

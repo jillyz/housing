@@ -1,0 +1,738 @@
+<!doctype html>
+<html class="no-js" lang="zh-Hant">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>大樓管理 | 桃園市住宅及都市更新中心營運管理平台</title>
+  <!-- jQuery -->
+  <script src="assets/vendor/jquery-3.7.1.min.js"></script>
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="assets/vendor/bootstrap-5.3.3/dist/css/bootstrap.min.css">
+  <script src="assets/vendor/bootstrap-5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="assets/vendor/fontawesome-pro-6.5.2-web/css/all.css">
+  <!-- Rubik (數字字型) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap">
+  <!-- Tom Select -->
+  <link rel="stylesheet" href="assets/vendor/tom-select-2.2.2/tom-select.bootstrap5.min.css">
+  <script src="assets/vendor/tom-select-2.2.2/tom-select.complete.js"></script>
+  <!-- Menu -->
+  <script src="assets/vendor/utils/menu/menu.js"></script>
+  <!-- 自訂 -->
+  <link rel="stylesheet" href="assets/css/main.css">
+  <script src="assets/js/customJS.js"></script>
+</head>
+
+<body>
+  <div class="wrapper multi-column | column-with-menu">
+    <!-- Top -->
+    <div class="top">
+      <header class="header">
+        <!-- logo -->
+        <a class="logo" href="index.html" title="回首頁">
+          <div class="img-wrap"><img src="assets/img/brand-logo.svg"></div>
+          <h2 class="">桃園市住宅及都市更新中心<span>營運管理平台</span></h2>
+        </a>
+        <!-- 手機版漢堡 -->
+        <div class="d-lg-none">
+          <div class="menu-hamburger-toggle">
+            <a class="btn-icon" data-bs-toggle="collapse" href=".js-nav-collapse">
+              <span class="is-close"><i class="fas fa-bars"></i></span>
+              <span class="is-open"><i class="fas fa-times"></i></span>
+            </a>
+          </div>
+        </div>
+      </header>
+    </div>
+    <!-- Center -->
+    <div class="center">
+      <!-- Left -->
+      <div class="left">
+        <aside class="aside">
+          <!-- 桌機版漢堡 -->
+          <div class="d-none d-lg-block">
+              <div class="menu-hamburger | js-menu-hamburger">
+                <a class="btn btn-icon" title="選單收闔"><i class="fas fa-bars"></i></a>
+              </div>
+            </div>
+          <!-- Nav collapse -->
+          <div class="nav-collapse | collapse js-nav-collapse">
+            <!-- 上方輔助功能 -->
+            <div class="top-helper-wrapper">
+              <div class="top-helper">
+                <div class="warning-bell">
+                  <button><i class="fa-solid fa-bell"></i></button>
+                  <span class="badge">8</span>
+                </div>
+                <div class="dropdown">
+                  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    歡迎OOOOO科OOO登入系統
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="#">編輯個人資料</a></li>
+                    <li><a class="dropdown-item" href="#">變更密碼</a></li>
+                    <li><a class="dropdown-item" href="#">操作手冊下載</a></li>
+                    <li><a class="dropdown-item" href="#">登出</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <!-- Menu -->
+            <ul class="menu menu-vertical | scroll isMenuOpen js-menu-vertical">
+              <!-- 首頁 -->
+              <li>
+                  <a href="index.html" >
+                    <span class="icon-text">首頁</span>
+                  </a>
+              </li>
+              <!-- 招租作業 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">招租作業*</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="apply-01.html" >專案申請*</a>
+                      </li>
+                      <li>
+                          <a href="application-query.html" >申請案件查詢*</a>
+                      </li>
+                      <li>
+                          <a href="application-review.html" >申請案件審核*</a>
+                      </li>
+                      <li>
+                          <a href="shop-rent.html" >店鋪招租</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 選屋作業管理 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">選屋作業管理*</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="online-selection-rank-query.html" >選屋查詢*</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 點交簽約管理 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">點交簽約管理*</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="handover-management.html" >點交簽約查詢*</a>
+                      </li>
+                      <li>
+                          <a href="handover-details-query.html" >點交作業*</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 租約管理 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">租約管理</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="tenant-lease-management.html" >住戶租約管理</a>
+                      </li>
+                      <li>
+                          <a href="tenant-termination-management.html" >住戶退租管理</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 店鋪招商管理 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">店鋪招商管理</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="#" >店鋪公告管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >店鋪點交簽約查詢</a>
+                      </li>
+                      <li>
+                          <a href="#" >店鋪點交作業</a>
+                      </li>
+                      <li>
+                          <a href="#" >潛在店鋪管理</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 場地租借審核 -->
+              <li>
+                  <a href="#" >
+                    <span class="icon-text">場地租借審核</span>
+                  </a>
+              </li>
+              <!-- 帳務管理 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">帳務管理</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="#" >收費管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >銷貨收入</a>
+                      </li>
+                      <li>
+                          <a href="#" >帳款作廢</a>
+                      </li>
+                      <span>銀行委扣管理</span>
+                      <li>
+                          <a href="#" >銀行委扣授權</a>
+                      </li>
+                      <li>
+                          <a href="#" >銀行委扣扣款</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 資料查詢與匯出 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">資料查詢與匯出</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="#" >金流統計</a>
+                      </li>
+                      <li>
+                          <a href="#" >案件申請統計</a>
+                      </li>
+                      <li>
+                          <a href="#" >車位統計</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 物業管理功能 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">物業管理功能</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="#" >公告管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >包裹管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >扣點紀錄</a>
+                      </li>
+                      <li>
+                          <a href="#" >工作日誌</a>
+                      </li>
+                      <li>
+                          <a href="#" >場地租借管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >人員差勤管理</a>
+                      </li>
+                      <span>報修案件管理</span>
+                      <li>
+                          <a href="#" >報修案件查詢</a>
+                      </li>
+                      <li>
+                          <a href="#" >報修廠商管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >備品統計</a>
+                      </li>
+                      <li>
+                          <a href="#" >報表查詢</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 系統查詢與匯出 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">系統查詢與匯出</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="#" >通知類型設定</a>
+                      </li>        
+                  </ul>
+              </li>
+              <!-- 系統維護管理 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">系統維護管理*</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <span>社宅管理</span>
+                      <li>
+                          <a href="building-management.html" class="active">大樓管理*</a>
+                      </li>
+                      <li>
+                          <a href="#" >大樓戶號管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >大樓車位管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >大樓場地管理</a>
+                      </li>
+                      <li>
+                          <a href="layout-config.html" >空間格局管理*</a>
+                      </li>
+                      <span>使用者權限管理</span>
+                      <li>
+                          <a href="user-data-management.html" >人員資料管理</a>
+                      </li>
+                      <li>
+                          <a href="permission-management.html" >權限管理</a>
+                      </li>
+                      <span>招租管理</span>
+                      <li>
+                          <a href="evaluation-type-settings.html" >評點類型審核設定</a>
+                      </li>
+                      <li>
+                          <a href="schedule-management.html" >社宅時程管理</a>
+                      </li>
+                      <li>
+                          <a href="schedule-management.html" >店鋪標案管理</a>
+                      </li>
+                      <li>
+                          <a href="reviewer-settings.html" >審核人員設定</a>
+                      </li>
+                      <li>
+                          <a href="document-template-settings.html" >文件範本設定</a>
+                      </li>
+                      <span>資產與營運管理</span>
+                      <li>
+                          <a href="outsourcing-management.html" >資產管理</a>
+                      </li>        
+                  </ul>
+              </li>
+              
+              <li>
+                  <a href="furniture-maintenance.html" >家具清單維護管理*</a>
+              </li>
+              
+              <li>
+                  <a href="_components.html" target="_blank">
+                    <span class="icon-text"><i class="fa-solid fa-cubes-stacked"></i>組件表</span>
+                  </a>
+              </li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+      <!-- Right -->
+      <div class="right">
+        <!-- 麵包屑 -->
+        <div class="breadcrumb-wrapper">
+            <div class="breadcrumb-inner">
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb">
+                  <li class="breadcrumb-item">系統維護管理</li>
+                  <li class="breadcrumb-item active" aria-current="page">大樓管理</li>
+                </ol>
+              </nav>
+            </div>
+        </div>
+        <div class="content">
+            <!-- 查詢條件 -->
+        <div class="collapse-wrap | position-relative">
+            <h4 class="collapse-title"><span class="text">查詢條件</span></h4>
+            <a href="#searchCollapse" class="collapse-btn | stretched-link" data-bs-toggle="collapse" aria-expanded="true">
+                <i class="fa-solid fa-chevron-down"></i>
+            </a>
+        </div>
+        <!-- Collapse -->
+        <div class="collapse show" id="searchCollapse">
+            <div class="search">
+                <div class="search-top-form">
+                        <div class="row g-3">
+                            <!-- 縣市/行政區 -->
+                            <div class="col-md-6 col-xl-3">
+                                <label for="" class="form-label">縣市/行政區</label>
+                                <div class="input-group">
+                                    <select class="form-select " required>
+                                      <option value="全部">全部</option>
+                                      <option value="台南市">台南市</option>
+                                    </select>
+                                    <select class="form-select "  required>
+                                      <option value="全部">全部</option>
+                                      <option value="東區">東區</option>
+                                      <option value="西區">西區</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- 社宅大樓 -->
+                            <div class="col-md-6 col-xl-3">
+                                <label for="" class="form-label">社宅大樓</label>
+                                <select name="" id="" class="form-select">
+                                    <option value="全部">全部</option>
+                                    <option value="自慢藏聯合招租">自慢藏聯合招租</option>
+                                    <option value="小東路北側">小東路北側</option>
+                                    <option value="仁德二空新村(A區)">仁德二空新村(A區)</option>
+                                    <option value="仁德二空新村(B區)">仁德二空新村(B區)</option>
+                                    <option value="永康精忠二村">永康精忠二村</option>
+                                    <option value="平實營區一期">平實營區一期</option>
+                                    <option value="平實營區二期">平實營區二期</option>
+                                    <option value="自強新村">自強新村</option>
+                                    <option value="中興新城">中興新城</option>
+                                    <option value="九六新村">九六新村</option>
+                                    <option value="永康康橋">永康康橋</option>
+                                </select>
+                            </div>
+                            <!-- 僅虛擬社宅 -->
+                            <div class="col-md-6 col-xl-3">
+                                <label for="" class="form-label">僅虛擬社宅</label>
+                                <div class="">
+                                    <input type="checkbox" class="form-check-input | fs-4">
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                <div class="search-bottom-buttons">
+                    <button class="btn btn-primary">
+                        <i class="fa-solid fa-magnifying-glass"></i>查詢
+                    </button>
+                </div>
+            </div>
+        </div>    <!-- 表格上方功能 -->
+        <div class="flex-start-end  mb-3">
+            <!-- Start -->
+            <div class="start">
+                <div class="flex-item-wrap">
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createBuildingtModal">
+                            <i class="fa-solid fa-circle-plus"></i>新增大樓資料*
+                        </button>
+                </div>
+            </div>
+            <!-- End -->
+            <div class="end">
+            </div>
+        </div>    <!-- Table -->
+            <div class="table-responsive scroll mb-3">
+                <table class="table table-list table-rwd table-bordered mb-0">
+                    <thead>
+                        <tr>
+                            <th>社宅代碼</th>
+                            <th>社宅簡碼</th>
+                            <th>社宅全稱</th>
+                            <th>社宅簡稱</th>
+                            <th>社宅類型</th>
+                            <th>縣市地區</th>
+                            <th>行政區</th>
+                            <th>功能</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-th="社宅代碼">GOVTC001</td>
+                            <td data-th="社宅簡碼">FUA</td>
+                            <td data-th="社宅全稱">豐原區安康段一期社會住宅</td>
+                            <td data-th="社宅簡稱">豐原安康一期</td>
+                            <td data-th="社宅類型">實體社宅</td>
+                            <td data-th="縣市地區">台中市</td>
+                            <td data-th="行政區">豐原區</td>
+                            <td data-th="功能">
+                                <div class="flex-item-wrap">
+                                    <button class="btn btn-sm btn-outline-primary" >
+                                      <i class="fa-solid fa-eye"></i>
+                                      檢視
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-primary">解鎖</button>
+                                    <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#historyModal">
+                                      <i class="fa-solid fa-clock-rotate-left"></i>
+                                      異動歷程*
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td data-th="社宅代碼">GOVVB001</td>
+                            <td data-th="社宅簡碼">NTVA</td>
+                            <td data-th="社宅全稱">南屯建功2、3社會住宅</td>
+                            <td data-th="社宅簡稱">南屯建功2、3號</td>
+                            <td data-th="社宅類型">虛擬社宅</td>
+                            <td data-th="縣市地區">台中市</td>
+                            <td data-th="行政區">南屯區</td>
+                            <td data-th="功能">
+                                <div class="flex-item-wrap">
+                                    <button class="btn btn-sm btn-outline-primary" >
+                                      <i class="fa-solid fa-eye"></i>
+                                      檢視
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-primary">解鎖</button>
+                                    <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#historyModal">
+                                      <i class="fa-solid fa-clock-rotate-left"></i>
+                                      異動歷程*
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td data-th="社宅代碼">GOVTC001</td>
+                            <td data-th="社宅簡碼">FUA</td>
+                            <td data-th="社宅全稱">豐原區安康段一期社會住宅</td>
+                            <td data-th="社宅簡稱">豐原安康一期</td>
+                            <td data-th="社宅類型">實體社宅</td>
+                            <td data-th="縣市地區">台中市</td>
+                            <td data-th="行政區">豐原區</td>
+                            <td data-th="功能">
+                                <div class="flex-item-wrap">
+                                    <button class="btn btn-sm btn-outline-primary" >
+                                      <i class="fa-solid fa-eye"></i>
+                                      檢視
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-primary">解鎖</button>
+                                    <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#historyModal">
+                                      <i class="fa-solid fa-clock-rotate-left"></i>
+                                      異動歷程*
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td data-th="社宅代碼">GOVVB001</td>
+                            <td data-th="社宅簡碼">NTVA</td>
+                            <td data-th="社宅全稱">南屯建功2、3社會住宅</td>
+                            <td data-th="社宅簡稱">南屯建功2、3號</td>
+                            <td data-th="社宅類型">虛擬社宅</td>
+                            <td data-th="縣市地區">台中市</td>
+                            <td data-th="行政區">南屯區</td>
+                            <td data-th="功能">
+                                <div class="flex-item-wrap">
+                                    <button class="btn btn-sm btn-outline-primary" >
+                                      <i class="fa-solid fa-eye"></i>
+                                      檢視
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-primary">解鎖</button>
+                                    <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#historyModal">
+                                      <i class="fa-solid fa-clock-rotate-left"></i>
+                                      異動歷程*
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- 分頁 -->
+            <ul class="pagination ">
+                <li class="disabled"><a href="#"><i class="fas fa-chevron-left"></i></a></li>
+                <li class="active"><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li class="disabled"><a href="#">...</a></li>
+                <li><a href="#">16</a></li>
+                <li><a href="#"><i class="fas fa-chevron-right"></i></a></li>
+            </ul></div>
+      </div>
+    </div>
+    <!-- Bottom -->
+    <div class="bottom">
+      <footer class="footer">
+          <div class="img-wrap">
+            <img src="assets/img/footer-brand-logo.svg">
+          </div>
+          <div class="text">
+            <div><i class="fa-duotone fa-user-headset fa-fw me-1"></i><label class="d-none d-lg-inline-block">客服人員：</label>天思數位科技 (04)2451-6669 #6?? X小姐</div>
+            <div><i class="fad fa-browser fa-fw me-1"></i><label class="d-none d-lg-inline-block">最佳瀏覽環境：</label>Edge、Firefox 、Google Chrome ,螢幕解析度1280*768以上</div>
+            <div class="d-none d-lg-inline-block"><i class="fad fa-copyright fa-fw me-1"></i> Copyright 桃園市住宅及都市更新中心</div>
+          </div>
+      </footer>
+    </div>
+  </div> 
+  <!-- /.wrapper  -->
+
+  <!-- 回到最上面 -->
+  <div class="go-top | js-go-top">
+      <a href="#" class="" title="回到最上面">TOP</a>
+  </div>
+
+  <!-- Modal -->
+  
+  <!-- 新增大樓資料 -->
+  <div class="modal fade" id="createBuildingtModal" data-bs-backdrop="static" tabindex="-1">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title" id="createBuildingtModalLabel">
+            <i class="fa-solid fa-circle-plus"></i>
+            新增大樓資料
+          </h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="d-grid gap-3">
+            <!-- 社宅大樓編號 -->
+            <div class="item">
+              <label for="" class="form-label">社宅大樓編號<span class="required"></span></label>
+              <input type="text" class="form-control" value="CA001" disabled>
+            </div>
+            <!-- 所在縣市 -->
+            <div class="item">
+              <label for="" class="form-label">所在縣市<span class="required"></span></label>
+              <select name="" id="" class="form-select" required>
+                <option value="">請選擇</option>
+                <option value="台北市">台北市</option>
+              </select>
+            </div>
+            <!-- 社宅大樓簡碼 -->
+             <div class="item">
+              <label for="" class="form-label">社宅大樓簡碼<span class="required"></span></label>
+              <input type="text" class="form-control" placeholder="請輸入社宅大樓簡碼" value="LKS" required>
+             </div>
+            <!-- 社宅簡稱 -->
+            <div class="item">
+              <label for="" class="form-label">社宅簡稱<span class="required"></span></label>
+              <input type="text" class="form-control" placeholder="請輸入社宅簡稱" value="林口世大運" required>
+             </div>
+            <!-- 社宅全稱 -->
+             <div class="item">
+              <label for="" class="form-label">社宅全稱<span class="required"></span></label>
+              <input type="text" class="form-control" placeholder="請輸入社宅全稱" value="林口世大運選手村社會住宅" required>
+             </div>
+            <!-- 社宅類型 -->
+             <div class="item">
+              <label for="" class="form-label">社宅類型<span class="required"></span></label>
+              <div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="Radio" name="AA" id="AA0">
+                  <label class="form-check-label" for="AA0">
+                    實體社宅
+                  </label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="Radio" name="AA" id="AA1">
+                  <label class="form-check-label" for="AA1">
+                    虛擬社宅
+                  </label>
+                </div>
+              </div>
+             </div>         
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div class="btn-cta-group w-100 p-0">
+            <button class="btn btn-pill-outline-primary" data-bs-dismiss="modal">取消</button>
+            <button class="btn btn-pill-primary" onclick="location.href='building-page.html'">儲存*</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal 大樓異動歷程 -->
+  <div class="modal fade" id="historyModal" data-bs-backdrop="static" tabindex="-1">
+      <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title" id="historyModalLabel">
+              <i class="fa-solid fa-clock-rotate-left"></i>
+              異動歷程
+            </h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="table-responsive scroll mb-3">
+                <table class="table table-list table--collapsible | rounded-top overflow-hidden mb-0">
+                    <thead class="table-secondary">
+                        <tr>
+                            <th class="">異動人員</th>
+                            <th class="">異動時間</th>
+                            <th class="">異動備註</th>
+                            <th class="text-center"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-th="異動人員">姚小彤</td>
+                            <td data-th="異動時間">2024-03-01 15:30:55</td>
+                            <td data-th="異動備註">修改大樓基本資料</td>
+                            <td data-th="檢視" class="text-center">
+                                <button class="btn btn-icon text-primary | collapse-icon" aria-expanded="false" data-bs-toggle="collapse" data-bs-target="#detailCollapse-1">
+                                    <span class="icon expanded-rotate"><i class="fa-solid fa-chevron-up"></i></span>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" class="p-0 bg-light">
+                                <div class="collapse" id="detailCollapse-1">
+                                    <div class="p-3">
+                                        <div class="table-responsive scroll">
+                                            <table class="table table-list table-bordered mb-0">
+                                                <thead>
+                                                    <tr>
+                                                        <th>修改類型</th>
+                                                        <th>修改欄位</th>
+                                                        <th>修改前</th>
+                                                        <th>修改後</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td data-th="修改類型">大樓基本資料</td>
+                                                        <td data-th="修改欄位">公告安居好室日期</td>
+                                                        <td data-th="修改前">2023-12-01</td>
+                                                        <td data-th="修改後">2024-10-01</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td data-th="修改類型">大樓基本資料</td>
+                                                        <td data-th="修改欄位">租金起算日</td>
+                                                        <td data-th="修改前">11</td>
+                                                        <td data-th="修改後">1</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td data-th="異動人員">姚小彤</td>
+                            <td data-th="異動時間">2024-03-01 15:30:55</td>
+                            <td data-th="異動備註">修改租金計畫</td>
+                            <td data-th="檢視" class="text-center">
+                                -
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" class="p-0 highlight">
+                                <div class="collapse"></div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <div class="btn-cta-group w-100 p-0">
+              <button class="btn btn-pill-outline-primary" data-bs-dismiss="modal">關閉</button>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  <!-- JS -->
+</body>
+
+</html>

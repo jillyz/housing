@@ -1,0 +1,1269 @@
+<!doctype html>
+<html class="no-js" lang="zh-Hant">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>桃園市住宅及都市更新中心營運管理平台</title>
+  <!-- jQuery -->
+  <script src="assets/vendor/jquery-3.7.1.min.js"></script>
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="assets/vendor/bootstrap-5.3.3/dist/css/bootstrap.min.css">
+  <script src="assets/vendor/bootstrap-5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="assets/vendor/fontawesome-pro-6.5.2-web/css/all.css">
+  <!-- Rubik (數字字型) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap">
+  <!-- Tom Select -->
+  <link rel="stylesheet" href="assets/vendor/tom-select-2.2.2/tom-select.bootstrap5.min.css">
+  <script src="assets/vendor/tom-select-2.2.2/tom-select.complete.js"></script>
+  <!-- Menu -->
+  <script src="assets/vendor/utils/menu/menu.js"></script>
+  <!-- 自訂 -->
+  <link rel="stylesheet" href="assets/css/main.css">
+  <script src="assets/js/customJS.js"></script>
+</head>
+
+<body>
+  <div class="wrapper multi-column | column-with-menu">
+    <!-- Top -->
+    <div class="top">
+      <header class="header">
+        <!-- logo -->
+        <a class="logo" href="index.html" title="回首頁">
+          <div class="img-wrap"><img src="assets/img/brand-logo.svg"></div>
+          <h2 class="">桃園市住宅及都市更新中心<span>營運管理平台</span></h2>
+        </a>
+        <!-- 手機版漢堡 -->
+        <div class="d-lg-none">
+          <div class="menu-hamburger-toggle">
+            <a class="btn-icon" data-bs-toggle="collapse" href=".js-nav-collapse">
+              <span class="is-close"><i class="fas fa-bars"></i></span>
+              <span class="is-open"><i class="fas fa-times"></i></span>
+            </a>
+          </div>
+        </div>
+      </header>
+    </div>
+    <!-- Center -->
+    <div class="center">
+      <!-- Left -->
+      <div class="left">
+        <aside class="aside">
+          <!-- 桌機版漢堡 -->
+          <div class="d-none d-lg-block">
+              <div class="menu-hamburger | js-menu-hamburger">
+                <a class="btn btn-icon" title="選單收闔"><i class="fas fa-bars"></i></a>
+              </div>
+            </div>
+          <!-- Nav collapse -->
+          <div class="nav-collapse | collapse js-nav-collapse">
+            <!-- 上方輔助功能 -->
+            <div class="top-helper-wrapper">
+              <div class="top-helper">
+                <div class="warning-bell">
+                  <button><i class="fa-solid fa-bell"></i></button>
+                  <span class="badge">8</span>
+                </div>
+                <div class="dropdown">
+                  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    歡迎OOOOO科OOO登入系統
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="#">編輯個人資料</a></li>
+                    <li><a class="dropdown-item" href="#">變更密碼</a></li>
+                    <li><a class="dropdown-item" href="#">操作手冊下載</a></li>
+                    <li><a class="dropdown-item" href="#">登出</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <!-- Menu -->
+            <ul class="menu menu-vertical | scroll isMenuOpen js-menu-vertical">
+              <!-- 首頁 -->
+              <li>
+                  <a href="index.html" >
+                    <span class="icon-text">首頁</span>
+                  </a>
+              </li>
+              <!-- 招租作業 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">招租作業*</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="apply-01.html" class="active">專案申請*</a>
+                      </li>
+                      <li>
+                          <a href="application-query.html" >申請案件查詢*</a>
+                      </li>
+                      <li>
+                          <a href="application-review.html" >申請案件審核*</a>
+                      </li>
+                      <li>
+                          <a href="shop-rent.html" >店鋪招租</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 選屋作業管理 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">選屋作業管理*</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="online-selection-rank-query.html" >選屋查詢*</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 點交簽約管理 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">點交簽約管理*</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="handover-management.html" >點交簽約查詢*</a>
+                      </li>
+                      <li>
+                          <a href="handover-details-query.html" >點交作業*</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 租約管理 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">租約管理</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="tenant-lease-management.html" >住戶租約管理</a>
+                      </li>
+                      <li>
+                          <a href="tenant-termination-management.html" >住戶退租管理</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 店鋪招商管理 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">店鋪招商管理</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="#" >店鋪公告管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >店鋪點交簽約查詢</a>
+                      </li>
+                      <li>
+                          <a href="#" >店鋪點交作業</a>
+                      </li>
+                      <li>
+                          <a href="#" >潛在店鋪管理</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 場地租借審核 -->
+              <li>
+                  <a href="#" >
+                    <span class="icon-text">場地租借審核</span>
+                  </a>
+              </li>
+              <!-- 帳務管理 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">帳務管理</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="#" >收費管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >銷貨收入</a>
+                      </li>
+                      <li>
+                          <a href="#" >帳款作廢</a>
+                      </li>
+                      <span>銀行委扣管理</span>
+                      <li>
+                          <a href="#" >銀行委扣授權</a>
+                      </li>
+                      <li>
+                          <a href="#" >銀行委扣扣款</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 資料查詢與匯出 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">資料查詢與匯出</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="#" >金流統計</a>
+                      </li>
+                      <li>
+                          <a href="#" >案件申請統計</a>
+                      </li>
+                      <li>
+                          <a href="#" >車位統計</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 物業管理功能 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">物業管理功能</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="#" >公告管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >包裹管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >扣點紀錄</a>
+                      </li>
+                      <li>
+                          <a href="#" >工作日誌</a>
+                      </li>
+                      <li>
+                          <a href="#" >場地租借管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >人員差勤管理</a>
+                      </li>
+                      <span>報修案件管理</span>
+                      <li>
+                          <a href="#" >報修案件查詢</a>
+                      </li>
+                      <li>
+                          <a href="#" >報修廠商管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >備品統計</a>
+                      </li>
+                      <li>
+                          <a href="#" >報表查詢</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 系統查詢與匯出 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">系統查詢與匯出</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="#" >通知類型設定</a>
+                      </li>        
+                  </ul>
+              </li>
+              <!-- 系統維護管理 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">系統維護管理*</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <span>社宅管理</span>
+                      <li>
+                          <a href="building-management.html" >大樓管理*</a>
+                      </li>
+                      <li>
+                          <a href="#" >大樓戶號管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >大樓車位管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >大樓場地管理</a>
+                      </li>
+                      <li>
+                          <a href="layout-config.html" >空間格局管理*</a>
+                      </li>
+                      <span>使用者權限管理</span>
+                      <li>
+                          <a href="user-data-management.html" >人員資料管理</a>
+                      </li>
+                      <li>
+                          <a href="permission-management.html" >權限管理</a>
+                      </li>
+                      <span>招租管理</span>
+                      <li>
+                          <a href="evaluation-type-settings.html" >評點類型審核設定</a>
+                      </li>
+                      <li>
+                          <a href="schedule-management.html" >社宅時程管理</a>
+                      </li>
+                      <li>
+                          <a href="schedule-management.html" >店鋪標案管理</a>
+                      </li>
+                      <li>
+                          <a href="reviewer-settings.html" >審核人員設定</a>
+                      </li>
+                      <li>
+                          <a href="document-template-settings.html" >文件範本設定</a>
+                      </li>
+                      <span>資產與營運管理</span>
+                      <li>
+                          <a href="outsourcing-management.html" >資產管理</a>
+                      </li>        
+                  </ul>
+              </li>
+              
+              <li>
+                  <a href="furniture-maintenance.html" >家具清單維護管理*</a>
+              </li>
+              
+              <li>
+                  <a href="_components.html" target="_blank">
+                    <span class="icon-text"><i class="fa-solid fa-cubes-stacked"></i>組件表</span>
+                  </a>
+              </li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+      <!-- Right -->
+      <div class="right">
+        <!-- 麵包屑 -->
+        <div class="breadcrumb-wrapper">
+            <div class="breadcrumb-inner">
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb">
+                  <li class="breadcrumb-item">招租作業</li>
+                  <li class="breadcrumb-item"><a href="apply-01.html">專案申請</a></li>
+                  <li class="breadcrumb-item active" aria-current="page"></li>
+                </ol>
+              </nav>
+            </div>
+        </div>
+        <!-- Content -->
+        <div class="content | sticky-top-scroll">
+            <!-- Head info -->
+            <div class="mb-4">
+                <div class="flex-item-wrap | row-gap-2 column-gap-4">    
+                     <h4 class="mb-0">新招租線上申請</h4> 
+                    <!-- 狀態 -->
+                    <div class="pill-state">
+                      <div class="pill-state-text">尚未完成申請</div>
+                    </div>
+                </div>
+            </div>
+            <!-- 進度條 -->
+            <div class="">
+                <!-- 手機板 -->
+                <div class="d-md-none">
+                    <div class="progress-bar-sm">
+                        <div class="steps">
+                            <div class="step step-1 "><span>1. 基本資料</span></div>
+                            <div class="step step-2 "><span>2. 家庭成員資料</span></div>
+                            <div class="step step-3 "><span>3. 所得及財產資料</span></div>
+                            <div class="step step-4 "><span>4. 檢附文件</span></div>
+                            <div class="step step-5 "><span>5. 選擇社宅</span></div>
+                            <div class="step step-6 active"><span>6. 確認資料</span></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 桌機版 -->
+                <div class="d-none d-md-block">
+                    <div class="progress-bar">
+                        <div class="steps">
+                            <span class="space"></span>
+                            <div class="step step-1 ">1. 基本資料</div>
+                            <!-- 區隔 -->
+                            <span class="space"></span>
+                            <span class="divider"><i class="fa-solid fa-angle-right" aria-hidden="true"></i></span>
+                            <span class="space"></span>
+                            <!-- 區隔 end -->
+                            <div class="step step-2 ">2. 家庭成員資料</div>
+                            <!-- 區隔 -->
+                            <span class="space"></span>
+                            <span class="divider"><i class="fa-solid fa-angle-right" aria-hidden="true"></i></span>
+                            <span class="space"></span>
+                            <!-- 區隔 end -->
+                            <div class="step step-3 ">3. 所得及財產資料</div>
+                            <!-- 區隔 -->
+                            <span class="space"></span>
+                            <span class="divider"><i class="fa-solid fa-angle-right" aria-hidden="true"></i></span>
+                            <span class="space"></span>
+                            <!-- 區隔 end -->
+                            <div class="step step-4 ">4. 檢附文件</div>
+                            <!-- 區隔 -->
+                            <span class="space"></span>
+                            <span class="divider"><i class="fa-solid fa-angle-right" aria-hidden="true"></i></span>
+                            <span class="space"></span>
+                            <!-- 區隔 end -->
+                            <div class="step step-5 ">5. 選擇社宅</div>
+                            <!-- 區隔 -->
+                            <span class="space"></span>
+                            <span class="divider"><i class="fa-solid fa-angle-right" aria-hidden="true"></i></span>
+                            <span class="space"></span>
+                            <!-- 區隔 end -->
+                            <div class="step step-6 active">6. 確認資料</div>
+                            <span class="space"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+        <div class="content">
+            <div class="vstack gap-5">
+                <!-- 基本資料 -->
+                <div class="item">
+                    <div class="fs-1 mb-4">基本資料</div>
+                    <div class="head | title-border-bottom border-bottom-0">
+                        <h2 class="title-name">基本資料填寫</h2>
+                    </div>
+                    <div class="grid-left-auto row-gap-3 column-gap-4">
+            
+                        <div class="start align-self-center">流水號</div>
+                        <div class="end col-lg-4"><input type="text" class="form-control" value="儲存後系統自動產生" aria-label="流水號"
+                                disabled="">
+                        </div>
+            
+                        <div class="start align-self-center">申請編號</div>
+                        <div class="end col-lg-4"><input type="text" class="form-control" value="送出申請後由系統產生申請編號" aria-label="申請編號"
+                                disabled=""></div>
+            
+                        <div class="start">申請人姓名</div>
+                        <div class="end">王ＯＯ</div>
+            
+                        <div class="start">身分證字號</div>
+                        <div class="end">A123456789</div>
+            
+                        <div class="start">性別</div>
+                        <div class="end">男</div>
+            
+                        <div class="start">出生年(民國)月日</div>
+                        <div class="end">
+                            <div>90/05/02 </div>
+                            <div>於安置教養機構或寄養家庭結束安置無法返家</div>
+                        </div>
+            
+                        <div class="start">婚姻狀況</div>
+                        <div class="end">已婚</div>
+            
+                        <div class="start">電話</div>
+                        <div class="end">02-2639999</div>
+            
+                        <div class="start">手機</div>
+                        <div class="end">0912345678</div>
+            
+                        <div class="start">電子信箱</div>
+                        <div class="end">HHH@gmail.com</div>
+            
+                        <div class="start">戶籍資料</div>
+                        <div class="end">(114049) 台北市xx區台北路123號</div>
+            
+                        <div class="start">通訊地址</div>
+                        <div class="end">(114049) 台北市xx區台北路123號</div>
+            
+                        <div class="start">設籍狀況</div>
+                        <div class="end">設籍於桃園市</div>
+            
+                        <div class="start">緊急聯絡人</div>
+                        <div class="end">
+                            <div class="flex-item-wrap"><span>姓名</span><span>陳ＯＯ</span></div>
+                            <div class="flex-item-wrap"><span>關係</span><span>父親</span></div>
+                            <div class="flex-item-wrap"><span>手機</span><span>0917555555</span></div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="m-0">
+                <!-- 家庭成員資料 -->
+                <div class="item">
+                    <div class="fs-1 mb-4">家庭成員資料</div>
+                    <div class="vstack gap-3">
+                        <div>
+                            <div class="head | title-border-bottom border-bottom-0">
+                                <h2 class="title-name">申請人資料</h2>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-list table-apply-qurey-rwd">
+                                    <thead>
+                                        <tr>
+                                        </tr>
+                                        <tr>
+                                            <th></th>
+                                            <th>稱謂</th>
+                                            <th>姓名</th>
+                                            <th>國民身分證字號/<br>居留證號碼</th>
+                                            <th>性別</th>
+                                            <th>生日</th>
+                                            <th>手機號碼</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="align-middle border-0">
+                                                <button type="button" class="triger| collapse-icon" data-bs-toggle="collapse"
+                                                    data-bs-target="#familyMemberCollapse-1" aria-expanded="true">
+                                                    <!-- False -->
+                                                    <span class="icon | expanded-false">
+                                                        <img src="assets/img/icon-square-plus.svg" alt="展開內容">
+                                                    </span>
+                                                    <!-- True -->
+                                                    <span class="icon | expanded-true">
+                                                        <img src="assets/img/icon-square-minus.svg" alt="收合內容">
+                                                    </span>
+                                                </button>
+                                            </td>
+                                            <td data-th="稱謂" class="border-0">本人</td>
+                                            <td data-th="姓名" class="border-0">張英浚</td>
+                                            <td data-th="國民身分證字號/居留證號碼" class="border-0">L107229914</td>
+                                            <td data-th="性別" class="border-0">男</td>
+                                            <td data-th="生日" class="border-0">90/05/02</td>
+                                            <td data-th="手機號碼" class="border-0">&nbsp;0917200000</td>
+                                        </tr>
+                                        <tr class="p-0">
+                                            <td colspan="7" class="p-0 bg-orange-lightest">
+                                                <div class="collapse show" id="familyMemberCollapse-1">
+                                                    <div class="p-4 py-xl-lg">
+                                                        <div class="vstack gap-3 mb-3">
+                                                            <div class="fw-medium">符合政策戶資格項目</div>
+                                                        </div>
+                                                        <!-- Table -->
+                                                        <div class="table-responsive">
+                                                            <table class="table table-list bg-white">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th class="bg-orange text-white" data-th="項目">項目</th>
+                                                                        <th class="bg-orange text-white" data-th="評點加分"><span
+                                                                                class="d-block d-sm-inline">評點</span><span>加分</span>
+                                                                        </th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td>低收入戶</td>
+                                                                        <td>1</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>中低收入戶</td>
+                                                                        <td>2</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>育有未成年子女三人以上</td>
+                                                                        <td>1</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="head | title-border-bottom border-bottom-0">
+                                <h2 class="title-name">家庭成員資料</h2>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-list table-apply-qurey-rwd">
+                                    <thead>
+                                        <tr>
+                                        </tr>
+                                        <tr>
+                                            <th></th>
+                                            <th>稱謂</th>
+                                            <th>姓名</th>
+                                            <th>國民身分證字號/<br>居留證號碼</th>
+                                            <th>性別</th>
+                                            <th>生日</th>
+                                            <th>手機號碼</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="align-middle border-0">
+                                                <button type="button" class="triger| collapse-icon" data-bs-toggle="collapse"
+                                                    data-bs-target="#familyMemberCollapse-2" aria-expanded="true">
+                                                    <!-- False -->
+                                                    <span class="icon | expanded-false">
+                                                        <img src="assets/img/icon-square-plus.svg" alt="展開內容">
+                                                    </span>
+                                                    <!-- True -->
+                                                    <span class="icon | expanded-true">
+                                                        <img src="assets/img/icon-square-minus.svg" alt="收合內容">
+                                                    </span>
+                                                </button>
+                                            </td>
+                                            <td data-th="稱謂" class="border-0">配偶</td>
+                                            <td data-th="姓名" class="border-0">王美麗</td>
+                                            <td data-th="國民身分證字號/居留證號碼" class="border-0">A21234567</td>
+                                            <td data-th="性別" class="border-0">女</td>
+                                            <td data-th="生日" class="border-0">90/07/05</td>
+                                            <td data-th="手機號碼" class="border-0">&nbsp;0918565847</td>
+                                        </tr>
+                                        <tr class="p-0">
+                                            <td colspan="7" class="p-0 bg-orange-lightest">
+                                                <div class="collapse show" id="familyMemberCollapse-2">
+                                                    <div class="p-4 py-xl-lg">
+                                                        <div class="vstack gap-3 mb-3">
+                                                            <div class="item">是否為本國籍：是</div>
+                                                            <div class="item">配偶分戶</div>
+                                                            <hr class="my-0">
+                                                            <div class="fw-medium">符合政策戶資格項目</div>
+                                                            <div>已懷孕 單胞胎</div>
+                                                        </div>
+                                                        <!-- Table -->
+                                                        <div class="table-responsive">
+                                                            <table class="table table-list bg-white">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th class="bg-orange text-white" data-th="項目">項目</th>
+                                                                        <th class="bg-orange text-white" data-th="評點加分"><span
+                                                                                class="d-block d-sm-inline">評點</span><span>加分</span>
+                                                                        </th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td>低收入戶</td>
+                                                                        <td>1</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>中低收入戶</td>
+                                                                        <td>2</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>育有未成年子女三人以上</td>
+                                                                        <td>1</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="align-middle border-0">
+                                                <button type="button" class="triger| collapse-icon" data-bs-toggle="collapse"
+                                                    data-bs-target="#familyMemberCollapse-3" aria-expanded="true">
+                                                    <!-- False -->
+                                                    <span class="icon | expanded-false">
+                                                        <img src="assets/img/icon-square-plus.svg" alt="展開內容">
+                                                    </span>
+                                                    <!-- True -->
+                                                    <span class="icon | expanded-true">
+                                                        <img src="assets/img/icon-square-minus.svg" alt="收合內容">
+                                                    </span>
+                                                </button>
+                                            </td>
+                                            <td data-th="稱謂" class="border-0">父親</td>
+                                            <td data-th="姓名" class="border-0">張亮榮</td>
+                                            <td data-th="國民身分證字號/居留證號碼" class="border-0">A11454518</td>
+                                            <td data-th="性別" class="border-0">男</td>
+                                            <td data-th="生日" class="border-0">63/07/05</td>
+                                            <td data-th="手機號碼" class="border-0">&nbsp;0918565847</td>
+                                        </tr>
+                                        <tr class="p-0">
+                                            <td colspan="7" class="p-0 bg-orange-lightest">
+                                                <div class="collapse show" id="familyMemberCollapse-3">
+                                                    <div class="p-4 py-xl-lg">
+                                                        <div class="vstack gap-3 mb-3">
+                                                            <div class="item">是否為本國籍：是</div>
+                                                            <div class="item">配偶分戶</div>
+                                                            <hr class="my-0">
+                                                            <div class="fw-medium">符合政策戶資格項目</div>
+                                                        </div>
+                                                        <!-- Table -->
+                                                        <div class="table-responsive">
+                                                            <table class="table table-list bg-white">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th class="bg-orange text-white" data-th="項目">項目</th>
+                                                                        <th class="bg-orange text-white" data-th="評點加分"><span
+                                                                                class="d-block d-sm-inline">評點</span><span>加分</span>
+                                                                        </th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td>低收入戶</td>
+                                                                        <td>1</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>中低收入戶</td>
+                                                                        <td>2</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>育有未成年子女三人以上</td>
+                                                                        <td>1</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-list">
+                                <thead>
+                                    <tr>
+                                        <th>我的申請人數</th>
+                                        <th>評點總分</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>3人</td>
+                                        <td class="text-primary">+5</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- 所得及財產清單 -->
+                <div class="item">
+                    <div class="fs-1 mb-4">所得及財產清單</div>
+                    <div class="vstack gap-3">
+                        <div>
+                            <div class="head | title-border-bottom border-bottom-0">
+                                <h2 class="title-name">家庭成員不動產清單</h2>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-list table-rwd">
+                                    <thead>
+                                        <tr>
+                                            <th>持有者</th>
+                                            <th>類別</th>
+                                            <th>地段地號/房屋坐落</th>
+                                            <th>持分比</th>
+                                            <th class="text-end">房地面積(平方公尺)</th>
+                                            <th class="text-end">不動產現值(新台幣元)</th>
+                                            <th>共同共有</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td data-th="持有者">陳美莉</td>
+                                            <td data-th="類別">土地</td>
+                                            <td data-th="地段地號/房屋坐落">台北市 ○○區○○路○○號</td>
+                                            <td data-th="持分比">2分之1</td>
+                                            <td data-th="房地面積(平方公尺)" class="text-end">20</td>
+                                            <td data-th="不動產現值(新台幣元)" class="text-end">500,000</td>
+                                            <td data-th="共同共有">是</td>
+                                        </tr>
+                                        <tr>
+                                            <td data-th="持有者">張英凌</td>
+                                            <td data-th="類別">田畝</td>
+                                            <td data-th="地段地號/房屋坐落">新北市 ○○區○○路○○號</td>
+                                            <td data-th="持分比">2分之1</td>
+                                            <td data-th="房地面積(平方公尺)" class="text-end">20</td>
+                                            <td data-th="不動產現值(新台幣元)" class="text-end">60,000</td>
+                                            <td data-th="共同共有">否</td>
+                                        </tr>
+                                        <tr>
+                                            <td data-th="持有者">張○○</td>
+                                            <td data-th="類別">建物</td>
+                                            <td data-th="地段地號/房屋坐落">屏東縣 ○○區○○路○○號</td>
+                                            <td data-th="持分比">2分之1</td>
+                                            <td data-th="房地面積(平方公尺)" class="text-end">20</td>
+                                            <td data-th="不動產現值(新台幣元)" class="text-end">40,000</td>
+                                            <td data-th="共同共有">否</td>
+                                        </tr>
+                                        <tr class="p-0">
+                                            <td colspan="7" class="p-0  bg-orange-lightest">
+                                                <div class="py-4 px-3 px-lg-4">
+                                                    <div class="fw-medium text-end">政府公告拆遷之住戶</div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr class="p-0">
+                                            <td colspan="7" class="p-0  bg-orange-lightest">
+                                                <div class="p-3 px-lg-4 text-end">
+                                                    <div class="grid-right-auto row-gap-2 column-gap-3 | text-end">
+                                                        <div class="start">房地面積合計</div>
+                                                        <div class="end">55坪</div>
+                                                        <div class="start">不動產現值</div>
+                                                        <div class="end">1,000,000元</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="head | title-border-bottom border-bottom-0">
+                                <h2 class="title-name">家庭成員所得清單</h2>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-list table-rwd">
+                                    <thead>
+                                        <tr>
+                                            <th class="col-lg-2">姓名</th>
+                                            <th>近一年所得合計(元)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td data-th="姓名">陳美莉</td>
+                                            <td data-th="近一年所得合計(元)">500,000</td>
+                                        </tr>
+                                        <tr>
+                                            <td data-th="姓名">張英凌</td>
+                                            <td data-th="近一年所得合計(元)">500,000</td>
+                                        </tr>
+                                        <tr>
+                                            <td data-th="姓名">張小俠</td>
+                                            <td data-th="近一年所得合計(元)">0</td>
+                                        </tr>
+                                        <tr class="p-0">
+                                            <td colspan="2" class="p-0  bg-orange-lightest">
+                                                <div class="p-3 px-lg-4 text-end">
+                                                    <div class="grid-right-auto row-gap-2 column-gap-3 | text-end">
+                                                        <div class="start">我的申請人數</div>
+                                                        <div class="end">3人</div>
+                                                        <div class="start">最近一年家庭成員所得合計</div>
+                                                        <div class="end">1,000,000元</div>
+                                                        <div class="start">家庭成員每人每月平均所得</div>
+                                                        <div class="end">27,778元</div>
+                                                        <div class="start">您的資格屬於</div>
+                                                        <div class="end">第3級</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="head | title-border-bottom border-bottom-0">
+                                <h2 class="title-name">家庭成員動產清單</h2>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-list table-rwd">
+                                    <thead>
+                                        <tr>
+                                            <th class="col-lg-2">持有者</th>
+                                            <th>類別</th>
+                                            <th>動產現額（新台幣元）</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td data-th="持有者">陳美莉</td>
+                                            <td data-th="類別">保險給付－一次性給予之所得</td>
+                                            <td data-th="動產現額（新台幣元）">27,778元</td>
+                                        </tr>
+                                        <tr>
+                                            <td data-th="持有者">張英凌</td>
+                                            <td data-th="類別">存款本金</td>
+                                            <td data-th="動產現額（新台幣元）">27,778元</td>
+                                        </tr>
+                                        <tr>
+                                            <td data-th="持有者">張小俠</td>
+                                            <td data-th="類別">中獎所得</td>
+                                            <td data-th="動產現額（新台幣元）">27,778元</td>
+                                        </tr>
+                                        <tr class="p-0">
+                                            <td colspan="3" class="p-0  bg-orange-lightest">
+                                                <div class="p-3 px-lg-4 text-end">
+                                                    <div class="grid-right-auto row-gap-2 column-gap-3 | text-end">
+                                                        <div class="start">家庭成員動產限額合計</div>
+                                                        <div class="end">100,000元</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 檢附文件 -->
+                <div class="item">
+                    <div class="fs-1 mb-4">檢附文件</div>
+                    <!-- 已檢附項目 -->
+                    <div class="table-responsive">
+                        <table class="table table-list mb-0">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <div class="flex-item-wrap column-gap-4">
+                                            <button type="button" class="triger| collapse-icon" data-bs-toggle="collapse"
+                                                data-bs-target="#uploadedCollapse" aria-expanded="true">
+                                                <!-- False -->
+                                                <span class="icon | expanded-false">
+                                                    <img src="assets/img/icon-square-plus.svg" alt="展開內容">
+                                                </span>
+                                                <!-- True -->
+                                                <span class="icon | expanded-true">
+                                                    <img src="assets/img/icon-square-minus.svg" alt="收合內容">
+                                                </span>
+                                            </button>
+                                            <div class="fs-3">已檢附項目</div>
+                                            <div class="tag tag-orange">1</div>
+                                        </div>
+                                    </th>
+                                </tr>
+                            </thead>
+                        </table>
+                        <div class="collapse show" id="uploadedCollapse">
+                            <div class="table-responsive">
+                                <table class="table table-list table-rwd  mb-0" style="--divider: ''">
+                                    <tbody>
+                                        <tr>
+                                            <td data-th="" class="col-lg-3 fw-medium">家庭成員之最近一年綜合所得稅各類所得資料清單</td>
+                                            <td data-th="" class="col-lg-4">
+                                            </td>
+                                            <td data-th="">
+                                                <div class="vstack gap-1 ">
+                                                    <div class="form-file">
+                                                        <a href="#" class="name" title="下載檔案名稱.JPG">
+                                                            <i class="fa-solid fa-paperclip" aria-hidden="true"></i>
+                                                            案名稱檔案名稱檔案名稱檔案名稱檔案名稱.JPG
+                                                        </a>
+                                                    </div>
+                                                </div>
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td data-th="" class="fw-medium">家庭成員之財產歸屬資料清單</td>
+                                            <td data-th="">
+                                            </td>
+                                            <td data-th="">
+                                                <div class="vstack gap-1 ">
+                                                    <div class="form-file">
+                                                        <a href="#" class="name" title="下載檔案名稱.JPG">
+                                                            <i class="fa-solid fa-paperclip" aria-hidden="true"></i>
+                                                            案名稱檔案名稱檔案名稱檔案名稱檔案名稱.JPG
+                                                        </a>
+                                                    </div>
+                                                </div>
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 基本條件檢附項目 -->
+                    <div class="table-responsive">
+                        <table class="table table-list mb-0">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <div class="flex-item-wrap column-gap-4">
+                                            <button type="button" class="triger| collapse-icon" data-bs-toggle="collapse"
+                                                data-bs-target="#basicRequirementFilesCollapse" aria-expanded="true">
+                                                <!-- False -->
+                                                <span class="icon | expanded-false">
+                                                    <img src="assets/img/icon-square-plus.svg" alt="展開內容">
+                                                </span>
+                                                <!-- True -->
+                                                <span class="icon | expanded-true">
+                                                    <img src="assets/img/icon-square-minus.svg" alt="收合內容">
+                                                </span>
+                                            </button>
+                                            <div class="fs-3">基本條件檢附項目</div>
+                                            <div class="tag tag-orange">2</div>
+                                        </div>
+                                    </th>
+                                </tr>
+                            </thead>
+                        </table>
+                        <div class="collapse show" id="basicRequirementFilesCollapse">
+                            <div class="table-responsive">
+                                <table class="table table-list table-rwd  mb-0" style="--divider: ''">
+                                
+                                    <tbody>
+                                        <tr>
+                                            <td data-th="" class="col-lg-3 fw-medium">家庭成員之戶口名簿影本、全戶電子戶籍謄本</td>
+                                            <td data-th="" class="col-lg-4">註：如與配偶分戶者，應另檢具該配偶戶籍資料。</td>
+                                            <td data-th="">
+                                                <div class="vstack gap-1 ">
+                                                    <div class="form-file">
+                                                        <a href="#" class="name" title="下載檔案名稱.JPG">
+                                                            <i class="fa-solid fa-paperclip" aria-hidden="true"></i>
+                                                            案名稱檔案名稱檔案名稱檔案名稱檔案名稱.JPG
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td data-th="" class="fw-medium">符合資格之證明文件(具本市就業或就學有居住需求者，應檢附資格證明文件)</td>
+                                            <td data-th="">
+                                                就業： 需檢附「在職服務證明書」正本。<br>
+                                                就學： 需檢附「大專院校在學證明」正本。
+                                            </td>
+                                            <td data-th="">
+                                                <div class="vstack gap-1 ">
+                                                    <div class="form-file">
+                                                        <a href="#" class="name" title="下載檔案名稱.JPG">
+                                                            <i class="fa-solid fa-paperclip" aria-hidden="true"></i>
+                                                            案名稱檔案名稱檔案名稱檔案名稱檔案名稱.JPG
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 其他證明文件 -->
+                    <div class="table-responsive">
+                        <table class="table table-list mb-0">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <div class="flex-item-wrap column-gap-4">
+                                            <button type="button" class="triger| collapse-icon" data-bs-toggle="collapse"
+                                                data-bs-target="#otherProofDocumentsCollapse" aria-expanded="true">
+                                                <!-- False -->
+                                                <span class="icon | expanded-false">
+                                                    <img src="assets/img/icon-square-plus.svg" alt="展開內容">
+                                                </span>
+                                                <!-- True -->
+                                                <span class="icon | expanded-true">
+                                                    <img src="assets/img/icon-square-minus.svg" alt="收合內容">
+                                                </span>
+                                            </button>
+                                            <div class="fs-3">其他證明文件</div>
+                                            <div class="tag tag-orange">3</div>
+                                        </div>
+                                    </th>
+                                </tr>
+                            </thead>
+                        </table>
+                        <div class="collapse show" id="otherProofDocumentsCollapse">
+                            <div class="table-responsive">
+                                <table class="table table-list table-rwd  mb-0" style="--divider: ''">
+                                    <tbody>
+                                        <tr>
+                                            <td data-th="" class="col-lg-3 fw-medium">申請人為結束安置之經濟或社會弱勢之未成年人</td>
+                                            <td data-th="" class="col-lg-4">需檢附「結束安置之未成年證明」正本。</td>
+                                            <td data-th="">
+                                                <div class="vstack gap-1 ">
+                                                    <div class="form-file">
+                                                        <a href="#" class="name" title="下載檔案名稱.JPG">
+                                                            <i class="fa-solid fa-paperclip" aria-hidden="true"></i>
+                                                            案名稱檔案名稱檔案名稱檔案名稱檔案名稱.JPG
+                                                        </a>
+                                                    </div>
+                                                </div>
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td data-th="" class="fw-medium">已懷孕者(領有國民健康署編印之孕婦健康手冊)</td>
+                                            <td data-th="">
+                                                領有國民健康署編印之孕婦健康手冊。
+                                            </td>
+                                            <td data-th="">
+                                                <div class="vstack gap-1 ">
+                                                    <div class="form-file">
+                                                        <a href="#" class="name" title="下載檔案名稱.JPG">
+                                                            <i class="fa-solid fa-paperclip" aria-hidden="true"></i>
+                                                            案名稱檔案名稱檔案名稱檔案名稱檔案名稱.JPG
+                                                        </a>
+                                                    </div>
+                                                </div>
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td data-th="" class="fw-medium">外籍人士</td>
+                                            <td data-th="">
+                                                家庭成員為外籍人士、大陸地區人民、香港或澳門居民，檢附居留證及出入國（境）相關資料。<br>
+                                                ＊相關證明文件顯示未曾入境者，視為無該家庭成員。
+                                            </td>
+                                            <td data-th="">
+                                                <div class="vstack gap-1 ">
+                                                    <div class="form-file">
+                                                        <a href="#" class="name" title="下載檔案名稱.JPG">
+                                                            <i class="fa-solid fa-paperclip" aria-hidden="true"></i>
+                                                            案名稱檔案名稱檔案名稱檔案名稱檔案名稱.JPG
+                                                        </a>
+                                                    </div>
+                                                </div>
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 選擇社宅 -->
+                <div class="item">
+                    <div class="fs-1 mb-4">選擇社宅</div>
+                    <div class="grid-left-auto gap-1 align-items-start mb-4">
+                        <span>您的申請人數：</span>
+                        <div>3人</div>
+                        <span>您的身分屬於：</span>
+                        <div>一般戶</div>
+                        <span>你的資格屬於：</span>
+                        <div>第3級(實際租金級距將依審核結果為準)</div>
+                    </div>
+                    <div class="head | title-border-bottom border-bottom-0">
+                        <h2 class="title-name">家庭成員不動產清單</h2>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-list table-rwd">
+                            <thead>
+                                <tr>
+                                    <th>社宅</th>
+                                    <th>房型</th>
+                                    <th>出租面積(坪)</th>
+                                    <th>第一年月租金(元)</th>
+                                    <th>第二年月租金(元)</th>
+                                    <th>第三年月租金(元)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td data-th="社宅">中路一號</td>
+                                    <td data-th="房型">一房型</td>
+                                    <td data-th="出租面積(坪)">15~16</td>
+                                    <td data-th="第一年月租金(元)">5,300~5,400</td>
+                                    <td data-th="第二年月租金(元)">5,300~5,400</td>
+                                    <td data-th="第三年月租金(元)">5,300~5,400</td>
+                                </tr>
+                                <tr>
+                                    <td data-th="社宅">平鎮一號</td>
+                                    <td data-th="房型">二房型</td>
+                                    <td data-th="出租面積(坪)">31~32</td>
+                                    <td data-th="第一年月租金(元)">11,200~11,500</td>
+                                    <td data-th="第二年月租金(元)">11,200~11,500</td>
+                                    <td data-th="第三年月租金(元)">11,200~11,500</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- CTA -->
+                <div class="item">
+                    <div class="btn-cta-group pb-4">
+                        <a href="apply-05.html" class="btn btn-pill-outline-primary">上一步</a>
+                        <a href="#" class="btn btn-pill-outline-primary">儲存</a>
+                        <a href="apply-finish.html" class="btn btn-pill-primary">送出資料</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <!-- Bottom -->
+    <div class="bottom">
+      <footer class="footer">
+          <div class="img-wrap">
+            <img src="assets/img/footer-brand-logo.svg">
+          </div>
+          <div class="text">
+            <div><i class="fa-duotone fa-user-headset fa-fw me-1"></i><label class="d-none d-lg-inline-block">客服人員：</label>天思數位科技 (04)2451-6669 #6?? X小姐</div>
+            <div><i class="fad fa-browser fa-fw me-1"></i><label class="d-none d-lg-inline-block">最佳瀏覽環境：</label>Edge、Firefox 、Google Chrome ,螢幕解析度1280*768以上</div>
+            <div class="d-none d-lg-inline-block"><i class="fad fa-copyright fa-fw me-1"></i> Copyright 桃園市住宅及都市更新中心</div>
+          </div>
+      </footer>
+    </div>
+  </div> 
+  <!-- /.wrapper  -->
+
+  <!-- 回到最上面 -->
+  <div class="go-top | js-go-top">
+      <a href="#" class="" title="回到最上面">TOP</a>
+  </div>
+
+  <!-- Modal -->
+  
+  <!-- JS -->
+</body>
+
+</html>

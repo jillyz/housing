@@ -1,0 +1,45 @@
+.tag{
+    $orange: #C64300;
+    $blue: #0479A0;
+    $dark-grey: #62676D;
+    $brown: #985E0B;
+    $yellow-light: #FDE3B4;
+    //--
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    min-height: 32px;
+    padding-inline: 16px;
+    padding-block: 4px;
+    font-size: 1rem;
+    line-height: 1;
+    font-weight: 500;
+    border-radius: 999rem;
+    white-space: nowrap;
+
+    // Orange
+    &-orange{
+        color: white;
+        background-color: $orange;
+    }
+    // Blue
+    &-blue{
+        color: white;
+        background-color: $blue;
+    }
+    // Grey
+    &-grey{
+        color: white;
+        background-color: $dark-grey;
+    }
+
+    // Yellow Light
+    &-yellow-light{
+        color: $brown;
+        background-color: $yellow-light;
+        font-weight: 500;
+        gap: 4px;
+    }
+
+}

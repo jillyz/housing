@@ -1,0 +1,7 @@
+/* 整列驗證 */
+.was-validated .form-row-validation:has(.is-invalid),
+.was-validated .form-row-validation:has(:invalid){
+    & ~ .invalid-feedback{
+        display: block;
+    }
+}

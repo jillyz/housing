@@ -1,0 +1,43 @@
+// Bootstrap Btn
+.btn{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    white-space: nowrap;
+
+    &.show{
+        background-color: inherit;
+    }
+    .icon{
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: 24px;
+        height: 24px;
+        border-radius: 999rem;
+        background-color: white;
+        color: #D14815;
+    }
+    
+    // 非button, a
+    &:not(button):not(a):not(label){
+        cursor: unset;
+    }
+}
+.btn-pill-outline-primary{
+    .icon{
+        color: white;
+        background-color: #3C90AD;
+    }
+}
+
+/* btn-close */
+.btn-close{
+    &.btn-sm{
+        $w: .5rem;
+        //--
+        width: $w;
+        height: $w;
+    }
+}

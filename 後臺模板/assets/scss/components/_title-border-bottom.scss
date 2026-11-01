@@ -1,0 +1,23 @@
+/* title-border-bottom */
+.title-border-bottom{
+    border-bottom: 2px solid $border;
+    padding-bottom: 8px;
+    margin-bottom: 20px;
+    
+    @include breakpoint($lg){
+        padding-bottom: 10px;
+    }
+
+    .title-name{
+        padding-left: 8px;
+        margin-bottom: 0;
+        border-left: 4px solid $primary;
+        font-size: 1.125rem; // 18px ÷ 16
+        line-height: 1;
+
+        @include breakpoint($lg){
+            padding-left: 12px;
+            font-size: 1.575rem; // 28px ÷ 16
+        }
+    }
+}

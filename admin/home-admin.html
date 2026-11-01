@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="../assets/css/common.css" />
 <link rel="stylesheet" href="../assets/css/pages/admin-home-admin.css" />
 <link rel="stylesheet" href="../assets/css/inline-utilities.css" />
+<link rel="stylesheet" href="../assets/css/admin-navigation.css" />
 </head>
 <body>
 <div class="layout">
@@ -21,15 +22,67 @@
 <span>後臺管理系統</span>
 </div>
 </div>
-<nav class="menu" aria-label="後臺主選單">
-<a href="enquiry.html"><span class="menu-icon material-symbols-rounded" aria-hidden="true">person_search</span>查調工作台</a>
-<a class="active" href="home-admin.html" aria-current="page"><span class="menu-icon material-symbols-rounded" aria-hidden="true">dashboard</span>總覽儀表板</a>
-<a href="#"><span class="menu-icon material-symbols-rounded" aria-hidden="true">apartment</span>社宅與招租概況</a>
-<a href="#"><span class="menu-icon material-symbols-rounded" aria-hidden="true">description</span>全國申請進度</a>
-<a href="#"><span class="menu-icon material-symbols-rounded" aria-hidden="true">sync_alt</span>資料交換監控</a>
-<a href="#"><span class="menu-icon material-symbols-rounded" aria-hidden="true">manage_search</span>跨機關查調監控</a>
-<a href="#"><span class="menu-icon material-symbols-rounded" aria-hidden="true">monitoring</span>統計報表</a>
-<a href="#"><span class="menu-icon material-symbols-rounded" aria-hidden="true">settings</span>系統管理</a>
+<nav class="menu admin-navigation" aria-label="後臺主選單">
+<details class="menu-group" open>
+<summary><span class="menu-text">首頁</span><span class="menu-chevron" aria-hidden="true"></span></summary>
+<div class="menu-children">
+<a class="menu-item active" href="home-admin.html" aria-current="page"><span class="menu-text">資訊儀表板</span></a>
+</div>
+</details>
+<details class="menu-group">
+<summary><span class="menu-text">家戶案件追蹤查詢</span><span class="menu-chevron" aria-hidden="true"></span></summary>
+<div class="menu-children">
+<a class="menu-item" href="home-agency.html#case-workbench"><span class="menu-text">家戶案件追蹤查詢</span></a>
+<span class="menu-item is-unavailable" role="link" aria-disabled="true" title="功能尚未建置"><span class="menu-text">結果名冊紀錄</span></span>
+</div>
+</details>
+<details class="menu-group">
+<summary><span class="menu-text">資料共同查調</span><span class="menu-chevron" aria-hidden="true"></span></summary>
+<div class="menu-children">
+<span class="menu-item is-unavailable" role="link" aria-disabled="true" title="功能尚未建置"><span class="menu-text">查調模組 API</span></span>
+<a class="menu-item" href="enquiry-hub.html"><span class="menu-text">查調工作台</span></a>
+</div>
+</details>
+<details class="menu-group">
+<summary><span class="menu-text">監控中心</span><span class="menu-chevron" aria-hidden="true"></span></summary>
+<div class="menu-children">
+<a class="menu-item" href="home-admin.html#platform-monitor"><span class="menu-text">介接運作總覽</span></a>
+<details class="menu-group menu-subgroup">
+<summary><span class="menu-text">資料交換紀錄</span><span class="menu-chevron" aria-hidden="true"></span></summary>
+<div class="menu-children">
+<span class="menu-item is-unavailable" role="link" aria-disabled="true" title="功能尚未建置"><span class="menu-text">案件取號紀錄</span></span>
+<span class="menu-item is-unavailable" role="link" aria-disabled="true" title="功能尚未建置"><span class="menu-text">狀態回傳紀錄</span></span>
+</div>
+</details>
+<span class="menu-item is-unavailable" role="link" aria-disabled="true" title="功能尚未建置"><span class="menu-text">查調紀錄</span></span>
+<span class="menu-item is-unavailable" role="link" aria-disabled="true" title="功能尚未建置"><span class="menu-text">異常紀錄</span></span>
+</div>
+</details>
+<details class="menu-group">
+<summary><span class="menu-text">查詢及統計</span><span class="menu-chevron" aria-hidden="true"></span></summary>
+<div class="menu-children">
+<a class="menu-item" href="home-admin.html#case-overview"><span class="menu-text">案件統計報表</span></a>
+<span class="menu-item is-unavailable" role="link" aria-disabled="true" title="功能尚未建置"><span class="menu-text">問卷統計分析</span></span>
+</div>
+</details>
+<details class="menu-group">
+<summary><span class="menu-text">系統營運管理</span><span class="menu-chevron" aria-hidden="true"></span></summary>
+<div class="menu-children">
+<span class="menu-item is-unavailable" role="link" aria-disabled="true" title="功能尚未建置"><span class="menu-text">社宅資料管理</span></span>
+<span class="menu-item is-unavailable" role="link" aria-disabled="true" title="功能尚未建置"><span class="menu-text">招租時程（API）</span></span>
+<span class="menu-item is-unavailable" role="link" aria-disabled="true" title="功能尚未建置"><span class="menu-text">招租公告（API）</span></span>
+<details class="menu-group menu-subgroup">
+<summary><span class="menu-text">帳號權限管理</span><span class="menu-chevron" aria-hidden="true"></span></summary>
+<div class="menu-children">
+<span class="menu-item is-unavailable" role="link" aria-disabled="true" title="功能尚未建置"><span class="menu-text">帳號管理</span></span>
+<span class="menu-item is-unavailable" role="link" aria-disabled="true" title="功能尚未建置"><span class="menu-text">角色權限管理</span></span>
+</div>
+</details>
+<span class="menu-item is-unavailable" role="link" aria-disabled="true" title="功能尚未建置"><span class="menu-text">通知紀錄查詢</span></span>
+<span class="menu-item is-unavailable" role="link" aria-disabled="true" title="功能尚未建置"><span class="menu-text">操作紀錄查詢</span></span>
+<span class="menu-item is-unavailable" role="link" aria-disabled="true" title="功能尚未建置"><span class="menu-text">智能客服管理</span></span>
+</div>
+</details>
 </nav>
 </aside>
 <button class="sidebar-overlay" id="sidebarOverlay" type="button" aria-label="關閉選單"></button>
@@ -102,110 +155,103 @@
 <div class="split-grid">
 <div class="panel-box">
 <div class="panel-title">
-<strong>各權責機關招租案件</strong>
-<span>依招租中案件數排序</span>
+<strong>居住需求房型分布</strong>
+<span>本年度累計（示意）</span>
 </div>
-<div class="agency-bars">
-<div class="bar-row"><span>國家住都中心</span><div><i class="inline-style-0466783d98"></i></div><b>6</b></div>
-<div class="bar-row"><span>新北市政府</span><div><i class="inline-style-3e3ab35e7f"></i></div><b>4</b></div>
-<div class="bar-row"><span>臺中市政府</span><div><i class="inline-style-fd3867848e"></i></div><b>3</b></div>
-<div class="bar-row"><span>臺北市政府</span><div><i class="inline-style-09d63f5035"></i></div><b>2</b></div>
-<div class="bar-row"><span>高雄市政府</span><div><i class="inline-style-09d63f5035"></i></div><b>2</b></div>
-<div class="bar-row"><span>桃園市政府</span><div><i class="inline-style-ffe23b7ae4"></i></div><b>1</b></div>
+<div class="pie-chart-wrap">
+<div class="pie-chart demand-room-pie" role="img" aria-label="居住需求房型分布圓餅圖：套房 12%、一房型 32%、二房型 38%、三房型 15%、四房型 3%"></div>
+<div class="legend pie-legend room-legend">
+<span><span><i class="room-studio"></i>套房</span><b>12%</b></span>
+<span><span><i class="room-one"></i>一房型</span><b>32%</b></span>
+<span><span><i class="room-two"></i>二房型</span><b>38%</b></span>
+<span><span><i class="room-three"></i>三房型</span><b>15%</b></span>
+<span><span><i class="room-four"></i>四房型</span><b>3%</b></span>
+</div>
 </div>
 </div>
 <div class="panel-box">
 <div class="panel-title">
 <strong>房型申請分布</strong>
-<span>本年度累計</span>
+<span>本年度累計（示意）</span>
 </div>
 <div class="pie-chart-wrap">
-<div class="pie-chart room-pie" role="img" aria-label="房型申請分布圓餅圖：一房型 34%、二房型 41%、三房型 19%、套房或其他 6%"></div>
+<div class="pie-chart room-pie" role="img" aria-label="房型申請分布圓餅圖：套房 4%、一房型 34%、二房型 41%、三房型 19%、四房型 2%"></div>
 <div class="legend pie-legend room-legend">
+<span><span><i class="room-studio"></i>套房</span><b>4%</b></span>
 <span><span><i class="room-one"></i>一房型</span><b>34%</b></span>
 <span><span><i class="room-two"></i>二房型</span><b>41%</b></span>
 <span><span><i class="room-three"></i>三房型</span><b>19%</b></span>
-<span><span><i class="room-other"></i>套房／其他</span><b>6%</b></span>
+<span><span><i class="room-four"></i>四房型</span><b>2%</b></span>
 </div>
 </div>
 </div>
 </div>
 </div>
 </section>
-<!-- 申請進度統計 -->
-<section class="card dashboard-card">
+<!-- 全國案件概況 -->
+<section class="card dashboard-card" id="case-overview">
 <div class="card-head">
 <div>
-<h2>全國申請進度統計</h2>
-<p>彙整各權責機關回傳的最新案件狀態。</p>
+<h2>全國案件概況</h2>
+<p>依查詢區間與權責機關彙整案件狀態。</p>
 </div>
-<button class="btn small ghost" type="button">查看統計報表</button>
 </div>
 <div class="card-body">
-<div class="status-flow">
+<form class="case-filter" id="caseFilter">
+<div>
+<label for="caseStartDate">查詢區間（起）</label>
+<input id="caseStartDate" name="startDate" type="date" required/>
+</div>
+<div>
+<label for="caseEndDate">查詢區間（迄）</label>
+<input id="caseEndDate" name="endDate" type="date" required/>
+</div>
+<div>
+<label for="caseAgency">權責機關</label>
+<select id="caseAgency" name="agency">
+<option value="">全部權責機關</option>
+<option>國家住都中心</option>
+<option>新北市政府</option>
+<option>臺中市政府</option>
+<option>臺北市政府</option>
+<option>高雄市政府</option>
+<option>桃園市政府</option>
+</select>
+</div>
+<div class="case-filter-actions">
+<button class="btn dark" type="submit">查詢</button>
+<button class="btn ghost" type="reset">重設</button>
+</div>
+<p class="hint case-filter-note">預設查詢近一個月，含起迄日期；以下為示意資料。</p>
+</form>
+<p class="hint" id="caseQuerySummary" role="status" aria-live="polite"></p>
+<div class="case-status-grid">
 <div class="status-step">
-<span>申請中／審查中</span>
-<strong>5,286</strong>
+<span>已受理</span>
+<strong id="caseAccepted">—</strong>
 </div>
-<div class="flow-arrow">›</div>
-<div class="status-step warning">
-<span>須補件</span>
-<strong>846</strong>
-</div>
-<div class="flow-arrow">›</div>
 <div class="status-step success">
-<span>合格</span>
-<strong>2,104</strong>
+<span>已入住</span>
+<strong id="caseOccupied">—</strong>
 </div>
-<div class="flow-arrow">›</div>
-<div class="status-step purple">
-<span>已抽籤／候補中</span>
-<strong>1,326</strong>
-</div>
-<div class="flow-arrow">›</div>
-<div class="status-step teal">
-<span>已簽約</span>
-<strong>1,934</strong>
-</div>
-<div class="flow-arrow">›</div>
 <div class="status-step dark">
-<span>入住中</span>
-<strong>6,408</strong>
+<span>已退租</span>
+<strong id="caseTerminated">—</strong>
 </div>
 </div>
-<div class="progress-summary-grid">
-<div class="progress-panel">
-<div class="panel-title">
-<strong>案件狀態分布</strong>
-<span>有效案件 9,318 筆</span>
-</div>
-<div class="pie-chart-wrap">
-<div class="pie-chart" role="img" aria-label="案件狀態分布圓餅圖：審查中 56.7%、須補件 9.1%、合格 22.6%、候補或後續 11.6%"></div>
-<div class="legend pie-legend">
-<span><span><i class="review"></i>審查中</span><b>56.7%</b></span>
-<span><span><i class="supplement"></i>須補件</span><b>9.1%</b></span>
-<span><span><i class="qualified"></i>合格</span><b>22.6%</b></span>
-<span><span><i class="waiting"></i>候補／後續</span><b>11.6%</b></span>
-</div>
-</div>
-</div>
-<div class="progress-panel">
-<div class="panel-title">
-<strong>本月申請趨勢</strong>
-<span>較上月 +12.6%</span>
-</div>
-<div class="trend-bars">
-<div><i class="inline-style-12cc83a5d0"></i><span>第1週</span></div>
-<div><i class="inline-style-321126d832"></i><span>第2週</span></div>
-<div><i class="inline-style-ab9284721f"></i><span>第3週</span></div>
-<div><i class="inline-style-a492414611"></i><span>第4週</span></div>
-</div>
-</div>
+<div class="table-wrap case-agency-table-wrap" role="region" aria-label="各權責機關案件數量" tabindex="0">
+<table class="case-agency-table">
+<caption>各權責機關案件數量（件）</caption>
+<thead>
+<tr><th scope="col">權責機關</th><th scope="col">已受理</th><th scope="col">已入住</th><th scope="col">已退租</th></tr>
+</thead>
+<tbody id="caseAgencyRows"></tbody>
+</table>
 </div>
 </div>
 </section>
 <!-- 平臺運作監控 -->
-<section class="card dashboard-card">
+<section class="card dashboard-card" id="platform-monitor">
 <div class="card-head">
 <div>
 <h2>平臺運作監控</h2>
@@ -520,6 +566,91 @@
 <span id="tipRate"></span>
 <span id="tipError"></span>
 </div><script>
+const caseFilter = document.getElementById('caseFilter');
+const caseStartDate = document.getElementById('caseStartDate');
+const caseEndDate = document.getElementById('caseEndDate');
+const caseAgency = document.getElementById('caseAgency');
+const caseQuerySummary = document.getElementById('caseQuerySummary');
+
+// 以臺灣日期計算近一個月，月底回推時取上個月最後一日。
+const taiwanDateParts = new Intl.DateTimeFormat('en-US', {
+  timeZone: 'Asia/Taipei', year: 'numeric', month: '2-digit', day: '2-digit'
+}).formatToParts(new Date());
+const datePart = type => Number(taiwanDateParts.find(part => part.type === type).value);
+const caseToday = new Date(Date.UTC(datePart('year'), datePart('month') - 1, datePart('day')));
+const formatCaseDate = date => date.toISOString().slice(0, 10);
+const caseMonthStart = new Date(caseToday);
+caseMonthStart.setUTCDate(1);
+caseMonthStart.setUTCMonth(caseMonthStart.getUTCMonth() - 1);
+const previousMonthLastDay = new Date(Date.UTC(caseToday.getUTCFullYear(), caseToday.getUTCMonth(), 0)).getUTCDate();
+caseMonthStart.setUTCDate(Math.min(caseToday.getUTCDate(), previousMonthLastDay));
+caseStartDate.defaultValue = formatCaseDate(caseMonthStart);
+caseEndDate.defaultValue = formatCaseDate(caseToday);
+
+// 本頁為靜態展示；正式串接時以後端查詢結果取代此示意資料。
+const caseSampleRows = [
+  { agency: '國家住都中心', accepted: 5944, occupied: 1808, terminated: 126 },
+  { agency: '新北市政府', accepted: 4400, occupied: 1400, terminated: 80 },
+  { agency: '臺中市政府', accepted: 3200, occupied: 1000, terminated: 65 },
+  { agency: '臺北市政府', accepted: 3000, occupied: 900, terminated: 60 },
+  { agency: '高雄市政府', accepted: 2600, occupied: 700, terminated: 50 },
+  { agency: '桃園市政府', accepted: 2000, occupied: 600, terminated: 45 }
+].map((row, index) => {
+  const date = new Date(caseToday);
+  date.setUTCDate(date.getUTCDate() - (index * 4 + 3));
+  return { ...row, date: formatCaseDate(date) };
+});
+
+function renderCaseOverview() {
+  const rows = caseSampleRows.filter(row =>
+    row.date >= caseStartDate.value && row.date <= caseEndDate.value &&
+    (!caseAgency.value || row.agency === caseAgency.value)
+  );
+  const totals = rows.reduce((sum, row) => ({
+    accepted: sum.accepted + row.accepted,
+    occupied: sum.occupied + row.occupied,
+    terminated: sum.terminated + row.terminated
+  }), { accepted: 0, occupied: 0, terminated: 0 });
+  document.getElementById('caseAccepted').textContent = totals.accepted.toLocaleString('zh-TW');
+  document.getElementById('caseOccupied').textContent = totals.occupied.toLocaleString('zh-TW');
+  document.getElementById('caseTerminated').textContent = totals.terminated.toLocaleString('zh-TW');
+  const agencyRows = document.getElementById('caseAgencyRows');
+  agencyRows.replaceChildren();
+  const agencies = [...new Set(caseSampleRows.map(row => row.agency))]
+    .filter(agency => !caseAgency.value || agency === caseAgency.value);
+  agencies.forEach(agency => {
+    const agencyCases = rows.filter(row => row.agency === agency);
+    const tableRow = document.createElement('tr');
+    const agencyCell = document.createElement('th');
+    agencyCell.scope = 'row';
+    agencyCell.textContent = agency;
+    tableRow.appendChild(agencyCell);
+    ['accepted', 'occupied', 'terminated'].forEach(status => {
+      const cell = document.createElement('td');
+      cell.textContent = agencyCases.reduce((sum, row) => sum + row[status], 0).toLocaleString('zh-TW');
+      tableRow.appendChild(cell);
+    });
+    agencyRows.appendChild(tableRow);
+  });
+  caseQuerySummary.textContent = caseStartDate.value + ' 至 ' + caseEndDate.value +
+    '｜' + (caseAgency.value || '全部權責機關') + (rows.length ? '｜單位：件' : '｜此區間無符合條件的示意資料');
+}
+
+caseFilter.addEventListener('submit', event => {
+  event.preventDefault();
+  caseEndDate.setCustomValidity(caseStartDate.value > caseEndDate.value ? '結束日期不得早於開始日期。' : '');
+  if (caseFilter.reportValidity()) renderCaseOverview();
+});
+[caseStartDate, caseEndDate].forEach(input => {
+  input.addEventListener('input', () => caseEndDate.setCustomValidity(''));
+});
+caseFilter.addEventListener('reset', () => {
+  caseEndDate.setCustomValidity('');
+  // 等待表單恢復預設值後更新統計。
+  setTimeout(renderCaseOverview, 0);
+});
+renderCaseOverview();
+
 const heatmap = document.getElementById('healthHeatmap');
 const heatmapTimes = Array.from({length:19}, (_, index) => String(index).padStart(2, '0') + ':00').concat('目前');
 const heatStatusMeta = {
@@ -696,5 +827,6 @@ document.querySelectorAll('#rangeControl button').forEach(button => {
   });
 });
 
-</script><script src="../assets/admin-shell.js"></script></body>
+</script><script src="../assets/admin-navigation.js"></script>
+<script src="../assets/admin-shell.js"></script></body>
 </html>

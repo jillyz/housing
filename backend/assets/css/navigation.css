@@ -1,0 +1,9 @@
+/* 沿用模板 menu 元件，補齊架構圖中的第三層階層。 */
+.backend-navigation .is-unavailable { color: #7d9198; cursor: not-allowed; }
+.backend-navigation .sub-menu .icon-text { padding: 0; color: inherit; line-height: inherit; }
+.backend-navigation .sub-menu .icon-text::before { content: none; }
+.backend-navigation.menu-vertical .sub-menu .sub-menu { display: none; }
+.backend-navigation.menu-vertical .sub-menu > li.show > .sub-menu { display: block; }
+.backend-navigation .sub-menu .sub-menu a { padding-left: 3.5em; }
+.backend-navigation.menu li .has-children > i { transform: none; }
+.backend-navigation.menu li.show > .has-children > i { transform: rotate(180deg); }

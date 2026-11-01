@@ -1,0 +1,111 @@
+/* Menu */
+.menu{
+    &{
+        margin: 0;
+        padding: 0;
+        margin-bottom: 24px;
+        list-style: none;
+        overflow: auto;        
+
+        max-height: calc(100dvh - var(--menu-h-buffer, 250px)); 
+    }
+    ul{
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    // a
+    a {
+        display: block;
+        padding: 10px 16px; 
+        text-decoration: none;
+        transition: all .2s;
+        color: currentColor;
+        &:hover{
+            background-color: #F8EBD8;
+        }
+        &.active {
+            color: #531C00 !important;
+            background-color: #F39917;
+        }          
+    }
+    a:hover,
+    li:has(.active){
+        i{
+            // opacity: 1;
+        }
+    }
+    // li 
+    > li:not(:first-child){
+        position: relative;
+        border-top: 1px solid var(--menu-border, #{rgba(white, .1)});
+    }
+    // li有active的子項時
+    li:has(.active){
+        .icon-text {
+            // color: var(--menu-icon-active, #ffc107);
+        }        
+        .sub-menu{
+            // display: block;
+        }
+        > .has-children{
+            color: white;
+            background-color: #C64300;
+        }
+    }
+    // i    
+    i{
+        // opacity: .75;
+        transition: all .2s;
+    } 
+    // li.show時
+    li.show{
+        .has-children > i{
+            transform: rotate(180deg);
+        }
+    }
+    // icon文字
+    .icon-text{
+        display: flex;
+        align-items: center;
+        gap: 1em;
+        i{
+            width: 1.25em; // icon固定寬度以方便對齊
+            text-align: center;
+        }
+    }
+    // has-children
+    .has-children{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;        
+    } 
+    // Sub menu
+    .sub-menu{
+        display: none;        
+        color: currentColor;
+        // background-color: var(--sub-menu-bg-color, #024a6a);
+
+        a{
+            padding-left: 2.5em;
+        }
+        span{
+            display: block;
+            padding-left: 1em;
+            // color: #FFF952;
+            color: #c64300;
+            line-height: 34px;
+            &::before{
+              content: '★ ';
+            }
+            // 有紅線是正常的，它不是壞掉
+            &:has(~li a.active){
+            //   color: #FFC3C3;
+            }
+        }
+        > li+li{
+            // border-top: 1px solid var(--sub-menu-border, #{rgba(white, .1)});
+        }
+    }
+}

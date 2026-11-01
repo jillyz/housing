@@ -1,0 +1,132 @@
+:root{
+    // Base
+    --body-bg: #f8f8f8; 
+    --body-color: #777; 
+    --body-font-family: 'Noto Sans TC', sans-serif ; 
+    --page-padding: 10px;
+    // Header
+    --header-bg: #98bb5f url("../img/bg-header.png") no-repeat right -868px center;    
+    --header-color: #fff;
+    // Logo
+    --logo-bg: white url("../img/logo.png");
+    --logo-radius: 0 999rem 999rem 0;
+    // Top helper
+    --top-helper-bg: #f9823c;
+    --top-helper-icon-color: var(--top-helper-bg);
+    --top-helper-logout-bg: #60bbff;
+    // Aside
+    --aside-color: #fff;    
+    --aside-bg: linear-gradient(to bottom, #1b7683, #22618a);    
+    --aside-shadow: var(--shadow);
+    // Menu
+    --menu-link: var(--aside-color);
+    --menu-link-active: #ffc107;
+    --menu-icon-active: var(--menu-link-active);
+    --menu-border: #{rgba(white, .1)};
+    --menu-link-hover-bg: #{rgba(white, 0.1)};
+    --sub-menu-color: var(--menu-link);
+    --sub-menu-bg-image: #{radial-gradient(rgba(white, 0.05) 20%, transparent 20%), radial-gradient(rgba(255, 255, 255, 0.05) 20%, transparent 20%)};
+    --sub-menu-bg-color: #024a6a;
+    --sub-menu-border: var(--menu-border);
+    // Breadcrumb
+    --breadcrumb-color: #777;
+    --breadcrumb-active-color: #007daa;
+    --breadcrumb-border: #{1px solid rgba(153, 153, 153, 0.3)};
+    --breadcrumb-divider-color: rgba(33, 37, 41, 0.75);
+    // Footer
+    --footer-color: #fff;
+    --footer-bg: #8a8b8e;
+    --footer-link-color: #AAFFFF;
+    // Go top
+    --go-top-bg: #0054a6;
+
+    // Text
+    --bs-secondary-rgb: #{to-rgb(#6c757d)};
+    --bs-success-rgb: #{to-rgb(#28a745)};
+    --bs-danger-rgb: #{to-rgb(#dc3545)};
+    --bs-info-rgb: #{to-rgb(#17a2b8)};
+
+    // Utility
+    --link-color: currentColor;
+    // --btn-icon-size: 40px;
+    --btn-icon-color: currentColor;
+    --shadow: 0 2px 4px rgba(72, 79, 102, 0.15);
+
+}
+[data-gs-theme="light"]{
+    // Base
+    --body-color: #777; 
+    --body-bg: #fff; 
+    // Header
+    --header-bg: #efefef;    
+    --header-color: #777;
+    // Logo
+    --logo-bg: #4c5e7d url("../img/footer-logo.png");
+    --logo-radius: 0;
+    // Top helper
+    --top-helper-bg: #91a6b8;
+    --top-helper-logout-bg: #4c5e7d;
+    // --top-helper-icon-color: var(--top-helper-bg);
+    // Aside
+    --aside-color: currentColor;    
+    --aside-bg: var(--header-bg);  
+    // Menu
+    --menu-link: var(--aside-color);
+    --menu-link-active: #af8815;
+    --menu-icon-active: #ffebae;
+    --menu-border: #{rgba(white, .1)};
+    --sub-menu-color: currentColor;
+    --sub-menu-bg-image: none;
+    --sub-menu-bg-color: none;
+    --sub-menu-border: #{rgba(#777, .1)};
+    // Breadcrumb
+    --breadcrumb-color: #777;
+    --breadcrumb-active-color: #{rgba(#777, .5)};
+    --breadcrumb-border: #{1px solid rgba(153, 153, 153, 0.3)};
+    --breadcrumb-divider-color: #{rgba(#777, .5)};
+    // Footer  
+    --footer-color: #fff;
+    --footer-bg: #495561;
+    --footer-link-color: #AAFFFF;
+    // Go top
+    --go-top-bg: var(--top-helper-logout-bg);
+}
+[data-gs-theme="forest"]{
+    // Base
+    --body-color: #212529; 
+    // --body-bg: #f7f1e9; 
+    --body-bg: #fff; 
+    // Header
+    --header-color: #fff;
+    --header-bg: #9b8a76 url("../img/bg-header-forest.png") no-repeat right -182px center;    
+    // Logo
+    --logo-bg: #8b7b68 url("../img/footer-logo.png");
+    --logo-radius: 0;
+    // Top helper
+    --top-helper-bg: #779660;
+    --top-helper-logout-bg: #466c52;
+    --top-helper-icon-color: var(--top-helper-logout-bg);
+    // Aside
+    --aside-color: rgb(255,255,255);    
+    --aside-bg: linear-gradient(to bottom, #6aa67e 0%, #528963 100%);  
+    // Menu
+    --menu-link: var(--aside-color);
+    --menu-link-active: #c0ffff;
+    --menu-icon-active: var(--menu-link-active);
+    --menu-border: #{rgba(white, .1)};
+    --sub-menu-color: var(--aside-bg);
+    --sub-menu-bg-image: none;
+    --sub-menu-bg-color: #558364;
+    --sub-menu-border: #{rgba(white, .1)};
+    // Breadcrumb
+    --breadcrumb-color: currentColor;
+    --breadcrumb-active-color: #007daa;
+    --breadcrumb-border: #{1px solid rgba(153, 153, 153, 0.3)};
+    --breadcrumb-divider-color: #6c757d;
+    // Footer  
+    --footer-link-color: #ebc9b0;
+    --footer-color: #fff;
+    --footer-bg: #8f8477;
+    // Go top
+    --go-top-bg: var(--top-helper-logout-bg);
+}

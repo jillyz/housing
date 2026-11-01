@@ -1,0 +1,27 @@
+/* 除署徽／長名稱適配與模板未提供的圖表外，不覆寫模板元件版型。 */
+section[id] { scroll-margin-top: 100px; }
+.pie-chart { width: 174px; aspect-ratio: 1; border-radius: 50%; flex-shrink: 0; }
+.demand-room-pie { background: conic-gradient(#b6d9dc 0 12%, #119b9b 12% 44%, #4a97c5 44% 82%, #375f8b 82% 97%, #78c7b8 97% 100%); }
+.room-pie { background: conic-gradient(#b6d9dc 0 4%, #119b9b 4% 38%, #4a97c5 38% 79%, #375f8b 79% 98%, #78c7b8 98% 100%); }
+.chart-key { display: inline-block; width: 10px; height: 10px; border-radius: 50%; }
+.room-studio { background: #b6d9dc; }.room-one { background: #119b9b; }.room-two { background: #4a97c5; }.room-three { background: #375f8b; }.room-four { background: #78c7b8; }
+.heatmap-legend { display: flex; flex-wrap: wrap; gap: 12px; font-size: 12px; }
+.heatmap-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.legend-dot { width: 10px; height: 10px; border-radius: 2px; }
+.legend-dot.green, .heat-cell.g { background: #4dbc7d; }.legend-dot.yellow, .heat-cell.y { background: #f2b54f; }.legend-dot.red, .heat-cell.r { background: #e45b5b; }.legend-dot.blue, .heat-cell.b { background: #5e8fd0; }.legend-dot.gray, .heat-cell.n { background: #d7e1df; }
+.heatmap-scroll { overflow-x: auto; padding: 12px; }
+.heatmap-grid { display: grid; grid-template-columns: 160px repeat(20, minmax(26px, 1fr)); gap: 4px; min-width: 980px; align-items: center; }
+.heatmap-group { grid-column: 1 / -1; display: flex; gap: 12px; align-items: center; padding: 10px; background: #ebf7f7; border-left: 3px solid #18a3ae; margin-top: 8px; font-size: 13px; }
+.heatmap-group span { color: #647c85; font-size: 12px; }
+.heatmap-group.lookup { background: #eef5fa; border-color: #5e8fd0; }
+.heatmap-corner, .heatmap-hour { text-align: center; padding: 4px 0; color: #647c85; font-size: 12px; }
+.heatmap-service, .heatmap-corner { position: sticky; left: 0; background: white; z-index: 2; text-align: left; }
+.heatmap-service { min-height: 32px; display: flex; align-items: center; padding: 4px; font-size: 12px; }
+.heatmap-service strong { font-weight: 400; }
+.current-hour { color: #087f8c; font-weight: 700; }
+.heat-cell { width: 100%; height: 20px; border: 0; border-radius: 3px; padding: 0; }
+.heat-cell:hover { filter: brightness(.85); }
+.heat-cell.pulse { outline: 1px solid #777; outline-offset: 1px; }
+.heat-tooltip { position: fixed; z-index: 1100; display: none; padding: 14px; max-width: 230px; background: #183e50; color: white; border-radius: 6px; pointer-events: none; }
+.heat-tooltip strong, .heat-tooltip span { display: block; font-size: 12px; line-height: 1.8; }
+.danger-text { color: #bc3838; }.warn-text { color: #9b6400; }

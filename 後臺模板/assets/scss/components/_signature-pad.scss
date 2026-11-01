@@ -1,0 +1,26 @@
+/* ============================================
+   簽名板 (signature-pad)
+   ============================================ */
+
+.signature-pad {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #D0D2D3;
+  border-radius: 0;
+  padding: 20px;
+  min-height: 150px;
+  cursor: pointer;
+  overflow: hidden;
+
+  img {
+    max-height: 100px;
+  }
+
+  // modal 內的簽名畫布
+  &--canvas {
+    background-color: transparent;
+    min-height: 360px;
+    cursor: crosshair;
+  }
+}

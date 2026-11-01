@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="../assets/css/common.css" />
 <link rel="stylesheet" href="../assets/css/pages/admin-home-agency.css" />
 <link rel="stylesheet" href="../assets/css/inline-utilities.css" />
+<link rel="stylesheet" href="../assets/css/admin-navigation.css" />
 </head>
 <body>
   <div class="layout">
@@ -18,16 +19,62 @@
         <div class="brand-icon" aria-hidden="true">宅</div>
         <div class="brand-title"><strong>全國社宅統一申請登記平臺</strong><span>後臺管理系統</span></div>
       </div>
-      <nav class="menu" aria-label="後臺主選單">
-        <a href="enquiry.html"><span class="menu-icon material-symbols-rounded" aria-hidden="true">person_search</span>查調工作台</a>
-        <a class="active" href="home-agency.html" aria-current="page"><span class="menu-icon material-symbols-rounded" aria-hidden="true">dashboard</span>總覽儀表板</a>
-        <a href="#"><span class="menu-icon material-symbols-rounded" aria-hidden="true">apartment</span>社宅與招租概況</a>
-        <a href="#"><span class="menu-icon material-symbols-rounded" aria-hidden="true">description</span>全國申請進度</a>
-        <a href="#"><span class="menu-icon material-symbols-rounded" aria-hidden="true">sync_alt</span>資料交換監控</a>
-        <a href="#"><span class="menu-icon material-symbols-rounded" aria-hidden="true">manage_search</span>跨機關查調監控</a>
-        <a href="#"><span class="menu-icon material-symbols-rounded" aria-hidden="true">monitoring</span>統計報表</a>
-        <a href="#"><span class="menu-icon material-symbols-rounded" aria-hidden="true">settings</span>系統管理</a>
-      </nav>
+      <nav class="menu admin-navigation" aria-label="後臺主選單">
+<details class="menu-group" open>
+<summary><span class="menu-text">首頁</span><span class="menu-chevron" aria-hidden="true"></span></summary>
+<div class="menu-children">
+<a class="menu-item active" href="home-agency.html" aria-current="page"><span class="menu-text">資訊儀表板</span></a>
+</div>
+</details>
+<details class="menu-group">
+<summary><span class="menu-text">家戶案件追蹤查詢</span><span class="menu-chevron" aria-hidden="true"></span></summary>
+<div class="menu-children">
+<a class="menu-item" href="home-agency.html#case-workbench"><span class="menu-text">家戶案件追蹤查詢</span></a>
+<span class="menu-item is-unavailable" role="link" aria-disabled="true" title="功能尚未建置"><span class="menu-text">結果名冊紀錄</span></span>
+</div>
+</details>
+<details class="menu-group">
+<summary><span class="menu-text">資料共同查調</span><span class="menu-chevron" aria-hidden="true"></span></summary>
+<div class="menu-children">
+<span class="menu-item is-unavailable" role="link" aria-disabled="true" title="功能尚未建置"><span class="menu-text">查調模組 API</span></span>
+<a class="menu-item" href="enquiry-hub.html"><span class="menu-text">查調工作台</span></a>
+</div>
+</details>
+<details class="menu-group">
+<summary><span class="menu-text">監控中心</span><span class="menu-chevron" aria-hidden="true"></span></summary>
+<div class="menu-children">
+<a class="menu-item" href="home-admin.html#platform-monitor"><span class="menu-text">介接運作總覽</span></a>
+<details class="menu-group menu-subgroup">
+<summary><span class="menu-text">資料交換紀錄</span><span class="menu-chevron" aria-hidden="true"></span></summary>
+<div class="menu-children">
+<span class="menu-item is-unavailable" role="link" aria-disabled="true" title="功能尚未建置"><span class="menu-text">案件取號紀錄</span></span>
+<span class="menu-item is-unavailable" role="link" aria-disabled="true" title="功能尚未建置"><span class="menu-text">狀態回傳紀錄</span></span>
+</div>
+</details>
+<span class="menu-item is-unavailable" role="link" aria-disabled="true" title="功能尚未建置"><span class="menu-text">查調紀錄</span></span>
+<span class="menu-item is-unavailable" role="link" aria-disabled="true" title="功能尚未建置"><span class="menu-text">異常紀錄</span></span>
+</div>
+</details>
+<details class="menu-group">
+<summary><span class="menu-text">查詢及統計</span><span class="menu-chevron" aria-hidden="true"></span></summary>
+<div class="menu-children">
+<a class="menu-item" href="home-admin.html#case-overview"><span class="menu-text">案件統計報表</span></a>
+<span class="menu-item is-unavailable" role="link" aria-disabled="true" title="功能尚未建置"><span class="menu-text">問卷統計分析</span></span>
+</div>
+</details>
+<details class="menu-group">
+<summary><span class="menu-text">系統營運管理</span><span class="menu-chevron" aria-hidden="true"></span></summary>
+<div class="menu-children">
+<span class="menu-item is-unavailable" role="link" aria-disabled="true" title="功能尚未建置"><span class="menu-text">社宅資料管理</span></span>
+<span class="menu-item is-unavailable" role="link" aria-disabled="true" title="功能尚未建置"><span class="menu-text">招租時程（API）</span></span>
+<span class="menu-item is-unavailable" role="link" aria-disabled="true" title="功能尚未建置"><span class="menu-text">招租公告（API）</span></span>
+
+<span class="menu-item is-unavailable" role="link" aria-disabled="true" title="功能尚未建置"><span class="menu-text">通知紀錄查詢</span></span>
+
+<span class="menu-item is-unavailable" role="link" aria-disabled="true" title="功能尚未建置"><span class="menu-text">智能客服管理</span></span>
+</div>
+</details>
+</nav>
     </aside>
     <button class="sidebar-overlay" id="sidebarOverlay" type="button" aria-label="關閉選單"></button>
 
@@ -272,6 +319,7 @@
     document.querySelectorAll('[data-demo-action]').forEach(button => button.addEventListener('click', () => alert(`示意：${button.dataset.demoAction}。`)));
     applyFilters();
   </script>
-  <script src="../assets/admin-shell.js"></script>
+  <script src="../assets/admin-navigation.js"></script>
+<script src="../assets/admin-shell.js"></script>
 </body>
 </html>

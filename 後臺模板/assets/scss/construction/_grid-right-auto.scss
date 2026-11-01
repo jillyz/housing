@@ -1,0 +1,10 @@
+/* 左側寬度自適 grid-right-auto */
+.grid-right-auto{
+    display: grid;
+    gap: 8px;
+    grid-template-columns: 1fr auto ;
+    // align-items: start;
+}
+
+
+

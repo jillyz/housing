@@ -1,0 +1,33 @@
+/* 雙態切換 */
+.cond-twin-switch{
+    &-trigger{
+
+    }
+    &-items{
+        
+    }
+    &-dependent{
+        &:first-child{
+            display: block;
+            animation: fadeIn .5s forwards;
+        }
+        &:last-child{
+            display: none;
+        }
+    }
+    &-container{
+        &:has(.cond-twin-switch-trigger:checked){    
+            .cond-twin-switch-items{
+                .cond-twin-switch-dependent{
+                    &:first-child{
+                        display: none;
+                    }
+                    &:last-child{
+                        display: block;
+                        animation: fadeIn .5s forwards;
+                    }
+                }
+            }        
+        }
+    }
+}

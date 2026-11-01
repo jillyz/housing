@@ -1,0 +1,21 @@
+.btn-cta-group{
+    --cta-gap: 24px;
+    --cta-pt: 40px;
+    --cat-min-size: 160px;
+    //--
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: clamp(12px, 2vw, var(--cta-gap));
+    padding-top: clamp(24px, 2vw, var(--cta-pt));
+
+    @include breakpoint($md){
+
+    }
+
+    .btn{
+        min-width: clamp(7em, 10vw, var(--cat-min-size));
+    }
+}
+

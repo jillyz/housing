@@ -1,0 +1,9 @@
+:root{
+    --bs-border-color: #{$border};
+}
+/* 最後一個item沒有 border-bottom */
+.border-bottom-last-borderless{
+    > *:not(:last-child){
+        border-bottom: 1px solid $border;
+    }
+}

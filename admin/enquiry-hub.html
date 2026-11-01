@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="../assets/css/pages/admin-home-agency.css" />
   <link rel="stylesheet" href="../assets/css/pages/admin-enquiry.css" />
   <link rel="stylesheet" href="../assets/css/pages/admin-enquiry-hub.css" />
+<link rel="stylesheet" href="../assets/css/admin-navigation.css" />
 </head>
 <body class="enquiry-page enquiry-hub-page">
   <div class="layout">
@@ -19,9 +20,62 @@
         <div class="brand-icon" aria-hidden="true">宅</div>
         <div class="brand-title"><strong>全國社宅統一申請登記平臺</strong><span>後臺管理系統</span></div>
       </div>
-      <nav class="menu" aria-label="後臺主選單">
-        <a class="active" href="enquiry-hub.html" aria-current="page"><span class="menu-icon material-symbols-rounded" aria-hidden="true">person_search</span>查調工作台</a>
-      </nav>
+      <nav class="menu admin-navigation" aria-label="後臺主選單">
+<details class="menu-group">
+<summary><span class="menu-text">首頁</span><span class="menu-chevron" aria-hidden="true"></span></summary>
+<div class="menu-children">
+<a class="menu-item" href="home-agency.html"><span class="menu-text">資訊儀表板</span></a>
+</div>
+</details>
+<details class="menu-group">
+<summary><span class="menu-text">家戶案件追蹤查詢</span><span class="menu-chevron" aria-hidden="true"></span></summary>
+<div class="menu-children">
+<a class="menu-item" href="home-agency.html#case-workbench"><span class="menu-text">家戶案件追蹤查詢</span></a>
+<span class="menu-item is-unavailable" role="link" aria-disabled="true" title="功能尚未建置"><span class="menu-text">結果名冊紀錄</span></span>
+</div>
+</details>
+<details class="menu-group" open>
+<summary><span class="menu-text">資料共同查調</span><span class="menu-chevron" aria-hidden="true"></span></summary>
+<div class="menu-children">
+<span class="menu-item is-unavailable" role="link" aria-disabled="true" title="功能尚未建置"><span class="menu-text">查調模組 API</span></span>
+<a class="menu-item active" href="enquiry-hub.html" aria-current="page"><span class="menu-text">查調工作台</span></a>
+</div>
+</details>
+<details class="menu-group">
+<summary><span class="menu-text">監控中心</span><span class="menu-chevron" aria-hidden="true"></span></summary>
+<div class="menu-children">
+<a class="menu-item" href="home-admin.html#platform-monitor"><span class="menu-text">介接運作總覽</span></a>
+<details class="menu-group menu-subgroup">
+<summary><span class="menu-text">資料交換紀錄</span><span class="menu-chevron" aria-hidden="true"></span></summary>
+<div class="menu-children">
+<span class="menu-item is-unavailable" role="link" aria-disabled="true" title="功能尚未建置"><span class="menu-text">案件取號紀錄</span></span>
+<span class="menu-item is-unavailable" role="link" aria-disabled="true" title="功能尚未建置"><span class="menu-text">狀態回傳紀錄</span></span>
+</div>
+</details>
+<span class="menu-item is-unavailable" role="link" aria-disabled="true" title="功能尚未建置"><span class="menu-text">查調紀錄</span></span>
+<span class="menu-item is-unavailable" role="link" aria-disabled="true" title="功能尚未建置"><span class="menu-text">異常紀錄</span></span>
+</div>
+</details>
+<details class="menu-group">
+<summary><span class="menu-text">查詢及統計</span><span class="menu-chevron" aria-hidden="true"></span></summary>
+<div class="menu-children">
+<a class="menu-item" href="home-admin.html#case-overview"><span class="menu-text">案件統計報表</span></a>
+<span class="menu-item is-unavailable" role="link" aria-disabled="true" title="功能尚未建置"><span class="menu-text">問卷統計分析</span></span>
+</div>
+</details>
+<details class="menu-group">
+<summary><span class="menu-text">系統營運管理</span><span class="menu-chevron" aria-hidden="true"></span></summary>
+<div class="menu-children">
+<span class="menu-item is-unavailable" role="link" aria-disabled="true" title="功能尚未建置"><span class="menu-text">社宅資料管理</span></span>
+<span class="menu-item is-unavailable" role="link" aria-disabled="true" title="功能尚未建置"><span class="menu-text">招租時程（API）</span></span>
+<span class="menu-item is-unavailable" role="link" aria-disabled="true" title="功能尚未建置"><span class="menu-text">招租公告（API）</span></span>
+
+<span class="menu-item is-unavailable" role="link" aria-disabled="true" title="功能尚未建置"><span class="menu-text">通知紀錄查詢</span></span>
+
+<span class="menu-item is-unavailable" role="link" aria-disabled="true" title="功能尚未建置"><span class="menu-text">智能客服管理</span></span>
+</div>
+</details>
+</nav>
     </aside>
     <button class="sidebar-overlay" id="sidebarOverlay" type="button" aria-label="關閉選單"></button>
     <main class="main">
@@ -41,7 +95,7 @@
         </div>
         <div class="operator-box" id="operatorBox">
           <div class="operator-avatar" aria-hidden="true">承</div>
-          <div class="operator-main"><strong>陳○○　承辦人員</strong><small>內政部國土管理署</small></div>
+          <div class="operator-main"><strong>陳○○　承辦人員</strong><small>國家住宅及都市更新中心</small></div>
           <button class="operator-menu" id="operatorMenu" type="button" aria-label="開啟使用者選單" aria-expanded="false" aria-controls="operatorDropdown"><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></button>
           <div class="operator-dropdown" id="operatorDropdown">
             <button type="button" data-operator-action="profile">個人資料與帳號設定</button>
@@ -122,7 +176,8 @@
   <script src="../assets/enquiry-model.js"></script>
   <script src="../assets/admin-enquiry-hub.js"></script>
   <script src="../assets/admin-enquiry.js"></script>
-  <script src="../assets/admin-shell.js"></script>
+  <script src="../assets/admin-navigation.js"></script>
+<script src="../assets/admin-shell.js"></script>
 
 </body>
 </html>

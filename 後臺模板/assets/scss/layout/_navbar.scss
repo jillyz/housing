@@ -1,0 +1,27 @@
+$navbar-color: var(--navbar-color, #fff);
+$navbar-bg: var(--navbar-bg, linear-gradient(to bottom, #1b7683, #22618a));
+$navbar-shadow: var(--navbar-shadow, 0 2px 4px rgba(72, 79, 102, 0.15));
+
+/* Navbar */
+.navbar{
+    position: fixed;
+    top: $header-h;
+    z-index: 10;
+
+    display: block;
+    width: 100%;
+    padding: 0;
+    background: $navbar-bg;
+    color: $navbar-color;
+    box-shadow: $navbar-shadow;
+
+    @include breakpoint($lg){
+        position: static;
+        box-shadow: 2px 0 4px rgba(72, 79, 102, 0.15);
+    }
+
+    &-inner{
+        width: Min($page-max-width, 100%);
+        margin-inline: auto;
+    }
+}

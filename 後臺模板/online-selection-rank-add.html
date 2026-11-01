@@ -1,0 +1,784 @@
+<!doctype html>
+<html class="no-js" lang="zh-Hant">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>建立選屋順位 | 桃園市住宅及都市更新中心營運管理平台</title>
+  <!-- jQuery -->
+  <script src="assets/vendor/jquery-3.7.1.min.js"></script>
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="assets/vendor/bootstrap-5.3.3/dist/css/bootstrap.min.css">
+  <script src="assets/vendor/bootstrap-5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="assets/vendor/fontawesome-pro-6.5.2-web/css/all.css">
+  <!-- Rubik (數字字型) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap">
+  <!-- Tom Select -->
+  <link rel="stylesheet" href="assets/vendor/tom-select-2.2.2/tom-select.bootstrap5.min.css">
+  <script src="assets/vendor/tom-select-2.2.2/tom-select.complete.js"></script>
+  <!-- Menu -->
+  <script src="assets/vendor/utils/menu/menu.js"></script>
+  <!-- 自訂 -->
+  <link rel="stylesheet" href="assets/css/main.css">
+  <script src="assets/js/customJS.js"></script>
+</head>
+
+<body>
+  <div class="wrapper multi-column | column-with-menu">
+    <!-- Top -->
+    <div class="top">
+      <header class="header">
+        <!-- logo -->
+        <a class="logo" href="index.html" title="回首頁">
+          <div class="img-wrap"><img src="assets/img/brand-logo.svg"></div>
+          <h2 class="">桃園市住宅及都市更新中心<span>營運管理平台</span></h2>
+        </a>
+        <!-- 手機版漢堡 -->
+        <div class="d-lg-none">
+          <div class="menu-hamburger-toggle">
+            <a class="btn-icon" data-bs-toggle="collapse" href=".js-nav-collapse">
+              <span class="is-close"><i class="fas fa-bars"></i></span>
+              <span class="is-open"><i class="fas fa-times"></i></span>
+            </a>
+          </div>
+        </div>
+      </header>
+    </div>
+    <!-- Center -->
+    <div class="center">
+      <!-- Left -->
+      <div class="left">
+        <aside class="aside">
+          <!-- 桌機版漢堡 -->
+          <div class="d-none d-lg-block">
+              <div class="menu-hamburger | js-menu-hamburger">
+                <a class="btn btn-icon" title="選單收闔"><i class="fas fa-bars"></i></a>
+              </div>
+            </div>
+          <!-- Nav collapse -->
+          <div class="nav-collapse | collapse js-nav-collapse">
+            <!-- 上方輔助功能 -->
+            <div class="top-helper-wrapper">
+              <div class="top-helper">
+                <div class="warning-bell">
+                  <button><i class="fa-solid fa-bell"></i></button>
+                  <span class="badge">8</span>
+                </div>
+                <div class="dropdown">
+                  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    歡迎OOOOO科OOO登入系統
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="#">編輯個人資料</a></li>
+                    <li><a class="dropdown-item" href="#">變更密碼</a></li>
+                    <li><a class="dropdown-item" href="#">操作手冊下載</a></li>
+                    <li><a class="dropdown-item" href="#">登出</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <!-- Menu -->
+            <ul class="menu menu-vertical | scroll isMenuOpen js-menu-vertical">
+              <!-- 首頁 -->
+              <li>
+                  <a href="index.html" >
+                    <span class="icon-text">首頁</span>
+                  </a>
+              </li>
+              <!-- 招租作業 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">招租作業*</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="apply-01.html" >專案申請*</a>
+                      </li>
+                      <li>
+                          <a href="application-query.html" >申請案件查詢*</a>
+                      </li>
+                      <li>
+                          <a href="application-review.html" >申請案件審核*</a>
+                      </li>
+                      <li>
+                          <a href="shop-rent.html" >店鋪招租</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 選屋作業管理 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">選屋作業管理*</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="online-selection-rank-query.html" class="active">選屋查詢*</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 點交簽約管理 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">點交簽約管理*</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="handover-management.html" >點交簽約查詢*</a>
+                      </li>
+                      <li>
+                          <a href="handover-details-query.html" >點交作業*</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 租約管理 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">租約管理</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="tenant-lease-management.html" >住戶租約管理</a>
+                      </li>
+                      <li>
+                          <a href="tenant-termination-management.html" >住戶退租管理</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 店鋪招商管理 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">店鋪招商管理</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="#" >店鋪公告管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >店鋪點交簽約查詢</a>
+                      </li>
+                      <li>
+                          <a href="#" >店鋪點交作業</a>
+                      </li>
+                      <li>
+                          <a href="#" >潛在店鋪管理</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 場地租借審核 -->
+              <li>
+                  <a href="#" >
+                    <span class="icon-text">場地租借審核</span>
+                  </a>
+              </li>
+              <!-- 帳務管理 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">帳務管理</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="#" >收費管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >銷貨收入</a>
+                      </li>
+                      <li>
+                          <a href="#" >帳款作廢</a>
+                      </li>
+                      <span>銀行委扣管理</span>
+                      <li>
+                          <a href="#" >銀行委扣授權</a>
+                      </li>
+                      <li>
+                          <a href="#" >銀行委扣扣款</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 資料查詢與匯出 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">資料查詢與匯出</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="#" >金流統計</a>
+                      </li>
+                      <li>
+                          <a href="#" >案件申請統計</a>
+                      </li>
+                      <li>
+                          <a href="#" >車位統計</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 物業管理功能 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">物業管理功能</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="#" >公告管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >包裹管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >扣點紀錄</a>
+                      </li>
+                      <li>
+                          <a href="#" >工作日誌</a>
+                      </li>
+                      <li>
+                          <a href="#" >場地租借管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >人員差勤管理</a>
+                      </li>
+                      <span>報修案件管理</span>
+                      <li>
+                          <a href="#" >報修案件查詢</a>
+                      </li>
+                      <li>
+                          <a href="#" >報修廠商管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >備品統計</a>
+                      </li>
+                      <li>
+                          <a href="#" >報表查詢</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 系統查詢與匯出 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">系統查詢與匯出</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="#" >通知類型設定</a>
+                      </li>        
+                  </ul>
+              </li>
+              <!-- 系統維護管理 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">系統維護管理*</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <span>社宅管理</span>
+                      <li>
+                          <a href="building-management.html" >大樓管理*</a>
+                      </li>
+                      <li>
+                          <a href="#" >大樓戶號管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >大樓車位管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >大樓場地管理</a>
+                      </li>
+                      <li>
+                          <a href="layout-config.html" >空間格局管理*</a>
+                      </li>
+                      <span>使用者權限管理</span>
+                      <li>
+                          <a href="user-data-management.html" >人員資料管理</a>
+                      </li>
+                      <li>
+                          <a href="permission-management.html" >權限管理</a>
+                      </li>
+                      <span>招租管理</span>
+                      <li>
+                          <a href="evaluation-type-settings.html" >評點類型審核設定</a>
+                      </li>
+                      <li>
+                          <a href="schedule-management.html" >社宅時程管理</a>
+                      </li>
+                      <li>
+                          <a href="schedule-management.html" >店鋪標案管理</a>
+                      </li>
+                      <li>
+                          <a href="reviewer-settings.html" >審核人員設定</a>
+                      </li>
+                      <li>
+                          <a href="document-template-settings.html" >文件範本設定</a>
+                      </li>
+                      <span>資產與營運管理</span>
+                      <li>
+                          <a href="outsourcing-management.html" >資產管理</a>
+                      </li>        
+                  </ul>
+              </li>
+              
+              <li>
+                  <a href="furniture-maintenance.html" >家具清單維護管理*</a>
+              </li>
+              
+              <li>
+                  <a href="_components.html" target="_blank">
+                    <span class="icon-text"><i class="fa-solid fa-cubes-stacked"></i>組件表</span>
+                  </a>
+              </li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+      <!-- Right -->
+      <div class="right">
+        <!-- 麵包屑 -->
+        <div class="breadcrumb-wrapper">
+            <div class="breadcrumb-inner">
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb">
+                  <li class="breadcrumb-item">選屋作業管理</li>
+                  <li class="breadcrumb-item"><a href="online-selection-rank-query.html">選屋查詢</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">建立選屋順位</li>
+                </ol>
+              </nav>
+            </div>
+        </div>
+        <div class="content">
+            <!-- 返回列表 -->
+            <div class="item mb-5">
+                <a href="online-selection-rank-query.html" class="btn btn-pill-outline-primary">
+                  <i class="fa-solid fa-angle-left"></i>
+                  返回列表
+                </a>
+            </div>
+            <!-- 選屋名單設定 -->
+             <div class="item mb-4">
+                 <h4 class="fw-bold mb-4">
+                    <span class="me-1"><i class="fad fa-chevron-double-right"></i>
+                    選屋名單設定（安居好室）
+                </h4>
+                <table class="table table-list table-form table-bordered">
+                    <tbody>
+                        <tr>
+                            <th class="text-end" width="150">社宅名稱</th>
+                            <td data-th="社宅名稱">
+                                <select class="form-select" style="width: 15rem">
+                                    <option value="明新安居">明新安居</option>
+                                    <option value="OOOO">OOOO</option>
+                                    <option value="OOOO">OOOO</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="text-end">選屋類型</th>
+                            <td data-th="選屋類型">
+                                <select class="form-select" style="width: 15rem">
+                                    <option value="114MSH_新招租">114MSH_新招租</option>
+                                    <option value="OOOO">OOOO</option>
+                                    <option value="OOOO">OOOO</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="text-end">目前已設定序號</th>
+                            <td data-th="目前已設定序號">
+                                <div class="grid-left-auto | align-items-stretch" style="gap: 3px 0">
+                                    <div class="start | text-end bg-secondary-300 px-3 py-2">一般戶</div>
+                                    <div class="end | px-3 py-2 bg-neutral-100">
+                                        <div class="flex-item-wrap">                            
+                                            <span>一房型：正取<strong class="text-danger">000</strong> 備取<strong class="text-danger">000</strong>。</span> 
+                                            <span>二房型：正取<strong class="text-danger">000</strong> 備取<strong class="text-danger">000</strong>。</span> 
+                                            <span>三房型：正取<strong class="text-danger">000</strong> 備取<strong class="text-danger">000</strong>。</span>
+                                            <span>四房型：正取<strong class="text-danger">000</strong> 備取<strong class="text-danger">000</strong>。</span>
+                                        </div>
+                                    </div>
+                                    <div class="start | text-end bg-secondary-300 px-3 py-2">弱勢戶</div>
+                                    <div class="end | px-3 py-2 bg-neutral-100">
+                                        <div class="flex-item-wrap">                            
+                                            <span>一房型：正取<strong class="text-danger">000</strong> 備取<strong class="text-danger">000</strong>。</span> 
+                                            <span>二房型：正取<strong class="text-danger">000</strong> 備取<strong class="text-danger">000</strong>。</span> 
+                                            <span>三房型：正取<strong class="text-danger">000</strong> 備取<strong class="text-danger">000</strong>。</span>
+                                            <span>四房型：正取<strong class="text-danger">000</strong> 備取<strong class="text-danger">000</strong>。</span>
+                                        </div>
+                                    </div>
+                                </div>            
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="text-end">
+                                <button 
+                                    class="btn btn-circle-red text-white text-secondary-hover bg-white-hover mr-4"
+                                    data-bs-toggle="modal" 
+                                    data-bs-target="#houseSelectionListModal"
+                                ><i class="fa-solid fa-magnifying-glass"></i></button>
+                                排隊數
+                            </th>
+                            <td data-th="排隊數">
+                                <div class="grid-left-auto | align-items-stretch" style="gap: 3px 0">
+                                    <div class="start | text-end bg-secondary-300 px-3 py-2">弱勢戶</div>
+                                    <div class="end | px-3 py-2 bg-neutral-100">
+                                        <div class="flex-item-wrap">
+                                            <span>一房型：<strong>21</strong>戶。</span>
+                                            <span>二房型：<strong>21</strong>戶。</span>
+                                            <span>三房型：<strong>21</strong>戶。</span>
+                                            <span>四房型：<strong>10</strong>戶。</span>
+                                        </div>
+                                    </div>                    
+                                    <div class="start | text-end bg-secondary-300 px-3 py-2">一般戶</div>
+                                    <div class="end | px-3 py-2 bg-neutral-100">
+                                        <div class="flex-item-wrap">
+                                            <span>一房型：<strong>21</strong>戶。</span>
+                                            <span>二房型：<strong>21</strong>戶。</span>
+                                            <span>三房型：<strong>21</strong>戶。</span>
+                                            <span>四房型：<strong>10</strong>戶。</span>
+                                        </div>
+                                    </div>                    
+                                </div>            
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="text-end">目前空屋數</th>
+                            <td data-th="排隊數">
+                                <div class="grid-left-auto | align-items-stretch" style="gap: 3px 0">
+                                    <div class="start | text-end bg-secondary-300 px-3 py-2">一般戶</div>
+                                    <div class="end | px-3 py-2 bg-neutral-100">
+                                        <div class="flex-item-wrap">
+                                            <span>一房型：<strong>21</strong>戶。</span>
+                                            <span>二房型：<strong>21</strong>戶。</span>
+                                            <span>三房型：<strong>21</strong>戶。</span>
+                                            <span>四房型：<strong>10</strong>戶。</span>
+                                        </div>
+                                    </div>                    
+                                    <div class="start | text-end bg-secondary-300 px-3 py-2">弱勢戶</div>
+                                    <div class="end | px-3 py-2 bg-neutral-100">
+                                        <div class="flex-item-wrap">
+                                            <span>一房型：<strong>21</strong>戶。</span>
+                                            <span>二房型：<strong>21</strong>戶。</span>
+                                            <span>三房型：<strong>21</strong>戶。</span>
+                                            <span>四房型：<strong>10</strong>戶。</span>
+                                        </div>
+                                    </div>                    
+                                </div>           
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="text-end">此次預設定數</th>
+                            <td data-th="此次預設定數">
+                                <div class="grid-left-auto | align-items-stretch" style="gap: 3px 0">
+                                    <div class="start | text-end bg-secondary-300 px-3 py-2 pt-3">一般戶</div>
+                                    <div class="end | px-3 py-2 bg-neutral-100">
+                                        <div class="flex-item-wrap">
+                                            <div class="hstack gap-1">一房型：<input class="form-control text-end" style="width: 4rem" value="10"/> 戶。</div>
+                                            <div class="hstack gap-1">二房型：<input class="form-control text-end" style="width: 4rem" value="10"/> 戶。</div>
+                                            <div class="hstack gap-1">三房型：<input class="form-control text-end" style="width: 4rem" value="10"/> 戶。</div>
+                                            <div class="hstack gap-1">四房型：<input class="form-control text-end" style="width: 4rem" value="10"/> 戶。</div>
+                                        </div>
+                                    </div>
+                                    <div class="start | text-end bg-secondary-300 px-3 py-2 pt-3">弱勢戶</div>
+                                    <div class="end | px-3 py-2 bg-neutral-100">
+                                        <div class="flex-item-wrap">
+                                            <div class="hstack gap-1">一房型：<input class="form-control text-end" style="width: 4rem" value="10"/> 戶。</div>
+                                            <div class="hstack gap-1">二房型：<input class="form-control text-end" style="width: 4rem" value="10"/> 戶。</div>
+                                            <div class="hstack gap-1">三房型：<input class="form-control text-end" style="width: 4rem" value="10"/> 戶。</div>
+                                            <div class="hstack gap-1">四房型：<input class="form-control text-end" style="width: 4rem" value="10"/> 戶。</div>
+                                        </div>
+                                    </div>
+                                </div>            
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="text-end">每批次選屋間隔</th>
+                            <td data-th="每批次選屋間隔">
+                                60分鐘
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="text-end">每批次戶數</th>
+                            <td data-th="每批次戶數">
+                                10戶
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="text-end">選屋日期時間</th>
+                            <td data-th="選屋日期時間">
+                                <div class="flex-item-wrap">
+                                    <div class="w-100" style="max-width:20rem">
+                                        <div class="flex-item-wrap | w-auto flex-grow-1 form-row-validation">
+                                          <input type="text" class="form-select icon date | w-auto flex-grow-1" size="5" placeholder="年/月/日" required>至
+                                          <input type="text" class="form-select icon date | w-auto flex-grow-1" size="5" placeholder="年/月/日" required>
+                                        </div>
+                                        <div class="invalid-feedback">
+                                          請輸入日期區間
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="input-group">
+                                          <select class="form-select">
+                                              <option value="09:00">09:00</option>
+                                              <option value="10:00">10:00</option>
+                                              <option value="11:00">11:00</option>
+                                              <option value="12:00">12:00</option>
+                                              <option value="13:00">13:00</option>
+                                              <option value="14:00">14:00</option>
+                                              <option value="15:00">15:00</option>
+                                              <option value="16:00">16:00</option>
+                                              <option value="17:00">17:00</option>
+                                          </select>
+                                          <div class="input-group-text">18:00</div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="text-end">選屋人數統計</th>
+                            <td data-th="選屋人數統計">
+                                <ul class="list-unstyled">
+                                    <li>114/09/05 選屋共 <strong class="text-danger">100</strong> 戶 </li>
+                                    <li>114/09/08 選屋共 <strong class="text-danger">100</strong> 戶</li>
+                                    <li>114/09/09 選屋共 <strong class="text-danger">50</strong> 戶</li>
+                                    <li>選屋 3 天，共 <strong class="text-danger">250</strong> 戶</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+             </div>
+             <!-- 產生選屋名單 -->
+             <div class="item | text-center">
+                <button class="btn btn-pill-primary">產生選屋名單</button>
+             </div>
+             <hr class="my-5">
+             <!-- 選屋名單 -->
+             <div class="item mb-5">
+                <h4 class="fw-bold mb-4">
+                  <span class="me-1"><i class="fad fa-chevron-double-right"></i>
+                    選屋名單（選屋3天，250戶）
+                </h4>
+                <div class="flex-item-wrap mb-2">
+                    <div class="start me-2">日期</div>
+                    <div class="end | radio-btn">
+                        <div>
+                            <input type="radio" name="overhand-date" id="overhand-date0" checked hidden>
+                            <label class="radio-btn-label" for="overhand-date0">114/09/05</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="overhand-date" id="overhand-date1"  hidden>
+                            <label class="radio-btn-label" for="overhand-date1">114/09/08</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="overhand-date" id="overhand-date2"  hidden>
+                            <label class="radio-btn-label" for="overhand-date2">114/09/09</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-item-wrap mb-3">
+                    <div class="start me-2">房型</div>
+                    <div class="end | radio-btn">
+                        <div>
+                            <input type="radio" name="room_type" id="room_type0" checked hidden>
+                            <label class="radio-btn-label" for="room_type0">一房型</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="room_type" id="room_type1"  hidden>
+                            <label class="radio-btn-label" for="room_type1">二房型</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="room_type" id="room_type2"  hidden>
+                            <label class="radio-btn-label" for="room_type2">三房型</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="room_type" id="room_type3"  hidden>
+                            <label class="radio-btn-label" for="room_type3">四房型</label>
+                        </div>
+                    </div>
+                </div>
+                <!-- 表格上方功能 -->
+        <div class="flex-start-end  mb-3">
+            <!-- Start -->
+            <div class="start">
+            </div>
+            <!-- End -->
+            <div class="end">
+                        <button class="btn btn-primary">
+                            <i class="fa-solid fa-file-excel"></i>下載名單
+                        </button>
+            </div>
+        </div>        <div class="table-responsive mb-3">
+                    <table class="table table-list table-rwd table-bordered mb-0">
+                        <thead>
+                            <tr>
+                                <th>申請編號</th>
+                                <th>申請人</th>
+                                <th>申請身份</th>
+                                <th>申請房型</th>
+                                <th>抽籤結果</th>
+                                <th>選屋時段</th>
+                                <th>選屋結果</th>
+                                <th>功能</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td data-th="申請編號">MSH1140003A</td>
+                                <td data-th="申請人">陳OO</td>
+                                <td data-th="申請身份">一般戶</td>
+                                <td data-th="申請房型">一房型</td>
+                                <td data-th="抽籤結果">正取001</td>
+                                <td data-th="選屋時段">113/09/05 09:00</td>
+                                <td data-th="選屋結果">
+                                    --
+                                </td>
+                                <td data-th="功能">
+                                    <div class="flex-item-wrap">
+                                        <button class="btn btn-sm btn-outline-primary">
+                                            <i class="fa-solid fa-eye"></i>檢視
+                                        </button>
+                                        <div class="btn-group">
+                                            <button
+                                                class="btn btn-sm btn-outline-primary dropdown-toggle" type="button" id="triggerId" 
+                                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">更多功能
+                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-start" aria-labelledby="triggerId">
+                                                <a class="dropdown-item" href="#">放棄選屋</a>
+                                                <a class="dropdown-item text-danger" href="#">刪除選屋</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td data-th="申請編號">MSH1140003A</td>
+                                <td data-th="申請人">陳OO</td>
+                                <td data-th="申請身份">一般戶</td>
+                                <td data-th="申請房型">一房型</td>
+                                <td data-th="抽籤結果">正取001</td>
+                                <td data-th="選屋時段">113/09/05 09:00</td>
+                                <td data-th="選屋結果">
+                                    --
+                                </td>
+                                <td data-th="功能">
+                                    <div class="flex-item-wrap">
+                                        <button class="btn btn-sm btn-outline-primary">
+                                            <i class="fa-solid fa-eye"></i>檢視
+                                        </button>
+                                        <div class="btn-group">
+                                            <button
+                                                class="btn btn-sm btn-outline-primary dropdown-toggle" type="button" id="triggerId" 
+                                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">更多功能
+                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-start" aria-labelledby="triggerId">
+                                                <a class="dropdown-item" href="#">放棄選屋</a>
+                                                <a class="dropdown-item text-danger" href="#">刪除選屋</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td data-th="申請編號">MSH1140003A</td>
+                                <td data-th="申請人">陳OO</td>
+                                <td data-th="申請身份">一般戶</td>
+                                <td data-th="申請房型">一房型</td>
+                                <td data-th="抽籤結果">正取001</td>
+                                <td data-th="選屋時段">113/09/05 09:00</td>
+                                <td data-th="選屋結果">
+                                    --
+                                </td>
+                                <td data-th="功能">
+                                    <div class="flex-item-wrap">
+                                        <button class="btn btn-sm btn-outline-primary">
+                                            <i class="fa-solid fa-eye"></i>檢視
+                                        </button>
+                                        <div class="btn-group">
+                                            <button
+                                                class="btn btn-sm btn-outline-primary dropdown-toggle" type="button" id="triggerId" 
+                                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">更多功能
+                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-start" aria-labelledby="triggerId">
+                                                <a class="dropdown-item" href="#">放棄選屋</a>
+                                                <a class="dropdown-item text-danger" href="#">刪除選屋</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <ul class="pagination ">
+                    <li class="disabled"><a href="#"><i class="fas fa-chevron-left"></i></a></li>
+                    <li class="active"><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li class="disabled"><a href="#">...</a></li>
+                    <li><a href="#">16</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i></a></li>
+                </ul>     </div>
+             <!-- 確認名單，儲存 -->
+             <div class="item mb-4 | text-center">
+                <button class="btn btn-pill-primary" data-bs-toggle="modal" data-bs-target="#onlineSelectionRankAddConfirmModal">確認名單，儲存</button>
+             </div>
+        </div>
+      </div>
+    </div>
+    <!-- Bottom -->
+    <div class="bottom">
+      <footer class="footer">
+          <div class="img-wrap">
+            <img src="assets/img/footer-brand-logo.svg">
+          </div>
+          <div class="text">
+            <div><i class="fa-duotone fa-user-headset fa-fw me-1"></i><label class="d-none d-lg-inline-block">客服人員：</label>天思數位科技 (04)2451-6669 #6?? X小姐</div>
+            <div><i class="fad fa-browser fa-fw me-1"></i><label class="d-none d-lg-inline-block">最佳瀏覽環境：</label>Edge、Firefox 、Google Chrome ,螢幕解析度1280*768以上</div>
+            <div class="d-none d-lg-inline-block"><i class="fad fa-copyright fa-fw me-1"></i> Copyright 桃園市住宅及都市更新中心</div>
+          </div>
+      </footer>
+    </div>
+  </div> 
+  <!-- /.wrapper  -->
+
+  <!-- 回到最上面 -->
+  <div class="go-top | js-go-top">
+      <a href="#" class="" title="回到最上面">TOP</a>
+  </div>
+
+  <!-- Modal -->
+  
+  <!-- Modal 是否已確認選屋名單 -->
+  <div class="modal fade" id="onlineSelectionRankAddConfirmModal" data-bs-backdrop="static" tabindex="-1">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header border-0 pb-0">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center">
+          <h6 class="fs-4 fw-bold | mb-4 pb-2">是否已確認選屋名單？</h6>
+          <div class="col-10 mx-auto">儲存後將無法修改選屋設定，僅能針對選屋名單個別變更選屋時段。</div>
+        </div>
+        <div class="modal-footer">
+          <div class="btn-cta-group w-100 p-0">
+            <button class="btn btn-pill-outline-primary" data-bs-dismiss="modal">取消</button>
+            <button class="btn btn-pill-primary">確定</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- JS -->
+</body>
+
+</html>

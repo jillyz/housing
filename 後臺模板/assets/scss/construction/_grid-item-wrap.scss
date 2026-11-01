@@ -1,0 +1,6 @@
+/* item對齊換行 grid-item-wrap */
+.grid-item-wrap{
+    display: grid;
+    gap: 8px;
+    grid-template-columns: repeat(auto-fill, minmax(var(--grid-size, 7.5em), 1fr));
+}

@@ -462,10 +462,20 @@
 }
 .room-pie{
   background:conic-gradient(
-    #009c9a 0 34%,
-    #4f9ed3 34% 75%,
-    #6f78bd 75% 94%,
-    #b7c8c5 94% 100%
+    #b7c8c5 0 4%,
+    #009c9a 4% 38%,
+    #4f9ed3 38% 79%,
+    #6f78bd 79% 98%,
+    #e5a044 98% 100%
+  )
+}
+.demand-room-pie{
+  background:conic-gradient(
+    #b7c8c5 0 12%,
+    #009c9a 12% 44%,
+    #4f9ed3 44% 82%,
+    #6f78bd 82% 97%,
+    #e5a044 97% 100%
   )
 }
 .legend{display:flex;flex-wrap:wrap;gap:10px 14px;margin-top:12px}
@@ -479,7 +489,8 @@
 .legend i.room-one{background:#009c9a}
 .legend i.room-two{background:#4f9ed3}
 .legend i.room-three{background:#6f78bd}
-.legend i.room-other{background:#b7c8c5}
+.legend i.room-studio{background:#b7c8c5}
+.legend i.room-four{background:#e5a044}
 .pie-legend>span{justify-content:space-between;padding-bottom:9px;border-bottom:1px dashed var(--line);font-size:12px}
 .pie-legend>span:last-child{padding-bottom:0;border-bottom:0}
 .pie-legend>span>span{padding:0;border:0}
@@ -971,6 +982,18 @@ body :is(a,p,span,small,label,input,select,button,th,td){font-size:16px!importan
 }
 
 /* 儀表板響應式版面強化 */
+.case-filter{display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) auto;align-items:end;gap:14px;padding:16px;border:1px solid var(--line);border-radius:14px;background:#f7fbfa}
+.case-filter>div{min-width:0}
+.case-filter-actions{display:flex;gap:8px;flex-wrap:wrap}
+.case-filter-note{grid-column:1/-1;margin:0}
+.case-status-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.case-status-grid .status-step{min-width:0;padding:20px}
+.case-status-grid strong{font-size:28px}
+.case-agency-table-wrap{margin-top:20px}
+.case-agency-table{min-width:540px}
+.case-agency-table caption{text-align:left;color:var(--primary-deep);font-weight:800;padding-bottom:12px}
+.case-agency-table th:not(:first-child),.case-agency-table td{text-align:right;font-variant-numeric:tabular-nums}
+.case-agency-table tbody th{background:transparent;color:var(--primary-deep)}
 html,body{max-width:100%;overflow-x:hidden}
 .layout{grid-template-columns:240px minmax(0,1fr)}
 .main{min-width:0;width:100%}
@@ -979,6 +1002,7 @@ html,body{max-width:100%;overflow-x:hidden}
 .card,.dashboard-card,.panel,.split-grid>*{min-width:0}
 .table-wrap,.monitor-table-wrap,.heatmap-scroll{max-width:100%}
 @media(max-width:1200px){
+  .case-filter{grid-template-columns:repeat(2,minmax(0,1fr))}
   .layout{grid-template-columns:220px minmax(0,1fr)}
   .main{padding-right:22px;padding-left:22px}
   .dashboard-filter{grid-template-columns:1fr 1fr}
@@ -996,6 +1020,8 @@ html,body{max-width:100%;overflow-x:hidden}
   .actions{justify-content:flex-start}
 }
 @media(max-width:760px){
+  .case-filter,.case-status-grid{grid-template-columns:1fr}
+  .case-filter-actions .btn{flex:1}
   .summary-row,.dashboard-filter,.kpi-grid,.status-flow,.heatmap-summary{grid-template-columns:1fr}
   .pie-chart-wrap{grid-template-columns:1fr;justify-items:center}
   .monitor-time-filter{align-items:stretch;flex-direction:column}

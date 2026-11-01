@@ -1,0 +1,178 @@
+<!doctype html>
+<html class="no-js" lang="zh-Hant">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>數字卡片 | 組件表</title>
+  <!-- jQuery -->
+  <script src="../assets/vendor/jquery-3.7.1.min.js"></script>
+  <!-- jQuery-ui -->
+  <link rel="stylesheet" href="../assets/vendor/jquery-ui-1.13.2/jquery-ui.min.css">
+  <script src="../assets/vendor/jquery-ui-1.13.2/jquery-ui.min.js"></script>
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="../assets/vendor/bootstrap-5.3.3/dist/css/bootstrap.min.css">
+  <script src="../assets/vendor/bootstrap-5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../assets/vendor/fontawesome-pro-6.5.2-web/css/all.css">
+  <!-- Rubik (數字字型) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap">
+  <!-- Tom Select -->
+  <link rel="stylesheet" href="../assets/vendor/tom-select-2.2.2/tom-select.bootstrap5.min.css">
+  <script src="../assets/vendor/tom-select-2.2.2/tom-select.complete.js"></script>
+  <!-- Flatpickr 民國年 -->
+  <link rel="stylesheet" href="../assets/vendor/flatpickr-4.6.13-TW/flatpickr.min.css">
+  <script src="../assets/vendor/flatpickr-4.6.13-TW/flatpickr.min.js"></script>
+  <script src="../assets/vendor/flatpickr-4.6.13-TW/zh_tw.js"></script>
+  <!-- Fancybox -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css">
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+  <!-- FullCalendar 大月曆 -->
+  <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.18/index.global.min.js'></script>
+  <!-- 自訂 -->
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <script src="../assets/js/customJS.js"></script>
+</head>
+
+<body>
+  <div class="container py-5">
+    <p><i class="fa-solid fa-circle-chevron-left"></i> <a href="../_components.html" class="text-body">回組件表</a></p>
+    <div class="bg-white rounded-3 mt-4 mb-5">
+      <h4 class="p-5 border-bottom">數字卡片</h4>
+      <div class="p-5">
+        <div class="vstack gap-5">
+            <div class="item">
+                <div class="mb-3">範例：儀表板統計卡（含下拉明細）</div>
+                <div class="grid-item-wrap gap-3" style="grid-template-columns: repeat(auto-fit, minmax(14.5em, 1fr));">
+                    <!-- 申請案件待審核數 -->
+                    <div class="shadow-sm">
+                        <button class="btn-card-hover-highlight | card border-0 text-start w-100 h-100"
+                            data-bs-toggle="dropdown">
+                            <div class="card-body d-grid gap-3 pb-2">
+                                <div class="fs-5 text-secondary flex-start-end">申請案件待審核數 <i class="fa-solid fa-ellipsis"></i></div>
+                                <div class="text-end">
+                                    <span class="fs-1 fw-medium text-primary">68</span>
+                                    <span class="fs-6 ms-2 text-secondary">件</span>
+                                </div>
+                            </div>
+                        </button>
+                        <ul class="dropdown-menu custom-dropdown-menu-highlight" style="min-width: 11rem;">
+                            <li><a class="dropdown-item" href="#">
+                                    <div class="flex-start-end gap-3">
+                                        全部
+                                        <div class="hstack gap-2">
+                                            <div class="badge bg-primary text-white rounded-pill fs-6">68</div>
+                                            <i class="fa-solid fa-chevron-right"></i>
+                                        </div>
+                                    </div>
+                                </a></li>
+                            <li><a class="dropdown-item" href="#">
+                                    <div class="flex-start-end gap-3">
+                                        新案場招租
+                                        <div class="hstack gap-2">
+                                            <div class="badge bg-primary text-white rounded-pill fs-6">20</div>
+                                            <i class="fa-solid fa-chevron-right"></i>
+                                        </div>
+                                    </div>
+                                </a></li>
+                            <li><a class="dropdown-item" href="#">
+                                    <div class="flex-start-end gap-3">
+                                        隨到隨辦
+                                        <div class="hstack gap-2">
+                                            <div class="badge bg-primary text-white rounded-pill fs-6">18</div>
+                                            <i class="fa-solid fa-chevron-right"></i>
+                                        </div>
+                                    </div>
+                                </a></li>
+                            <li><a class="dropdown-item" href="#">
+                                    <div class="flex-start-end gap-3">
+                                        續租申請
+                                        <div class="hstack gap-2">
+                                            <div class="badge bg-primary text-white rounded-pill fs-6">30</div>
+                                            <i class="fa-solid fa-chevron-right"></i>
+                                        </div>
+                                    </div>
+                                </a></li>
+                            <li><a class="dropdown-item" href="#">
+                                    <div class="flex-start-end gap-3">
+                                        退租申請
+                                        <div class="hstack gap-2">
+                                            <div class="badge bg-secondary text-white rounded-pill fs-6">0</div>
+                                            <i class="fa-solid fa-chevron-right"></i>
+                                        </div>
+                                    </div>
+                                </a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="mb-3">範例：等寬網格卡片（auto-fit）</div>
+                <div class="grid-item-wrap gap-3" style="grid-template-columns: repeat(auto-fit, minmax(14.5em, 1fr));">
+                    <!-- 場地待審核數 -->
+                    <button class="btn-card-hover-primary | card border-0 text-start shadow-sm">
+                        <div class="card-body d-grid gap-3 pb-2">
+                            <div class="fs-5 text-secondary">場地待審核數</div>
+                            <div class="text-end">
+                                <span class="fs-1 text-blue">68</span>
+                                <span class="fs-6 ms-2 text-secondary">件</span>
+                            </div>
+                        </div>
+                    </button>
+                    <!-- 報修未結案 -->
+                    <button class="btn-card-hover-primary | card border-0 text-start shadow-sm">
+                        <div class="card-body d-grid gap-3 pb-2">
+                            <div class="fs-5 text-secondary">報修未結案</div>
+                            <div class="text-end">
+                                <span class="fs-1 text-blue">90</span>
+                                <span class="fs-6 ms-2 text-secondary">件</span>
+                            </div>
+                        </div>
+                    </button>
+                    <!-- 計點待審核數 -->
+                    <button class="btn-card-hover-primary | card border-0 text-start shadow-sm">
+                        <div class="card-body d-grid gap-3 pb-2">
+                            <div class="fs-5 text-secondary">計點待審核數</div>
+                            <div class="text-end">
+                                <span class="fs-1 text-blue">90</span>
+                                <span class="fs-6 ms-2 text-secondary">件</span>
+                            </div>
+                        </div>
+                    </button>
+                    <!-- 店鋪待審核數 -->
+                    <button class="btn-card-hover-primary | card border-0 text-start shadow-sm">
+                        <div class="card-body d-grid gap-3 pb-2">
+                            <div class="fs-5 text-secondary">店鋪待審核數</div>
+                            <div class="text-end">
+                                <span class="fs-1 text-blue">90</span>
+                                <span class="fs-6 ms-2 text-secondary">件</span>
+                            </div>
+                        </div>
+                    </button>
+                    <!-- 住戶欠費 -->
+                    <button class="btn-card-hover-primary | card border-0 text-start shadow-sm">
+                        <div class="card-body d-grid gap-3 pb-2">
+                            <div class="fs-5 text-secondary">住戶欠費</div>
+                            <div class="text-end">
+                                <span class="fs-1 text-blue">20</span>
+                                <span class="fs-6 ms-2 text-secondary">件</span>
+                            </div>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  
+  <!-- JS -->
+</body>
+
+</html>

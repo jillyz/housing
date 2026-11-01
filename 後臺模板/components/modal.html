@@ -1,0 +1,140 @@
+<!doctype html>
+<html class="no-js" lang="zh-Hant">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>彈窗 | 組件表</title>
+  <!-- jQuery -->
+  <script src="../assets/vendor/jquery-3.7.1.min.js"></script>
+  <!-- jQuery-ui -->
+  <link rel="stylesheet" href="../assets/vendor/jquery-ui-1.13.2/jquery-ui.min.css">
+  <script src="../assets/vendor/jquery-ui-1.13.2/jquery-ui.min.js"></script>
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="../assets/vendor/bootstrap-5.3.3/dist/css/bootstrap.min.css">
+  <script src="../assets/vendor/bootstrap-5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../assets/vendor/fontawesome-pro-6.5.2-web/css/all.css">
+  <!-- Rubik (數字字型) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap">
+  <!-- Tom Select -->
+  <link rel="stylesheet" href="../assets/vendor/tom-select-2.2.2/tom-select.bootstrap5.min.css">
+  <script src="../assets/vendor/tom-select-2.2.2/tom-select.complete.js"></script>
+  <!-- Flatpickr 民國年 -->
+  <link rel="stylesheet" href="../assets/vendor/flatpickr-4.6.13-TW/flatpickr.min.css">
+  <script src="../assets/vendor/flatpickr-4.6.13-TW/flatpickr.min.js"></script>
+  <script src="../assets/vendor/flatpickr-4.6.13-TW/zh_tw.js"></script>
+  <!-- Fancybox -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css">
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+  <!-- FullCalendar 大月曆 -->
+  <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.18/index.global.min.js'></script>
+  <!-- 自訂 -->
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <script src="../assets/js/customJS.js"></script>
+</head>
+
+<body>
+  <div class="container py-5">
+    <p><i class="fa-solid fa-circle-chevron-left"></i> <a href="../_components.html" class="text-body">回組件表</a></p>
+    <div class="bg-white rounded-3 mt-4 mb-5">
+      <h4 class="p-5 border-bottom">彈窗</h4>
+      <div class="p-5">
+        <div class="flex-item-wrap">
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#withdrawModal"><i class="fa-solid fa-circle-info"></i>訊息彈窗</button>
+            <button class="btn btn-highlight" data-bs-toggle="modal" data-bs-target="#example2Modal"><i class="fa-solid fa-triangle-exclamation"></i>警告彈窗</button>
+            <button class="btn btn-highlight" data-bs-toggle="modal" data-bs-target="#example3Modal"><i class="fa-solid fa-triangle-exclamation"></i>警告彈窗(icon)</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  
+  <!-- 警告彈窗 -文字 -->
+  <div class="modal fade" id="example2Modal" data-bs-backdrop="static" tabindex="-1">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header border-0 pb-0">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center">
+          <h6 class="fs-4 fw-bold | mb-4 pb-2">流水號取得成功！</h6>
+          <div>該案場身分證字號已有線上申請流水號</div>
+        </div>
+        <div class="modal-footer">
+          <div class="btn-cta-group w-100 p-0">
+            <button class="btn btn-pill-outline-primary">繼續取號</button>
+            <button class="btn btn-pill-primary" data-bs-dismiss="modal">案件登打</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 警告彈窗 - icon -->
+  <div class="modal fade" id="example3Modal" data-bs-backdrop="static" tabindex="-1">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header border-0 pb-0">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center pt-1">
+          <div class="fs-1 text-danger | mb-4 pb-2"><i class="fa-solid fa-circle-xmark fa-lg"></i></div>
+          <div>該案場身分證字號已有線上申請流水號</div>
+        </div>
+        <div class="modal-footer">
+          <div class="btn-cta-group w-100 p-0">
+            <button class="btn btn-pill-outline-primary">繼續</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 放棄申請 -->
+  <div class="modal fade" id="withdrawModal" data-bs-backdrop="static" tabindex="-1">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title" id="withdrawModalLabel">
+            <i class="fa-solid fa-circle-xmark"></i>
+            放棄申請
+          </h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row g-3">
+            <div class="col-md-6 col-lg-5">
+              <label for="" class="form-label">申請編號</label>
+              <input type="text" class="form-control" value="SDL1130004A" disabled>
+            </div>
+            <div class="col-md-6 col-lg-5">
+              <label for="" class="form-label">申請人姓名</label>
+              <input type="text" class="form-control" value="林OO" disabled>
+            </div>
+            <div class="col-12">
+              <label for="" class="form-label">放棄申請原因<span class="required"></span></label>
+              <select name="" id="" class="form-select">
+                <option value="">請選擇</option>
+                <option value="另有居住規劃">另有居住規劃</option>
+                <option value="人口數異動">人口數異動</option>
+                <option value="家庭因素">家庭因素</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div class="btn-cta-group w-100 p-0">
+            <button class="btn btn-pill-outline-primary" data-bs-dismiss="modal">取消</button>
+            <button class="btn btn-pill-primary">確定放棄</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- JS -->
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+/* 共用機關識別與導覽適配；內容區使用後臺模板原始樣式。 */
+#demoModalMessage { white-space: pre-line; }
+/* 保留模板 logo > img-wrap + h2 的識別結構，依署徽直式比例適配。 */
+.backend-page .logo .img-wrap { gap: 12px; padding-inline: 18px; }
+.backend-page .logo .img-wrap img { width: auto; height: 54px; object-fit: contain; }
+.backend-page .agency-name { line-height: 1.45; white-space: nowrap; }
+.backend-page .agency-name span { display: block; font-size: 13px; letter-spacing: .12em; }
+.backend-page .agency-name strong { display: block; font-size: 19px; letter-spacing: .04em; }
+.backend-page .logo h2 { font-size: clamp(20px, 2.1vw, 30px); line-height: 1.4; letter-spacing: .02em; text-wrap: balance; }
+.backend-page .right { min-width: 0; }
+.backend-navigation .is-unavailable { cursor: not-allowed; }
+.backend-navigation .sub-menu .icon-text { padding: 0; color: inherit; line-height: inherit; }
+.backend-navigation .sub-menu .icon-text::before { content: none; }
+/* 原模板為兩層選單；限制巢狀狀態，避免外層啟用時誤展開所有第三層。 */
+.backend-navigation.menu-vertical li:has(.active) .sub-menu .sub-menu { display: none; }
+.backend-navigation.menu li .has-children > i { transform: none; }
+.backend-navigation.menu li.show > .has-children > i { transform: rotate(180deg); }
+@media (max-width: 991px) {
+  .backend-page .logo { min-width: 0; flex: 1; }
+  .backend-page .logo .img-wrap { display: flex; align-items: center; justify-content: center; width: 114px; padding-inline: 8px; gap: 6px; }
+  .backend-page .logo .img-wrap img { height: 34px; }
+  .backend-page .agency-name span { font-size: 10px; letter-spacing: 0; }
+  .backend-page .agency-name strong { font-size: 12px; letter-spacing: 0; }
+  .backend-page .logo h2 { min-width: 0; padding-left: 8px; font-size: clamp(13px, 2.2vw, 20px); letter-spacing: 0; }
+}

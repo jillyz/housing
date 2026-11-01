@@ -1,0 +1,664 @@
+<!doctype html>
+<html class="no-js" lang="zh-Hant">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1.基本資料（新申請） | 桃園市住宅及都市更新中心營運管理平台</title>
+  <!-- jQuery -->
+  <script src="assets/vendor/jquery-3.7.1.min.js"></script>
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="assets/vendor/bootstrap-5.3.3/dist/css/bootstrap.min.css">
+  <script src="assets/vendor/bootstrap-5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="assets/vendor/fontawesome-pro-6.5.2-web/css/all.css">
+  <!-- Rubik (數字字型) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap">
+  <!-- Tom Select -->
+  <link rel="stylesheet" href="assets/vendor/tom-select-2.2.2/tom-select.bootstrap5.min.css">
+  <script src="assets/vendor/tom-select-2.2.2/tom-select.complete.js"></script>
+  <!-- Menu -->
+  <script src="assets/vendor/utils/menu/menu.js"></script>
+  <!-- 自訂 -->
+  <link rel="stylesheet" href="assets/css/main.css">
+  <script src="assets/js/customJS.js"></script>
+</head>
+
+<body>
+  <div class="wrapper multi-column | column-with-menu">
+    <!-- Top -->
+    <div class="top">
+      <header class="header">
+        <!-- logo -->
+        <a class="logo" href="index.html" title="回首頁">
+          <div class="img-wrap"><img src="assets/img/brand-logo.svg"></div>
+          <h2 class="">桃園市住宅及都市更新中心<span>營運管理平台</span></h2>
+        </a>
+        <!-- 手機版漢堡 -->
+        <div class="d-lg-none">
+          <div class="menu-hamburger-toggle">
+            <a class="btn-icon" data-bs-toggle="collapse" href=".js-nav-collapse">
+              <span class="is-close"><i class="fas fa-bars"></i></span>
+              <span class="is-open"><i class="fas fa-times"></i></span>
+            </a>
+          </div>
+        </div>
+      </header>
+    </div>
+    <!-- Center -->
+    <div class="center">
+      <!-- Left -->
+      <div class="left">
+        <aside class="aside">
+          <!-- 桌機版漢堡 -->
+          <div class="d-none d-lg-block">
+              <div class="menu-hamburger | js-menu-hamburger">
+                <a class="btn btn-icon" title="選單收闔"><i class="fas fa-bars"></i></a>
+              </div>
+            </div>
+          <!-- Nav collapse -->
+          <div class="nav-collapse | collapse js-nav-collapse">
+            <!-- 上方輔助功能 -->
+            <div class="top-helper-wrapper">
+              <div class="top-helper">
+                <div class="warning-bell">
+                  <button><i class="fa-solid fa-bell"></i></button>
+                  <span class="badge">8</span>
+                </div>
+                <div class="dropdown">
+                  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    歡迎OOOOO科OOO登入系統
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="#">編輯個人資料</a></li>
+                    <li><a class="dropdown-item" href="#">變更密碼</a></li>
+                    <li><a class="dropdown-item" href="#">操作手冊下載</a></li>
+                    <li><a class="dropdown-item" href="#">登出</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <!-- Menu -->
+            <ul class="menu menu-vertical | scroll isMenuOpen js-menu-vertical">
+              <!-- 首頁 -->
+              <li>
+                  <a href="index.html" >
+                    <span class="icon-text">首頁</span>
+                  </a>
+              </li>
+              <!-- 招租作業 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">招租作業*</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="apply-01.html" class="active">專案申請*</a>
+                      </li>
+                      <li>
+                          <a href="application-query.html" >申請案件查詢*</a>
+                      </li>
+                      <li>
+                          <a href="application-review.html" >申請案件審核*</a>
+                      </li>
+                      <li>
+                          <a href="shop-rent.html" >店鋪招租</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 選屋作業管理 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">選屋作業管理*</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="online-selection-rank-query.html" >選屋查詢*</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 點交簽約管理 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">點交簽約管理*</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="handover-management.html" >點交簽約查詢*</a>
+                      </li>
+                      <li>
+                          <a href="handover-details-query.html" >點交作業*</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 租約管理 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">租約管理</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="tenant-lease-management.html" >住戶租約管理</a>
+                      </li>
+                      <li>
+                          <a href="tenant-termination-management.html" >住戶退租管理</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 店鋪招商管理 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">店鋪招商管理</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="#" >店鋪公告管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >店鋪點交簽約查詢</a>
+                      </li>
+                      <li>
+                          <a href="#" >店鋪點交作業</a>
+                      </li>
+                      <li>
+                          <a href="#" >潛在店鋪管理</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 場地租借審核 -->
+              <li>
+                  <a href="#" >
+                    <span class="icon-text">場地租借審核</span>
+                  </a>
+              </li>
+              <!-- 帳務管理 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">帳務管理</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="#" >收費管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >銷貨收入</a>
+                      </li>
+                      <li>
+                          <a href="#" >帳款作廢</a>
+                      </li>
+                      <span>銀行委扣管理</span>
+                      <li>
+                          <a href="#" >銀行委扣授權</a>
+                      </li>
+                      <li>
+                          <a href="#" >銀行委扣扣款</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 資料查詢與匯出 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">資料查詢與匯出</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="#" >金流統計</a>
+                      </li>
+                      <li>
+                          <a href="#" >案件申請統計</a>
+                      </li>
+                      <li>
+                          <a href="#" >車位統計</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 物業管理功能 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">物業管理功能</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="#" >公告管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >包裹管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >扣點紀錄</a>
+                      </li>
+                      <li>
+                          <a href="#" >工作日誌</a>
+                      </li>
+                      <li>
+                          <a href="#" >場地租借管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >人員差勤管理</a>
+                      </li>
+                      <span>報修案件管理</span>
+                      <li>
+                          <a href="#" >報修案件查詢</a>
+                      </li>
+                      <li>
+                          <a href="#" >報修廠商管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >備品統計</a>
+                      </li>
+                      <li>
+                          <a href="#" >報表查詢</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 系統查詢與匯出 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">系統查詢與匯出</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="#" >通知類型設定</a>
+                      </li>        
+                  </ul>
+              </li>
+              <!-- 系統維護管理 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">系統維護管理*</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <span>社宅管理</span>
+                      <li>
+                          <a href="building-management.html" >大樓管理*</a>
+                      </li>
+                      <li>
+                          <a href="#" >大樓戶號管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >大樓車位管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >大樓場地管理</a>
+                      </li>
+                      <li>
+                          <a href="layout-config.html" >空間格局管理*</a>
+                      </li>
+                      <span>使用者權限管理</span>
+                      <li>
+                          <a href="user-data-management.html" >人員資料管理</a>
+                      </li>
+                      <li>
+                          <a href="permission-management.html" >權限管理</a>
+                      </li>
+                      <span>招租管理</span>
+                      <li>
+                          <a href="evaluation-type-settings.html" >評點類型審核設定</a>
+                      </li>
+                      <li>
+                          <a href="schedule-management.html" >社宅時程管理</a>
+                      </li>
+                      <li>
+                          <a href="schedule-management.html" >店鋪標案管理</a>
+                      </li>
+                      <li>
+                          <a href="reviewer-settings.html" >審核人員設定</a>
+                      </li>
+                      <li>
+                          <a href="document-template-settings.html" >文件範本設定</a>
+                      </li>
+                      <span>資產與營運管理</span>
+                      <li>
+                          <a href="outsourcing-management.html" >資產管理</a>
+                      </li>        
+                  </ul>
+              </li>
+              
+              <li>
+                  <a href="furniture-maintenance.html" >家具清單維護管理*</a>
+              </li>
+              
+              <li>
+                  <a href="_components.html" target="_blank">
+                    <span class="icon-text"><i class="fa-solid fa-cubes-stacked"></i>組件表</span>
+                  </a>
+              </li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+      <!-- Right -->
+      <div class="right">
+        <!-- 麵包屑 -->
+        <div class="breadcrumb-wrapper">
+            <div class="breadcrumb-inner">
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb">
+                  <li class="breadcrumb-item">招租作業</li>
+                  <li class="breadcrumb-item"><a href="apply-01.html">專案申請</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">1.基本資料（新申請）</li>
+                </ol>
+              </nav>
+            </div>
+        </div>
+        <!-- Content -->
+        <div class="content | sticky-top-scroll">
+            <!-- Head info -->
+            <div class="flex-item-wrap | row-gap-2 column-gap-4">    
+                 <h4 class="mb-0">新招租線上申請</h4> 
+                <!-- 狀態 -->
+                <div class="pill-state">
+                  <div class="pill-state-text">尚未完成申請</div>
+                </div>
+            </div>
+            <!-- 進度條 -->
+            <div class="">
+                <!-- 手機板 -->
+                <div class="d-md-none">
+                    <div class="progress-bar-sm">
+                        <div class="steps">
+                            <div class="step step-1 active"><span>1. 基本資料</span></div>
+                            <div class="step step-2 "><span>2. 家庭成員資料</span></div>
+                            <div class="step step-3 "><span>3. 家庭成員財產清單</span></div>
+                            <div class="step step-4 "><span>4. 檢附文件</span></div>
+                            <div class="step step-5 "><span>5. 申請完成待繳費</span></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 桌機版 -->
+                <div class="d-none d-md-block">
+                    <div class="progress-bar">
+                        <div class="steps">
+                            <span class="space"></span>
+                            <div class="step step-1 active">1. 基本資料</div>
+                            <!-- 區隔 -->
+                            <span class="space"></span>
+                            <span class="divider"><i class="fa-solid fa-angle-right" aria-hidden="true"></i></span>
+                            <span class="space"></span>
+                            <!-- 區隔 end -->
+                            <div class="step step-2 ">2. 家庭成員資料</div>
+                            <!-- 區隔 -->
+                            <span class="space"></span>
+                            <span class="divider"><i class="fa-solid fa-angle-right" aria-hidden="true"></i></span>
+                            <span class="space"></span>
+                            <!-- 區隔 end -->
+                            <div class="step step-3 ">3. 家庭成員財產清單</div>
+                            <!-- 區隔 -->
+                            <span class="space"></span>
+                            <span class="divider"><i class="fa-solid fa-angle-right" aria-hidden="true"></i></span>
+                            <span class="space"></span>
+                            <!-- 區隔 end -->
+                            <div class="step step-4 ">4. 檢附文件</div>
+                            <!-- 區隔 -->
+                            <span class="space"></span>
+                            <span class="divider"><i class="fa-solid fa-angle-right" aria-hidden="true"></i></span>
+                            <span class="space"></span>
+                            <!-- 區隔 end -->
+                            <div class="step step-5 ">5. 申請完成待繳費</div>
+                            <span class="space"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+        <div class="content">
+            <div class="vstack gap-5">
+                <!-- 申請人應具備資格 -->
+                <div class="item">
+                    <!-- Head -->
+                    <div class="head | title-border-bottom">
+                        <h2 class="title-name">申請人應具備資格</h2>
+                    </div>
+                    <!-- Body -->
+                    <div class="body">
+                        一、成年之中華民國國民（其年齡之計算，以申請日為準），惟「於安置教養機構或寄養家庭結束安置無法返家者」，不受此年齡限制。<br />
+                        二、於桃園市設有戶籍，或在本市就學、就業有居住需求者。
+                    </div>
+                </div>
+                <!-- 基本資料填寫 -->
+                <div class="item">
+                    <!-- Head -->
+                    <div class="head | title-border-bottom">
+                        <div class="d-grid gap-2">
+                            <h2 class="title-name">基本資料填寫</h2>
+                        </div>
+                    </div>
+                    <!-- Body -->
+                    <div class="body">
+                        <div class="vstack gap-4 container-fluid">
+                            <div>
+                                <div class="text-primary">整合 MyData 資料後，部分資料如需異動，請檢附相關證明文件。（MyData資料與實際情況可能會有3~5天的落差情況）</div>
+                                <div class="text-body-secondary fs-6">* 灰底為系統自動帶入，如有異動請至個人資料管理變更</div>
+                            </div>
+                            <div class="row gy-4">
+                                <div class="col-12 col-md-6">
+                                    <label for="serialNumber" class="form-label">流水號</label>
+                                    <input type="text" class="form-control" id="serialNumber" name="serialNumber" disabled=""
+                                        placeholder="儲存後系統自動產生">
+                                </div>
+                            
+                                <div class="col-12 col-md-6">
+                                    <label for="applicationNumber" class="form-label">申請編號</label>
+                                    <input type="text" class="form-control" id="applicationNumber" name="applicationNumber" disabled=""
+                                        placeholder="送出申請後由系統產生申請編號">
+                                </div>
+                            
+                                <div class="col-12 col-md-6">
+                                    <label for="applicantName" class="form-label">申請人姓名</label>
+                                    <input type="text" class="form-control" id="applicantName" name="applicantName" value="王OO" disabled="">
+                                </div>
+                            
+                                <div class="col-12 col-md-6">
+                                    <label for="idNumber" class="form-label">身分證字號</label>
+                                    <input type="text" class="form-control" id="idNumber" name="idNumber" value="Q271124604" disabled="">
+                                </div>
+                            
+                                <div class="col-12">
+                                    <label class="form-label">性別</label>
+                                    <div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="gender" id="genderMale" value="男">
+                                            <label class="form-check-label" for="genderMale">男</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="gender" id="genderFemale" value="女">
+                                            <label class="form-check-label" for="genderFemale">女</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                                <div class="col-12 col-md-6">
+                                    <label for="birthDate" class="form-label">出生年(民國)月日</label>
+                                    <input type="text" class="form-control datepicker" id="birthDate" name="birthDate">
+                                </div>
+                            
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="condition1">
+                                        <label class="form-check-label" for="condition1">於安置教養機構或寄養家庭結束安置無法返家（須檢附證明）</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="condition2">
+                                        <label class="form-check-label" for="condition2">未成年已結婚者行為能力者</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="condition3">
+                                        <label class="form-check-label" for="condition3">
+                                            申請人未成年，法定代理人代為申請(需檢附同意書、法定代理人之同意書正本及身分證正反面影本)
+                                        </label>
+                                    </div>
+                                </div>
+                            
+                                <div class="col-12">
+                                    <label class="form-label">婚姻狀況</label>
+                                    <div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="maritalStatus" id="single" value="未婚">
+                                            <label class="form-check-label" for="single">未婚</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="maritalStatus" id="married" value="已婚">
+                                            <label class="form-check-label" for="married">已婚</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <hr class="my-0">
+                                </div>
+                            
+                                <div class="col-12 col-md-6">
+                                    <label for="phone" class="form-label">電話</label>
+                                    <div class="flex-item-wrap gap-3">
+                                        <input type="tel" class="form-control w-auto" size="1" id="phone" aria-label="區碼">
+                                        <input type="tel" class="form-control w-auto flex-grow-1" id="phone-2" size="5" aria-label="電話號碼">
+                                    </div>
+                                </div>
+                            
+                                <div class="col-12 col-md-6">
+                                    <label for="mobile" class="form-label">手機</label>
+                                    <input type="text" class="form-control" id="mobile" name="mobile" value="0912345678" disabled="">
+                                </div>
+                            
+                                <div class="col-12 col-md-6">
+                                    <label for="email" class="form-label">電子信箱</label>
+                                    <input type="email" class="form-control" id="email" name="email" value="xxxxx@gis.tw" disabled="">
+                                </div>
+                            
+                                <div class="col-12">
+                                    <label class="form-label">戶籍資料</label>
+                                    <div class="flex-item-wrap gap-3">
+                                        <select class="form-select w-auto flex-grow-1" name="residenceCity" aria-label="縣市">
+                                            <option value="" selected="">縣市</option>
+                                            <option value="桃園市">桃園市</option>
+                                        </select>
+                                        <select class="form-select w-auto flex-grow-1" name="residenceDistrict" aria-label="鄉鎮市區">
+                                            <option value="" selected="">鄉鎮市區</option>
+                                            <option value="中壢區">中壢區</option>
+                                        </select>
+                                        <input type="text" class="form-control w-auto flex-grow-1" name="residenceAddress" aria-label="地址"
+                                            placeholder="請輸入地址">
+                                    </div>
+                            
+                                </div>
+                            
+                                <div class="col-12">
+                                    <div class="flex-item-wrap mb-2">
+                                        <label class="form-label mb-0">通訊地址</label>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="sameAsResidence">
+                                            <label class="form-check-label" for="sameAsResidence">同上</label>
+                                        </div>
+                                    </div>
+                                    <div class="flex-item-wrap gap-3">
+                                        <select class="form-select w-auto flex-grow-1" name="residenceCity" aria-label="縣市">
+                                            <option value="" selected="">縣市</option>
+                                            <option value="桃園市">桃園市</option>
+                                        </select>
+                                        <select class="form-select w-auto flex-grow-1" name="residenceDistrict" aria-label="鄉鎮市區">
+                                            <option value="" selected="">鄉鎮市區</option>
+                                            <option value="中壢區">中壢區</option>
+                                        </select>
+                                        <input type="text" class="form-control w-auto flex-grow-1" name="residenceAddress" aria-label="地址"
+                                            placeholder="請輸入地址">
+                                    </div>
+                            
+                                </div>
+                            
+                                <div class="col-12">
+                                    <label class="form-label">設籍狀況</label>
+                                    <div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="residenceStatus" id="status1" value="設籍於桃園市">
+                                            <label class="form-check-label" for="status1">設籍於桃園市</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="residenceStatus" id="status2" value="於桃園市內就業">
+                                            <label class="form-check-label" for="status2">於桃園市內就業（須檢附證明）</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="residenceStatus" id="status3" value="於桃園市內就學">
+                                            <label class="form-check-label" for="status3">於桃園市內就學（須檢附證明）</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                                <div class="col-12">
+                                    <label class="form-label">緊急聯絡人</label>
+                                    <div class="flex-item-wrap gap-3">
+                                        <input type="text" class="form-control w-auto flex-grow-1" size="3" placeholder="姓名"
+                                            name="emergencyContactName" aria-label="姓名">
+                                        <select class="form-select w-auto flex-grow-1" id="relationship" name="relationship" aria-label="關係">
+                                            <option value="" selected="">關係</option>
+                                            <option value="父">父</option>
+                                            <option value="母">母</option>
+                                            <option value="兄">兄</option>
+                                            <option value="姊">姊</option>
+                                            <option value="弟">弟</option>
+                                            <option value="妹">妹</option>
+                                            <option value="配偶">配偶</option>
+                                            <option value="子">子</option>
+                                            <option value="女">女</option>
+                                            <option value="其他">其他</option>
+                                        </select>
+                                        <input type="text" class="form-control w-auto flex-grow-1" name="emergencyContactPhone" aria-label="電話"
+                                            placeholder="請輸入手機號碼">
+                                    </div>
+                            
+                                </div>
+                            
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <!-- CTA -->
+                <div class="item">
+                    <div class="btn-cta-group pb-4">
+                        <a href="#" class="btn btn-pill-outline-primary">儲存</a>
+                        <a href="right-use-apply-02.html" class="btn btn-pill-primary">下一步</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <!-- Bottom -->
+    <div class="bottom">
+      <footer class="footer">
+          <div class="img-wrap">
+            <img src="assets/img/footer-brand-logo.svg">
+          </div>
+          <div class="text">
+            <div><i class="fa-duotone fa-user-headset fa-fw me-1"></i><label class="d-none d-lg-inline-block">客服人員：</label>天思數位科技 (04)2451-6669 #6?? X小姐</div>
+            <div><i class="fad fa-browser fa-fw me-1"></i><label class="d-none d-lg-inline-block">最佳瀏覽環境：</label>Edge、Firefox 、Google Chrome ,螢幕解析度1280*768以上</div>
+            <div class="d-none d-lg-inline-block"><i class="fad fa-copyright fa-fw me-1"></i> Copyright 桃園市住宅及都市更新中心</div>
+          </div>
+      </footer>
+    </div>
+  </div> 
+  <!-- /.wrapper  -->
+
+  <!-- 回到最上面 -->
+  <div class="go-top | js-go-top">
+      <a href="#" class="" title="回到最上面">TOP</a>
+  </div>
+
+  <!-- Modal -->
+  
+  <!-- JS -->
+</body>
+
+</html>

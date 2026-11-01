@@ -1,0 +1,9 @@
+
+
+// === RWD
+//移除th, td的border
+.table-rwd.table-bordered>:not(caption)>*>* {
+    @include media-breakpoint-down(lg){
+        border-width: 0 0;
+    }
+}

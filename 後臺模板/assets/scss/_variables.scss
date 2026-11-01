@@ -1,0 +1,67 @@
+// 斷點
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px,
+  xxxl: 1920px,
+);
+$sm: map-get($grid-breakpoints, 'sm');
+$md: map-get($grid-breakpoints, 'md');
+$lg: map-get($grid-breakpoints, 'lg');
+$xl: map-get($grid-breakpoints, 'xl');
+$xxl: map-get($grid-breakpoints, 'xxl');
+$xxxl: map-get($grid-breakpoints, 'xxxl');
+$laptop: 1366px;
+
+// Colors
+$primaries: (
+  "100": #FDF6F3,
+  "200": #F9D6C9,
+  "300": #F4B59E,
+  "400": #EF9573,
+  "500": #EA7548,
+  "600": #D14815,
+  "700": #B84418,
+  "800": #8A3312,
+  "900": #5C220C
+);
+$secondaries: (
+  "100": #F9FBFC,
+  "200": #E5EFF4,
+  "300": #D1E3EB,
+  "400": #BDD6E3,
+  "500": #A9CADA,
+  "600": #96BED2,
+  "700": #7898A8,
+  "800": #5A727E,
+  "900": #3C4C54
+);
+$neutrals: (
+  "100": #F5F5F6,
+  "200": #D0D2D3,
+  "300": #ACAEB1,
+  "400": #878B8F,
+  "500": #62676D,
+  "600": #3E444B,
+  "700": #31363C,
+  "800": #25282D,
+  "900": #181B1E
+);
+
+// Colors
+$gray: #F5F5F5;
+$purple: #6B42A5;
+
+$primary: map-get($primaries, '600');
+
+
+// 其他
+$border: #D0D2D3;
+$disabled: map-get($neutrals, '300');
+$placeholder: #8E8E8E;
+$font-awesome: "Font Awesome 6 Pro";
+$material-symbols: "Material Symbols Rounded";
+$page-max-width: 1440px;

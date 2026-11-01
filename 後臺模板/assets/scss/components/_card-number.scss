@@ -1,0 +1,50 @@
+// 檔案位置：src/assets/scss/components/_card-number.scss
+// 用途：數字卡片元件樣式（儀表板統計卡：卡片 hover 高亮、強調色下拉選單）
+
+// 卡片數字使用 Rubik 字型（由 lyt-plugin type="rubik" 載入）
+.btn-card-hover-primary,
+.btn-card-hover-highlight {
+  font-family: 'Rubik', var(--body-font-family, sans-serif);
+}
+
+// 卡片 hover 變底色（次要色淺底）
+.btn-card-hover-primary {
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: #f2fbff;
+  }
+}
+
+// 強調卡片 hover 變底色（主色淺底）
+.btn-card-hover-highlight {
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: #fdf6f3;
+  }
+}
+
+// 強調色（主色）下拉選單：覆寫 Bootstrap dropdown 變數
+.custom-dropdown-menu-highlight {
+  --bs-dropdown-link-color: #{map-get($neutrals, '900')};
+  --bs-dropdown-bg: #{map-get($primaries, '100')};
+  --bs-dropdown-border-width: 0;
+  --bs-dropdown-item-padding-y: 10px;
+  --bs-dropdown-item-padding-x: 16px;
+
+  .dropdown-item {
+    --bs-dropdown-link-hover-color: #{map-get($neutrals, '900')};
+    --bs-dropdown-link-active-color: #{map-get($neutrals, '900')};
+    --bs-dropdown-link-hover-bg: #{map-get($primaries, '200')};
+    --bs-dropdown-link-active-bg: #{map-get($primaries, '300')};
+
+    &:has(i[class*="right"]) {
+      padding-right: 10px;
+    }
+
+    i[class*="right"] {
+      color: map-get($primaries, '700');
+    }
+  }
+}

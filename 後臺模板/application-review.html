@@ -1,0 +1,1214 @@
+<!doctype html>
+<html class="no-js" lang="zh-Hant">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>申請案件審核 | 桃園市住宅及都市更新中心營運管理平台</title>
+  <!-- jQuery -->
+  <script src="assets/vendor/jquery-3.7.1.min.js"></script>
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="assets/vendor/bootstrap-5.3.3/dist/css/bootstrap.min.css">
+  <script src="assets/vendor/bootstrap-5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="assets/vendor/fontawesome-pro-6.5.2-web/css/all.css">
+  <!-- Rubik (數字字型) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap">
+  <!-- Tom Select -->
+  <link rel="stylesheet" href="assets/vendor/tom-select-2.2.2/tom-select.bootstrap5.min.css">
+  <script src="assets/vendor/tom-select-2.2.2/tom-select.complete.js"></script>
+  <!-- Menu -->
+  <script src="assets/vendor/utils/menu/menu.js"></script>
+  <!-- 自訂 -->
+  <link rel="stylesheet" href="assets/css/main.css">
+  <script src="assets/js/customJS.js"></script>
+</head>
+
+<body>
+  <div class="wrapper multi-column | column-with-menu">
+    <!-- Top -->
+    <div class="top">
+      <header class="header">
+        <!-- logo -->
+        <a class="logo" href="index.html" title="回首頁">
+          <div class="img-wrap"><img src="assets/img/brand-logo.svg"></div>
+          <h2 class="">桃園市住宅及都市更新中心<span>營運管理平台</span></h2>
+        </a>
+        <!-- 手機版漢堡 -->
+        <div class="d-lg-none">
+          <div class="menu-hamburger-toggle">
+            <a class="btn-icon" data-bs-toggle="collapse" href=".js-nav-collapse">
+              <span class="is-close"><i class="fas fa-bars"></i></span>
+              <span class="is-open"><i class="fas fa-times"></i></span>
+            </a>
+          </div>
+        </div>
+      </header>
+    </div>
+    <!-- Center -->
+    <div class="center">
+      <!-- Left -->
+      <div class="left">
+        <aside class="aside">
+          <!-- 桌機版漢堡 -->
+          <div class="d-none d-lg-block">
+              <div class="menu-hamburger | js-menu-hamburger">
+                <a class="btn btn-icon" title="選單收闔"><i class="fas fa-bars"></i></a>
+              </div>
+            </div>
+          <!-- Nav collapse -->
+          <div class="nav-collapse | collapse js-nav-collapse">
+            <!-- 上方輔助功能 -->
+            <div class="top-helper-wrapper">
+              <div class="top-helper">
+                <div class="warning-bell">
+                  <button><i class="fa-solid fa-bell"></i></button>
+                  <span class="badge">8</span>
+                </div>
+                <div class="dropdown">
+                  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    歡迎OOOOO科OOO登入系統
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="#">編輯個人資料</a></li>
+                    <li><a class="dropdown-item" href="#">變更密碼</a></li>
+                    <li><a class="dropdown-item" href="#">操作手冊下載</a></li>
+                    <li><a class="dropdown-item" href="#">登出</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <!-- Menu -->
+            <ul class="menu menu-vertical | scroll isMenuOpen js-menu-vertical">
+              <!-- 首頁 -->
+              <li>
+                  <a href="index.html" >
+                    <span class="icon-text">首頁</span>
+                  </a>
+              </li>
+              <!-- 招租作業 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">招租作業*</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="apply-01.html" >專案申請*</a>
+                      </li>
+                      <li>
+                          <a href="application-query.html" >申請案件查詢*</a>
+                      </li>
+                      <li>
+                          <a href="application-review.html" class="active">申請案件審核*</a>
+                      </li>
+                      <li>
+                          <a href="shop-rent.html" >店鋪招租</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 選屋作業管理 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">選屋作業管理*</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="online-selection-rank-query.html" >選屋查詢*</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 點交簽約管理 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">點交簽約管理*</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="handover-management.html" >點交簽約查詢*</a>
+                      </li>
+                      <li>
+                          <a href="handover-details-query.html" >點交作業*</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 租約管理 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">租約管理</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="tenant-lease-management.html" >住戶租約管理</a>
+                      </li>
+                      <li>
+                          <a href="tenant-termination-management.html" >住戶退租管理</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 店鋪招商管理 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">店鋪招商管理</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="#" >店鋪公告管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >店鋪點交簽約查詢</a>
+                      </li>
+                      <li>
+                          <a href="#" >店鋪點交作業</a>
+                      </li>
+                      <li>
+                          <a href="#" >潛在店鋪管理</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 場地租借審核 -->
+              <li>
+                  <a href="#" >
+                    <span class="icon-text">場地租借審核</span>
+                  </a>
+              </li>
+              <!-- 帳務管理 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">帳務管理</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="#" >收費管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >銷貨收入</a>
+                      </li>
+                      <li>
+                          <a href="#" >帳款作廢</a>
+                      </li>
+                      <span>銀行委扣管理</span>
+                      <li>
+                          <a href="#" >銀行委扣授權</a>
+                      </li>
+                      <li>
+                          <a href="#" >銀行委扣扣款</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 資料查詢與匯出 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">資料查詢與匯出</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="#" >金流統計</a>
+                      </li>
+                      <li>
+                          <a href="#" >案件申請統計</a>
+                      </li>
+                      <li>
+                          <a href="#" >車位統計</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 物業管理功能 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">物業管理功能</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="#" >公告管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >包裹管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >扣點紀錄</a>
+                      </li>
+                      <li>
+                          <a href="#" >工作日誌</a>
+                      </li>
+                      <li>
+                          <a href="#" >場地租借管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >人員差勤管理</a>
+                      </li>
+                      <span>報修案件管理</span>
+                      <li>
+                          <a href="#" >報修案件查詢</a>
+                      </li>
+                      <li>
+                          <a href="#" >報修廠商管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >備品統計</a>
+                      </li>
+                      <li>
+                          <a href="#" >報表查詢</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 系統查詢與匯出 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">系統查詢與匯出</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="#" >通知類型設定</a>
+                      </li>        
+                  </ul>
+              </li>
+              <!-- 系統維護管理 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">系統維護管理*</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <span>社宅管理</span>
+                      <li>
+                          <a href="building-management.html" >大樓管理*</a>
+                      </li>
+                      <li>
+                          <a href="#" >大樓戶號管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >大樓車位管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >大樓場地管理</a>
+                      </li>
+                      <li>
+                          <a href="layout-config.html" >空間格局管理*</a>
+                      </li>
+                      <span>使用者權限管理</span>
+                      <li>
+                          <a href="user-data-management.html" >人員資料管理</a>
+                      </li>
+                      <li>
+                          <a href="permission-management.html" >權限管理</a>
+                      </li>
+                      <span>招租管理</span>
+                      <li>
+                          <a href="evaluation-type-settings.html" >評點類型審核設定</a>
+                      </li>
+                      <li>
+                          <a href="schedule-management.html" >社宅時程管理</a>
+                      </li>
+                      <li>
+                          <a href="schedule-management.html" >店鋪標案管理</a>
+                      </li>
+                      <li>
+                          <a href="reviewer-settings.html" >審核人員設定</a>
+                      </li>
+                      <li>
+                          <a href="document-template-settings.html" >文件範本設定</a>
+                      </li>
+                      <span>資產與營運管理</span>
+                      <li>
+                          <a href="outsourcing-management.html" >資產管理</a>
+                      </li>        
+                  </ul>
+              </li>
+              
+              <li>
+                  <a href="furniture-maintenance.html" >家具清單維護管理*</a>
+              </li>
+              
+              <li>
+                  <a href="_components.html" target="_blank">
+                    <span class="icon-text"><i class="fa-solid fa-cubes-stacked"></i>組件表</span>
+                  </a>
+              </li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+      <!-- Right -->
+      <div class="right">
+        <!-- 麵包屑 -->
+        <div class="breadcrumb-wrapper">
+            <div class="breadcrumb-inner">
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb">
+                  <li class="breadcrumb-item">招租作業</li>
+                  <li class="breadcrumb-item active" aria-current="page">申請案件審核</li>
+                </ol>
+              </nav>
+            </div>
+        </div>
+        <div class="content">
+            <!-- 查詢條件 -->
+        <div class="collapse-wrap | position-relative">
+            <h4 class="collapse-title"><span class="text">查詢條件</span></h4>
+            <a href="#searchCollapse" class="collapse-btn | stretched-link" data-bs-toggle="collapse" aria-expanded="true">
+                <i class="fa-solid fa-chevron-down"></i>
+            </a>
+        </div>
+        <!-- Collapse -->
+        <div class="collapse show" id="searchCollapse">
+            <div class="search">
+                <div class="search-top-form">
+                        <div class="row g-3">
+                            <!-- 縣市 -->
+                            <div class="col-md-6 col-xl-3">
+                                <label for="" class="form-label">縣市</label>
+                                <select name="" id="" class="form-select">
+                                    <option value="全部">全部</option>
+                                    <option value="臺北市">臺北市</option>
+                                    <option value="新北市">新北市</option>
+                                    <option value="高雄市">高雄市</option>
+                                </select>
+                            </div>
+                            <!-- 社宅大樓 -->
+                            <div class="col-md-6">
+                                <label for="" class="form-label">社宅大樓</label>
+                                <div class="flex-item-wrap">
+                                  <select name="" id="" class="form-select w-auto flex-grow-1">
+                                    <option value="全部">全部</option>
+                                    <option value="使用權社宅">使用權社宅</option>
+                                    <option value="一般社宅">安居好室社宅</option>
+                                  </select>
+                                  <select name="" id="" class="form-select w-auto flex-grow-1">
+                                    <option value="全部">全部</option>
+                                    <option value="自慢藏聯合招租">自慢藏聯合招租</option>
+                                    <option value="小東路北側">小東路北側</option>
+                                    <option value="仁德二空新村(A區)">仁德二空新村(A區)</option>
+                                    <option value="仁德二空新村(B區)">仁德二空新村(B區)</option>
+                                    <option value="永康精忠二村">永康精忠二村</option>
+                                    <option value="平實營區一期">平實營區一期</option>
+                                    <option value="平實營區二期">平實營區二期</option>
+                                    <option value="自強新村">自強新村</option>
+                                    <option value="中興新城">中興新城</option>
+                                    <option value="九六新村">九六新村</option>
+                                    <option value="永康康橋">永康康橋</option>
+                                  </select>
+                                </div>
+                            </div>
+                            <!-- 申請編號 / 流水號 -->
+                            <div class="col-md-6 col-xl-3">
+                                <label for="" class="form-label">申請編號 / 流水號</label>
+                                <input type="text" class="form-control" placeholder="請輸入申請編號、流水號">
+                            </div>
+                            <!-- 姓名 -->
+                            <div class="col-md-6 col-xl-3">
+                                <label for="" class="form-label">姓名</label>
+                                <input type="text" class="form-control" placeholder="請輸入申請人姓名">
+                            </div>
+                            <!-- 日期區間 -->
+                            <div class="col-xl-6">
+                                <label for="" class="form-label">日期區間</label>
+                                <div class="flex-item-wrap">
+                                    <select name="" id="" class="form-select | w-auto flex-grow-1">
+                                        <option value="已補件">已補件</option>
+                                        <option value="收件日期">收件日期</option>
+                                    </select>
+                                    <div class="flex-item-wrap | w-auto flex-grow-1 form-row-validation">
+                                      <input type="text" class="form-select icon date | w-auto flex-grow-1" size="5" placeholder="年/月/日" required>至
+                                      <input type="text" class="form-select icon date | w-auto flex-grow-1" size="5" placeholder="年/月/日" required>
+                                    </div>
+                                    <div class="invalid-feedback">
+                                      請輸入日期區間
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 關鍵字查詢 -->
+                            <div class="col-xl-9">
+                                <label for="" class="form-label">關鍵字查詢</label>
+                                <div class="flex-item-wrap | align-items-start">
+                                    <select class="form-select w-auto flex-grow-1 flex-md-grow-0">
+                                        <option value="申請人">申請人</option>
+                                        <option value="家庭成員/共同居住者">家庭成員/共同居住者</option>
+                                    </select>
+                                    <div class=" flex-grow-1">
+                                        <input type="text" class="form-control" placeholder="請輸入關鍵字">
+                                        <div class="form-text text-muted"><span class="me-1"><i class="fas fa-info-circle"></i></span>可輸入手機號碼、市話號碼、身分證字號、緊急聯絡人姓名</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 我的案件 -->
+                            <div class="col-md-6 col-xl-3">
+                                <label for="" class="form-label">我的案件</label>
+                                <div class="">
+                                    <input type="checkbox" class="form-check-input | fs-4">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="grid-left-auto | align-items-stretch" style="gap: 3px 0">
+                                    <div class="start | check-list-head px-3 py-2">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="inlineCheckboxAA">
+                                            <label class="form-check-label" for="inlineCheckboxAA">身份</label>
+                                        </div>
+                                    </div>
+                                    <div class="end | px-3 py-2 bg-white">
+                                        <div class="flex-item-wrap">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="inlineCheckboxAA0" value="一般戶">
+                                                <label class="form-check-label" for="inlineCheckboxAA0">一般戶</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="inlineCheckboxAA1" value="優先戶">
+                                                <label class="form-check-label" for="inlineCheckboxAA1">優先戶</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="start | px-3 py-2 check-list-head">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="inlineCheckboxAB">
+                                            <label class="form-check-label" for="inlineCheckboxAB">方式</label>
+                                        </div>
+                                    </div>
+                                    <div class="end | px-3 py-2 bg-white">
+                                        <div class="flex-item-wrap">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="inlineCheckboxAB0" value="線上">
+                                                <label class="form-check-label" for="inlineCheckboxAB0">線上</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="inlineCheckboxAB1" value="紙本">
+                                                <label class="form-check-label" for="inlineCheckboxAB1">紙本</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="start | px-3 py-2 check-list-head">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="inlineCheckboxAC">
+                                            <label class="form-check-label" for="inlineCheckboxAC">房型</label>
+                                        </div>
+                                    </div>
+                                    <div class="end | px-3 py-2 bg-white">
+                                        <div class="flex-item-wrap">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="inlineCheckboxAC0" value="套房">
+                                                <label class="form-check-label" for="inlineCheckboxAC0">套房</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="inlineCheckboxAC1" value="一房型">
+                                                <label class="form-check-label" for="inlineCheckboxAC1">一房型</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="inlineCheckboxAC2" value="二房型">
+                                                <label class="form-check-label" for="inlineCheckboxAC2">二房型</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="inlineCheckboxAC3" value="三房型">
+                                                <label class="form-check-label" for="inlineCheckboxAC3">三房型</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="start | px-3 py-2 check-list-head">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="inlineCheckboxAD">
+                                            <label class="form-check-label" for="inlineCheckboxAD">類型</label>
+                                        </div>
+                                    </div>
+                                    <div class="end | px-3 py-2 bg-white">
+                                        <div class="flex-item-wrap">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="inlineCheckboxAD0" value="新案招租">
+                                                <label class="form-check-label" for="inlineCheckboxAD0">新案招租</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="inlineCheckboxAD1" value="隨到隨辦">
+                                                <label class="form-check-label" for="inlineCheckboxAD1">隨到隨辦</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="start | px-3 py-2 check-list-head">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="inlineCheckboxAE">
+                                            <label class="form-check-label" for="inlineCheckboxAE">狀態</label>
+                                        </div>
+                                    </div>
+                                    <div class="end | px-3 py-2 bg-white">
+                                        <div class="flex-item-wrap">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="inlineCheckboxAE0" value="待繳費">
+                                                <label class="form-check-label" for="inlineCheckboxAE0">待繳費</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="inlineCheckboxAE1" value="待審核">
+                                                <label class="form-check-label" for="inlineCheckboxAE1">待審核</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="inlineCheckboxAE2" value="初審中">
+                                                <label class="form-check-label" for="inlineCheckboxAE2">初審中</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="inlineCheckboxAE3" value="複審中">
+                                                <label class="form-check-label" for="inlineCheckboxAE3">複審中</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="inlineCheckboxAE4" value="審核須補正">
+                                                <label class="form-check-label" for="inlineCheckboxAE4">審核須補正</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="inlineCheckboxAE5" value="審核須補件">
+                                                <label class="form-check-label" for="inlineCheckboxAE5">審核須補件</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="inlineCheckboxAE6" value="資格不符駁回">
+                                                <label class="form-check-label" for="inlineCheckboxAE6">資格不符駁回</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="inlineCheckboxAE7" value="審核通過">
+                                                <label class="form-check-label" for="inlineCheckboxAE7">審核通過</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="inlineCheckboxAE8" value="已放棄遞補">
+                                                <label class="form-check-label" for="inlineCheckboxAE8">已放棄遞補</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                <div class="search-bottom-buttons">
+                    <button class="btn btn-primary">
+                        <i class="fa-solid fa-magnifying-glass"></i>查詢
+                    </button>
+                </div>
+            </div>
+        </div>    <!-- 表格上方功能 -->
+        <div class="flex-start-end  mb-3">
+            <!-- Start -->
+            <div class="start">
+            </div>
+            <!-- End -->
+            <div class="end">
+                    符合查詢結果項目共<strong class="text-primary mx-1">1000</strong>筆
+            </div>
+        </div>    <!-- Table -->
+            <div class="table-responsive mb-3">
+                <table class="table table-list table-rwd table-bordered mb-0">
+                    <thead>
+                        <tr>
+                            <th>申請編號</th>
+                            <th>社會住宅</th>
+                            <th>類型</th>
+                            <th class="text-center">申請身份</th>
+                            <th class="text-center">申請房型</th>
+                            <th class="text-center">姓名</th>
+                            <th>狀態</th>
+                            <th class="text-center">初審</th>
+                            <th class="text-center">複審</th>
+                            <th>功能</th>
+                        </tr>
+                    </thead>
+                    <tbody>               
+                        <tr>
+                            <td data-th="申請編號">TSDL11307280001</td>
+                            <td data-th="社會住宅">鳳翔安居</td>
+                            <td data-th="類型">新案招租</td>
+                            <td data-th="申請身份" class="text-center">一般戶</td>
+                            <td data-th="申請房型" class="text-center">一房型</td>
+                            <td data-th="姓名" class="text-center">王小明</td>
+                            <td data-th="狀態">待審核
+            </td>
+                            <td data-th="初審" class="text-center">-</td>
+                            <td data-th="複審" class="text-center">-</td>
+                            <td data-th="功能">
+                                <div class="flex-item-wrap">
+                                    <button class="btn btn-sm btn-outline-primary" >
+                                      <i class="fa-solid fa-check-double"></i>
+                                      審核
+                                    </button>
+                                    <div class="btn-group">
+                                        <button
+                                            class="btn btn-sm btn-outline-primary dropdown-toggle"
+                                            type="button"
+                                            id="triggerId"
+                                            data-bs-toggle="dropdown"
+                                            aria-haspopup="true"
+                                            aria-expanded="false"
+                                        >
+                                        更多功能*
+                                        </button>
+                                        <div
+                                            class="dropdown-menu dropdown-menu-start"
+                                            aria-labelledby="triggerId"
+                                        >
+                                            <a class="dropdown-item" href="#projectHistoryModal" data-bs-toggle="modal">案件歷程*</a>
+                                            <a class="dropdown-item" href="#">退回申請</a>
+                                            <a class="dropdown-item" href="#">退回需補件</a>
+                                            <a class="dropdown-item" href="#returnInitialModal" data-bs-toggle="modal">退回初審*</a>
+                                            <a class="dropdown-item" href="#">退回複審</a>
+                                            <a class="dropdown-item text-danger" href="#notEligibleModal" data-bs-toggle="modal">資格不符*</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td data-th="申請編號">TSDL11307280001</td>
+                            <td data-th="社會住宅">鳳翔安居</td>
+                            <td data-th="類型">新案招租</td>
+                            <td data-th="申請身份" class="text-center">優先戶</td>
+                            <td data-th="申請房型" class="text-center">一房型</td>
+                            <td data-th="姓名" class="text-center">王小明</td>
+                            <td data-th="狀態">初審中
+            </td>
+                            <td data-th="初審" class="text-center">陳協辦</td>
+                            <td data-th="複審" class="text-center">-</td>
+                            <td data-th="功能">
+                                <div class="flex-item-wrap">
+                                    <a href="review-apply-01.html" class="btn btn-sm btn-outline-primary"><i class="fa-solid fa-check-double"></i>審核*</a>
+                                    <div class="btn-group">
+                                        <button
+                                            class="btn btn-sm btn-outline-primary dropdown-toggle"
+                                            type="button"
+                                            id="triggerId"
+                                            data-bs-toggle="dropdown"
+                                            aria-haspopup="true"
+                                            aria-expanded="false"
+                                        >
+                                        更多功能*
+                                        </button>
+                                        <div
+                                            class="dropdown-menu dropdown-menu-start"
+                                            aria-labelledby="triggerId"
+                                        >
+                                            <a class="dropdown-item" href="#projectHistoryModal" data-bs-toggle="modal">案件歷程*</a>
+                                            <a class="dropdown-item" href="#">退回申請</a>
+                                            <a class="dropdown-item" href="#">退回需補件</a>
+                                            <a class="dropdown-item" href="#returnInitialModal" data-bs-toggle="modal">退回初審*</a>
+                                            <a class="dropdown-item" href="#">退回複審</a>
+                                            <a class="dropdown-item text-danger" href="#notEligibleModal" data-bs-toggle="modal">資格不符*</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td data-th="申請編號">TSDL11307280001</td>
+                            <td data-th="社會住宅">鳳翔安居</td>
+                            <td data-th="類型">新案招租</td>
+                            <td data-th="申請身份" class="text-center">一般戶</td>
+                            <td data-th="申請房型" class="text-center">三房型</td>
+                            <td data-th="姓名" class="text-center">王小明</td>
+                            <td data-th="狀態">複審中
+            </td>
+                            <td data-th="初審" class="text-center">陳協辦</td>
+                            <td data-th="複審" class="text-center">張承辦</td>
+                            <td data-th="功能">
+                                <div class="flex-item-wrap">
+                                    <a href="review-final-apply-01.html" class="btn btn-sm btn-outline-primary"><i class="fa-solid fa-check-double"></i>審核*</a>
+                                    <div class="btn-group">
+                                        <button
+                                            class="btn btn-sm btn-outline-primary dropdown-toggle"
+                                            type="button"
+                                            id="triggerId"
+                                            data-bs-toggle="dropdown"
+                                            aria-haspopup="true"
+                                            aria-expanded="false"
+                                        >
+                                        更多功能*
+                                        </button>
+                                        <div
+                                            class="dropdown-menu dropdown-menu-start"
+                                            aria-labelledby="triggerId"
+                                        >
+                                            <a class="dropdown-item" href="#projectHistoryModal" data-bs-toggle="modal">案件歷程*</a>
+                                            <a class="dropdown-item" href="#">退回申請</a>
+                                            <a class="dropdown-item" href="#">退回需補件</a>
+                                            <a class="dropdown-item" href="#returnInitialModal" data-bs-toggle="modal">退回初審*</a>
+                                            <a class="dropdown-item" href="#">退回複審</a>
+                                            <a class="dropdown-item text-danger" href="#notEligibleModal" data-bs-toggle="modal">資格不符*</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td data-th="申請編號">TSDL11307280001</td>
+                            <td data-th="社會住宅">鳳翔安居</td>
+                            <td data-th="類型">新案招租</td>
+                            <td data-th="申請身份" class="text-center">一般戶</td>
+                            <td data-th="申請房型" class="text-center">三房型</td>
+                            <td data-th="姓名" class="text-center">王小明</td>
+                            <td data-th="狀態">審核須補件<br/>
+            (113/07/21截止)
+            </td>
+                            <td data-th="初審" class="text-center">陳協辦</td>
+                            <td data-th="複審" class="text-center">-</td>
+                            <td data-th="功能">
+                                <div class="flex-item-wrap">
+                                    <button class="btn btn-sm btn-outline-primary" >
+                                      <i class="fa-solid fa-eye"></i>
+                                      檢視
+                                    </button>
+                                    <div class="btn-group">
+                                        <button
+                                            class="btn btn-sm btn-outline-primary dropdown-toggle"
+                                            type="button"
+                                            id="triggerId"
+                                            data-bs-toggle="dropdown"
+                                            aria-haspopup="true"
+                                            aria-expanded="false"
+                                        >
+                                        更多功能*
+                                        </button>
+                                        <div
+                                            class="dropdown-menu dropdown-menu-start"
+                                            aria-labelledby="triggerId"
+                                        >
+                                            <a class="dropdown-item" href="#projectHistoryModal" data-bs-toggle="modal">案件歷程*</a>
+                                            <a class="dropdown-item" href="#">退回申請</a>
+                                            <a class="dropdown-item" href="#">退回需補件</a>
+                                            <a class="dropdown-item" href="#returnInitialModal" data-bs-toggle="modal">退回初審*</a>
+                                            <a class="dropdown-item" href="#">退回複審</a>
+                                            <a class="dropdown-item text-danger" href="#notEligibleModal" data-bs-toggle="modal">資格不符*</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td data-th="申請編號">TSDL11307280001</td>
+                            <td data-th="社會住宅">鳳翔安居</td>
+                            <td data-th="類型">新案招租</td>
+                            <td data-th="申請身份" class="text-center">一般戶</td>
+                            <td data-th="申請房型" class="text-center">三房型</td>
+                            <td data-th="姓名" class="text-center">王小明</td>
+                            <td data-th="狀態">初審中(已補件)
+            </td>
+                            <td data-th="初審" class="text-center">陳協辦</td>
+                            <td data-th="複審" class="text-center">-</td>
+                            <td data-th="功能">
+                                <div class="flex-item-wrap">
+                                    <button class="btn btn-sm btn-outline-primary" >
+                                      <i class="fa-solid fa-check-double"></i>
+                                      審核
+                                    </button>
+                                    <div class="btn-group">
+                                        <button
+                                            class="btn btn-sm btn-outline-primary dropdown-toggle"
+                                            type="button"
+                                            id="triggerId"
+                                            data-bs-toggle="dropdown"
+                                            aria-haspopup="true"
+                                            aria-expanded="false"
+                                        >
+                                        更多功能*
+                                        </button>
+                                        <div
+                                            class="dropdown-menu dropdown-menu-start"
+                                            aria-labelledby="triggerId"
+                                        >
+                                            <a class="dropdown-item" href="#projectHistoryModal" data-bs-toggle="modal">案件歷程*</a>
+                                            <a class="dropdown-item" href="#">退回申請</a>
+                                            <a class="dropdown-item" href="#">退回需補件</a>
+                                            <a class="dropdown-item" href="#returnInitialModal" data-bs-toggle="modal">退回初審*</a>
+                                            <a class="dropdown-item" href="#">退回複審</a>
+                                            <a class="dropdown-item text-danger" href="#notEligibleModal" data-bs-toggle="modal">資格不符*</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td data-th="申請編號">TSDL11307280001</td>
+                            <td data-th="社會住宅">鳳翔安居</td>
+                            <td data-th="類型">新案招租</td>
+                            <td data-th="申請身份" class="text-center">一般戶</td>
+                            <td data-th="申請房型" class="text-center">三房型</td>
+                            <td data-th="姓名" class="text-center">王小明</td>
+                            <td data-th="狀態">複審中(已補件)
+            </td>
+                            <td data-th="初審" class="text-center">-</td>
+                            <td data-th="複審" class="text-center">-</td>
+                            <td data-th="功能">
+                                <div class="flex-item-wrap">
+                                    <button class="btn btn-sm btn-outline-primary" >
+                                      <i class="fa-solid fa-check-double"></i>
+                                      審核
+                                    </button>
+                                    <div class="btn-group">
+                                        <button
+                                            class="btn btn-sm btn-outline-primary dropdown-toggle"
+                                            type="button"
+                                            id="triggerId"
+                                            data-bs-toggle="dropdown"
+                                            aria-haspopup="true"
+                                            aria-expanded="false"
+                                        >
+                                        更多功能*
+                                        </button>
+                                        <div
+                                            class="dropdown-menu dropdown-menu-start"
+                                            aria-labelledby="triggerId"
+                                        >
+                                            <a class="dropdown-item" href="#projectHistoryModal" data-bs-toggle="modal">案件歷程*</a>
+                                            <a class="dropdown-item" href="#">退回申請</a>
+                                            <a class="dropdown-item" href="#">退回需補件</a>
+                                            <a class="dropdown-item" href="#returnInitialModal" data-bs-toggle="modal">退回初審*</a>
+                                            <a class="dropdown-item" href="#">退回複審</a>
+                                            <a class="dropdown-item text-danger" href="#notEligibleModal" data-bs-toggle="modal">資格不符*</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td data-th="申請編號">TSDL11307280001</td>
+                            <td data-th="社會住宅">鳳翔安居</td>
+                            <td data-th="類型">新案招租</td>
+                            <td data-th="申請身份" class="text-center">一般戶</td>
+                            <td data-th="申請房型" class="text-center">三房型</td>
+                            <td data-th="姓名" class="text-center">王小明</td>
+                            <td data-th="狀態">審核須補件<br/>
+            (113/07/21截止)
+            </td>
+                            <td data-th="初審" class="text-center">陳協辦</td>
+                            <td data-th="複審" class="text-center">張承辦</td>
+                            <td data-th="功能">
+                                <div class="flex-item-wrap">
+                                    <button class="btn btn-sm btn-outline-primary" >
+                                      <i class="fa-solid fa-eye"></i>
+                                      檢視
+                                    </button>
+                                    <div class="btn-group">
+                                        <button
+                                            class="btn btn-sm btn-outline-primary dropdown-toggle"
+                                            type="button"
+                                            id="triggerId"
+                                            data-bs-toggle="dropdown"
+                                            aria-haspopup="true"
+                                            aria-expanded="false"
+                                        >
+                                        更多功能*
+                                        </button>
+                                        <div
+                                            class="dropdown-menu dropdown-menu-start"
+                                            aria-labelledby="triggerId"
+                                        >
+                                            <a class="dropdown-item" href="#projectHistoryModal" data-bs-toggle="modal">案件歷程*</a>
+                                            <a class="dropdown-item" href="#">退回申請</a>
+                                            <a class="dropdown-item" href="#">退回需補件</a>
+                                            <a class="dropdown-item" href="#returnInitialModal" data-bs-toggle="modal">退回初審*</a>
+                                            <a class="dropdown-item" href="#">退回複審</a>
+                                            <a class="dropdown-item text-danger" href="#notEligibleModal" data-bs-toggle="modal">資格不符*</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td data-th="申請編號">TSDL11307280001</td>
+                            <td data-th="社會住宅">鳳翔安居</td>
+                            <td data-th="類型">新案招租</td>
+                            <td data-th="申請身份" class="text-center">一般戶</td>
+                            <td data-th="申請房型" class="text-center">三房型</td>
+                            <td data-th="姓名" class="text-center">王小明</td>
+                            <td data-th="狀態"><span class="state-text-danger" data-bs-toggle="tooltip" data-bs-title="逾期未補件">資格不符駁回 <i class="fa-solid fa-circle-info"></i></span>
+            </td>
+                            <td data-th="初審" class="text-center">陳協辦</td>
+                            <td data-th="複審" class="text-center">-</td>
+                            <td data-th="功能">
+                                <div class="flex-item-wrap">
+                                    <button class="btn btn-sm btn-outline-primary" >
+                                      <i class="fa-solid fa-eye"></i>
+                                      檢視
+                                    </button>
+                                    <div class="btn-group">
+                                        <button
+                                            class="btn btn-sm btn-outline-primary dropdown-toggle"
+                                            type="button"
+                                            id="triggerId"
+                                            data-bs-toggle="dropdown"
+                                            aria-haspopup="true"
+                                            aria-expanded="false"
+                                        >
+                                        更多功能*
+                                        </button>
+                                        <div
+                                            class="dropdown-menu dropdown-menu-start"
+                                            aria-labelledby="triggerId"
+                                        >
+                                            <a class="dropdown-item" href="#projectHistoryModal" data-bs-toggle="modal">案件歷程*</a>
+                                            <a class="dropdown-item" href="#">退回申請</a>
+                                            <a class="dropdown-item" href="#">退回需補件</a>
+                                            <a class="dropdown-item" href="#returnInitialModal" data-bs-toggle="modal">退回初審*</a>
+                                            <a class="dropdown-item" href="#">退回複審</a>
+                                            <a class="dropdown-item text-danger" href="#notEligibleModal" data-bs-toggle="modal">資格不符*</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td data-th="申請編號">TSDL11307280001</td>
+                            <td data-th="社會住宅">鳳翔安居</td>
+                            <td data-th="類型">新案招租</td>
+                            <td data-th="申請身份" class="text-center">一般戶</td>
+                            <td data-th="申請房型" class="text-center">三房型</td>
+                            <td data-th="姓名" class="text-center">王小明</td>
+                            <td data-th="狀態"><span class="state-text-success">審核通過</span>
+            </td>
+                            <td data-th="初審" class="text-center">陳協辦</td>
+                            <td data-th="複審" class="text-center">張承辦</td>
+                            <td data-th="功能">
+                                <div class="flex-item-wrap">
+                                    <button class="btn btn-sm btn-outline-primary" >
+                                      <i class="fa-solid fa-eye"></i>
+                                      檢視
+                                    </button>
+                                    <div class="btn-group">
+                                        <button
+                                            class="btn btn-sm btn-outline-primary dropdown-toggle"
+                                            type="button"
+                                            id="triggerId"
+                                            data-bs-toggle="dropdown"
+                                            aria-haspopup="true"
+                                            aria-expanded="false"
+                                        >
+                                        更多功能*
+                                        </button>
+                                        <div
+                                            class="dropdown-menu dropdown-menu-start"
+                                            aria-labelledby="triggerId"
+                                        >
+                                            <a class="dropdown-item" href="#projectHistoryModal" data-bs-toggle="modal">案件歷程*</a>
+                                            <a class="dropdown-item" href="#">退回申請</a>
+                                            <a class="dropdown-item" href="#">退回需補件</a>
+                                            <a class="dropdown-item" href="#returnInitialModal" data-bs-toggle="modal">退回初審*</a>
+                                            <a class="dropdown-item" href="#">退回複審</a>
+                                            <a class="dropdown-item text-danger" href="#notEligibleModal" data-bs-toggle="modal">資格不符*</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- 分頁 -->
+            <ul class="pagination ">
+                <li class="disabled"><a href="#"><i class="fas fa-chevron-left"></i></a></li>
+                <li class="active"><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li class="disabled"><a href="#">...</a></li>
+                <li><a href="#">16</a></li>
+                <li><a href="#"><i class="fas fa-chevron-right"></i></a></li>
+            </ul></div>
+      </div>
+    </div>
+    <!-- Bottom -->
+    <div class="bottom">
+      <footer class="footer">
+          <div class="img-wrap">
+            <img src="assets/img/footer-brand-logo.svg">
+          </div>
+          <div class="text">
+            <div><i class="fa-duotone fa-user-headset fa-fw me-1"></i><label class="d-none d-lg-inline-block">客服人員：</label>天思數位科技 (04)2451-6669 #6?? X小姐</div>
+            <div><i class="fad fa-browser fa-fw me-1"></i><label class="d-none d-lg-inline-block">最佳瀏覽環境：</label>Edge、Firefox 、Google Chrome ,螢幕解析度1280*768以上</div>
+            <div class="d-none d-lg-inline-block"><i class="fad fa-copyright fa-fw me-1"></i> Copyright 桃園市住宅及都市更新中心</div>
+          </div>
+      </footer>
+    </div>
+  </div> 
+  <!-- /.wrapper  -->
+
+  <!-- 回到最上面 -->
+  <div class="go-top | js-go-top">
+      <a href="#" class="" title="回到最上面">TOP</a>
+  </div>
+
+  <!-- Modal -->
+  
+  <!-- 案件歷程 -->
+  <div class="modal fade" id="projectHistoryModal" data-bs-backdrop="static" tabindex="-1">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title" id="projectHistoryModalLabel">
+            <i class="fa-solid fa-list"></i>
+            案件歷程
+          </h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="table-responsive mb-3">
+              <table class="table table-list table-rwd table-bordered mb-0">
+                  <thead>
+                      <tr>
+                          <th class="text-center">次序</th>
+                          <th>異動前</th>
+                          <th>異動後</th>
+                          <th>原因</th>
+                          <th>異動人員</th>
+                          <th>時間</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <td data-th="次序" class="text-center">7</td>
+                          <td data-th="異動前">複審中</td>
+                          <td data-th="異動後">取消申請</td>
+                          <td data-th="原因">想申請另個社宅</td>
+                          <td data-th="異動人員">沈民眾</td>
+                          <td data-th="時間">112/06/16 17:20:58</td>
+                      </tr>
+                      <tr>
+                          <td data-th="次序" class="text-center">6</td>
+                          <td data-th="異動前">初審中</td>
+                          <td data-th="異動後">複審中</td>
+                          <td data-th="原因"></td>
+                          <td data-th="異動人員">陳協辦</td>
+                          <td data-th="時間">112/06/16 17:20:58</td>
+                      </tr>
+                      <tr>
+                          <td data-th="次序" class="text-center">5</td>
+                          <td data-th="異動前">初審中</td>
+                          <td data-th="異動後">初審中</td>
+                          <td data-th="原因">聯絡資訊異動</td>
+                          <td data-th="異動人員">陳協辦</td>
+                          <td data-th="時間">112/06/16 17:20:58</td>
+                      </tr>
+                      <tr>
+                          <td data-th="次序" class="text-center">4</td>
+                          <td data-th="異動前">審核需補正</td>
+                          <td data-th="異動後">初審中</td>
+                          <td data-th="原因"></td>
+                          <td data-th="異動人員">沈民眾</td>
+                          <td data-th="時間">112/06/16 17:20:58</td>
+                      </tr>
+                      <tr>
+                          <td data-th="次序" class="text-center">3</td>
+                          <td data-th="異動前">複審中</td>
+                          <td data-th="異動後">審核需補正</td>
+                          <td data-th="原因"></td>
+                          <td data-th="異動人員">張承辦</td>
+                          <td data-th="時間">112/06/16 17:20:58</td>
+                      </tr>
+                      <tr>
+                          <td data-th="次序" class="text-center">2</td>
+                          <td data-th="異動前">初審中</td>
+                          <td data-th="異動後">複審中</td>
+                          <td data-th="原因"></td>
+                          <td data-th="異動人員">陳協辦</td>
+                          <td data-th="時間">112/06/16 17:20:58</td>
+                      </tr>
+                      <tr>
+                          <td data-th="次序" class="text-center">1</td>
+                          <td data-th="異動前">尚未完成申請</td>
+                          <td data-th="異動後">初審中</td>
+                          <td data-th="原因"></td>
+                          <td data-th="異動人員">沈民眾</td>
+                          <td data-th="時間">112/06/16 17:20:58</td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 退回初審 -->
+  <div class="modal fade" id="returnInitialModal" data-bs-backdrop="static" tabindex="-1">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title" id="returnInitialModalLabel">
+            <i class="fa-solid fa-circle-xmark"></i>
+            退回初審
+          </h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row g-3">
+            <div class="col-md-6 col-lg-5">
+              <label for="" class="form-label">申請編號</label>
+              <input type="text" class="form-control" value="SDL1130004A" disabled>
+            </div>
+            <div class="col-md-6 col-lg-5">
+              <label for="" class="form-label">申請人姓名</label>
+              <input type="text" class="form-control" value="林OO" disabled>
+            </div>
+            <div class="col-12">
+              <label for="" class="form-label">退回初審原因<span class="required"></span></label>
+              <select name="" id="" class="form-select">
+                <option value="">請選擇</option>
+                <option value="重新補件">重新補件</option>
+                <option value="人員疏忽">人員疏忽</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div class="btn-cta-group w-100 p-0">
+            <button class="btn btn-pill-outline-primary" data-bs-dismiss="modal">取消</button>
+            <button class="btn btn-pill-primary">確定</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 資格不符駁回 -->
+  <div class="modal fade" id="notEligibleModal" data-bs-backdrop="static" tabindex="-1">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title" id="notEligibleModalLabel">
+            <i class="fa-solid fa-circle-xmark"></i>
+            資格不符駁回
+          </h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row g-3">
+            <div class="col-md-6 col-lg-5">
+              <label for="" class="form-label">申請編號</label>
+              <input type="text" class="form-control" value="SDL1130004A" disabled>
+            </div>
+            <div class="col-md-6 col-lg-5">
+              <label for="" class="form-label">申請人姓名</label>
+              <input type="text" class="form-control" value="林OO" disabled>
+            </div>
+            <div class="col-md-6 col-lg-5">
+              <label for="" class="form-label">原因<span class="required"></span></label>
+              <select name="" id="" class="form-select">
+                <option value="">請選擇</option>
+                <option value="逾期未補件">逾期未補件</option>
+                <option value="補件期間展延">補件期間展延</option>
+              </select>
+            </div>
+            <div class="col-md-6 col-lg-5">
+              <label for="" class="form-label">展延日期<span class="required"></span></label>
+              <input type="text" class="form-select icon date "  placeholder="年/月/日">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div class="btn-cta-group w-100 p-0">
+            <button class="btn btn-pill-outline-primary" data-bs-dismiss="modal">取消</button>
+            <button class="btn btn-pill-primary">確定</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- JS -->
+</body>
+
+</html>

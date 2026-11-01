@@ -1,0 +1,47 @@
+/* .file-link */
+.file-link{
+    position: relative;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-inline: 16px;
+    padding-left: 40px;
+    padding-block: 12px;
+    
+    color: currentColor;
+    font-size: 1rem; // 16px ÷ 16
+    // line-height: 1;
+    text-decoration: none;
+    
+    
+    // Icon
+    &::before{
+        position: absolute;
+        top: 10px;
+        left: 16px;
+        content: '\f0c6';
+        font-family: $font-awesome;
+        font-size: 1.25rem; // 24px ÷ 16
+        font-weight: 700;
+    }
+    // mydata
+    &.mydata::before{
+        top: 11px;
+        content: '';
+        display: block;
+        width: 24px;
+        height: 24px;
+        background: url(../img/icon-mydata.svg) center no-repeat;
+        transform: translateY(2px);
+    }
+}
+.file-item{
+    .btn-close{
+        // background-size: 14px;
+    }
+}
+.file-container{
+    width: fit-content;
+}
+

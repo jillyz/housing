@@ -1,0 +1,102 @@
+<!doctype html>
+<html class="no-js" lang="zh-Hant">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>表格控制列 | 組件表</title>
+  <!-- jQuery -->
+  <script src="../assets/vendor/jquery-3.7.1.min.js"></script>
+  <!-- jQuery-ui -->
+  <link rel="stylesheet" href="../assets/vendor/jquery-ui-1.13.2/jquery-ui.min.css">
+  <script src="../assets/vendor/jquery-ui-1.13.2/jquery-ui.min.js"></script>
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="../assets/vendor/bootstrap-5.3.3/dist/css/bootstrap.min.css">
+  <script src="../assets/vendor/bootstrap-5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../assets/vendor/fontawesome-pro-6.5.2-web/css/all.css">
+  <!-- Rubik (數字字型) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap">
+  <!-- Tom Select -->
+  <link rel="stylesheet" href="../assets/vendor/tom-select-2.2.2/tom-select.bootstrap5.min.css">
+  <script src="../assets/vendor/tom-select-2.2.2/tom-select.complete.js"></script>
+  <!-- Flatpickr 民國年 -->
+  <link rel="stylesheet" href="../assets/vendor/flatpickr-4.6.13-TW/flatpickr.min.css">
+  <script src="../assets/vendor/flatpickr-4.6.13-TW/flatpickr.min.js"></script>
+  <script src="../assets/vendor/flatpickr-4.6.13-TW/zh_tw.js"></script>
+  <!-- Fancybox -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css">
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+  <!-- FullCalendar 大月曆 -->
+  <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.18/index.global.min.js'></script>
+  <!-- 自訂 -->
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <script src="../assets/js/customJS.js"></script>
+</head>
+
+<body>
+  <div class="container py-5">
+    <p><i class="fa-solid fa-circle-chevron-left"></i> <a href="../_components.html" class="text-body">回組件表</a></p>
+    <div class="bg-white rounded-3 mt-4 mb-5">
+      <h4 class="p-5 border-bottom">表格控制列</h4>
+      <div class="p-5">
+        <div class="d-grid gap-5">
+            <!-- Item -->
+            <div class="item p-5 border">
+               <code>左側</code>
+               <!-- 表格控制列 -->
+               <div class="table-control-bar | flex-start-end">
+                <!-- Start -->
+                <div class="start">
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createBuildingtModal">
+                        <i class="fa-solid fa-circle-plus"></i>新增大樓資料
+                    </button>
+                </div>
+                <!-- End -->
+                <div class="end"></div>
+               </div>
+            </div>
+            <!-- Item -->
+            <div class="item p-5 border">
+               <code>右側</code>
+               <!-- 表格控制列 -->
+               <div class="table-control-bar | flex-start-end">
+                <!-- Start -->
+                <div class="start"></div>
+                <!-- End -->
+                <div class="end">
+                    符合查詢結果項目共<strong class="text-primary mx-1">1000</strong>筆
+                </div>
+               </div>
+            </div>
+            <!-- Item -->
+            <div class="item p-5 border">
+               <code>左右都有</code>
+               <!-- 表格控制列 -->
+               <div class="table-control-bar | flex-start-end">
+                <!-- Start -->
+                <div class="start">
+                    <a href="apply-01.html" class="btn btn-primary"><i class="fa-solid fa-circle-plus"></i>申請資料建檔</a>
+                    <a href="right-use-apply-01.html" class="btn btn-primary"><i class="fa-solid fa-circle-plus"></i>申請資料建檔(使用權)</a>
+                </div>
+                <!-- End -->
+                <div class="end">
+                    符合查詢結果項目共<strong class="text-primary mx-1">1000</strong>筆
+                </div>
+               </div>
+        
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  
+  <!-- JS -->
+</body>
+
+</html>

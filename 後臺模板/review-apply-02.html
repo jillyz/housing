@@ -1,0 +1,1478 @@
+<!doctype html>
+<html class="no-js" lang="zh-Hant">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2. 家庭成員資料 | 桃園市住宅及都市更新中心營運管理平台</title>
+  <!-- jQuery -->
+  <script src="assets/vendor/jquery-3.7.1.min.js"></script>
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="assets/vendor/bootstrap-5.3.3/dist/css/bootstrap.min.css">
+  <script src="assets/vendor/bootstrap-5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="assets/vendor/fontawesome-pro-6.5.2-web/css/all.css">
+  <!-- Rubik (數字字型) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap">
+  <!-- Tom Select -->
+  <link rel="stylesheet" href="assets/vendor/tom-select-2.2.2/tom-select.bootstrap5.min.css">
+  <script src="assets/vendor/tom-select-2.2.2/tom-select.complete.js"></script>
+  <!-- Menu -->
+  <script src="assets/vendor/utils/menu/menu.js"></script>
+  <!-- 自訂 -->
+  <link rel="stylesheet" href="assets/css/main.css">
+  <script src="assets/js/customJS.js"></script>
+</head>
+
+<body>
+  <div class="wrapper multi-column | column-with-menu">
+    <!-- Top -->
+    <div class="top">
+      <header class="header">
+        <!-- logo -->
+        <a class="logo" href="index.html" title="回首頁">
+          <div class="img-wrap"><img src="assets/img/brand-logo.svg"></div>
+          <h2 class="">桃園市住宅及都市更新中心<span>營運管理平台</span></h2>
+        </a>
+        <!-- 手機版漢堡 -->
+        <div class="d-lg-none">
+          <div class="menu-hamburger-toggle">
+            <a class="btn-icon" data-bs-toggle="collapse" href=".js-nav-collapse">
+              <span class="is-close"><i class="fas fa-bars"></i></span>
+              <span class="is-open"><i class="fas fa-times"></i></span>
+            </a>
+          </div>
+        </div>
+      </header>
+    </div>
+    <!-- Center -->
+    <div class="center">
+      <!-- Left -->
+      <div class="left">
+        <aside class="aside">
+          <!-- 桌機版漢堡 -->
+          <div class="d-none d-lg-block">
+              <div class="menu-hamburger | js-menu-hamburger">
+                <a class="btn btn-icon" title="選單收闔"><i class="fas fa-bars"></i></a>
+              </div>
+            </div>
+          <!-- Nav collapse -->
+          <div class="nav-collapse | collapse js-nav-collapse">
+            <!-- 上方輔助功能 -->
+            <div class="top-helper-wrapper">
+              <div class="top-helper">
+                <div class="warning-bell">
+                  <button><i class="fa-solid fa-bell"></i></button>
+                  <span class="badge">8</span>
+                </div>
+                <div class="dropdown">
+                  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    歡迎OOOOO科OOO登入系統
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="#">編輯個人資料</a></li>
+                    <li><a class="dropdown-item" href="#">變更密碼</a></li>
+                    <li><a class="dropdown-item" href="#">操作手冊下載</a></li>
+                    <li><a class="dropdown-item" href="#">登出</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <!-- Menu -->
+            <ul class="menu menu-vertical | scroll isMenuOpen js-menu-vertical">
+              <!-- 首頁 -->
+              <li>
+                  <a href="index.html" >
+                    <span class="icon-text">首頁</span>
+                  </a>
+              </li>
+              <!-- 招租作業 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">招租作業*</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="apply-01.html" >專案申請*</a>
+                      </li>
+                      <li>
+                          <a href="application-query.html" >申請案件查詢*</a>
+                      </li>
+                      <li>
+                          <a href="application-review.html" class="active">申請案件審核*</a>
+                      </li>
+                      <li>
+                          <a href="shop-rent.html" >店鋪招租</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 選屋作業管理 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">選屋作業管理*</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="online-selection-rank-query.html" >選屋查詢*</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 點交簽約管理 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">點交簽約管理*</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="handover-management.html" >點交簽約查詢*</a>
+                      </li>
+                      <li>
+                          <a href="handover-details-query.html" >點交作業*</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 租約管理 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">租約管理</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="tenant-lease-management.html" >住戶租約管理</a>
+                      </li>
+                      <li>
+                          <a href="tenant-termination-management.html" >住戶退租管理</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 店鋪招商管理 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">店鋪招商管理</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="#" >店鋪公告管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >店鋪點交簽約查詢</a>
+                      </li>
+                      <li>
+                          <a href="#" >店鋪點交作業</a>
+                      </li>
+                      <li>
+                          <a href="#" >潛在店鋪管理</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 場地租借審核 -->
+              <li>
+                  <a href="#" >
+                    <span class="icon-text">場地租借審核</span>
+                  </a>
+              </li>
+              <!-- 帳務管理 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">帳務管理</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="#" >收費管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >銷貨收入</a>
+                      </li>
+                      <li>
+                          <a href="#" >帳款作廢</a>
+                      </li>
+                      <span>銀行委扣管理</span>
+                      <li>
+                          <a href="#" >銀行委扣授權</a>
+                      </li>
+                      <li>
+                          <a href="#" >銀行委扣扣款</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 資料查詢與匯出 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">資料查詢與匯出</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="#" >金流統計</a>
+                      </li>
+                      <li>
+                          <a href="#" >案件申請統計</a>
+                      </li>
+                      <li>
+                          <a href="#" >車位統計</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 物業管理功能 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">物業管理功能</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="#" >公告管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >包裹管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >扣點紀錄</a>
+                      </li>
+                      <li>
+                          <a href="#" >工作日誌</a>
+                      </li>
+                      <li>
+                          <a href="#" >場地租借管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >人員差勤管理</a>
+                      </li>
+                      <span>報修案件管理</span>
+                      <li>
+                          <a href="#" >報修案件查詢</a>
+                      </li>
+                      <li>
+                          <a href="#" >報修廠商管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >備品統計</a>
+                      </li>
+                      <li>
+                          <a href="#" >報表查詢</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 系統查詢與匯出 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">系統查詢與匯出</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="#" >通知類型設定</a>
+                      </li>        
+                  </ul>
+              </li>
+              <!-- 系統維護管理 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">系統維護管理*</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <span>社宅管理</span>
+                      <li>
+                          <a href="building-management.html" >大樓管理*</a>
+                      </li>
+                      <li>
+                          <a href="#" >大樓戶號管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >大樓車位管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >大樓場地管理</a>
+                      </li>
+                      <li>
+                          <a href="layout-config.html" >空間格局管理*</a>
+                      </li>
+                      <span>使用者權限管理</span>
+                      <li>
+                          <a href="user-data-management.html" >人員資料管理</a>
+                      </li>
+                      <li>
+                          <a href="permission-management.html" >權限管理</a>
+                      </li>
+                      <span>招租管理</span>
+                      <li>
+                          <a href="evaluation-type-settings.html" >評點類型審核設定</a>
+                      </li>
+                      <li>
+                          <a href="schedule-management.html" >社宅時程管理</a>
+                      </li>
+                      <li>
+                          <a href="schedule-management.html" >店鋪標案管理</a>
+                      </li>
+                      <li>
+                          <a href="reviewer-settings.html" >審核人員設定</a>
+                      </li>
+                      <li>
+                          <a href="document-template-settings.html" >文件範本設定</a>
+                      </li>
+                      <span>資產與營運管理</span>
+                      <li>
+                          <a href="outsourcing-management.html" >資產管理</a>
+                      </li>        
+                  </ul>
+              </li>
+              
+              <li>
+                  <a href="furniture-maintenance.html" >家具清單維護管理*</a>
+              </li>
+              
+              <li>
+                  <a href="_components.html" target="_blank">
+                    <span class="icon-text"><i class="fa-solid fa-cubes-stacked"></i>組件表</span>
+                  </a>
+              </li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+      <!-- Right -->
+      <div class="right">
+        <!-- 麵包屑 -->
+        <div class="breadcrumb-wrapper">
+            <div class="breadcrumb-inner">
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb">
+                  <li class="breadcrumb-item">招租作業</li>
+                  <li class="breadcrumb-item"><a href="application-review.html">申請案件審核</a></li>
+                  <li class="breadcrumb-item">SDL1130001A</li>
+                  <li class="breadcrumb-item active" aria-current="page">2. 家庭成員資料</li>
+                </ol>
+              </nav>
+            </div>
+        </div>
+        <!-- Content -->
+        <div class="content | sticky-top-scroll">
+            <!-- Head info -->
+            <div class="flex-item-wrap | row-gap-2 column-gap-4">    
+                 <h4 class="mb-0">新招租線上申請</h4> 
+                <!-- 狀態 -->
+                <div class="pill-state">
+                  <div class="pill-state-text">初審中</div>
+                </div>
+                <div class="flex-item-wrap | ms-auto">
+                  <button class="btn btn-pill-outline-highlight" data-bs-toggle="modal" data-bs-target="#unqualifiedModal">
+                    <i class="fa-solid fa-triangle-exclamation"></i>資格不符
+                  </button>
+                  <button class="btn btn-pill-outline-primary" data-bs-toggle="modal" data-bs-target="#noteModal">
+                    <i class="fa-solid fa-note-sticky"></i>備註
+                  </button>
+                </div>
+            </div>
+            <!-- 進度條 -->
+            <div class="">
+                <!-- 手機板 -->
+                <div class="d-md-none">
+                    <div class="progress-bar-sm">
+                        <div class="steps">
+                            <a href="review-apply-01.html" class="step step-1 "><span>1. 基本資料</span></a>
+                            <a href="review-apply-02.html" class="step step-2 active"><span>2. 家庭成員資料</span></a>
+                            <a href="review-apply-03.html" class="step step-3 "><span>3. 房型選擇</span></a>
+                            <a href="review-apply-04.html" class="step step-4 "><span>4. 家庭成員財產清單</span></a>
+                            <a href="review-apply-05.html" class="step step-5 "><span>5. 檢附文件</span></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- 桌機版 -->
+                <div class="d-none d-md-block">
+                    <div class="progress-bar">
+                        <div class="steps">
+                            <span class="space"></span>
+                            <a href="review-apply-01.html" class="step step-1 ">1. 基本資料</a>
+                            <!-- 區隔 -->
+                            <span class="space"></span>
+                            <span class="divider"><i class="fa-solid fa-angle-right" aria-hidden="true"></i></span>
+                            <span class="space"></span>
+                            <!-- 區隔 end -->
+                            <a href="review-apply-02.html" class="step step-2 active">2. 家庭成員資料</a>
+                            <!-- 區隔 -->
+                            <span class="space"></span>
+                            <span class="divider"><i class="fa-solid fa-angle-right" aria-hidden="true"></i></span>
+                            <span class="space"></span>
+                            <!-- 區隔 end -->
+                            <a href="review-apply-03.html" class="step step-3 ">3. 房型選擇</a>
+                            <!-- 區隔 -->
+                            <span class="space"></span>
+                            <span class="divider"><i class="fa-solid fa-angle-right" aria-hidden="true"></i></span>
+                            <span class="space"></span>
+                            <!-- 區隔 end -->
+                            <a href="review-apply-04.html" class="step step-4 ">4. 家庭成員財產清單</a>
+                            <!-- 區隔 -->
+                            <span class="space"></span>
+                            <span class="divider"><i class="fa-solid fa-angle-right" aria-hidden="true"></i></span>
+                            <span class="space"></span>
+                            <!-- 區隔 end -->
+                            <a href="review-apply-05.html" class="step step-5 ">5. 檢附文件</a>
+                            <span class="space"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+        <div class="content | bg-transparent flex-start-end | pb-3 mt-2">
+          <div class="flex-item-wrap gap-3">
+              <div class="title-text">附件標誌：</div>
+              <div class="flex-item-wrap column-gap-3">
+                <div class="flex-item-wrap gap-1 | text-danger">
+                    <img src="assets/img/icon-myData.svg" alt="My data符號">
+                    為 Mydata回傳資料
+                </div>
+                <div class="flex-item-wrap gap-1">
+                    <i class="fa-regular fa-paperclip fa-lg"></i>
+                    為申請人檢附資料
+                </div> 
+              </div>   
+          </div>
+          <div class="flex-item-wrap my-2">
+              <button class="btn btn-pill-primary"><i class="fa-solid fa-download"></i>下載MyData回傳資料</button>
+              <button class="btn btn-pill-primary"><i class="fa-solid fa-download"></i>下載申請人自行檢附資料</button>
+          </div>
+        </div>
+        <div class="content">
+            <div class="vstack gap-5">
+                <!-- 家庭成員資格說明 -->
+                <div class="item">
+                    <!-- Head -->
+                    <div class="head | title-border-bottom">
+                        <h2 class="title-name">家庭成員資格說明</h2>
+                    </div>
+                    <!-- Body -->
+                    <div class="body">
+                        (一)申請人。(二)申請人之配偶。(三)申請人之戶籍內直系親屬(限同一戶號之戶內)。(四)申請人配偶之戶籍內直系親屬(限同一戶號之戶內)。<br>
+                        (五)申請人或其配偶孕有之胎兒。(六)特殊:申請人父母均已死亡，且其戶籍內需要照顧之未成年或身心障礙兄弟姊妹(須無配偶)。<br>
+                        二、惟前述家庭成員不包含：<br>
+                        (一)無居留證、無居留入出境證、一年以上未曾入境或已被遣返者。<br>
+                        (二)家暴或性侵害之相對人。<br>
+                        (三)無監護權之未成年子女。
+                    </div>
+                </div>
+                <!-- 申請人資料 -->
+                <div class="item">
+                    <!-- Head -->
+                    <div class="head | title-border-bottom">
+                        <div class="d-grid gap-2">
+                            <h2 class="title-name">申請人資料</h2>
+                            <div class="">
+                                <div class="flex-item-wrap mb-2">
+                                    若串接 MyData 流程未完成，請
+                                    <button class="btn btn-sm btn-primary">重新串接 MyData</button>
+                                </div>
+                                <div class="text-primary">整合 MyData 資料後，部分資料如需異動，請檢附相關證明文件。（MyData資料與實際情況可能會有3~5天的落差情況）</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Body -->
+                    <div class="body">
+                        <div class="table-responsive">
+                            <table class="table table-list table-apply-qurey-rwd mb-0">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th width="150">稱謂</th>
+                                        <th>姓名</th>
+                                        <th>國民身分證字號/<br>居留證號碼</th>
+                                        <th>性別</th>
+                                        <th>生日</th>
+                                        <th>手機號碼</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="align-middle border-0">
+                                            <button type="button" class="triger| collapse-icon collapsed" data-bs-toggle="collapse"
+                                                data-bs-target="#familyMemberCollapse-1" aria-expanded="false">
+                                                <!-- False -->
+                                                <span class="icon | expanded-false">
+                                                    <img src="assets/img/icon-square-plus.svg" alt="展開內容">
+                                                </span>
+                                                <!-- True -->
+                                                <span class="icon | expanded-true">
+                                                    <img src="assets/img/icon-square-minus.svg" alt="收合內容">
+                                                </span>
+                                            </button>
+                                        </td>
+                                        <td data-th="稱謂" class="align-middle border-0">
+                                            <select class="form-select" id="relationship" name="relationship" aria-label="稱謂" disabled="">
+                                                <option value="">請選擇</option>
+                                                <option value="本人" selected="">本人</option>
+                                                <option value="父親">父親</option>
+                                                <option value="母親">母親</option>
+                                                <option value="兄">兄</option>
+                                                <option value="姊">姊</option>
+                                                <option value="弟">弟</option>
+                                                <option value="妹">妹</option>
+                                                <option value="配偶">配偶</option>
+                                                <option value="子">子</option>
+                                                <option value="女">女</option>
+                                                <option value="其他">其他</option>
+                                            </select>
+                                        </td>
+                                        <td data-th="姓名" class="align-middle border-0">
+                                            <input type="text" class="form-control" id="familyMemberName" name="familyMemberName" value="張英浚"
+                                                aria-label="姓名" disabled="">
+                                        </td>
+                                        <td data-th="國民身分證字號/居留證號碼" class="align-middle border-0">
+                                            <input type="text" class="form-control" id="familyMemberIdNumber" name="familyMemberIdNumber"
+                                                value="L107229914" aria-label="國民身分證字號/居留證號碼" disabled="">
+                                        </td>
+                                        <td data-th="性別" class="align-middle border-0">男</td>
+                                        <td data-th="生日" class="align-middle border-0">
+                                            <input type="text" class="form-control datepicker" id="familyMemberBirthDate"
+                                                name="familyMemberBirthDate" aria-label="生日">
+                                        </td>
+                                        <td data-th="手機號碼" class="align-middle border-0">
+                                            <input type="tel" class="form-control" id="familyMemberPhone" name="familyMemberPhone"
+                                                value="0912345678" aria-label="手機號碼">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="7" class="p-0 bg-orange-lightest">
+                                            <div class="collapse" id="familyMemberCollapse-1">
+                                                <div class="p-4">
+                                                    <div class="vstack gap-3 mb-4">
+                                                        <div>
+                                                            <span class="fw-medium">符合政策戶資格項目</span> (為來自 MyData 資料 ，無法提供修改，為自行勾選項目，需檢附證明文件）
+                                                        </div>
+                                                        <div class="flex-item-wrap">
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input" type="checkbox" id="isPregnant" value="true">
+                                                                <label class="form-check-label" for="isPregnant">已懷孕</label>
+                                                            </div>
+                                                            <select class="form-select w-auto" id="pregnancyStatus" aria-label="胞胎數">
+                                                                <option value="" selected="">請選擇</option>
+                                                                <!-- 可選項目可視需求加入 -->
+                                                                <option value="1">單胞胎</option>
+                                                                <option value="2">雙胞胎</option>
+                                                                <option value="3">三胞胎</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="text-primary">
+                                                            註:單胞胎視為家庭成員一人，雙胞胎視為家庭成員兩人，以此類推
+                                                        </div>
+                                                    </div>
+                                                    <!-- Table -->
+                                                    <div class="table-responsive">
+                                                        <table class="table table-list bg-white" aria-label="符合政策戶資格項目評點表" role="table">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th class="bg-orange text-white text-center" width="1">符合</th>
+                                                                    <th class="bg-orange text-white" data-th="項目">項目</th>
+                                                                    <th class="bg-orange text-white" data-th="評點加分"><span
+                                                                            class="d-block d-sm-inline">評點</span><span>加分</span></th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td class="text-center"><input class="form-check-input" type="checkbox"
+                                                                            id="lowIncome" aria-label="低收入戶" checked=""></td>
+                                                                    <td>低收入戶</td>
+                                                                    <td>1</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-center"><input class="form-check-input" type="checkbox"
+                                                                            id="lowMidIncome" aria-label="中低收入戶"></td>
+                                                                    <td>中低收入戶</td>
+                                                                    <td>2</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-center"><input class="form-check-input" type="checkbox"
+                                                                            id="threeMinorChildren" aria-label="育有未成年子女三人以上"></td>
+                                                                    <td>育有未成年子女三人以上</td>
+                                                                    <td>1</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-center"><input class="form-check-input" type="checkbox"
+                                                                            id="disabilityType1" aria-label="身心障礙者，障礙類別屬中度以上第一類者"></td>
+                                                                    <td>身心障礙者，障礙類別屬中度以上第一類者</td>
+                                                                    <td>2</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-center"><input class="form-check-input" type="checkbox"
+                                                                            id="disabilityModerate" aria-label="身心障礙者，領有本市核發之身心障礙手冊屬中度"></td>
+                                                                    <td>身心障礙者，領有本市核發之身心障礙手冊屬中度</td>
+                                                                    <td>1</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-center"><input class="form-check-input" type="checkbox"
+                                                                            id="disabilitySevere" aria-label="身心障礙者，領有本市核發之身心障礙手冊屬中度以上障礙者－重度">
+                                                                    </td>
+                                                                    <td>身心障礙者，領有本市核發之身心障礙手冊屬中度以上障礙者－重度</td>
+                                                                    <td>2</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-center"><input class="form-check-input" type="checkbox"
+                                                                            id="fosteredYouth" aria-label="於安置教養機構或寄養家庭就養安置滿法定年，未滿二十五歲"></td>
+                                                                    <td>於安置教養機構或寄養家庭就養安置滿法定年，未滿二十五歲</td>
+                                                                    <td>2</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-center"><input class="form-check-input" type="checkbox"
+                                                                            id="specialFamily" aria-label="特殊境遇家庭"></td>
+                                                                    <td>特殊境遇家庭</td>
+                                                                    <td>1</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-center"><input class="form-check-input" type="checkbox"
+                                                                            id="lowMidIncome2" aria-label="中低收入戶"></td>
+                                                                    <td>中低收入戶</td>
+                                                                    <td>2</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-center"><input class="form-check-input" type="checkbox"
+                                                                            id="elderly65" aria-label="六十五歲以上之老人(原住民55歲以上)"></td>
+                                                                    <td>六十五歲以上之老人(原住民55歲以上)</td>
+                                                                    <td>1</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-center"><input class="form-check-input" type="checkbox"
+                                                                            id="elderly75" aria-label="七十五歲以上之老人(原住民65歲以上)"></td>
+                                                                    <td>七十五歲以上之老人(原住民65歲以上)</td>
+                                                                    <td>1</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-center"><input class="form-check-input" type="checkbox"
+                                                                            id="indigenous" aria-label="原住民"></td>
+                                                                    <td>原住民</td>
+                                                                    <td>2</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-center"><input class="form-check-input" type="checkbox"
+                                                                            id="homeless" aria-label="遊民"></td>
+                                                                    <td>遊民</td>
+                                                                    <td>1</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-center"><input class="form-check-input" type="checkbox"
+                                                                            id="disasterVictim" aria-label="災民"></td>
+                                                                    <td>災民</td>
+                                                                    <td>2</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-center"><input class="form-check-input" type="checkbox"
+                                                                            id="domesticViolenceVictim" aria-label="受家庭暴力或性侵害之受害者及其子女"></td>
+                                                                    <td>受家庭暴力或性侵害之受害者及其子女</td>
+                                                                    <td>1</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-center"><input class="form-check-input" type="checkbox"
+                                                                            id="hivPatient" aria-label="感染人類免疫缺乏病毒或罹患愛滋病或免疫缺乏症候群者"></td>
+                                                                    <td>感染人類免疫缺乏病毒或罹患愛滋病或免疫缺乏症候群者</td>
+                                                                    <td>1</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-center"><input class="form-check-input" type="checkbox"
+                                                                            id="otherApproved" aria-label="其他因主管機關認定之文件核查"></td>
+                                                                    <td>其他因主管機關認定之文件核查</td>
+                                                                    <td>2</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-center"><input class="form-check-input" type="checkbox"
+                                                                            id="threeGeneration" aria-label="與直系血親三代同住者且一戶一人"></td>
+                                                                    <td>與直系血親三代同住者且一戶一人</td>
+                                                                    <td>1</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-center"><input class="form-check-input" type="checkbox"
+                                                                            id="nurse" aria-label="住院中於各醫院一年以上之在職護理師(限申請人)"></td>
+                                                                    <td>住院中於各醫院一年以上之在職護理師(限申請人)</td>
+                                                                    <td>1</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-center"><input class="form-check-input" type="checkbox"
+                                                                            id="newResident" aria-label="新住民(限申請人)"></td>
+                                                                    <td>新住民(限申請人)</td>
+                                                                    <td>2</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- 家庭成員資料 -->
+                <div class="item">
+                    <!-- Head -->
+                    <div class="head | title-border-bottom">
+                        <div class="hstack justify-content-between">
+                            <h2 class="title-name">家庭成員資料</h2>
+                            <!-- 新增家庭成員 (桌機板) -->
+                            <div class="d-none d-xl-block">
+                                <button class="btn btn-pill-primary px-3" data-bs-toggle="modal" data-bs-target="#addMemberModal">
+                                    <i class="fa-solid fa-circle-plus" aria-hidden="true"></i>
+                                    新增家庭成員*
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Body -->
+                    <div class="body">
+                        <div class="vstack gap-5">
+                            <!-- 家庭成員資料 -->
+                            <div class="item">
+                                <div class="table-responsive">
+                                    <table class="table table-list table-apply-qurey-rwd mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th width="150">稱謂</th>
+                                                <th>姓名</th>
+                                                <th>國民身分證字號/<br>居留證號碼</th>
+                                                <th>性別</th>
+                                                <th>生日</th>
+                                                <th>手機號碼</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="align-middle border-0">
+                                                    <button type="button" class="triger| collapse-icon collapsed" data-bs-toggle="collapse"
+                                                        data-bs-target="#familyMemberCollapse-2" aria-expanded="false">
+                                                        <!-- False -->
+                                                        <span class="icon | expanded-false">
+                                                            <img src="assets/img/icon-square-plus.svg" alt="展開內容">
+                                                        </span>
+                                                        <!-- True -->
+                                                        <span class="icon | expanded-true">
+                                                            <img src="assets/img/icon-square-minus.svg" alt="收合內容">
+                                                        </span>
+                                                    </button>
+                                                </td>
+                                                <td data-th="稱謂" class="align-middle border-0">
+                                                    <select class="form-select" id="relationship" name="relationship" aria-label="稱謂">
+                                                        <option value="">請選擇</option>
+                                                        <option value="本人">本人</option>
+                                                        <option value="父親">父親</option>
+                                                        <option value="母親">母親</option>
+                                                        <option value="兄">兄</option>
+                                                        <option value="姊">姊</option>
+                                                        <option value="弟">弟</option>
+                                                        <option value="妹">妹</option>
+                                                        <option value="配偶" selected="">配偶</option>
+                                                        <option value="子">子</option>
+                                                        <option value="女">女</option>
+                                                        <option value="其他">其他</option>
+                                                    </select>
+                                                </td>
+                                                <td data-th="姓名" class="align-middle border-0">
+                                                    <input type="text" class="form-control" id="familyMemberName" name="familyMemberName" value="林美麗"
+                                                        aria-label="稱謂" disabled="">
+                                                </td>
+                                                <td data-th="國民身分證字號/居留證號碼" class="align-middle border-0" aria-label="國民身分證字號/居留證號碼">
+                                                    <input type="text" class="form-control" id="familyMemberIdNumber" name="familyMemberIdNumber"
+                                                        value="L107229914" aria-label="姓名" disabled="">
+                                                </td>
+                                                <td data-th="性別" class="align-middle border-0">女</td>
+                                                <td data-th="生日" class="align-middle border-0">
+                                                    <input type="text" class="form-control datepicker" id="familyMemberBirthDate"
+                                                        name="familyMemberBirthDate" aria-label="生日">
+                                                </td>
+                                                <td data-th="手機號碼" class="align-middle border-0">
+                                                    <input type="tel" class="form-control" id="familyMemberPhone" name="familyMemberPhone"
+                                                        value="0912345678" aria-label="手機號碼">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="7" class="p-0 bg-orange-lightest">
+                                                    <div class="collapse" id="familyMemberCollapse-2">
+                                                        <div class="p-4">
+                                                            <div class="vstack gap-3 mb-4">
+                                                                <div class="item">
+                                                                    <label class="form-label">是否為本國籍</label>
+                                                                    <div>
+                                                                        <div class="form-check form-check-inline">
+                                                                            <input class="form-check-input" type="radio" name="isNational"
+                                                                                id="isNational-0" checked="">
+                                                                            <label class="form-check-label" for="isNational-0">
+                                                                                是
+                                                                            </label>
+                                                                        </div>
+                                                                        <div class="form-check form-check-inline">
+                                                                            <input class="form-check-input" type="radio" name="isNational"
+                                                                                id="isNational-1">
+                                                                            <label class="form-check-label" for="isNational-1">
+                                                                                否（需檢附證明）
+                                                                            </label>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                
+                                                                <div class="item">
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="checkbox" value="true" id="spouseSeparate"
+                                                                            checked="">
+                                                                        <label class="form-check-label" for="spouseSeparate">
+                                                                            配偶分戶（需另檢附全戶戶籍謄本）
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                
+                                                                <hr class="my-0">
+                                                                <div>
+                                                                    <span class="fw-medium">符合政策戶資格項目</span> (為來自 MyData 資料 ，無法提供修改，為自行勾選項目，需檢附證明文件）
+                                                                </div>
+                                                                <div class="flex-item-wrap">
+                                                                    <div class="form-check form-check-inline">
+                                                                        <input class="form-check-input" type="checkbox" id="isPregnant" value="true">
+                                                                        <label class="form-check-label" for="isPregnant">已懷孕</label>
+                                                                    </div>
+                                                                    <select class="form-select w-auto" id="pregnancyStatus" aria-label="胞胎數">
+                                                                        <option value="" selected="">請選擇</option>
+                                                                        <!-- 可選項目可視需求加入 -->
+                                                                        <option value="1">單胞胎</option>
+                                                                        <option value="2">雙胞胎</option>
+                                                                        <option value="3">三胞胎</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="text-primary">
+                                                                    註:單胞胎視為家庭成員一人，雙胞胎視為家庭成員兩人，以此類推
+                                                                </div>
+                                                            </div>
+                                                            <!-- Table -->
+                                                            <div class="table-responsive">
+                                                                <table class="table table-list bg-white" aria-label="符合政策戶資格項目評點表" role="table">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th class="bg-orange text-white text-center" width="1">符合</th>
+                                                                            <th class="bg-orange text-white" data-th="項目">項目</th>
+                                                                            <th class="bg-orange text-white" data-th="評點加分"><span
+                                                                                    class="d-block d-sm-inline">評點</span><span>加分</span></th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td class="text-center"><input class="form-check-input" type="checkbox"
+                                                                                    id="lowIncome" aria-label="低收入戶" checked=""></td>
+                                                                            <td>低收入戶</td>
+                                                                            <td>1</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="text-center"><input class="form-check-input" type="checkbox"
+                                                                                    id="lowMidIncome" aria-label="中低收入戶"></td>
+                                                                            <td>中低收入戶</td>
+                                                                            <td>2</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="text-center"><input class="form-check-input" type="checkbox"
+                                                                                    id="threeMinorChildren" aria-label="育有未成年子女三人以上"></td>
+                                                                            <td>育有未成年子女三人以上</td>
+                                                                            <td>1</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="text-center"><input class="form-check-input" type="checkbox"
+                                                                                    id="disabilityType1" aria-label="身心障礙者，障礙類別屬中度以上第一類者"></td>
+                                                                            <td>身心障礙者，障礙類別屬中度以上第一類者</td>
+                                                                            <td>2</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="text-center"><input class="form-check-input" type="checkbox"
+                                                                                    id="disabilityModerate" aria-label="身心障礙者，領有本市核發之身心障礙手冊屬中度"></td>
+                                                                            <td>身心障礙者，領有本市核發之身心障礙手冊屬中度</td>
+                                                                            <td>1</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="text-center"><input class="form-check-input" type="checkbox"
+                                                                                    id="disabilitySevere" aria-label="身心障礙者，領有本市核發之身心障礙手冊屬中度以上障礙者－重度">
+                                                                            </td>
+                                                                            <td>身心障礙者，領有本市核發之身心障礙手冊屬中度以上障礙者－重度</td>
+                                                                            <td>2</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="text-center"><input class="form-check-input" type="checkbox"
+                                                                                    id="fosteredYouth" aria-label="於安置教養機構或寄養家庭就養安置滿法定年，未滿二十五歲"></td>
+                                                                            <td>於安置教養機構或寄養家庭就養安置滿法定年，未滿二十五歲</td>
+                                                                            <td>2</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="text-center"><input class="form-check-input" type="checkbox"
+                                                                                    id="specialFamily" aria-label="特殊境遇家庭"></td>
+                                                                            <td>特殊境遇家庭</td>
+                                                                            <td>1</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="text-center"><input class="form-check-input" type="checkbox"
+                                                                                    id="lowMidIncome2" aria-label="中低收入戶"></td>
+                                                                            <td>中低收入戶</td>
+                                                                            <td>2</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="text-center"><input class="form-check-input" type="checkbox"
+                                                                                    id="elderly65" aria-label="六十五歲以上之老人(原住民55歲以上)"></td>
+                                                                            <td>六十五歲以上之老人(原住民55歲以上)</td>
+                                                                            <td>1</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="text-center"><input class="form-check-input" type="checkbox"
+                                                                                    id="elderly75" aria-label="七十五歲以上之老人(原住民65歲以上)"></td>
+                                                                            <td>七十五歲以上之老人(原住民65歲以上)</td>
+                                                                            <td>1</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="text-center"><input class="form-check-input" type="checkbox"
+                                                                                    id="indigenous" aria-label="原住民"></td>
+                                                                            <td>原住民</td>
+                                                                            <td>2</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="text-center"><input class="form-check-input" type="checkbox"
+                                                                                    id="homeless" aria-label="遊民"></td>
+                                                                            <td>遊民</td>
+                                                                            <td>1</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="text-center"><input class="form-check-input" type="checkbox"
+                                                                                    id="disasterVictim" aria-label="災民"></td>
+                                                                            <td>災民</td>
+                                                                            <td>2</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="text-center"><input class="form-check-input" type="checkbox"
+                                                                                    id="domesticViolenceVictim" aria-label="受家庭暴力或性侵害之受害者及其子女"></td>
+                                                                            <td>受家庭暴力或性侵害之受害者及其子女</td>
+                                                                            <td>1</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="text-center"><input class="form-check-input" type="checkbox"
+                                                                                    id="hivPatient" aria-label="感染人類免疫缺乏病毒或罹患愛滋病或免疫缺乏症候群者"></td>
+                                                                            <td>感染人類免疫缺乏病毒或罹患愛滋病或免疫缺乏症候群者</td>
+                                                                            <td>1</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="text-center"><input class="form-check-input" type="checkbox"
+                                                                                    id="otherApproved" aria-label="其他因主管機關認定之文件核查"></td>
+                                                                            <td>其他因主管機關認定之文件核查</td>
+                                                                            <td>2</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="text-center"><input class="form-check-input" type="checkbox"
+                                                                                    id="threeGeneration" aria-label="與直系血親三代同住者且一戶一人"></td>
+                                                                            <td>與直系血親三代同住者且一戶一人</td>
+                                                                            <td>1</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="text-center"><input class="form-check-input" type="checkbox"
+                                                                                    id="nurse" aria-label="住院中於各醫院一年以上之在職護理師(限申請人)"></td>
+                                                                            <td>住院中於各醫院一年以上之在職護理師(限申請人)</td>
+                                                                            <td>1</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="text-center"><input class="form-check-input" type="checkbox"
+                                                                                    id="newResident" aria-label="新住民(限申請人)"></td>
+                                                                            <td>新住民(限申請人)</td>
+                                                                            <td>2</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="align-middle border-0">
+                                                    <button type="button" class="triger| collapse-icon collapsed" data-bs-toggle="collapse"
+                                                        data-bs-target="#familyMemberCollapse-3" aria-expanded="false">
+                                                        <!-- False -->
+                                                        <span class="icon | expanded-false">
+                                                            <img src="assets/img/icon-square-plus.svg" alt="展開內容">
+                                                        </span>
+                                                        <!-- True -->
+                                                        <span class="icon | expanded-true">
+                                                            <img src="assets/img/icon-square-minus.svg" alt="收合內容">
+                                                        </span>
+                                                    </button>
+                                                </td>
+                                                <td data-th="稱謂" class="align-middle border-0">
+                                                    <select class="form-select" id="relationship" name="relationship" aria-label="稱謂">
+                                                        <option value="">請選擇</option>
+                                                        <option value="本人">本人</option>
+                                                        <option value="父親" selected="">父親</option>
+                                                        <option value="母親">母親</option>
+                                                        <option value="兄">兄</option>
+                                                        <option value="姊">姊</option>
+                                                        <option value="弟">弟</option>
+                                                        <option value="妹">妹</option>
+                                                        <option value="配偶">配偶</option>
+                                                        <option value="子">子</option>
+                                                        <option value="女">女</option>
+                                                        <option value="其他">其他</option>
+                                                    </select>
+                                                </td>
+                                                <td data-th="姓名" class="align-middle border-0">
+                                                    <input type="text" class="form-control" id="familyMemberName" name="familyMemberName" value="曾爸爸"
+                                                        aria-label="姓名" disabled="">
+                                                </td>
+                                                <td data-th="國民身分證字號/居留證號碼" class="align-middle border-0">
+                                                    <input type="text" class="form-control" id="familyMemberIdNumber" name="familyMemberIdNumber"
+                                                        value="L107229914" aria-label="國民身分證字號/居留證號碼" disabled="">
+                                                </td>
+                                                <td data-th="性別" class="align-middle border-0">男</td>
+                                                <td data-th="生日" class="align-middle border-0">
+                                                    <input type="text" class="form-control datepicker" id="familyMemberBirthDate"
+                                                        name="familyMemberBirthDate" aria-label="生日">
+                                                </td>
+                                                <td data-th="手機號碼" class="align-middle border-0">
+                                                    <input type="tel" class="form-control" id="familyMemberPhone" name="familyMemberPhone"
+                                                        value="0912345678" aria-label="手機號碼">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="7" class="p-0 bg-orange-lightest">
+                                                    <div class="collapse" id="familyMemberCollapse-3">
+                                                        <div class="p-4">
+                                                            <div class="vstack gap-3 mb-4">
+                                                                <div class="item">
+                                                                    <label class="form-label">是否為本國籍</label>
+                                                                    <div>
+                                                                        <div class="form-check form-check-inline">
+                                                                            <input class="form-check-input" type="radio" name="isNational"
+                                                                                id="isNational-0" checked="">
+                                                                            <label class="form-check-label" for="isNational-0">
+                                                                                是
+                                                                            </label>
+                                                                        </div>
+                                                                        <div class="form-check form-check-inline">
+                                                                            <input class="form-check-input" type="radio" name="isNational"
+                                                                                id="isNational-1">
+                                                                            <label class="form-check-label" for="isNational-1">
+                                                                                否（需檢附證明）
+                                                                            </label>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                
+                                                                <div class="item">
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="checkbox" value="true" id="spouseSeparate"
+                                                                            checked="">
+                                                                        <label class="form-check-label" for="spouseSeparate">
+                                                                            配偶分戶（需另檢附全戶戶籍謄本）
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                
+                                                                <hr class="my-0">
+                                                                <div>
+                                                                    <span class="fw-medium">符合政策戶資格項目</span> (為來自 MyData 資料 ，無法提供修改，為自行勾選項目，需檢附證明文件）
+                                                                </div>
+                                                            </div>
+                                                            <!-- Table -->
+                                                            <div class="table-responsive">
+                                                                <table class="table table-list bg-white" aria-label="符合政策戶資格項目評點表" role="table">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th class="bg-orange text-white text-center" width="1">符合</th>
+                                                                            <th class="bg-orange text-white" data-th="項目">項目</th>
+                                                                            <th class="bg-orange text-white" data-th="評點加分"><span
+                                                                                    class="d-block d-sm-inline">評點</span><span>加分</span></th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td class="text-center"><input class="form-check-input" type="checkbox"
+                                                                                    id="lowIncome" aria-label="低收入戶" checked=""></td>
+                                                                            <td>低收入戶</td>
+                                                                            <td>1</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="text-center"><input class="form-check-input" type="checkbox"
+                                                                                    id="lowMidIncome" aria-label="中低收入戶"></td>
+                                                                            <td>中低收入戶</td>
+                                                                            <td>2</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="text-center"><input class="form-check-input" type="checkbox"
+                                                                                    id="threeMinorChildren" aria-label="育有未成年子女三人以上"></td>
+                                                                            <td>育有未成年子女三人以上</td>
+                                                                            <td>1</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="text-center"><input class="form-check-input" type="checkbox"
+                                                                                    id="disabilityType1" aria-label="身心障礙者，障礙類別屬中度以上第一類者"></td>
+                                                                            <td>身心障礙者，障礙類別屬中度以上第一類者</td>
+                                                                            <td>2</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="text-center"><input class="form-check-input" type="checkbox"
+                                                                                    id="disabilityModerate" aria-label="身心障礙者，領有本市核發之身心障礙手冊屬中度"></td>
+                                                                            <td>身心障礙者，領有本市核發之身心障礙手冊屬中度</td>
+                                                                            <td>1</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="text-center"><input class="form-check-input" type="checkbox"
+                                                                                    id="disabilitySevere" aria-label="身心障礙者，領有本市核發之身心障礙手冊屬中度以上障礙者－重度">
+                                                                            </td>
+                                                                            <td>身心障礙者，領有本市核發之身心障礙手冊屬中度以上障礙者－重度</td>
+                                                                            <td>2</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="text-center"><input class="form-check-input" type="checkbox"
+                                                                                    id="fosteredYouth" aria-label="於安置教養機構或寄養家庭就養安置滿法定年，未滿二十五歲"></td>
+                                                                            <td>於安置教養機構或寄養家庭就養安置滿法定年，未滿二十五歲</td>
+                                                                            <td>2</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="text-center"><input class="form-check-input" type="checkbox"
+                                                                                    id="specialFamily" aria-label="特殊境遇家庭"></td>
+                                                                            <td>特殊境遇家庭</td>
+                                                                            <td>1</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="text-center"><input class="form-check-input" type="checkbox"
+                                                                                    id="lowMidIncome2" aria-label="中低收入戶"></td>
+                                                                            <td>中低收入戶</td>
+                                                                            <td>2</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="text-center"><input class="form-check-input" type="checkbox"
+                                                                                    id="elderly65" aria-label="六十五歲以上之老人(原住民55歲以上)"></td>
+                                                                            <td>六十五歲以上之老人(原住民55歲以上)</td>
+                                                                            <td>1</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="text-center"><input class="form-check-input" type="checkbox"
+                                                                                    id="elderly75" aria-label="七十五歲以上之老人(原住民65歲以上)"></td>
+                                                                            <td>七十五歲以上之老人(原住民65歲以上)</td>
+                                                                            <td>1</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="text-center"><input class="form-check-input" type="checkbox"
+                                                                                    id="indigenous" aria-label="原住民"></td>
+                                                                            <td>原住民</td>
+                                                                            <td>2</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="text-center"><input class="form-check-input" type="checkbox"
+                                                                                    id="homeless" aria-label="遊民"></td>
+                                                                            <td>遊民</td>
+                                                                            <td>1</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="text-center"><input class="form-check-input" type="checkbox"
+                                                                                    id="disasterVictim" aria-label="災民"></td>
+                                                                            <td>災民</td>
+                                                                            <td>2</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="text-center"><input class="form-check-input" type="checkbox"
+                                                                                    id="domesticViolenceVictim" aria-label="受家庭暴力或性侵害之受害者及其子女"></td>
+                                                                            <td>受家庭暴力或性侵害之受害者及其子女</td>
+                                                                            <td>1</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="text-center"><input class="form-check-input" type="checkbox"
+                                                                                    id="hivPatient" aria-label="感染人類免疫缺乏病毒或罹患愛滋病或免疫缺乏症候群者"></td>
+                                                                            <td>感染人類免疫缺乏病毒或罹患愛滋病或免疫缺乏症候群者</td>
+                                                                            <td>1</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="text-center"><input class="form-check-input" type="checkbox"
+                                                                                    id="otherApproved" aria-label="其他因主管機關認定之文件核查"></td>
+                                                                            <td>其他因主管機關認定之文件核查</td>
+                                                                            <td>2</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="text-center"><input class="form-check-input" type="checkbox"
+                                                                                    id="threeGeneration" aria-label="與直系血親三代同住者且一戶一人"></td>
+                                                                            <td>與直系血親三代同住者且一戶一人</td>
+                                                                            <td>1</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="text-center"><input class="form-check-input" type="checkbox"
+                                                                                    id="nurse" aria-label="住院中於各醫院一年以上之在職護理師(限申請人)"></td>
+                                                                            <td>住院中於各醫院一年以上之在職護理師(限申請人)</td>
+                                                                            <td>1</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="text-center"><input class="form-check-input" type="checkbox"
+                                                                                    id="newResident" aria-label="新住民(限申請人)"></td>
+                                                                            <td>新住民(限申請人)</td>
+                                                                            <td>2</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                
+                            </div>
+                            <!-- 家庭成員資料-總計 -->
+                            <div class="item">
+                                <div class="table-responsive">
+                                    <table class="table table-list">
+                                        <thead>
+                                            <tr>
+                                                <th>我的申請人數</th>
+                                                <th>評點總分</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>3人</td>
+                                                <td class="text-primary">+5</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 檢附文件 -->
+                <div class="item">
+                    <div class="head | title-border-bottom">
+                        <h2 class="title-name">檢附文件</h2>
+                    </div>
+                    <div class="body">
+                        <div class="file-container | text-body-secondary | border-bottom-last-borderless">
+                          <!-- Item -->
+                          <div class="file-item">
+                            <a href="#" class="file-link mydata" download="" title="下載檔案">L224295227_MyData_個人所得資料.pdf 114/06/05</a>
+                          </div>
+                          <div class="file-item">
+                            <a href="#" class="file-link mydata" download="" title="下載檔案">L224295227_MyData_戶政國民身分證資料.pdf 114/06/05</a>
+                          </div>
+                          <div class="file-item">
+                            <a href="#" class="file-link mydata" download="" title="下載檔案">L224295227_MyData_現戶全戶戶籍資料.pdf 114/06/05</a>
+                          </div>
+                          <div class="file-item">
+                            <a href="#" class="file-link mydata" download="" title="下載檔案">L224295227_MyData_低收入戶證明.pdf 114/06/05</a>
+                          </div>
+                          <div class="file-item">
+                            <a href="#" class="file-link" download="" title="下載檔案">居留證.pdf</a>
+                          </div>
+                          <div class="file-item">
+                            <a href="#" class="file-link" download="" title="下載檔案">出入境證明.pdf</a>
+                          </div>
+                          <div class="file-item">
+                            <a href="#" class="file-link" download="" title="下載檔案">懷孕證明.pdf</a>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- CTA -->
+                <div class="item">
+                    <div class="btn-cta-group pb-4">
+                        <a href="review-apply-01.html" class="btn btn-pill-outline-primary">上一步</a>
+                        <a href="#" class="btn btn-pill-outline-primary">儲存</a>
+                        <a href="review-apply-03.html" class="btn btn-pill-primary">下一步</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sticky-alert">
+          <a href="apply-data-verify-fail-02.html" class="sticky-alert-link | shadow-sm" target="_blank">
+              <span class="icon"><i class="fa-solid fa-triangle-exclamation"></i></span>
+              <span>不通過<br>項<span class="space"></span>目</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <!-- Bottom -->
+    <div class="bottom">
+      <footer class="footer">
+          <div class="img-wrap">
+            <img src="assets/img/footer-brand-logo.svg">
+          </div>
+          <div class="text">
+            <div><i class="fa-duotone fa-user-headset fa-fw me-1"></i><label class="d-none d-lg-inline-block">客服人員：</label>天思數位科技 (04)2451-6669 #6?? X小姐</div>
+            <div><i class="fad fa-browser fa-fw me-1"></i><label class="d-none d-lg-inline-block">最佳瀏覽環境：</label>Edge、Firefox 、Google Chrome ,螢幕解析度1280*768以上</div>
+            <div class="d-none d-lg-inline-block"><i class="fad fa-copyright fa-fw me-1"></i> Copyright 桃園市住宅及都市更新中心</div>
+          </div>
+      </footer>
+    </div>
+  </div> 
+  <!-- /.wrapper  -->
+
+  <!-- 回到最上面 -->
+  <div class="go-top | js-go-top">
+      <a href="#" class="" title="回到最上面">TOP</a>
+  </div>
+
+  <!-- Modal -->
+  
+  <!-- 刪除警告彈窗 - icon -->
+  <div class="modal fade" id="deleteModal" data-bs-backdrop="static" tabindex="-1">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header border-0 pb-0">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center pt-1">
+          <div class="fs-1 text-danger | mb-4 pb-2"><i class="fa-solid fa-triangle-exclamation fa-lg"></i></div>
+          <div>確定要刪除 XXX 的資料嗎？</div>
+        </div>
+        <div class="modal-footer">
+          <div class="btn-cta-group w-100 p-0">
+            <button class="btn btn-pill-outline-primary" data-bs-dismiss="modal">取消</button>
+            <button class="btn btn-pill-primary">確定</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 備註 -->
+  <div class="modal fade" id="noteModal" data-bs-backdrop="static" tabindex="-1">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title" id="noteModalLabel">
+            <i class="fa-solid fa-note-sticky"></i>
+            備註
+          </h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <textarea class="form-control" rows="3" placeholder="請填寫備註內容"></textarea>
+          <div class="text-center mt-5">
+            <button class="btn btn-pill-primary"><i class="fa-solid fa-circle-plus"></i>新增</button>
+          </div>
+          <hr class="my-3">
+          <div class="table-responsive scroll">
+              <table class="table table-list table-rwd table-bordered mb-0">
+                  <thead>
+                      <tr>
+                          <th>時間</th>
+                          <th>填寫人(階段)</th>
+                          <th>備註內容</th>
+                          <th class="text-center">操作</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <td data-th="時間">113/07/04 14:42:56</td>
+                          <td data-th="填寫人(階段)">張OO (初審中)</td>
+                          <td data-th="備註內容">7/4 電話教學如何申請112所得清單</td>
+                          <td data-th="操作" class="text-center">
+                              <button class="btn btn-icon text-primary" title="刪除" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                                <i class="fa-regular fa-trash-can" aria-hidden="true"></i>
+                              </button>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td data-th="時間">113/07/04 14:42:56</td>
+                          <td data-th="填寫人(階段)">張OO (初審中)</td>
+                          <td data-th="備註內容">7/4 電話教學如何申請112所得清單</td>
+                          <td data-th="操作" class="text-center">
+                              <button class="btn btn-icon text-primary" title="刪除" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                                <i class="fa-regular fa-trash-can" aria-hidden="true"></i>
+                              </button>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td data-th="時間">113/07/04 14:42:56</td>
+                          <td data-th="填寫人(階段)">張OO (初審中)</td>
+                          <td data-th="備註內容">7/4 電話教學如何申請112所得清單</td>
+                          <td data-th="操作" class="text-center">
+                              <button class="btn btn-icon text-primary" title="刪除" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                                <i class="fa-regular fa-trash-can" aria-hidden="true"></i>
+                              </button>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td data-th="時間">113/07/04 14:42:56</td>
+                          <td data-th="填寫人(階段)">張OO (初審中)</td>
+                          <td data-th="備註內容">7/4 電話教學如何申請112所得清單</td>
+                          <td data-th="操作" class="text-center">
+                              <button class="btn btn-icon text-primary" title="刪除" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                                <i class="fa-regular fa-trash-can" aria-hidden="true"></i>
+                              </button>
+                          </td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div class="btn-cta-group w-100 p-0">
+            <button class="btn btn-pill-outline-primary" data-bs-dismiss="modal">關閉</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 資格不符 -->
+  <div class="modal fade" id="unqualifiedModal" data-bs-backdrop="static" tabindex="-1">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title" id="unqualifiedModalLabel">
+            <i class="fa-duotone fa-triangle-exclamation"></i>
+            資格不符
+          </h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <h6 class="text-danger">此案不符合以下申請資格</h6>
+            <ul class="mb-0">
+              <li>申請人未滿18歲</li>
+              <li>家庭成員月平均所得超出 54,152 元申請範圍</li>
+              <li>家庭成員持有自有住宅</li>
+            </ul>
+        </div>
+        <div class="modal-footer">
+          <div class="btn-cta-group w-100 p-0">
+            <button class="btn btn-pill-outline-primary" data-bs-dismiss="modal">關閉</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 新增家庭成員 -->
+  <div class="modal fade" id="addMemberModal" data-bs-backdrop="static" tabindex="-1">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title" id="addMemberModalLabel">
+            新增家庭成員
+          </h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="d-grid gap-3">
+            <div class="item">
+              <label for="idNumber" class="form-label">身分證字號/居留證號碼</label>
+              <input type="text" class="form-control" id="idNumber" name="idNumber">
+            </div>
+            <div class="item">
+              <label for="fullName" class="form-label">姓名</label>
+              <input type="text" class="form-control" id="fullName" name="fullName">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div class="btn-cta-group w-100 p-0">
+            <button class="btn btn-pill-primary">確定新增</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- JS -->
+</body>
+
+</html>

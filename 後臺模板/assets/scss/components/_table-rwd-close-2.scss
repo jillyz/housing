@@ -1,0 +1,79 @@
+.table-rwd:has([data-th]){
+    --divider: '：';
+    thead{
+        display: none;
+        @include breakpoint($lg) {
+            display: table-header-group;
+        }
+    }
+    [data-th]{
+        display: flex;
+        row-gap: 4px;
+        padding-block: 4px;
+        padding-inline: 0px;
+        border-width: 0;
+        flex-wrap: wrap;
+        &::before{
+            content: attr(data-th)var(--divider);
+            white-space: nowrap;
+            @include breakpoint($lg) {
+                display: none;
+            }
+        }
+        @include breakpoint($lg) {
+            display: table-cell;
+            border-bottom-width: 1px;
+            padding: $table-cell-padding-x;
+        }
+
+        //有按鈕
+        &:has(.btn:not(.btn-link)),
+        &:has(.btn-icon:not(.btn-link)),
+        &:has(.form-file){
+            &::before{
+                margin-top: 6px;
+            }
+        }
+        &:has(.form-control, .form-select){
+            &::before{
+                margin-top: 10px;
+            }
+        }
+    }
+    th{
+        font-weight: normal;
+    }
+    tr{
+        display: flex;
+        flex-direction: column;
+        padding-inline: 24px;
+        padding-block: 16px;
+        border-bottom: 1px solid $border;
+        
+        @include breakpoint($lg) {
+            display: table-row;
+            padding: 0;
+        }
+    }
+    tr > *:first-child {
+        // padding-left: 4px;
+        @include breakpoint($lg){
+            padding-left: $table-cell-padding-x*2;
+        }
+    }
+    tr > *:last-child {
+        // padding-right: 4px;
+        @include breakpoint($lg){
+            padding-right: $table-cell-padding-x*2;
+        }
+    }
+}
+
+.table-rwd.table-striped:has([data-th]){
+    [data-th]{
+        padding: 8px 16px;
+    }
+    tr{
+        padding: 0;
+    }
+}

@@ -1,0 +1,41 @@
+/* 移除 valid 的 style */
+.was-validated .form-control:valid,
+.was-validated .form-select:valid{
+    --bs-form-select-bg-icon: none !important;
+    //--
+    border-color: $border !important;
+    box-shadow: none !important;    
+}
+.was-validated .form-control:valid{
+    background-image: none;
+}
+/* invalid-feedback */
+.invalid-feedback{
+    // font-size: 1rem;
+}
+/* invalid 的 style */
+.is-invalid{
+    --bs-form-invalid-border-color: #E51313;
+}
+/* 整列驗證 */
+.was-validated .form-row-validation:has(.is-invalid),
+.was-validated .form-row-validation:has(:invalid){
+    & ~ .invalid-feedback{
+        display: block;
+    }
+}
+/* 驗證不通過時家背景色(選配) */
+.was-validated .validation-bg-warning{
+    $warning-color: #FDF6F3;
+    //--
+    &:has(:invalid){
+        @include breakpoint($md){
+            background-color: $warning-color;
+        }
+        
+        // Obj
+        .validation-warning-obj{
+            background-color: $warning-color !important;
+        }
+    }
+}

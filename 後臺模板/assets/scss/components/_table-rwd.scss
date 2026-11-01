@@ -1,0 +1,61 @@
+.table-rwd {
+     --divider: '：';
+     //--
+    // 隱藏thead
+    &>thead{
+        @include media-breakpoint-down(lg){
+            display: none;
+        }
+    }
+
+    // 隱藏tbody th{
+    &>tbody>tr>th:not(.highlight){
+        @include media-breakpoint-down(lg){
+            display: none;
+        }
+    }
+
+    // 隱藏td border
+    &>:not(caption)>*:has([data-th])>*{
+        @include media-breakpoint-down(lg){
+            border-bottom-width: 0;
+        }
+    }
+    // 顯示th border
+    &>:not(caption)>*:has([data-th]) {
+        @include media-breakpoint-down(lg){
+            border-width: 1px 0;
+            border-color: #62676D;
+        }
+    }
+    
+
+    // padding統一
+    &>:not(caption)>*>*[data-th] {
+        @include media-breakpoint-down(lg){
+            padding: $table-cell-padding-y $table-cell-padding-x;
+        }
+    }
+    // 顯示data-th
+    &>:not(caption)>*>*[data-th]:not([data-th=""]){
+        @include media-breakpoint-down(lg){
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%; //有的td會設定width屬性
+        }
+        &::before{
+            @include media-breakpoint-down(lg){
+                content: attr(data-th)var(--divider);
+                white-space: nowrap;
+            }            
+        }
+        &:has(.form-select, .form-control, .btn-icon){
+            &::before{
+
+                @include media-breakpoint-down(lg){
+                    margin-block: 8px;
+                }
+            }
+        }
+    }
+}

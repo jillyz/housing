@@ -1,0 +1,81 @@
+$gutter-sizes: 0, 8, 12, 16, 20, 24, 32, 40;
+
+@each $size in $gutter-sizes{
+    .g-#{$size}{
+        --bs-gutter-x: #{$size}px !important;
+        --bs-gutter-y: #{$size}px !important;
+    }
+    .gx-#{$size}{
+        --bs-gutter-x: #{$size}px !important;
+    }
+    .gy-#{$size}{
+        --bs-gutter-y: #{$size}px !important;
+    }
+    //md
+    @include breakpoint($md){
+        .g-md-#{$size}{
+            --bs-gutter-x: #{$size}px !important;
+            --bs-gutter-y: #{$size}px !important;
+        }
+        .gx-md-#{$size}{
+            --bs-gutter-x: #{$size}px !important;
+        }
+        .gy-md-#{$size}{
+            --bs-gutter-y: #{$size}px !important;
+        }
+    }    
+    //lg
+    @include breakpoint($lg){
+        .g-lg-#{$size}{
+            --bs-gutter-x: #{$size}px !important;
+            --bs-gutter-y: #{$size}px !important;
+        }
+        .gx-lg-#{$size}{
+                --bs-gutter-x: #{$size}px !important;
+        }
+        .gy-lg-#{$size}{
+            --bs-gutter-y: #{$size}px !important;
+        }
+    }
+    //xl
+    @include breakpoint($xl){
+        .g-xl-#{$size}{
+            --bs-gutter-x: #{$size}px !important;
+            --bs-gutter-y: #{$size}px !important;
+        }
+        .gx-xl-#{$size}{
+            --bs-gutter-x: #{$size}px !important;
+        }
+        .gy-xl-#{$size}{
+            --bs-gutter-y: #{$size}px !important;
+        }
+    }
+    //xxl
+    @include breakpoint($xxl){
+        .g-xxl-#{$size}{
+            --bs-gutter-x: #{$size}px !important;
+            --bs-gutter-y: #{$size}px !important;
+        }
+        .gx-xxl-#{$size}{
+            --bs-gutter-x: #{$size}px !important;
+        }
+        .gy-xxl-#{$size}{
+            --bs-gutter-y: #{$size}px !important;
+        }
+    }
+    //xxxl
+    @include breakpoint($xxxl){
+        .g-xxxl-#{$size}{
+            --bs-gutter-x: #{$size}px !important;
+            --bs-gutter-y: #{$size}px !important;
+        }
+        .gx-xxxl-#{$size}{
+            --bs-gutter-x: #{$size}px !important;
+        }
+        .gy-xxxl-#{$size}{
+            --bs-gutter-y: #{$size}px !important;
+        }
+    }
+
+
+}

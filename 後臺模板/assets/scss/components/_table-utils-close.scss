@@ -1,0 +1,83 @@
+/* Table list */
+
+.table-list {
+    $table-list-border-color: #D8D8D8;
+    $table-list-th-text: #000;
+    $table-list-th-bg: #F5F5F5;
+    --bs-table-border-color: #{$table-list-border-color};
+    --bs-border-width: 1px !important;
+    --bs-table-bg: #FFF;
+    th{
+        --bs-table-color: #{$table-list-th-text};
+        --bs-table-bg: #{$table-list-th-bg};
+        // border-bottom-width: 0 !important;
+    }
+    &.table-bordered{
+        th,td {
+            // border-width: 0;
+        }
+        tr:first-child{
+            // border-width: 0;            
+        }
+        tbody tr:first-child{
+            // border-bottom-width: 1px;
+        }
+        @include breakpoint($md){
+            tr > th:not(:first-child),
+            tr > td:not(:first-child) {
+                // border-left-width: 1px;
+            }
+        }
+        // RWD
+        &.table-rwd{
+            --bs-border-width: 0;
+            tr > *:not(:first-child) {
+                // border-left-width: 0px;
+                @include breakpoint($lg){
+                    // border-left-width: 1px;
+                }
+            }
+            &:has([data-th]) [data-th] {
+                @include breakpoint($lg){
+                    border-width: 1px;
+                }
+            }
+        }
+    }
+
+
+    // highlight
+    .highlight {
+        background-color: #FFF8EF;
+        color: #000;
+    }
+
+    // selected
+    tr.selected {
+        position: relative;
+        
+        td{
+            background-color: #fff3e1 !important; 
+
+        }
+        &::after {
+            content: "";
+            display: block;
+            position: absolute;
+            top: -1px;
+            bottom: -1px;
+            right: 0px;
+            left: 0px;
+            -webkit-box-shadow: 0 0 0 2px inset #f39917;
+                    box-shadow: 0 0 0 2px inset #f39917;
+            pointer-events: none; 
+        }
+    }
+}
+
+
+// table-form
+.table-form>:not(caption)>*>th {
+    --bs-table-bg: #5390a4;
+    --bs-table-color: white; 
+}

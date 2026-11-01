@@ -1,0 +1,54 @@
+/* == Utilities == */
+// 文字顏色
+$text-colors: (
+    danger : #A80000,
+    primary : $primary,
+    purple : $purple,
+    blue : #296ece,
+);
+// 背景顏色
+$bg-colors: (
+    primary : $primary,
+    gray : $gray ,
+    orange: #C64300,
+    orange-lightest: #FFF7E8,
+    yellow-light: #FDE3B4,
+);
+
+
+
+
+$utilities: (
+    "text-color": (
+        class: text,
+        property: color,
+        values: $text-colors
+    ),
+    "text-primary-color": (
+        class: text-primary,
+        property: color,
+        values: $primaries
+    ),
+    "bg-color": (
+        class: bg,
+        property: background-color,
+        values: $bg-colors
+    ),
+    "bg-primary-color": (
+        class: bg-primary,
+        property: background-color,
+        values: $primaries
+    ),
+    "bg-neutral-color": (
+        class: bg-neutral,
+        property: background-color,
+        values: $neutrals
+    ),
+    "bg-secondary-color": (
+        class: bg-secondary,
+        property: background-color,
+        values: $secondaries
+    ),
+);
+
+@import "../vendor/bootstrap-5.3.3/scss/utilities/api";

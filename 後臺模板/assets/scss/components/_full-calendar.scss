@@ -1,0 +1,212 @@
+/* ============================================
+   大月曆 (full-calendar)
+   FullCalendar 客製化樣式
+   ============================================ */
+
+.full-calendar {
+  .fc-col-header-cell-cushion {
+    color: white !important;
+    text-decoration: none;
+  }
+
+  .fc-daygrid-day-number {
+    color: #665a53;
+    text-decoration: none;
+  }
+
+  .fc-theme-standard td,
+  .fc-theme-standard th {
+    border-color: #cecbc5;
+  }
+
+  .fc-theme-standard th {
+    background-color: #665a53;
+  }
+
+  .fc-day {
+    background-color: #ededed;
+  }
+
+  .fc-day-sun,
+  .fc-day-sat {
+    background-color: #e5e1dd;
+  }
+
+  .fc .fc-button-primary {
+    background-color: #8e8e8e;
+    border-width: 0;
+
+    &:hover,
+    &:not(:disabled).fc-button-active,
+    &:not(:disabled):active {
+      background-color: $primary;
+    }
+
+    &:focus {
+      box-shadow: 0 0 0 .25rem rgba($primary, .25);
+    }
+  }
+
+  .fc .fc-h-event {
+    border-width: 0;
+  }
+
+  // 「+ 其他 N 項」收合連結
+  .fc .fc-daygrid-more-link {
+    color: #979fa1;
+    text-decoration: none;
+    margin-top: 8px;
+
+    &:hover {
+      color: #3f4141;
+    }
+  }
+
+  .fc .fc-daygrid-day.fc-day-future {
+    background-color: white;
+  }
+
+  .fc .fc-daygrid-day.fc-day-future.fc-day-sat,
+  .fc .fc-daygrid-day.fc-day-future.fc-day-sun {
+    background-color: #f3eee8;
+  }
+
+  .fc .fc-daygrid-day.fc-day-future.disabledDay {
+    background-color: #ededed;
+  }
+
+  .fc .fc-daygrid-day.fc-day-future.disabledDay.fc-day-sat,
+  .fc .fc-daygrid-day.fc-day-future.disabledDay.fc-day-sun {
+    background-color: #e5e1dd;
+  }
+}
+
+.carlendar-wrapper,
+.calendar-wrapper {
+  // 月曆改用 height: 'auto' 依內容自動撐高，避免內部出現捲軸；
+  // 這裡不再固定高度，僅保留最小高度讓短月份維持版面。
+  min-height: 640px;
+}
+
+.calendar-legend {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  @include breakpoint($md) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @include breakpoint($xl) {
+    display: flex;
+    gap: 16px;
+    justify-content: end;
+  }
+
+  li {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.45;
+
+    &::before {
+      content: "";
+      display: block;
+      width: 16px;
+      height: 16px;
+      margin-right: 4px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    &::after {
+      position: absolute;
+      top: 50%;
+      left: -5px;
+      transform: rotate(45deg);
+      content: "";
+      display: none;
+      width: 27px;
+      height: 2px;
+      box-shadow: 0 2px 0 whitesmoke;
+    }
+
+    &.hide {
+      opacity: .3;
+
+      &::after {
+        display: block;
+      }
+    }
+
+    // 圖例色點：跨色相、明度差異加大，避免相近難辨
+    &.teal::before,   // 社宅申請時間
+    &.teal::after {
+      background-color: #1f9b8e;
+    }
+
+    &.yellow::before, // 看屋
+    &.yellow::after {
+      background-color: #e3b23c;
+    }
+
+    &.orange::before, // 選屋
+    &.orange::after {
+      background-color: #e0562c;
+    }
+
+    &.brown::before,  // 點交
+    &.brown::after {
+      background-color: #7a5230;
+    }
+
+    &.lime::before,   // 點退
+    &.lime::after {
+      background-color: #a8bf3f;
+    }
+
+    &.blue::before,   // 報修(派工日)
+    &.blue::after {
+      background-color: #3f6fb0;
+    }
+
+    &.gray::before,   // 場地(租借日)
+    &.gray::after {
+      background-color: #9aa0a6;
+    }
+
+    &.purple::before, // 巡邏
+    &.purple::after {
+      background-color: #8258a8;
+    }
+
+    &.green::before,  // 維養
+    &.green::after {
+      background-color: #3f8f52;
+    }
+
+    &.rose::before,   // 國定假日
+    &.rose::after {
+      background-color: #c85a7c;
+    }
+  }
+
+  button {
+    padding: 0;
+    color: inherit;
+    text-align: left;
+    background: transparent;
+    border: 0;
+  }
+}
+
+// 事件 tooltip 需蓋過 FullCalendar 的 more-link popover (.fc-popover, z-index 9999)，
+// 否則在「+ 其他 N 項」展開的 popover 內 hover 時 tooltip 會被 popover 遮住。
+.tooltip.fc-event-tooltip {
+  z-index: 10000;
+}

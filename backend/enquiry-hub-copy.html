@@ -1,0 +1,358 @@
+<!doctype html>
+<html class="no-js" lang="zh-Hant">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>查調工作臺｜全國社會住宅資料整合暨共同查調管理平臺</title>
+  <!-- jQuery -->
+  <script src="../後臺模板/assets/vendor/jquery-3.7.1.min.js"></script>
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="../後臺模板/assets/vendor/bootstrap-5.3.3/dist/css/bootstrap.min.css">
+  <script src="../後臺模板/assets/vendor/bootstrap-5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../後臺模板/assets/vendor/fontawesome-pro-6.5.2-web/css/all.css">
+  <!-- Rubik (數字字型) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap">
+  <!-- Tom Select -->
+  <link rel="stylesheet" href="../後臺模板/assets/vendor/tom-select-2.2.2/tom-select.bootstrap5.min.css">
+  <script src="../後臺模板/assets/vendor/tom-select-2.2.2/tom-select.complete.js"></script>
+  <!-- Menu -->
+  <script src="../後臺模板/assets/vendor/utils/menu/menu.js"></script>
+  <!-- 自訂 -->
+  <link rel="stylesheet" href="../後臺模板/assets/css/main.css">
+  <script src="../後臺模板/assets/vendor/utils/photoLightbox/photoLightbox.js"></script>
+  <script src="../後臺模板/assets/js/customJS.js"></script>
+  <link rel="stylesheet" href="assets/css/shell.css">
+  <link rel="stylesheet" href="assets/css/theme.css">
+</head>
+
+<body class="backend-page">
+  <div class="wrapper multi-column | column-with-menu">
+    <!-- Top -->
+    <div class="top">
+      <header class="header">
+        <!-- logo -->
+        <a class="logo" href="home-admin.html" title="回後臺首頁">
+        <div class="img-wrap">
+          <img src="assets/img/nlma-seal.svg" alt="內政部國土管理署署徽" width="250" height="318">
+          <div class="agency-name"><span>內政部</span><strong>國土管理署</strong></div>
+        </div>
+        <h2>全國社會住宅資料整合暨共同查調管理平臺</h2>
+      </a>
+        <!-- 手機版漢堡 -->
+        <div class="d-lg-none">
+          <div class="menu-hamburger-toggle">
+            <a class="btn-icon" id="mobileMenu" role="button" aria-label="開啟後臺選單" aria-expanded="false" aria-controls="backendNav" data-bs-toggle="collapse" href=".js-nav-collapse">
+              <span class="is-close"><i class="fas fa-bars"></i></span>
+              <span class="is-open"><i class="fas fa-times"></i></span>
+            </a>
+          </div>
+        </div>
+      </header>
+    </div>
+    <!-- Center -->
+    <div class="center">
+      <!-- Left -->
+      <div class="left">
+        <aside class="aside">
+          <!-- 桌機版漢堡 -->
+          <div class="d-none d-lg-block">
+              <div class="menu-hamburger | js-menu-hamburger">
+                <a class="btn btn-icon" id="desktopMenu" href="#backendNavigation" role="button" aria-label="收合側邊選單" aria-expanded="true" aria-controls="backendNavigation" title="選單收闔"><i class="fas fa-bars"></i></a>
+              </div>
+            </div>
+          <!-- Nav collapse -->
+          <div class="nav-collapse | collapse js-nav-collapse" id="backendNav">
+            <!-- 上方輔助功能 -->
+            <div class="top-helper-wrapper">
+            <div class="top-helper">
+              <div class="dropdown">
+                <button class="btn dropdown-toggle" id="operatorMenu" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-circle-user me-2" aria-hidden="true"></i>國土署主管<span class="operator-agency">內政部國土管理署</span></button>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="operatorMenu">
+                  <li><button class="dropdown-item" type="button" data-operator-action="profile">個人資料與帳號設定</button></li>
+                  <li><button class="dropdown-item" type="button" data-operator-action="role">切換登入角色</button></li>
+                  <li><button class="dropdown-item text-danger" type="button" data-operator-action="logout">登出系統</button></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+            <!-- Menu -->
+            <ul id="backendNavigation" class="menu menu-vertical scroll isMenuOpen js-menu-vertical backend-navigation" aria-label="後臺主選單">
+<li>
+<a class="has-children" role="button" tabindex="0" aria-expanded="false"><span class="icon-text">首頁</span><i class="fas fa-chevron-down" aria-hidden="true"></i></a>
+<ul class="sub-menu">
+<li><a href="home-admin.html">資訊儀表板</a></li>
+</ul>
+</li>
+<li>
+<a class="has-children" role="button" tabindex="0" aria-expanded="false"><span class="icon-text">家戶案件追蹤查詢</span><i class="fas fa-chevron-down" aria-hidden="true"></i></a>
+<ul class="sub-menu">
+<li><a href="../admin/home-agency.html#case-workbench">家戶案件追蹤查詢</a></li>
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">結果名冊紀錄</a></li>
+</ul>
+</li>
+<li>
+<a class="has-children" role="button" tabindex="0" aria-expanded="false"><span class="icon-text">資料共同查調</span><i class="fas fa-chevron-down" aria-hidden="true"></i></a>
+<ul class="sub-menu">
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">查調模組 API</a></li>
+<li><a class="active" href="enquiry-hub.html" aria-current="page">查調工作臺</a></li>
+</ul>
+</li>
+<li>
+<a class="has-children" role="button" tabindex="0" aria-expanded="false"><span class="icon-text">監控中心</span><i class="fas fa-chevron-down" aria-hidden="true"></i></a>
+<ul class="sub-menu">
+<li><a href="home-admin.html#platform-monitor">介接運作總覽</a></li>
+<li>
+<a class="has-children" role="button" tabindex="0" aria-expanded="false"><span class="icon-text">資料交換紀錄</span><i class="fas fa-chevron-down" aria-hidden="true"></i></a>
+<ul class="sub-menu">
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">案件取號紀錄</a></li>
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">狀態回傳紀錄</a></li>
+</ul>
+</li>
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">查調紀錄</a></li>
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">異常紀錄</a></li>
+</ul>
+</li>
+<li>
+<a class="has-children" role="button" tabindex="0" aria-expanded="false"><span class="icon-text">查詢及統計</span><i class="fas fa-chevron-down" aria-hidden="true"></i></a>
+<ul class="sub-menu">
+<li><a href="home-admin.html#case-overview">案件統計報表</a></li>
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">問卷統計分析</a></li>
+</ul>
+</li>
+<li>
+<a class="has-children" role="button" tabindex="0" aria-expanded="false"><span class="icon-text">系統營運管理</span><i class="fas fa-chevron-down" aria-hidden="true"></i></a>
+<ul class="sub-menu">
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">社宅資料管理</a></li>
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">招租時程（API）</a></li>
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">招租公告（API）</a></li>
+<li>
+<a class="has-children" role="button" tabindex="0" aria-expanded="false"><span class="icon-text">帳號權限管理</span><i class="fas fa-chevron-down" aria-hidden="true"></i></a>
+<ul class="sub-menu">
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">帳號管理</a></li>
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">角色權限管理</a></li>
+</ul>
+</li>
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">通知紀錄查詢</a></li>
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">操作紀錄查詢</a></li>
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">智能客服管理</a></li>
+</ul>
+</li>
+</ul>
+          </div>
+        </aside>
+      </div>
+      <!-- Right -->
+      <div class="right" id="mainContent" role="main" tabindex="-1">
+        <!-- 麵包屑 -->
+        <div class="breadcrumb-wrapper">
+            <div class="breadcrumb-inner">
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb">
+                  <li class="breadcrumb-item">資料共同查調</li>
+                  <li class="breadcrumb-item active" aria-current="page">查調工作臺</li>
+                </ol>
+              </nav>
+            </div>
+        </div>
+        <!-- 查詢與表格直接沿用 後臺模板/application-query.html 元件。 -->
+        <div class="content">
+          <div class="collapse-wrap | position-relative">
+            <h4 class="collapse-title"><span class="text">查詢條件</span></h4>
+            <a href="#searchCollapse" class="collapse-btn | stretched-link" role="button" data-bs-toggle="collapse" aria-expanded="true" aria-controls="searchCollapse" aria-label="收合或展開查詢條件"><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></a>
+          </div>
+          <div class="collapse show" id="searchCollapse">
+            <form class="search" id="enquiryFilter">
+              <div class="search-top-form">
+                <div class="row g-3">
+                  <div class="col-md-6 col-xl-9">
+                    <label for="enquiryKeyword" class="form-label">關鍵字</label>
+                    <input type="text" class="form-control" id="enquiryKeyword" name="keyword" placeholder="請輸入統一案件編號、申請人或申請人身分證字號" aria-describedby="keywordHint">
+                    <div class="form-text text-muted" id="keywordHint"><span class="me-1"><i class="fas fa-info-circle" aria-hidden="true"></i></span>可輸入統一案件編號、申請人或申請人身分證字號的完整或部分內容。</div>
+                  </div>
+                  <div class="col-md-6 col-xl-3">
+                    <label for="enquiryAgency" class="form-label">權責機關</label>
+                    <select class="form-select" id="enquiryAgency" name="agency">
+                      <option value="">全部權責機關</option>
+                      <option value="國家住都中心">國家住都中心</option>
+                      <option value="新北市政府">新北市政府</option>
+                      <option value="臺北市政府">臺北市政府</option>
+                      <option value="桃園市政府">桃園市政府</option>
+                      <option value="臺中市政府">臺中市政府</option>
+                      <option value="臺南市政府">臺南市政府</option>
+                      <option value="高雄市政府">高雄市政府</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="search-bottom-buttons">
+                <button class="btn btn-primary" type="submit"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>查詢</button>
+                <button class="btn btn-outline-secondary" type="reset">重設</button>
+              </div>
+            </form>
+          </div>
+          <div class="flex-start-end mb-3">
+            <div class="start"><div class="flex-item-wrap"><span id="enquirySummary" role="status" aria-live="polite">共 8 筆查調案件</span></div></div>
+            <div class="end"><span class="text-muted small" id="resultHint">示意資料；查調結果空白表示未查調該項目。</span></div>
+          </div>
+          <div class="table-responsive mb-3">
+            <table class="table table-list table-rwd table-bordered mb-0" aria-describedby="resultHint">
+              <caption class="visually-hidden">查調工作臺案件與各項查調結果</caption>
+              <thead>
+                <tr>
+                  <th rowspan="2" scope="col" id="caseId">統一案件編號</th>
+                  <th rowspan="2" scope="col" id="applicant">申請人</th>
+                  <th rowspan="2" scope="col" id="agency">權責機關</th>
+                  <th rowspan="2" scope="col" id="housing">申請社宅</th>
+                  <th rowspan="2" scope="col" id="room">申請房型</th>
+                  <th colspan="3" scope="colgroup" id="resultGroup">查調結果</th>
+                  <th rowspan="2" scope="col" id="actions">操作</th>
+                </tr>
+                <tr>
+                  <th scope="col" id="totalIncome">總所得</th>
+                  <th scope="col" id="monthlyIncome">每人每月平均所得</th>
+                  <th scope="col" id="propertyValue">不動產價值</th>
+                </tr>
+              </thead>
+              <tbody id="enquiryRows">
+                <tr data-case-id="115-000001" data-applicant="陳怡君" data-id-number="A000000001" data-agency="國家住都中心">
+                  <td data-th="統一案件編號" headers="caseId">115-000001</td>
+                  <td data-th="申請人" headers="applicant">陳怡君</td>
+                  <td data-th="權責機關" headers="agency">國家住都中心</td>
+                  <td data-th="申請社宅" headers="housing">安居示範社宅</td>
+                  <td data-th="申請房型" headers="room">套房</td>
+                  <td data-th="總所得" headers="resultGroup totalIncome"><span class="text-success fw-bold">符合</span></td>
+                  <td data-th="每人每月平均所得" headers="resultGroup monthlyIncome"><span class="text-success fw-bold">符合</span></td>
+                  <td data-th="不動產價值" headers="resultGroup propertyValue"><span class="text-success fw-bold">符合</span></td>
+                  <td data-th="操作" headers="actions"><div class="flex-item-wrap"><button class="btn btn-sm btn-outline-primary" type="button" disabled title="詳細頁待建置">查看詳細</button></div></td>
+                </tr>
+                <tr data-case-id="115-000002" data-applicant="林志明" data-id-number="A000000002" data-agency="新北市政府">
+                  <td data-th="統一案件編號" headers="caseId">115-000002</td>
+                  <td data-th="申請人" headers="applicant">林志明</td>
+                  <td data-th="權責機關" headers="agency">新北市政府</td>
+                  <td data-th="申請社宅" headers="housing">新北示範社宅</td>
+                  <td data-th="申請房型" headers="room">一房型</td>
+                  <td data-th="總所得" headers="resultGroup totalIncome"><span class="text-danger fw-bold">不符合</span></td>
+                  <td data-th="每人每月平均所得" headers="resultGroup monthlyIncome"><span class="text-success fw-bold">符合</span></td>
+                  <td data-th="不動產價值" headers="resultGroup propertyValue"><span class="text-success fw-bold">符合</span></td>
+                  <td data-th="操作" headers="actions"><div class="flex-item-wrap"><button class="btn btn-sm btn-outline-primary" type="button" disabled title="詳細頁待建置">查看詳細</button></div></td>
+                </tr>
+                <tr data-case-id="115-000003" data-applicant="王雅婷" data-id-number="A000000003" data-agency="臺北市政府">
+                  <td data-th="統一案件編號" headers="caseId">115-000003</td>
+                  <td data-th="申請人" headers="applicant">王雅婷</td>
+                  <td data-th="權責機關" headers="agency">臺北市政府</td>
+                  <td data-th="申請社宅" headers="housing">臺北示範社宅</td>
+                  <td data-th="申請房型" headers="room">二房型</td>
+                  <td data-th="總所得" headers="resultGroup totalIncome"><span class="text-success fw-bold">符合</span></td>
+                  <td data-th="每人每月平均所得" headers="resultGroup monthlyIncome"><span class="text-danger fw-bold">不符合</span></td>
+                  <td data-th="不動產價值" headers="resultGroup propertyValue"><span class="text-success fw-bold">符合</span></td>
+                  <td data-th="操作" headers="actions"><div class="flex-item-wrap"><button class="btn btn-sm btn-outline-primary" type="button" disabled title="詳細頁待建置">查看詳細</button></div></td>
+                </tr>
+                <tr data-case-id="115-000004" data-applicant="張家豪" data-id-number="A000000004" data-agency="桃園市政府">
+                  <td data-th="統一案件編號" headers="caseId">115-000004</td>
+                  <td data-th="申請人" headers="applicant">張家豪</td>
+                  <td data-th="權責機關" headers="agency">桃園市政府</td>
+                  <td data-th="申請社宅" headers="housing">桃園示範社宅</td>
+                  <td data-th="申請房型" headers="room">三房型</td>
+                  <td data-th="總所得" headers="resultGroup totalIncome"><span class="text-success fw-bold">符合</span></td>
+                  <td data-th="每人每月平均所得" headers="resultGroup monthlyIncome"><span class="text-success fw-bold">符合</span></td>
+                  <td data-th="不動產價值" headers="resultGroup propertyValue"><span class="text-danger fw-bold">不符合</span></td>
+                  <td data-th="操作" headers="actions"><div class="flex-item-wrap"><button class="btn btn-sm btn-outline-primary" type="button" disabled title="詳細頁待建置">查看詳細</button></div></td>
+                </tr>
+                <tr data-case-id="115-000005" data-applicant="李佳蓉" data-id-number="A000000005" data-agency="臺中市政府">
+                  <td data-th="統一案件編號" headers="caseId">115-000005</td>
+                  <td data-th="申請人" headers="applicant">李佳蓉</td>
+                  <td data-th="權責機關" headers="agency">臺中市政府</td>
+                  <td data-th="申請社宅" headers="housing">臺中示範社宅</td>
+                  <td data-th="申請房型" headers="room">二房型</td>
+                  <td data-th="總所得" headers="resultGroup totalIncome"><span class="text-success fw-bold">符合</span></td>
+                  <td data-th="每人每月平均所得" headers="resultGroup monthlyIncome"></td>
+                  <td data-th="不動產價值" headers="resultGroup propertyValue"><span class="text-success fw-bold">符合</span></td>
+                  <td data-th="操作" headers="actions"><div class="flex-item-wrap"><button class="btn btn-sm btn-outline-primary" type="button" disabled title="詳細頁待建置">查看詳細</button></div></td>
+                </tr>
+                <tr data-case-id="115-000006" data-applicant="黃柏翰" data-id-number="A000000006" data-agency="臺南市政府">
+                  <td data-th="統一案件編號" headers="caseId">115-000006</td>
+                  <td data-th="申請人" headers="applicant">黃柏翰</td>
+                  <td data-th="權責機關" headers="agency">臺南市政府</td>
+                  <td data-th="申請社宅" headers="housing">臺南示範社宅</td>
+                  <td data-th="申請房型" headers="room">一房型</td>
+                  <td data-th="總所得" headers="resultGroup totalIncome"></td>
+                  <td data-th="每人每月平均所得" headers="resultGroup monthlyIncome"><span class="text-success fw-bold">符合</span></td>
+                  <td data-th="不動產價值" headers="resultGroup propertyValue"></td>
+                  <td data-th="操作" headers="actions"><div class="flex-item-wrap"><button class="btn btn-sm btn-outline-primary" type="button" disabled title="詳細頁待建置">查看詳細</button></div></td>
+                </tr>
+                <tr data-case-id="115-000007" data-applicant="吳欣怡" data-id-number="A000000007" data-agency="高雄市政府">
+                  <td data-th="統一案件編號" headers="caseId">115-000007</td>
+                  <td data-th="申請人" headers="applicant">吳欣怡</td>
+                  <td data-th="權責機關" headers="agency">高雄市政府</td>
+                  <td data-th="申請社宅" headers="housing">高雄示範社宅</td>
+                  <td data-th="申請房型" headers="room">套房</td>
+                  <td data-th="總所得" headers="resultGroup totalIncome"></td>
+                  <td data-th="每人每月平均所得" headers="resultGroup monthlyIncome"></td>
+                  <td data-th="不動產價值" headers="resultGroup propertyValue"></td>
+                  <td data-th="操作" headers="actions"><div class="flex-item-wrap"><button class="btn btn-sm btn-outline-primary" type="button" disabled title="詳細頁待建置">查看詳細</button></div></td>
+                </tr>
+                <tr data-case-id="115-000008" data-applicant="陳建宏" data-id-number="A000000008" data-agency="國家住都中心">
+                  <td data-th="統一案件編號" headers="caseId">115-000008</td>
+                  <td data-th="申請人" headers="applicant">陳建宏</td>
+                  <td data-th="權責機關" headers="agency">國家住都中心</td>
+                  <td data-th="申請社宅" headers="housing">安居示範社宅</td>
+                  <td data-th="申請房型" headers="room">三房型</td>
+                  <td data-th="總所得" headers="resultGroup totalIncome"><span class="text-danger fw-bold">不符合</span></td>
+                  <td data-th="每人每月平均所得" headers="resultGroup monthlyIncome"><span class="text-danger fw-bold">不符合</span></td>
+                  <td data-th="不動產價值" headers="resultGroup propertyValue"></td>
+                  <td data-th="操作" headers="actions"><div class="flex-item-wrap"><button class="btn btn-sm btn-outline-primary" type="button" disabled title="詳細頁待建置">查看詳細</button></div></td>
+                </tr>
+                <tr id="enquiryEmpty" hidden><td colspan="9" class="text-center py-5">查無符合條件的案件，請調整查詢條件。</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- 沿用 application-query.html 的 pagination > li > a 結構。 -->
+          <nav aria-label="查調結果分頁" id="enquiryPaginationNav" hidden>
+            <ul class="pagination" id="enquiryPagination"></ul>
+          </nav>
+          <noscript><p class="text-danger">請啟用 JavaScript 使用查詢及分頁功能；目前顯示全部示意資料。</p></noscript>
+        </div>
+      </div>
+    </div>
+    <!-- Bottom -->
+    <div class="bottom">
+      <footer class="footer">
+          
+          <div class="text"><div>內政部國土管理署</div><div>全國社會住宅資料整合暨共同查調管理平臺</div></div></footer>
+    </div>
+  </div> 
+  <!-- /.wrapper  -->
+
+  <!-- 回到最上面 -->
+  <div class="go-top | js-go-top">
+      <a href="#mainContent" id="goTop" title="回到最上面">TOP</a>
+  </div>
+
+<!-- 沿用 後臺模板/components/modal.html 的「警告彈窗 -文字」結構。 -->
+<div class="modal fade" id="demoModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="demoModalTitle" aria-describedby="demoModalMessage" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header border-0 pb-0">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="關閉提示"></button>
+      </div>
+      <div class="modal-body text-center">
+        <h6 class="fs-4 fw-bold | mb-4 pb-2" id="demoModalTitle">操作提示</h6>
+        <div id="demoModalMessage"></div>
+      </div>
+      <div class="modal-footer">
+        <div class="btn-cta-group w-100 p-0">
+          <button type="button" class="btn btn-pill-primary" data-bs-dismiss="modal">確定</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="assets/js/enquiry-list.js"></script>
+<script src="assets/js/shell.js"></script>
+</body>
+</html>

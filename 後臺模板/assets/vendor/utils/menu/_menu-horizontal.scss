@@ -1,0 +1,32 @@
+/*Menu水平排列*/
+.menu-horizontal{
+    @include breakpoint($lg){           
+        display: flex;
+        // justify-content: center;
+        gap: .5rem;
+        overflow: unset !important;
+    }
+
+
+     // icon文字
+     .icon-text{
+        @include breakpoint($lg){           
+            gap: .5rem;
+        }
+     }
+
+     // Sub menu
+    .sub-menu{
+        @include breakpoint($lg){           
+            position: absolute;
+            min-width: 12.5rem;
+            box-shadow: 0px 2px 4px rgba(0,0,0, 0.35);
+        }
+
+        a{
+            @include breakpoint($lg){           
+                padding-left: 1rem;
+            }
+        }
+    }
+}

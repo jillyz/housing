@@ -1,0 +1,169 @@
+// table list
+.table-list{
+    --bs-table-bg: #FFF;
+    // 統一 thead, th底色
+    thead, tbody th{
+        --bs-table-bg: #F5F5F5;
+    }
+
+    // 吸頂表頭（markup 為 thead.position-sticky.top-0）
+    //
+    // 表頭上緣漏光的兩個成因，都必須繞開 markup 上的 utility class 才能解掉：
+    // 1. .top-0 是 top: 0 !important，蓋不掉；而吸頂元素的位置會被 round 到裝置像素，
+    //    在非整數縮放／HiDPI 下與捲動偏移不同步，表頭上緣就漏出一條次像素寬的帶。
+    //    慣用手法是 top: -1px，讓表頭比容器上緣再高 1px、多出來的部分交給容器 overflow 裁掉。
+    // 2. position: sticky 掛在 thead（display: table-header-group）上，
+    //    瀏覽器對 header-group 吸頂的框線與次像素處理並不可靠。
+    // 因此改為：解除 thead 自身的吸頂，把吸頂下放到 th（display: table-cell，行為最穩定），
+    // th 沒有 .top-0 的束縛，才能設 top: -1px。
+    //
+    // 框線則由下方 :has(thead.position-sticky) 的 border-collapse: separate 規則統一處理。
+    thead.position-sticky{
+        position: static !important;
+
+        // 表頭單列列高，供兩列表頭計算第二列的吸頂位置。
+        // ＝上下 padding 各一份＋單行文字高度；.table th 有 white-space: nowrap，
+        // 表頭永遠不換行，這個高度才算得準。用 em 而非固定 px，字級調整會自動跟著變。
+        // 注意不含框線：第一列「不跨列」的儲存格下框線已被下方規則移除，實際列高就是這個值。
+        --sticky-th-row-height: calc(#{$table-cell-padding-y * 2} + 1.5em);
+
+        th{
+            position: sticky;
+            // -1px 是關鍵：讓表頭覆蓋到容器上緣之外，次像素誤差再也沒有空間漏出來
+            top: -1px;
+            // 需高於 selected 列（position: relative），避免捲動時被選中列蓋住
+            z-index: 2;
+            // 明寫不透明底色，確保吸頂時完全遮住從底下捲過的列
+            background-color: var(--bs-table-bg);
+        }
+
+        // 兩列表頭（帶 colspan／rowspan 的統計表）：
+        // 第二列若與第一列同樣吸在 -1px，捲動時會整列縮上去疊住第一列，
+        // 因此要往下讓出一個表頭列高。
+        // （目前只有兩列表頭；三列以上需另行計算各列的吸頂位置，此規則不適用。）
+        tr + tr > th{
+            top: calc(var(--sticky-th-row-height) - 1px);
+
+            // 兩列表頭之間那條線，改由「第二列自己的上框線」繪製。
+            // 若沿用第一列的下框線，只要 --sticky-th-row-height 與實際列高差一個像素，
+            // 第二列吸頂時就會正好壓在那條線上、把線整條吃掉（線隨捲動消失）。
+            // 由第二列自己畫則不論估算誤差多少，線永遠跟著第二列一起移動，不可能被自己蓋住。
+            border-top-width: 1px;
+        }
+
+        // 第一列中「不跨列」的儲存格讓出下框線，免得與上面那條線疊成 2px。
+        // 帶 rowspan 的儲存格會跨過兩列，它的下框線其實是表頭與內容之間的分界，必須保留。
+        tr:not(:last-child) > th:not([rowspan]){
+            border-bottom-width: 0;
+        }
+
+        // 外投陰影只由表頭最後一列負責，否則兩列之間會多出一道不該有的陰影橫線。
+        // 這是唯一保留的陰影，作用是讓吸頂表頭浮在內容之上、兼作「這張表可以往下捲」的提示；
+        // 框線一律用真正的 border 畫（見下方 border-collapse 規則），不再用陰影模擬。
+        tr:last-child > th{
+            box-shadow: 0 6px 6px -6px rgba(72, 79, 102, 0.28);
+        }
+    }
+
+    // 吸頂表格的框線改由「儲存格」自己畫（border-collapse: separate）：
+    // collapse 模式下框線的所有權在表格層，表頭一吸頂就與框線脫節，只能靠 box-shadow 補畫；
+    // 但陰影與 border 的算繪路徑不同（抗鋸齒、非整數縮放下的取整都不一樣），粗細永遠對不齊。
+    // 改成 separate 之後每一條線都是真正的 1px border，全表粗細一致，
+    // 且線隨儲存格移動，吸頂時不會漏出底下捲過的內容，也不會多出沒人負責的殘線。
+    // lg 以下 .table-rwd 會改成卡片式排版、靠 tr 的 border 分隔（separate 模式不繪製列框線），
+    // 故只在 lg 以上套用。
+    &:has(thead.position-sticky){
+        @include media-breakpoint-up(lg){
+            border-collapse: separate;
+            // 不留格線間距，視覺上與 collapse 完全一致
+            border-spacing: 0;
+
+            // 外框只畫左右兩邊：
+            // 上緣交給捲動容器繪製（表格自繪會隨內容捲走，見檔案下方 .table-responsive 規則）；
+            // 下緣交給最末列儲存格自己的下框線——跨列（rowspan）儲存格不一定落在最後一個 tr 內，
+            // 由表格統一畫下緣時會與那些儲存格的下框線疊成 2px。
+            border: 0 solid var(--bs-table-border-color);
+            border-left-width: 1px;
+            border-right-width: 1px;
+
+            // separate 模式下列群組（thead／tbody）與列（tr）的框線都不會被繪製，
+            // 明寫歸零以免 .table-bordered 的列框線設定殘留成誤導。
+            > :not(caption),
+            > :not(caption) > *{
+                border-width: 0;
+            }
+
+            // 內部格線：每格只畫右、下兩條，相鄰兩格共用同一條線，不會疊成 2px；
+            // 最末列的下框線同時兼任表格下外框。
+            > :not(caption) > * > *{
+                border: 0 solid var(--bs-table-border-color);
+                border-right-width: 1px;
+                border-bottom-width: 1px;
+            }
+
+            // 最右欄讓位給表格右外框，否則邊緣會出現兩條並排的線
+            > :not(caption) > * > *:last-child{
+                border-right-width: 0;
+            }
+        }
+    }
+
+    // highlight
+    .highlight{
+        background-color: #FFF8EF;
+    }
+
+    // selected
+    tr.selected{
+        --bs-table-bg: transparent;
+        //--
+        position: relative;
+        background-color: #fff3e1;
+        border-width: 0;
+
+        &::after{
+            content: "";
+            display: block;
+            position: absolute;
+            top: -1px;
+            bottom: -1px;
+            right: 0px;
+            left: -0px;
+            -webkit-box-shadow: 0 0 0 2px inset #f39917;
+            box-shadow: 0 0 0 2px inset #f39917;
+            pointer-events: none;
+
+            //手機板時tr上下有border，要擴大把上面tr的線蓋掉
+            @include media-breakpoint-down(lg){
+                top: -2px; 
+            }
+        }
+    }
+}
+
+// 限高＋吸頂表頭的捲動容器：
+// overscroll-behavior 避免表格捲到底之後把整頁一起帶著捲（同一頁若有多個巢狀捲動區，
+// 沒有這行時滑鼠停在表格上滾動會意外跳動整頁）；捲軸改細版，以免在卡片內過於搶眼。
+.table-responsive:has(.table-list thead.position-sticky){
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+    scrollbar-color: #C9CCD0 transparent;
+
+    // 表頭上框線由捲動容器負責：
+    // 表格自繪的上框線會隨內容一起捲走；而 th 為了消除上緣的次像素縫設了 top: -1px，
+    // 它自繪的上框線也會被容器裁掉。這條線的語意本來就是捲動視窗的上邊界（不隨內容移動），
+    // 交給容器畫才會固定不動，顏色沿用 .table-bordered 的 $border 以維持整張表格線同色。
+    @include media-breakpoint-up(lg){
+        border-top: 1px solid $border;
+    }
+}
+
+// collapsible
+.table--collapsible{
+    &>:not(caption)>*:not(:has(.collapse)){
+        --bs-border-width: 0;
+    }
+    &>:not(caption)>*:has([aria-expanded="true"]){
+        --bs-border-width: 1px;
+    }
+}

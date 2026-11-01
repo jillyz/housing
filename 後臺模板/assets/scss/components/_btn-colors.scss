@@ -1,0 +1,44 @@
+
+$btn-colors: (
+    'primary': #156E8C,
+    'highlight': #A80000,
+);
+$btn-hover-colors: (
+    'primary': #3C90AD,
+    'highlight': #E15555,
+);
+$btn-outline-colors: (
+    'primary': #EDFAFF,
+    'highlight': #FFEFEF,
+);
+$btn-disabled: #98999A;
+
+// 跑迴圈
+@each $name, $color in $btn-colors {
+  .btn-#{$name} {
+      --bs-btn-disabled-bg: #9E9F9E;
+      --bs-btn-disabled-border-color: #9E9F9E;
+      --bs-btn-border-color: map-get($btn-hover-colors, $name);
+
+      background-color: $color !important;
+      color: white !important;
+      &:hover {
+          background-color: map-get($btn-hover-colors, $name) !important;
+      }
+  }
+  .btn-outline-#{$name}{
+      color: $color !important;
+    //   background-color: white;
+      border: 1px solid $color !important;
+      --bs-btn-bg: white;
+      &:hover ,
+      &:active{
+          background-color: map-get($btn-outline-colors, $name) !important;
+      }
+      &[disabled]{
+          color: $btn-disabled !important;
+          border-color: $btn-disabled !important;
+      }
+  }
+  
+}

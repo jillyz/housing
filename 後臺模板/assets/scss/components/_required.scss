@@ -1,0 +1,10 @@
+span.required{
+    $size: 20px;
+    //--
+    display: inline-block;
+    width: $size;
+    height: $size;
+    margin-left: 2px;
+    background: url(../img/icon-required.svg) center no-repeat;
+
+}

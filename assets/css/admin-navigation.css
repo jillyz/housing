@@ -1,0 +1,20 @@
+/* B1–B6 後臺功能導覽，供三種首頁共用。 */
+.sidebar .admin-navigation{display:grid;gap:8px;min-width:0}
+.admin-navigation .menu-group{min-width:0;border-bottom:1px solid rgba(255,255,255,.12);padding-bottom:8px}
+.admin-navigation summary{display:flex;align-items:center;gap:8px;min-height:44px;padding:10px 8px;border-radius:10px;color:#fff;font-weight:800;cursor:pointer;list-style:none}
+.admin-navigation summary::-webkit-details-marker{display:none}
+.admin-navigation summary::marker{content:""}
+.admin-navigation summary:hover{background:rgba(255,255,255,.1)}
+.sidebar .admin-navigation .menu-text{min-width:0;font-size:16px!important;line-height:1.5;overflow-wrap:anywhere}
+.admin-navigation .menu-chevron{width:7px;height:7px;margin:0 3px 0 auto;flex:0 0 7px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(-45deg);transition:transform .15s ease}
+.admin-navigation details[open]>summary .menu-chevron{transform:rotate(45deg)}
+.admin-navigation .menu-children{display:grid;gap:4px;margin:4px 0 0 9px;padding-left:7px;border-left:1px solid rgba(255,255,255,.22)}
+.sidebar .admin-navigation .menu-item{display:flex;align-items:baseline;gap:7px;min-height:44px;padding:9px 7px;border-radius:9px;color:#e9fffe;text-decoration:none;font-weight:400;opacity:1}
+.sidebar .admin-navigation a.menu-item:hover{background:rgba(255,255,255,.12)}
+.sidebar .admin-navigation a.menu-item.active{background:rgba(255,255,255,.2);box-shadow:inset 3px 0 #7ce5d9;color:#fff;font-weight:800}
+.sidebar .admin-navigation .is-unavailable{color:#b6ced0;cursor:default}
+.admin-navigation .menu-subgroup{padding:0;border:0}
+.admin-navigation .menu-subgroup>summary{padding:9px 7px;font-weight:500;align-items:baseline}
+.admin-navigation .menu-subgroup .menu-children{margin-left:3px;padding-left:5px}
+.admin-navigation :is(a,summary):focus-visible{outline:2px solid #b4fff1;outline-offset:2px}
+#case-overview,#platform-monitor,#case-workbench{scroll-margin-top:20px}

@@ -1,0 +1,32 @@
+/* checked 顯示 */
+.cond-checked{
+    &-trigger{
+        
+    }
+    &-container{
+        &:has(.cond-checked-trigger:checked){            
+            .cond-checked-dependent{
+                display: block;
+                animation: fadeIn .5s forwards;
+            }
+        }
+    }
+    &-dependent{
+        display: none;
+    }
+    
+}
+/* unchecked 顯示*/
+.cond-checked-container.unchecked{
+    &:has(.cond-checked-trigger:checked){            
+        .cond-checked-dependent{
+            display: none;
+        }
+    }
+    .cond-checked-dependent{
+        display: block;
+        animation: fadeIn .5s forwards;
+    }
+}
+
+

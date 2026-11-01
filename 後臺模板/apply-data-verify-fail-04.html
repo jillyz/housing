@@ -1,0 +1,288 @@
+<!doctype html>
+<html class="no-js" lang="zh-Hant">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>不通過項目 | 國家住宅及都市更新中心社會住宅營運管理平台</title>
+  <!-- jQuery -->
+  <script src="assets/vendor/jquery-3.7.1.min.js"></script>
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="assets/vendor/bootstrap-5.3.3/dist/css/bootstrap.min.css">
+  <script src="assets/vendor/bootstrap-5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="assets/vendor/fontawesome-pro-6.5.2-web/css/all.css">
+  <!-- Material Icons Round -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Icons+Round">
+  <!-- Material Symbols Round -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded">
+  <!-- Tom Select -->
+  <link rel="stylesheet" href="assets/vendor/tom-select-2.2.2/tom-select.bootstrap5.min.css">
+  <script src="assets/vendor/tom-select-2.2.2/tom-select.complete.js"></script>
+  <!-- Flatpickr 民國年 -->
+  <link rel="stylesheet" href="assets/vendor/flatpickr-4.6.13-TW/flatpickr.min.css">
+  <script src="assets/vendor/flatpickr-4.6.13-TW/flatpickr.min.js"></script>
+  <script src="assets/vendor/flatpickr-4.6.13-TW/zh_tw.js"></script>
+  <!-- Menu -->
+  <script src="assets/vendor/utils/menu/menu.js"></script>
+  <!-- 自訂 -->
+  <link rel="stylesheet" href="assets/css/main.css">
+  <script src="assets/js/customJS.js"></script>
+</head>
+
+<body>
+  <div class="modal d-block" tabindex="-1" style="--bs-modal-zindex: 0;">
+      <div class="modal-dialog" style="max-width: 1000px;">
+        <div class="modal-content">
+          <div class="modal-header">
+            <div>
+                <h1 class="modal-title" id="unallowedModalLabel">
+                  <i class="fa-solid fa-triangle-exclamation"></i>
+                  <span>不通過項目 |</span> 
+                  <span>4.申請房型與評點</span>
+                </h1>
+                <div class="flex-item-wrap">
+                  <span>編號</span>
+                  <sapn>SDL1130001A</sapn>
+                  <span>鳳翔安居</span>
+                  <span>張香香</span>
+                </div>
+            </div>
+          </div>
+          <div class="modal-body">
+              <div class="d-grid gap-4">
+                  <div class="item">
+                      <h6>初審不通過項目</h6>
+                      <div class="bg-primary-100 px-3 py-4 mb-2">
+                          <div class="flex-item-wrap gap-3">
+                              <div class="input-group">
+                                <select class="form-select tom-select" id="checkbox-members" multiple required>
+                                  <option value="張美里">張美里</option>
+                                  <option value="王大">王大</option>
+                                  <option value="王餓">王餓</option>
+                                </select>
+                                <button class="btn btn-primary" onClick="selectAll_checkbox(tomSelectCheckobx)">
+                                  <i class="fa-regular fa-square-check me-1"></i>全選
+                                </button>
+                              </div>
+                              <div class="flex-item-wrap flex-grow-1">
+                                  <select class="form-select w-auto flex-grow-1">
+                                      <option value="">請選擇</option>
+                                      <option value="申請書(家庭成員)">申請書(家庭成員)</option>
+                                      <option value="申請書(共同居住者)">申請書(共同居住者)</option>
+                                      <option value="戶籍資料">戶籍資料</option>
+                                      <option value="外籍配偶">外籍配偶</option>
+                                      <option selected="" value="綜合所得清單">綜合所得清單</option>
+                                      <option value="財產歸屬清單">財產歸屬清單</option>
+                                  </select>
+                                  <select class="form-select w-auto flex-grow-1">
+                                      <option value="請選擇">請選擇</option>
+                                      <option value="家庭成員未檢附">家庭成員未檢附</option>
+                                      <option value="配偶資料未檢附">配偶資料未檢附</option>
+                                      <option selected="" value="非近一年度資料">非近一年度資料</option>
+                                      <option value="資料無法辨識">資料無法辨識</option>
+                                      <option value="...">...</option>
+                                  </select>
+                              </div>
+                              <button class="btn btn-primary">
+                                  <i class="fa-solid fa-circle-plus"></i>
+                                  新增                                
+                              </button>
+                          </div>
+                      </div>
+                      <div class="table-responsive scroll">
+                          <table class="table table-list table-rwd table-bordered mb-0">
+                              <thead>
+                                  <tr>
+                                      <th>不合格者</th>
+                                      <th>項目</th>
+                                      <th>原因</th>
+                                      <th class="text-center">操作</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <tr>
+                                      <td data-th="不合格者">張香香</td>
+                                      <td data-th="項目">在職證明</td>
+                                      <td data-th="原因">未檢附</td>
+                                      <td data-th="操作" class="text-center">
+                                          <button class="btn btn-icon text-primary" title="刪除" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                                            <i class="fa-regular fa-trash-can" aria-hidden="true"></i>
+                                          </button>
+                                      </td>
+                                  </tr>
+                                  <tr>
+                                      <td data-th="不合格者">張香香</td>
+                                      <td data-th="項目">戶籍資料</td>
+                                      <td data-th="原因">無法辨識</td>
+                                      <td data-th="操作" class="text-center">
+                                          <button class="btn btn-icon text-primary" title="刪除" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                                            <i class="fa-regular fa-trash-can" aria-hidden="true"></i>
+                                          </button>
+                                      </td>
+                                  </tr>
+                                  <tr>
+                                      <td data-th="不合格者">張香香, 王大</td>
+                                      <td data-th="項目">綜合所得清單</td>
+                                      <td data-th="原因">非近一年度資料</td>
+                                      <td data-th="操作" class="text-center">
+                                          <button class="btn btn-icon text-primary" title="刪除" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                                            <i class="fa-regular fa-trash-can" aria-hidden="true"></i>
+                                          </button>
+                                      </td>
+                                  </tr>
+                                  <tr>
+                                      <td data-th="不合格者">張香香, 張來</td>
+                                      <td data-th="項目">財產歸屬清單</td>
+                                      <td data-th="原因">非申請日前一個月資料</td>
+                                      <td data-th="操作" class="text-center">
+                                          <button class="btn btn-icon text-primary" title="刪除" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                                            <i class="fa-regular fa-trash-can" aria-hidden="true"></i>
+                                          </button>
+                                      </td>
+                                  </tr>
+                              </tbody>
+                          </table>
+                      </div>
+                  </div>
+                  <div class="item">
+                      <h6>新增其他未列事項</h6>
+                      <textarea class="form-control" rows="3">1.OOOO</textarea>
+                  </div>
+              </div>
+          </div>
+          <div class="modal-footer">
+            <div class="btn-cta-group w-100 p-0">
+              <button class="btn btn-pill-outline-primary">關閉</button>
+              <button class="btn btn-pill-outline-primary">存檔</button>
+              <button class="btn btn-pill-primary">檢視補正單</button>
+              <button class="btn btn-pill-primary" data-bs-toggle="modal" data-bs-target="#reviewMemberModal">提送至複審人員</button>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+
+  <!-- Modal -->
+  
+  <!-- 刪除警告彈窗 - icon -->
+  <div class="modal fade" id="deleteModal" data-bs-backdrop="static" tabindex="-1">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header border-0 pb-0">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center pt-1">
+          <div class="fs-1 text-danger | mb-4 pb-2"><i class="fa-solid fa-triangle-exclamation fa-lg"></i></div>
+          <div>確定要刪除 XXX 的資料嗎？</div>
+        </div>
+        <div class="modal-footer">
+          <div class="btn-cta-group w-100 p-0">
+            <button class="btn btn-pill-outline-primary" data-bs-dismiss="modal">取消</button>
+            <button class="btn btn-pill-primary">確定</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal 請選擇複審人員 -->
+  <div class="modal fade" id="reviewMemberModal" data-bs-backdrop="static" tabindex="-1">
+      <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title" id="reviewMemberModalLabel">
+              <i class="fa-duotone fa-user-pen"></i>
+              請選擇複審人員
+            </h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="flex-item-wrap">
+              <div class="flex-grow-1">
+                <label for="" class="form-label">單位</label>
+                <select name="" id="" class="form-select">
+                  <option value="請選擇">請選擇</option>
+                </select>
+              </div>            
+              <div class="flex-grow-1">
+                <label for="" class="form-label">姓名</label>
+                <select name="" id="" class="form-select">
+                  <option value="陳美莉">陳美莉</option>
+                  <option value="張英浚">張英浚</option>
+                  <option value="張小棣">張小棣</option>
+                  <option value="張小梅">張小梅</option>
+                </select>
+              </div>            
+            </div>
+          </div>
+          <div class="modal-footer">
+            <div class="btn-cta-group w-100 p-0">
+              <button class="btn btn-pill-outline-primary" data-bs-dismiss="modal">關閉</button>
+              <button class="btn btn-pill-primary">確認提送</button>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  <!-- JS -->
+  <script>
+      // Settings
+      const tomSelectSetting_checkbox ={
+          plugins: {   
+          'clear_button': {
+              'title': '全部刪除'
+          },
+          'remove_button':{
+              'title': '移除'
+          },
+          'checkbox_options':{}
+          }, 
+          render: {
+          no_results:function(data,escape){
+              return '<div class="no-results">無符合"'+escape(data.input)+'"的搜尋結果</div>';
+          },
+          },
+      }
+  
+      // 實例instance
+      const tomSelectCheckobx = new TomSelect('#checkbox-members',tomSelectSetting_checkbox);
+  
+      // 全選
+      function selectAll_checkbox(select){
+          for(let opt in select.options){
+              select.addItem(opt);
+          }
+          isFulled(select);
+      }
+  
+      // 是否隱藏 placeholder
+      function isFulled(select){
+          const max = select.settings.maxItems;
+          const optionsLen = Object.keys(select.options).length;
+          let itemsLen = select.items.length;  
+  
+          isMax(max, itemsLen, optionsLen);
+  
+          // item新增後，判斷是否選滿
+          select.on('item_add', ()=>{
+              itemsLen = select.items.length;
+              isMax(max, itemsLen, optionsLen);
+          })
+          // item移除時，顯示placeholder
+          select.on('item_remove', ()=>{
+              select.settings.hidePlaceholder=null;
+          })
+  
+          // 若選滿則隱藏placeholder
+          function isMax(max, itemsLen, optionsLen){
+              if(itemsLen == max || itemsLen == optionsLen){
+              select.settings.hidePlaceholder=true;
+              select.inputState();
+              }
+          }
+      }
+  </script>
+</body>
+
+</html>

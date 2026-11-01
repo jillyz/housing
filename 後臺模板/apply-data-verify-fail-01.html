@@ -1,0 +1,168 @@
+<!doctype html>
+<html class="no-js" lang="zh-Hant">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>不通過項目 | 國家住宅及都市更新中心社會住宅營運管理平台</title>
+  <!-- jQuery -->
+  <script src="assets/vendor/jquery-3.7.1.min.js"></script>
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="assets/vendor/bootstrap-5.3.3/dist/css/bootstrap.min.css">
+  <script src="assets/vendor/bootstrap-5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="assets/vendor/fontawesome-pro-6.5.2-web/css/all.css">
+  <!-- Material Icons Round -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Icons+Round">
+  <!-- Material Symbols Round -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded">
+  <!-- Tom Select -->
+  <link rel="stylesheet" href="assets/vendor/tom-select-2.2.2/tom-select.bootstrap5.min.css">
+  <script src="assets/vendor/tom-select-2.2.2/tom-select.complete.js"></script>
+  <!-- Flatpickr 民國年 -->
+  <link rel="stylesheet" href="assets/vendor/flatpickr-4.6.13-TW/flatpickr.min.css">
+  <script src="assets/vendor/flatpickr-4.6.13-TW/flatpickr.min.js"></script>
+  <script src="assets/vendor/flatpickr-4.6.13-TW/zh_tw.js"></script>
+  <!-- Menu -->
+  <script src="assets/vendor/utils/menu/menu.js"></script>
+  <!-- 自訂 -->
+  <link rel="stylesheet" href="assets/css/main.css">
+  <script src="assets/js/customJS.js"></script>
+</head>
+
+<body>
+  <div class="modal d-block" tabindex="-1" style="--bs-modal-zindex: 0;">
+      <div class="modal-dialog" style="max-width: 1000px;">
+        <div class="modal-content">
+          <div class="modal-header">
+            <div>
+                <h1 class="modal-title" id="unallowedModalLabel">
+                  <i class="fa-solid fa-triangle-exclamation"></i>
+                  <span>不通過項目 |</span> 
+                  <span>1.基本資料 (初審)</span>
+                </h1>
+                <div class="flex-item-wrap">
+                  <span>編號</span>
+                  <sapn>SDL1130001A</sapn>
+                  <span>鳳翔安居</span>
+                  <span>張香香</span>
+                </div>
+            </div>
+          </div>
+          <div class="modal-body">
+              <div class="d-grid gap-4">
+                  <div class="item">
+                      <h6>初審不通過項目</h6>
+                      <div class="bg-primary-100 p-3 mb-2">
+                          <div class="flex-item-wrap gap-3">
+                              <div>張香香</div>
+                              <div class="flex-item-wrap flex-grow-1">
+                                <select class="form-select w-auto flex-grow-1">
+                                    <option value="">請選擇</option>
+                                    <option value="申請書">申請書</option>
+                                    <option value="戶籍資料">戶籍資料</option>
+                                    <option value="在職證明">在職證明</option>
+                                    <option value="就學證明">就學證明</option>
+                                    <option value="職業工會投保資料">職業工會投保資料</option>
+                                    <option value="其他">其他</option>
+                                </select>
+                                <select class="form-select w-auto flex-grow-1">
+                                    <option value="">請選擇</option>
+                                    <option value="未檢附">未檢附</option>
+                                    <option value="非公告日後核發">非公告日後核發</option>
+                                    <option value="資料有遮蔽">資料有遮蔽</option>
+                                    <option value="未記載姓名">未記載姓名</option>
+                                    <option value="未記載OOOO">未記載OOOO</option>
+                                    <option value="未記載OOOO">未記載OOOO</option>
+                                    <option value="未記載OOOO">未記載OOOO</option>
+                                    <option value="未蓋公司章">未蓋公司章</option>
+                                    <option value="無法辨識">無法辨識</option>
+                                    <option value="任職公務機關">任職公務機關</option>
+                                </select>
+                              </div>
+                              <div class="justify-items-center">
+                                <button class="btn btn-primary">
+                                    <i class="fa-solid fa-circle-plus"></i>
+                                    新增                                
+                                </button>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="table-responsive scroll">
+                          <table class="table table-list table-rwd table-bordered mb-0">
+                              <thead>
+                                  <tr>
+                                      <th>不合格者</th>
+                                      <th>項目</th>
+                                      <th>原因</th>
+                                      <th class="text-center">操作</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <tr>
+                                      <td data-th="不合格者">張香香</td>
+                                      <td data-th="項目">在職證明</td>
+                                      <td data-th="原因">未檢附</td>
+                                      <td data-th="操作" class="text-center">
+                                          <button class="btn btn-icon text-primary" title="刪除" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                                            <i class="fa-regular fa-trash-can" aria-hidden="true"></i>
+                                          </button>
+                                      </td>
+                                  </tr>
+                                  <tr>
+                                      <td data-th="不合格者">張香香</td>
+                                      <td data-th="項目">戶籍資料</td>
+                                      <td data-th="原因">無法辨識</td>
+                                      <td data-th="操作" class="text-center">
+                                          <button class="btn btn-icon text-primary" title="刪除" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                                            <i class="fa-regular fa-trash-can" aria-hidden="true"></i>
+                                          </button>
+                                      </td>
+                                  </tr>
+                              </tbody>
+                          </table>
+                      </div>
+                  </div>
+                  <div class="item">
+                      <h6>新增其他未列事項</h6>
+                      <textarea class="form-control" rows="3">1.OOOO</textarea>
+                  </div>
+              </div>
+          </div>
+          <div class="modal-footer">
+            <div class="btn-cta-group w-100 p-0">
+              <button class="btn btn-pill-outline-primary">關閉</button>
+              <button class="btn btn-pill-primary">存檔</button>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+
+  <!-- Modal -->
+  
+  <!-- 刪除警告彈窗 - icon -->
+  <div class="modal fade" id="deleteModal" data-bs-backdrop="static" tabindex="-1">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header border-0 pb-0">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center pt-1">
+          <div class="fs-1 text-danger | mb-4 pb-2"><i class="fa-solid fa-triangle-exclamation fa-lg"></i></div>
+          <div>確定要刪除 XXX 的資料嗎？</div>
+        </div>
+        <div class="modal-footer">
+          <div class="btn-cta-group w-100 p-0">
+            <button class="btn btn-pill-outline-primary" data-bs-dismiss="modal">取消</button>
+            <button class="btn btn-pill-primary">確定</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- JS -->
+</body>
+
+</html>

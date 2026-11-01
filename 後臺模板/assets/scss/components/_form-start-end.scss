@@ -1,0 +1,39 @@
+/* form-start-end */
+.form-start-end{
+    position: relative;
+
+    // 狀態 Disabled
+    &:has([disabled]){
+        color: $disabled;
+    }
+
+    // 前後的position
+    .start,
+    .end{
+        position: absolute;
+        transform: translateY(-50%);
+        top: 50%;
+    }
+    .start{
+        left: .75em;
+    }
+    .end{
+        right: .75em;
+    }
+    // mydata icon
+    .mydata{
+        top: 47%;
+    }
+
+    // 前後的padding
+    &:has(.start){
+        .input>*{
+            padding-left: 2.5em;
+        }
+    }
+    &:has(.end){
+        .input>*{
+            padding-right: 2.5em;
+        }
+    }
+}

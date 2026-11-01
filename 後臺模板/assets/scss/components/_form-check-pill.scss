@@ -1,0 +1,44 @@
+/* form-check-pill */
+.form-check-pill{
+    display: flex;
+    gap: 8px;
+    margin: 0;
+    padding: 11px 1rem;
+
+    background: white;
+    border-radius: 999rem;
+    border: 1px solid $primary;
+    line-height: 1.15;
+    
+    @include breakpoint($lg){
+        line-height: 1;
+    }
+
+    .form-check-input{
+        float: none;
+        margin: 0;
+
+        &:disabled:checked{
+            --bs-border-color: #{$primary};
+        }
+    }
+    .form-check-label{
+        margin-left: 0;
+        font-weight: normal;
+    }
+    // Disabled
+    &:has(:disabled){
+        color: #62676D;
+        border-color: #ACAEB1;
+        background-color: #F5F5F6;
+    }
+    // MyData
+    &.mydata{
+        color: inherit;
+        border-color: $primary;
+        background: #F9D6C9 url(../img/icon-mydata.svg) no-repeat left 16px center;
+        input{
+            opacity: 0;
+        }
+    }
+}

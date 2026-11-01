@@ -1,0 +1,46 @@
+.custom-table-files-rwd{
+
+    // thead
+    thead{
+        display: none;
+        
+        @include breakpoint($md){
+            display: table-header-group;
+        }
+    }
+    // tr
+    tr{
+        display: grid;
+        gap: 16px;
+        padding-block: 32px;
+        margin-top: -1px;
+
+        @include breakpoint($md){
+            display: table-row;
+            padding-block: 0px;
+            margin-top: 0px;
+        }
+
+        // First TR
+        &:first-child {
+            padding-top: 0;
+            border-top-width: 0;
+        }
+        // Last TR
+        &:last-child {
+            padding-bottom: 0;
+        }
+    }
+    // td
+    td{
+        display: block;
+        border-right-width: 0;
+        padding: 0;
+        
+        @include breakpoint($md){
+            display: table-cell;
+            border-right-width: 1px;
+            padding: var(--padding);
+        }
+    }
+}

@@ -1,0 +1,8 @@
+.nav-collapse{
+    @include breakpoint($lg){
+        display: block !important;
+    }
+}
+body:has(.nav-collapse.show){
+    overflow: hidden;
+}

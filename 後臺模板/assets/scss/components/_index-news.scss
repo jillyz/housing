@@ -1,0 +1,101 @@
+// 檔案位置：src/assets/scss/components/_index-news.scss
+// 用途：首頁最新消息區塊（標題標籤 + 日期 + 多行省略內文 + 查看更多）
+// 來源改寫自 2021 台中社宅 index_dashboard.scss，色彩改採桃園主色系
+
+.index-news {
+  padding: 16px;
+  background: map-get($primaries, '100');
+  border-radius: var(--bs-border-radius, 0.375rem);
+
+  .inner {
+    display: grid;
+    gap: 16px;
+
+    // 有 2 個 item 以上才分欄
+    &:has(.item ~ .item) {
+      @include breakpoint($md) {
+        grid-template-columns: 1fr 1fr;
+        gap: 24px 40px;
+      }
+      @include breakpoint($xl) {
+        grid-template-columns: 1fr 1fr auto;
+      }
+    }
+  }
+
+  .item {
+    display: grid;
+
+    @include breakpoint($xl) {
+      grid-template-columns: auto 1fr;
+      gap: 24px;
+    }
+
+    // 標題標籤
+    &-title {
+      justify-self: start;
+      margin-right: 8px;
+      margin-bottom: 8px;
+      padding: 6px 12px;
+
+      font-size: 14px;
+      color: #fff;
+      white-space: nowrap;
+      background: $primary;
+
+      @include breakpoint($lg) {
+        font-size: 16px;
+      }
+      @include breakpoint($xl) {
+        align-self: center;
+      }
+    }
+
+    // 內文
+    &-text {
+      text-align: justify;
+
+      // 日期
+      span {
+        margin-right: 8px;
+        font-size: 14px;
+        font-weight: bold;
+        color: $primary;
+      }
+    }
+
+    a {
+      color: map-get($neutrals, '700');
+      text-decoration: none;
+
+      &:hover {
+        color: $primary;
+      }
+    }
+  }
+
+  // 多行省略（取代來源 .escape-multi）
+  .escape-multi {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+
+    @include breakpoint($xl) {
+      -webkit-line-clamp: 3;
+    }
+  }
+
+  // 查看更多
+  .more {
+    justify-self: end;
+
+    @include breakpoint($md) {
+      grid-column: 1 / -1;
+    }
+    @include breakpoint($xl) {
+      grid-column: 3;
+      align-self: center;
+    }
+  }
+}

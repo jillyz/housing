@@ -1,0 +1,302 @@
+<!doctype html>
+<html class="no-js" lang="zh-Hant">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>大月曆 | 組件表</title>
+  <!-- jQuery -->
+  <script src="../assets/vendor/jquery-3.7.1.min.js"></script>
+  <!-- jQuery-ui -->
+  <link rel="stylesheet" href="../assets/vendor/jquery-ui-1.13.2/jquery-ui.min.css">
+  <script src="../assets/vendor/jquery-ui-1.13.2/jquery-ui.min.js"></script>
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="../assets/vendor/bootstrap-5.3.3/dist/css/bootstrap.min.css">
+  <script src="../assets/vendor/bootstrap-5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../assets/vendor/fontawesome-pro-6.5.2-web/css/all.css">
+  <!-- Rubik (數字字型) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap">
+  <!-- Tom Select -->
+  <link rel="stylesheet" href="../assets/vendor/tom-select-2.2.2/tom-select.bootstrap5.min.css">
+  <script src="../assets/vendor/tom-select-2.2.2/tom-select.complete.js"></script>
+  <!-- Flatpickr 民國年 -->
+  <link rel="stylesheet" href="../assets/vendor/flatpickr-4.6.13-TW/flatpickr.min.css">
+  <script src="../assets/vendor/flatpickr-4.6.13-TW/flatpickr.min.js"></script>
+  <script src="../assets/vendor/flatpickr-4.6.13-TW/zh_tw.js"></script>
+  <!-- Fancybox -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css">
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+  <!-- FullCalendar 大月曆 -->
+  <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.18/index.global.min.js'></script>
+  <!-- 自訂 -->
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <script src="../assets/js/customJS.js"></script>
+</head>
+
+<body>
+  <div class="container py-5">
+    <p><i class="fa-solid fa-circle-chevron-left"></i> <a href="../_components.html" class="text-body">回組件表</a></p>
+    <div class="bg-white rounded-3 mt-4 mb-5">
+      <h4 class="p-5 border-bottom">大月曆</h4>
+      <div class="p-5">
+        <div class="d-grid gap-5">
+            <div class="item">
+                <h5>大月曆</h5>
+                <p class="text-muted mb-4">使用 FullCalendar 建立月份行事曆，搭配圖例切換事件類型顯示。</p>
+        
+                <section class="full-calendar" aria-label="社宅營運行事曆">
+                    <ul class="calendar-legend mb-4" aria-label="月曆事件圖例">
+                        <li class="apply teal">
+                            <button type="button" data-calendar-filter="apply" aria-pressed="true">社宅申請時間</button>
+                        </li>
+                        <li class="viewing yellow">
+                            <button type="button" data-calendar-filter="viewing" aria-pressed="true">看屋</button>
+                        </li>
+                        <li class="select orange">
+                            <button type="button" data-calendar-filter="select" aria-pressed="true">選屋</button>
+                        </li>
+                        <li class="handover brown">
+                            <button type="button" data-calendar-filter="handover" aria-pressed="true">點交</button>
+                        </li>
+                        <li class="checkout lime">
+                            <button type="button" data-calendar-filter="checkout" aria-pressed="true">點退</button>
+                        </li>
+                        <li class="repair blue">
+                            <button type="button" data-calendar-filter="repair" aria-pressed="true">報修(派工日)</button>
+                        </li>
+                        <li class="venue gray">
+                            <button type="button" data-calendar-filter="venue" aria-pressed="true">場地(租借日)</button>
+                        </li>
+                        <li class="patrol purple">
+                            <button type="button" data-calendar-filter="patrol" aria-pressed="true">巡邏</button>
+                        </li>
+                        <li class="maintenance green">
+                            <button type="button" data-calendar-filter="maintenance" aria-pressed="true">維養</button>
+                        </li>
+                        <li class="holiday rose">
+                            <button type="button" data-calendar-filter="holiday" aria-pressed="true">國定假日</button>
+                        </li>
+                    </ul>
+        
+                    <div class="carlendar-wrapper calendar-wrapper">
+                        <div id="fullCalendar" aria-label="社宅營運行事曆"></div>
+                    </div>
+                    <p class="visually-hidden" aria-live="polite" id="calendarFilterStatus"></p>
+                </section>
+            </div>
+        </div>
+        
+        <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var calendarEl = document.getElementById('fullCalendar');
+            if (!calendarEl || typeof FullCalendar === 'undefined') return;
+        
+            var eventColors = {
+                apply: '#1f9b8e',       // 社宅申請時間
+                viewing: '#e3b23c',     // 看屋
+                select: '#e0562c',      // 選屋
+                handover: '#7a5230',    // 點交
+                checkout: '#a8bf3f',    // 點退
+                repair: '#3f6fb0',      // 報修(派工日)
+                venue: '#9aa0a6',       // 場地(租借日)
+                patrol: '#8258a8',      // 巡邏
+                maintenance: '#3f8f52', // 維養
+                holiday: '#c85a7c'      // 國定假日
+            };
+            var hiddenTypes = new Set();
+            var filterStatus = document.getElementById('calendarFilterStatus');
+        
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                headerToolbar: {
+                    left: 'title',
+                    center: '',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay prev,next'
+                },
+                buttonText: {
+                    today: '今日',
+                    month: '月',
+                    week: '週',
+                    day: '天',
+                    list: '列表'
+                },
+                initialView: 'dayGridMonth',
+                initialDate: '2026-05-01',
+                locale: 'zh-tw',
+                height: 'auto',
+                displayEventTime: false,
+                // 單日事件超過 3 筆時，其餘收合為「+N 更多」，點擊彈出當日事件清單
+                dayMaxEvents: 3,
+                moreLinkClick: 'popover',
+                moreLinkText: function (num) {
+                    return '+ 其他 ' + num + ' 項';
+                },
+                eventDidMount: function(info) {
+                    if (!info.event.extendedProps.description || typeof bootstrap === 'undefined') return;
+        
+                    info.el.setAttribute('title', info.event.extendedProps.description);
+                    new bootstrap.Tooltip(info.el, {
+                        placement: 'top',
+                        trigger: 'hover focus',
+                        container: 'body',
+                        customClass: 'fc-event-tooltip'
+                    });
+                },
+                events: [
+                    {
+                        title: '國定假日',
+                        start: '2026-05-01',
+                        end: '2026-05-02',
+                        allDay: true,
+                        backgroundColor: eventColors.holiday,
+                        classNames: ['holiday'],
+                        description: '勞動節'
+                    },
+                    {
+                        title: '社宅申請時間',
+                        start: '2026-05-04',
+                        end: '2026-05-10',
+                        allDay: true,
+                        backgroundColor: eventColors.apply,
+                        classNames: ['apply'],
+                        description: '社宅線上申請開放期間'
+                    },
+                    {
+                        title: '看屋',
+                        start: '2026-05-06',
+                        end: '2026-05-07',
+                        allDay: true,
+                        backgroundColor: eventColors.viewing,
+                        classNames: ['viewing'],
+                        description: '預約看屋'
+                    },
+                    {
+                        title: '選屋',
+                        start: '2026-05-07',
+                        end: '2026-05-08',
+                        allDay: true,
+                        backgroundColor: eventColors.select,
+                        classNames: ['select'],
+                        description: '中籤戶選屋'
+                    },
+                    {
+                        title: '點交',
+                        start: '2026-05-12',
+                        end: '2026-05-15',
+                        allDay: true,
+                        backgroundColor: eventColors.handover,
+                        classNames: ['handover'],
+                        description: '住戶點交'
+                    },
+                    {
+                        title: '點退',
+                        start: '2026-05-20',
+                        end: '2026-05-21',
+                        allDay: true,
+                        backgroundColor: eventColors.checkout,
+                        classNames: ['checkout'],
+                        description: '住戶點退'
+                    },
+                    {
+                        title: '維養',
+                        start: '2026-05-26',
+                        end: '2026-05-29',
+                        allDay: true,
+                        backgroundColor: eventColors.maintenance,
+                        classNames: ['maintenance'],
+                        description: '設備維護保養'
+                    },
+        
+                    // ── 2026-05-15 單日多筆事件，示範「+ 其他 N 項」收合清單 ──
+                    {
+                        title: '看屋',
+                        start: '2026-05-15',
+                        end: '2026-05-16',
+                        allDay: true,
+                        backgroundColor: eventColors.viewing,
+                        classNames: ['viewing'],
+                        description: 'A 棟預約看屋'
+                    },
+                    {
+                        title: '選屋',
+                        start: '2026-05-15',
+                        end: '2026-05-16',
+                        allDay: true,
+                        backgroundColor: eventColors.select,
+                        classNames: ['select'],
+                        description: '第二梯次選屋'
+                    },
+                    {
+                        title: '報修(派工日)',
+                        start: '2026-05-15',
+                        end: '2026-05-16',
+                        allDay: true,
+                        backgroundColor: eventColors.repair,
+                        classNames: ['repair'],
+                        description: '公設報修派工'
+                    },
+                    {
+                        title: '場地(租借日)',
+                        start: '2026-05-15',
+                        end: '2026-05-16',
+                        allDay: true,
+                        backgroundColor: eventColors.venue,
+                        classNames: ['venue'],
+                        description: '多功能教室租借'
+                    },
+                    {
+                        title: '巡邏',
+                        start: '2026-05-15',
+                        end: '2026-05-16',
+                        allDay: true,
+                        backgroundColor: eventColors.patrol,
+                        classNames: ['patrol'],
+                        description: '社區安全巡邏'
+                    }
+                ]
+            });
+        
+            calendar.render();
+        
+            document.querySelectorAll('[data-calendar-filter]').forEach(function(button) {
+                button.addEventListener('click', function() {
+                    var type = button.getAttribute('data-calendar-filter');
+                    var legendItem = button.closest('li');
+        
+                    if (hiddenTypes.has(type)) {
+                        hiddenTypes.delete(type);
+                        button.setAttribute('aria-pressed', 'true');
+                        legendItem.classList.remove('hide');
+                    } else {
+                        hiddenTypes.add(type);
+                        button.setAttribute('aria-pressed', 'false');
+                        legendItem.classList.add('hide');
+                    }
+        
+                    calendar.getEvents().forEach(function(event) {
+                        if (event.classNames.indexOf(type) !== -1) {
+                            event.setProp('display', hiddenTypes.has(type) ? 'none' : 'auto');
+                        }
+                    });
+        
+                    if (filterStatus) {
+                        filterStatus.textContent = button.textContent.trim() + (hiddenTypes.has(type) ? '已隱藏' : '已顯示');
+                    }
+                });
+            });
+        });
+        </script>
+        
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  
+  <!-- JS -->
+</body>
+
+</html>

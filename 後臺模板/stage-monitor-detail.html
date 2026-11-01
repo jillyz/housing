@@ -1,0 +1,230 @@
+<!doctype html>
+<html class="no-js" lang="zh-Hant">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>社宅戶號各階段監控明細表 | 國家住宅及都市更新中心社會住宅營運管理平台</title>
+  <!-- jQuery -->
+  <script src="assets/vendor/jquery-3.7.1.min.js"></script>
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="assets/vendor/bootstrap-5.3.3/dist/css/bootstrap.min.css">
+  <script src="assets/vendor/bootstrap-5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="assets/vendor/fontawesome-pro-6.5.2-web/css/all.css">
+  <!-- Material Icons Round -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Icons+Round">
+  <!-- Material Symbols Round -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded">
+  <!-- Tom Select -->
+  <link rel="stylesheet" href="assets/vendor/tom-select-2.2.2/tom-select.bootstrap5.min.css">
+  <script src="assets/vendor/tom-select-2.2.2/tom-select.complete.js"></script>
+  <!-- Flatpickr 民國年 -->
+  <link rel="stylesheet" href="assets/vendor/flatpickr-4.6.13-TW/flatpickr.min.css">
+  <script src="assets/vendor/flatpickr-4.6.13-TW/flatpickr.min.js"></script>
+  <script src="assets/vendor/flatpickr-4.6.13-TW/zh_tw.js"></script>
+  <!-- Menu -->
+  <script src="assets/vendor/utils/menu/menu.js"></script>
+  <!-- 自訂 -->
+  <link rel="stylesheet" href="assets/css/main.css">
+  <script src="assets/js/customJS.js"></script>
+</head>
+
+<body>
+  <div class="col-11 mx-auto py-4">
+      <div class="d-flex align-items-end mb-3">
+          <div class="collapse-title border-0 mb-0 w-auto"><span class="text border-0 pb-0">社宅戶號各階段監控明細表</span></div>
+          <button type="button" class="btn btn-success ms-auto"><i class="fa-solid fa-file-export"></i> 匯出</button>
+      </div>
+      <div class="table-responsive mb-3">
+          <table class="table table-list table-rwd table-bordered mb-0">
+              <thead>
+                  <tr>
+                      <th>社宅大樓</th>
+                      <th>戶號</th>
+                      <th>公告退租(續租)</th>
+                      <th>申請退租日期</th>
+                      <th>預檢屋況</th>
+                      <th>終約日期</th>
+                      <th>修繕程度</th>
+                      <th>點退日期</th>
+                      <th>釋出日期</th>
+                      <th>選屋日期</th>
+                      <th>合約簽訂日</th>
+                      <th>開始起租日</th>
+                      <th>總天數</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                      <td data-th="社宅大樓">XXX大樓</td>
+                      <td data-th="戶號">3F-01</td>
+                      <td data-th="公告退租(續租)"></td>
+                      <td data-th="申請退租日期">2025/10/1</td>
+                      <td data-th="預檢屋況">2025/10/27</td>
+                      <td data-th="終約日期">2025/11/1</td>
+                      <td data-th="修繕程度">輕(1~15天)</td>
+                      <td data-th="點退日期">2025/11/1</td>
+                      <td data-th="釋出日期">2025/11/16</td>
+                      <td data-th="選屋日期">2025/12/31</td>
+                      <td data-th="合約簽訂日"></td>
+                      <td data-th="開始起租日">2026/2/1</td>
+                      <td data-th="總天數">150</td>
+                  </tr>
+                  <tr>
+                      <td data-th="社宅大樓">XXX大樓</td>
+                      <td data-th="戶號">3F-02</td>
+                      <td data-th="公告退租(續租)"></td>
+                      <td data-th="申請退租日期">2025/11/1</td>
+                      <td data-th="預檢屋況">2025/12/31</td>
+                      <td data-th="終約日期">2025/12/1</td>
+                      <td data-th="修繕程度">無</td>
+                      <td data-th="點退日期">2025/12/1</td>
+                      <td data-th="釋出日期">2025/12/1</td>
+                      <td data-th="選屋日期"></td>
+                      <td data-th="合約簽訂日"></td>
+                      <td data-th="開始起租日"></td>
+                      <td data-th="總天數"></td>
+                  </tr>
+                  <tr>
+                      <td data-th="社宅大樓">XXX大樓</td>
+                      <td data-th="戶號">3F-03</td>
+                      <td data-th="公告退租(續租)"></td>
+                      <td data-th="申請退租日期">2025/12/1</td>
+                      <td data-th="預檢屋況">2025/12/31</td>
+                      <td data-th="終約日期">2026/1/1</td>
+                      <td data-th="修繕程度">中(16~30天)</td>
+                      <td data-th="點退日期"></td>
+                      <td data-th="釋出日期"></td>
+                      <td data-th="選屋日期"></td>
+                      <td data-th="合約簽訂日"><i class="fa-solid fa-triangle-exclamation text-danger fs-5" data-bs-toggle="tooltip" data-bs-title="尚未完成簽約"></i></td>
+                      <td data-th="開始起租日"></td>
+                      <td data-th="總天數"></td>
+                  </tr>
+                  <tr>
+                      <td data-th="社宅大樓">XXX大樓</td>
+                      <td data-th="戶號">3F-04</td>
+                      <td data-th="公告退租(續租)"></td>
+                      <td data-th="申請退租日期">2026/1/1</td>
+                      <td data-th="預檢屋況"><i class="fa-solid fa-triangle-exclamation text-danger fs-5" data-bs-toggle="tooltip" data-bs-title="尚未進行退租預檢"></i></td>
+                      <td data-th="終約日期">2026/2/1</td>
+                      <td data-th="修繕程度">重(31~45天)</td>
+                      <td data-th="點退日期"></td>
+                      <td data-th="釋出日期"></td>
+                      <td data-th="選屋日期"></td>
+                      <td data-th="合約簽訂日"></td>
+                      <td data-th="開始起租日"></td>
+                      <td data-th="總天數"></td>
+                  </tr>
+                  <tr>
+                      <td data-th="社宅大樓">XXX大樓</td>
+                      <td data-th="戶號">3F-01</td>
+                      <td data-th="公告退租(續租)"></td>
+                      <td data-th="申請退租日期">2025/10/1</td>
+                      <td data-th="預檢屋況">2025/10/27</td>
+                      <td data-th="終約日期">2025/11/1</td>
+                      <td data-th="修繕程度">輕(1~15天)</td>
+                      <td data-th="點退日期">2025/11/1</td>
+                      <td data-th="釋出日期">2025/11/16</td>
+                      <td data-th="選屋日期">2025/12/31</td>
+                      <td data-th="合約簽訂日"></td>
+                      <td data-th="開始起租日">2026/2/1</td>
+                      <td data-th="總天數">150</td>
+                  </tr>
+                  <tr>
+                      <td data-th="社宅大樓">XXX大樓</td>
+                      <td data-th="戶號">3F-02</td>
+                      <td data-th="公告退租(續租)"></td>
+                      <td data-th="申請退租日期">2025/11/1</td>
+                      <td data-th="預檢屋況">2025/12/31</td>
+                      <td data-th="終約日期">2025/12/1</td>
+                      <td data-th="修繕程度">無</td>
+                      <td data-th="點退日期">2025/12/1</td>
+                      <td data-th="釋出日期">2025/12/1</td>
+                      <td data-th="選屋日期"><i class="fa-solid fa-triangle-exclamation text-danger fs-5" data-bs-toggle="tooltip" data-bs-title="尚未完成選屋建立"></i></td>
+                      <td data-th="合約簽訂日"></td>
+                      <td data-th="開始起租日"></td>
+                      <td data-th="總天數"></td>
+                  </tr>
+                  <tr>
+                      <td data-th="社宅大樓">XXX大樓</td>
+                      <td data-th="戶號">3F-03</td>
+                      <td data-th="公告退租(續租)"></td>
+                      <td data-th="申請退租日期">2025/12/1</td>
+                      <td data-th="預檢屋況">2025/12/31</td>
+                      <td data-th="終約日期">2026/1/1</td>
+                      <td data-th="修繕程度">中(16~30天)</td>
+                      <td data-th="點退日期"></td>
+                      <td data-th="釋出日期"></td>
+                      <td data-th="選屋日期"></td>
+                      <td data-th="合約簽訂日"></td>
+                      <td data-th="開始起租日"></td>
+                      <td data-th="總天數"></td>
+                  </tr>
+                  <tr>
+                      <td data-th="社宅大樓">XXX大樓</td>
+                      <td data-th="戶號">3F-04</td>
+                      <td data-th="公告退租(續租)"></td>
+                      <td data-th="申請退租日期">2026/1/1</td>
+                      <td data-th="預檢屋況"></td>
+                      <td data-th="終約日期">2026/2/1</td>
+                      <td data-th="修繕程度">重(31~45天)</td>
+                      <td data-th="點退日期"></td>
+                      <td data-th="釋出日期"></td>
+                      <td data-th="選屋日期"></td>
+                      <td data-th="合約簽訂日"></td>
+                      <td data-th="開始起租日"></td>
+                      <td data-th="總天數"></td>
+                  </tr>
+                  <tr>
+                      <td data-th="社宅大樓">XXX大樓</td>
+                      <td data-th="戶號">3F-03</td>
+                      <td data-th="公告退租(續租)"></td>
+                      <td data-th="申請退租日期">2025/12/1</td>
+                      <td data-th="預檢屋況">2025/12/31</td>
+                      <td data-th="終約日期">2026/1/1</td>
+                      <td data-th="修繕程度">中(16~30天)</td>
+                      <td data-th="點退日期"></td>
+                      <td data-th="釋出日期"></td>
+                      <td data-th="選屋日期"></td>
+                      <td data-th="合約簽訂日"></td>
+                      <td data-th="開始起租日"></td>
+                      <td data-th="總天數"></td>
+                  </tr>
+                  <tr>
+                      <td data-th="社宅大樓">XXX大樓</td>
+                      <td data-th="戶號">3F-04</td>
+                      <td data-th="公告退租(續租)"></td>
+                      <td data-th="申請退租日期">2026/1/1</td>
+                      <td data-th="預檢屋況"></td>
+                      <td data-th="終約日期">2026/2/1</td>
+                      <td data-th="修繕程度">重(31~45天)</td>
+                      <td data-th="點退日期"></td>
+                      <td data-th="釋出日期"></td>
+                      <td data-th="選屋日期"></td>
+                      <td data-th="合約簽訂日"></td>
+                      <td data-th="開始起租日"></td>
+                      <td data-th="總天數"></td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+      <ul class="pagination ">
+          <li class="disabled"><a href="#"><i class="fas fa-chevron-left"></i></a></li>
+          <li class="active"><a href="#">1</a></li>
+          <li><a href="#">2</a></li>
+          <li><a href="#">3</a></li>
+          <li><a href="#">4</a></li>
+          <li class="disabled"><a href="#">...</a></li>
+          <li><a href="#">16</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i></a></li>
+      </ul></div>
+  
+
+  <!-- Modal -->
+  
+  <!-- JS -->
+</body>
+
+</html>

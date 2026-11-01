@@ -1,0 +1,38 @@
+/* 文字背景 */
+
+// 顏色定義 (可擴充)
+$text-bg-colors: (
+  "alert-danger": (
+    "bg": #FFE9E9,
+    "color": #E91313
+  ),
+  // 可擴充其他顏色
+  // "alert-success": (
+  //   "bg": #E6F4EA,
+  //   "color": #1E7E34
+  // ),
+  // "alert-warning": (
+  //   "bg": #FFF8E6,
+  //   "color": #856404
+  // ),
+  // "alert-info": (
+  //   "bg": #E7F3FE,
+  //   "color": #0C5460
+  // ),
+);
+
+// Mixin: 產生 text-bg 樣式
+@mixin text-bg($bg-color, $text-color) {
+  background-color: $bg-color !important;
+  color: $text-color !important;
+}
+
+// 產生 .text-bg-* classes
+@each $name, $colors in $text-bg-colors {
+  .text-bg-#{$name} {
+    @include text-bg(
+      map-get($colors, "bg"),
+      map-get($colors, "color")
+    );
+  }
+}

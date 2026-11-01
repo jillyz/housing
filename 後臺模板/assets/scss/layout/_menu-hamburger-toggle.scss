@@ -1,0 +1,35 @@
+/* Menu hamburger toggle */ 
+.menu-hamburger-toggle{
+    .btn-icon{        
+        --size: 50px;
+        //--
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: var(--size);
+        height: var(--size);
+        transition: all 0.2s;  
+        &::after{
+            display: none;
+        }  
+        &:hover {
+            background-color: rgba(black, 0.2);
+        }
+
+        // 狀態
+        .is-open{
+            display: none;
+        }
+        .is-close{
+            display: inline-block;
+        }
+        &[aria-expanded="true"]{
+            .is-open{
+                display: inline-block;
+            }
+            .is-close{
+                display: none;
+            }
+        }
+    }
+}

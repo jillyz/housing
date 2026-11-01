@@ -1,0 +1,12 @@
+1.引用JS
+<script src="~/js/JQueryDatePickerTW/JQueryDatePickerTW.js"></script>
+<script src="~/js/JQueryDatePickerTW/Lib/jquery-ui-1.10.3.custom.js"></script>
+
+2.引用css
+<link rel="stylesheet" href="~/js/JQueryDatePickerTW/Lib/jquery-ui.theme.min.css">
+
+3.初始化
+    <input class="datepickerTW" id="dateBirth">
+	$('#dateBirth').datepickerTW();
+	
+p.s.參數網址(沒有全部測試過):https://blog.csdn.net/zhengxiangwen/article/details/9013453

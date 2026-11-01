@@ -1,0 +1,27 @@
+/* sticky-top-scroll */
+.sticky-top-scrollXXX{
+    position: sticky;
+    top: $header-h;
+    transform: translateY(0);
+    transition: all .5s;   
+    @include breakpoint($lg){
+        top: $header-h-lg;
+    }
+}
+body.scrollDown .sticky-top-scrollXXX{
+    transform: translateY(-100%);
+}
+.sticky-top-scroll{
+    position: sticky;
+    // transform: translateY(0);
+    transition: all .5s;   
+    z-index: 5;
+    top: $header-h;
+    @include breakpoint($lg){
+        top: $header-h-lg;
+    }
+}
+body.scrollDown .sticky-top-scroll{
+    top:-200px;
+    // transform: translateY(-100%);
+}

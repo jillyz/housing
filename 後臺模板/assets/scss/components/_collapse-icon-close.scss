@@ -1,0 +1,30 @@
+/* collapse-icon */
+.collapse-icon{
+    color: currentColor;
+    font-size: 24px;
+    .icon{
+        display: inline-block;
+    }    
+    .expanded-true{
+        display: none;
+    }
+    .expanded-rotate{
+        transition: all .2s;
+        transform: rotate(180deg);
+    }
+    
+    &[aria-expanded="true"]{
+        // 隱藏
+        .expanded-false{
+            display: none;
+        }
+        // 顯示
+        .expanded-true{
+            display: inline-block;
+        }
+        // 旋轉
+        .expanded-rotate{
+            transform: rotate(0deg);
+        }
+    }
+}

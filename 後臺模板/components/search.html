@@ -1,0 +1,755 @@
+<!doctype html>
+<html class="no-js" lang="zh-Hant">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>搜尋頁 | 組件表</title>
+  <!-- jQuery -->
+  <script src="../assets/vendor/jquery-3.7.1.min.js"></script>
+  <!-- jQuery-ui -->
+  <link rel="stylesheet" href="../assets/vendor/jquery-ui-1.13.2/jquery-ui.min.css">
+  <script src="../assets/vendor/jquery-ui-1.13.2/jquery-ui.min.js"></script>
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="../assets/vendor/bootstrap-5.3.3/dist/css/bootstrap.min.css">
+  <script src="../assets/vendor/bootstrap-5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../assets/vendor/fontawesome-pro-6.5.2-web/css/all.css">
+  <!-- Rubik (數字字型) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap">
+  <!-- Tom Select -->
+  <link rel="stylesheet" href="../assets/vendor/tom-select-2.2.2/tom-select.bootstrap5.min.css">
+  <script src="../assets/vendor/tom-select-2.2.2/tom-select.complete.js"></script>
+  <!-- Flatpickr 民國年 -->
+  <link rel="stylesheet" href="../assets/vendor/flatpickr-4.6.13-TW/flatpickr.min.css">
+  <script src="../assets/vendor/flatpickr-4.6.13-TW/flatpickr.min.js"></script>
+  <script src="../assets/vendor/flatpickr-4.6.13-TW/zh_tw.js"></script>
+  <!-- Fancybox -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css">
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+  <!-- FullCalendar 大月曆 -->
+  <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.18/index.global.min.js'></script>
+  <!-- 自訂 -->
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <script src="../assets/js/customJS.js"></script>
+</head>
+
+<body>
+  <div class="container py-5">
+    <p><i class="fa-solid fa-circle-chevron-left"></i> <a href="../_components.html" class="text-body">回組件表</a></p>
+    <div class="bg-white rounded-3 mt-4 mb-5">
+      <h4 class="p-5 border-bottom">搜尋頁</h4>
+      <div class="p-5">
+        <!-- 查詢條件 -->
+        <div class="collapse-wrap | position-relative">
+            <h4 class="collapse-title"><span class="text">查詢條件</span></h4>
+            <a href="#searchCollapse" class="collapse-btn | stretched-link" data-bs-toggle="collapse" aria-expanded="true">
+                <i class="fa-solid fa-chevron-down"></i>
+            </a>
+        </div>
+        <!-- Collapse -->
+        <div class="collapse show" id="searchCollapse">
+            <div class="search">
+                <div class="search-top-form">
+                    <div class="row g-3">
+                        <!-- 社宅大樓 -->
+                        <div class="col-md-6 col-lg-3">
+                            <label for="" class="form-label">社宅大樓</label>
+                            <select name="" id="" class="form-select">
+                                <option value="全部">全部</option>
+                                <option value="自慢藏聯合招租">自慢藏聯合招租</option>
+                                <option value="小東路北側">小東路北側</option>
+                                <option value="仁德二空新村(A區)">仁德二空新村(A區)</option>
+                                <option value="仁德二空新村(B區)">仁德二空新村(B區)</option>
+                                <option value="永康精忠二村">永康精忠二村</option>
+                                <option value="平實營區一期">平實營區一期</option>
+                                <option value="平實營區二期">平實營區二期</option>
+                                <option value="自強新村">自強新村</option>
+                                <option value="中興新城">中興新城</option>
+                                <option value="九六新村">九六新村</option>
+                                <option value="永康康橋">永康康橋</option>
+                            </select>
+                        </div>
+                        <!-- 年度 -->
+                        <div class="col-md-6 col-lg-3">
+                            <label for="" class="form-label">年度</label>
+                            <select name="" id="" class="form-select">
+                                <option value="全部">全部</option>
+                                <option value="114">114</option>
+                                <option value="113">113</option>
+                                <option value="112">112</option>
+                            </select>
+                        </div>
+                        <!-- 申請編號 / 流水號 -->
+                        <div class="col-md-6 col-lg-3">
+                            <label for="" class="form-label">申請編號/流水號</label>
+                            <input type="text" class="form-control" placeholder="請輸入申請編號、流水號">
+                        </div>
+                        <!-- 姓名 -->
+                        <div class="col-md-6 col-lg-3">
+                            <label for="" class="form-label">姓名</label>
+                            <input type="text" class="form-control" placeholder="請輸入申請人姓名">
+                        </div>
+                        <!-- 關鍵字查詢 -->
+                        <div class="col-12 col-xxl-8">
+                            <label for="" class="form-label">關鍵字查詢</label>
+                            <div class="flex-item-wrap | align-items-start">
+                                <select class="form-select w-auto flex-grow-1 flex-md-grow-0">
+                                    <option value="申請人">申請人</option>
+                                    <option value="家庭成員/共同居住者">家庭成員/共同居住者</option>
+                                </select>
+                                <div class=" flex-grow-1">
+                                    <input type="text" class="form-control" placeholder="請輸入關鍵字">
+                                    <div class="form-text text-muted"><span class="me-1"><i class="fas fa-info-circle"></i></span>可輸入手機號碼、市話號碼、身分證字號、緊急聯絡人姓名</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 排序 -->
+                        <div class="col-md-7 col-xxl-4">
+                            <label for="" class="form-label">排序</label>
+                            <div class="input-group">
+                                <select class="form-select">
+                                    <option value="總體選屋順序">總體選屋順序</option>
+                                    <option value="抽籤結果">抽籤結果</option>
+                                    <option value="申請編號">申請編號</option>
+                                    <option value="選屋時間">選屋時間</option>
+                                    <option value="狀態">狀態</option>
+                                    <option value="申請房型">申請房型</option>
+                                    <option value="申請身份">申請身份</option>
+                                    <option value="姓名">姓名</option>
+                                    <option value="社宅大樓">社宅大樓</option>
+                                </select>
+                                <select class="form-select">
+                                    <option value="降冪">降冪</option>
+                                    <option value="升冪">升冪</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="grid-left-auto align-items-stretch mb-0" style="gap: 3px 0">
+                                <div class="start | check-list-head px-3 py-2">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="inlineCheckboxAA">
+                                        <label class="form-check-label" for="inlineCheckboxAA">身份</label>
+                                    </div>
+                                </div>
+                                <div class="end | px-3 py-2 bg-white">
+                                    <div class="flex-item-wrap">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="inlineCheckboxAA0" value="一般戶">
+                                            <label class="form-check-label" for="inlineCheckboxAA0">一般戶</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="inlineCheckboxAA1" value="關懷戶">
+                                            <label class="form-check-label" for="inlineCheckboxAA1">關懷戶</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="inlineCheckboxAA2" value="原住民戶">
+                                            <label class="form-check-label" for="inlineCheckboxAA2">原住民戶</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="inlineCheckboxAA3" value="警消戶">
+                                            <label class="form-check-label" for="inlineCheckboxAA3">警消戶</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="start | px-3 py-2 check-list-head">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="inlineCheckboxAB">
+                                        <label class="form-check-label" for="inlineCheckboxAB">方式</label>
+                                    </div>
+                                </div>
+                                <div class="end | px-3 py-2 bg-white">
+                                    <div class="flex-item-wrap">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="inlineCheckboxAB0" value="現場">
+                                            <label class="form-check-label" for="inlineCheckboxAB0">現場</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="inlineCheckboxAB1" value="郵寄">
+                                            <label class="form-check-label" for="inlineCheckboxAB1">郵寄</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="inlineCheckboxAB2" value="線上申請">
+                                            <label class="form-check-label" for="inlineCheckboxAB2">線上申請</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="start | px-3 py-2 check-list-head">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="inlineCheckboxAC">
+                                        <label class="form-check-label" for="inlineCheckboxAC">房型</label>
+                                    </div>
+                                </div>
+                                <div class="end | px-3 py-2 bg-white">
+                                    <div class="flex-item-wrap">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="inlineCheckboxAC0" value="套房">
+                                            <label class="form-check-label" for="inlineCheckboxAC0">套房</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="inlineCheckboxAC1" value="一房型">
+                                            <label class="form-check-label" for="inlineCheckboxAC1">一房型</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="inlineCheckboxAC2" value="二房型">
+                                            <label class="form-check-label" for="inlineCheckboxAC2">二房型</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="inlineCheckboxAC3" value="三房型">
+                                            <label class="form-check-label" for="inlineCheckboxAC3">三房型</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="start | px-3 py-2 check-list-head">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="inlineCheckboxAD">
+                                        <label class="form-check-label" for="inlineCheckboxAD">狀態</label>
+                                    </div>
+                                </div>
+                                <div class="end | px-3 py-2 bg-white">
+                                    <div class="flex-item-wrap">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="inlineCheckboxAD0" value="取消申請">
+                                            <label class="form-check-label" for="inlineCheckboxAD0">取消申請</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="inlineCheckboxAD1" value="尚未完成申請">
+                                            <label class="form-check-label" for="inlineCheckboxAD1">尚未完成申請</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="inlineCheckboxAD2" value="初審中">
+                                            <label class="form-check-label" for="inlineCheckboxAD2">初審中</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="inlineCheckboxAD3" value="複審中">
+                                            <label class="form-check-label" for="inlineCheckboxAD3">複審中</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="inlineCheckboxAD4" value="審核須補正">
+                                            <label class="form-check-label" for="inlineCheckboxAD4">審核須補正</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="inlineCheckboxAD5" value="審核須補件">
+                                            <label class="form-check-label" for="inlineCheckboxAD5">審核須補件</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="inlineCheckboxAD6" value="資格不符駁回">
+                                            <label class="form-check-label" for="inlineCheckboxAD6">資格不符駁回</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="inlineCheckboxAD7" value="審核通過">
+                                            <label class="form-check-label" for="inlineCheckboxAD7">審核通過</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="inlineCheckboxAD8" value="已放棄遞補">
+                                            <label class="form-check-label" for="inlineCheckboxAD8">已放棄遞補</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="inlineCheckboxAD9" value="選屋">
+                                            <label class="form-check-label" for="inlineCheckboxAD9">選屋</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="inlineCheckboxAD10" value="點交簽約">
+                                            <label class="form-check-label" for="inlineCheckboxAD10">點交簽約</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="search-bottom-buttons">
+                    <button class="btn btn-primary">
+                        <i class="fa-solid fa-magnifying-glass"></i>查詢
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- 表格上方功能 -->
+        <div class="flex-start-end mb-2">
+            <a href="apply-data.html" class="btn btn-primary"><i class="fa-solid fa-circle-plus"></i>申請資料建檔</a>
+        </div>
+        <!-- Table -->
+        <div class="table-responsive mb-3">
+            <table class="table table-list table-rwd table-bordered mb-0">
+                <thead>
+                    <tr>
+                        <th>申請編號</th>
+                        <th>社會住宅</th>
+                        <th>類型</th>
+                        <th class="text-center">申請身份</th>
+                        <th class="text-center">申請房型</th>
+                        <th class="text-center">姓名</th>
+                        <th>狀態</th>
+                        <th>功能</th>
+                    </tr>
+                </thead>
+                <tbody>               
+                    <tr>
+                        <td data-th="申請編號">TSDL11307280001</td>
+                        <td data-th="社會住宅">自慢藏聯合招租</td>
+                        <td data-th="類型">新案招租</td>
+                        <td data-th="申請身份" class="text-center">一般戶</td>
+                        <td data-th="申請房型" class="text-center">-</td>
+                        <td data-th="姓名" class="text-center">王小明</td>
+                        <td data-th="狀態">尚未完成申請
+        </td>
+                        <td data-th="功能">
+                            <div class="flex-item-wrap">
+                                <button class="btn btn-sm btn-outline-primary"  >
+                                  <i class="fa-solid fa-pen"></i>
+                                  編輯
+                                </button>
+                                <div class="btn-group">
+                                    <button
+                                        class="btn btn-sm btn-outline-primary dropdown-toggle"
+                                        type="button"
+                                        id="triggerId"
+                                        data-bs-toggle="dropdown"
+                                        aria-haspopup="true"
+                                        aria-expanded="false"
+                                    >
+                                    更多功能*
+                                    </button>
+                                    <div
+                                        class="dropdown-menu dropdown-menu-start"
+                                        aria-labelledby="triggerId"
+                                    >
+                                        <a class="dropdown-item" href="#projectHistoryModal" data-bs-toggle="modal">案件歷程*</a>
+                                        <a class="dropdown-item" href="#updateModal" data-bs-toggle="modal">更新資料*</a>
+                                        <a class="dropdown-item" href="#declineSubstitutionModal" data-bs-toggle="modal">放棄遞補*</a>
+                                        <a class="dropdown-item" href="#withdrawModal" data-bs-toggle="modal">放棄申請*</a>
+                                        <a class="dropdown-item text-danger" href="#cancelModal" data-bs-toggle="modal">取消申請*</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-th="申請編號">TSDL11307280001</td>
+                        <td data-th="社會住宅">自慢藏聯合招租</td>
+                        <td data-th="類型">新案招租</td>
+                        <td data-th="申請身份" class="text-center">一般戶</td>
+                        <td data-th="申請房型" class="text-center">-</td>
+                        <td data-th="姓名" class="text-center">李大華</td>
+                        <td data-th="狀態">初審中
+        </td>
+                        <td data-th="功能">
+                            <div class="flex-item-wrap">
+                                <button class="btn btn-sm btn-outline-primary" >
+                                  <i class="fa-solid fa-check-double"></i>
+                                  審核
+                                </button>
+                                <div class="btn-group">
+                                    <button
+                                        class="btn btn-sm btn-outline-primary dropdown-toggle"
+                                        type="button"
+                                        id="triggerId"
+                                        data-bs-toggle="dropdown"
+                                        aria-haspopup="true"
+                                        aria-expanded="false"
+                                    >
+                                    更多功能*
+                                    </button>
+                                    <div
+                                        class="dropdown-menu dropdown-menu-start"
+                                        aria-labelledby="triggerId"
+                                    >
+                                        <a class="dropdown-item" href="#projectHistoryModal" data-bs-toggle="modal">案件歷程*</a>
+                                        <a class="dropdown-item" href="#updateModal" data-bs-toggle="modal">更新資料*</a>
+                                        <a class="dropdown-item" href="#declineSubstitutionModal" data-bs-toggle="modal">放棄遞補*</a>
+                                        <a class="dropdown-item" href="#withdrawModal" data-bs-toggle="modal">放棄申請*</a>
+                                        <a class="dropdown-item text-danger" href="#cancelModal" data-bs-toggle="modal">取消申請*</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-th="申請編號">TSDL11307280001</td>
+                        <td data-th="社會住宅">自慢藏聯合招租</td>
+                        <td data-th="類型">新案招租</td>
+                        <td data-th="申請身份" class="text-center">一般戶</td>
+                        <td data-th="申請房型" class="text-center">-</td>
+                        <td data-th="姓名" class="text-center">王小明</td>
+                        <td data-th="狀態">複審中
+        </td>
+                        <td data-th="功能">
+                            <div class="flex-item-wrap">
+                                <button class="btn btn-sm btn-outline-primary" >
+                                  <i class="fa-solid fa-check-double"></i>
+                                  審核
+                                </button>
+                                <div class="btn-group">
+                                    <button
+                                        class="btn btn-sm btn-outline-primary dropdown-toggle"
+                                        type="button"
+                                        id="triggerId"
+                                        data-bs-toggle="dropdown"
+                                        aria-haspopup="true"
+                                        aria-expanded="false"
+                                    >
+                                    更多功能*
+                                    </button>
+                                    <div
+                                        class="dropdown-menu dropdown-menu-start"
+                                        aria-labelledby="triggerId"
+                                    >
+                                        <a class="dropdown-item" href="#projectHistoryModal" data-bs-toggle="modal">案件歷程*</a>
+                                        <a class="dropdown-item" href="#updateModal" data-bs-toggle="modal">更新資料*</a>
+                                        <a class="dropdown-item" href="#declineSubstitutionModal" data-bs-toggle="modal">放棄遞補*</a>
+                                        <a class="dropdown-item" href="#withdrawModal" data-bs-toggle="modal">放棄申請*</a>
+                                        <a class="dropdown-item text-danger" href="#cancelModal" data-bs-toggle="modal">取消申請*</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-th="申請編號">TSDL11307280001</td>
+                        <td data-th="社會住宅">自慢藏聯合招租</td>
+                        <td data-th="類型">新案招租</td>
+                        <td data-th="申請身份" class="text-center">一般戶</td>
+                        <td data-th="申請房型" class="text-center">-</td>
+                        <td data-th="姓名" class="text-center">王小明</td>
+                        <td data-th="狀態">審核須補正<br/>
+        (113/07/21截止)
+        </td>
+                        <td data-th="功能">
+                            <div class="flex-item-wrap">
+                                <button class="btn btn-sm btn-outline-primary"  >
+                                  <i class="fa-solid fa-pen"></i>
+                                  編輯
+                                </button>
+                                <div class="btn-group">
+                                    <button
+                                        class="btn btn-sm btn-outline-primary dropdown-toggle"
+                                        type="button"
+                                        id="triggerId"
+                                        data-bs-toggle="dropdown"
+                                        aria-haspopup="true"
+                                        aria-expanded="false"
+                                    >
+                                    更多功能*
+                                    </button>
+                                    <div
+                                        class="dropdown-menu dropdown-menu-start"
+                                        aria-labelledby="triggerId"
+                                    >
+                                        <a class="dropdown-item" href="#projectHistoryModal" data-bs-toggle="modal">案件歷程*</a>
+                                        <a class="dropdown-item" href="#updateModal" data-bs-toggle="modal">更新資料*</a>
+                                        <a class="dropdown-item" href="#declineSubstitutionModal" data-bs-toggle="modal">放棄遞補*</a>
+                                        <a class="dropdown-item" href="#withdrawModal" data-bs-toggle="modal">放棄申請*</a>
+                                        <a class="dropdown-item text-danger" href="#cancelModal" data-bs-toggle="modal">取消申請*</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-th="申請編號">TSDL11307280001</td>
+                        <td data-th="社會住宅">自慢藏聯合招租</td>
+                        <td data-th="類型">新案招租</td>
+                        <td data-th="申請身份" class="text-center">一般戶</td>
+                        <td data-th="申請房型" class="text-center">-</td>
+                        <td data-th="姓名" class="text-center">王小明</td>
+                        <td data-th="狀態">審核須補件<br/>
+        (113/07/21截止)
+        </td>
+                        <td data-th="功能">
+                            <div class="flex-item-wrap">
+                                <button class="btn btn-sm btn-outline-primary" >
+                                  <i class="fa-solid fa-eye"></i>
+                                  檢視
+                                </button>
+                                <div class="btn-group">
+                                    <button
+                                        class="btn btn-sm btn-outline-primary dropdown-toggle"
+                                        type="button"
+                                        id="triggerId"
+                                        data-bs-toggle="dropdown"
+                                        aria-haspopup="true"
+                                        aria-expanded="false"
+                                    >
+                                    更多功能*
+                                    </button>
+                                    <div
+                                        class="dropdown-menu dropdown-menu-start"
+                                        aria-labelledby="triggerId"
+                                    >
+                                        <a class="dropdown-item" href="#projectHistoryModal" data-bs-toggle="modal">案件歷程*</a>
+                                        <a class="dropdown-item" href="#updateModal" data-bs-toggle="modal">更新資料*</a>
+                                        <a class="dropdown-item" href="#declineSubstitutionModal" data-bs-toggle="modal">放棄遞補*</a>
+                                        <a class="dropdown-item" href="#withdrawModal" data-bs-toggle="modal">放棄申請*</a>
+                                        <a class="dropdown-item text-danger" href="#cancelModal" data-bs-toggle="modal">取消申請*</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-th="申請編號">TSDL11307280001</td>
+                        <td data-th="社會住宅">自慢藏聯合招租</td>
+                        <td data-th="類型">新案招租</td>
+                        <td data-th="申請身份" class="text-center">一般戶</td>
+                        <td data-th="申請房型" class="text-center">-</td>
+                        <td data-th="姓名" class="text-center">王小明</td>
+                        <td data-th="狀態"><span class="state-text-danger" data-bs-toggle="tooltip" data-bs-title="房型需求變更">取消申請</span>
+        </td>
+                        <td data-th="功能">
+                            <div class="flex-item-wrap">
+                                <button class="btn btn-sm btn-outline-primary" >
+                                  <i class="fa-solid fa-eye"></i>
+                                  檢視
+                                </button>
+                                <div class="btn-group">
+                                    <button
+                                        class="btn btn-sm btn-outline-primary dropdown-toggle"
+                                        type="button"
+                                        id="triggerId"
+                                        data-bs-toggle="dropdown"
+                                        aria-haspopup="true"
+                                        aria-expanded="false"
+                                    >
+                                    更多功能*
+                                    </button>
+                                    <div
+                                        class="dropdown-menu dropdown-menu-start"
+                                        aria-labelledby="triggerId"
+                                    >
+                                        <a class="dropdown-item" href="#projectHistoryModal" data-bs-toggle="modal">案件歷程*</a>
+                                        <a class="dropdown-item" href="#updateModal" data-bs-toggle="modal">更新資料*</a>
+                                        <a class="dropdown-item" href="#declineSubstitutionModal" data-bs-toggle="modal">放棄遞補*</a>
+                                        <a class="dropdown-item" href="#withdrawModal" data-bs-toggle="modal">放棄申請*</a>
+                                        <a class="dropdown-item text-danger" href="#cancelModal" data-bs-toggle="modal">取消申請*</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-th="申請編號">TSDL11307280001</td>
+                        <td data-th="社會住宅">自慢藏聯合招租</td>
+                        <td data-th="類型">新案招租</td>
+                        <td data-th="申請身份" class="text-center">一般戶</td>
+                        <td data-th="申請房型" class="text-center">-</td>
+                        <td data-th="姓名" class="text-center">王小明</td>
+                        <td data-th="狀態"><span class="state-text-danger" data-bs-toggle="tooltip" data-bs-title="逾期未補件">資格不符駁回 <i class="fa-solid fa-circle-info"></i></span>
+        </td>
+                        <td data-th="功能">
+                            <div class="flex-item-wrap">
+                                <button class="btn btn-sm btn-outline-primary" >
+                                  <i class="fa-solid fa-eye"></i>
+                                  檢視
+                                </button>
+                                <div class="btn-group">
+                                    <button
+                                        class="btn btn-sm btn-outline-primary dropdown-toggle"
+                                        type="button"
+                                        id="triggerId"
+                                        data-bs-toggle="dropdown"
+                                        aria-haspopup="true"
+                                        aria-expanded="false"
+                                    >
+                                    更多功能*
+                                    </button>
+                                    <div
+                                        class="dropdown-menu dropdown-menu-start"
+                                        aria-labelledby="triggerId"
+                                    >
+                                        <a class="dropdown-item" href="#projectHistoryModal" data-bs-toggle="modal">案件歷程*</a>
+                                        <a class="dropdown-item" href="#updateModal" data-bs-toggle="modal">更新資料*</a>
+                                        <a class="dropdown-item" href="#declineSubstitutionModal" data-bs-toggle="modal">放棄遞補*</a>
+                                        <a class="dropdown-item" href="#withdrawModal" data-bs-toggle="modal">放棄申請*</a>
+                                        <a class="dropdown-item text-danger" href="#cancelModal" data-bs-toggle="modal">取消申請*</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-th="申請編號">TSDL11307280001</td>
+                        <td data-th="社會住宅">自慢藏聯合招租</td>
+                        <td data-th="類型">新案招租</td>
+                        <td data-th="申請身份" class="text-center">一般戶</td>
+                        <td data-th="申請房型" class="text-center">-</td>
+                        <td data-th="姓名" class="text-center">王小明</td>
+                        <td data-th="狀態"><span class="state-text-danger" data-bs-toggle="tooltip" data-bs-title="個人因素">已放棄遞補 <i class="fa-solid fa-circle-info"></i></span>
+        </td>
+                        <td data-th="功能">
+                            <div class="flex-item-wrap">
+                                <button class="btn btn-sm btn-outline-primary" >
+                                  <i class="fa-solid fa-eye"></i>
+                                  檢視
+                                </button>
+                                <div class="btn-group">
+                                    <button
+                                        class="btn btn-sm btn-outline-primary dropdown-toggle"
+                                        type="button"
+                                        id="triggerId"
+                                        data-bs-toggle="dropdown"
+                                        aria-haspopup="true"
+                                        aria-expanded="false"
+                                    >
+                                    更多功能*
+                                    </button>
+                                    <div
+                                        class="dropdown-menu dropdown-menu-start"
+                                        aria-labelledby="triggerId"
+                                    >
+                                        <a class="dropdown-item" href="#projectHistoryModal" data-bs-toggle="modal">案件歷程*</a>
+                                        <a class="dropdown-item" href="#updateModal" data-bs-toggle="modal">更新資料*</a>
+                                        <a class="dropdown-item" href="#declineSubstitutionModal" data-bs-toggle="modal">放棄遞補*</a>
+                                        <a class="dropdown-item" href="#withdrawModal" data-bs-toggle="modal">放棄申請*</a>
+                                        <a class="dropdown-item text-danger" href="#cancelModal" data-bs-toggle="modal">取消申請*</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-th="申請編號">TSDL11307280001</td>
+                        <td data-th="社會住宅">自慢藏聯合招租</td>
+                        <td data-th="類型">新案招租</td>
+                        <td data-th="申請身份" class="text-center">一般戶</td>
+                        <td data-th="申請房型" class="text-center">-</td>
+                        <td data-th="姓名" class="text-center">王小明</td>
+                        <td data-th="狀態"><span class="state-text-success">審核通過</span>
+        </td>
+                        <td data-th="功能">
+                            <div class="flex-item-wrap">
+                                <button class="btn btn-sm btn-outline-primary" >
+                                  <i class="fa-solid fa-eye"></i>
+                                  檢視
+                                </button>
+                                <div class="btn-group">
+                                    <button
+                                        class="btn btn-sm btn-outline-primary dropdown-toggle"
+                                        type="button"
+                                        id="triggerId"
+                                        data-bs-toggle="dropdown"
+                                        aria-haspopup="true"
+                                        aria-expanded="false"
+                                    >
+                                    更多功能*
+                                    </button>
+                                    <div
+                                        class="dropdown-menu dropdown-menu-start"
+                                        aria-labelledby="triggerId"
+                                    >
+                                        <a class="dropdown-item" href="#projectHistoryModal" data-bs-toggle="modal">案件歷程*</a>
+                                        <a class="dropdown-item" href="#updateModal" data-bs-toggle="modal">更新資料*</a>
+                                        <a class="dropdown-item" href="#declineSubstitutionModal" data-bs-toggle="modal">放棄遞補*</a>
+                                        <a class="dropdown-item" href="#withdrawModal" data-bs-toggle="modal">放棄申請*</a>
+                                        <a class="dropdown-item text-danger" href="#cancelModal" data-bs-toggle="modal">取消申請*</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-th="申請編號">TSDL11307280001</td>
+                        <td data-th="社會住宅">自慢藏聯合招租</td>
+                        <td data-th="類型">新案招租</td>
+                        <td data-th="申請身份" class="text-center">一般戶</td>
+                        <td data-th="申請房型" class="text-center">-</td>
+                        <td data-th="姓名" class="text-center">王小明</td>
+                        <td data-th="狀態"><span class="state-text-danger" data-bs-toggle="tooltip" data-bs-title="逾期未補件">資格不符駁回 <i class="fa-solid fa-circle-info"></i></span>
+        </td>
+                        <td data-th="功能">
+                            <div class="flex-item-wrap">
+                                <button class="btn btn-sm btn-outline-primary" >
+                                  <i class="fa-solid fa-eye"></i>
+                                  檢視
+                                </button>
+                                <div class="btn-group">
+                                    <button
+                                        class="btn btn-sm btn-outline-primary dropdown-toggle"
+                                        type="button"
+                                        id="triggerId"
+                                        data-bs-toggle="dropdown"
+                                        aria-haspopup="true"
+                                        aria-expanded="false"
+                                    >
+                                    更多功能*
+                                    </button>
+                                    <div
+                                        class="dropdown-menu dropdown-menu-start"
+                                        aria-labelledby="triggerId"
+                                    >
+                                        <a class="dropdown-item" href="#projectHistoryModal" data-bs-toggle="modal">案件歷程*</a>
+                                        <a class="dropdown-item" href="#updateModal" data-bs-toggle="modal">更新資料*</a>
+                                        <a class="dropdown-item" href="#declineSubstitutionModal" data-bs-toggle="modal">放棄遞補*</a>
+                                        <a class="dropdown-item" href="#withdrawModal" data-bs-toggle="modal">放棄申請*</a>
+                                        <a class="dropdown-item text-danger" href="#cancelModal" data-bs-toggle="modal">取消申請*</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-th="申請編號">TSDL11307280001</td>
+                        <td data-th="社會住宅">自慢藏聯合招租</td>
+                        <td data-th="類型">新案招租</td>
+                        <td data-th="申請身份" class="text-center">一般戶</td>
+                        <td data-th="申請房型" class="text-center">-</td>
+                        <td data-th="姓名" class="text-center">王小明</td>
+                        <td data-th="狀態"><span class="state-text-success">審核通過</span>
+        </td>
+                        <td data-th="功能">
+                            <div class="flex-item-wrap">
+                                <button class="btn btn-sm btn-outline-primary" >
+                                  <i class="fa-solid fa-eye"></i>
+                                  檢視
+                                </button>
+                                <div class="btn-group">
+                                    <button
+                                        class="btn btn-sm btn-outline-primary dropdown-toggle"
+                                        type="button"
+                                        id="triggerId"
+                                        data-bs-toggle="dropdown"
+                                        aria-haspopup="true"
+                                        aria-expanded="false"
+                                    >
+                                    更多功能*
+                                    </button>
+                                    <div
+                                        class="dropdown-menu dropdown-menu-start"
+                                        aria-labelledby="triggerId"
+                                    >
+                                        <a class="dropdown-item" href="#projectHistoryModal" data-bs-toggle="modal">案件歷程*</a>
+                                        <a class="dropdown-item" href="#updateModal" data-bs-toggle="modal">更新資料*</a>
+                                        <a class="dropdown-item" href="#declineSubstitutionModal" data-bs-toggle="modal">放棄遞補*</a>
+                                        <a class="dropdown-item" href="#withdrawModal" data-bs-toggle="modal">放棄申請*</a>
+                                        <a class="dropdown-item text-danger" href="#cancelModal" data-bs-toggle="modal">取消申請*</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <ul class="pagination ">
+            <li class="disabled"><a href="#"><i class="fas fa-chevron-left"></i></a></li>
+            <li class="active"><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li class="disabled"><a href="#">...</a></li>
+            <li><a href="#">16</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i></a></li>
+        </ul>      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  
+  <!-- JS -->
+</body>
+
+</html>

@@ -1,0 +1,15 @@
+/* Menu垂直排列 */
+.menu-vertical{  
+    color: var(--menu-link, #000);
+    & {
+        @include breakpoint($lg){
+            --menu-h-buffer: #{$header-h-lg + 70px};            
+        }
+    }
+    // li有active的子項時
+    li:has(.active){       
+        .sub-menu{
+            display: block;
+        }
+    }
+}

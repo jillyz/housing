@@ -1,0 +1,824 @@
+<!doctype html>
+<html class="no-js" lang="zh-Hant">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>雙人床墊 | 桃園市住宅及都市更新中心營運管理平台</title>
+  <!-- jQuery -->
+  <script src="assets/vendor/jquery-3.7.1.min.js"></script>
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="assets/vendor/bootstrap-5.3.3/dist/css/bootstrap.min.css">
+  <script src="assets/vendor/bootstrap-5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="assets/vendor/fontawesome-pro-6.5.2-web/css/all.css">
+  <!-- Rubik (數字字型) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap">
+  <!-- Tom Select -->
+  <link rel="stylesheet" href="assets/vendor/tom-select-2.2.2/tom-select.bootstrap5.min.css">
+  <script src="assets/vendor/tom-select-2.2.2/tom-select.complete.js"></script>
+  <!-- Menu -->
+  <script src="assets/vendor/utils/menu/menu.js"></script>
+  <!-- 自訂 -->
+  <link rel="stylesheet" href="assets/css/main.css">
+  <script src="assets/js/customJS.js"></script>
+</head>
+
+<body>
+  <div class="wrapper multi-column | column-with-menu">
+    <!-- Top -->
+    <div class="top">
+      <header class="header">
+        <!-- logo -->
+        <a class="logo" href="index.html" title="回首頁">
+          <div class="img-wrap"><img src="assets/img/brand-logo.svg"></div>
+          <h2 class="">桃園市住宅及都市更新中心<span>營運管理平台</span></h2>
+        </a>
+        <!-- 手機版漢堡 -->
+        <div class="d-lg-none">
+          <div class="menu-hamburger-toggle">
+            <a class="btn-icon" data-bs-toggle="collapse" href=".js-nav-collapse">
+              <span class="is-close"><i class="fas fa-bars"></i></span>
+              <span class="is-open"><i class="fas fa-times"></i></span>
+            </a>
+          </div>
+        </div>
+      </header>
+    </div>
+    <!-- Center -->
+    <div class="center">
+      <!-- Left -->
+      <div class="left">
+        <aside class="aside">
+          <!-- 桌機版漢堡 -->
+          <div class="d-none d-lg-block">
+              <div class="menu-hamburger | js-menu-hamburger">
+                <a class="btn btn-icon" title="選單收闔"><i class="fas fa-bars"></i></a>
+              </div>
+            </div>
+          <!-- Nav collapse -->
+          <div class="nav-collapse | collapse js-nav-collapse">
+            <!-- 上方輔助功能 -->
+            <div class="top-helper-wrapper">
+              <div class="top-helper">
+                <div class="warning-bell">
+                  <button><i class="fa-solid fa-bell"></i></button>
+                  <span class="badge">8</span>
+                </div>
+                <div class="dropdown">
+                  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    歡迎OOOOO科OOO登入系統
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="#">編輯個人資料</a></li>
+                    <li><a class="dropdown-item" href="#">變更密碼</a></li>
+                    <li><a class="dropdown-item" href="#">操作手冊下載</a></li>
+                    <li><a class="dropdown-item" href="#">登出</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <!-- Menu -->
+            <ul class="menu menu-vertical | scroll isMenuOpen js-menu-vertical">
+              <!-- 首頁 -->
+              <li>
+                  <a href="index.html" >
+                    <span class="icon-text">首頁</span>
+                  </a>
+              </li>
+              <!-- 招租作業 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">招租作業*</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="apply-01.html" >專案申請*</a>
+                      </li>
+                      <li>
+                          <a href="application-query.html" >申請案件查詢*</a>
+                      </li>
+                      <li>
+                          <a href="application-review.html" >申請案件審核*</a>
+                      </li>
+                      <li>
+                          <a href="shop-rent.html" >店鋪招租</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 選屋作業管理 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">選屋作業管理*</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="online-selection-rank-query.html" >選屋查詢*</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 點交簽約管理 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">點交簽約管理*</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="handover-management.html" >點交簽約查詢*</a>
+                      </li>
+                      <li>
+                          <a href="handover-details-query.html" >點交作業*</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 租約管理 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">租約管理</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="tenant-lease-management.html" >住戶租約管理</a>
+                      </li>
+                      <li>
+                          <a href="tenant-termination-management.html" >住戶退租管理</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 店鋪招商管理 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">店鋪招商管理</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="#" >店鋪公告管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >店鋪點交簽約查詢</a>
+                      </li>
+                      <li>
+                          <a href="#" >店鋪點交作業</a>
+                      </li>
+                      <li>
+                          <a href="#" >潛在店鋪管理</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 場地租借審核 -->
+              <li>
+                  <a href="#" >
+                    <span class="icon-text">場地租借審核</span>
+                  </a>
+              </li>
+              <!-- 帳務管理 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">帳務管理</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="#" >收費管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >銷貨收入</a>
+                      </li>
+                      <li>
+                          <a href="#" >帳款作廢</a>
+                      </li>
+                      <span>銀行委扣管理</span>
+                      <li>
+                          <a href="#" >銀行委扣授權</a>
+                      </li>
+                      <li>
+                          <a href="#" >銀行委扣扣款</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 資料查詢與匯出 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">資料查詢與匯出</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="#" >金流統計</a>
+                      </li>
+                      <li>
+                          <a href="#" >案件申請統計</a>
+                      </li>
+                      <li>
+                          <a href="#" >車位統計</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 物業管理功能 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">物業管理功能</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="#" >公告管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >包裹管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >扣點紀錄</a>
+                      </li>
+                      <li>
+                          <a href="#" >工作日誌</a>
+                      </li>
+                      <li>
+                          <a href="#" >場地租借管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >人員差勤管理</a>
+                      </li>
+                      <span>報修案件管理</span>
+                      <li>
+                          <a href="#" >報修案件查詢</a>
+                      </li>
+                      <li>
+                          <a href="#" >報修廠商管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >備品統計</a>
+                      </li>
+                      <li>
+                          <a href="#" >報表查詢</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 系統查詢與匯出 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">系統查詢與匯出</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="#" >通知類型設定</a>
+                      </li>        
+                  </ul>
+              </li>
+              <!-- 系統維護管理 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">系統維護管理*</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <span>社宅管理</span>
+                      <li>
+                          <a href="building-management.html" >大樓管理*</a>
+                      </li>
+                      <li>
+                          <a href="#" >大樓戶號管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >大樓車位管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >大樓場地管理</a>
+                      </li>
+                      <li>
+                          <a href="layout-config.html" >空間格局管理*</a>
+                      </li>
+                      <span>使用者權限管理</span>
+                      <li>
+                          <a href="user-data-management.html" >人員資料管理</a>
+                      </li>
+                      <li>
+                          <a href="permission-management.html" >權限管理</a>
+                      </li>
+                      <span>招租管理</span>
+                      <li>
+                          <a href="evaluation-type-settings.html" >評點類型審核設定</a>
+                      </li>
+                      <li>
+                          <a href="schedule-management.html" >社宅時程管理</a>
+                      </li>
+                      <li>
+                          <a href="schedule-management.html" >店鋪標案管理</a>
+                      </li>
+                      <li>
+                          <a href="reviewer-settings.html" >審核人員設定</a>
+                      </li>
+                      <li>
+                          <a href="document-template-settings.html" >文件範本設定</a>
+                      </li>
+                      <span>資產與營運管理</span>
+                      <li>
+                          <a href="outsourcing-management.html" >資產管理</a>
+                      </li>        
+                  </ul>
+              </li>
+              
+              <li>
+                  <a href="furniture-maintenance.html" class="active">家具清單維護管理*</a>
+              </li>
+              
+              <li>
+                  <a href="_components.html" target="_blank">
+                    <span class="icon-text"><i class="fa-solid fa-cubes-stacked"></i>組件表</span>
+                  </a>
+              </li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+      <!-- Right -->
+      <div class="right">
+        <!-- 麵包屑 -->
+        <div class="breadcrumb-wrapper">
+            <div class="breadcrumb-inner">
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb">
+                  <li class="breadcrumb-item"><a href="furniture-maintenance.html">家具清單維護管理</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">雙人床墊</li>
+                </ol>
+              </nav>
+            </div>
+        </div>
+        <div class="content">
+            <!-- 返回列表 -->
+            <div class="item mb-5">
+                <a href="furniture-maintenance.html" class="btn btn-pill-outline-primary">
+                  <i class="fa-solid fa-angle-left"></i>
+                  返回列表
+                </a>
+            </div>
+            <!-- 簽約點交設定 -->
+             <div class="item mb-4">
+                <h4 class="fw-bold mb-4">
+                    <span class="me-1"><i class="fad fa-chevron-double-right"></i>
+                        家具資料設定
+                    </span>
+                </h4>
+                <div class="table-responsive scroll mb-3">
+                    <table class="table table-list table-form table-bordered" style="--th-size: 7em">
+                        <tbody>
+                            <tr>
+                                <th class="text-end">備品名稱</th>
+                                <td data-th="備品名稱">
+                                    <input type="text" class="form-control w-auto" value="雙人床墊">
+                                </td>
+                                <th class="text-end">項次</th>
+                                <td data-th="項次">
+                                    <input type="text" class="form-control w-auto" value="1-1">
+                                </td>
+                            </tr>
+                
+                            <tr>
+                                <th class="text-end">數量</th>
+                                <td data-th="數量">
+                                    <input type="number" class="form-control w-auto" value="300">
+                                </td>
+                                <th class="text-end">單位</th>
+                                <td data-th="單位">
+                                    <input type="text" class="form-control w-auto" value="個">
+                                </td>
+                            </tr>
+                
+                            <tr>
+                                <th class="text-end">適用社宅</th>
+                                <td colspan="3" data-th="適用社宅">
+                                    <div class="grid-item-wrap">
+                                        <label class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="all" checked>
+                                            <span class="form-check-label">全選</span>
+                                        </label>
+                
+                
+                                        <label class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="中路一號" checked>
+                                            <span class="form-check-label">中路一號</span>
+                                        </label>
+                
+                                        <label class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="中路二號" checked>
+                                            <span class="form-check-label">中路二號</span>
+                                        </label>
+                
+                                        <label class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="中路三號" checked>
+                                            <span class="form-check-label">中路三號</span>
+                                        </label>
+                
+                                        <label class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="中路四號" checked>
+                                            <span class="form-check-label">中路四號</span>
+                                        </label>
+                
+                                        <label class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="八德一號" checked>
+                                            <span class="form-check-label">八德一號</span>
+                                        </label>
+                
+                                        <label class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="八德二號" checked>
+                                            <span class="form-check-label">八德二號</span>
+                                        </label>
+                
+                                        <label class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="八德三號" checked>
+                                            <span class="form-check-label">八德三號</span>
+                                        </label>
+                
+                                        <label class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="中壢一號" checked>
+                                            <span class="form-check-label">中壢一號</span>
+                                        </label>
+                
+                                        <label class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="蘆竹一號" checked>
+                                            <span class="form-check-label">蘆竹一號</span>
+                                        </label>
+                
+                                        <label class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="蘆竹二號" checked>
+                                            <span class="form-check-label">蘆竹二號</span>
+                                        </label>
+                
+                                        <label class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="楊梅一號" checked>
+                                            <span class="form-check-label">楊梅一號</span>
+                                        </label>
+                
+                                    </div>
+                                </td>
+                            </tr>
+        
+                            <tr>
+                                <th class="text-end">承租狀態</th>
+                                <td colspan="3" data-th="承租狀態">
+                                    承租數量：200 <br/>
+                                    剩餘數量：100
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+        
+             </div>
+             <div class="item mb-4">
+                <h4 class="fw-bold mb-4">
+                    <span class="me-1"><i class="fad fa-chevron-double-right"></i>
+                        租金計畫
+                    </span>
+                </h4>
+                <ul class="brand-nav-tabs | nav nav-tabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="plan-tab" data-bs-toggle="tab" data-bs-target="#plan" type="button"
+                            role="tab" aria-controls="plan" aria-selected="true">
+                            租金計畫
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="penalty-tab" data-bs-toggle="tab" data-bs-target="#penalty" type="button"
+                            role="tab" aria-controls="penalty" aria-selected="false">
+                            違約金設定
+                        </button>
+                    </li>
+                </ul>
+                
+                <div class="tab-content | bg-white p-3 border border-top-0">
+                    <div class="tab-pane fade show active" id="plan" role="tabpanel" aria-labelledby="plan-tab">
+                        <!-- 租金計畫 內容放這裡 -->
+                        <div class="table-responsive scroll mb-3">
+                            <table class="table table-list table-rwd table-form table-bordered mb-0">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">項次</th>
+                                        <th>每月金額</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td data-th="項次" class="text-center">第1年</td>
+                                        <td data-th="每月金額">
+                                            <input type="number" size="2" class="form-control w-auto" value="139">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-th="項次" class="text-center">第2年</td>
+                                        <td data-th="每月金額">
+                                            <input type="number" size="2" class="form-control w-auto" value="139">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-th="項次" class="text-center">第3年</td>
+                                        <td data-th="每月金額">
+                                            <input type="number" size="2" class="form-control w-auto" value="139">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-th="項次" class="text-center">第4年</td>
+                                        <td data-th="每月金額">
+                                            <input type="number" size="2" class="form-control w-auto" value="135">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-th="項次" class="text-center">第5年</td>
+                                        <td data-th="每月金額">
+                                            <input type="number" size="2" class="form-control w-auto" value="135">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-th="項次" class="text-center">第6年</td>
+                                        <td data-th="每月金額">
+                                            <input type="number" size="2" class="form-control w-auto" value="135">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-th="項次" class="text-center">第7年</td>
+                                        <td data-th="每月金額">
+                                            <input type="number" size="2" class="form-control w-auto" value="131">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-th="項次" class="text-center">第8年</td>
+                                        <td data-th="每月金額">
+                                            <input type="number" size="2" class="form-control w-auto" value="131">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-th="項次" class="text-center">第9年</td>
+                                        <td data-th="每月金額">
+                                            <input type="number" size="2" class="form-control w-auto" value="131">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-th="項次" class="text-center">第10年</td>
+                                        <td data-th="每月金額">
+                                            <input type="number" size="2" class="form-control w-auto" value="127">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-th="項次" class="text-center">第11年</td>
+                                        <td data-th="每月金額">
+                                            <input type="number" size="2" class="form-control w-auto" value="127">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-th="項次" class="text-center">第12年</td>
+                                        <td data-th="每月金額">
+                                            <input type="number" size="2" class="form-control w-auto" value="127">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+        
+                    </div>
+                    <div class="tab-pane fade" id="penalty" role="tabpanel" aria-labelledby="penalty-tab">
+                        <!-- 違約金設定 內容放這裡 -->
+                        <div class="table-responsive scroll mb-3">
+                            <table class="table table-list table-rwd table-form table-bordered mb-0">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">項次</th>
+                                        <th>違約金額</th>
+                                        <th class="text-center">項次</th>
+                                        <th>違約金額</th>
+                                        <th class="text-center">項次</th>
+                                        <th>違約金額</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td data-th="項次" class="text-center">第0月</td>
+                                        <td data-th="違約金額">
+                                            <input type="number" class="form-control w-auto" value="1985">
+                                        </td>
+                                        <td data-th="項次" class="text-center">第12月</td>
+                                        <td data-th="違約金額">
+                                            <input type="number" class="form-control w-auto" value="550">
+                                        </td>
+                                        <td data-th="項次" class="text-center">第24月</td>
+                                        <td data-th="違約金額">
+                                            <input type="number" class="form-control w-auto" value="126">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-th="項次" class="text-center">第1月</td>
+                                        <td data-th="違約金額">
+                                            <input type="number" class="form-control w-auto" value="1846">
+                                        </td>
+                                        <td data-th="項次" class="text-center">第13月</td>
+                                        <td data-th="違約金額">
+                                            <input type="number" class="form-control w-auto" value="452">
+                                        </td>
+                                        <td data-th="項次" class="text-center">第25月</td>
+                                        <td data-th="違約金額">
+                                            <input type="number" class="form-control w-auto" value="115">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-th="項次" class="text-center">第2月</td>
+                                        <td data-th="違約金額">
+                                            <input type="number" class="form-control w-auto" value="1791">
+                                        </td>
+                                        <td data-th="項次" class="text-center">第14月</td>
+                                        <td data-th="違約金額">
+                                            <input type="number" class="form-control w-auto" value="300">
+                                        </td>
+                                        <td data-th="項次" class="text-center">第26月</td>
+                                        <td data-th="違約金額">
+                                            <input type="number" class="form-control w-auto" value="105">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-th="項次" class="text-center">第3月</td>
+                                        <td data-th="違約金額">
+                                            <input type="number" class="form-control w-auto" value="1736">
+                                        </td>
+                                        <td data-th="項次" class="text-center">第15月</td>
+                                        <td data-th="違約金額">
+                                            <input type="number" class="form-control w-auto" value="256">
+                                        </td>
+                                        <td data-th="項次" class="text-center">第27月</td>
+                                        <td data-th="違約金額">
+                                            <input type="number" class="form-control w-auto" value="100">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-th="項次" class="text-center">第4月</td>
+                                        <td data-th="違約金額">
+                                            <input type="number" class="form-control w-auto" value="1555">
+                                        </td>
+                                        <td data-th="項次" class="text-center">第16月</td>
+                                        <td data-th="違約金額">
+                                            <input type="number" class="form-control w-auto" value="200">
+                                        </td>
+                                        <td data-th="項次" class="text-center">第28月</td>
+                                        <td data-th="違約金額">
+                                            <input type="number" class="form-control w-auto" value="99">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-th="項次" class="text-center">第5月</td>
+                                        <td data-th="違約金額">
+                                            <input type="number" class="form-control w-auto" value="1456">
+                                        </td>
+                                        <td data-th="項次" class="text-center">第17月</td>
+                                        <td data-th="違約金額">
+                                            <input type="number" class="form-control w-auto" value="198">
+                                        </td>
+                                        <td data-th="項次" class="text-center">第29月</td>
+                                        <td data-th="違約金額">
+                                            <input type="number" class="form-control w-auto" value="88">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-th="項次" class="text-center">第6月</td>
+                                        <td data-th="違約金額">
+                                            <input type="number" class="form-control w-auto" value="1200">
+                                        </td>
+                                        <td data-th="項次" class="text-center">第18月</td>
+                                        <td data-th="違約金額">
+                                            <input type="number" class="form-control w-auto" value="188">
+                                        </td>
+                                        <td data-th="項次" class="text-center">第30月</td>
+                                        <td data-th="違約金額">
+                                            <input type="number" class="form-control w-auto" value="77">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-th="項次" class="text-center">第7月</td>
+                                        <td data-th="違約金額">
+                                            <input type="number" class="form-control w-auto" value="1100">
+                                        </td>
+                                        <td data-th="項次" class="text-center">第19月</td>
+                                        <td data-th="違約金額">
+                                            <input type="number" class="form-control w-auto" value="178">
+                                        </td>
+                                        <td data-th="項次" class="text-center">第31月</td>
+                                        <td data-th="違約金額">
+                                            <input type="number" class="form-control w-auto" value="66">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-th="項次" class="text-center">第8月</td>
+                                        <td data-th="違約金額">
+                                            <input type="number" class="form-control w-auto" value="1000">
+                                        </td>
+                                        <td data-th="項次" class="text-center">第20月</td>
+                                        <td data-th="違約金額">
+                                            <input type="number" class="form-control w-auto" value="168">
+                                        </td>
+                                        <td data-th="項次" class="text-center">第32月</td>
+                                        <td data-th="違約金額">
+                                            <input type="number" class="form-control w-auto" value="50">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-th="項次" class="text-center">第9月</td>
+                                        <td data-th="違約金額">
+                                            <input type="number" class="form-control w-auto" value="850">
+                                        </td>
+                                        <td data-th="項次" class="text-center">第21月</td>
+                                        <td data-th="違約金額">
+                                            <input type="number" class="form-control w-auto" value="154">
+                                        </td>
+                                        <td data-th="項次" class="text-center">第33月</td>
+                                        <td data-th="違約金額">
+                                            <input type="number" class="form-control w-auto" value="45">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-th="項次" class="text-center">第10月</td>
+                                        <td data-th="違約金額">
+                                            <input type="number" class="form-control w-auto" value="750">
+                                        </td>
+                                        <td data-th="項次" class="text-center">第22月</td>
+                                        <td data-th="違約金額">
+                                            <input type="number" class="form-control w-auto" value="128">
+                                        </td>
+                                        <td data-th="項次" class="text-center">第34月</td>
+                                        <td data-th="違約金額">
+                                            <input type="number" class="form-control w-auto" value="30">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-th="項次" class="text-center">第11月</td>
+                                        <td data-th="違約金額">
+                                            <input type="number" class="form-control w-auto" value="650">
+                                        </td>
+                                        <td data-th="項次" class="text-center">第23月</td>
+                                        <td data-th="違約金額">
+                                            <input type="number" class="form-control w-auto" value="127">
+                                        </td>
+                                        <td data-th="項次" class="text-center">第35月</td>
+                                        <td data-th="違約金額">
+                                            <input type="number" class="form-control w-auto" value="15">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td data-th="項次" class="text-center">第36月</td>
+                                        <td data-th="違約金額">
+                                            <input type="number" class="form-control w-auto" value="0">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    
+                    </div>
+                </div>
+        
+             </div>
+             <!-- actions -->
+            <div class="item mb-4">
+                <div class="btn-cta-group">
+                    <button type="button" class="btn btn-pill-outline-primary">取消</button>
+                    <a href="furniture-maintenance.html" class="btn btn-pill-primary">儲存</a>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <!-- Bottom -->
+    <div class="bottom">
+      <footer class="footer">
+          <div class="img-wrap">
+            <img src="assets/img/footer-brand-logo.svg">
+          </div>
+          <div class="text">
+            <div><i class="fa-duotone fa-user-headset fa-fw me-1"></i><label class="d-none d-lg-inline-block">客服人員：</label>天思數位科技 (04)2451-6669 #6?? X小姐</div>
+            <div><i class="fad fa-browser fa-fw me-1"></i><label class="d-none d-lg-inline-block">最佳瀏覽環境：</label>Edge、Firefox 、Google Chrome ,螢幕解析度1280*768以上</div>
+            <div class="d-none d-lg-inline-block"><i class="fad fa-copyright fa-fw me-1"></i> Copyright 桃園市住宅及都市更新中心</div>
+          </div>
+      </footer>
+    </div>
+  </div> 
+  <!-- /.wrapper  -->
+
+  <!-- 回到最上面 -->
+  <div class="go-top | js-go-top">
+      <a href="#" class="" title="回到最上面">TOP</a>
+  </div>
+
+  <!-- Modal -->
+  
+  <!-- JS -->
+</body>
+
+</html>

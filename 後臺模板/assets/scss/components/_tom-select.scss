@@ -1,0 +1,8 @@
+.ts-control{
+    border-color: $border;
+    // padding: $input-padding;
+
+    .ts-wrapper.multi.has-items &{
+        padding-bottom: 6px;
+    }
+}

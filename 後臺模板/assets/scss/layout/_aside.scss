@@ -1,0 +1,40 @@
+$aside-w: 230px;
+$aside-color: #000;
+$aside-bg: #F8F4ED;
+// $aside-shadow: var(--aside-shadow, 0 2px 4px rgba(72, 79, 102, 0.15));
+//--
+/* Aside */
+.aside{
+    position: fixed;
+    top: $header-h;
+    z-index: 10;
+    width: 100%;
+    background: $aside-bg;
+    color: $aside-color;
+
+    // box-shadow: $aside-shadow;
+    @include breakpoint($lg){
+        position: sticky;
+        top: $header-h-lg;
+        height: calc(100vh - #{$header-h-lg});
+        width: auto;
+        // box-shadow: 2px 0 4px rgba(72, 79, 102, 0.15);
+
+    }
+
+     // 桌機版的漢堡 
+    .menu-hamburger{     
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;   
+        height: 48px;
+        margin-right: 4px;
+    }
+    // menu
+    .menu{
+        @include breakpoint($lg){
+            width: $aside-w;
+        }
+    }
+
+}

@@ -1,0 +1,19 @@
+/* dropdown-item */
+.dropdown-item{    
+    // 修正有顏色文字的狀態
+    &.text-danger:active{
+        color: var(--bs-dropdown-link-active-color) !important;
+    }
+}
+
+
+
+/* 在top-helper */
+.top-helper{
+    .dropdown-item{
+        --bs-dropdown-link-hover-color: #8A3312;
+        --bs-dropdown-link-hover-bg: #FDF6F3;
+        --bs-dropdown-link-active-bg: transparent;
+        --bs-dropdown-link-active-color: #8A3312;
+    }
+}

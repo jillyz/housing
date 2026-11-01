@@ -1,0 +1,107 @@
+/* 僅覆寫模板色彩；版型及選單結構由原始 main.css 與 menu.js 提供。 */
+.backend-page {
+  --bs-primary: #087f8c;
+  --bs-primary-rgb: 8, 127, 140;
+  --bs-link-color: #087f8c;
+  --bs-link-hover-color: #075f70;
+  --bs-border-color: #dce8ec;
+  --dashboard-line: #dce8ec;
+  --dashboard-muted: #647c85;
+  --dashboard-accent: #087f8c;
+  color: #243f4b;
+}
+.backend-page .header {
+  color: #fff;
+  background: #126f80;
+}
+.backend-page .aside { background: #fafdfe; color: #365662; border-color: #deeaee; }
+.backend-page .top-helper .dropdown-toggle { color: #fff; }
+.backend-page .top-helper .dropdown-toggle:hover { background: #ffffff14; }
+.backend-page .top-helper .dropdown-menu { color: #243f4b; }
+.backend-page .top-helper .dropdown-menu li:not(:first-child) { border-color: #e3edf0; }
+.backend-page .menu-hamburger .btn { color: #527581; }
+.backend-page .menu-hamburger .btn:hover { background: #eaf5f6; }
+.backend-page .menu-hamburger-toggle .btn-icon { color: white; }
+.backend-page .breadcrumb-wrapper { background: #ffffffb3; }
+.backend-page .breadcrumb { color: #607d89; border-color: #deeaee; }
+.backend-page .breadcrumb::before { color: #168c99; }
+
+.backend-page .backend-navigation a:hover { background: #eaf5f6; color: #086b79; }
+.backend-page .backend-navigation a.active {
+  color: #076b78 !important;
+  background: #e0f2f3;
+}
+.backend-page .backend-navigation li:has(a.active) > .has-children { background: #126f80; color: white; }
+.backend-page .dropdown-menu {
+  --bs-dropdown-link-active-bg: #087f8c;
+  --bs-dropdown-link-active-color: #fff;
+  --bs-dropdown-link-hover-bg: #eaf5f6;
+  --bs-dropdown-link-hover-color: #086b79;
+  border-color: #dce8ec;
+}
+.backend-page .btn-primary {
+  --bs-btn-border-color: #087f8c;
+  --bs-btn-hover-border-color: #076878;
+  --bs-btn-active-border-color: #075b69;
+  --bs-btn-focus-shadow-rgb: 8, 127, 140;
+  background-color: #087f8c !important;
+  border-color: #087f8c;
+}
+.backend-page .btn-primary:hover { background-color: #076878 !important; border-color: #076878; }
+.backend-page .btn-primary:active { background-color: #075b69 !important; }
+.backend-page .btn-outline-secondary {
+  --bs-btn-color: #4c707d;
+  --bs-btn-border-color: #bdcfd7;
+  --bs-btn-hover-color: #075f70;
+  --bs-btn-hover-bg: #eaf5f6;
+  --bs-btn-hover-border-color: #85b7c2;
+  --bs-btn-active-color: #075f70;
+  --bs-btn-active-bg: #d9edf0;
+  --bs-btn-active-border-color: #85b7c2;
+}
+.backend-page .form-control:focus, .backend-page .form-select:focus { border-color: #54a8b6; box-shadow: 0 0 0 .2rem #1598aa1a; }
+.backend-page .table { --bs-table-border-color: #deeaee; }
+/* application-query.html 的查詢底色與列表表頭：僅換色，沿用模板尺寸及間距。 */
+.backend-page .search { background-color: #eef8f8; }
+.backend-page .search .check-list-head { background-color: #dceff0; }
+/* 分頁沿用模板圓形頁碼、間距與箭頭，僅將橘色替換為藍綠色。 */
+.backend-page .pagination a { color: #087f8c; }
+.backend-page .pagination a:hover { background-color: #e3f3f4; color: #075f70 !important; }
+.backend-page .pagination li.active > a,
+.backend-page .pagination li.active:hover > a { background-color: #087f8c; color: #fff !important; }
+.backend-page .pagination .disabled a,
+.backend-page .pagination .disabled a:hover { color: #acaeb1 !important; background-color: transparent; }
+.backend-page .table-list thead,
+.backend-page .table-list tbody th { --bs-table-bg: #e9f3f4; }
+.backend-page .btn-outline-primary:where(:not(:disabled):not([disabled])) {
+  color: #087f8c !important;
+  border-color: #087f8c !important;
+}
+.backend-page .btn-outline-primary:where(:not(:disabled):not([disabled])):hover,
+.backend-page .btn-outline-primary:where(:not(:disabled):not([disabled])):active {
+  background-color: #e3f3f4 !important;
+}
+.backend-page .btn-pill-primary:not(:disabled):not([readonly]) { background-color: #087f8c; }
+.backend-page .btn-pill-primary:not(:disabled):not([readonly]):hover { background-color: #076878; }
+
+.backend-page .logo .img-wrap { background-color: transparent; }
+.backend-page .footer { background-color: #173f5b; color: #e7f4f6; }
+.backend-page { --go-top-bg: #087f8c; }
+@media (max-width: 991px) {
+  .backend-page .top-helper .dropdown-toggle { color: #204e61; }
+  .backend-page .operator-agency { color: #647c85; }
+}
+
+.backend-page .collapse-title { color: #087f8c; }
+.backend-page .collapse-btn { background-color: #087f8c; }
+.backend-page .btn-link { --bs-btn-color: #087f8c; --bs-btn-hover-color: #075f70; --bs-btn-active-color: #075f70; }
+.backend-page .is-unavailable { color: #7d9198; }
+
+/* 模板的 !important 文字／hover 色會覆蓋 Bootstrap active，需成對指定。 */
+.backend-page .btn-group > .btn-outline-primary.active,
+.backend-page .btn-group > .btn-outline-primary[aria-pressed="true"],
+.backend-page .btn-group > .btn-check:checked + .btn-outline-primary {
+  color: #fff !important;
+  background-color: #087f8c !important;
+  border-color: #087f8c !important;
+}

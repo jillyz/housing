@@ -1,0 +1,49 @@
+/* btn-icon */
+$link: #985E0B;
+$link-hover: #B5771E;
+$link-active: #744500;
+$link-disabled: #ABABAB;
+.btn-icon{
+    --size: 40px;
+    --bs-btn-font-size: 1.25rem;
+    //--
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    
+    background: none;
+    border: none;
+
+    &-hover{
+        &:hover{
+            --bs-btn-hover-bg: #{$link-hover};
+        }
+        &:active{
+            --bs-btn-active-bg: #{$link-active};
+        }
+        &:disabled{
+            --bs-btn-disabled-bg: #{$link-disabled};
+        }
+    }    
+    &::after{
+        position: absolute;
+        content: "";
+        display: block;
+        width: var(--size);
+        height: var(--size);
+    }
+
+    
+}
+
+/* Link */
+.btn-link{
+    --bs-btn-color: #{$link};
+    --bs-btn-border-radius: 0;
+    --bs-border-width: 0;
+    --bs-btn-hover-color: #{$link-hover};        
+    --bs-btn-active-color: #{$link-active};
+
+    text-decoration: none;
+}

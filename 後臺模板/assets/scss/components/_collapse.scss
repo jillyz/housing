@@ -1,0 +1,64 @@
+.collapse{    
+    $primary: #CA572B;
+    $danger: #A35E5D;
+    $title-fs: 18px;
+    $title-border: #CA572B;
+    $btn-size: 30px;
+    //--
+
+    &-wrap{
+        display: flex;
+        &.danger{
+            .collapse-title{
+                border-bottom-color: $danger;
+                .text{
+                    color: $danger;
+                    border-bottom-color: $danger;
+                }
+            }
+            .collapse-btn{
+                background-color: $danger;
+            }
+        }
+    } 
+    &-title {        
+        color: $primary;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 24px;
+        border-bottom: 1px solid currentColor;        
+        .text {
+            position: relative;
+            top: 2px;
+            display: block;
+            padding: 0.2em 0.3em;
+            font-size: $title-fs;
+            border-bottom: 3px solid currentColor;
+            font-weight: bold;
+            letter-spacing: 0.04em;
+        }
+    }   
+    &-btn{
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: $btn-size;
+        height: $btn-size;
+        margin-top: 16px;
+
+        color: white;
+        background-color: $primary;
+        border-radius: 999rem;
+        text-decoration: none;    
+        transform: rotate(0deg);
+        transition: transform 0.2s;
+        
+        flex-shrink: 0;
+
+        &[aria-expanded="true"]{
+            transform: rotate(-180deg);
+        }
+    }
+}

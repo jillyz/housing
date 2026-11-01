@@ -1,0 +1,111 @@
+.table-apply-qurey-rwd:has([data-th]){
+    --bs-border-width: 0px;
+    --table-rwd-th-size: 5rem;
+    --padding: 4px;
+    $rwd: $lg;
+    //--    
+    @include breakpoint($rwd){
+        --bs-border-width: 1px;
+        --padding: 16px 12px;
+    }
+    // thead顯示與隱藏
+    > thead{
+        display: none;
+        @include breakpoint($rwd){
+            display: revert-layer;
+        }
+    }
+
+    // 上下border
+    > * > tr{       
+        
+        &:not(:has([colspan])){
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 16px 24px;
+            padding-block: 16px;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            td:not(:first-child){
+                grid-column: 2;
+            }
+            @include breakpoint($rwd){
+                display: table-row;
+            }       
+        }
+        
+        &:nth-child(odd){
+            border-top: 1px solid var(--bs-table-border-color);
+            @include breakpoint($rwd){
+                border-top: revert-layer;
+                border-bottom: revert-layer;
+            }
+
+        }
+    }
+
+    > * > tr > td{
+        --fs: 1rem;
+        padding: 0;
+        @include breakpoint($rwd){
+            --fs: 1.25rem;
+            padding: $table-cell-padding-x;
+        }
+    }
+    > * > tr > *:first-child {
+        @include breakpoint($lg){
+            padding-left: $table-cell-padding-x*2;
+        }
+    }
+    > * > tr > *:last-child {
+        @include breakpoint($lg){
+            padding-right: $table-cell-padding-x*2;
+        }
+    }
+
+    // data-th設定
+    > * > tr > [data-th]{
+        display: flex;
+        width: 100%;
+        flex-wrap: wrap;
+        row-gap: 8px;
+        
+        @include breakpoint($rwd){
+            display: revert-layer;
+            width: revert-layer;
+        }
+
+        // before 標題
+        &::before{
+            content: attr(data-th) "：";
+            white-space: nowrap;
+            // padding-right: 8px;
+            // border-right: 1px solid $border;
+            // text-align: end;
+            // width: var(--table-rwd-th-size);
+            // flex-shrink: 0;
+           
+            @include breakpoint($rwd){
+                display: none;
+            }
+        } 
+      
+    }
+
+
+    
+
+    // 以下的border寬為1px
+    .form-control,
+    .form-select,
+    .form-check,
+    .btn{
+        --bs-border-width: 1px;
+    }
+
+    // tag寬度設定
+    .tag{
+        width: 9em;
+    }
+}

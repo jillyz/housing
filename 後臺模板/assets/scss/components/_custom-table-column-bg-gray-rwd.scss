@@ -1,0 +1,82 @@
+.custom-table-column-bg-gray-rwd{    
+    // thead
+    thead{
+        display: none;
+        
+        @include breakpoint($md){
+            display: table-header-group;
+        }
+    }
+    // tbody
+    tbody{
+        display: block;
+        padding: 16px;
+        background-color: gray;
+        border-radius: 24px;
+
+        @include breakpoint($md){
+            display: table-row-group;
+            background-color: transparent;
+            padding: 0;
+            border-bottom: 0;
+        }
+    }
+    // tr
+    tr{
+        display: grid;
+        gap: 24px;
+        padding-block: 20px;
+        margin-top: -1px;
+
+        @include breakpoint($md){
+            display: table-row;
+            padding-block: 0px;
+            margin-top: 0px;
+        }
+
+        // First TR
+        &:first-child {
+            padding-top: 0;
+            border-top-width: 0;
+        }
+        // Last TR
+        &:last-child {
+            padding-bottom: 0;
+        }
+    }
+    // td
+    td{
+        display: grid;
+        gap:  8px;
+        padding: 0;
+        
+        border-right-width: 0;
+        // color: $content2;
+        // font-size: 1.125rem; // 18px ÷ 16
+        line-height: 1;
+        
+        @include breakpoint($md){
+            display: table-cell;
+            border-right-width: 1px;
+            padding: var(--padding);
+            line-height: inherit;
+            color: inherit;
+        }
+        @include breakpoint($lg){
+            // font-size: 1.25rem;  // 20px ÷ 16
+        }
+    }
+
+    // data-th
+    [data-th]::before{
+        content: attr(data-th);
+        font-weight: 500;
+        color: #000;
+        // font-size: 1rem; // 16px ÷ 16
+        margin-bottom: 4px;
+
+        @include breakpoint($md){
+            display: none;
+        }
+    }
+}

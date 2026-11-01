@@ -1,0 +1,25 @@
+$go-top-size: 50px;
+$go-top-bg: var(--go-top-bg, #DA7D5A);
+/* Go to */
+.go-top {
+    //--
+    position: fixed;
+    right: 1em;
+    bottom: 4em;
+    
+    display: none;
+    
+    a {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+    
+        width: $go-top-size;
+        height: $go-top-size;
+    
+        background: $go-top-bg url("../img/go-top.svg") center top 4px no-repeat;
+        border: 3px solid white;
+        border-radius: 999rem;
+        text-indent: -100vw;
+    }
+}

@@ -1,0 +1,30 @@
+/* scroll */
+.scroll{ 
+    overflow: auto;
+    // overscroll-behavior: contain;
+
+    
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+    
+
+    &::-webkit-scrollbar-track {
+        background-color: rgba(rgb(0, 0, 0), .0);
+        border-radius: 100px;
+        transition: all .5s;
+    }
+   
+    
+    &::-webkit-scrollbar-thumb {
+        background-color: rgba(rgb(0, 0, 0), .15);
+        background-clip: content-box;
+        border-radius: 100px;
+    }
+
+    &:hover{
+        &::-webkit-scrollbar-track {
+            background-color: rgba(rgb(0, 0, 0), .05);
+        }
+    }
+}

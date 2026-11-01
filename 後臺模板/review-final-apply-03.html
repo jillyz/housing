@@ -1,0 +1,808 @@
+<!doctype html>
+<html class="no-js" lang="zh-Hant">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3. 房型選擇 | 桃園市住宅及都市更新中心營運管理平台</title>
+  <!-- jQuery -->
+  <script src="assets/vendor/jquery-3.7.1.min.js"></script>
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="assets/vendor/bootstrap-5.3.3/dist/css/bootstrap.min.css">
+  <script src="assets/vendor/bootstrap-5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="assets/vendor/fontawesome-pro-6.5.2-web/css/all.css">
+  <!-- Rubik (數字字型) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap">
+  <!-- Tom Select -->
+  <link rel="stylesheet" href="assets/vendor/tom-select-2.2.2/tom-select.bootstrap5.min.css">
+  <script src="assets/vendor/tom-select-2.2.2/tom-select.complete.js"></script>
+  <!-- Menu -->
+  <script src="assets/vendor/utils/menu/menu.js"></script>
+  <!-- 自訂 -->
+  <link rel="stylesheet" href="assets/css/main.css">
+  <script src="assets/js/customJS.js"></script>
+</head>
+
+<body>
+  <div class="wrapper multi-column | column-with-menu">
+    <!-- Top -->
+    <div class="top">
+      <header class="header">
+        <!-- logo -->
+        <a class="logo" href="index.html" title="回首頁">
+          <div class="img-wrap"><img src="assets/img/brand-logo.svg"></div>
+          <h2 class="">桃園市住宅及都市更新中心<span>營運管理平台</span></h2>
+        </a>
+        <!-- 手機版漢堡 -->
+        <div class="d-lg-none">
+          <div class="menu-hamburger-toggle">
+            <a class="btn-icon" data-bs-toggle="collapse" href=".js-nav-collapse">
+              <span class="is-close"><i class="fas fa-bars"></i></span>
+              <span class="is-open"><i class="fas fa-times"></i></span>
+            </a>
+          </div>
+        </div>
+      </header>
+    </div>
+    <!-- Center -->
+    <div class="center">
+      <!-- Left -->
+      <div class="left">
+        <aside class="aside">
+          <!-- 桌機版漢堡 -->
+          <div class="d-none d-lg-block">
+              <div class="menu-hamburger | js-menu-hamburger">
+                <a class="btn btn-icon" title="選單收闔"><i class="fas fa-bars"></i></a>
+              </div>
+            </div>
+          <!-- Nav collapse -->
+          <div class="nav-collapse | collapse js-nav-collapse">
+            <!-- 上方輔助功能 -->
+            <div class="top-helper-wrapper">
+              <div class="top-helper">
+                <div class="warning-bell">
+                  <button><i class="fa-solid fa-bell"></i></button>
+                  <span class="badge">8</span>
+                </div>
+                <div class="dropdown">
+                  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    歡迎OOOOO科OOO登入系統
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="#">編輯個人資料</a></li>
+                    <li><a class="dropdown-item" href="#">變更密碼</a></li>
+                    <li><a class="dropdown-item" href="#">操作手冊下載</a></li>
+                    <li><a class="dropdown-item" href="#">登出</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <!-- Menu -->
+            <ul class="menu menu-vertical | scroll isMenuOpen js-menu-vertical">
+              <!-- 首頁 -->
+              <li>
+                  <a href="index.html" >
+                    <span class="icon-text">首頁</span>
+                  </a>
+              </li>
+              <!-- 招租作業 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">招租作業*</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="apply-01.html" >專案申請*</a>
+                      </li>
+                      <li>
+                          <a href="application-query.html" >申請案件查詢*</a>
+                      </li>
+                      <li>
+                          <a href="application-review.html" class="active">申請案件審核*</a>
+                      </li>
+                      <li>
+                          <a href="shop-rent.html" >店鋪招租</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 選屋作業管理 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">選屋作業管理*</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="online-selection-rank-query.html" >選屋查詢*</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 點交簽約管理 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">點交簽約管理*</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="handover-management.html" >點交簽約查詢*</a>
+                      </li>
+                      <li>
+                          <a href="handover-details-query.html" >點交作業*</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 租約管理 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">租約管理</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="tenant-lease-management.html" >住戶租約管理</a>
+                      </li>
+                      <li>
+                          <a href="tenant-termination-management.html" >住戶退租管理</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 店鋪招商管理 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">店鋪招商管理</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="#" >店鋪公告管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >店鋪點交簽約查詢</a>
+                      </li>
+                      <li>
+                          <a href="#" >店鋪點交作業</a>
+                      </li>
+                      <li>
+                          <a href="#" >潛在店鋪管理</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 場地租借審核 -->
+              <li>
+                  <a href="#" >
+                    <span class="icon-text">場地租借審核</span>
+                  </a>
+              </li>
+              <!-- 帳務管理 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">帳務管理</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="#" >收費管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >銷貨收入</a>
+                      </li>
+                      <li>
+                          <a href="#" >帳款作廢</a>
+                      </li>
+                      <span>銀行委扣管理</span>
+                      <li>
+                          <a href="#" >銀行委扣授權</a>
+                      </li>
+                      <li>
+                          <a href="#" >銀行委扣扣款</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 資料查詢與匯出 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">資料查詢與匯出</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="#" >金流統計</a>
+                      </li>
+                      <li>
+                          <a href="#" >案件申請統計</a>
+                      </li>
+                      <li>
+                          <a href="#" >車位統計</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 物業管理功能 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">物業管理功能</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="#" >公告管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >包裹管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >扣點紀錄</a>
+                      </li>
+                      <li>
+                          <a href="#" >工作日誌</a>
+                      </li>
+                      <li>
+                          <a href="#" >場地租借管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >人員差勤管理</a>
+                      </li>
+                      <span>報修案件管理</span>
+                      <li>
+                          <a href="#" >報修案件查詢</a>
+                      </li>
+                      <li>
+                          <a href="#" >報修廠商管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >備品統計</a>
+                      </li>
+                      <li>
+                          <a href="#" >報表查詢</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 系統查詢與匯出 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">系統查詢與匯出</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="#" >通知類型設定</a>
+                      </li>        
+                  </ul>
+              </li>
+              <!-- 系統維護管理 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">系統維護管理*</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <span>社宅管理</span>
+                      <li>
+                          <a href="building-management.html" >大樓管理*</a>
+                      </li>
+                      <li>
+                          <a href="#" >大樓戶號管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >大樓車位管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >大樓場地管理</a>
+                      </li>
+                      <li>
+                          <a href="layout-config.html" >空間格局管理*</a>
+                      </li>
+                      <span>使用者權限管理</span>
+                      <li>
+                          <a href="user-data-management.html" >人員資料管理</a>
+                      </li>
+                      <li>
+                          <a href="permission-management.html" >權限管理</a>
+                      </li>
+                      <span>招租管理</span>
+                      <li>
+                          <a href="evaluation-type-settings.html" >評點類型審核設定</a>
+                      </li>
+                      <li>
+                          <a href="schedule-management.html" >社宅時程管理</a>
+                      </li>
+                      <li>
+                          <a href="schedule-management.html" >店鋪標案管理</a>
+                      </li>
+                      <li>
+                          <a href="reviewer-settings.html" >審核人員設定</a>
+                      </li>
+                      <li>
+                          <a href="document-template-settings.html" >文件範本設定</a>
+                      </li>
+                      <span>資產與營運管理</span>
+                      <li>
+                          <a href="outsourcing-management.html" >資產管理</a>
+                      </li>        
+                  </ul>
+              </li>
+              
+              <li>
+                  <a href="furniture-maintenance.html" >家具清單維護管理*</a>
+              </li>
+              
+              <li>
+                  <a href="_components.html" target="_blank">
+                    <span class="icon-text"><i class="fa-solid fa-cubes-stacked"></i>組件表</span>
+                  </a>
+              </li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+      <!-- Right -->
+      <div class="right">
+        <!-- 麵包屑 -->
+        <div class="breadcrumb-wrapper">
+            <div class="breadcrumb-inner">
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb">
+                  <li class="breadcrumb-item">招租作業</li>
+                  <li class="breadcrumb-item"><a href="application-review.html">申請案件審核</a></li>
+                  <li class="breadcrumb-item">SDL1130001A</li>
+                  <li class="breadcrumb-item active" aria-current="page">3. 房型選擇</li>
+                </ol>
+              </nav>
+            </div>
+        </div>
+        <!-- Content -->
+        <div class="content | sticky-top-scroll">
+            <!-- Head info -->
+            <div class="flex-item-wrap | row-gap-2 column-gap-4">    
+                 <h4 class="mb-0">新招租線上申請</h4> 
+                <!-- 狀態 -->
+                <div class="pill-state">
+                  <div class="pill-state-text">複審中</div>
+                </div>
+                <div class="flex-item-wrap | ms-auto">
+                  <button class="btn btn-pill-highlight" data-bs-toggle="modal" data-bs-target="#unqualifiedPrevModal">
+                    <i class="fa-solid fa-triangle-exclamation"></i>前次審核未通過結果
+                  </button>
+                  <button class="btn btn-pill-outline-highlight" data-bs-toggle="modal" data-bs-target="#unqualifiedModal">
+                    <i class="fa-solid fa-triangle-exclamation"></i>檢視初審結果
+                  </button>
+                  <button class="btn btn-pill-outline-primary" data-bs-toggle="modal" data-bs-target="#noteModal">
+                    <i class="fa-solid fa-note-sticky"></i>備註
+                  </button>
+                </div>
+            </div>
+            <!-- 進度條 -->
+            <div class="">
+                <!-- 手機板 -->
+                <div class="d-md-none">
+                    <div class="progress-bar-sm">
+                        <div class="steps">
+                            <a href="review-apply-01.html" class="step step-1 "><span>1. 基本資料</span></a>
+                            <a href="review-apply-02.html" class="step step-2 "><span>2. 家庭成員資料</span></a>
+                            <a href="review-apply-03.html" class="step step-3 active"><span>3. 房型選擇</span></a>
+                            <a href="review-apply-04.html" class="step step-4 "><span>4. 家庭成員財產清單</span></a>
+                            <a href="review-apply-05.html" class="step step-5 "><span>5. 檢附文件</span></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- 桌機版 -->
+                <div class="d-none d-md-block">
+                    <div class="progress-bar">
+                        <div class="steps">
+                            <span class="space"></span>
+                            <a href="review-apply-01.html" class="step step-1 ">1. 基本資料</a>
+                            <!-- 區隔 -->
+                            <span class="space"></span>
+                            <span class="divider"><i class="fa-solid fa-angle-right" aria-hidden="true"></i></span>
+                            <span class="space"></span>
+                            <!-- 區隔 end -->
+                            <a href="review-apply-02.html" class="step step-2 ">2. 家庭成員資料</a>
+                            <!-- 區隔 -->
+                            <span class="space"></span>
+                            <span class="divider"><i class="fa-solid fa-angle-right" aria-hidden="true"></i></span>
+                            <span class="space"></span>
+                            <!-- 區隔 end -->
+                            <a href="review-apply-03.html" class="step step-3 active">3. 房型選擇</a>
+                            <!-- 區隔 -->
+                            <span class="space"></span>
+                            <span class="divider"><i class="fa-solid fa-angle-right" aria-hidden="true"></i></span>
+                            <span class="space"></span>
+                            <!-- 區隔 end -->
+                            <a href="review-apply-04.html" class="step step-4 ">4. 家庭成員財產清單</a>
+                            <!-- 區隔 -->
+                            <span class="space"></span>
+                            <span class="divider"><i class="fa-solid fa-angle-right" aria-hidden="true"></i></span>
+                            <span class="space"></span>
+                            <!-- 區隔 end -->
+                            <a href="review-apply-05.html" class="step step-5 ">5. 檢附文件</a>
+                            <span class="space"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+        <div class="content | bg-transparent flex-start-end | pb-3 mt-2">
+          <div class="flex-item-wrap gap-3">
+              <div class="title-text">附件標誌：</div>
+              <div class="flex-item-wrap column-gap-3">
+                <div class="flex-item-wrap gap-1 | text-danger">
+                    <img src="assets/img/icon-myData.svg" alt="My data符號">
+                    為 Mydata回傳資料
+                </div>
+                <div class="flex-item-wrap gap-1">
+                    <i class="fa-regular fa-paperclip fa-lg"></i>
+                    為申請人檢附資料
+                </div> 
+              </div>   
+          </div>
+          <div class="flex-item-wrap my-2">
+              <button class="btn btn-pill-primary"><i class="fa-solid fa-download"></i>下載MyData回傳資料</button>
+              <button class="btn btn-pill-primary"><i class="fa-solid fa-download"></i>下載申請人自行檢附資料</button>
+          </div>
+        </div>
+        <div class="content">
+            <div class="vstack gap-5">
+                <!-- 選擇申請房型 -->
+                <div class="item">
+                    <!-- Head -->
+                    <div class="head | title-border-bottom">
+                        <h2 class="title-name">選擇申請房型</h2>
+                    </div>
+                    <!-- Body -->
+                    <div class="body">
+                        <h6 class="text-primary">
+                            我的總申請人數：合計 3 人
+                        </h6>
+                        <table class="table table-custom table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>選擇申請</th>
+                                    <th>房型</th>
+                                    <th>居住人數限制</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-center">
+                                        <input type="radio" class="form-check-input" name="type" title="一房型">
+                                    </td>
+                                    <td>一房型</td>
+                                    <td>無</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <input type="radio" class="form-check-input" name="type" title="二房型" checked>
+                                    </td>
+                                    <td>二房型</td>
+                                    <td>2 人以上</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <input type="radio" class="form-check-input" name="type" title="三房型">
+                                    </td>
+                                    <td>三房型</td>
+                                    <td>3 人以上</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- CTA -->
+                <div class="item">
+                    <div class="btn-cta-group pb-4">
+                        <a href="review-final-apply-02.html" class="btn btn-pill-outline-primary">上一步</a>
+                        <a href="#" class="btn btn-pill-outline-primary">儲存</a>
+                        <a href="review-final-apply-04.html" class="btn btn-pill-primary">下一步</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sticky-alert">
+          <a href="apply-data-verify-fail-final-03.html" class="sticky-alert-link | shadow-sm" target="_blank">
+              <span class="icon"><i class="fa-solid fa-triangle-exclamation"></i></span>
+              <span>不通過<br>項<span class="space"></span>目</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <!-- Bottom -->
+    <div class="bottom">
+      <footer class="footer">
+          <div class="img-wrap">
+            <img src="assets/img/footer-brand-logo.svg">
+          </div>
+          <div class="text">
+            <div><i class="fa-duotone fa-user-headset fa-fw me-1"></i><label class="d-none d-lg-inline-block">客服人員：</label>天思數位科技 (04)2451-6669 #6?? X小姐</div>
+            <div><i class="fad fa-browser fa-fw me-1"></i><label class="d-none d-lg-inline-block">最佳瀏覽環境：</label>Edge、Firefox 、Google Chrome ,螢幕解析度1280*768以上</div>
+            <div class="d-none d-lg-inline-block"><i class="fad fa-copyright fa-fw me-1"></i> Copyright 桃園市住宅及都市更新中心</div>
+          </div>
+      </footer>
+    </div>
+  </div> 
+  <!-- /.wrapper  -->
+
+  <!-- 回到最上面 -->
+  <div class="go-top | js-go-top">
+      <a href="#" class="" title="回到最上面">TOP</a>
+  </div>
+
+  <!-- Modal -->
+  
+  <!-- 備註 -->
+  <div class="modal fade" id="noteModal" data-bs-backdrop="static" tabindex="-1">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title" id="noteModalLabel">
+            <i class="fa-solid fa-note-sticky"></i>
+            備註
+          </h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <textarea class="form-control" rows="3" placeholder="請填寫備註內容"></textarea>
+          <div class="text-center mt-5">
+            <button class="btn btn-pill-primary"><i class="fa-solid fa-circle-plus"></i>新增</button>
+          </div>
+          <hr class="my-3">
+          <div class="table-responsive scroll">
+              <table class="table table-list table-rwd table-bordered mb-0">
+                  <thead>
+                      <tr>
+                          <th>時間</th>
+                          <th>填寫人(階段)</th>
+                          <th>備註內容</th>
+                          <th class="text-center">操作</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <td data-th="時間">113/07/04 14:42:56</td>
+                          <td data-th="填寫人(階段)">張OO (初審中)</td>
+                          <td data-th="備註內容">7/4 電話教學如何申請112所得清單</td>
+                          <td data-th="操作" class="text-center">
+                              <button class="btn btn-icon text-primary" title="刪除" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                                <i class="fa-regular fa-trash-can" aria-hidden="true"></i>
+                              </button>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td data-th="時間">113/07/04 14:42:56</td>
+                          <td data-th="填寫人(階段)">張OO (初審中)</td>
+                          <td data-th="備註內容">7/4 電話教學如何申請112所得清單</td>
+                          <td data-th="操作" class="text-center">
+                              <button class="btn btn-icon text-primary" title="刪除" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                                <i class="fa-regular fa-trash-can" aria-hidden="true"></i>
+                              </button>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td data-th="時間">113/07/04 14:42:56</td>
+                          <td data-th="填寫人(階段)">張OO (初審中)</td>
+                          <td data-th="備註內容">7/4 電話教學如何申請112所得清單</td>
+                          <td data-th="操作" class="text-center">
+                              <button class="btn btn-icon text-primary" title="刪除" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                                <i class="fa-regular fa-trash-can" aria-hidden="true"></i>
+                              </button>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td data-th="時間">113/07/04 14:42:56</td>
+                          <td data-th="填寫人(階段)">張OO (初審中)</td>
+                          <td data-th="備註內容">7/4 電話教學如何申請112所得清單</td>
+                          <td data-th="操作" class="text-center">
+                              <button class="btn btn-icon text-primary" title="刪除" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                                <i class="fa-regular fa-trash-can" aria-hidden="true"></i>
+                              </button>
+                          </td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div class="btn-cta-group w-100 p-0">
+            <button class="btn btn-pill-outline-primary" data-bs-dismiss="modal">關閉</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 初審不通過項目 -->
+  <div class="modal fade" id="unqualifiedModal" data-bs-backdrop="static" tabindex="-1">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title" id="unqualifiedModalLabel">
+            <i class="fa-duotone fa-triangle-exclamation"></i>
+            初審不通過項目
+          </h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="d-grid gap-4">
+              <div class="item">
+                <h6 class="text-danger">此案不符合以下申請資格</h6>
+                <ul class="list-unstyled">
+                  <li>
+                    <i class="fa-solid fa-circle-info"></i> 
+                    家庭成員月平均所得超出 54,152 元申請範圍
+                  </li>
+                  <li>
+                    <i class="fa-solid fa-circle-info"></i> 
+                    家庭成員持有自有住宅
+                  </li>
+                </ul>
+                <div class="table-responsive scroll">
+                    <table class="table table-list table-rwd table-bordered mb-0">
+                        <thead>
+                            <tr>
+                                <th>不合格者</th>
+                                <th>項目</th>
+                                <th>補件前</th>
+                                <th>補件後</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td data-th="不合格者">張香香</td>
+                                <td data-th="項目">
+                                    在職證明<br/>
+                                    原因：未檢附
+                                </td>
+                                <td data-th="補件前">
+                                    <div class="file-container | text-body-secondary">
+                                        <!-- Item -->
+                                        <div class="file-item">
+                                          <a href="#" class="file-link " download title="下載檔案">在職證明0711.pdf</a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td data-th="補件後">
+                                    <div class="file-container | text-body-secondary">
+                                        <!-- Item -->
+                                        <div class="file-item">
+                                          <a href="#" class="file-link " download title="下載檔案">在職證明1211.pdf</a>
+                                        </div>
+                                    </div>                    
+                                </td>
+                            </tr>
+                            <tr>
+                                <td data-th="不合格者">張香香, 王大</td>
+                                <td data-th="項目">
+                                    綜合所得清單<br/>
+                                    原因：非近一年度資料
+                                </td>
+                                <td data-th="補件前">
+                                    <div class="file-container | text-body-secondary">
+                                        <!-- Item -->
+                                        <div class="file-item">
+                                          <a href="#" class="file-link " download title="下載檔案">綜合所得清單0711.pdf</a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td data-th="補件後">
+                                    <div class="file-container | text-body-secondary">
+                                        <!-- Item -->
+                                        <div class="file-item">
+                                          <a href="#" class="file-link " download title="下載檔案">綜合所得清單1211.pdf</a>
+                                        </div>
+                                    </div>                    
+                                </td>
+                            </tr>
+                            <tr>
+                                <td data-th="不合格者">張來</td>
+                                <td data-th="項目">
+                                    財產歸屬清單<br/>
+                                    原因：非申請日前一個月資料
+                                </td>
+                                <td data-th="補件前">
+                                    <div class="file-container | text-body-secondary">
+                                        <!-- Item -->
+                                        <div class="file-item">
+                                          <a href="#" class="file-link " download title="下載檔案">財產歸屬清單0711.pdf</a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td data-th="補件後">
+                                    <div class="file-container | text-body-secondary">
+                                        <!-- Item -->
+                                        <div class="file-item">
+                                          <a href="#" class="file-link " download title="下載檔案">財產歸屬清單1211.pdf</a>
+                                        </div>
+                                    </div>                    
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+              </div>
+              <div class="item">
+                <h6>其他未列事項</h6>
+                <ol class="m-0">
+                  <li>OOOO</li>
+                  <li>OOOOOOOO</li>
+                  <li>OOOOOOOOOO</li>
+                </ol>
+              </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <div class="btn-cta-group w-100 p-0">
+            <button class="btn btn-pill-outline-primary" data-bs-dismiss="modal">關閉</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 前次審核未通過結果 -->
+  <div class="modal fade" id="unqualifiedPrevModal" data-bs-backdrop="static" tabindex="-1">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title" id="unqualifiedPrevModalLabel">
+            <i class="fa-duotone fa-triangle-exclamation"></i>
+            前次審核未通過結果
+          </h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <h6 class="">審核須補件</h6>
+          <div class="table-responsive scroll">
+              <table class="table table-list table-rwd table-bordered mb-0">
+                  <thead>
+                      <tr>
+                          <th class="text-nowrap">項目</th>
+                          <th class="text-nowrap">原因</th>
+                          <th class="text-nowrap">補正單內容</th>
+                          <th class="text-nowrap" width="25%">補件檔案</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <td data-th="項目" class="text-nowrap">綜合所得清單</td>
+                          <td data-th="原因" class="text-nowrap">家庭成員未檢附</td>
+                          <td data-th="補正單內容">請檢附共家庭成員(王OO,張OO,王OO)之「112年度綜合所得稅各類清單」，須記載姓名及身分證字號，各項資料無遮蔽。 ※共同居住者如有配偶，不論該配偶是否入住社會住宅，仍應一併檢附其配偶之「112年度綜合所得稅各類清單」。</td>
+                          <td data-th="補件檔案">
+                              <div class="file-container | text-body-secondary">
+                                  <!-- Item -->
+                                  <div class="file-item">
+                                    <a href="#" class="file-link " download title="下載檔案">綜合所得清單01.pdf</a>
+                                  </div>
+                              </div>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td data-th="項目" class="text-nowrap">在職證明</td>
+                          <td data-th="原因" class="text-nowrap">未檢附</td>
+                          <td data-th="補正單內容">請檢附申請人之在職服務證明(2023/05/05後核發)，並須記載姓名、身分證字號、到職日期、公司行號、實際服務地址及公司章(或公司人力資源單位或主管章等)。另任職於公務機關、國營或公營事業機構、公私立學校(私立幼兒園除外)及公立醫院者，應另檢附勞工保險被投保人投保資料表(明細)，且各項資料無遮蔽；如為無一定雇主或自營作業者，應檢附2023/05/05後申請之本市職業工會投保明細，且各項資料無遮蔽。</td>
+                          <td data-th="補件檔案">
+                              <div class="file-container | text-body-secondary">
+                                  <!-- Item -->
+                                  <div class="file-item">
+                                    <a href="#" class="file-link " download title="下載檔案">在職證明.pdf</a>
+                                  </div>
+                              </div>
+                          </td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div class="btn-cta-group w-100 p-0">
+            <button class="btn btn-pill-outline-primary" data-bs-dismiss="modal">關閉</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- JS -->
+</body>
+
+</html>

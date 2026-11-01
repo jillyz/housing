@@ -1,0 +1,51 @@
+.pagination {
+    $primary: #CA572B;
+    //--
+    margin-bottom: 24px;
+    justify-content: center;
+    li {
+        display: flex;
+
+        &.active{
+            &>a {
+                background: $primary;
+                color: #fff !important;
+                border-radius: 50%;
+            }
+            &:hover a {
+                background: $primary;
+                transition: 0.3s;
+            }
+        }
+        &:first-child a,
+        &:last-child a {
+            background: none;
+        }
+    }
+    a {
+        font-weight: 600;
+        text-align: center;
+        height: 30px;
+        width: 30px !important;
+        padding: 0;
+        line-height: 30px;
+        border-radius: 50%;
+        background-color: #fff;
+        color: $primary;
+        margin: 0 5px;
+        transition: 0.3s;
+        text-decoration: none;
+
+        &:hover {
+            background-color: lighten($primary, 45%);
+            color: $primary !important;
+        }
+    }
+    i {
+    }
+    .disabled{
+        a{
+            color: $disabled;
+        }
+    }
+}

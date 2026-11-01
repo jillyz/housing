@@ -1,0 +1,132 @@
+.table-list{
+    --bs-table-border-color: #ddd;
+
+    --table-head-bg: #494949;
+    --table-head-border-color: grey;
+    --table-head-color: white;
+    --table-border-color: grey;
+    --table-cell-padding: 16px;
+    --table-margin: 12px;
+    --table-color: #494949;
+    // --table-color: #{map-get($secondaries, '900')};
+    // --
+    
+    width: 100%;
+    margin-bottom: var(--table-margin);
+    background-color: white;
+    color: var(--table-color);
+    > thead{
+        tr{
+            color: var(--table-head-color);
+            background-color: var(--table-head-bg);            
+        }        
+    }
+    > tbody{
+        tr{
+            border-bottom: 1px solid var(--table-border-color);
+            &:not(:first-child){
+            }
+        }
+    }
+    > * > tr{
+        > *{
+            padding: var(--table-cell-padding);
+           
+            &:first-child{
+                // padding-left: $table-cell-padding-x * 2;
+            }
+            &:last-child{
+                // padding-right: $table-cell-padding-x * 2;
+            }  
+        }
+    }
+    
+    > * > * > th{
+        white-space: nowrap;
+        background-color: var(--table-head-bg);
+        font-weight: 500;
+        color: var(--table-head-color);
+    }
+    
+    // Border
+    &.table-border{
+        --table-cell-padding: 4px 8px;
+        --bs-border-color: var(--table-border-color);
+        //--
+        tr{
+            
+            th{
+                border: 1px solid var(--table-head-border-color);
+                padding: 10px 8px;
+                line-height: 1.2;
+                
+            }
+            td{
+                border: 1px solid var(--table-head-border-color);
+                &:not(:first-child){
+                    // border-left: 1px solid var(--table-border-color);
+                }
+            }
+        }
+        thead{
+            tr{
+                border-color: var(--table-border-color);
+            }
+        }
+        &.table-expanded{
+            --table-cell-padding: 8px 16px;
+        }
+    }
+    // Strip
+    &.table-stripe{
+        tbody{
+            tr{
+                background-color: #ecedeeb3;
+                &:nth-child(even){
+                    background-color: #ebebeb;
+                }
+            }
+        }
+    }
+
+}
+// grey
+.table-grey{
+    --table-head-bg: #8c8c8c;
+    // --table-head-color: #{map-get($secondaries, '900')};
+    --table-head-color: white;
+    --table-head-border-color: #CECBC5;
+    --table-border-color: #CECBC5;  
+    &.table-stripe{
+        --table-border-color: #CECBC5;
+    }
+}
+
+// 被選取狀態
+.table-list tr.selected{
+    position: relative;
+    background-color: #fff3e1 !important;
+    &::after {
+        content: "";
+        display: block;
+        position: absolute;
+        top: -1px;
+        bottom: 0;
+        right: 0px;
+        left: -0px;
+        box-shadow: 0 0 0 2px inset #f39917;
+        pointer-events: none;
+    }    
+}
+
+// td亮選色
+.table-list{
+    .highlight{
+        background-color: #FFF8EF;
+        color: #000;
+    }
+}
+.table-heading-bg{
+    background-color: #666666;
+}
+

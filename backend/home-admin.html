@@ -1,0 +1,465 @@
+<!doctype html>
+<html class="no-js" lang="zh-Hant">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>中央主管／管理者資訊儀表板｜全國社會住宅資料整合暨共同查調管理平臺</title>
+  <!-- jQuery -->
+  <script src="../後臺模板/assets/vendor/jquery-3.7.1.min.js"></script>
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="../後臺模板/assets/vendor/bootstrap-5.3.3/dist/css/bootstrap.min.css">
+  <script src="../後臺模板/assets/vendor/bootstrap-5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../後臺模板/assets/vendor/fontawesome-pro-6.5.2-web/css/all.css">
+  <!-- Rubik (數字字型) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap">
+  <!-- Tom Select -->
+  <link rel="stylesheet" href="../後臺模板/assets/vendor/tom-select-2.2.2/tom-select.bootstrap5.min.css">
+  <script src="../後臺模板/assets/vendor/tom-select-2.2.2/tom-select.complete.js"></script>
+  <!-- Menu -->
+  <script src="../後臺模板/assets/vendor/utils/menu/menu.js"></script>
+  <!-- 自訂 -->
+  <link rel="stylesheet" href="../後臺模板/assets/css/main.css">
+  <script src="../後臺模板/assets/vendor/utils/photoLightbox/photoLightbox.js"></script>
+  <script src="../後臺模板/assets/js/customJS.js"></script>
+  <link rel="stylesheet" href="assets/css/shell.css">
+  <link rel="stylesheet" href="assets/css/home-admin.css">
+  <link rel="stylesheet" href="assets/css/theme.css">
+  <link rel="stylesheet" href="assets/css/navigation.css">
+</head>
+
+<body class="backend-page">
+  <div class="wrapper multi-column | column-with-menu">
+    <!-- Top -->
+    <div class="top">
+      <header class="header">
+        <!-- logo -->
+        <a class="logo" href="home-admin.html" title="回後臺首頁">
+        <div class="img-wrap">
+          <img src="assets/img/nlma-seal.svg" alt="內政部國土管理署署徽" width="250" height="318">
+          <div class="agency-name"><span>內政部</span><strong>國土管理署</strong></div>
+        </div>
+        <h2>全國社會住宅資料整合暨共同查調管理平臺</h2>
+      </a>
+        <!-- 手機版漢堡 -->
+        <div class="d-lg-none">
+          <div class="menu-hamburger-toggle">
+            <a class="btn-icon" id="mobileMenu" role="button" aria-label="開啟後臺選單" aria-expanded="false" aria-controls="backendNav" data-bs-toggle="collapse" href=".js-nav-collapse">
+              <span class="is-close"><i class="fas fa-bars"></i></span>
+              <span class="is-open"><i class="fas fa-times"></i></span>
+            </a>
+          </div>
+        </div>
+      </header>
+    </div>
+    <!-- Center -->
+    <div class="center">
+      <!-- Left -->
+      <div class="left">
+        <aside class="aside">
+          <!-- 桌機版漢堡 -->
+          <div class="d-none d-lg-block">
+              <div class="menu-hamburger | js-menu-hamburger">
+                <a class="btn btn-icon" id="desktopMenu" href="#backendNavigation" role="button" aria-label="收合側邊選單" aria-expanded="true" aria-controls="backendNavigation" title="選單收闔"><i class="fas fa-bars"></i></a>
+              </div>
+            </div>
+          <!-- Nav collapse -->
+          <div class="nav-collapse | collapse js-nav-collapse" id="backendNav">
+            <!-- 上方輔助功能 -->
+            <div class="top-helper-wrapper">
+            <div class="top-helper">
+              <div class="dropdown">
+                <button class="btn dropdown-toggle" id="operatorMenu" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-circle-user me-2" aria-hidden="true"></i>國土署主管<span class="operator-agency">內政部國土管理署</span></button>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="operatorMenu">
+                  <li><button class="dropdown-item" type="button" data-operator-action="profile">個人資料與帳號設定</button></li>
+                  <li><button class="dropdown-item" type="button" data-operator-action="role">切換登入角色</button></li>
+                  <li><button class="dropdown-item text-danger" type="button" data-operator-action="logout">登出系統</button></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+            <!-- Menu -->
+            <ul id="backendNavigation" class="menu menu-vertical scroll isMenuOpen js-menu-vertical backend-navigation" aria-label="後臺主選單">
+<li>
+<a class="has-children" role="button" tabindex="0" aria-expanded="false"><span class="icon-text">首頁</span><i class="fas fa-chevron-down" aria-hidden="true"></i></a>
+<ul class="sub-menu">
+<li><a class="active" href="home-admin.html" aria-current="page">資訊儀表板</a></li>
+</ul>
+</li>
+<li>
+<a class="has-children" role="button" tabindex="0" aria-expanded="false"><span class="icon-text">家戶案件追蹤查詢</span><i class="fas fa-chevron-down" aria-hidden="true"></i></a>
+<ul class="sub-menu">
+<li><a href="../admin/home-agency.html#case-workbench">家戶案件追蹤查詢</a></li>
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">結果名冊紀錄</a></li>
+</ul>
+</li>
+<li>
+<a class="has-children" role="button" tabindex="0" aria-expanded="false"><span class="icon-text">資料共同查調</span><i class="fas fa-chevron-down" aria-hidden="true"></i></a>
+<ul class="sub-menu">
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">查調模組 API</a></li>
+<li><a href="enquiry-hub.html">查調工作臺</a></li>
+</ul>
+</li>
+<li>
+<a class="has-children" role="button" tabindex="0" aria-expanded="false"><span class="icon-text">監控中心</span><i class="fas fa-chevron-down" aria-hidden="true"></i></a>
+<ul class="sub-menu">
+<li><a href="home-admin.html#platform-monitor">介接運作總覽</a></li>
+<li>
+<a class="has-children" role="button" tabindex="0" aria-expanded="false"><span class="icon-text">資料交換紀錄</span><i class="fas fa-chevron-down" aria-hidden="true"></i></a>
+<ul class="sub-menu">
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">案件取號紀錄</a></li>
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">狀態回傳紀錄</a></li>
+</ul>
+</li>
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">查調紀錄</a></li>
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">異常紀錄</a></li>
+</ul>
+</li>
+<li>
+<a class="has-children" role="button" tabindex="0" aria-expanded="false"><span class="icon-text">查詢及統計</span><i class="fas fa-chevron-down" aria-hidden="true"></i></a>
+<ul class="sub-menu">
+<li><a href="home-admin.html#case-overview">案件統計報表</a></li>
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">問卷統計分析</a></li>
+</ul>
+</li>
+<li>
+<a class="has-children" role="button" tabindex="0" aria-expanded="false"><span class="icon-text">系統營運管理</span><i class="fas fa-chevron-down" aria-hidden="true"></i></a>
+<ul class="sub-menu">
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">社宅資料管理</a></li>
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">招租時程（API）</a></li>
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">招租公告（API）</a></li>
+<li>
+<a class="has-children" role="button" tabindex="0" aria-expanded="false"><span class="icon-text">帳號權限管理</span><i class="fas fa-chevron-down" aria-hidden="true"></i></a>
+<ul class="sub-menu">
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">帳號管理</a></li>
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">角色權限管理</a></li>
+</ul>
+</li>
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">通知紀錄查詢</a></li>
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">操作紀錄查詢</a></li>
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">智能客服管理</a></li>
+</ul>
+</li>
+</ul>
+          </div>
+        </aside>
+      </div>
+      <!-- Right -->
+      <div class="right" id="mainContent" role="main" tabindex="-1">
+        <!-- 麵包屑 -->
+        <div class="breadcrumb-wrapper">
+            <div class="breadcrumb-inner">
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb">
+                  <li class="breadcrumb-item active" aria-current="page">中央主管／管理者資訊儀表板</li>
+                </ol>
+              </nav>
+            </div>
+        </div>
+        <div class="content bg-transparent"><div class="flex-item-wrap gap-4 mb-5"><a href="home-admin.html" aria-current="page">國土署／管理員首頁</a><a href="../admin/home-agency.html">權責機關承辦首頁</a></div><div class="vstack gap-5"><section class="bg-white rounded p-4" id="housing-overview">
+<div class="collapse-wrap"><div class="collapse-title"><span class="text">全國社宅招租概況</span></div><a href="#housing-overview-body" class="collapse-btn" role="button" aria-label="收合或展開全國社宅招租概況" data-bs-toggle="collapse" aria-expanded="true"><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></a></div>
+<div class="collapse show" id="housing-overview-body"><div class="d-flex flex-wrap justify-content-between gap-2 mb-3"><p class="text-muted mb-0">掌握社宅供給、招租案件與申請熱度。</p><small class="text-muted">資料更新：116/07/13 18:00</small></div>
+<div class="table-responsive mb-4"><table class="table table-list table-bordered mb-0 text-center"><thead><tr><th>社宅總數</th><th>興建中社宅</th><th>已完工社宅</th><th>招租中社宅</th></tr></thead><tbody><tr><td><strong class="fs-3">326</strong><div class="small text-muted">處｜已納入本平臺</div></td><td><strong class="fs-3">188</strong> 處<div class="text-muted">58,426 戶</div></td><td><strong class="fs-3">138</strong> 處<div class="text-muted">42,318 戶</div></td><td><strong class="fs-3">18</strong> 處<div class="text-muted">8,642 戶</div></td></tr></tbody></table></div>
+<div class="row gx-5 gy-4"><div class="col-lg-6"><h6 class="text-secondary mb-3">居住需求房型分布</h6><p class="text-muted small">本年度累計（示意）</p><div class="d-flex flex-wrap align-items-center justify-content-center gap-4"><div class="pie-chart demand-room-pie" role="img" aria-label="居住需求房型分布：套房 12%、一房型 32%、二房型 38%、三房型 15%、四房型 3%"></div><div class="vstack gap-2 flex-grow-0"><div class="d-flex gap-3 align-items-center"><i class="chart-key room-studio"></i><span>套房</span><strong class="ms-auto">12%</strong></div><div class="d-flex gap-3 align-items-center"><i class="chart-key room-one"></i><span>一房型</span><strong class="ms-auto">32%</strong></div><div class="d-flex gap-3 align-items-center"><i class="chart-key room-two"></i><span>二房型</span><strong class="ms-auto">38%</strong></div><div class="d-flex gap-3 align-items-center"><i class="chart-key room-three"></i><span>三房型</span><strong class="ms-auto">15%</strong></div><div class="d-flex gap-3 align-items-center"><i class="chart-key room-four"></i><span>四房型</span><strong class="ms-auto">3%</strong></div></div></div></div><div class="col-lg-6"><h6 class="text-secondary mb-3">房型申請分布</h6><p class="text-muted small">本年度累計（示意）</p><div class="d-flex flex-wrap align-items-center justify-content-center gap-4"><div class="pie-chart room-pie" role="img" aria-label="房型申請分布：套房 4%、一房型 34%、二房型 41%、三房型 19%、四房型 2%"></div><div class="vstack gap-2 flex-grow-0"><div class="d-flex gap-3 align-items-center"><i class="chart-key room-studio"></i><span>套房</span><strong class="ms-auto">4%</strong></div><div class="d-flex gap-3 align-items-center"><i class="chart-key room-one"></i><span>一房型</span><strong class="ms-auto">34%</strong></div><div class="d-flex gap-3 align-items-center"><i class="chart-key room-two"></i><span>二房型</span><strong class="ms-auto">41%</strong></div><div class="d-flex gap-3 align-items-center"><i class="chart-key room-three"></i><span>三房型</span><strong class="ms-auto">19%</strong></div><div class="d-flex gap-3 align-items-center"><i class="chart-key room-four"></i><span>四房型</span><strong class="ms-auto">2%</strong></div></div></div></div></div></div></section><section class="bg-white rounded p-4" id="case-overview">
+<div class="collapse-wrap"><div class="collapse-title"><span class="text">全國案件概況</span></div><a href="#case-overview-body" class="collapse-btn" role="button" aria-label="收合或展開全國案件概況" data-bs-toggle="collapse" aria-expanded="true"><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></a></div>
+<div class="collapse show" id="case-overview-body"><p class="text-muted">依查詢區間與權責機關彙整案件狀態。</p>
+<form id="caseFilter" class="search"><div class="search-top-form"><div class="row g-3"><div class="col-md-6 col-xl-4"><label class="form-label" for="caseStartDate">查詢區間（起）</label><input class="form-control" id="caseStartDate" name="startDate" type="date" required></div><div class="col-md-6 col-xl-4"><label class="form-label" for="caseEndDate">查詢區間（迄）</label><input class="form-control" id="caseEndDate" name="endDate" type="date" required></div><div class="col-md-6 col-xl-4"><label class="form-label" for="caseAgency">權責機關</label><select class="form-select" id="caseAgency" name="agency">
+<option value="">全部權責機關</option>
+<option>國家住都中心</option>
+<option>新北市政府</option>
+<option>臺中市政府</option>
+<option>臺北市政府</option>
+<option>高雄市政府</option>
+<option>桃園市政府</option>
+</select></div><div class="col-12"><p class="form-text text-muted mb-0">預設查詢近一個月，含起迄日期；以下為示意資料。</p></div></div></div><div class="search-bottom-buttons"><button class="btn btn-primary" type="submit">查詢</button><button class="btn btn-outline-secondary" type="reset">重設</button></div></form>
+<p class="text-muted my-3" id="caseQuerySummary" role="status" aria-live="polite"></p>
+<div class="table-responsive mb-4"><table class="table table-list table-bordered mb-0 text-center"><thead><tr><th>已受理</th><th>已入住</th><th>已退租</th></tr></thead><tbody><tr><td class="fs-3" id="caseAccepted">—</td><td class="fs-3" id="caseOccupied">—</td><td class="fs-3" id="caseTerminated">—</td></tr></tbody></table></div>
+<h6 class="text-secondary mb-3">各權責機關案件數量（件）</h6><div class="table-responsive"><table class="table table-list table-bordered mb-0 text-end"><thead><tr><th class="text-start" scope="col">權責機關</th><th scope="col">已受理</th><th scope="col">已入住</th><th scope="col">已退租</th></tr></thead><tbody id="caseAgencyRows"></tbody></table></div></div></section><section class="bg-white rounded p-4" id="platform-monitor">
+<div class="collapse-wrap"><div class="collapse-title"><span class="text">平臺運作監控</span></div><a href="#platform-monitor-body" class="collapse-btn" role="button" aria-label="收合或展開平臺運作監控" data-bs-toggle="collapse" aria-expanded="true"><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></a></div>
+<div class="collapse show" id="platform-monitor-body"><div class="d-flex flex-wrap justify-content-between gap-2 mb-3"><p class="text-muted mb-0">監控各權責機關資料交換與跨機關查調服務，快速辨識異常發生的機關、服務與時段。</p><div><span class="badge text-bg-success">整體服務正常</span><small class="text-muted ms-2">最後檢查：116/07/13 18:05</small></div></div>
+<div class="search"><div class="search-top-form"><div class="row g-3"><div class="col-md-6"><label class="form-label" for="monitorStartTime">開始時間</label><input class="form-control" id="monitorStartTime" type="datetime-local" value="2027-07-12T18:00"></div><div class="col-md-6"><label class="form-label" for="monitorEndTime">結束時間</label><input class="form-control" id="monitorEndTime" type="datetime-local" value="2027-07-13T18:00"></div><div class="col-12 text-muted small">預設查詢最近 24 小時監控資料</div></div></div><div class="search-bottom-buttons"><button class="btn btn-primary" id="monitorTimeSearch" type="button">查詢</button></div></div>
+<div class="table-responsive mt-4"><table class="table table-list table-bordered mb-0 text-center"><thead><tr><th>監控項目</th><th>成功率</th><th>成功</th><th>異常</th><th>待處理</th><th>狀態</th><th>操作</th></tr></thead><tbody><tr><th>資料交換<div class="small fw-normal">六都與國家住都中心</div></th><td>99.72%</td><td>48,362</td><td class="text-danger">23</td><td>7（待重送）</td><td><span class="badge text-bg-success">正常</span></td><td><button type="button" class="btn btn-outline-primary btn-sm text-button">查看資料交換明細</button></td></tr><tr><th>跨機關查調<div class="small fw-normal">戶政司、地政司、移民署、消防（警政）署、衛福部、財政部、集保所、勞動部、國防部</div></th><td>98.94%</td><td>112,486</td><td class="text-danger">64</td><td>18（處理中）</td><td><span class="badge text-bg-warning">部分異常</span></td><td><button type="button" class="btn btn-outline-primary btn-sm text-button">查看查調服務明細</button></td></tr></tbody></table></div>
+<div class="border rounded mt-4">
+<div class="d-flex flex-wrap justify-content-between gap-3 p-3 border-bottom">
+<div>
+<div class="d-flex flex-wrap gap-2 align-items-center mb-3">
+<h6 class="text-secondary mb-0">服務健康狀態熱區圖</h6>
+<span>預設顯示最近 24 小時，每小時彙整</span>
+</div>
+<div class="heatmap-legend">
+<span><i class="legend-dot green"></i>正常</span>
+<span><i class="legend-dot yellow"></i>注意</span>
+<span><i class="legend-dot red"></i>異常</span>
+<span><i class="legend-dot blue"></i>維護中</span>
+<span><i class="legend-dot gray"></i>無交易</span>
+</div>
+</div>
+<div class="d-flex flex-wrap align-items-center gap-2">
+<div class="btn-group flex-wrap" id="rangeControl">
+<button class="btn btn-outline-primary active" data-range="24h" type="button">最近 24 小時</button>
+<button class="btn btn-outline-primary" data-range="6h" type="button">最近 6 小時</button>
+<button class="btn btn-outline-primary" data-range="7d" type="button">最近 7 日</button>
+<button class="btn btn-outline-primary" data-range="30d" type="button">最近 30 日</button>
+</div>
+<select class="form-select w-auto" aria-label="時間粒度" id="granularitySelect">
+<option selected="">每小時</option>
+<option>每 15 分鐘</option>
+<option>每日</option>
+</select>
+</div>
+</div>
+<div class="row row-cols-2 row-cols-xl-4 g-0 border-bottom small p-3">
+<div class="col py-2"><div class="text-muted">目前異常服務</div><strong class="danger-text">2</strong></div>
+<div class="col py-2"><div class="text-muted">目前注意服務</div><strong class="warn-text">3</strong></div>
+<div class="col py-2"><div class="text-muted">連續異常最久</div><strong>財政部查調 2 小時</strong></div>
+<div class="col py-2"><div class="text-muted">近 24 小時可用率</div><strong>99.18%</strong></div>
+</div>
+<div class="heatmap-scroll">
+<div class="heatmap-grid" id="healthHeatmap">
+<div class="heatmap-corner">監控服務</div>
+<div class="heatmap-hour">00</div><div class="heatmap-hour">01</div><div class="heatmap-hour">02</div><div class="heatmap-hour">03</div>
+<div class="heatmap-hour">04</div><div class="heatmap-hour">05</div><div class="heatmap-hour">06</div><div class="heatmap-hour">07</div>
+<div class="heatmap-hour">08</div><div class="heatmap-hour">09</div><div class="heatmap-hour">10</div><div class="heatmap-hour">11</div>
+<div class="heatmap-hour">12</div><div class="heatmap-hour">13</div><div class="heatmap-hour">14</div><div class="heatmap-hour">15</div>
+<div class="heatmap-hour">16</div><div class="heatmap-hour">17</div><div class="heatmap-hour">18</div><div class="heatmap-hour current-hour">目前</div>
+<div class="heatmap-group exchange"><strong>資料交換</strong><span>監控六都與國家住都中心的案件及狀態交換</span></div>
+<div class="heatmap-service">
+<strong>臺北市政府</strong>
+</div>
+<button class="heat-cell g" data-error="0" data-rate="99.9%" data-service="臺北市政府資料交換" data-time="00:00"></button>
+<button class="heat-cell g" data-error="1" data-rate="99.8%" data-service="臺北市政府資料交換" data-time="01:00"></button>
+<button class="heat-cell g" data-error="0" data-rate="99.9%" data-service="臺北市政府資料交換" data-time="02:00"></button>
+<button class="heat-cell g" data-error="1" data-rate="99.7%" data-service="臺北市政府資料交換" data-time="03:00"></button>
+<button class="heat-cell g" data-error="0" data-rate="100%" data-service="臺北市政府資料交換" data-time="04:00"></button>
+<button class="heat-cell g" data-error="0" data-rate="100%" data-service="臺北市政府資料交換" data-time="05:00"></button>
+<button class="heat-cell g" data-error="1" data-rate="99.8%" data-service="臺北市政府資料交換" data-time="06:00"></button>
+<button class="heat-cell g" data-error="1" data-rate="99.7%" data-service="臺北市政府資料交換" data-time="07:00"></button>
+<button class="heat-cell g" data-error="0" data-rate="99.9%" data-service="臺北市政府資料交換" data-time="08:00"></button>
+<button class="heat-cell g" data-error="1" data-rate="99.8%" data-service="臺北市政府資料交換" data-time="09:00"></button>
+<button class="heat-cell g" data-error="0" data-rate="99.9%" data-service="臺北市政府資料交換" data-time="10:00"></button>
+<button class="heat-cell g" data-error="1" data-rate="99.8%" data-service="臺北市政府資料交換" data-time="11:00"></button>
+<button class="heat-cell g" data-error="0" data-rate="99.9%" data-service="臺北市政府資料交換" data-time="12:00"></button>
+<button class="heat-cell g" data-error="1" data-rate="99.7%" data-service="臺北市政府資料交換" data-time="13:00"></button>
+<button class="heat-cell g" data-error="1" data-rate="99.8%" data-service="臺北市政府資料交換" data-time="14:00"></button>
+<button class="heat-cell g" data-error="0" data-rate="99.9%" data-service="臺北市政府資料交換" data-time="15:00"></button>
+<button class="heat-cell g" data-error="0" data-rate="99.9%" data-service="臺北市政府資料交換" data-time="16:00"></button>
+<button class="heat-cell g" data-error="1" data-rate="99.8%" data-service="臺北市政府資料交換" data-time="17:00"></button>
+<button class="heat-cell g" data-error="0" data-rate="99.9%" data-service="臺北市政府資料交換" data-time="18:00"></button>
+<button class="heat-cell g pulse" data-error="0" data-rate="99.9%" data-service="臺北市政府資料交換" data-time="目前"></button>
+<div class="heatmap-service">
+<strong>臺中市政府</strong>
+</div>
+<button class="heat-cell g" data-error="1" data-rate="99.7%" data-service="臺中市政府資料交換" data-time="00:00"></button>
+<button class="heat-cell g" data-error="2" data-rate="99.5%" data-service="臺中市政府資料交換" data-time="01:00"></button>
+<button class="heat-cell y" data-error="4" data-rate="97.8%" data-service="臺中市政府資料交換" data-time="02:00"></button>
+<button class="heat-cell r" data-error="12" data-rate="92.1%" data-service="臺中市政府資料交換" data-time="03:00"></button>
+<button class="heat-cell r" data-error="15" data-rate="91.6%" data-service="臺中市政府資料交換" data-time="04:00"></button>
+<button class="heat-cell y" data-error="6" data-rate="96.4%" data-service="臺中市政府資料交換" data-time="05:00"></button>
+<button class="heat-cell g" data-error="2" data-rate="99.1%" data-service="臺中市政府資料交換" data-time="06:00"></button>
+<button class="heat-cell g" data-error="2" data-rate="99.4%" data-service="臺中市政府資料交換" data-time="07:00"></button>
+<button class="heat-cell g" data-error="1" data-rate="99.7%" data-service="臺中市政府資料交換" data-time="08:00"></button>
+<button class="heat-cell g" data-error="2" data-rate="99.5%" data-service="臺中市政府資料交換" data-time="09:00"></button>
+<button class="heat-cell g" data-error="1" data-rate="99.8%" data-service="臺中市政府資料交換" data-time="10:00"></button>
+<button class="heat-cell g" data-error="1" data-rate="99.8%" data-service="臺中市政府資料交換" data-time="11:00"></button>
+<button class="heat-cell g" data-error="2" data-rate="99.6%" data-service="臺中市政府資料交換" data-time="12:00"></button>
+<button class="heat-cell g" data-error="1" data-rate="99.7%" data-service="臺中市政府資料交換" data-time="13:00"></button>
+<button class="heat-cell g" data-error="2" data-rate="99.5%" data-service="臺中市政府資料交換" data-time="14:00"></button>
+<button class="heat-cell g" data-error="1" data-rate="99.8%" data-service="臺中市政府資料交換" data-time="15:00"></button>
+<button class="heat-cell g" data-error="2" data-rate="99.6%" data-service="臺中市政府資料交換" data-time="16:00"></button>
+<button class="heat-cell y" data-error="5" data-rate="97.1%" data-service="臺中市政府資料交換" data-time="17:00"></button>
+<button class="heat-cell y" data-error="6" data-rate="96.8%" data-service="臺中市政府資料交換" data-time="18:00"></button>
+<button class="heat-cell y pulse" data-error="6" data-rate="96.8%" data-service="臺中市政府資料交換" data-time="目前"></button>
+<div class="heatmap-service">
+<strong>國家住都中心</strong>
+</div>
+<button class="heat-cell g" data-error="0" data-rate="100%" data-service="國家住都中心資料交換" data-time="00:00"></button>
+<button class="heat-cell g" data-error="0" data-rate="99.9%" data-service="國家住都中心資料交換" data-time="01:00"></button>
+<button class="heat-cell g" data-error="1" data-rate="99.8%" data-service="國家住都中心資料交換" data-time="02:00"></button>
+<button class="heat-cell g" data-error="0" data-rate="99.9%" data-service="國家住都中心資料交換" data-time="03:00"></button>
+<button class="heat-cell g" data-error="0" data-rate="100%" data-service="國家住都中心資料交換" data-time="04:00"></button>
+<button class="heat-cell g" data-error="0" data-rate="99.9%" data-service="國家住都中心資料交換" data-time="05:00"></button>
+<button class="heat-cell g" data-error="1" data-rate="99.8%" data-service="國家住都中心資料交換" data-time="06:00"></button>
+<button class="heat-cell g" data-error="0" data-rate="99.9%" data-service="國家住都中心資料交換" data-time="07:00"></button>
+<button class="heat-cell g" data-error="0" data-rate="99.9%" data-service="國家住都中心資料交換" data-time="08:00"></button>
+<button class="heat-cell g" data-error="1" data-rate="99.8%" data-service="國家住都中心資料交換" data-time="09:00"></button>
+<button class="heat-cell g" data-error="0" data-rate="99.9%" data-service="國家住都中心資料交換" data-time="10:00"></button>
+<button class="heat-cell g" data-error="1" data-rate="99.8%" data-service="國家住都中心資料交換" data-time="11:00"></button>
+<button class="heat-cell g" data-error="0" data-rate="100%" data-service="國家住都中心資料交換" data-time="12:00"></button>
+<button class="heat-cell g" data-error="0" data-rate="99.9%" data-service="國家住都中心資料交換" data-time="13:00"></button>
+<button class="heat-cell g" data-error="1" data-rate="99.8%" data-service="國家住都中心資料交換" data-time="14:00"></button>
+<button class="heat-cell g" data-error="0" data-rate="99.9%" data-service="國家住都中心資料交換" data-time="15:00"></button>
+<button class="heat-cell g" data-error="0" data-rate="99.9%" data-service="國家住都中心資料交換" data-time="16:00"></button>
+<button class="heat-cell g" data-error="1" data-rate="99.8%" data-service="國家住都中心資料交換" data-time="17:00"></button>
+<button class="heat-cell g" data-error="0" data-rate="99.9%" data-service="國家住都中心資料交換" data-time="18:00"></button>
+<button class="heat-cell g pulse" data-error="0" data-rate="99.9%" data-service="國家住都中心資料交換" data-time="目前"></button>
+<div class="heatmap-group lookup"><strong>跨機關查調</strong><span>戶政司、地政司、移民署、消防（警政）署、衛福部、財政部、集保所、勞動部、國防部</span></div>
+<div class="heatmap-service">
+<strong>戶政司</strong>
+</div>
+<button class="heat-cell g" data-error="0" data-rate="99.9%" data-service="戶政資料查調" data-time="00:00"></button>
+<button class="heat-cell g" data-error="1" data-rate="99.8%" data-service="戶政資料查調" data-time="01:00"></button>
+<button class="heat-cell g" data-error="0" data-rate="99.9%" data-service="戶政資料查調" data-time="02:00"></button>
+<button class="heat-cell g" data-error="0" data-rate="99.9%" data-service="戶政資料查調" data-time="03:00"></button>
+<button class="heat-cell g" data-error="1" data-rate="99.8%" data-service="戶政資料查調" data-time="04:00"></button>
+<button class="heat-cell g" data-error="0" data-rate="99.9%" data-service="戶政資料查調" data-time="05:00"></button>
+<button class="heat-cell g" data-error="0" data-rate="99.9%" data-service="戶政資料查調" data-time="06:00"></button>
+<button class="heat-cell g" data-error="1" data-rate="99.8%" data-service="戶政資料查調" data-time="07:00"></button>
+<button class="heat-cell g" data-error="0" data-rate="99.9%" data-service="戶政資料查調" data-time="08:00"></button>
+<button class="heat-cell g" data-error="1" data-rate="99.8%" data-service="戶政資料查調" data-time="09:00"></button>
+<button class="heat-cell g" data-error="0" data-rate="99.9%" data-service="戶政資料查調" data-time="10:00"></button>
+<button class="heat-cell g" data-error="0" data-rate="99.9%" data-service="戶政資料查調" data-time="11:00"></button>
+<button class="heat-cell g" data-error="1" data-rate="99.8%" data-service="戶政資料查調" data-time="12:00"></button>
+<button class="heat-cell g" data-error="0" data-rate="99.9%" data-service="戶政資料查調" data-time="13:00"></button>
+<button class="heat-cell g" data-error="0" data-rate="99.9%" data-service="戶政資料查調" data-time="14:00"></button>
+<button class="heat-cell g" data-error="1" data-rate="99.8%" data-service="戶政資料查調" data-time="15:00"></button>
+<button class="heat-cell g" data-error="0" data-rate="99.9%" data-service="戶政資料查調" data-time="16:00"></button>
+<button class="heat-cell g" data-error="0" data-rate="99.9%" data-service="戶政資料查調" data-time="17:00"></button>
+<button class="heat-cell g" data-error="1" data-rate="99.8%" data-service="戶政資料查調" data-time="18:00"></button>
+<button class="heat-cell g pulse" data-error="1" data-rate="99.8%" data-service="戶政資料查調" data-time="目前"></button>
+<div class="heatmap-service">
+<strong>財政部</strong>
+</div>
+<button class="heat-cell g" data-error="2" data-rate="99.4%" data-service="財稅資料查調" data-time="00:00"></button>
+<button class="heat-cell g" data-error="3" data-rate="99.2%" data-service="財稅資料查調" data-time="01:00"></button>
+<button class="heat-cell y" data-error="8" data-rate="97.2%" data-service="財稅資料查調" data-time="02:00"></button>
+<button class="heat-cell y" data-error="11" data-rate="95.8%" data-service="財稅資料查調" data-time="03:00"></button>
+<button class="heat-cell g" data-error="3" data-rate="99.1%" data-service="財稅資料查調" data-time="04:00"></button>
+<button class="heat-cell g" data-error="2" data-rate="99.3%" data-service="財稅資料查調" data-time="05:00"></button>
+<button class="heat-cell g" data-error="3" data-rate="99.2%" data-service="財稅資料查調" data-time="06:00"></button>
+<button class="heat-cell g" data-error="4" data-rate="99.0%" data-service="財稅資料查調" data-time="07:00"></button>
+<button class="heat-cell g" data-error="3" data-rate="99.1%" data-service="財稅資料查調" data-time="08:00"></button>
+<button class="heat-cell g" data-error="3" data-rate="99.2%" data-service="財稅資料查調" data-time="09:00"></button>
+<button class="heat-cell g" data-error="4" data-rate="99.0%" data-service="財稅資料查調" data-time="10:00"></button>
+<button class="heat-cell g" data-error="3" data-rate="99.1%" data-service="財稅資料查調" data-time="11:00"></button>
+<button class="heat-cell g" data-error="3" data-rate="99.2%" data-service="財稅資料查調" data-time="12:00"></button>
+<button class="heat-cell g" data-error="3" data-rate="99.1%" data-service="財稅資料查調" data-time="13:00"></button>
+<button class="heat-cell y" data-error="10" data-rate="96.2%" data-service="財稅資料查調" data-time="14:00"></button>
+<button class="heat-cell y" data-error="12" data-rate="95.4%" data-service="財稅資料查調" data-time="15:00"></button>
+<button class="heat-cell r" data-error="26" data-rate="91.8%" data-service="財稅資料查調" data-time="16:00"></button>
+<button class="heat-cell r" data-error="31" data-rate="89.6%" data-service="財稅資料查調" data-time="17:00"></button>
+<button class="heat-cell y" data-error="14" data-rate="95.8%" data-service="財稅資料查調" data-time="18:00"></button>
+<button class="heat-cell y pulse" data-error="14" data-rate="95.8%" data-service="財稅資料查調" data-time="目前"></button>
+<div class="heatmap-service">
+<strong>地政司</strong>
+</div>
+<button class="heat-cell g" data-error="2" data-rate="99.4%" data-service="地政資料查調" data-time="00:00"></button>
+<button class="heat-cell g" data-error="2" data-rate="99.3%" data-service="地政資料查調" data-time="01:00"></button>
+<button class="heat-cell g" data-error="3" data-rate="99.2%" data-service="地政資料查調" data-time="02:00"></button>
+<button class="heat-cell g" data-error="3" data-rate="99.1%" data-service="地政資料查調" data-time="03:00"></button>
+<button class="heat-cell g" data-error="2" data-rate="99.4%" data-service="地政資料查調" data-time="04:00"></button>
+<button class="heat-cell g" data-error="2" data-rate="99.5%" data-service="地政資料查調" data-time="05:00"></button>
+<button class="heat-cell g" data-error="2" data-rate="99.3%" data-service="地政資料查調" data-time="06:00"></button>
+<button class="heat-cell g" data-error="2" data-rate="99.4%" data-service="地政資料查調" data-time="07:00"></button>
+<button class="heat-cell g" data-error="3" data-rate="99.2%" data-service="地政資料查調" data-time="08:00"></button>
+<button class="heat-cell g" data-error="2" data-rate="99.3%" data-service="地政資料查調" data-time="09:00"></button>
+<button class="heat-cell g" data-error="2" data-rate="99.4%" data-service="地政資料查調" data-time="10:00"></button>
+<button class="heat-cell g" data-error="3" data-rate="99.2%" data-service="地政資料查調" data-time="11:00"></button>
+<button class="heat-cell g" data-error="2" data-rate="99.3%" data-service="地政資料查調" data-time="12:00"></button>
+<button class="heat-cell y" data-error="7" data-rate="97.8%" data-service="地政資料查調" data-time="13:00"></button>
+<button class="heat-cell y" data-error="8" data-rate="97.2%" data-service="地政資料查調" data-time="14:00"></button>
+<button class="heat-cell g" data-error="4" data-rate="99.0%" data-service="地政資料查調" data-time="15:00"></button>
+<button class="heat-cell g" data-error="3" data-rate="99.1%" data-service="地政資料查調" data-time="16:00"></button>
+<button class="heat-cell g" data-error="3" data-rate="99.2%" data-service="地政資料查調" data-time="17:00"></button>
+<button class="heat-cell g" data-error="3" data-rate="99.1%" data-service="地政資料查調" data-time="18:00"></button>
+<button class="heat-cell g pulse" data-error="3" data-rate="99.1%" data-service="地政資料查調" data-time="目前"></button>
+</div>
+</div>
+<div class="d-flex flex-wrap justify-content-between gap-3 p-3 small text-muted">
+<span>判定門檻：綠色 ≥ 99%；黃色 95%～未滿 99%；紅色 &lt; 95% 或連續逾時達門檻。</span>
+<button class="btn btn-sm btn-outline-secondary" type="button">進入完整監控中心</button>
+</div>
+</div><h6 class="text-secondary mt-4 mb-3">目前異常與注意項目 <small class="text-muted">依嚴重程度排序</small></h6><div class="table-responsive"><table class="table table-list table-bordered mb-0 monitor-table">
+<thead>
+<tr>
+<th>監控項目</th>
+<th>服務／機關</th>
+<th>目前狀態</th>
+<th>成功率</th>
+<th>異常數</th>
+<th>持續時間</th>
+<th>最後成功時間</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>跨機關查調</td>
+<td><strong>財政部</strong></td>
+<td><span class="badge text-bg-danger">異常</span></td>
+<td>91.8%</td>
+<td><span class="badge text-bg-danger">26</span></td>
+<td>2 小時</td>
+<td>116/07/13 15:58</td>
+<td><button class="btn btn-sm btn-primary" type="button">檢視錯誤</button></td>
+</tr>
+<tr>
+<td>資料交換</td>
+<td><strong>臺中市政府</strong></td>
+<td><span class="badge text-bg-warning">注意</span></td>
+<td>96.8%</td>
+<td><span class="badge text-bg-warning">6</span></td>
+<td>1 小時</td>
+<td>116/07/13 17:42</td>
+<td><button class="btn btn-sm btn-outline-secondary" type="button">檢視明細</button></td>
+</tr>
+<tr>
+<td>跨機關查調</td>
+<td><strong>地政資料服務</strong></td>
+<td><span class="badge text-bg-success">已恢復</span></td>
+<td>99.1%</td>
+<td><span class="badge text-bg-secondary">3</span></td>
+<td>—</td>
+<td>116/07/13 18:01</td>
+<td><button class="btn btn-sm btn-outline-secondary" type="button">檢視歷程</button></td>
+</tr>
+</tbody>
+</table></div></div></section></div></div>
+      </div>
+    </div>
+    <!-- Bottom -->
+    <div class="bottom">
+      <footer class="footer">
+          
+          <div class="text"><div>內政部國土管理署</div><div>全國社會住宅資料整合暨共同查調管理平臺</div></div></footer>
+    </div>
+  </div> 
+  <!-- /.wrapper  -->
+
+  <!-- 回到最上面 -->
+  <div class="go-top | js-go-top">
+      <a href="#mainContent" id="goTop" title="回到最上面">TOP</a>
+  </div>
+
+<div class="heat-tooltip" id="heatTooltip">
+<strong id="tipTitle"></strong>
+<span id="tipTime"></span>
+<span id="tipRate"></span>
+<span id="tipError"></span>
+</div>
+<!-- 沿用 後臺模板/components/modal.html 的「警告彈窗 -文字」結構。 -->
+<div class="modal fade" id="demoModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="demoModalTitle" aria-describedby="demoModalMessage" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header border-0 pb-0">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="關閉提示"></button>
+      </div>
+      <div class="modal-body text-center">
+        <h6 class="fs-4 fw-bold | mb-4 pb-2" id="demoModalTitle">操作提示</h6>
+        <div id="demoModalMessage"></div>
+      </div>
+      <div class="modal-footer">
+        <div class="btn-cta-group w-100 p-0">
+          <button type="button" class="btn btn-pill-primary" data-bs-dismiss="modal">確定</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="assets/js/home-admin.js"></script>
+<script src="assets/js/shell.js"></script>
+</body>
+</html>

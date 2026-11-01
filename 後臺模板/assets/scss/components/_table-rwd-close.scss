@@ -1,0 +1,71 @@
+.table-rwd{
+    --th-size: 5rem;
+    //--
+
+    thead{
+        display: none;
+        @include breakpoint($md) {
+            display: table-row-group;
+        }
+    }
+    th{
+        display: none;
+        @include breakpoint($md) {
+            display: table-cell;
+        }
+    }
+    td{
+        display: flex;
+        gap: 8px;
+        border-width: 0 !important;
+        &::before{
+            content: attr(data-th);
+            display: block;
+            width: var(--th-size);
+            margin-top: 2px;
+
+            color: #3C4C54;
+            border-right: 1px solid $border;
+            font-weight: 500;
+            padding-right: 8px;
+            flex-shrink: 0;
+            // white-space: nowrap;
+            text-align: right;
+            font-size: 0.85rem;
+            
+            @include breakpoint($md) {
+                display: none;
+            }
+        }
+           
+        @include breakpoint($md) {
+            display: table-cell;
+            border-width: 1px !important;
+        }
+        // 修正width屬性得限制
+        &[width]{
+            @media (max-width: 767.98px) {
+                width: 100%;
+            }
+        }
+    }
+    tr{
+        display: block;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        border-width: 0 !important;
+        &:nth-child(even){
+            background-color: #FAFAFB;
+            border-radius: 8px;
+            @include breakpoint($md) {
+                background: none;
+            }
+        }
+        @include breakpoint($md) {
+            display: table-row;
+            padding: 0;
+            border-width: 1 !important;
+        }
+    }
+}
+

@@ -1,0 +1,25 @@
+// 檔案位置：src/assets/scss/components/_no-data-placeholder.scss
+// 用途：列表、表格或查詢結果的無資料狀態提示
+
+.no-data-placeholder {
+  display: flex;
+  min-height: 180px;
+  padding: 32px 16px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: #d9e1ec;
+  text-align: center;
+  border: 1px dashed map-get($neutrals, '300');
+  border-radius: var(--bs-border-radius, 0.375rem);
+
+  &__icon {
+    font-size: 40px;
+  }
+
+  &__text {
+    margin: 0;
+    color: #687c93;
+  }
+}

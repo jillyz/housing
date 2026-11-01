@@ -1,0 +1,48 @@
+$table-cell-padding-x: 12px;
+$table-cell-padding-y: 12px;
+$table-list-border-color: #D8D8D8;
+$table-list-th-text: #000;
+$table-list-th-bg: #F5F5F5;
+$table-rwd-even: #F5F5F5;
+$pagination-disabled: #ABABAB;
+
+/* Table */
+.table{
+    --bs-table-border-color: #ddd;
+    --bs-table-bg: transparent;
+    th{
+        white-space: nowrap;
+        font-weight: 500;
+        // vertical-align: middle;
+    } 
+    tr>*{
+        padding: $table-cell-padding-y $table-cell-padding-x;
+    }   
+    tr>*:first-child{
+        padding-left: $table-cell-padding-x * 2;
+    }
+    tr>*:last-child{
+        padding-right: $table-cell-padding-x * 2;
+    }
+}
+/* rowspan 續列修正：因 rowspan 缺欄而誤判為 first/last-child 的儲存格，回復一般左右內距 */
+.table tr > td.td-no-edge-x{
+    padding-left: $table-cell-padding-x;
+    padding-right: $table-cell-padding-x;
+}
+/* Table small */
+.table-sm{
+    tr>*:first-child{
+        padding-left: $table-cell-padding-x-sm * 2;
+    }
+    tr>*:last-child{
+        padding-right: $table-cell-padding-x-sm * 2;
+    }  
+}  
+/* Bordered */
+.table-bordered{
+    --bs-table-border-color: #{$border};
+}
+
+
+

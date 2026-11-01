@@ -1,0 +1,124 @@
+$top-helper-zIndex: 10;
+$top-helper-h: 40px;
+$top-helper-bg: var(--top-helper-bg,#f9823c);
+$top-helper-badge-bg: #fff;
+$top-helper-icon-color: var(--top-helper-icon-color, #C64300);
+$top-helper-logout-bg: var(--top-helper-logout-bg, #60bbff);
+$top-helper-dropdown-toggle-color: #000;
+//--
+/* Top helper */
+.top-helper{
+    display: inline-flex;
+    align-items: center;  
+    gap: 4px;  
+    height: $top-helper-h;
+    width: 100%;;
+    padding-top: 4px;
+    padding-left: 20px;
+    padding-right: 16px;  
+    
+    color: white;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    
+    
+    @include breakpoint($lg) {
+        width: auto;
+        display: flex !important;    
+        padding: 0;
+        border-width: 0;
+    }
+
+    .dropdown-toggle{
+        color: $top-helper-dropdown-toggle-color;
+        border: none;
+        @include breakpoint($lg) {
+          font-size: 18px;
+        }
+
+        &::after{
+          @include breakpoint($lg) {
+            border: none;
+            content: '\f078';
+            font-family: $font-awesome;
+            font-weight: 700;
+          }
+        }
+      }
+      // dropdown
+      .dropdown-menu{
+        border-width: 0;
+        filter: drop-shadow(0px 0px 20px rgba(67, 67, 67, 0.20));
+        li{
+          &:not(:first-child){
+            border-top: 1px solid #F1E8E4;
+          }
+        }
+      }
+      .dropdown-item {
+        --bs-dropdown-item-padding-x: 1.75rem;
+        --bs-dropdown-item-padding-y: .5rem;
+        &:hover{
+        //   background-color: #FDF6F3;
+        }
+      }
+
+
+}
+// Wrapper
+.top-helper-wrapper{
+    @include breakpoint($lg){
+        position: fixed;
+        right: 1.5rem;
+        top: calc(#{$header-h-lg} / 2);
+        z-index: $top-helper-zIndex;
+        transform: translateY(-50%);
+    }
+}
+
+/* 警示按鈕 */
+.warning-bell{  
+    --size: 30px;
+    --icon-size: 22px;
+    --badge-size: 16px;
+    --badge-text-size: 14px;
+    //
+    position: relative;
+    .badge{
+      position: absolute;
+      top: 0;
+      right: 0;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      width: var(--badge-size);
+      height: var(--badge-size);
+      font-size: var(--badge-text-size);
+      font-weight: normal;
+      border-radius: 999rem;
+      background-color: $top-helper-icon-color;
+      color: $top-helper-badge-bg;
+      transform: translate(22%, -34%);
+    }
+    button{
+      $primary: $top-helper-icon-color;
+      //--
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      width: var(--size);
+      height: var(--size);
+      padding: 0;
+      border-radius: 999rem;
+      background-color: white;
+      color: $primary;
+      border: none;
+      font-size:var(--icon-size);
+    }
+    @include breakpoint($lg) {
+      --size: 48px;
+      --icon-size: 34px;      
+      --badge-size: 24px;
+      --badge-text-size: 18px;
+    }
+  }

@@ -1,0 +1,61 @@
+.custom-table-input-row-rwd{
+    // thead
+    thead{
+        display: none;
+        
+        @include breakpoint($lg){
+            display: table-header-group;
+        }
+    }
+    // tr
+    tr{
+        display: grid;
+        gap: 16px;
+        padding-block: 32px;
+        margin-top: -1px;
+
+        @include breakpoint($md){
+            grid-template-columns: 1fr 1fr;
+        }
+
+        @include breakpoint($lg){
+            display: table-row;
+            padding-block: 0px;
+            margin-top: 0px;
+        }
+
+        // First TR
+        &:first-child {
+            padding-top: 0;
+            border-top-width: 0;
+        }
+        // Last TR
+        &:last-child {
+            padding-bottom: 0;
+        }
+    }
+    // td
+    td{
+        display: grid;
+        gap: 4px;
+        border-right-width: 0;
+        padding: 0;
+        
+        @include breakpoint($lg){
+            display: table-cell;
+            border-right-width: 1px;
+            padding: var(--padding);
+        }
+    }
+    // data-th
+    [data-th]{
+        &::before{
+            content: attr(data-th);
+            font-weight: 500;
+
+            @include breakpoint($lg){
+                display: none;
+            }
+        }
+    }
+}

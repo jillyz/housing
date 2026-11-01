@@ -1,0 +1,102 @@
+/* application-query.html 換色與十二欄列表寬度適配；元件外觀由模板 main.css 提供。 */
+.backend-page {
+  --bs-primary: #087f8c;
+  --bs-primary-rgb: 8, 127, 140;
+  --top-helper-icon-color: #087f8c;
+  --go-top-bg: #087f8c;
+}
+.backend-page .header { background-color: #126f80; color: #fff; }
+.backend-page .logo .img-wrap { background-color: #126f80; }
+.backend-page .aside { background-color: #f0f7f7; }
+.backend-page .menu a:hover { background-color: #e2f0f1; }
+.backend-page .menu a.active { background-color: #cce8ea; color: #075f70 !important; }
+.backend-page .menu li:has(.active) > .has-children { background-color: #087f8c; color: #fff; }
+.backend-page .menu .sub-menu span { color: #087f8c; }
+.backend-page .top-helper .dropdown-item {
+  --bs-dropdown-link-hover-color: #075f70;
+  --bs-dropdown-link-hover-bg: #e2f0f1;
+  --bs-dropdown-link-active-color: #075f70;
+}
+.backend-page .search { background-color: #eef8f8; }
+.backend-page .collapse-title { color: #087f8c; }
+.backend-page .collapse-btn { background-color: #087f8c; }
+.backend-page .btn-primary { background-color: #087f8c !important; border-color: #087f8c; }
+.backend-page .btn-primary:hover { background-color: #076878 !important; border-color: #076878; }
+.backend-page .btn-outline-primary:where(:not(:disabled)) { color: #087f8c !important; border-color: #087f8c !important; }
+.backend-page .btn-outline-primary:where(:not(:disabled)):hover { background-color: #e2f0f1 !important; }
+.backend-page .btn-outline-primary.active { background-color: #087f8c !important; color: #fff !important; }
+.backend-page .pagination a { color: #087f8c; }
+.backend-page .pagination a:hover { background-color: #e2f0f1; color: #075f70 !important; }
+.backend-page .pagination li.active > a,
+.backend-page .pagination li.active:hover > a { background-color: #087f8c; color: #fff !important; }
+.backend-page .pagination .disabled a,
+.backend-page .pagination .disabled a:hover { background-color: transparent; color: #acaeb1 !important; }
+.backend-page .footer { background-color: #173f5b; }
+/* 查調進度與結果配對顯示，灰底僅用於尚未完成的結果格。 */
+.backend-page .enquiry-status--pending { background-color: #edf0f2; color: #5c6670; }
+.backend-page .enquiry-status--complete { background-color: #dff2ef; color: #075f70; }
+.backend-page .table td.enquiry-result--pending {
+  --bs-table-bg: #edf0f2;
+  --bs-table-color: #5c6670;
+}
+.backend-page .table td.enquiry-result--complete { --bs-table-bg: #fff; }
+.enquiry-detail-page .pill-state:has([data-state="查調中"]) {
+  --pill-state-bg: #edf0f2;
+  --pill-state-text: #5c6670;
+}
+/* apply-03.html 檢視頁元件換色；標題、狀態與合計列沿用模板外觀。 */
+.enquiry-detail-page .title-border-bottom .title-name { border-left-color: #087f8c; }
+.enquiry-detail-page .pill-state {
+  --pill-state-bg: #e2f0f1;
+  --pill-state-title: #087f8c;
+  --pill-state-text: #075f70;
+  --pill-state-border: #b4dadd;
+}
+.enquiry-detail-page .bg-orange-lightest { background-color: #eef8f8 !important; }
+.enquiry-detail-page .btn-pill-outline-primary { color: #087f8c; border-color: #087f8c; }
+.enquiry-detail-page .btn-pill-outline-primary:hover { background-color: #e2f0f1; }
+/* 十二欄合計 100%，避免長欄名、案件編號或操作按鈕撐出水平捲軸。 */
+.backend-page .multi-column > .center > .right { min-width: 0; }
+#enquiryTable th,
+#enquiryTable td { overflow-wrap: anywhere; }
+#enquiryTable .btn { white-space: normal; max-width: 100%; }
+.enquiry-detail-table th,
+.enquiry-detail-table td { overflow-wrap: anywhere; }
+@media (min-width: 992px) {
+  .enquiry-detail-table { table-layout: fixed; width: 100%; }
+  #enquiryTable { table-layout: fixed; width: 100%; }
+  #enquiryTable .case-column { width: 10%; }
+  #enquiryTable .name-column,
+  #enquiryTable .room-column { width: 6%; }
+  #enquiryTable .agency-column { width: 9%; }
+  #enquiryTable .housing-column { width: 10%; }
+  #enquiryTable .status-column { width: 9%; }
+  #enquiryTable .result-column { width: 8%; }
+  #enquiryTable .action-column { width: 10%; }
+}
+.enquiry-detail-page .enquiry-comparison th.highlight { background-color: #eef8f8; }
+.enquiry-detail-page .enquiry-boolean-no { color: #c5cbce; }
+.enquiry-detail-page details summary { cursor: pointer; color: #087f8c; }
+.enquiry-detail-page .enquiry-notes p { white-space: pre-line; }
+@media (max-width: 991px) {
+  #enquiryTable colgroup { display: none; }
+}
+@media (min-width: 992px) {
+  .backend-page .top-helper .dropdown-toggle { color: #fff; }
+}
+
+/* 僅適配指定的直式署徽及機關名稱；保留模板 logo > img-wrap + h2 結構與頁首高度。 */
+.backend-page .logo .img-wrap { gap: 12px; padding-inline: 18px; }
+.backend-page .logo .img-wrap img { width: auto; height: 54px; object-fit: contain; }
+.backend-page .agency-name { line-height: 1.45; white-space: nowrap; }
+.backend-page .agency-name span { display: block; font-size: 13px; letter-spacing: .12em; }
+.backend-page .agency-name strong { display: block; font-size: 19px; letter-spacing: .04em; }
+.backend-page .footer img { width: auto; height: 54px; }
+@media (max-width: 991px) {
+  .backend-page .logo { min-width: 0; flex: 1; }
+  .backend-page .logo .img-wrap { display: flex; align-items: center; width: 114px; padding-inline: 8px; gap: 6px; }
+  .backend-page .logo .img-wrap img { height: 34px; }
+  .backend-page .agency-name span { font-size: 10px; letter-spacing: 0; }
+  .backend-page .agency-name strong { font-size: 12px; letter-spacing: 0; }
+  .backend-page .logo h2 { min-width: 0; padding-left: 8px; font-size: clamp(13px, 2.2vw, 20px); letter-spacing: 0; }
+}

@@ -1,0 +1,61 @@
+.custom-table-th-text-rwd{
+    // thead
+    thead{
+        display: none;
+        
+        @include breakpoint($md){
+            display: table-header-group;
+        }
+    }
+    // tr
+    tr{
+        display: grid;
+        gap: 8px;
+        padding-block: 20px;
+        margin-top: -1px;
+
+        @include breakpoint($md){
+            display: table-row;
+            padding-block: 0px;
+            margin-top: 0px;
+        }
+
+        // First TR
+        &:first-child {
+            padding-top: 0;
+            border-top-width: 0;
+        }
+        // Last TR
+        &:last-child {
+            padding-bottom: 0;
+        }
+    }
+    // td
+    td{
+        display: grid;
+        grid-template-columns: 6em 1fr;
+        gap:  12px;
+        border-right-width: 0;
+        padding: 0;
+        // text-align: start !important;
+        // color: $content2;
+        
+        @include breakpoint($md){
+            display: table-cell;
+            border-right-width: 1px;
+            padding: var(--padding);
+            color: inherit;
+        }
+    }
+
+    // data-th
+    [data-th]::before{
+        content: attr(data-th);
+        font-weight: 500;
+        color: #000;
+
+        @include breakpoint($md){
+            display: none;
+        }
+    }
+}

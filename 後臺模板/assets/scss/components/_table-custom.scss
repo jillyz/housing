@@ -1,0 +1,66 @@
+.table-custom{
+    // --bs-table-color: #{$body-color};
+    --bs-table-bg: transparent;
+    // --bs-table-border-color: #{$table-border};    
+    --padding: 16px 12px;
+    //--
+    th, td{
+        // font-size: var(--fs);
+    }
+    
+    th{
+        // --fs: 16px;
+        //--
+        font-weight: 500;
+        text-align: center;
+        border-bottom-width: 0;
+        // font-size: 1rem; // 16px ÷ 16
+        @include breakpoint($lg){
+            // --fs: 18px;
+            // font-size: 1.125rem; // 18px ÷ 16
+        }
+    }
+    td{
+        // --fs: 18px;
+        //--
+        // font-size: var(--fs);
+        // font-size: 1.125rem; // 18px ÷ 16
+        @include breakpoint($lg){
+            // --fs: 1.25rem;
+            // font-size: 1.25rem;  // 20px ÷ 16
+        }
+    }
+
+    // thead
+    &>thead{
+        background-color: #F5F5F5;
+    }
+    // thead 左右th導角
+    &>thead>tr:first-child > *{
+        &:first-child{
+            border-top-left-radius: 1rem;
+        }
+        &:last-child{
+            border-top-right-radius: 1rem;
+        }
+    }
+    // tbody
+    &>tbody{
+        background-color: white;
+    }
+    // 最後一個tr沒有下底線
+    &>tbody> tr:last-child{
+        border-bottom-width: 0;
+        td{
+            border-bottom-width: 0;
+        }
+    }
+    &>:not(caption)>*>* {
+        padding: var(--padding);
+    }
+    
+
+    &.compress{
+        --padding: 12px 4px;
+    }
+}

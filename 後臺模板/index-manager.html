@@ -1,0 +1,1361 @@
+<!doctype html>
+<html class="no-js" lang="zh-Hant">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>首頁（科室主管、系統管理員） | 桃園市住宅及都市更新中心營運管理平台</title>
+  <!-- jQuery -->
+  <script src="assets/vendor/jquery-3.7.1.min.js"></script>
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="assets/vendor/bootstrap-5.3.3/dist/css/bootstrap.min.css">
+  <script src="assets/vendor/bootstrap-5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="assets/vendor/fontawesome-pro-6.5.2-web/css/all.css">
+  <!-- Rubik (數字字型) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap">
+  <!-- Tom Select -->
+  <link rel="stylesheet" href="assets/vendor/tom-select-2.2.2/tom-select.bootstrap5.min.css">
+  <script src="assets/vendor/tom-select-2.2.2/tom-select.complete.js"></script>
+  <!-- Menu -->
+  <script src="assets/vendor/utils/menu/menu.js"></script>
+  <!-- 自訂 -->
+  <link rel="stylesheet" href="assets/css/main.css">
+  <script src="assets/js/customJS.js"></script>
+</head>
+
+<body>
+  <div class="wrapper multi-column | column-with-menu">
+    <!-- Top -->
+    <div class="top">
+      <header class="header">
+        <!-- logo -->
+        <a class="logo" href="index.html" title="回首頁">
+          <div class="img-wrap"><img src="assets/img/brand-logo.svg"></div>
+          <h2 class="">桃園市住宅及都市更新中心<span>營運管理平台</span></h2>
+        </a>
+        <!-- 手機版漢堡 -->
+        <div class="d-lg-none">
+          <div class="menu-hamburger-toggle">
+            <a class="btn-icon" data-bs-toggle="collapse" href=".js-nav-collapse">
+              <span class="is-close"><i class="fas fa-bars"></i></span>
+              <span class="is-open"><i class="fas fa-times"></i></span>
+            </a>
+          </div>
+        </div>
+      </header>
+    </div>
+    <!-- Center -->
+    <div class="center">
+      <!-- Left -->
+      <div class="left">
+        <aside class="aside">
+          <!-- 桌機版漢堡 -->
+          <div class="d-none d-lg-block">
+              <div class="menu-hamburger | js-menu-hamburger">
+                <a class="btn btn-icon" title="選單收闔"><i class="fas fa-bars"></i></a>
+              </div>
+            </div>
+          <!-- Nav collapse -->
+          <div class="nav-collapse | collapse js-nav-collapse">
+            <!-- 上方輔助功能 -->
+            <div class="top-helper-wrapper">
+              <div class="top-helper">
+                <div class="warning-bell">
+                  <button><i class="fa-solid fa-bell"></i></button>
+                  <span class="badge">8</span>
+                </div>
+                <div class="dropdown">
+                  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    歡迎OOOOO科OOO登入系統
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="#">編輯個人資料</a></li>
+                    <li><a class="dropdown-item" href="#">變更密碼</a></li>
+                    <li><a class="dropdown-item" href="#">操作手冊下載</a></li>
+                    <li><a class="dropdown-item" href="#">登出</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <!-- Menu -->
+            <ul class="menu menu-vertical | scroll isMenuOpen js-menu-vertical">
+              <!-- 首頁 -->
+              <li>
+                  <a href="index.html" class="active">
+                    <span class="icon-text">首頁</span>
+                  </a>
+              </li>
+              <!-- 招租作業 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">招租作業*</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="apply-01.html" >專案申請*</a>
+                      </li>
+                      <li>
+                          <a href="application-query.html" >申請案件查詢*</a>
+                      </li>
+                      <li>
+                          <a href="application-review.html" >申請案件審核*</a>
+                      </li>
+                      <li>
+                          <a href="shop-rent.html" >店鋪招租</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 選屋作業管理 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">選屋作業管理*</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="online-selection-rank-query.html" >選屋查詢*</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 點交簽約管理 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">點交簽約管理*</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="handover-management.html" >點交簽約查詢*</a>
+                      </li>
+                      <li>
+                          <a href="handover-details-query.html" >點交作業*</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 租約管理 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">租約管理</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="tenant-lease-management.html" >住戶租約管理</a>
+                      </li>
+                      <li>
+                          <a href="tenant-termination-management.html" >住戶退租管理</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 店鋪招商管理 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">店鋪招商管理</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="#" >店鋪公告管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >店鋪點交簽約查詢</a>
+                      </li>
+                      <li>
+                          <a href="#" >店鋪點交作業</a>
+                      </li>
+                      <li>
+                          <a href="#" >潛在店鋪管理</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 場地租借審核 -->
+              <li>
+                  <a href="#" >
+                    <span class="icon-text">場地租借審核</span>
+                  </a>
+              </li>
+              <!-- 帳務管理 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">帳務管理</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="#" >收費管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >銷貨收入</a>
+                      </li>
+                      <li>
+                          <a href="#" >帳款作廢</a>
+                      </li>
+                      <span>銀行委扣管理</span>
+                      <li>
+                          <a href="#" >銀行委扣授權</a>
+                      </li>
+                      <li>
+                          <a href="#" >銀行委扣扣款</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 資料查詢與匯出 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">資料查詢與匯出</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="#" >金流統計</a>
+                      </li>
+                      <li>
+                          <a href="#" >案件申請統計</a>
+                      </li>
+                      <li>
+                          <a href="#" >車位統計</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 物業管理功能 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">物業管理功能</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="#" >公告管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >包裹管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >扣點紀錄</a>
+                      </li>
+                      <li>
+                          <a href="#" >工作日誌</a>
+                      </li>
+                      <li>
+                          <a href="#" >場地租借管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >人員差勤管理</a>
+                      </li>
+                      <span>報修案件管理</span>
+                      <li>
+                          <a href="#" >報修案件查詢</a>
+                      </li>
+                      <li>
+                          <a href="#" >報修廠商管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >備品統計</a>
+                      </li>
+                      <li>
+                          <a href="#" >報表查詢</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- 系統查詢與匯出 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">系統查詢與匯出</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <li>
+                          <a href="#" >通知類型設定</a>
+                      </li>        
+                  </ul>
+              </li>
+              <!-- 系統維護管理 -->
+              <li>
+                  <a class="has-children">
+                    <span class="icon-text">系統維護管理*</span>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                      <span>社宅管理</span>
+                      <li>
+                          <a href="building-management.html" >大樓管理*</a>
+                      </li>
+                      <li>
+                          <a href="#" >大樓戶號管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >大樓車位管理</a>
+                      </li>
+                      <li>
+                          <a href="#" >大樓場地管理</a>
+                      </li>
+                      <li>
+                          <a href="layout-config.html" >空間格局管理*</a>
+                      </li>
+                      <span>使用者權限管理</span>
+                      <li>
+                          <a href="user-data-management.html" >人員資料管理</a>
+                      </li>
+                      <li>
+                          <a href="permission-management.html" >權限管理</a>
+                      </li>
+                      <span>招租管理</span>
+                      <li>
+                          <a href="evaluation-type-settings.html" >評點類型審核設定</a>
+                      </li>
+                      <li>
+                          <a href="schedule-management.html" >社宅時程管理</a>
+                      </li>
+                      <li>
+                          <a href="schedule-management.html" >店鋪標案管理</a>
+                      </li>
+                      <li>
+                          <a href="reviewer-settings.html" >審核人員設定</a>
+                      </li>
+                      <li>
+                          <a href="document-template-settings.html" >文件範本設定</a>
+                      </li>
+                      <span>資產與營運管理</span>
+                      <li>
+                          <a href="outsourcing-management.html" >資產管理</a>
+                      </li>        
+                  </ul>
+              </li>
+              
+              <li>
+                  <a href="furniture-maintenance.html" >家具清單維護管理*</a>
+              </li>
+              
+              <li>
+                  <a href="_components.html" target="_blank">
+                    <span class="icon-text"><i class="fa-solid fa-cubes-stacked"></i>組件表</span>
+                  </a>
+              </li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+      <!-- Right -->
+      <div class="right">
+        <!-- 麵包屑 -->
+        <div class="breadcrumb-wrapper">
+            <div class="breadcrumb-inner">
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb">
+                  <li class="breadcrumb-item active" aria-current="page">首頁（科室主管、系統管理員）</li>
+                </ol>
+              </nav>
+            </div>
+        </div>
+        <div class="content bg-transparent">
+            <div class="flex-item-wrap gap-4 mb-5">測試用(可移除)：<a href="index.html">科室成員、協辦人員</a> <a href="index-manager.html">科室主管、系統管理員</a></div>
+            <div class="vstack gap-5">
+                <!-- 社宅大樓 -->
+                <div class="hstack gap-3">
+                    <div class="fs-5">社宅大樓</div>
+                    <select name="" id="" class="form-select form-select-lg w-auto">
+                        <option value="" selected>請選擇</option>
+                        <option value="宜居成功">宜居成功</option>
+                    </select>
+                </div>
+        
+                <!-- 最新消息 -->
+                <div class="index-news">
+                    <div class="inner">
+                        <div class="item">
+                            <label class="item-title">最新消息</label>
+                            <div class="item-text">
+                                <a class="escape-multi" href="#"><span>114/03/08</span>桃園市社會住宅營運管理平台系統維護公告：為提供更穩定的服務，本平台將於近期進行系統升級，屆時部分功能將暫停使用，造成不便敬請見諒，詳細維護時間將另行公告。</a>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <label class="item-title">最新消息</label>
+                            <div class="item-text">
+                                <a class="escape-multi" href="#"><span>114/03/08</span>社會住宅續租申請作業開跑，符合資格之承租戶請於期限內提出申請，逾期未辦理者視同放棄續租權利，相關文件與申請流程請至公告專區下載參閱。</a>
+                            </div>
+                        </div>
+                        <a href="#" class="more | btn btn-sm py-1 px-3 btn-outline-secondary rounded-pill">
+                            查看更多 <i class="fa-solid fa-arrow-right ms-1"></i>
+                        </a>
+                    </div>
+                </div>
+        
+                <!-- 社宅戶號各階段監控統計表 -->
+                <section class="bg-white rounded p-4">
+                        <div class="collapse-wrap">
+                            <div class="collapse-title"><span class="text">社宅戶號各階段監控統計表</span></div>
+                            <a href="#stageMonitorCollapse" class="collapse-btn" data-bs-toggle="collapse" aria-expanded="true">
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </a>
+                        </div>
+                        <div class="collapse show" id="stageMonitorCollapse">
+                        <div class="d-flex align-items-end mb-3">
+                            <div class="hstack gap-2">
+                                <span class="text-nowrap">實際退租日：</span>
+                                <select name="" id="" class="form-select w-auto">
+                                    <option value="115" selected>115年</option>
+                                    <option value="114">114年</option>
+                                    <option value="113">113年</option>
+                                </select>
+                                <select name="" id="" class="form-select w-auto">
+                                    <option value="Q1" selected>第一季</option>
+                                    <option value="Q2">第二季</option>
+                                    <option value="Q3">第三季</option>
+                                    <option value="Q4">第四季</option>
+                                </select>
+                            </div>
+                            <a href="stage-monitor-detail.html" target="_blank" class="link-secondary text-decoration-none small ms-auto me-3"><i class="fa-solid fa-eye"></i> 檢視明細</a>
+                        </div>
+                        <div class="table-responsive mb-3">
+                            <table class="table table-list table-rwd table-bordered mb-0 text-center">
+                                <thead>
+                                    <tr>
+                                        <th rowspan="2">應到期總戶數</th>
+                                        <th rowspan="2">實際退租數</th>
+                                        <th colspan="5">點退數</th>
+                                        <th rowspan="2">釋出數</th>
+                                        <th rowspan="2">選屋數</th>
+                                        <th rowspan="2">合約簽訂</th>
+                                        <th rowspan="2">開始起租</th>
+                                    </tr>
+                                    <tr>
+                                        <th>待點退</th>
+                                        <th>無</th>
+                                        <th>輕(1~15天)</th>
+                                        <th>中(16~30天)</th>
+                                        <th>重(31~45天)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td data-th="應到期總戶數">100</td>
+                                        <td data-th="實際退租數">30</td>
+                                        <td data-th="待點退">4</td>
+                                        <td data-th="無">3</td>
+                                        <td data-th="輕(1~15天)">3</td>
+                                        <td data-th="中(16~30天)">2</td>
+                                        <td data-th="重(31~45天)">2</td>
+                                        <td data-th="釋出數">5</td>
+                                        <td data-th="選屋數">5</td>
+                                        <td data-th="合約簽訂">5</td>
+                                        <td data-th="開始起租">5</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p class="text-muted">※點退數依據修繕程度分類</p>
+                        </div>
+                </section>
+        
+                <!-- 退租修繕績效 -->
+                <section class="bg-white rounded p-4">
+                    <div class="collapse-wrap">
+                        <div class="collapse-title"><span class="text">退租修繕績效</span></div>
+                        <a href="#repairPerfCollapse" class="collapse-btn" data-bs-toggle="collapse" aria-expanded="true">
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </a>
+                    </div>
+                    <div class="collapse show" id="repairPerfCollapse">
+                    <div class="d-flex align-items-end mb-4">
+                        <div class="hstack gap-2">
+                            <span class="text-nowrap">年度：</span>
+                            <select name="" id="" class="form-select w-auto">
+                                <option value="114" selected>114年</option>
+                                <option value="113">113年</option>
+                                <option value="112">112年</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row gx-5 gy-4">
+                        <div class="col-5">
+                            <h6 class="text-secondary mb-3">114年度各季度退租修繕處理績效</h6>
+                            <div id="repairPerfChart" style="height: 280px;"></div>
+                        </div>
+                        <div class="col-7">
+                            <h6 class="text-secondary mb-3">退租修繕程度分析</h6>
+                            <div class="table-responsive">
+                                <table class="table table-list table-rwd table-bordered mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th class="text-end">戶數</th>
+                                            <th class="text-end">占比</th>
+                                            <th class="text-end">平均修繕天數</th>
+                                            <th>是否達標</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th class="text-end">無須修繕</th>
+                                            <td data-th="戶數" class="text-end">29</td>
+                                            <td data-th="占比" class="text-end">17.8%</td>
+                                            <td data-th="平均修繕天數" class="text-end">0</td>
+                                            <td data-th="是否達標">達標</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="text-end">輕度修繕</th>
+                                            <td data-th="戶數" class="text-end">96</td>
+                                            <td data-th="占比" class="text-end">58.9%</td>
+                                            <td data-th="平均修繕天數" class="text-end">8</td>
+                                            <td data-th="是否達標">達標</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="text-end">中度修繕</th>
+                                            <td data-th="戶數" class="text-end">23</td>
+                                            <td data-th="占比" class="text-end">14.1%</td>
+                                            <td data-th="平均修繕天數" class="text-end">20.6</td>
+                                            <td data-th="是否達標" class="text-danger">未達標</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="text-end">重度修繕</th>
+                                            <td data-th="戶數" class="text-end">28</td>
+                                            <td data-th="占比" class="text-end">17.2%</td>
+                                            <td data-th="平均修繕天數" class="text-end">45</td>
+                                            <td data-th="是否達標">達標</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </section>
+        
+                <!-- 各社宅應收報表 -->
+                <section class="bg-white rounded p-4">
+                    <div class="collapse-wrap">
+                        <div class="collapse-title"><span class="text">各社宅應收報表</span></div>
+                        <a href="#rentReceivableCollapse" class="collapse-btn" data-bs-toggle="collapse" aria-expanded="true">
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </a>
+                    </div>
+                    <div class="collapse show" id="rentReceivableCollapse">
+                    <div class="d-flex align-items-end mb-4">
+                        <div class="hstack gap-2">
+                            <span class="text-nowrap">年度：</span>
+                            <select name="" id="" class="form-select w-auto">
+                                <option value="114" selected>114年</option>
+                                <option value="113">113年</option>
+                                <option value="112">112年</option>
+                            </select>
+                        </div>
+                    </div>
+                    <h6 class="text-secondary mb-3 text-center">[ 114 ] 年度各社宅租金應收實收統計表</h6>
+                    <div id="rentReceivableChart" style="height: 330px;"></div>
+                    <div class="table-responsive mt-4">
+                        <table class="table table-list table-rwd table-bordered mb-0 text-end">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>1月</th>
+                                    <th>2月</th>
+                                    <th>3月</th>
+                                    <th>4月</th>
+                                    <th>5月</th>
+                                    <th>6月</th>
+                                    <th>7月</th>
+                                    <th>8月</th>
+                                    <th>9月</th>
+                                    <th>10月</th>
+                                    <th>11月</th>
+                                    <th>12月</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>應收</th>
+                                    <td data-th="1月">4,295,174</td>
+                                    <td data-th="2月">4,395,118</td>
+                                    <td data-th="3月">4,328,733</td>
+                                    <td data-th="4月">4,946,520</td>
+                                    <td data-th="5月">4,946,520</td>
+                                    <td data-th="6月">4,946,520</td>
+                                    <td data-th="7月">4,946,520</td>
+                                    <td data-th="8月">4,395,413</td>
+                                    <td data-th="9月">4,395,413</td>
+                                    <td data-th="10月">4,487,130</td>
+                                    <td data-th="11月">4,646,015</td>
+                                    <td data-th="12月">4,612,042</td>
+                                </tr>
+                                <tr>
+                                    <th>實收</th>
+                                    <td data-th="1月">4,295,174</td>
+                                    <td data-th="2月">4,395,118</td>
+                                    <td data-th="3月">4,328,733</td>
+                                    <td data-th="4月">4,946,520</td>
+                                    <td data-th="5月">4,946,520</td>
+                                    <td data-th="6月">4,946,520</td>
+                                    <td data-th="7月">4,946,520</td>
+                                    <td data-th="8月">4,395,413</td>
+                                    <td data-th="9月">4,395,413</td>
+                                    <td data-th="10月">4,487,130</td>
+                                    <td data-th="11月">4,646,015</td>
+                                    <td data-th="12月">4,612,042</td>
+                                </tr>
+                                <tr>
+                                    <th>應收-實收</th>
+                                    <td data-th="1月">0</td>
+                                    <td data-th="2月">0</td>
+                                    <td data-th="3月">0</td>
+                                    <td data-th="4月">0</td>
+                                    <td data-th="5月">0</td>
+                                    <td data-th="6月">0</td>
+                                    <td data-th="7月">0</td>
+                                    <td data-th="8月">0</td>
+                                    <td data-th="9月">0</td>
+                                    <td data-th="10月">0</td>
+                                    <td data-th="11月">0</td>
+                                    <td data-th="12月">0</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+        
+                    <div class="py-5 rounded mt-4">
+                        <div class="row gx-5 gy-0">
+                            <div class="col">
+                                <div class="table-responsive overflow-auto" style="max-height: 22rem;">
+                                    <table class="table table-list table-rwd table-bordered mb-0">
+                                        <thead class="position-sticky top-0">
+                                            <tr>
+                                                <th>社會住宅</th>
+                                                <th class="text-end">合約項目應收</th>
+                                                <th class="text-end">非合約項目應收</th>
+                                                <th class="text-end">合約項目實收</th>
+                                                <th class="text-end">非合約項目實收</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="selected">
+                                                <td data-th="社會住宅"><a href="#">中路一號</a></td>
+                                                <td data-th="合約項目應收" class="text-end">4,395,118</td>
+                                                <td data-th="非合約項目應收" class="text-end">4,328,733</td>
+                                                <td data-th="合約項目實收" class="text-end">4,395,118</td>
+                                                <td data-th="非合約項目實收" class="text-end">4,328,733</td>
+                                            </tr>
+                                            <tr>
+                                                <td data-th="社會住宅"><a href="#">中路二號</a></td>
+                                                <td data-th="合約項目應收" class="text-end">4,395,118</td>
+                                                <td data-th="非合約項目應收" class="text-end">4,328,733</td>
+                                                <td data-th="合約項目實收" class="text-end">4,395,118</td>
+                                                <td data-th="非合約項目實收" class="text-end">4,328,733</td>
+                                            </tr>
+                                            <tr>
+                                                <td data-th="社會住宅"><a href="#">中路三號</a></td>
+                                                <td data-th="合約項目應收" class="text-end">4,395,118</td>
+                                                <td data-th="非合約項目應收" class="text-end">4,328,733</td>
+                                                <td data-th="合約項目實收" class="text-end">4,395,118</td>
+                                                <td data-th="非合約項目實收" class="text-end">4,328,733</td>
+                                            </tr>
+                                            <tr>
+                                                <td data-th="社會住宅"><a href="#">蘆竹一號</a></td>
+                                                <td data-th="合約項目應收" class="text-end">4,395,118</td>
+                                                <td data-th="非合約項目應收" class="text-end">4,328,733</td>
+                                                <td data-th="合約項目實收" class="text-end">4,395,118</td>
+                                                <td data-th="非合約項目實收" class="text-end">4,328,733</td>
+                                            </tr>
+                                            <tr>
+                                                <td data-th="社會住宅"><a href="#">蘆竹二號</a></td>
+                                                <td data-th="合約項目應收" class="text-end">4,395,118</td>
+                                                <td data-th="非合約項目應收" class="text-end">4,328,733</td>
+                                                <td data-th="合約項目實收" class="text-end">4,395,118</td>
+                                                <td data-th="非合約項目實收" class="text-end">4,328,733</td>
+                                            </tr>
+                                            <tr>
+                                                <td data-th="社會住宅"><a href="#">八德一號</a></td>
+                                                <td data-th="合約項目應收" class="text-end">4,395,118</td>
+                                                <td data-th="非合約項目應收" class="text-end">4,328,733</td>
+                                                <td data-th="合約項目實收" class="text-end">4,395,118</td>
+                                                <td data-th="非合約項目實收" class="text-end">4,328,733</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-5">
+                                <h6 class="text-secondary mb-3 text-center">合約及非合約項目占比</h6>
+                                <div id="contractRatioChart" style="height: 300px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </section>
+        
+                <!-- 各社宅住戶分布 -->
+                <section class="bg-white rounded p-4">
+                    <div class="collapse-wrap">
+                        <div class="collapse-title"><span class="text">各社宅住戶分布</span></div>
+                        <a href="#residentDistCollapse" class="collapse-btn" data-bs-toggle="collapse" aria-expanded="true">
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </a>
+                    </div>
+                    <div class="collapse show" id="residentDistCollapse">
+                    <div class="row gx-5 gy-4">
+                        <div class="col">
+                            <div class="table-responsive overflow-auto" style="max-height: 22rem;">
+                                <table class="table table-list table-rwd table-bordered mb-0">
+                                    <thead class="position-sticky top-0">
+                                        <tr>
+                                            <th>社會住宅</th>
+                                            <th class="text-end">總戶數</th>
+                                            <th class="text-end">待簽約</th>
+                                            <th class="text-end">維修中</th>
+                                            <th class="text-end">一般戶</th>
+                                            <th class="text-end">政策戶</th>
+                                            <th class="text-end">安置戶</th>
+                                            <th class="text-end">專案戶</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="selected">
+                                            <td data-th="社會住宅"><a href="#">中路一號</a></td>
+                                            <td data-th="總戶數" class="text-end">166/169</td>
+                                            <td data-th="待簽約" class="text-end">2</td>
+                                            <td data-th="維修中" class="text-end">0</td>
+                                            <td data-th="一般戶" class="text-end">160</td>
+                                            <td data-th="政策戶" class="text-end">2</td>
+                                            <td data-th="安置戶" class="text-end">2</td>
+                                            <td data-th="專案戶" class="text-end">2</td>
+                                        </tr>
+                                        <tr>
+                                            <td data-th="社會住宅"><a href="#">中路二號</a></td>
+                                            <td data-th="總戶數" class="text-end">210/212</td>
+                                            <td data-th="待簽約" class="text-end">0</td>
+                                            <td data-th="維修中" class="text-end">0</td>
+                                            <td data-th="一般戶" class="text-end">200</td>
+                                            <td data-th="政策戶" class="text-end">6</td>
+                                            <td data-th="安置戶" class="text-end">2</td>
+                                            <td data-th="專案戶" class="text-end">2</td>
+                                        </tr>
+                                        <tr>
+                                            <td data-th="社會住宅"><a href="#">中路三號</a></td>
+                                            <td data-th="總戶數" class="text-end">413/417</td>
+                                            <td data-th="待簽約" class="text-end">1</td>
+                                            <td data-th="維修中" class="text-end">0</td>
+                                            <td data-th="一般戶" class="text-end">400</td>
+                                            <td data-th="政策戶" class="text-end">5</td>
+                                            <td data-th="安置戶" class="text-end">3</td>
+                                            <td data-th="專案戶" class="text-end">0</td>
+                                        </tr>
+                                        <tr>
+                                            <td data-th="社會住宅"><a href="#">蘆竹一號</a></td>
+                                            <td data-th="總戶數" class="text-end">343/350</td>
+                                            <td data-th="待簽約" class="text-end">0</td>
+                                            <td data-th="維修中" class="text-end">0</td>
+                                            <td data-th="一般戶" class="text-end">320</td>
+                                            <td data-th="政策戶" class="text-end">10</td>
+                                            <td data-th="安置戶" class="text-end">10</td>
+                                            <td data-th="專案戶" class="text-end">3</td>
+                                        </tr>
+                                        <tr>
+                                            <td data-th="社會住宅"><a href="#">蘆竹二號</a></td>
+                                            <td data-th="總戶數" class="text-end">114/114</td>
+                                            <td data-th="待簽約" class="text-end">0</td>
+                                            <td data-th="維修中" class="text-end">0</td>
+                                            <td data-th="一般戶" class="text-end">100</td>
+                                            <td data-th="政策戶" class="text-end">14</td>
+                                            <td data-th="安置戶" class="text-end">0</td>
+                                            <td data-th="專案戶" class="text-end">0</td>
+                                        </tr>
+                                        <tr>
+                                            <td data-th="社會住宅"><a href="#">八德一號</a></td>
+                                            <td data-th="總戶數" class="text-end">406/418</td>
+                                            <td data-th="待簽約" class="text-end">0</td>
+                                            <td data-th="維修中" class="text-end">0</td>
+                                            <td data-th="一般戶" class="text-end">400</td>
+                                            <td data-th="政策戶" class="text-end">2</td>
+                                            <td data-th="安置戶" class="text-end">2</td>
+                                            <td data-th="專案戶" class="text-end">2</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-5">
+                            <h6 class="text-secondary my-3 text-center">中路一號 住戶分布</h6>
+                            <div id="residentDistChart" style="height: 330px;"></div>
+                            <div class="text-center text-secondary mt-3">出租率：85.5%　現住民比例：19.4%</div>
+                        </div>
+                    </div>
+                    </div>
+                </section>
+        
+                <!-- 社宅修繕統計 -->
+                <section class="bg-white rounded p-4">
+                    <div class="collapse-wrap">
+                        <div class="collapse-title"><span class="text">社宅修繕統計</span></div>
+                        <a href="#repairStatCollapse" class="collapse-btn" data-bs-toggle="collapse" aria-expanded="true">
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </a>
+                    </div>
+                    <div class="collapse show" id="repairStatCollapse">
+                    <div class="row gx-5 gy-4">
+                        <div class="col-4">
+                            <div class="table-responsive overflow-auto" style="max-height: 25rem;">
+                                <table class="table table-list table-rwd table-bordered mb-0">
+                                    <thead class="position-sticky top-0">
+                                        <tr>
+                                            <th>社會住宅</th>
+                                            <th class="text-end">總件數</th>
+                                            <th class="text-end">已結案</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="selected">
+                                            <td data-th="社會住宅"><a href="#">合計</a></td>
+                                            <td data-th="總件數" class="text-end">27</td>
+                                            <td data-th="已結案" class="text-end">23</td>
+                                        </tr>
+                                        <tr>
+                                            <td data-th="社會住宅"><a href="#">中路一號</a></td>
+                                            <td data-th="總件數" class="text-end">5</td>
+                                            <td data-th="已結案" class="text-end">3</td>
+                                        </tr>
+                                        <tr>
+                                            <td data-th="社會住宅"><a href="#">中路二號</a></td>
+                                            <td data-th="總件數" class="text-end">4</td>
+                                            <td data-th="已結案" class="text-end">4</td>
+                                        </tr>
+                                        <tr>
+                                            <td data-th="社會住宅"><a href="#">中路三號</a></td>
+                                            <td data-th="總件數" class="text-end">4</td>
+                                            <td data-th="已結案" class="text-end">4</td>
+                                        </tr>
+                                        <tr>
+                                            <td data-th="社會住宅"><a href="#">中路四號</a></td>
+                                            <td data-th="總件數" class="text-end">3</td>
+                                            <td data-th="已結案" class="text-end">2</td>
+                                        </tr>
+                                        <tr>
+                                            <td data-th="社會住宅"><a href="#">蘆竹一號</a></td>
+                                            <td data-th="總件數" class="text-end">5</td>
+                                            <td data-th="已結案" class="text-end">4</td>
+                                        </tr>
+                                        <tr>
+                                            <td data-th="社會住宅"><a href="#">蘆竹二號</a></td>
+                                            <td data-th="總件數" class="text-end">4</td>
+                                            <td data-th="已結案" class="text-end">4</td>
+                                        </tr>
+                                        <tr>
+                                            <td data-th="社會住宅"><a href="#">八德一號</a></td>
+                                            <td data-th="總件數" class="text-end">2</td>
+                                            <td data-th="已結案" class="text-end">2</td>
+                                        </tr>
+                                        <tr>
+                                            <td data-th="社會住宅"><a href="#">八德二號</a></td>
+                                            <td data-th="總件數" class="text-end">4</td>
+                                            <td data-th="已結案" class="text-end">4</td>
+                                        </tr>
+                                        <tr>
+                                            <td data-th="社會住宅"><a href="#">八德三號</a></td>
+                                            <td data-th="總件數" class="text-end">2</td>
+                                            <td data-th="已結案" class="text-end">2</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-8">
+                            <div class="table-responsive overflow-auto" style="max-height: 25rem;">
+                                <table class="table table-list table-rwd table-bordered mb-0">
+                                    <thead class="position-sticky top-0">
+                                        <tr>
+                                            <th>修繕類型</th>
+                                            <th class="text-end">總件數</th>
+                                            <th class="text-end">核銷中</th>
+                                            <th class="text-end">待分案</th>
+                                            <th class="text-end">修繕中</th>
+                                            <th class="text-end">已結案</th>
+                                            <th class="text-end">平均修繕天數</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td data-th="修繕類型">牆面批土油漆</td>
+                                            <td data-th="總件數" class="text-end">5</td>
+                                            <td data-th="核銷中" class="text-end">2</td>
+                                            <td data-th="待分案" class="text-end">1</td>
+                                            <td data-th="修繕中" class="text-end">1</td>
+                                            <td data-th="已結案" class="text-end">1</td>
+                                            <td data-th="平均修繕天數" class="text-end">2.3</td>
+                                        </tr>
+                                        <tr>
+                                            <td data-th="修繕類型">雜物清運</td>
+                                            <td data-th="總件數" class="text-end">8</td>
+                                            <td data-th="核銷中" class="text-end">1</td>
+                                            <td data-th="待分案" class="text-end">4</td>
+                                            <td data-th="修繕中" class="text-end">3</td>
+                                            <td data-th="已結案" class="text-end">0</td>
+                                            <td data-th="平均修繕天數" class="text-end">1.5</td>
+                                        </tr>
+                                        <tr>
+                                            <td data-th="修繕類型">清潔</td>
+                                            <td data-th="總件數" class="text-end">1</td>
+                                            <td data-th="核銷中" class="text-end">0</td>
+                                            <td data-th="待分案" class="text-end">0</td>
+                                            <td data-th="修繕中" class="text-end">1</td>
+                                            <td data-th="已結案" class="text-end">0</td>
+                                            <td data-th="平均修繕天數" class="text-end">1.0</td>
+                                        </tr>
+                                        <tr>
+                                            <td data-th="修繕類型">冷氣室內機清洗</td>
+                                            <td data-th="總件數" class="text-end">5</td>
+                                            <td data-th="核銷中" class="text-end">2</td>
+                                            <td data-th="待分案" class="text-end">1</td>
+                                            <td data-th="修繕中" class="text-end">1</td>
+                                            <td data-th="已結案" class="text-end">1</td>
+                                            <td data-th="平均修繕天數" class="text-end">2.3</td>
+                                        </tr>
+                                        <tr>
+                                            <td data-th="修繕類型">冷氣室外機清洗</td>
+                                            <td data-th="總件數" class="text-end">8</td>
+                                            <td data-th="核銷中" class="text-end">1</td>
+                                            <td data-th="待分案" class="text-end">4</td>
+                                            <td data-th="修繕中" class="text-end">3</td>
+                                            <td data-th="已結案" class="text-end">0</td>
+                                            <td data-th="平均修繕天數" class="text-end">1.5</td>
+                                        </tr>
+                                        <tr>
+                                            <td data-th="修繕類型">窗簾送洗</td>
+                                            <td data-th="總件數" class="text-end">1</td>
+                                            <td data-th="核銷中" class="text-end">0</td>
+                                            <td data-th="待分案" class="text-end">0</td>
+                                            <td data-th="修繕中" class="text-end">1</td>
+                                            <td data-th="已結案" class="text-end">0</td>
+                                            <td data-th="平均修繕天數" class="text-end">1.0</td>
+                                        </tr>
+                                        <tr>
+                                            <td data-th="修繕類型">窗簾更換</td>
+                                            <td data-th="總件數" class="text-end">5</td>
+                                            <td data-th="核銷中" class="text-end">2</td>
+                                            <td data-th="待分案" class="text-end">1</td>
+                                            <td data-th="修繕中" class="text-end">1</td>
+                                            <td data-th="已結案" class="text-end">1</td>
+                                            <td data-th="平均修繕天數" class="text-end">2.3</td>
+                                        </tr>
+                                        <tr>
+                                            <td data-th="修繕類型">紗網更換或維修</td>
+                                            <td data-th="總件數" class="text-end">8</td>
+                                            <td data-th="核銷中" class="text-end">1</td>
+                                            <td data-th="待分案" class="text-end">4</td>
+                                            <td data-th="修繕中" class="text-end">3</td>
+                                            <td data-th="已結案" class="text-end">0</td>
+                                            <td data-th="平均修繕天數" class="text-end">1.5</td>
+                                        </tr>
+                                        <tr>
+                                            <td data-th="修繕類型">浴室設備更換</td>
+                                            <td data-th="總件數" class="text-end">1</td>
+                                            <td data-th="核銷中" class="text-end">0</td>
+                                            <td data-th="待分案" class="text-end">0</td>
+                                            <td data-th="修繕中" class="text-end">1</td>
+                                            <td data-th="已結案" class="text-end">0</td>
+                                            <td data-th="平均修繕天數" class="text-end">1.0</td>
+                                        </tr>
+                                        <tr>
+                                            <td data-th="修繕類型">廚房物品更換</td>
+                                            <td data-th="總件數" class="text-end">5</td>
+                                            <td data-th="核銷中" class="text-end">2</td>
+                                            <td data-th="待分案" class="text-end">1</td>
+                                            <td data-th="修繕中" class="text-end">1</td>
+                                            <td data-th="已結案" class="text-end">1</td>
+                                            <td data-th="平均修繕天數" class="text-end">2.3</td>
+                                        </tr>
+                                        <tr>
+                                            <td data-th="修繕類型">電子鎖維修</td>
+                                            <td data-th="總件數" class="text-end">8</td>
+                                            <td data-th="核銷中" class="text-end">1</td>
+                                            <td data-th="待分案" class="text-end">4</td>
+                                            <td data-th="修繕中" class="text-end">3</td>
+                                            <td data-th="已結案" class="text-end">0</td>
+                                            <td data-th="平均修繕天數" class="text-end">1.5</td>
+                                        </tr>
+                                        <tr>
+                                            <td data-th="修繕類型">五金料件更新</td>
+                                            <td data-th="總件數" class="text-end">1</td>
+                                            <td data-th="核銷中" class="text-end">0</td>
+                                            <td data-th="待分案" class="text-end">0</td>
+                                            <td data-th="修繕中" class="text-end">1</td>
+                                            <td data-th="已結案" class="text-end">0</td>
+                                            <td data-th="平均修繕天數" class="text-end">1.0</td>
+                                        </tr>
+                                        <tr>
+                                            <td data-th="修繕類型">管路疏通</td>
+                                            <td data-th="總件數" class="text-end">8</td>
+                                            <td data-th="核銷中" class="text-end">1</td>
+                                            <td data-th="待分案" class="text-end">4</td>
+                                            <td data-th="修繕中" class="text-end">3</td>
+                                            <td data-th="已結案" class="text-end">0</td>
+                                            <td data-th="平均修繕天數" class="text-end">1.5</td>
+                                        </tr>
+                                        <tr>
+                                            <td data-th="修繕類型">其他修繕</td>
+                                            <td data-th="總件數" class="text-end">1</td>
+                                            <td data-th="核銷中" class="text-end">0</td>
+                                            <td data-th="待分案" class="text-end">0</td>
+                                            <td data-th="修繕中" class="text-end">1</td>
+                                            <td data-th="已結案" class="text-end">0</td>
+                                            <td data-th="平均修繕天數" class="text-end">1.0</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-5">
+                        <h6 class="text-center text-secondary mb-3">累計至115年6月前10名最常報修的項目</h6>
+                        <div id="topRepairChart" style="height: 300px;"></div>
+                    </div>
+                    </div>
+                </section>
+        
+                <!-- 店鋪營運統計 -->
+                <section class="bg-white rounded p-4 mb-4">
+                    <div class="collapse-wrap">
+                        <div class="collapse-title"><span class="text">店鋪營運統計</span></div>
+                        <a href="#shopOpsCollapse" class="collapse-btn" data-bs-toggle="collapse" aria-expanded="true">
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </a>
+                    </div>
+                    <div class="collapse show" id="shopOpsCollapse">
+                    <div class="row gx-4 gy-4">
+                        <div class="col-12">
+                            <div class="table-responsive overflow-auto" style="max-height: 25rem;">
+                                <table class="table table-list table-rwd table-bordered mb-0 text-end">
+                                <thead class="position-sticky top-0">
+                                    <tr>
+                                        <th rowspan="2" class="text-start">社宅大樓</th>
+                                        <th rowspan="2">總戶數</th>
+                                        <th rowspan="2">空置數</th>
+                                        <th colspan="4" class="text-center">招租中</th>
+                                        <th colspan="4" class="text-center">裝修中</th>
+                                        <th colspan="4" class="text-center">已進駐</th>
+                                    </tr>
+                                    <tr>
+                                        <th>社福店鋪</th>
+                                        <th>辦公室</th>
+                                        <th>販賣機</th>
+                                        <th>販賣機</th>
+                                        <th>店鋪</th>
+                                        <th>辦公室</th>
+                                        <th>販賣機</th>
+                                        <th>販賣機</th>
+                                        <th>商業店鋪</th>
+                                        <th>社福店鋪</th>
+                                        <th>販賣機</th>
+                                        <th>販賣機</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="selected">
+                                        <td data-th="社宅大樓" class="text-start"><a href="#">總計</a></td>
+                                        <td data-th="總戶數">49/60</td>
+                                        <td data-th="空置數">11</td>
+                                        <td>12</td><td>12</td><td>12</td><td>0</td>
+                                        <td>8</td><td>8</td><td>7</td><td>0</td>
+                                        <td>14</td><td>9</td><td>7</td><td>0</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-th="社宅大樓" class="text-start"><a href="#">中路一號</a></td>
+                                        <td data-th="總戶數">10/12</td>
+                                        <td data-th="空置數">2</td>
+                                        <td>2</td><td>2</td><td>2</td><td>0</td>
+                                        <td>0</td><td>0</td><td>2</td><td>0</td>
+                                        <td>4</td><td>0</td><td>2</td><td>0</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-th="社宅大樓" class="text-start"><a href="#">中路二號</a></td>
+                                        <td data-th="總戶數">6/6</td>
+                                        <td data-th="空置數">0</td>
+                                        <td>1</td><td>1</td><td>1</td><td>0</td>
+                                        <td>0</td><td>7</td><td>0</td><td>0</td>
+                                        <td>1</td><td>1</td><td>7</td><td>0</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-th="社宅大樓" class="text-start"><a href="#">中路三號</a></td>
+                                        <td data-th="總戶數">21/30</td>
+                                        <td data-th="空置數">9</td>
+                                        <td>7</td><td>7</td><td>7</td><td>0</td>
+                                        <td>7</td><td>7</td><td>7</td><td>0</td>
+                                        <td>7</td><td>7</td><td>7</td><td>0</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-th="社宅大樓" class="text-start"><a href="#">蘆竹一號</a></td>
+                                        <td data-th="總戶數">12/12</td>
+                                        <td data-th="空置數">0</td>
+                                        <td>2</td><td>2</td><td>2</td><td>0</td>
+                                        <td>1</td><td>1</td><td>2</td><td>0</td>
+                                        <td>1</td><td>1</td><td>2</td><td>0</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-th="社宅大樓" class="text-start"><a href="#">蘆竹二號</a></td>
+                                        <td data-th="總戶數">21/30</td>
+                                        <td data-th="空置數">9</td>
+                                        <td>7</td><td>7</td><td>7</td><td>0</td>
+                                        <td>7</td><td>7</td><td>7</td><td>0</td>
+                                        <td>7</td><td>7</td><td>7</td><td>0</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-th="社宅大樓" class="text-start"><a href="#">八德一號</a></td>
+                                        <td data-th="總戶數">12/12</td>
+                                        <td data-th="空置數">0</td>
+                                        <td>2</td><td>2</td><td>2</td><td>0</td>
+                                        <td>1</td><td>1</td><td>2</td><td>0</td>
+                                        <td>1</td><td>1</td><td>2</td><td>0</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-th="社宅大樓" class="text-start"><a href="#">八德二號</a></td>
+                                        <td data-th="總戶數">12/12</td>
+                                        <td data-th="空置數">0</td>
+                                        <td>2</td><td>2</td><td>2</td><td>0</td>
+                                        <td>1</td><td>1</td><td>2</td><td>0</td>
+                                        <td>2</td><td>2</td><td>2</td><td>0</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <div class="bg-light rounded p-4">
+                                <h6 class="text-center text-secondary mb-4">本期店鋪營運狀況</h6>
+                                <div class="row text-center mb-4">
+                                    <div class="col">
+                                        <div class="text-secondary text-nowrap mb-2">本期應收</div>
+                                        <div class="fs-5 text-blue">3,159,844</div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="text-secondary text-nowrap mb-2">本期已繳費</div>
+                                        <div class="fs-5 text-blue">2,109,844</div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="text-secondary text-nowrap mb-2">本期尚未繳費</div>
+                                        <div class="fs-5 text-danger">1,101,256</div>
+                                    </div>
+                                </div>
+                                <div class="progress rounded-0 mb-4" style="height: 54px;" role="progressbar" aria-label="本期繳費狀況">
+                                    <div class="progress-bar" style="width: 65.7%; background-color: #6E7FC6; color: #fff;">已繳費</div>
+                                    <div class="progress-bar" style="width: 34.3%; background-color: #C0616B; color: #fff;">未繳費</div>
+                                </div>
+                                <div class="d-flex justify-content-end align-items-center gap-4 border-topX p-3 px-4 bg-body-secondary rounded-bottom" style="margin-inline: -24px; margin-bottom: -24px;">
+                                    <span class="text-secondary">逾期未收金額</span>
+                                    <span class="fs-5 text-danger">101,256</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-auto"></div>
+                        <div class="col">
+                            <h5 class="text-secondary mb-5">店鋪進駐比例（總計）</h5>
+                            <div class="row gx-4 gy-4">
+                                <div class="col">
+                                    <h6 class="text-secondary mb-2 text-center">空屋 / 已進駐</h6>
+                                    <div id="shopVacancyChart" style="height: 210px;"></div>
+                                </div>
+                                <div class="col-auto"></div>
+                                <div class="col">
+                                    <h6 class="text-secondary mb-2 text-center">進駐狀況</h6>
+                                    <div id="shopStatusChart" style="height: 240px;"></div>
+                                </div>
+                                <div class="col-auto"></div>
+                                <div class="col">
+                                    <h6 class="text-secondary mb-2 text-center">申請類型</h6>
+                                    <div id="shopTypeChart" style="height: 240px;"></div>
+                                </div>
+                            </div>
+        
+                        </div>
+                    </div>
+                    
+                    <div class="mt-5 mb-4">
+                    </div>
+                    </div>
+                </section>
+        
+            </div>
+        </div>
+        
+      </div>
+    </div>
+    <!-- Bottom -->
+    <div class="bottom">
+      <footer class="footer">
+          <div class="img-wrap">
+            <img src="assets/img/footer-brand-logo.svg">
+          </div>
+          <div class="text">
+            <div><i class="fa-duotone fa-user-headset fa-fw me-1"></i><label class="d-none d-lg-inline-block">客服人員：</label>天思數位科技 (04)2451-6669 #6?? X小姐</div>
+            <div><i class="fad fa-browser fa-fw me-1"></i><label class="d-none d-lg-inline-block">最佳瀏覽環境：</label>Edge、Firefox 、Google Chrome ,螢幕解析度1280*768以上</div>
+            <div class="d-none d-lg-inline-block"><i class="fad fa-copyright fa-fw me-1"></i> Copyright 桃園市住宅及都市更新中心</div>
+          </div>
+      </footer>
+    </div>
+  </div> 
+  <!-- /.wrapper  -->
+
+  <!-- 回到最上面 -->
+  <div class="go-top | js-go-top">
+      <a href="#" class="" title="回到最上面">TOP</a>
+  </div>
+
+  <!-- Modal -->
+  
+  <!-- JS -->
+  <!-- 退租修繕績效 / 各社宅應收報表：載入 amCharts 並初始化圖表 -->
+  <script src="assets/js/chart_util.js"></script>
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+      if (typeof ChartUtilReady === 'undefined') return;
+  
+      ChartUtilReady.then(function () {
+          // 本頁所有 amCharts 圖表統一使用 amCharts 預設色盤（Animated theme），確保配色一致且柔和
+  
+          // 退租修繕績效：各季度平均招租/修繕天數（堆疊直條）
+          if (document.getElementById('repairPerfChart')) {
+              ChartUtil.createChart({
+                  id: 'repairPerfChart',
+                  type: 'stackedColumn',
+                  categoryField: 'quarter',
+                  data: [
+                      { quarter: '第一季\n75戶', rent: 34, repair: 31 },
+                      { quarter: '第二季\n84戶', rent: 19, repair: 18 },
+                      { quarter: '第三季\n115戶', rent: 9, repair: 15 },
+                      { quarter: '第四季\n176戶', rent: 15, repair: 13 }
+                  ],
+                  series: [
+                      { name: '平均招租天數', field: 'rent' },
+                      { name: '平均修繕天數', field: 'repair' }
+                  ]
+              });
+          }
+  
+          // 各社宅應收報表：實收/應收（堆疊直條）+ 差異金額（折線）
+          if (document.getElementById('rentReceivableChart')) {
+              ChartUtil.createChart({
+                  id: 'rentReceivableChart',
+                  type: 'stackedColumn',
+                  categoryField: 'site',
+                  data: [
+                      { site: '中路一號', received: 1000000, diff: 250000 },
+                      { site: '中路二號', received: 1600000, diff: 400000 },
+                      { site: '中路三號', received: 2950000, diff: 800000 },
+                      { site: '中路四號', received: 2750000, diff: 750000 },
+                      { site: '蘆竹一號', received: 700000, diff: 150000 },
+                      { site: '蘆竹二號', received: 2650000, diff: 650000 },
+                      { site: '八德一號', received: 2300000, diff: 950000 },
+                      { site: '八德二號', received: 1350000, diff: 550000 },
+                      { site: '八德三號', received: 2600000, diff: 1050000 },
+                      { site: '中壢一號', received: 6550000, diff: 1950000 },
+                      { site: '平鎮一號', received: 550000, diff: 400000 },
+                      { site: '楊梅一號', received: 1300000, diff: 100000 },
+                      { site: '東門段(都更中興巷)', received: 700000, diff: 250000 }
+                  ],
+                  series: [
+                      { name: '實收金額', field: 'received' },
+                      { name: '應收金額', field: 'diff' }
+                  ],
+                  lineSeries: [
+                      { name: '差異金額', field: 'diff' }
+                  ]
+              });
+          }
+  
+          // 合約及非合約項目占比（圓餅圖）
+          if (document.getElementById('contractRatioChart')) {
+              ChartUtil.createChart({
+                  id: 'contractRatioChart',
+                  type: 'pie',
+                  data: [
+                      { category: '合約項目', value: 74.6 },
+                      { category: '非合約項目', value: 25.4 }
+                  ]
+              });
+          }
+  
+          // 各社宅住戶分布（圓餅圖）
+          if (document.getElementById('residentDistChart')) {
+              ChartUtil.createChart({
+                  id: 'residentDistChart',
+                  type: 'pie',
+                  data: [
+                      { category: '一般戶', value: 43.60 },
+                      { category: '政策戶', value: 41.86 },
+                      { category: '拆遷戶', value: 8.72 },
+                      { category: '專案戶', value: 3.49 },
+                      { category: '警消戶', value: 2.33 }
+                  ]
+              });
+          }
+  
+          // 累計至115年6月前10名最常報修的項目（群組長條圖）
+          if (document.getElementById('topRepairChart')) {
+              ChartUtil.createChart({
+                  id: 'topRepairChart',
+                  type: 'stackedColumn',
+                  stacked: false,
+                  categoryField: 'item',
+                  data: [
+                      { item: '牆面批土油漆', processing: 41, done: 10 },
+                      { item: '雜物清運', processing: 25, done: 25 },
+                      { item: '清潔', processing: 15, done: 41 },
+                      { item: '冷氣室內機清洗', processing: 23, done: 10 },
+                      { item: '冷氣室外機清洗', processing: 14, done: 1 },
+                      { item: '窗簾送洗', processing: 10, done: 23 },
+                      { item: '窗簾更換', processing: 51, done: 22 },
+                      { item: '紗網更換或維修', processing: 6, done: 5 },
+                      { item: '浴室設備更換', processing: 24, done: 17 },
+                      { item: '廚房物品更換', processing: 32, done: 8 }
+                  ],
+                  series: [
+                      { name: '處理中', field: 'processing' },
+                      { name: '已完成', field: 'done' }
+                  ]
+              });
+          }
+  
+          // 店鋪進駐比例（總計）：空屋/已進駐
+          if (document.getElementById('shopVacancyChart')) {
+              ChartUtil.createChart({
+                  id: 'shopVacancyChart',
+                  type: 'pie',
+                  data: [
+                      { category: '空屋', value: 0 },
+                      { category: '已進駐', value: 104 }
+                  ]
+              });
+          }
+  
+          // 店鋪進駐比例（總計）：進駐狀況
+          if (document.getElementById('shopStatusChart')) {
+              ChartUtil.createChart({
+                  id: 'shopStatusChart',
+                  type: 'pie',
+                  data: [
+                      { category: '已進駐', value: 32 },
+                      { category: '裝修中', value: 36 },
+                      { category: '招租中', value: 36 }
+                  ]
+              });
+          }
+  
+          // 店鋪進駐比例（總計）：申請類型
+          if (document.getElementById('shopTypeChart')) {
+              ChartUtil.createChart({
+                  id: 'shopTypeChart',
+                  type: 'pie',
+                  data: [
+                      { category: '店鋪', value: 54 },
+                      { category: '停車場', value: 9 },
+                      { category: '販賣機', value: 4 },
+                      { category: '辦公室', value: 1 }
+                  ]
+              });
+          }
+      });
+  });
+  </script>
+</body>
+
+</html>

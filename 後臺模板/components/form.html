@@ -1,0 +1,391 @@
+<!doctype html>
+<html class="no-js" lang="zh-Hant">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>表單 | 組件表</title>
+  <!-- jQuery -->
+  <script src="../assets/vendor/jquery-3.7.1.min.js"></script>
+  <!-- jQuery-ui -->
+  <link rel="stylesheet" href="../assets/vendor/jquery-ui-1.13.2/jquery-ui.min.css">
+  <script src="../assets/vendor/jquery-ui-1.13.2/jquery-ui.min.js"></script>
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="../assets/vendor/bootstrap-5.3.3/dist/css/bootstrap.min.css">
+  <script src="../assets/vendor/bootstrap-5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../assets/vendor/fontawesome-pro-6.5.2-web/css/all.css">
+  <!-- Rubik (數字字型) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap">
+  <!-- Tom Select -->
+  <link rel="stylesheet" href="../assets/vendor/tom-select-2.2.2/tom-select.bootstrap5.min.css">
+  <script src="../assets/vendor/tom-select-2.2.2/tom-select.complete.js"></script>
+  <!-- Flatpickr 民國年 -->
+  <link rel="stylesheet" href="../assets/vendor/flatpickr-4.6.13-TW/flatpickr.min.css">
+  <script src="../assets/vendor/flatpickr-4.6.13-TW/flatpickr.min.js"></script>
+  <script src="../assets/vendor/flatpickr-4.6.13-TW/zh_tw.js"></script>
+  <!-- Fancybox -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css">
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+  <!-- FullCalendar 大月曆 -->
+  <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.18/index.global.min.js'></script>
+  <!-- 自訂 -->
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <script src="../assets/js/customJS.js"></script>
+</head>
+
+<body>
+  <div class="container py-5">
+    <p><i class="fa-solid fa-circle-chevron-left"></i> <a href="../_components.html" class="text-body">回組件表</a></p>
+    <div class="bg-white rounded-3 mt-4 mb-5">
+      <h4 class="p-5 border-bottom">表單</h4>
+      <div class="p-5">
+        <form class="needs-validation" novalidate>
+            <div class="d-grid gap-5">
+            <div class="d-grid gap-3">
+                <div class="item"><h5>表單元素</h5></div>
+                <div class="item">
+                    <code>input</code>
+                    <input type="text" class="form-control" placeholder="請輸入" required/>
+                </div>
+                <div class="item">
+                    <code>select</code>
+                    <select name="" id="" class="form-select " required>
+                      <option value="">縣市</option>
+                      <option value="台中市">台中市</option>
+                      <option value="台南市" disabled>台南市</option>
+                    </select>
+                </div>
+                <div class="item">
+                    <code>date</code>
+                    <input type="text" class="form-select icon date" placeholder="請輸入"/>
+                </div>
+                <div class="item">
+                    <code>password</code>
+                    <div class="password-container">
+                        <span class="password-trigger | js-password-trigger"></span>
+                        <input type="password" class="form-select icon off | js-password-input" placeholder="請輸入" />
+                    </div>
+                </div>
+                <div class="item">
+                    <code>search</code>
+                    <input type="search" class="form-control" placeholder="請輸入" />
+                </div>
+                <div class="item">
+                    <code>checkbox</code>
+                    <div>
+                        <div class="form-check form-check-inline">
+                            <input type="checkbox" id="checkbox-AA" class="form-check-input" />
+                            <label for="checkbox-AA" class="form-check-label">AA</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input type="checkbox" id="checkbox-BB" class="form-check-input" />
+                            <label for="checkbox-BB" class="form-check-label">BB</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <code>radio</code>
+                    <div>
+                        <div class="form-check form-check-inline">
+                            <input type="radio" name="name" id="radio-AA" class="form-check-input" />
+                            <label for="radio-AA" class="form-check-label">AA</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input type="radio" name="name" id="radio-BB" class="form-check-input" />
+                            <label for="radio-BB" class="form-check-label">BB</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <code>checkbox-巨</code>
+                    <div>
+                        <input type="checkbox" class="form-check-input | fs-4">
+                    </div>
+                </div>
+                <div class="item">
+                    <code>textarea</code>
+                    <textarea name="" id="" rows="3" class="form-control"></textarea>
+                </div>
+            </div>
+            <hr class="my-0">
+            <div class="d-grid gap-3">
+                <div class="item"><h5>組合表單與驗證</h5></div>
+                <div class="item">
+                    <label for="" class="form-label">複選<span class="required"></span></label>
+                    <div class="input-group">
+                      <select class="form-select tom-select" id="checkbox-members" multiple required>
+                        <option value="張美里">張美里</option>
+                        <option value="王大">王大</option>
+                        <option value="王餓">王餓</option>
+                      </select>
+                      <button class="btn btn-primary" onClick="selectAll_checkbox(tomSelectCheckobx)">
+                        <i class="fa-regular fa-square-check me-1"></i>全選
+                      </button>
+                    </div>
+                </div>
+                <div class="item">
+                    <label for="" class="form-label">日期區間<span class="required"></span></label>
+                    <div class="flex-item-wrap | w-auto flex-grow-1 form-row-validation">
+                      <input type="text" class="form-select icon date | w-auto flex-grow-1" size="5" placeholder="年/月/日" required>至
+                      <input type="text" class="form-select icon date | w-auto flex-grow-1" size="5" placeholder="年/月/日" required>
+                    </div>
+                    <div class="invalid-feedback">
+                      請輸入日期區間
+                    </div>
+                </div>
+                <div class="item">
+                    <label for="" class="form-label">時間區間<span class="required"></span></label>
+                    <div class="d-flex">
+                        <div>
+                            <div class="input-group">
+                              <select class="form-select">
+                                  <option value="09:00">09:00</option>
+                                  <option value="10:00">10:00</option>
+                                  <option value="11:00">11:00</option>
+                                  <option value="12:00">12:00</option>
+                                  <option value="13:00">13:00</option>
+                                  <option value="14:00">14:00</option>
+                                  <option value="15:00">15:00</option>
+                                  <option value="16:00">16:00</option>
+                                  <option value="17:00">17:00</option>
+                              </select>
+                              <div class="input-group-text">18:00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <label for="" class="form-label">地址<span class="required"></span></label>
+                    <div class="flex-item-wrap | form-row-validation">
+                      <select name="" id="" class="form-select w-auto flex-grow-1 flex-lg-grow-0" required>
+                        <option value="">縣市</option>
+                        <option value="台中市">台中市</option>
+                        <option value="台南市" disabled>台南市</option>
+                      </select>
+                      <div class="input-group w-auto flex-grow-1 flex-md-grow-0">
+                          <select name="" id="" class="form-select w-auto flex-grow-1 flex-lg-grow-0"  required>
+                            <option value="">行政區</option>
+                            <option value="東區">東區</option>
+                            <option value="西區">西區</option>
+                          </select>
+                          <div class="input-group-text">000</div>
+                        </div>
+                        <div class="hstack gap-2 flex-grow-1">
+                          <div class="form-label | fw-medium text-nowrap mb-0">地址</div>
+                          <input type="text" class="form-control" placeholder="請輸入地址" required>
+                        </div>
+                    </div>
+                    <div class="invalid-feedback">
+                      請輸入完整地址
+                    </div>
+                </div>
+                <div class="item">
+                    <label for="" class="form-label">市話</label>
+                    <div class="hstack gap-2">
+                        <input type="tel" class="form-control w-auto" placeholder="區碼" size="1">
+                        -
+                        <input type="tel" class="form-control" placeholder="電話">
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="col-8">
+                        <div class="flex-start-end mb-2">
+                            <label for="" class="form-label mb-0">上傳檔案 1(無檔案狀態)<span class="required"></span></label>
+                            <span class="end small text-danger">檔案上傳限制：500MB、檔案類型：PDF、JPG</span>
+                        </div>
+                        <!-- 上傳按鈕 -->
+                        <div class="file-upload | form-row-validation">
+                            <!-- Label -->
+                            <label for="" class="btn btn-pill-outline-primary border-2 | px-2 w-100 validation-warning-obj">
+                                <span class="icon">
+                                    <i class="fa-solid fa-arrow-up-from-bracket" aria-hidden="true"></i>
+                                </span>
+                                <span class="text-body flex-grow-1">上傳</span>
+                            </label>
+                            <!-- Input Fille Hidden -->
+                            <input type="file" id="" multiple hidden>
+                            <!-- 若已上傳檔案checkbox請設定為checked，否則無法通過驗證 -->
+                            <input type="checkbox" required  hidden aria-label="是否已上傳檔案">
+                            <!-- Invalid Feedback -->
+                            <div class="invalid-feedback">請上傳</div>
+                        </div>
+                        <!-- 已上傳的檔案s -->
+                        <div class="file-container | text-body-secondary ">
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="col-6">
+                        <label for="" class="form-label">上傳檔案 2(有檔案狀態)<span class="required"></span></label>
+                        <!-- 上傳按鈕 -->
+                        <div class="file-upload | form-row-validation">
+                            <!-- Label -->
+                            <label for="" class="btn btn-pill-outline-primary border-2 | px-2 w-100 validation-warning-obj">
+                                <span class="icon">
+                                    <i class="fa-solid fa-arrow-up-from-bracket" aria-hidden="true"></i>
+                                </span>
+                                <span class="text-body flex-grow-1">上傳</span>
+                            </label>
+                            <!-- Input Fille Hidden -->
+                            <input type="file" id="" multiple hidden>
+                            <!-- 若已上傳檔案checkbox請設定為checked，否則無法通過驗證 -->
+                            <input type="checkbox" required checked hidden aria-label="是否已上傳檔案">
+                            <!-- Invalid Feedback -->
+                            <div class="invalid-feedback">請上傳</div>
+                        </div>
+                        <!-- 已上傳的檔案s -->
+                        <div class="file-container | text-body-secondary ">
+                            <!-- Item -->
+                            <div class="file-item">
+                                <a href="#" class="file-link mydata" download title="下載檔案">Q271124604_MyData_mydata-戶籍資料.pdf</a>
+                            </div>
+                            <!-- Item -->
+                            <div class="file-item | hstack gap-2">
+                                <a href="#" class="file-link" download title="下載檔案">薪資證明.pdf</a>
+                                <button type="button" class="btn-close" aria-label="Close" title="除刪"></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="col-6">
+                        <label for="" class="form-label">檢附文件<span class="required"></span></label>
+                        <div class="file-container | text-body-secondary | border-bottom-last-borderless"> 
+                          <div class="file-item">
+                            <a href="#" class="file-link" download="" title="下載檔案">L224295227_懷孕證明01.pdf</a>
+                          </div>
+                          <div class="file-item">
+                            <a href="#" class="file-link mydata" download="" title="下載檔案">L224295227_MyData_現戶全戶戶籍資料.pdf 113/06/05</a>
+                          </div>
+                          <div class="file-item">
+                            <a href="#" class="file-link mydata" download="" title="下載檔案">L224295227_MyData_戶政國民身分證資料.pdf 113/06/05</a>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="btn-cta-group">
+                        <button type="button" class="btn btn-pill-outline-primary">取消</button>
+                        <button class="btn btn-pill-primary">表單驗證</button>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-0">
+            <div class="d-grid gap-3">
+                <div class="item"><h5>表單區塊</h5></div>
+                <div class="rounded-4 border p-3">
+                <div class="row g-3">
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <label for="" class="form-label">社宅大樓</label>
+                        <select class="form-select">
+                            <option selected>全部</option>
+                        </select>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <label for="" class="form-label">年度</label>
+                        <select class="form-select">
+                            <option selected>全部</option>
+                        </select>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <label for="" class="form-label">申請編號/流水號</label>
+                        <input type="text" class="form-control" placeholder="請輸入申請編號、流水號"/>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <label for="" class="form-label">姓名</label>
+                        <input type="text" class="form-control" placeholder="請輸入申請人姓名"/>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  
+  <!-- JS -->
+  <script>
+      // BS5表單驗證
+      (() => {
+      'use strict'
+  
+      const forms = document.querySelectorAll('.needs-validation')
+      Array.from(forms).forEach(form => {
+          form.addEventListener('submit', event => {
+          if (!form.checkValidity()) {
+              event.preventDefault()
+              event.stopPropagation()
+          }
+  
+          form.classList.add('was-validated')
+          }, false)
+      })
+      })()
+  </script>
+  <script>
+      // Settings
+      const tomSelectSetting_checkbox ={
+          plugins: {   
+          'clear_button': {
+              'title': '全部刪除'
+          },
+          'remove_button':{
+              'title': '移除'
+          },
+          'checkbox_options':{}
+          }, 
+          render: {
+          no_results:function(data,escape){
+              return '<div class="no-results">無符合"'+escape(data.input)+'"的搜尋結果</div>';
+          },
+          },
+      }
+  
+      // 實例instance
+      const tomSelectCheckobx = new TomSelect('#checkbox-members',tomSelectSetting_checkbox);
+  
+      // 全選
+      function selectAll_checkbox(select){
+          for(let opt in select.options){
+              select.addItem(opt);
+          }
+          isFulled(select);
+      }
+  
+      // 是否隱藏 placeholder
+      function isFulled(select){
+          const max = select.settings.maxItems;
+          const optionsLen = Object.keys(select.options).length;
+          let itemsLen = select.items.length;  
+  
+          isMax(max, itemsLen, optionsLen);
+  
+          // item新增後，判斷是否選滿
+          select.on('item_add', ()=>{
+              itemsLen = select.items.length;
+              isMax(max, itemsLen, optionsLen);
+          })
+          // item移除時，顯示placeholder
+          select.on('item_remove', ()=>{
+              select.settings.hidePlaceholder=null;
+          })
+  
+          // 若選滿則隱藏placeholder
+          function isMax(max, itemsLen, optionsLen){
+              if(itemsLen == max || itemsLen == optionsLen){
+              select.settings.hidePlaceholder=true;
+              select.inputState();
+              }
+          }
+      }
+  </script>
+</body>
+
+</html>
