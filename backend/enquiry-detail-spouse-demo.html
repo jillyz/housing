@@ -1,0 +1,245 @@
+<!doctype html>
+<html class="no-js" lang="zh-Hant">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>查調案件詳細資料｜全國社會住宅資料整合暨共同查調管理平臺</title>
+  <!-- jQuery -->
+  <script src="../後臺模板/assets/vendor/jquery-3.7.1.min.js"></script>
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="../後臺模板/assets/vendor/bootstrap-5.3.3/dist/css/bootstrap.min.css">
+  <script src="../後臺模板/assets/vendor/bootstrap-5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../後臺模板/assets/vendor/fontawesome-pro-6.5.2-web/css/all.css">
+  <!-- Rubik (數字字型) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap">
+  <!-- Tom Select -->
+  <link rel="stylesheet" href="../後臺模板/assets/vendor/tom-select-2.2.2/tom-select.bootstrap5.min.css">
+  <script src="../後臺模板/assets/vendor/tom-select-2.2.2/tom-select.complete.js"></script>
+  <!-- Menu -->
+  <script src="../後臺模板/assets/vendor/utils/menu/menu.js"></script>
+  <!-- 自訂 -->
+  <link rel="stylesheet" href="../後臺模板/assets/css/main.css">
+  <script src="../後臺模板/assets/vendor/utils/photoLightbox/photoLightbox.js"></script>
+  <script src="../後臺模板/assets/js/customJS.js"></script>
+  <link rel="stylesheet" href="assets/css/enquiry-template.css">
+  <link rel="stylesheet" href="assets/css/navigation.css">
+  <link rel="stylesheet" href="assets/css/enquiry-consent-demo.css">
+</head>
+
+<body class="backend-page enquiry-detail-page">
+  <div class="wrapper multi-column | column-with-menu">
+    <!-- Top -->
+    <div class="top">
+      <header class="header">
+        <!-- logo -->
+        <a class="logo" href="home-admin.html" title="回後臺首頁">
+        <div class="img-wrap">
+          <img src="assets/img/nlma-seal.svg" alt="內政部國土管理署署徽" width="250" height="318">
+          <div class="agency-name"><span>內政部</span><strong>國土管理署</strong></div>
+        </div>
+        <h2>全國社會住宅資料整合暨共同查調管理平臺</h2>
+      </a>
+        <!-- 手機版漢堡 -->
+        <div class="d-lg-none">
+          <div class="menu-hamburger-toggle">
+            <a class="btn-icon" data-bs-toggle="collapse" href=".js-nav-collapse">
+              <span class="is-close"><i class="fas fa-bars"></i></span>
+              <span class="is-open"><i class="fas fa-times"></i></span>
+            </a>
+          </div>
+        </div>
+      </header>
+    </div>
+    <!-- Center -->
+    <div class="center">
+      <!-- Left -->
+      <div class="left">
+        <aside class="aside">
+          <!-- 桌機版漢堡 -->
+          <div class="d-none d-lg-block">
+              <div class="menu-hamburger | js-menu-hamburger">
+                <a class="btn btn-icon" title="選單收闔"><i class="fas fa-bars"></i></a>
+              </div>
+            </div>
+          <!-- Nav collapse -->
+          <div class="nav-collapse | collapse js-nav-collapse">
+            <!-- 上方輔助功能 -->
+            <div class="top-helper-wrapper">
+              <div class="top-helper">
+                <div class="warning-bell">
+                  <button><i class="fa-solid fa-bell"></i></button>
+                  <span class="badge">8</span>
+                </div>
+                <div class="dropdown">
+                  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    內政部國土管理署
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="#">編輯個人資料</a></li>
+                    <li><a class="dropdown-item" href="#">變更密碼</a></li>
+                    <li><a class="dropdown-item" href="#">操作手冊下載</a></li>
+                    <li><a class="dropdown-item" href="#">登出</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <!-- Menu -->
+            <ul id="backendNavigation" class="menu menu-vertical scroll isMenuOpen js-menu-vertical backend-navigation" aria-label="後臺主選單">
+<li>
+<a class="has-children" role="button" tabindex="0" aria-expanded="false"><span class="icon-text">首頁</span><i class="fas fa-chevron-down" aria-hidden="true"></i></a>
+<ul class="sub-menu">
+<li><a href="home-admin.html">資訊儀表板</a></li>
+</ul>
+</li>
+<li>
+<a class="has-children" role="button" tabindex="0" aria-expanded="false"><span class="icon-text">家戶案件追蹤查詢</span><i class="fas fa-chevron-down" aria-hidden="true"></i></a>
+<ul class="sub-menu">
+<li><a href="../admin/home-agency.html#case-workbench">家戶案件追蹤查詢</a></li>
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">結果名冊紀錄</a></li>
+</ul>
+</li>
+<li>
+<a class="has-children" role="button" tabindex="0" aria-expanded="false"><span class="icon-text">資料共同查調</span><i class="fas fa-chevron-down" aria-hidden="true"></i></a>
+<ul class="sub-menu">
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">查調模組 API</a></li>
+<li><a class="active" href="enquiry-hub.html">查調工作臺</a></li>
+</ul>
+</li>
+<li>
+<a class="has-children" role="button" tabindex="0" aria-expanded="false"><span class="icon-text">監控中心</span><i class="fas fa-chevron-down" aria-hidden="true"></i></a>
+<ul class="sub-menu">
+<li><a href="home-admin.html#platform-monitor">介接運作總覽</a></li>
+<li>
+<a class="has-children" role="button" tabindex="0" aria-expanded="false"><span class="icon-text">資料交換紀錄</span><i class="fas fa-chevron-down" aria-hidden="true"></i></a>
+<ul class="sub-menu">
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">案件取號紀錄</a></li>
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">狀態回傳紀錄</a></li>
+</ul>
+</li>
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">查調紀錄</a></li>
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">異常紀錄</a></li>
+</ul>
+</li>
+<li>
+<a class="has-children" role="button" tabindex="0" aria-expanded="false"><span class="icon-text">查詢及統計</span><i class="fas fa-chevron-down" aria-hidden="true"></i></a>
+<ul class="sub-menu">
+<li><a href="home-admin.html#case-overview">案件統計報表</a></li>
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">問卷統計分析</a></li>
+</ul>
+</li>
+<li>
+<a class="has-children" role="button" tabindex="0" aria-expanded="false"><span class="icon-text">系統營運管理</span><i class="fas fa-chevron-down" aria-hidden="true"></i></a>
+<ul class="sub-menu">
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">社宅資料管理</a></li>
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">招租時程（API）</a></li>
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">招租公告（API）</a></li>
+<li>
+<a class="has-children" role="button" tabindex="0" aria-expanded="false"><span class="icon-text">帳號權限管理</span><i class="fas fa-chevron-down" aria-hidden="true"></i></a>
+<ul class="sub-menu">
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">帳號管理</a></li>
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">角色權限管理</a></li>
+</ul>
+</li>
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">通知紀錄查詢</a></li>
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">操作紀錄查詢</a></li>
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">智能客服管理</a></li>
+</ul>
+</li>
+</ul>
+          </div>
+        </aside>
+      </div>
+      <!-- Right -->
+      <div class="right">
+        <!-- 麵包屑 -->
+        <div class="breadcrumb-wrapper">
+            <div class="breadcrumb-inner">
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb">
+                  <li class="breadcrumb-item">資料共同查調</li>
+                  <li class="breadcrumb-item"><a href="enquiry-hub.html">查調工作臺</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">案件詳細資料</li>
+                </ol>
+              </nav>
+            </div>
+        </div>
+        <!-- 依 apply-03.html 的 Head info 與分段內容結構呈現。 -->
+        <div class="content | sticky-top-scroll">
+          <div class="flex-item-wrap | row-gap-2 column-gap-4">
+            <h4 class="mb-0">查調案件詳細資料 <span class="badge rounded-pill text-bg-primary">案件未列配偶情境示範</span></h4>
+            <div class="d-flex flex-wrap align-items-center gap-3"><div class="pill-state"><div class="pill-state-text" id="detailStatus">案件資料</div></div></div>
+            
+            <button type="button" class="btn btn-outline-primary" id="viewHistoryButton" data-bs-toggle="modal" data-bs-target="#viewHistoryModal" disabled><i class="fa-solid fa-eye me-1" aria-hidden="true"></i>檢視次數：<span id="viewHistoryCount">0</span></button>
+            <a class="btn btn-outline-primary ms-auto" href="enquiry-hub.html"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i>返回列表</a>
+          </div>
+        </div>
+        <div class="content" id="detailContent">
+          <div class="bg-orange-lightest p-3 mb-4 d-flex flex-wrap align-items-center justify-content-between gap-3" id="enquiryVersion" hidden>
+            <div><div id="enquiryVersionInfo" role="status"></div><div class="mt-2" id="detailCompletedAt"></div></div>
+            <button type="button" class="btn btn-outline-primary" id="enquiryHistoryButton" data-bs-toggle="modal" data-bs-target="#enquiryHistoryModal" disabled><i class="fa-solid fa-clock-rotate-left me-1" aria-hidden="true"></i>歷次查調紀錄</button>
+          </div>
+          
+          <p id="detailError" role="alert" hidden></p>
+          <div class="vstack gap-5" id="detailBody"></div>
+          <noscript><p>請啟用 JavaScript 以查看案件詳細資料。</p></noscript>
+        </div>
+      </div>
+    </div>
+    <!-- Bottom -->
+    <div class="bottom">
+      <footer class="footer">
+          <div class="img-wrap"><img src="assets/img/nlma-seal.svg" alt="內政部國土管理署署徽"></div>
+          <div class="text">
+            <div>內政部國土管理署</div>
+            <div>全國社會住宅資料整合暨共同查調管理平臺</div>
+          </div>
+      </footer>
+    </div>
+  </div> 
+  <!-- /.wrapper  -->
+
+  <!-- 回到最上面 -->
+  <div class="go-top | js-go-top">
+      <a href="#" class="" title="回到最上面">TOP</a>
+  </div>
+
+  <div class="modal fade" id="viewHistoryModal" tabindex="-1" aria-labelledby="viewHistoryTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title" id="viewHistoryTitle"><i class="fa-solid fa-eye" aria-hidden="true"></i> 檢視紀錄</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="關閉"></button>
+        </div>
+        <div class="modal-body">
+          <p>統一案件編號：<span id="viewHistoryCase"></span></p>
+          <div id="viewHistoryBody"></div>
+        </div>
+        <div class="modal-footer"><div class="btn-cta-group w-100 p-0"><button type="button" class="btn btn-pill-outline-primary" data-bs-dismiss="modal">關閉</button></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="enquiryHistoryModal" tabindex="-1" aria-labelledby="enquiryHistoryTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header"><h1 class="modal-title" id="enquiryHistoryTitle"><i class="fa-solid fa-clock-rotate-left" aria-hidden="true"></i> 歷次查調紀錄</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="關閉"></button></div>
+        <div class="modal-body"><div id="enquiryHistoryBody"></div></div>
+        <div class="modal-footer"><div class="btn-cta-group w-100 p-0"><button type="button" class="btn btn-pill-outline-primary" data-bs-dismiss="modal">關閉</button></div></div>
+      </div>
+    </div>
+  </div>
+  <!-- JS -->
+  <script src="assets/js/enquiry-cases.js"></script>
+  <script src="assets/js/enquiry-spouse-demo-data.js"></script>
+  <script src="assets/js/enquiry-results.js"></script>
+  <script src="assets/js/enquiry-history-spouse-demo.js"></script>
+  <script src="assets/js/enquiry-detail-spouse-demo.js"></script>
+  <script src="assets/js/navigation.js"></script>
+</body>
+
+</html>
