@@ -171,12 +171,17 @@
         <div class="content | sticky-top-scroll">
           <div class="flex-item-wrap | row-gap-2 column-gap-4">
             <h4 class="mb-0">查調案件詳細資料</h4>
-            <div class="d-flex flex-wrap align-items-center gap-3"><div class="pill-state"><div class="pill-state-text" id="detailStatus">案件資料</div></div><span id="detailCompletedAt"></span></div>
+            <div class="d-flex flex-wrap align-items-center gap-3"><div class="pill-state"><div class="pill-state-text" id="detailStatus">案件資料</div></div></div>
+            
             <button type="button" class="btn btn-outline-primary" id="viewHistoryButton" data-bs-toggle="modal" data-bs-target="#viewHistoryModal" disabled><i class="fa-solid fa-eye me-1" aria-hidden="true"></i>檢視次數：<span id="viewHistoryCount">0</span></button>
             <a class="btn btn-outline-primary ms-auto" href="enquiry-hub.html"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i>返回列表</a>
           </div>
         </div>
         <div class="content" id="detailContent">
+          <div class="bg-orange-lightest p-3 mb-4 d-flex flex-wrap align-items-center justify-content-between gap-3" id="enquiryVersion" hidden>
+            <div><div id="enquiryVersionInfo" role="status"></div><div class="mt-2" id="detailCompletedAt"></div></div>
+            <button type="button" class="btn btn-outline-primary" id="enquiryHistoryButton" data-bs-toggle="modal" data-bs-target="#enquiryHistoryModal" disabled><i class="fa-solid fa-clock-rotate-left me-1" aria-hidden="true"></i>歷次查調紀錄</button>
+          </div>
           
           <p id="detailError" role="alert" hidden></p>
           <div class="vstack gap-5" id="detailBody"></div>
@@ -218,9 +223,19 @@
     </div>
   </div>
 
+  <div class="modal fade" id="enquiryHistoryModal" tabindex="-1" aria-labelledby="enquiryHistoryTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header"><h1 class="modal-title" id="enquiryHistoryTitle"><i class="fa-solid fa-clock-rotate-left" aria-hidden="true"></i> 歷次查調紀錄</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="關閉"></button></div>
+        <div class="modal-body"><div id="enquiryHistoryBody"></div></div>
+        <div class="modal-footer"><div class="btn-cta-group w-100 p-0"><button type="button" class="btn btn-pill-outline-primary" data-bs-dismiss="modal">關閉</button></div></div>
+      </div>
+    </div>
+  </div>
   <!-- JS -->
   <script src="assets/js/enquiry-cases.js"></script>
   <script src="assets/js/enquiry-results.js"></script>
+  <script src="assets/js/enquiry-history.js"></script>
   <script src="assets/js/enquiry-detail.js"></script>
   <script src="assets/js/navigation.js"></script>
 </body>

@@ -2,14 +2,17 @@
 (() => {
   const records = window.EnquiryCases || [];
   const caseId = new URLSearchParams(location.search).get('case');
-  const record = caseId === null ? records[0] : records.find(item => item.caseId === caseId);
+  const baseRecord = caseId === null ? records[0] : records.find(item => item.caseId === caseId);
   const body = document.getElementById('detailBody');
-  if (!record) {
+  if (!baseRecord) {
     const error = document.getElementById('detailError');
     error.hidden = false;
     error.textContent = '查無此案件，請返回列表重新選擇。';
     return;
   }
+
+  const record = window.EnquiryHistory.select(baseRecord, new URLSearchParams(location.search).get('batch'));
+  if (!record) return;
 
   const escape = value => String(value ?? '').replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
   const number = value => Number(value).toLocaleString('zh-TW');
@@ -63,23 +66,24 @@
     return `<section class="item" id="${id}" aria-labelledby="${id}Title"><div class="head | title-border-bottom"><h2 class="title-name" id="${id}Title">${title}</h2></div><div class="body">${content}</div></section>`;
   }
   function household(title, address, members) {
-    return `<h5 class="mb-3">${escape(title)}｜戶籍地址：${escape(address)}</h5>${members.some(p => p.id === record.idNumber) ? `<p>遷入日期：${escape(record.movedAt || '未提供')}</p>` : ''}`
+    return `<h5 class="mb-3">${escape(title)}｜戶籍地址：${escape(address)}${members.some(p => p.id === record.idNumber) ? `｜遷入日期：${escape(record.movedAt || '未提供')}` : ''}</h5>`
       + table(['申請人／配偶', '姓名', '案件成員', '身分證字號', '生日', '稱謂', '父／養父', '母／養母', '個人詳細記事'], members.map(p => [p.id === record.idNumber ? '申請人' : p.id === spouse?.id ? '配偶' : '', p.name, memberIds.has(p.id) ? '是' : '否', p.id, p.birth, p.title || p.relation || '', p.father, p.mother, p.notes]), `${title}戶籍資料（戶政司）`);
   }
 
   // 靜態展示紀錄；正式串接時由案件 viewHistory 提供，不假裝記錄實際使用者。
-  const viewHistory = record.viewHistory || [
-    { viewedAt: (record.referenceDate || record.appliedAt.slice(0, 10)).replaceAll('-', '/') + ' 22:30:00', viewer: '承辦人甲（範例）', agency: record.agency },
-    { viewedAt: (record.referenceDate || record.appliedAt.slice(0, 10)).replaceAll('-', '/') + ' 22:15:00', viewer: '承辦人乙（範例）', agency: '內政部國土管理署' },
-    { viewedAt: (record.referenceDate || record.appliedAt.slice(0, 10)).replaceAll('-', '/') + ' 22:00:00', viewer: '承辦人甲（範例）', agency: record.agency }
+  const viewHistory = baseRecord.viewHistory || [
+    { viewedAt: (baseRecord.referenceDate || baseRecord.appliedAt.slice(0, 10)).replaceAll('-', '/') + ' 22:30:00', viewer: '承辦人甲（範例）', agency: baseRecord.agency, batchId: 'INQ-003' },
+    { viewedAt: (baseRecord.referenceDate || baseRecord.appliedAt.slice(0, 10)).replaceAll('-', '/') + ' 22:15:00', viewer: '承辦人乙（範例）', agency: '內政部國土管理署', batchId: 'INQ-002' },
+    { viewedAt: (baseRecord.referenceDate || baseRecord.appliedAt.slice(0, 10)).replaceAll('-', '/') + ' 22:00:00', viewer: '承辦人甲（範例）', agency: baseRecord.agency, batchId: 'INQ-001' }
   ];
   const visits = [...viewHistory].sort((a, b) => b.viewedAt.localeCompare(a.viewedAt));
   document.getElementById('viewHistoryCount').textContent = number(visits.length);
   document.getElementById('viewHistoryCase').textContent = record.caseId;
   document.getElementById('viewHistoryBody').innerHTML = visits.length
-    ? table(['檢視時間', '檢視人員', '所屬機關'], visits.map(v => [v.viewedAt, v.viewer, v.agency]), '案件檢視紀錄')
+    ? table(['檢視時間', '檢視人員', '所屬機關', '查閱批次'], visits.map(v => [v.viewedAt, v.viewer, v.agency, v.batchId || '未記錄']), '案件檢視紀錄')
     : '<p>尚無檢視紀錄。</p>';
   document.getElementById('viewHistoryButton').disabled = false;
+
 
   const overview = table(
     ['統一案件編號', '權責機關', '申請社宅', '申請房型', '申請時間', '查調基準日'],
@@ -118,7 +122,7 @@
   const family = record.households.map(h => household(h.number ? `${h.label}｜戶號 ${h.number}` : h.label, h.address, h.members)).join('')
     ;
   const welfarePeople = allPeople.filter(p => String(p.identity || '').trim());
-  const welfare = welfarePeople.length ? table(['申請人／配偶', '姓名', '生日', '社福資格'], welfarePeople.map(p => [p.id === record.idNumber ? '申請人' : p.id === spouse?.id ? '配偶' : '', p.name, p.birth, p.identity]), '社福資格（衛福部）') : '<p>無社福資格資料。</p>';
+  const welfare = welfarePeople.length ? table(['申請人／配偶', '姓名', '生日', '社福資格'], welfarePeople.map(p => [p.id === record.idNumber ? '申請人' : p.id === spouse?.id ? '配偶' : '', p.name, p.birth, p.identity]), '社福資格（戶政司、衛福部）') : '<p>無社福資格資料。</p>';
   const income = authorized.people.length ? table(['申請人／配偶', '姓名', '案件成員', '近一年所得'], authorized.people.map(p => [p.id === record.idNumber ? '申請人' : p.id === spouse?.id ? '配偶' : '', p.name, memberIds.has(p.id) ? '是' : '否', incomeAvailable ? money(p.income) : '']), '家庭成員所得清單', [
     ['胎兒數', `${fetusCount} 人`],
     ['人口數', `${population} 人`],
@@ -135,7 +139,7 @@
   body.innerHTML = section('caseOverview', '案件資料', overview)
     + section('enquirySummary', '查調結果', summary)
     + section('familyInfo', '家庭成員／共居者（戶政司）', family)
-    + section('welfareInfo', '社福資格（衛福部）', welfare)
+    + section('welfareInfo', '社福資格（戶政司、衛福部）', welfare)
     + section('incomeInfo', '所得（財政部）', income)
     + section('propertyInfo', '不動產（地政司）', realEstate)
     + section('movableInfo', '動產（財政部）', movable)
