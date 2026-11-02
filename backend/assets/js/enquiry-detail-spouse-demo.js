@@ -44,7 +44,7 @@
   const missingNames = missingConsent.map(p => p.name).join('、');
   const incomeStatus = p => !authorized.ids.has(p.id) ? '待授權' : incomeAvailable && p.income != null ? '已取得' : record.enquiryStatus === '查調中' ? '查調中' : '取得失敗';
   if (incomplete) {
-    document.getElementById('detailStatus').textContent = '已授權項目完成';
+    document.getElementById('detailStatus').textContent = '查調完成';
     document.getElementById('detailCompletedAt').textContent = '已授權資料完成時間：' + (record.completedAt || '未提供');
   }
   const notice = discoveredSpouse ? '<div class="alert alert-warning mb-0" role="status"><h5 class="alert-heading"><i class="fa-solid fa-circle-exclamation me-2" aria-hidden="true"></i>戶政查出配偶，原案件未列入</h5><p>原案件成員共 ' + memberIds.size + ' 人。戶政確認申請人已婚，配偶為' + escape(discoveredSpouse.name) + '；已另列配偶所得查調需求，尚未取得其授權。</p><p>原案件名單保留不變。補查配偶僅查所得；所得資格及租金級距暫無法判定。動產、不動產維持原案件成員的查調結果。</p><div class="d-flex flex-wrap gap-2"><a href="#discoveredSpouseInfo" class="btn btn-outline-primary btn-sm">查看查出的配偶</a><a href="#incomeInfo" class="btn btn-outline-primary btn-sm">查看所得缺漏</a></div></div>' : '';
@@ -52,7 +52,7 @@
   function fields(items) {
     return `<dl class="row g-3 mb-0">${items.map(([label, value]) => `<div class="col-12 col-md-6 col-xl-4"><dt class="form-label">${escape(label)}</dt><dd class="mb-0 text-break">${escape(value)}</dd></div>`).join('')}</dl>`;
   }
-  const booleanColumns = new Set(['案件成員', '授權查調', '戶籍地', '公同共有', '優惠利率']);
+  const booleanColumns = new Set(['案件成員', '授權查調', '戶籍地', '公同共有']);
   function cellContent(value, label) {
     if (label === '所得資料狀態' || label === '授權狀態') return '<span class="badge rounded-pill ' + (value === '已取得' ? 'enquiry-status--complete' : value === '查調中' ? 'enquiry-status--pending' : 'consent-warning') + '">' + escape(value) + '</span>';
 
@@ -139,7 +139,7 @@
       + (discovered ? section('discoveredSpouseInfo', '戶政查出的配偶', discovered) : '')
     + section('enquirySummary', '查調結果', summary)
       + section('returnDetails', '回傳明細', '<p>此案件目前提供案件資料與查調狀態，尚無家庭及財產回傳明細。</p>')
-      + '<div class="item"><div class="btn-cta-group pb-4"><a class="btn btn-pill-outline-primary" href="enquiry-hub.html">返回列表</a></div></div>';
+      + '<div class="item"><div class="btn-cta-group pb-4"><a class="btn btn-pill-outline-primary" href="enquiry-hub-spouse-demo.html">返回列表</a></div></div>';
     return;
   }
   const family = record.households.map(h => household(h.number ? `${h.label}｜戶號 ${h.number}` : h.label, h.address, h.members)).join('')
@@ -159,7 +159,7 @@
     ? table(['持有者', '類別', '地段地號建號／座落', '戶籍地', '持分比', '房地面積', '房地現值金額', '公同共有'], authorized.realEstate.map(p => [p.owner, p.category, p.address, p.household ? '是' : '否', p.share, p.area, money(p.value), p.common ? '是' : '否']), '家庭成員不動產明細', [['不動產總額', money(authorized.realEstate.reduce((sum, p) => sum + p.value, 0))]])
     : '<p>尚未取得財產資料，等待資料來源機關回傳。</p>';
   const movable = propertyAvailable && !authorized.movable.length ? '<p>已授權查調者無動產明細。</p>' : propertyAvailable
-    ? table(['姓名', '利息（存款本金）', '優惠利率', '中獎所得', '其他所得', '小計'], authorized.movable.map(p => [p.name, money(p.interest), p.preferred ? '是' : '否', money(p.prize), money(p.other), money(p.subtotal)]), '家庭成員動產明細', [['動產總額', money(authorized.movable.reduce((sum, p) => sum + p.subtotal, 0))]])
+    ? table(['姓名', '利息（存款本金）', '中獎所得', '其他所得', '小計'], authorized.movable.map(p => [p.name, money(p.interest), money(p.prize), money(p.other), money(p.subtotal)]), '家庭成員動產明細', [['動產總額', money(authorized.movable.reduce((sum, p) => sum + p.subtotal, 0))]])
     : '<p>尚未取得財產資料，等待資料來源機關回傳。</p>';
 
   body.innerHTML = notice + section('caseOverview', '案件資料', overview)
@@ -170,6 +170,6 @@
     + section('incomeInfo', '所得（財政部）', (discoveredSpouse ? '<p class="consent-warning p-3">配偶所得須納入查調；目前未授權，僅列待辦，不顯示其所得。</p>' : '') + income)
     + section('propertyInfo', '不動產（地政司）', realEstate)
     + section('movableInfo', '動產（財政部）', movable)
-    + '<div class="item"><div class="btn-cta-group pb-4"><a class="btn btn-pill-outline-primary" href="enquiry-hub.html">返回列表</a></div></div>';
+    + '<div class="item"><div class="btn-cta-group pb-4"><a class="btn btn-pill-outline-primary" href="enquiry-hub-spouse-demo.html">返回列表</a></div></div>';
   document.title = `${record.caseId}｜查調案件詳細資料｜全國社會住宅資料整合暨共同查調管理平臺`;
 })();

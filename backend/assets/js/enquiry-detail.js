@@ -41,7 +41,7 @@
   function fields(items) {
     return `<dl class="row g-3 mb-0">${items.map(([label, value]) => `<div class="col-12 col-md-6 col-xl-4"><dt class="form-label">${escape(label)}</dt><dd class="mb-0 text-break">${escape(value)}</dd></div>`).join('')}</dl>`;
   }
-  const booleanColumns = new Set(['案件成員', '授權查調', '戶籍地', '公同共有', '優惠利率']);
+  const booleanColumns = new Set(['案件成員', '授權查調', '戶籍地', '公同共有']);
   function cellContent(value, label) {
     if (label === '個人詳細記事') return value ? `<details class="enquiry-notes"><summary>查看記事</summary><p class="mb-0 mt-2 text-break">${escape(value)}</p></details>` : '--';
     if (label === '社福資格') {
@@ -133,7 +133,7 @@
     ? table(['持有者', '類別', '地段地號建號／座落', '戶籍地', '持分比', '房地面積', '房地現值金額', '公同共有'], authorized.realEstate.map(p => [p.owner, p.category, p.address, p.household ? '是' : '否', p.share, p.area, money(p.value), p.common ? '是' : '否']), '家庭成員不動產明細', [['不動產總額', money(authorized.realEstate.reduce((sum, p) => sum + p.value, 0))]])
     : '<p>尚未取得財產資料，等待資料來源機關回傳。</p>';
   const movable = propertyAvailable && !authorized.movable.length ? '<p>已授權查調者無動產明細。</p>' : propertyAvailable
-    ? table(['姓名', '利息（存款本金）', '優惠利率', '中獎所得', '其他所得', '小計'], authorized.movable.map(p => [p.name, money(p.interest), p.preferred ? '是' : '否', money(p.prize), money(p.other), money(p.subtotal)]), '家庭成員動產明細', [['動產總額', money(authorized.movable.reduce((sum, p) => sum + p.subtotal, 0))]])
+    ? table(['姓名', '利息（存款本金）', '中獎所得', '其他所得', '小計'], authorized.movable.map(p => [p.name, money(p.interest), money(p.prize), money(p.other), money(p.subtotal)]), '家庭成員動產明細', [['動產總額', money(authorized.movable.reduce((sum, p) => sum + p.subtotal, 0))]])
     : '<p>尚未取得財產資料，等待資料來源機關回傳。</p>';
 
   body.innerHTML = section('caseOverview', '案件資料', overview)

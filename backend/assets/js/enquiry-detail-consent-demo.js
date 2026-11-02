@@ -52,7 +52,7 @@
   function fields(items) {
     return `<dl class="row g-3 mb-0">${items.map(([label, value]) => `<div class="col-12 col-md-6 col-xl-4"><dt class="form-label">${escape(label)}</dt><dd class="mb-0 text-break">${escape(value)}</dd></div>`).join('')}</dl>`;
   }
-  const booleanColumns = new Set(['案件成員', '授權查調', '戶籍地', '公同共有', '優惠利率']);
+  const booleanColumns = new Set(['案件成員', '授權查調', '戶籍地', '公同共有']);
   function cellContent(value, label) {
     if (label === '所得資料狀態') return '<span class="badge rounded-pill ' + (value === '已取得' ? 'enquiry-status--complete' : value === '查調中' ? 'enquiry-status--pending' : 'consent-warning') + '">' + escape(value) + '</span>';
 
@@ -133,7 +133,7 @@
     body.innerHTML = notice + section('caseOverview', '案件資料', overview)
       + section('enquirySummary', '查調結果', summary)
       + section('returnDetails', '回傳明細', '<p>此案件目前提供案件資料與查調狀態，尚無家庭及財產回傳明細。</p>')
-      + '<div class="item"><div class="btn-cta-group pb-4"><a class="btn btn-pill-outline-primary" href="enquiry-hub.html">返回列表</a></div></div>';
+      + '<div class="item"><div class="btn-cta-group pb-4"><a class="btn btn-pill-outline-primary" href="enquiry-hub-spouse-demo.html">返回列表</a></div></div>';
     return;
   }
   const family = record.households.map(h => household(h.number ? `${h.label}｜戶號 ${h.number}` : h.label, h.address, h.members)).join('')
@@ -152,7 +152,7 @@
     ? table(['持有者', '類別', '地段地號建號／座落', '戶籍地', '持分比', '房地面積', '房地現值金額', '公同共有'], authorized.realEstate.map(p => [p.owner, p.category, p.address, p.household ? '是' : '否', p.share, p.area, money(p.value), p.common ? '是' : '否']), '家庭成員不動產明細', [[incomplete ? '已取得不動產小計（非全案總額）' : '不動產總額', money(authorized.realEstate.reduce((sum, p) => sum + p.value, 0))]])
     : '<p>尚未取得財產資料，等待資料來源機關回傳。</p>';
   const movable = propertyAvailable && !authorized.movable.length ? '<p>已授權查調者無動產明細。</p>' : propertyAvailable
-    ? table(['姓名', '利息（存款本金）', '優惠利率', '中獎所得', '其他所得', '小計'], authorized.movable.map(p => [p.name, money(p.interest), p.preferred ? '是' : '否', money(p.prize), money(p.other), money(p.subtotal)]), '家庭成員動產明細', [[incomplete ? '已取得動產小計（非全案總額）' : '動產總額', money(authorized.movable.reduce((sum, p) => sum + p.subtotal, 0))]])
+    ? table(['姓名', '利息（存款本金）', '中獎所得', '其他所得', '小計'], authorized.movable.map(p => [p.name, money(p.interest), money(p.prize), money(p.other), money(p.subtotal)]), '家庭成員動產明細', [[incomplete ? '已取得動產小計（非全案總額）' : '動產總額', money(authorized.movable.reduce((sum, p) => sum + p.subtotal, 0))]])
     : '<p>尚未取得財產資料，等待資料來源機關回傳。</p>';
 
   body.innerHTML = notice + section('caseOverview', '案件資料', overview)
@@ -162,6 +162,6 @@
     + section('incomeInfo', '所得（財政部）', missingNote + income)
     + section('propertyInfo', '不動產（地政司）', missingNote + realEstate)
     + section('movableInfo', '動產（財政部）', missingNote + movable)
-    + '<div class="item"><div class="btn-cta-group pb-4"><a class="btn btn-pill-outline-primary" href="enquiry-hub.html">返回列表</a></div></div>';
+    + '<div class="item"><div class="btn-cta-group pb-4"><a class="btn btn-pill-outline-primary" href="enquiry-hub-spouse-demo.html">返回列表</a></div></div>';
   document.title = `${record.caseId}｜查調案件詳細資料｜全國社會住宅資料整合暨共同查調管理平臺`;
 })();
