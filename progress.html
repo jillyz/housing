@@ -10,8 +10,15 @@
 <link rel="stylesheet" href="assets/member-shell.css" />
 <link rel="stylesheet" href="assets/css/inline-utilities.css" />
 <style>
-.deadline{color:#c62828!important}
+
 a.mini-action{display:inline-flex;align-items:center;justify-content:center}
+.external-site-dialog{width:min(480px,calc(100% - 32px));padding:28px;border:1px solid #d7e7e5;border-radius:18px;color:#243837;box-shadow:0 20px 60px #003f3f26}
+.external-site-dialog::backdrop{background:rgba(0,40,40,.4)}
+.external-site-dialog p{margin:0;font-size:18px;line-height:1.8}
+.external-site-actions{display:flex;justify-content:flex-end;gap:12px;margin-top:24px}
+.external-site-actions button{padding:10px 22px;min-height:44px;border:1px solid #bcdedb;border-radius:9px;background:#fff;color:#006f6d;font:inherit;font-size:16px;cursor:pointer}
+.external-site-actions .confirm{background:#007f7c;border-color:#007f7c;color:#fff}
+.external-site-actions button:focus-visible{outline:3px solid #009c9a;outline-offset:3px}
 </style>
 </head>
 <body id="top">
@@ -36,8 +43,8 @@ a.mini-action{display:inline-flex;align-items:center;justify-content:center}
 <div class="simple-progress-page">
 <div class="simple-head">
 <div>
-<h1>申請進度查詢</h1>
-<p>以下為您的社會住宅申請紀錄。</p>
+<h1>申請案件查詢</h1>
+<p>以下為您的社會住宅申請案件紀錄。</p>
 </div>
 <div class="record-count">共 5 筆</div>
 </div>
@@ -47,106 +54,74 @@ a.mini-action{display:inline-flex;align-items:center;justify-content:center}
 <tr>
 <th>申請社宅</th>
 <th>房型</th>
-<th>案件編號</th>
+<th>統一案件編碼</th>
 <th>申請時間</th>
 <th>案件狀態</th>
-<th>補件期限</th>
-<th>身分別</th>
-<th>中籤結果</th>
+<th>權責機關</th>
 <th>操作</th>
 </tr>
 </thead>
+<!-- 國家住都中心社宅示範案件；房型、案件編碼、申請時間及案件狀態為畫面展示資料。 -->
 <tbody>
 <tr>
 <td>
-<strong>西屯安居社會住宅</strong>
-<span class="sub-text">臺中市／西屯區</span>
+<strong>江翠玫瑰社會住宅</strong>
+<span class="sub-text">新北市／板橋區</span>
 </td>
 <td>三房型</td>
-<td><span class="case-no">TB-NAA-116-000123-B</span></td>
+<td><span class="case-no">CH11600000123</span></td>
 <td>116/03/18<br/><span class="sub-text">10:32</span></td>
-<td><span class="status-badge status-supplement">須補件</span></td>
-<td><strong class="deadline">116/03/25</strong></td>
-<td>—</td>
-<td>尚未抽籤</td>
-<td>
-<div class="row-actions">
-<button class="mini-action" onclick="viewCase('TB-NAA-116-000123-B')" type="button">檢視申請資料</button>
-<a class="mini-action primary" href="supplement.html?case=TB-NAA-116-000123-B">補件</a>
-</div>
-</td>
+<td><span class="status-badge status-accepted">已受理</span></td>
+<td class="responsible-agency">國家住宅及都市更新中心</td>
+<td><div class="row-actions"><a class="mini-action" href="https://www.socialhousing.tw/" target="_blank" rel="noopener noreferrer" aria-label="前往查看國家住都中心安居好室入口網（另開新分頁）">前往查看</a></div></td>
 </tr>
 <tr>
 <td>
-<strong>文心好室社會住宅</strong>
-<span class="sub-text">臺中市／北屯區</span>
+<strong>鶯陶安居社會住宅</strong>
+<span class="sub-text">新北市／鶯歌區</span>
 </td>
 <td>二房型</td>
-<td><span class="case-no">TB-WAA-116-000118-B</span></td>
+<td><span class="case-no">CH11600000118</span></td>
 <td>116/03/15<br/><span class="sub-text">14:08</span></td>
-<td><span class="status-badge status-review">審查中</span></td>
-<td>—</td>
-<td>—</td>
-<td>尚未抽籤</td>
-<td>
-<div class="row-actions">
-<button class="mini-action" onclick="viewCase('TB-WAA-116-000118-B')" type="button">檢視申請資料</button>
-</div>
-</td>
+<td><span class="status-badge status-accepted">已受理</span></td>
+<td class="responsible-agency">國家住宅及都市更新中心</td>
+<td><div class="row-actions"><a class="mini-action" href="https://www.socialhousing.tw/" target="_blank" rel="noopener noreferrer" aria-label="前往查看國家住都中心安居好室入口網（另開新分頁）">前往查看</a></div></td>
 </tr>
 <tr>
 <td>
-<strong>豐原青年社會住宅</strong>
-<span class="sub-text">臺中市／豐原區</span>
+<strong>公誠安居社會住宅</strong>
+<span class="sub-text">南投縣／埔里鎮</span>
 </td>
 <td>一房型</td>
-<td><span class="case-no">TB-FCA-116-000096-D</span></td>
+<td><span class="case-no">CH11600000096</span></td>
 <td>116/03/10<br/><span class="sub-text">09:21</span></td>
-<td><span class="status-badge status-qualified">合格</span></td>
-<td>—</td>
-<td>一般戶</td>
-<td>待抽籤</td>
-<td>
-<div class="row-actions">
-<button class="mini-action" onclick="viewCase('TB-FCA-116-000096-D')" type="button">檢視申請資料</button>
-</div>
-</td>
+<td><span class="status-badge status-accepted">已受理</span></td>
+<td class="responsible-agency">國家住宅及都市更新中心</td>
+<td><div class="row-actions"><a class="mini-action" href="https://www.socialhousing.tw/" target="_blank" rel="noopener noreferrer" aria-label="前往查看國家住都中心安居好室入口網（另開新分頁）">前往查看</a></div></td>
 </tr>
 <tr>
 <td>
-<strong>北屯社會住宅</strong>
-<span class="sub-text">臺中市／北屯區</span>
+<strong>開南安居社會住宅</strong>
+<span class="sub-text">臺南市／南區</span>
 </td>
 <td>二房型</td>
-<td><span class="case-no">TB-BRA-116-000075-C</span></td>
+<td><span class="case-no">CH11600000075</span></td>
 <td>116/02/26<br/><span class="sub-text">16:42</span></td>
-<td><span class="status-badge status-draw">已抽籤</span></td>
-<td>—</td>
-<td>婚育戶</td>
-<td><strong class="lottery-result">正取 18 </strong></td>
-<td>
-<div class="row-actions">
-<button class="mini-action" onclick="viewCase('TB-BRA-116-000075-C')" type="button">檢視申請資料</button>
-</div>
-</td>
+<td><span class="status-badge status-live">已入住</span></td>
+<td class="responsible-agency">國家住宅及都市更新中心</td>
+<td><div class="row-actions"><a class="mini-action" href="https://www.socialhousing.tw/" target="_blank" rel="noopener noreferrer" aria-label="前往查看國家住都中心安居好室入口網（另開新分頁）">前往查看</a></div></td>
 </tr>
 <tr>
 <td>
-<strong>梧棲安居社會住宅</strong>
-<span class="sub-text">臺中市／梧棲區</span>
+<strong>仁武安居社會住宅</strong>
+<span class="sub-text">高雄市／仁武區</span>
 </td>
 <td>二房型</td>
-<td><span class="case-no">OB-NHA-115-000842-A</span></td>
+<td><span class="case-no">CH11500000842</span></td>
 <td>115/11/02<br/><span class="sub-text">13:17</span></td>
-<td><span class="status-badge status-contract">已簽約</span></td>
-<td>—</td>
-<td>一般戶</td>
-<td><strong class="lottery-result">備取 6 </strong></td>
-<td>
-<div class="row-actions">
-<button class="mini-action" onclick="viewCase('OB-NHA-115-000842-A')" type="button">檢視申請資料</button>
-</div>
-</td>
+<td><span class="status-badge status-ended">已退租</span></td>
+<td class="responsible-agency">國家住宅及都市更新中心</td>
+<td><div class="row-actions"><a class="mini-action" href="https://www.socialhousing.tw/" target="_blank" rel="noopener noreferrer" aria-label="前往查看國家住都中心安居好室入口網（另開新分頁）">前往查看</a></div></td>
 </tr>
 </tbody>
 </table>
@@ -180,13 +155,36 @@ a.mini-action{display:inline-flex;align-items:center;justify-content:center}
 </span>
 </a>
 </aside>
+<dialog class="external-site-dialog" id="externalSiteDialog" aria-labelledby="externalSiteMessage">
+<p id="externalSiteMessage">您即將前往 國家住宅及都市更新中心 網站</p>
+<div class="external-site-actions"><button class="confirm" id="confirmExternalSite" type="button">確定</button><button id="cancelExternalSite" type="button" autofocus>取消</button></div>
+</dialog>
 <script>
 function toggleChat(){
   document.getElementById("chatPanel").classList.toggle("open");
 }
-function viewCase(caseNo){
-  window.location.href = "application-detail.html?case=" + encodeURIComponent(caseNo);
-}
+(function(){
+  const dialog = document.getElementById('externalSiteDialog');
+  let pendingLink = null;
+  document.querySelectorAll('.application-table a.mini-action').forEach(link => {
+    link.setAttribute('aria-haspopup', 'dialog');
+    link.addEventListener('click', event => {
+      event.preventDefault();
+      pendingLink = link;
+      dialog.showModal();
+    });
+  });
+  document.getElementById('confirmExternalSite').addEventListener('click', () => {
+    if (!pendingLink) return;
+    window.open(pendingLink.href, '_blank', 'noopener,noreferrer');
+    dialog.close();
+  });
+  document.getElementById('cancelExternalSite').addEventListener('click', () => dialog.close());
+  dialog.addEventListener('close', () => {
+    pendingLink?.focus();
+    pendingLink = null;
+  });
+})();
 </script>
 <script src="assets/member-shell.js"></script>
 <script src="assets/member-account.js"></script>

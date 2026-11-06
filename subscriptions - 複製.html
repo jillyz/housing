@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>全國社宅統一申請登記平臺｜訂閱管理</title>
+<link rel="stylesheet" href="assets/css/common.css" />
+<link rel="stylesheet" href="assets/css/pages/progress.css" />
+<link rel="stylesheet" href="assets/css/pages/subscriptions.css" />
+<link rel="stylesheet" href="assets/member-shell.css" />
+<link rel="stylesheet" href="assets/css/inline-utilities.css" />
+<style>
+
+a.mini-action{display:inline-flex;align-items:center;justify-content:center}
+</style>
+</head>
+<body id="top">
+<header class="site-header">
+<div class="utility-bar">
+<a class="agency-link" href="https://www.nlma.gov.tw/" target="_blank" rel="noopener noreferrer">內政部國土管理署</a>
+<div class="utility-links">
+<a class="utility-link" href="#primaryNavigation" aria-label="網站導覽"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="2.5" width="6" height="5" rx="1.2"/><rect x="2" y="16.5" width="6" height="5" rx="1.2"/><rect x="9" y="16.5" width="6" height="5" rx="1.2"/><rect x="16" y="16.5" width="6" height="5" rx="1.2"/><path d="M12 7.5V12M5 16.5V12h14v4.5M12 12v4.5"/></svg><span>網站導覽</span></a>
+<a class="utility-link" href="#siteFooter" aria-label="聯絡我們"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13v-1a8 8 0 0 1 16 0v1"/><path d="M4 12H2v5c0 1.1.9 2 2 2h2v-7H4Zm16 0h2v5c0 1.1-.9 2-2 2h-2v-7h2Z"/><path d="M18 19c0 2-2 3-5 3"/></svg><span>聯絡我們</span></a>
+</div>
+</div>
+<nav class="site-main-nav" id="primaryNavigation" aria-label="會員主要導覽">
+<a class="brand" href="index.html" aria-label="全國社宅統一登記申請平台首頁"><img class="brand-mark" src="assets/platform-logo-elegant.svg" alt=""/><span class="brand-name">全國社宅統一登記申請平台</span></a>
+<div class="member-nav"><a class="member-nav-link" href="housing-map.html">找社宅</a><a class="member-nav-link" href="apply.html">申請社宅</a><a class="member-nav-link" href="progress.html">進度查詢</a></div>
+<div class="member-actions"><div class="login-user"><span class="login-user-label">登入者</span><strong>陳ＯＯ</strong></div><button class="member-icon" type="button" title="通知" aria-label="查看通知"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg></button><a class="member-icon" href="index.html" title="登出" aria-label="登出"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 17l5-5-5-5M15 12H3M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/></svg></a></div>
+<button class="site-mobile-menu" type="button" aria-label="開啟選單" aria-controls="memberMobileNav" aria-expanded="false">☰</button>
+<div class="site-mobile-nav" id="memberMobileNav"><a href="housing-map.html">找社宅</a><a href="apply.html">申請社宅</a><a href="progress.html">進度查詢</a><div class="mobile-member"><div class="login-user"><span class="login-user-label">登入者</span><strong>陳ＯＯ</strong></div><div class="mobile-member-actions"><button class="member-icon" type="button" aria-label="查看通知"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg></button><a class="member-icon" href="index.html" aria-label="登出"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 17l5-5-5-5M15 12H3M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/></svg></a></div></div></div>
+</nav>
+</header>
+<div class="page">
+<main class="main-card subscription-page">
+<div class="subscription-heading"><div><span class="subscription-eyebrow">會員功能 / 招租通知</span><h1>訂閱管理</h1><p>管理您關注的地區與社宅，掌握新的招租消息。</p></div><a class="subscription-browse" href="housing-map.html">找社宅 <span aria-hidden="true">↗</span></a></div>
+<div class="subscription-intro"><span class="intro-icon" aria-hidden="true">♧</span><div><strong>讓適合的社宅消息，主動找到您</strong><p>可訂閱多個縣市及各自的行政區，搭配租金與公設條件，或關注指定社宅。符合條件或指定社宅有新的招租公告時，即可收到通知。</p></div></div>
+<div class="subscription-toolbar"><div class="subscription-filters" role="group" aria-label="篩選訂閱類型"><button type="button" data-filter="all" aria-pressed="true">全部訂閱 <span data-count="all">0</span></button><button type="button" data-filter="query" aria-pressed="false">找社宅條件 <span data-count="query">0</span></button><button type="button" data-filter="housing" aria-pressed="false">指定社宅 <span data-count="housing">0</span></button></div><span id="subscriptionSummary" role="status"></span></div>
+<div id="subscriptionList" class="subscription-list"></div>
+<div id="subscriptionEmpty" class="subscription-empty" hidden><span aria-hidden="true">♡</span><h2>目前沒有訂閱</h2><p>到「找社宅」探索您喜歡的地區與社宅，訂閱關注的招租通知。</p><a class="subscription-browse" href="housing-map.html">前往找社宅</a></div>
+<p class="subscription-footnote">取消訂閱後，將不再收到該筆訂閱的招租通知；不影響已送出的社宅申請。</p>
+<noscript><p>請啟用 JavaScript，以查看及管理訂閱。</p></noscript>
+</main>
+<dialog id="cancelSubscriptionDialog" aria-labelledby="cancelSubscriptionTitle" aria-describedby="cancelSubscriptionDescription"><form method="dialog"><span class="dialog-eyebrow">招租通知設定</span><h2 id="cancelSubscriptionTitle">確定取消這筆訂閱？</h2><p id="cancelSubscriptionDescription"></p><p class="dialog-note">取消後將不再收到這筆招租通知，不影響您的其他訂閱與申請。</p><div class="dialog-actions"><button value="keep" autofocus>保留訂閱</button><button value="cancel" class="cancel-confirm">確認取消訂閱</button></div></form></dialog>
+<div class="subscription-feedback" id="subscriptionFeedback" hidden><span id="subscriptionMessage" role="status" aria-live="polite"></span><button type="button" id="undoSubscription" hidden>復原訂閱</button></div>
+</div>
+<footer class="site-footer" id="siteFooter">
+<div class="footer-inner">
+<div class="footer-top"><a class="footer-brand" href="index.html"><span class="footer-logo"><img src="assets/platform-logo-elegant.svg" alt=""/></span><span class="footer-brand-text"><strong>全國社宅統一登記申請平台</strong><span>內政部國土管理署</span></span></a><nav class="footer-links" aria-label="頁尾導覽"><a href="privacy.html">隱私權政策</a><a href="terms.html">服務條款</a><a href="#top">返回頂端</a></nav></div>
+<div class="footer-rule"></div>
+<div class="footer-bottom"><div class="footer-details"><div class="footer-contact"><div class="footer-meta"><span class="footer-meta-label">機關地址</span><span>105404台北市松山區八德路2段342號</span></div><div class="footer-meta"><span class="footer-meta-label">總機服務</span><a href="tel:+886-2-87712345">(02)-87712345</a></div></div><p class="footer-copyright">內政部國土管理署 版權所有&nbsp; © 2026 All Rights Reserved.</p></div><div class="footer-badge"><img src="https://www.nlma.gov.tw/_next/static/media/AA.860fb9dd.svg" alt="AA 等級無障礙網站標章" loading="lazy"/></div></div>
+</div>
+</footer>
+<aside class="chat-support">
+<div class="chat-panel" id="chatPanel">
+<div class="chat-panel-head">智能客服</div>
+<div class="chat-panel-body">
+        您好，我可以協助查詢申請流程、資料查調、補件方式與進度。
+        <button class="chat-quick" type="button">如何重新取得查調資料？</button>
+<button class="chat-quick" type="button">哪些資料需要自行填寫？</button>
+<button class="chat-quick" type="button">如何查看申請進度？</button>
+</div>
+</div>
+<div class="chat-label">智能客服</div>
+<a aria-label="開啟智能客服對話頁面（另開新分頁）" class="chat-launcher" href="chat.html" target="_blank" rel="noopener noreferrer">
+<span class="bot-head">
+<span class="bot-eye left"></span>
+<span class="bot-eye right"></span>
+<span class="bot-smile"></span>
+</span>
+</a>
+</aside>
+<script>
+function toggleChat(){
+  document.getElementById("chatPanel").classList.toggle("open");
+}
+</script>
+<script src="assets/member-shell.js"></script>
+<script src="assets/member-account.js"></script>
+<script src="assets/subscriptions.js"></script>
+</body>
+</html>

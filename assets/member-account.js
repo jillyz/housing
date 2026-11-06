@@ -38,6 +38,7 @@
         <div class="account-menu-divider" aria-hidden="true"></div>
         <a class="account-menu-item${activeClass('data.html')}" href="data.html?mode=edit"${activeCurrent('data.html')}>編輯申請資料</a>
         <a class="account-menu-item${activeClass('questionnaire.html')}" href="questionnaire.html"${activeCurrent('questionnaire.html')}>編輯居住需求</a>
+        <a class="account-menu-item${activeClass('subscriptions.html')}" href="subscriptions.html"${activeCurrent('subscriptions.html')}>訂閱管理</a>
         <a class="account-menu-item${activeClass('activity-log.html')}" href="activity-log.html"${activeCurrent('activity-log.html')}>操作紀錄</a>
         <div class="account-menu-divider" aria-hidden="true"></div>
         <a class="account-menu-item management" href="admin/home-admin.html" target="_blank" rel="noopener noreferrer">營運管理平台 <span class="account-external-mark" aria-hidden="true">↗</span></a>
@@ -73,6 +74,7 @@
       <div class="account-panel" id="${menuId}" role="menu" hidden>
         <a class="account-menu-item" role="menuitem" href="data.html?mode=edit">編輯申請資料</a>
         <a class="account-menu-item" role="menuitem" href="questionnaire.html">編輯居住需求</a>
+        <a class="account-menu-item" role="menuitem" href="subscriptions.html">訂閱管理</a>
         <a class="account-menu-item" role="menuitem" href="activity-log.html">操作紀錄</a>
         <div class="account-menu-divider" aria-hidden="true"></div>
         <a class="account-menu-item management" role="menuitem" href="backend/enquiry-hub.html" target="_blank" rel="noopener noreferrer">查調工作台 <span class="account-external-mark" aria-hidden="true">↗</span></a>

@@ -1,0 +1,43 @@
+/* 此頁含導覽、提示、表單及彈窗的文字，最小字級為 16px。 */
+.account-management-page { font-size: 16px; }
+.account-management-page :where(p, a, button, input, select, option, label, span, small, strong, div, li, th, td, dt, dd, caption) { font-size: max(16px, 1em); }
+.account-management-page .badge,
+.account-management-page .btn-sm,
+.account-management-page .form-label,
+.account-management-page .form-control,
+.account-management-page .form-select,
+.account-management-page .breadcrumb,
+.account-management-page .breadcrumb-item,
+.account-management-page .top-helper small,
+.account-management-page .agency-name span,
+.account-management-page .agency-name strong,
+.account-management-page .footer,
+.account-management-page .go-top a,
+.account-management-page .menu a { font-size: 16px !important; }
+#accountTable { width: 100%; }
+#accountTable th, #accountTable td { overflow-wrap: anywhere; font-size: 16px; }
+#accountTable .btn { white-space: normal; }
+.account-badge { background: #e2f0f1; color: #075f70; line-height: 1.5; }
+.account-muted { background: #edf0f2; color: #59636b; }
+.account-tabs { gap: .5rem; border-bottom: 2px solid #d6e5e7; }
+.account-tabs .nav-link { padding: .85rem 1.5rem; color: #52626b; font-size: 18px; font-weight: 600; border: 0; border-bottom: 3px solid transparent; }
+.account-tabs .nav-link.active { color: #075f70; background: #e9f4f4; border-bottom-color: #087f8c; }
+.account-tabs .nav-link:focus-visible { outline: 3px solid #087f8c; outline-offset: 3px; }
+.account-email, .account-email-edit { display: flex; align-items: center; gap: .5rem; }
+.account-email .email-address, .account-email-edit input { min-width: 0; }
+.account-status { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; width: 28px; height: 28px; font-size: 20px; }
+.account-status.is-positive { color: #087763; }
+.account-status.is-negative { color: #9c4b15; }
+@media (min-width: 992px) {
+  #accountTable { table-layout: fixed; }
+  #accountTable th:nth-child(4) { width: 25%; }
+  #accountTable.is-agency th:nth-child(4) { width: 21%; }
+  #accountTable.is-agency th:nth-child(5) { width: 15%; }
+  #accountTable th:last-child { width: 15%; }
+}
+.backend-page .modal .btn-pill-outline-primary { color: #087f8c; border-color: #087f8c; }
+/* 覆蓋共用模板在窄螢幕與輔助文字上的較小字級。 */
+.account-management-page :where(p, a, button, input, select, option, label, span, small, strong, div, li, th, td, dt, dd, caption) { font-size: max(16px, 1em) !important; }
+.account-management-page .logo h2 { font-size: clamp(16px, 2.2vw, 20px); }
+.account-management-page .account-tabs .nav-link { font-size: 18px !important; }
+.account-management-page .account-status { font-size: 20px !important; }

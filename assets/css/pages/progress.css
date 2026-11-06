@@ -1827,7 +1827,7 @@
   display:inline-flex;align-items:center;justify-content:center;min-width:76px;
   padding:6px 10px;border-radius:999px;border:1px solid;font-size:12px;font-weight:900;white-space:nowrap
 }
-.status-review{background:#eef6ff;color:#35699b;border-color:#c9dff4}
+.status-accepted{background:#eef6ff;color:#35699b;border-color:#c9dff4}
 .status-supplement{background:#fff5e8;color:#b66500;border-color:#ffd29a}
 .status-unqualified{background:#fff0f0;color:#bf4747;border-color:#ffcaca}
 .status-qualified{background:#e8faef;color:#14794d;border-color:#b9e9cb}
@@ -1937,7 +1937,7 @@
 }
 .application-table{
   width:100%;
-  min-width:1100px;
+  min-width:820px;
   border-collapse:separate;
   border-spacing:0 8px;
 }
@@ -1984,7 +1984,7 @@
 .case-no{
   color:var(--primary-dark);
   font-family:ui-monospace,SFMono-Regular,Consolas,monospace;
-  font-size:13px;
+  font-size:16px;
   font-weight:900;
   white-space:nowrap;
 }
@@ -2000,7 +2000,7 @@
   font-weight:900;
   white-space:nowrap;
 }
-.status-review{background:#eef6ff;color:#35699b;border-color:#c9dff4}
+.status-accepted{background:#eef6ff;color:#35699b;border-color:#c9dff4}
 .status-supplement{background:#fff5e8;color:#b66500;border-color:#ffd29a}
 .status-qualified{background:#e8faef;color:#14794d;border-color:#b9e9cb}
 .status-draw{background:#f2edff;color:#6a4ba6;border-color:#d7c9fa}
@@ -2095,7 +2095,6 @@
   .application-table tbody tr:hover td:first-child{
     background:linear-gradient(90deg,#e7f7f4,#f7fcfb);
   }
-  .application-table td:nth-child(8),
   .application-table td:last-child{
     grid-column:1/-1;
   }
@@ -2109,13 +2108,11 @@
   }
   .application-table td:first-child::before{content:none}
   .application-table td:nth-child(2)::before{content:"房型"}
-  .application-table td:nth-child(3)::before{content:"案件編號"}
+  .application-table td:nth-child(3)::before{content:"統一案件編碼"}
   .application-table td:nth-child(4)::before{content:"申請時間"}
   .application-table td:nth-child(5)::before{content:"案件狀態"}
-  .application-table td:nth-child(6)::before{content:"補件期限"}
-  .application-table td:nth-child(7)::before{content:"身分別"}
-  .application-table td:nth-child(8)::before{content:"中籤結果"}
-  .application-table td:nth-child(9)::before{content:"操作"}
+  .application-table td:nth-child(6)::before{content:"權責機關"}
+  .application-table td:nth-child(7)::before{content:"操作"}
   .case-no{
     white-space:normal;
     overflow-wrap:anywhere;
@@ -2153,7 +2150,6 @@
     border-radius:13px;
   }
   .application-table td,
-  .application-table td:nth-child(8),
   .application-table td:last-child{
     grid-column:1;
   }
@@ -2162,7 +2158,6 @@
     padding:11px 12px;
   }
   .application-table td,
-  .application-table td:nth-child(8),
   .application-table td:last-child{
     padding:8px 11px;
   }

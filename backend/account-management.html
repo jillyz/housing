@@ -1,0 +1,202 @@
+<!doctype html>
+<html class="no-js" lang="zh-Hant">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>帳號管理｜全國社會住宅資料整合暨共同查調管理平臺</title>
+  <!-- jQuery -->
+  <script src="../後臺模板/assets/vendor/jquery-3.7.1.min.js"></script>
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="../後臺模板/assets/vendor/bootstrap-5.3.3/dist/css/bootstrap.min.css">
+  <script src="../後臺模板/assets/vendor/bootstrap-5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../後臺模板/assets/vendor/fontawesome-pro-6.5.2-web/css/all.css">
+  <!-- Rubik (數字字型) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap">
+  <!-- Tom Select -->
+  <link rel="stylesheet" href="../後臺模板/assets/vendor/tom-select-2.2.2/tom-select.bootstrap5.min.css">
+  <script src="../後臺模板/assets/vendor/tom-select-2.2.2/tom-select.complete.js"></script>
+  <!-- Menu -->
+  <script src="../後臺模板/assets/vendor/utils/menu/menu.js"></script>
+  <!-- 自訂 -->
+  <link rel="stylesheet" href="../後臺模板/assets/css/main.css">
+  <script src="../後臺模板/assets/vendor/utils/photoLightbox/photoLightbox.js"></script>
+  <script src="../後臺模板/assets/js/customJS.js"></script>
+  <link rel="stylesheet" href="assets/css/enquiry-template.css">
+  <link rel="stylesheet" href="assets/css/navigation.css">
+<link rel="stylesheet" href="assets/css/account-management.css">
+</head>
+
+<body class="backend-page account-management-page">
+  <div class="wrapper multi-column | column-with-menu">
+    <!-- Top -->
+    <div class="top">
+      <header class="header">
+        <!-- logo -->
+        <a class="logo" href="home-admin.html" title="回後臺首頁">
+        <div class="img-wrap">
+          <img src="assets/img/nlma-seal.svg" alt="內政部國土管理署署徽" width="250" height="318">
+          <div class="agency-name"><span>內政部</span><strong>國土管理署</strong></div>
+        </div>
+        <h2>全國社會住宅資料整合暨共同查調管理平臺</h2>
+      </a>
+        <!-- 手機版漢堡 -->
+        <div class="d-lg-none">
+          <div class="menu-hamburger-toggle">
+            <a class="btn-icon" data-bs-toggle="collapse" href=".js-nav-collapse">
+              <span class="is-close"><i class="fas fa-bars"></i></span>
+              <span class="is-open"><i class="fas fa-times"></i></span>
+            </a>
+          </div>
+        </div>
+      </header>
+    </div>
+    <!-- Center -->
+    <div class="center">
+      <!-- Left -->
+      <div class="left">
+        <aside class="aside">
+          <!-- 桌機版漢堡 -->
+          <div class="d-none d-lg-block">
+              <div class="menu-hamburger | js-menu-hamburger">
+                <a class="btn btn-icon" title="選單收闔"><i class="fas fa-bars"></i></a>
+              </div>
+            </div>
+          <!-- Nav collapse -->
+          <div class="nav-collapse | collapse js-nav-collapse">
+            <!-- 上方輔助功能 -->
+            <div class="top-helper-wrapper">
+              <div class="top-helper">
+                <div class="warning-bell">
+                  <button><i class="fa-solid fa-bell"></i></button>
+                  <span class="badge">8</span>
+                </div>
+                <div class="dropdown">
+                  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    張ＯＯ <small>(國家住宅及都市更新中心)</small>
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="#">編輯個人資料</a></li>
+                    <li><a class="dropdown-item" href="#">變更密碼</a></li>
+                    <li><a class="dropdown-item" href="#">操作手冊下載</a></li>
+                    <li><a class="dropdown-item" href="#">登出</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <!-- Menu -->
+            <ul id="backendNavigation" class="menu menu-vertical scroll isMenuOpen js-menu-vertical backend-navigation" aria-label="後臺主選單">
+<li>
+<a class="has-children" role="button" tabindex="0" aria-expanded="false"><span class="icon-text">首頁</span><i class="fas fa-chevron-down" aria-hidden="true"></i></a>
+<ul class="sub-menu">
+<li><a href="home-admin.html">資訊儀表板</a></li>
+</ul>
+</li>
+<li>
+<a class="has-children" role="button" tabindex="0" aria-expanded="false"><span class="icon-text">家戶案件追蹤查詢</span><i class="fas fa-chevron-down" aria-hidden="true"></i></a>
+<ul class="sub-menu">
+<li><a href="../admin/home-agency.html#case-workbench">家戶案件追蹤查詢</a></li>
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">結果名冊紀錄</a></li>
+</ul>
+</li>
+<li>
+<a class="has-children" role="button" tabindex="0" aria-expanded="false"><span class="icon-text">資料共同查調</span><i class="fas fa-chevron-down" aria-hidden="true"></i></a>
+<ul class="sub-menu">
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">查調模組 API</a></li>
+<li><a href="enquiry-hub.html">查調工作臺</a></li>
+</ul>
+</li>
+<li>
+<a class="has-children" role="button" tabindex="0" aria-expanded="false"><span class="icon-text">監控中心</span><i class="fas fa-chevron-down" aria-hidden="true"></i></a>
+<ul class="sub-menu">
+<li><a href="home-admin.html#platform-monitor">介接運作總覽</a></li>
+<li>
+<a class="has-children" role="button" tabindex="0" aria-expanded="false"><span class="icon-text">資料交換紀錄</span><i class="fas fa-chevron-down" aria-hidden="true"></i></a>
+<ul class="sub-menu">
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">案件取號紀錄</a></li>
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">狀態回傳紀錄</a></li>
+</ul>
+</li>
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">查調紀錄</a></li>
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">異常紀錄</a></li>
+</ul>
+</li>
+<li>
+<a class="has-children" role="button" tabindex="0" aria-expanded="false"><span class="icon-text">查詢及統計</span><i class="fas fa-chevron-down" aria-hidden="true"></i></a>
+<ul class="sub-menu">
+<li><a href="home-admin.html#case-overview">案件統計報表</a></li>
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">問卷統計分析</a></li>
+</ul>
+</li>
+<li>
+<a class="has-children" role="button" tabindex="0" aria-expanded="false"><span class="icon-text">系統營運管理</span><i class="fas fa-chevron-down" aria-hidden="true"></i></a>
+<ul class="sub-menu">
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">社宅資料管理</a></li>
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">招租時程（API）</a></li>
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">招租公告（API）</a></li>
+<li>
+<a class="has-children" role="button" tabindex="0" aria-expanded="false"><span class="icon-text">帳號權限管理</span><i class="fas fa-chevron-down" aria-hidden="true"></i></a>
+<ul class="sub-menu">
+<li><a class="active" href="account-management.html" aria-current="page">帳號管理</a></li>
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">角色權限管理</a></li>
+</ul>
+</li>
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">通知紀錄查詢</a></li>
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">操作紀錄查詢</a></li>
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">智能客服管理</a></li>
+</ul>
+</li>
+</ul>
+          </div>
+        </aside>
+      </div>
+      <!-- Right -->
+      <div class="right">
+
+        <div class="breadcrumb-wrapper"><div class="breadcrumb-inner"><nav aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">系統營運管理</li><li class="breadcrumb-item">帳號權限管理</li><li class="breadcrumb-item active" aria-current="page">帳號管理</li></ol></nav></div></div>
+        <div class="content">
+          <h4 class="mb-4">帳號管理</h4>
+<div class="account-tabs nav nav-tabs mb-4" role="tablist" aria-label="帳號類型">
+<button class="nav-link active" id="citizenTab" type="button" role="tab" aria-selected="true" aria-controls="accountPanel" data-role="民眾">民眾帳號</button>
+<button class="nav-link" id="agencyTab" type="button" role="tab" aria-selected="false" aria-controls="accountPanel" tabindex="-1" data-role="機關">機關帳號</button>
+</div><div id="accountPanel" role="tabpanel" aria-labelledby="citizenTab" tabindex="0">
+          <div class="collapse-wrap position-relative"><h4 class="collapse-title"><span class="text">查詢條件</span></h4><a href="#accountSearch" class="collapse-btn stretched-link" data-bs-toggle="collapse" aria-expanded="true" aria-controls="accountSearch" aria-label="展開或收合查詢條件"><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></a></div>
+          <div class="collapse show" id="accountSearch"><form class="search" id="accountFilter"><div class="search-top-form"><div class="row g-3"><div class="col-12 col-md-6 col-lg"><label class="form-label" for="accountKeyword">關鍵字</label><input class="form-control" id="accountKeyword" placeholder="姓名、身分證／居留證號、手機、電子信箱"></div><div class="col-md-6 col-lg-3" data-agency-only hidden><label class="form-label" for="filterAgency">機關名稱</label><select class="form-select" id="filterAgency"><option value="">全部機關</option></select></div><div class="col-md-6 col-lg-3" data-agency-only hidden><label class="form-label" for="filterAgencyRole">機關角色</label><select class="form-select" id="filterAgencyRole"><option value="">全部機關角色</option><option>一般機關人員</option><option>查調授權人員</option></select></div><div class="col-md-6 col-lg-3"><label class="form-label" for="filterStatus">帳號狀態</label><select class="form-select" id="filterStatus"><option value="">全部狀態</option><option value="1">啟用</option><option value="0">停用</option></select></div></div></div><div class="search-bottom-buttons"><button class="btn btn-primary" type="submit"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>查詢</button><button class="btn btn-outline-secondary" type="reset">重設</button></div></form></div>
+          <div class="flex-start-end mb-3"><div class="start"><span id="accountCount" role="status" aria-live="polite"></span></div></div>
+          <p data-agency-only hidden>「查調授權人員」具一般機關功能及所屬機關案件的查調資料檢視權限；「一般機關人員」不具查調資料檢視權限。</p>
+          <div id="accountMessage" role="status" aria-live="polite"></div>
+          <table class="table table-list table-rwd table-bordered" id="accountTable"><caption class="visually-hidden">帳號管理清單</caption><thead id="accountHead"><tr><th scope="col" class="text-wrap">真實姓名</th><th scope="col" class="text-wrap">身分證／居留證號</th><th scope="col" class="text-wrap">聯絡手機</th><th scope="col" class="text-wrap">電子信箱</th><th scope="col" class="text-wrap">機關名稱</th><th scope="col" class="text-wrap">機關角色</th><th scope="col" class="text-wrap">帳號狀態</th><th scope="col" class="text-wrap">操作</th></tr></thead><tbody id="accountRows"></tbody></table>
+          <nav aria-label="帳號列表分頁"><ul class="pagination" id="accountPagination"></ul></nav>
+          <noscript>請啟用 JavaScript 以查看帳號資料。</noscript></div>
+        </div>
+      </div>
+    </div>
+    <!-- Bottom -->
+    <div class="bottom">
+      <footer class="footer">
+          <div class="img-wrap"><img src="assets/img/nlma-seal.svg" alt="內政部國土管理署署徽"></div>
+          <div class="text">
+            <div>內政部國土管理署</div>
+            <div>全國社會住宅資料整合暨共同查調管理平臺</div>
+          </div>
+      </footer>
+    </div>
+  </div> 
+  <!-- /.wrapper  -->
+
+  <!-- 回到最上面 -->
+  <div class="go-top | js-go-top">
+      <a href="#" class="" title="回到最上面">TOP</a>
+  </div>
+
+<div class="modal fade" id="accountModal" tabindex="-1" aria-labelledby="accountModalTitle" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg"><div class="modal-content"><div class="modal-header"><h1 class="modal-title" id="accountModalTitle">帳號資料</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="關閉"></button></div><div class="modal-body"><form id="accountEditForm"><div class="row g-3"><div class="col-md-6" id="editNameWrap"><label class="form-label" for="editName">真實姓名</label><input id="editName" class="form-control" type="text" required maxlength="100"></div><div class="col-md-6" id="editIdWrap"><label class="form-label" for="editId">身分證字號／居留證號</label><input id="editId" class="form-control" type="text" required maxlength="20"></div><div class="col-md-6" id="editPhoneWrap"><label class="form-label" for="editPhone">聯絡手機</label><input id="editPhone" class="form-control" type="tel" required maxlength="20"></div><div class="col-md-6" id="editEmailWrap"><label class="form-label" for="editEmail">電子信箱</label><div class="account-email-edit"><span id="editEmailVerification"></span><input id="editEmail" class="form-control" type="email" required maxlength="254"></div><p class="mt-2 mb-0" id="editEmailVerifiedAt"></p></div><div class="col-md-6" id="editRoleWrap"><label class="form-label" for="editRole">角色</label><select id="editRole" class="form-select" required><option>民眾</option><option>機關</option></select></div><div class="col-md-6" id="editAgencyWrap"><label class="form-label" for="editAgency">機關名稱</label><select id="editAgency" class="form-select" required></select></div><div class="col-md-6" id="editAgencyRoleWrap"><label class="form-label" for="editAgencyRole">機關角色</label><select id="editAgencyRole" class="form-select" required><option>一般機關人員</option><option>查調授權人員</option></select></div><div class="col-md-6" id="editStatusWrap"><label class="form-label" for="editStatus">帳號狀態</label><select id="editStatus" class="form-select" required><option>啟用</option><option>停用</option></select></div></div><hr><dl class="row g-3 mb-0" id="accountVerification"></dl><p class="mt-3 mb-0" id="accountPermission"></p><div class="alert alert-info mt-3 mb-0">此頁為操作示範，儲存僅套用於目前頁面，重新整理後恢復範例資料。</div></form></div><div class="modal-footer"><div class="btn-cta-group w-100 p-0"><button type="button" class="btn btn-pill-outline-primary" data-bs-dismiss="modal">關閉</button><button type="submit" form="accountEditForm" class="btn btn-primary" id="accountSave">儲存</button></div></div></div></div></div>
+  <!-- JS -->
+  <script src="assets/js/account-management.js"></script>
+  <script src="assets/js/navigation.js"></script>
+</body>
+
+</html>
