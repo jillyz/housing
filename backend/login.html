@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>憑證登入｜內政部國土管理署 全國社會住宅資料整合暨共同查調管理平臺</title>
+<style>
+* {box-sizing:border-box}
+body {margin:0;min-height:100vh;color:#133e49;font-family:"Microsoft JhengHei",system-ui,sans-serif;background-color:#ecf3f3;background-image:radial-gradient(#97b5b655 .8px,transparent .9px);background-size:18px 18px}
+header {background:#fff;display:flex;align-items:center;justify-content:space-between;padding:15px max(5vw,calc((100vw - 1160px)/2));border-bottom:1px solid #c8dcda;gap:12px}
+.agency {display:flex;align-items:center;gap:13px;font-size:1.14rem;letter-spacing:.055em}
+.agency img {width:33px;height:43px;object-fit:contain}
+header span {border-left:2px solid #49a49d;padding-left:12px;color:#48636a;font-size:.9rem}
+main {display:grid;grid-template-columns:1.22fr 1fr;width:min(1160px,90%);margin:clamp(32px,7vh,90px) auto;border-radius:24px;overflow:hidden;background:white;box-shadow:0 22px 60px #15444b21}
+.brand {position:relative;isolation:isolate;overflow:hidden;min-height:535px;padding:clamp(32px,4.5vw,70px);background:radial-gradient(ellipse at 100% 75%,#298b89,transparent 67%),linear-gradient(145deg,#103d53,#155963 70%)}
+.brand::before {content:"";position:absolute;inset:0;z-index:-1;background-image:linear-gradient(#b2efdf0c 1px,transparent 1px),linear-gradient(90deg,#b2efdf0c 1px,transparent 1px);background-size:34px 34px}
+.brand::after {content:"";position:absolute;bottom:9%;right:-19%;width:63%;aspect-ratio:1;border:1px solid #ace7de38;border-radius:50%;box-shadow:0 0 0 24px #92dec60b,0 0 0 55px #92dec607;z-index:-1}
+h1 {position:relative;margin:0;color:#fff;font-size:clamp(30px,3.25vw,49px);line-height:1.46;letter-spacing:.035em}
+h1::before {content:"";display:block;width:48px;height:4px;background:#76dfc6;margin-bottom:24px}
+.city {display:block;width:100%;height:auto;position:absolute;bottom:0;left:0;color:#91d4c9}
+.login {display:flex;flex-direction:column;justify-content:center;padding:clamp(28px,4.7vw,74px)}
+.icon {width:60px;height:60px;padding:13px;background:#e2f3ee;border:1px solid #b1dcd3;border-radius:17px;color:#17736f}
+h2 {font-size:2rem;letter-spacing:.04em;margin:20px 0 8px}
+.login p {color:#48646c;line-height:1.8;margin:0}
+.login-link {display:flex;justify-content:space-between;align-items:center;margin:24px 0 34px;padding:15px 21px;background:#10656b;color:white;text-decoration:none;font-size:1.03rem;font-weight:bold;border-radius:10px;box-shadow:0 5px 12px #14575e22}
+.login-link span {font-size:1.35rem}
+.login-link:hover {background:#0b5159}
+.login-link:focus-visible {outline:3px solid #177b93;outline-offset:4px}
+aside {border-top:1px solid #ccdcda;padding-top:20px}
+aside h2 {margin:0 0 6px;font-size:.95rem}
+aside p {font-size:.9rem}
+@media(max-width:800px){main{width:94%}.brand,.login{padding:30px}}
+@media(max-width:660px){header{padding:12px 4%}.agency{gap:8px;font-size:1rem}header span{font-size:.78rem}main{grid-template-columns:1fr;margin:18px auto 28px;border-radius:16px}.brand{min-height:0;padding:28px 24px 80px}.city{height:76px}.login{padding:28px 24px}.icon{width:46px;height:46px;padding:9px}h2{font-size:1.6rem;margin-top:14px}.login-link{margin:16px 0 22px}}
+</style>
+</head>
+<body>
+
+<header><div class='agency'><img alt='' width='58' height='58' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMjUwcHgiIGhlaWdodD0iMzE4cHgiIHZpZXdCb3g9IjAgMCAyNTAgMzE4IiB2ZXJzaW9uPSIxLjEiPgo8ZyBpZD0ic3VyZmFjZTEiPgo8cGF0aCBzdHlsZT0iIHN0cm9rZTpub25lO2ZpbGwtcnVsZTpub256ZXJvO2ZpbGw6cmdiKDc0LjkwMTk2MiUsNTYuNDcwNTkxJSwxNi4wNzg0MzIlKTtmaWxsLW9wYWNpdHk6MTsiIGQ9Ik0gMTU1LjEwNTQ2OSAwIEwgMCAwIEwgMCA0Ny43NzM0MzggTCAxNTUuMTA1NDY5IDQ3Ljc3MzQzOCBaIE0gMTU1LjEwNTQ2OSAwICIvPgo8cGF0aCBzdHlsZT0iIHN0cm9rZTpub25lO2ZpbGwtcnVsZTpub256ZXJvO2ZpbGw6cmdiKDc0LjkwMTk2MiUsNTYuNDcwNTkxJSwxNi4wNzg0MzIlKTtmaWxsLW9wYWNpdHk6MTsiIGQ9Ik0gMjUwIDQ3Ljc3MzQzOCBMIDI1MCAwIEwgMjI1LjEyODkwNiAwIEwgMjI1LjEyODkwNiAzMS40MTQwNjIgTCAyMDIuODc4OTA2IDMxLjQxNDA2MiBMIDIwMi44Nzg5MDYgMCBMIDE3NC4wODIwMzEgMCBMIDE3NC4wODIwMzEgNDcuNzczNDM4IFogTSAyNTAgNDcuNzczNDM4ICIvPgo8cGF0aCBzdHlsZT0iIHN0cm9rZTpub25lO2ZpbGwtcnVsZTpub256ZXJvO2ZpbGw6cmdiKDIzLjEzNzI1NSUsNjIuNzQ1MSUsODEuNTY4NjI5JSk7ZmlsbC1vcGFjaXR5OjE7IiBkPSJNIDEyMi4zODI4MTIgMzE4LjA2MjUgTCAyNTAgMzE4LjA2MjUgTCAyNTAgMjgxLjQxNDA2MiBMIDEyMi4zODI4MTIgMjgxLjQxNDA2MiBaIE0gMTIyLjM4MjgxMiAzMTguMDYyNSAiLz4KPHBhdGggc3R5bGU9IiBzdHJva2U6bm9uZTtmaWxsLXJ1bGU6bm9uemVybztmaWxsOnJnYigyMy4xMzcyNTUlLDYyLjc0NTElLDgxLjU2ODYyOSUpO2ZpbGwtb3BhY2l0eToxOyIgZD0iTSAwIDI4MS40MTQwNjIgTCAwIDMxOC4wNjI1IEwgMTAwLjEyODkwNiAzMTguMDYyNSBMIDEwMC4xMjg5MDYgMjgxLjQxNDA2MiBaIE0gMCAyODEuNDE0MDYyICIvPgo8cGF0aCBzdHlsZT0iIHN0cm9rZTpub25lO2ZpbGwtcnVsZTpub256ZXJvO2ZpbGw6cmdiKDAlLDUwLjE5NjA4MSUsMjUuNDkwMTk4JSk7ZmlsbC1vcGFjaXR5OjE7IiBkPSJNIDE3NC4wODIwMzEgMTI1LjY1MjM0NCBMIDIyOS4wNTg1OTQgMTI1LjY1MjM0NCBMIDIyOS4wNTg1OTQgMTQ4LjU1ODU5NCBMIDE3NC4wODIwMzEgMTQ4LjU1ODU5NCBMIDE3NC4wODIwMzEgMjA4Ljc2OTUzMSBMIDI1MCAyMDguNzY5NTMxIEwgMjUwIDY2Ljc1MzkwNiBMIDE3NC4wODIwMzEgNjYuNzUzOTA2IFogTSAxNzQuMDgyMDMxIDEyNS42NTIzNDQgIi8+CjxwYXRoIHN0eWxlPSIgc3Ryb2tlOm5vbmU7ZmlsbC1ydWxlOm5vbnplcm87ZmlsbDpyZ2IoMCUsNTAuMTk2MDgxJSwyNS40OTAxOTglKTtmaWxsLW9wYWNpdHk6MTsiIGQ9Ik0gMTAwLjc4NTE1NiAyMjcuNzQ2MDk0IEwgMCAyMjcuNzQ2MDk0IEwgMCAyNjMuMDg1OTM4IEwgMTAwLjEyODkwNiAyNjMuMDg1OTM4IFogTSAxMDAuNzg1MTU2IDIyNy43NDYwOTQgIi8+CjxwYXRoIHN0eWxlPSIgc3Ryb2tlOm5vbmU7ZmlsbC1ydWxlOm5vbnplcm87ZmlsbDpyZ2IoNzQuOTAxOTYyJSw1Ni40NzA1OTElLDE2LjA3ODQzMiUpO2ZpbGwtb3BhY2l0eToxOyIgZD0iTSA2NC43ODkwNjIgMTMxLjU0Mjk2OSBMIDg5LjY2MDE1NiAxMzEuNTQyOTY5IEwgODkuNjYwMTU2IDE1MC41MjM0MzggTCAxMDYuMDE5NTMxIDE1MC41MjM0MzggTCAxMDYuMDE5NTMxIDExNS4xODM1OTQgTCA2NC43ODkwNjIgMTE1LjE4MzU5NCBaIE0gNjQuNzg5MDYyIDEzMS41NDI5NjkgIi8+CjxwYXRoIHN0eWxlPSIgc3Ryb2tlOm5vbmU7ZmlsbC1ydWxlOm5vbnplcm87ZmlsbDpyZ2IoMCUsNTAuMTk2MDgxJSwyNS40OTAxOTglKTtmaWxsLW9wYWNpdHk6MTsiIGQ9Ik0gMTA2LjAxOTUzMSAxNTAuNTIzNDM4IEwgNjQuNzg5MDYyIDE1MC41MjM0MzggTCA2NC43ODkwNjIgMTE1LjE4MzU5NCBMIDQ4LjQyOTY4OCAxMzEuNTQyOTY5IEwgNDguNDI5Njg4IDE2NS41NzQyMTkgTCA4OS42NjAxNTYgMTY1LjU3NDIxOSBaIE0gMTA2LjAxOTUzMSAxNTAuNTIzNDM4ICIvPgo8cGF0aCBzdHlsZT0iIHN0cm9rZTpub25lO2ZpbGwtcnVsZTpub256ZXJvO2ZpbGw6cmdiKDc0LjkwMTk2MiUsNTYuNDcwNTkxJSwxNi4wNzg0MzIlKTtmaWxsLW9wYWNpdHk6MTsiIGQ9Ik0gMzQuMDMxMjUgMTAwLjc4NTE1NiBMIDEyMS4wNzQyMTkgMTAwLjc4NTE1NiBMIDEyMS4wNzQyMTkgMTU5LjAzMTI1IEwgMTU1LjEwNTQ2OSAxMjYuMzA4NTk0IEwgMTU1LjEwNTQ2OSA2Ni43NTM5MDYgTCAzNC4wMzEyNSA2Ni43NTM5MDYgTCAyNi4xNzk2ODggNzMuOTUzMTI1IEwgMzQuMDMxMjUgNjYuNzUzOTA2IFogTSAzNC4wMzEyNSAxMDAuNzg1MTU2ICIvPgo8cGF0aCBzdHlsZT0iIHN0cm9rZTpub25lO2ZpbGwtcnVsZTpub256ZXJvO2ZpbGw6cmdiKDAlLDUwLjE5NjA4MSUsMjUuNDkwMTk4JSk7ZmlsbC1vcGFjaXR5OjE7IiBkPSJNIDE1NS4xMDU0NjkgMjI2LjQzNzUgTCAxNTUuMTA1NDY5IDE0OC41NTg1OTQgTCAxMjIuMzgyODEyIDE3OS4zMTY0MDYgTCAzNC4wMzEyNSAxNzkuMzE2NDA2IEwgMzQuMDMxMjUgNjYuNzUzOTA2IEwgMjYuMTc5Njg4IDczLjk1MzEyNSBMIDAgMTAwLjEyODkwNiBMIDAgMjA4Ljc2OTUzMSBMIDEyMi4zODI4MTIgMjA4Ljc2OTUzMSBMIDEyMi4zODI4MTIgMjYzLjA4NTkzOCBMIDI1MCAyNjMuMDg1OTM4IEwgMjUwIDIyNi40Mzc1IFogTSAxNTUuMTA1NDY5IDIyNi40Mzc1ICIvPgo8L2c+Cjwvc3ZnPgo='><strong>內政部國土管理署</strong></div><span>後臺管理系統</span></header>
+<main>
+<section class="brand" aria-labelledby="platform"><h1 id="platform">全國社會住宅<br>資料整合暨共同查調<br>管理平臺</h1>
+<svg class="city" aria-hidden="true" viewBox="0 0 540 170" preserveAspectRatio="xMidYMax slice" fill="none" stroke="currentColor" stroke-width="1.4">
+<defs><pattern id="windows" width="17" height="20" patternUnits="userSpaceOnUse"><path d="M3 5h7v8H3z" opacity=".6"/></pattern></defs>
+<path d="M-10 149Q80 62 177 101T351 86T550 66" opacity=".4"/>
+<g fill="#205958"><path d="M-8 170v-61l47-22 38 18v65M77 170V68l59-26 35 17v111M171 170v-48l47-22 29 13v57M278 170V79l55-26 33 15v102M376 170V99l48-22 34 14v79M459 170v-56l43-20 40 17v59"/></g>
+<path fill="url(#windows)" d="M77 170V68l59-26v128zM278 170V79l55-26v117zM376 170V99l48-22v93z"/>
+<path d="M39 87v83m179-70v70m284-76v76M0 152l39-17 38 16m94 5 47-23 29 14"/>
+</svg></section>
+<section class="login" aria-labelledby="login-heading">
+<svg class="icon" aria-hidden="true" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2" y="6" width="28" height="20" rx="3"/><rect x="7" y="12" width="7" height="7" rx="1"/><path d="M18 14h7m-7 5h5"/></svg>
+<h2 id="login-heading">憑證登入</h2>
+<p>請使用憑證驗證身分，以進入後臺管理系統。</p>
+<a class="login-link" href="https://www.cp.gov.tw/portal/portallogin.aspx?ReturnUrl=https://housing.nlma.gov.tw/backend/">使用憑證登入 <span aria-hidden="true">→</span></a><aside><h2>系統公告</h2><p>目前無公告。</p></aside>
+</section>
+</main>
+
+</body>
+</html>
+

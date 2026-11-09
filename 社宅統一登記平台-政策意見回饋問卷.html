@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-Hant"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>社宅政策意見回饋問卷｜全國社宅統一登記申請平臺</title><style>
+:root{--teal:#109d96;--dark:#087f79;--yellow:#f9cc49;--cream:#fff9ed;--light:#e5f5f2;--ink:#252525;--muted:#667477;--line:#dce7e5;--white:#fff;--shadow:0 15px 44px rgba(20,94,87,.085)}
+*{box-sizing:border-box}
+body{margin:0;color:var(--ink);font-family:'Microsoft JhengHei','Noto Sans TC',system-ui,sans-serif;background:linear-gradient(#fff 0 72px,var(--cream) 72px 100%);min-height:100vh}
+button,input{font:inherit}button{cursor:pointer}
+button:focus-visible,input:focus-visible{outline:3px solid #ffc44a;outline-offset:2px}
+header{height:72px;display:flex;justify-content:space-between;align-items:center;padding:0 max(22px,calc((100vw - 1200px)/2));background:#fff;border-bottom:1px solid var(--line)}
+.brand{display:flex;gap:11px;align-items:center;color:var(--dark);font-weight:900}
+.brand-icon{width:38px;height:38px;background:var(--teal);border-radius:12px;color:#fff;display:grid;place-items:center;font-size:23px}
+.brand small{display:block;color:#637979;font-size:16px;font-weight:500;margin-top:1px}
+.topright{font-size:16px;color:var(--muted);display:flex;gap:12px;align-items:center}
+.saveindicator{background:#eff8f5;border:1px solid #d4eae5;padding:7px 12px;border-radius:20px;color:var(--dark)}
+main{max-width:1160px;margin:0 auto;padding:38px 24px 80px}
+.screen{display:none;animation:fade .3s ease}.screen.active{display:block}
+@keyframes fade{from{opacity:.3;transform:translateY(8px)}to{opacity:1;transform:none}}
+.pill{display:inline-flex;align-items:center;gap:6px;border-radius:99px;background:var(--light);color:var(--dark);padding:7px 14px;font-size:16px;font-weight:900}
+.pagehead{text-align:center;margin:4px 0 26px}
+.pagehead h2{font-size:clamp(26px,3vw,36px);margin:6px 0 13px;color:#173d3b}
+.pagehead p{font-size:17px;line-height:1.85;color:var(--muted);margin:0}
+.btn{border:0;border-radius:15px;padding:14px 26px;background:var(--teal);font-weight:800;color:#fff;transition:.18s;display:inline-flex;justify-content:center;align-items:center;gap:9px}
+.btn:hover{filter:brightness(.96);transform:translateY(-1px)}
+.btn-yellow{background:var(--yellow);color:#34332e;border-radius:30px;box-shadow:0 5px 12px #e0b73d40}
+.btn-outline{background:#fff;color:var(--dark);border:1px solid #bddbd5}
+.panel{background:#fff;border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow);padding:30px}
+.nav{display:flex;align-items:center;justify-content:space-between;margin:27px auto 0;gap:12px;max-width:1050px}
+.message{font-size:16px;color:#af563b;min-height:20px;text-align:center;margin-top:14px}
+.muted{color:var(--muted);font-size:13px;line-height:1.75}
+.successmark{border-radius:50%;height:76px;width:76px;display:grid;place-items:center;background:#e0f5ec;color:var(--teal);font-size:44px;margin:0 auto 18px}
+.footer{color:#79918c;text-align:center;font-size:16px;padding:25px}
+
+/* 進度 */
+.progress-shell{margin:0 auto 28px;max-width:930px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:19px 23px;box-shadow:0 5px 15px #17594c0c}
+.survey-name{font-size:16px;font-weight:900;color:var(--dark);display:flex;align-items:center;gap:9px;justify-content:center;margin:0 0 9px}
+.survey-name:before{content:"02";display:grid;place-items:center;background:var(--yellow);color:#594810;border-radius:50%;width:29px;height:29px;font-size:12px}
+.progress-top{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:11px}
+.progress-label{font-size:16px;color:var(--dark);font-weight:900}
+.progress-number{font-size:16px;color:#54726b;font-weight:800}
+.progress-track{height:9px;background:#e6f1ed;border-radius:20px;overflow:hidden}
+.progress-fill{height:100%;background:var(--teal);border-radius:20px;transition:width .3s}
+
+/* 矩陣題 */
+.matrix-wrap{max-width:1050px;margin:auto}
+.matrix{width:100%;border-collapse:collapse}
+.matrix th{font-size:16px;color:#315452;font-weight:900;padding:0 8px 16px;text-align:center;line-height:1.5;border-bottom:1px solid var(--line)}
+.matrix th:first-child{text-align:left;padding-left:4px}
+.matrix td{padding:22px 8px;border-bottom:1px solid #eef3f2;text-align:center;vertical-align:middle}
+.matrix tr:last-child td{border-bottom:0}
+.matrix td:first-child{text-align:left;padding-left:4px;line-height:1.85;font-size:16px;color:#4d6261;width:38%}
+.matrix td:first-child strong{display:block;color:#204d49;font-size:18px;line-height:1.6}
+.matrix .desc{display:block;font-size:16px;line-height:1.7;color:var(--muted);margin-top:2px;text-wrap:balance}
+.matrix th{white-space:nowrap}
+.matrix tbody tr.missing td{background:#fff6f2}
+.matrix tbody tr:hover td{background:#f8fcfa}
+.opt{display:inline-grid;place-items:center;width:44px;height:44px;border-radius:50%;cursor:pointer}
+.opt:hover{background:var(--light)}
+.opt input{appearance:none;-webkit-appearance:none;margin:0;width:22px;height:22px;border:2px solid #b7cfcb;border-radius:50%;background:#fff;cursor:pointer;display:grid;place-items:center;transition:.15s}
+.opt input:checked{border-color:var(--teal);background:var(--teal);box-shadow:inset 0 0 0 4px #fff}
+.opt input:focus-visible{outline:3px solid #ffc44a;outline-offset:3px}
+
+@media(max-width:760px){
+header{padding:0 16px}.brand{font-size:16px}.brand small{font-size:16px}.topright{font-size:16px}.topright .saveindicator{display:none}
+main{padding:23px 16px 48px}.panel{padding:20px 16px}
+.matrix thead{display:none}
+.matrix,.matrix tbody,.matrix tr,.matrix td{display:block;width:100%}
+.matrix tr{padding:16px 0;border-bottom:1px solid var(--line)}
+.matrix td{border:0!important;padding:0;background:none!important}
+.matrix td:first-child{width:100%;margin-bottom:12px}
+.matrix td.cell{display:inline-block;width:20%;vertical-align:top}
+.matrix td.cell:before{content:attr(data-label);display:block;font-size:16px;line-height:1.35;color:var(--muted);font-weight:700;margin-bottom:2px;min-height:44px;text-align:center}
+}
+</style></head><body>
+<header><div class="brand"><div class="brand-icon">⌂</div><div>全國社宅統一登記申請平臺<small>社宅政策意見回饋｜讓社宅政策更貼近您的期待</small></div></div><div class="topright"><span class="saveindicator" id="saveIndicator">● 已自動儲存</span></div></header>
+<main>
+
+<section class="screen active" id="page1">
+<div class="progress-shell"><div class="survey-name">正在填寫：社宅政策意見回饋問卷</div><div class="progress-top"><span class="progress-label">制度了解程度</span><span class="progress-number" id="progressText">已完成 0／6 項 · 0%</span></div><div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="6" aria-valuenow="0" id="progressBar" aria-label="問卷完成進度"><div class="progress-fill" id="progressFill" style="width:0"></div></div></div>
+<div class="pagehead"><span class="pill">第 1 題</span><h2>您對下列社宅制度項目的了解程度為何？</h2><p>請針對每一個制度項目，選擇最符合您目前了解程度的選項（每列單選）。</p></div>
+<div class="panel"><div class="matrix-wrap"><table class="matrix"><thead><tr><th scope="col">制度項目</th></tr></thead><tbody id="matrixBody"></tbody></table></div></div>
+<div class="message" id="err1"></div>
+<div class="nav"><span></span><button class="btn btn-yellow" onclick="submitSurvey()">送出問卷 →</button></div>
+</section>
+
+<section class="screen" id="page2">
+<div class="successmark">✓</div>
+<div class="pagehead"><h2 style="color:var(--dark)">感謝您的回饋</h2><p>您的意見已送出，將作為未來社宅政策與申請制度規劃的參考。</p></div>
+<div class="nav" style="justify-content:center"><button class="btn btn-outline" onclick="go(1)">← 返回修改答案</button></div>
+</section>
+
+</main>
+<div class="footer">全國社宅統一登記申請平臺 · 社宅政策意見回饋問卷｜本頁為前端原型，未連接正式後端服務</div>
+<script>
+const KEY='socialHousingPolicySurveyV1';
+const items=[
+ ['eligibility','申請資格與條件','如所得、財產、戶籍及家庭成員等限制'],
+ ['process','申請流程與應備文件','如申請步驟、資料填寫及證明文件'],
+ ['rent','租金計算與收費方式','如租金分級、租金優惠及相關費用'],
+ ['lottery','抽籤與住宅分配方式','如抽籤規則、選屋順序及分配程序'],
+ ['waitlist','候補與遞補規則','如未獲分配時的候補順位，以及有空缺時的遞補方式'],
+ ['lease','租期與續租規定','如可承租年限、續租條件及相關限制']
+];
+const levels=['非常了解','大致了解','知道一些','聽過但不清楚','完全不了解'];
+let state;try{state=JSON.parse(localStorage.getItem(KEY))||{answers:{},status:'draft'}}catch(e){state={answers:{},status:'draft'}}
+const $=id=>document.getElementById(id);
+function save(){localStorage.setItem(KEY,JSON.stringify(state));$('saveIndicator').textContent='✓ 已自動儲存'}
+function build(){
+ $('matrixBody').closest('table').querySelector('thead tr').innerHTML='<th scope="col">制度項目</th>'+levels.map(l=>`<th scope="col">${l}</th>`).join('');
+ $('matrixBody').innerHTML=items.map(([k,t,d])=>`<tr id="row-${k}" role="radiogroup" aria-label="${t}"><td><strong>${t}</strong><span class="desc">${d}</span></td>${levels.map((l,i)=>`<td class="cell" data-label="${l}"><label class="opt" title="${l}"><input type="radio" name="${k}" value="${i}" aria-label="${t}：${l}" ${state.answers[k]===i?'checked':''} onchange="pick('${k}',${i})"></label></td>`).join('')}</tr>`).join('');
+ progress();
+}
+function pick(k,i){state.answers[k]=i;$('row-'+k).classList.remove('missing');save();progress()}
+function progress(){const n=items.filter(([k])=>state.answers[k]!==undefined).length,p=Math.round(n/items.length*100);$('progressText').textContent=`已完成 ${n}／${items.length} 項 · ${p}%`;$('progressFill').style.width=p+'%';$('progressBar').setAttribute('aria-valuenow',n);if(n===items.length)$('err1').textContent=''}
+function submitSurvey(){
+ const miss=items.filter(([k])=>state.answers[k]===undefined);
+ items.forEach(([k])=>$('row-'+k).classList.toggle('missing',state.answers[k]===undefined));
+ if(miss.length){$('err1').textContent=`尚有 ${miss.length} 個項目未作答，請完成後再送出。`;$('row-'+miss[0][0]).scrollIntoView({behavior:'smooth',block:'center'});return}
+ $('err1').textContent='';state.status='completed';save();go(2)
+}
+function go(n){document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));$('page'+n).classList.add('active');window.scrollTo({top:0,behavior:'instant'})}
+build();
+</script></body></html>

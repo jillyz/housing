@@ -31,13 +31,13 @@
 .unsubscribe-button{border:0;background:transparent;color:#64766f;border-radius:4px;padding:8px 0;font:inherit;font-size:16px;cursor:pointer;text-decoration:underline;text-underline-offset:4px}.unsubscribe-button:hover{color:#9b4739}
 .subscription-footnote{margin:22px 0 0;font-size:16px;color:#798a82;line-height:1.8}
 .subscription-empty{text-align:center;padding:56px 20px;border:1px dashed #cbded6;border-radius:16px;background:#fbfdfc}.subscription-empty>span{font-size:40px;color:#66978b}.subscription-empty h2{font-size:21px;color:#31594b}.subscription-empty p{color:#72877d;line-height:1.8;margin-bottom:24px}
-#cancelSubscriptionDialog{font-size:16px;width:min(460px,calc(100% - 32px));border:1px solid #d6e6df;border-radius:20px;padding:28px;color:#284c40;box-shadow:0 24px 90px #163f3433}
-#cancelSubscriptionDialog::backdrop{background:#163c3466;backdrop-filter:blur(3px)}
-#cancelSubscriptionDialog h2{font-size:22px;margin:12px 0 18px}#cancelSubscriptionDescription{font-weight:700;line-height:1.7}.dialog-note{font-size:16px;line-height:1.8;color:#72847c}
+.subscription-dialog{font-size:16px;width:min(460px,calc(100% - 32px));border:1px solid #d6e6df;border-radius:20px;padding:28px;color:#284c40;box-shadow:0 24px 90px #163f3433}
+.subscription-dialog::backdrop{background:#163c3466;backdrop-filter:blur(3px)}
+.subscription-dialog h2{font-size:22px;margin:12px 0 18px}#cancelSubscriptionDescription{font-weight:700;line-height:1.7}.dialog-note{font-size:16px;line-height:1.8;color:#72847c}
 .dialog-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:26px}.dialog-actions button{border:1px solid #cfded7;border-radius:9px;background:#fff;color:#35594b;padding:10px 14px;cursor:pointer;font:inherit;font-size:16px}.dialog-actions .cancel-confirm{background:#a64d3e;border-color:#a64d3e;color:#fff}
 .subscription-feedback{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:100;display:flex;align-items:center;gap:16px;width:max-content;max-width:calc(100% - 32px);border-radius:12px;background:#224f43;color:#fff;padding:16px 20px;box-shadow:0 6px 30px #163f3433;font-size:16px;line-height:1.6}.subscription-feedback button{font:inherit;border:0;background:#fff;color:#225b49;border-radius:7px;padding:8px 12px;white-space:nowrap;cursor:pointer;font-weight:700}
 .subscription-page [hidden],.subscription-feedback[hidden],.subscription-feedback [hidden]{display:none!important}
-.subscription-page :focus-visible,#cancelSubscriptionDialog :focus-visible,.subscription-feedback :focus-visible{outline:3px solid #159b89;outline-offset:3px}
+.subscription-page :focus-visible,.subscription-dialog :focus-visible,.subscription-feedback :focus-visible{outline:3px solid #159b89;outline-offset:3px}
 @media(max-width:760px){.subscription-page{padding:20px 16px}.subscription-heading{align-items:flex-start}.subscription-heading h1{font-size:26px}.subscription-heading p{font-size:16px}.subscription-browse{padding:10px 12px;gap:10px;font-size:16px}.subscription-feedback{bottom:16px;flex-wrap:wrap;gap:10px}}
 
 .subscription-locations{display:grid;gap:10px}.subscription-location{display:grid;gap:5px}.subscription-location>strong{font-size:16px;font-weight:500;color:#304f47}.subscription-location+.subscription-location{border-top:1px dashed #e0e9e4;padding-top:10px}.subscription-location-note{font-size:16px;color:#758781}
@@ -87,7 +87,7 @@
 
 .subscription-match-button{display:inline-flex;align-items:center;justify-content:center;min-height:38px;padding:8px 14px;border:1px solid #b8cdc3;border-radius:8px;background:#f2f8f5;color:#006f6d;font-size:16px;font-weight:600;line-height:normal;white-space:nowrap;text-decoration:none}
 .subscription-match-button:hover{background:#e3f1eb;border-color:#7fae99}
-.query-table th:nth-child(1){width:30%}.query-table th:nth-child(2){width:21%}.query-table th:nth-child(3){width:15%}.query-table th:nth-child(4){width:12%}.query-table th:nth-child(5),.query-table th:nth-child(6){width:11%}
+.query-table th:nth-child(1){width:22%}.query-table th:nth-child(2){width:13%}.query-table th:nth-child(3){width:19%}.query-table th:nth-child(4){width:12%}.query-table th:nth-child(5){width:12%}.query-table th:nth-child(6),.query-table th:nth-child(7){width:11%}
 .housing-table th:nth-child(1){width:30%}.housing-table th:nth-child(2){width:36%}.housing-table th:nth-child(3){width:12%}.housing-table th:nth-child(4),.housing-table th:nth-child(5){width:11%}
 @media(min-width:901px) and (max-width:1150px){.subscription-table .unsubscribe-button,.subscription-match-button{padding:8px}}
 @media(max-width:900px){.subscription-table td[data-label="媒合推薦"]{grid-column:1;align-self:end}.subscription-table td[data-label="操作"]{grid-column:2;align-self:end}}
@@ -109,3 +109,16 @@
 
 .subscription-table .subscription-match-button{width:44px;min-width:44px;max-width:44px;height:44px;padding:0}
 .subscription-match-button svg{display:block;flex-shrink:0}
+
+.subscription-table .update-conditions,
+#updateSubscriptionDialog .subscription-match-button {
+  background: #006f6d;
+  border-color: #006f6d;
+  color: #fff;
+}
+.subscription-table .update-conditions:hover,
+#updateSubscriptionDialog .subscription-match-button:hover {
+  background: #005653;
+  border-color: #005653;
+  color: #fff;
+}

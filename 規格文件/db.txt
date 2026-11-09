@@ -1,0 +1,400 @@
+Project social_housing {
+  database_type: 'PostgreSQL'
+}
+
+Table housing_class [note: '社宅類別表'] {
+  id uuid [pk, default: `gen_random_uuid()`, note: '主鍵']
+  group_code varchar(30) [not null, note: '群組代碼,例如 HOUSING_STATUS、ROOM_TYPE']
+  group_name varchar(30) [not null, note: '群組名稱,例如 執行狀態、房型']
+  item_code varchar(30) [not null, note: '類別代碼,例如 EXISTING、2R']
+  item_name varchar(50) [not null, note: '顯示名稱,例如 既有、二房型']
+  sort_order integer [not null, default: 0, note: '排序']
+  is_enabled boolean [not null, default: true, note: '是否啟用,停用不刪除']
+
+  indexes {
+    (group_code, item_code) [unique, name: 'uq_housing_class_group_item']
+  }
+}
+
+Table living_area [note: '生活圈'] {
+  id uuid [pk, default: `gen_random_uuid()`, note: '主鍵']
+  name varchar(20) [not null, unique, note: '生活圈名稱,例如 基北北桃生活圈']
+  sort_order integer [not null, default: 0, note: '排序']
+  is_enabled boolean [not null, default: true, note: '是否啟用,停用不刪除']
+}
+
+Table county [note: '縣市'] {
+  id uuid [pk, default: `gen_random_uuid()`, note: '主鍵']
+  county_code varchar(5) [not null, unique, note: '縣市代碼,5 碼,例如 63000、10002']
+  name varchar(20) [not null, unique, note: '縣市名稱,例如 臺北市']
+  geom geometry(MultiPolygon, 4326) [note: '縣市邊界,SRID 4326,由獨立匯入步驟寫入,GiST 索引見 03_region.sql']
+  sort_order integer [not null, default: 0, note: '排序']
+  is_enabled boolean [not null, default: true, note: '是否啟用,停用不刪除']
+}
+
+Table district [note: '行政區'] {
+  id uuid [pk, default: `gen_random_uuid()`, note: '主鍵']
+  county_code varchar(5) [not null, note: '所屬縣市代碼,對應 county.county_code;縣市代碼更動時隨之更新']
+  district_code varchar(7) [not null, unique, note: '行政區代碼,7 碼,例如 6300100、1000201;六都不以縣市代碼為前綴,縣市以 county_code 為準']
+  name varchar(20) [not null, note: '行政區名稱,同縣市內唯一,跨縣市會重複(例如中正區)']
+  geom geometry(MultiPolygon, 4326) [note: '行政區邊界,SRID 4326,由獨立匯入步驟寫入,GiST 索引見 03_region.sql']
+  sort_order integer [not null, default: 0, note: '排序,縣市內的畫面順序']
+  is_enabled boolean [not null, default: true, note: '是否啟用,停用不刪除']
+
+  indexes {
+    (county_code, name) [unique, name: 'uq_district_county_name']
+  }
+}
+
+Table living_area_county [note: '生活圈與縣市,多對多'] {
+  living_area_id uuid [not null, note: '生活圈']
+  county_id uuid [not null, note: '縣市']
+  sort_order integer [not null, default: 0, note: '縣市在生活圈內的排序']
+
+  indexes {
+    (living_area_id, county_id) [pk, name: 'pk_living_area_county']
+    county_id [name: 'ix_living_area_county_county_id']
+  }
+}
+
+Table housing [note: '社宅主檔,一列一間社宅,資料由廠商 API 推送更新'] {
+  id uuid [pk, default: `gen_random_uuid()`, note: '主鍵']
+  project_code varchar(20) [not null, note: '興辦計畫編號,例如 A010001-2;僅供紀錄,不作為識別或唯一鍵']
+  no_build varchar(50) [not null, note: '社宅大樓代碼;不同機關可能重複,與 agency_id 組成廠商推送的 upsert 鍵']
+  name varchar(100) [not null, note: '興辦計畫名稱']
+  housing_status_id uuid [not null, note: '執行狀態,限 HOUSING_STATUS 群組,群組由匯入與服務驗證']
+  agency_id uuid [not null, note: '興辦主體,限 AGENCY 群組,群組由匯入與服務驗證']
+  county_id uuid [not null, note: '縣市']
+  district_id uuid [note: '行政區,來源資料有空值;需屬於 county_id,由匯入與服務驗證']
+  address varchar(200) [note: '坐落地址,不含縣市與行政區,興建中的案件常為空']
+  geom geometry(Point, 4326) [note: '社宅點位,SRID 4326,來源為管考系統匯出的經緯度(WGS84),無點位者為空值,GiST 索引見 05_housing.sql']
+  description text [note: '特色說明']
+  website_url varchar(500) [note: '相關網頁']
+  image_url varchar(500) [note: '社宅相片網址,同前台找社宅之第一張營運相片;來源為預設佔位圖或無相片者為空值']
+  is_enabled boolean [not null, default: true, note: '是否啟用,停用不刪除']
+  created_at timestamptz [not null, default: `now()`, note: '建立時間']
+  updated_at timestamptz [not null, default: `now()`, note: '更新時間,業務內容變更才更新,由 trigger 維護,見 05_housing.sql']
+  synced_at timestamptz [note: '最後一次廠商同步時間,內容未變也更新;未經廠商同步者為空']
+
+  indexes {
+    (agency_id, no_build) [unique, name: 'uq_housing_agency_no_build']
+    county_id [name: 'ix_housing_county_id']
+    district_id [name: 'ix_housing_district_id']
+    housing_status_id [name: 'ix_housing_housing_status_id']
+  }
+}
+
+Table housing_room_type [note: '社宅房型,一間社宅有多個房型,各房型的坪數與租金範圍;有房型資料才建列。CHECK 與 trigger 見 06_housing_room_type.sql'] {
+  housing_id uuid [not null, note: '社宅']
+  room_type_id uuid [not null, note: '房型,限 ROOM_TYPE 群組,群組由匯入與服務驗證']
+  area_ping_min numeric(6,2) [note: '坪數(起),單位坪']
+  area_ping_max numeric(6,2) [note: '坪數(迄),單位坪;CHECK 0 <= 起 <= 迄']
+  rent_min integer [note: '一般戶租金(起),元/月;來源有 1 的值(平宅),原值保存,意義待管考單位確認']
+  rent_max integer [note: '一般戶租金(迄),元/月;CHECK 0 <= 起 <= 迄']
+
+  indexes {
+    (housing_id, room_type_id) [pk, name: 'pk_housing_room_type']
+    room_type_id [name: 'ix_housing_room_type_room_type_id']
+  }
+}
+
+Table housing_facility [note: '社宅附屬設施,多對多;有設施才建列,無設施與未填不區分。trigger 見 07_housing_facility.sql'] {
+  housing_id uuid [not null, note: '社宅']
+  facility_item_id uuid [not null, note: '設施項目,限 FACILITY_ITEM 群組,群組由匯入與服務驗證']
+
+  indexes {
+    (housing_id, facility_item_id) [pk, name: 'pk_housing_facility']
+    facility_item_id [name: 'ix_housing_facility_facility_item_id']
+  }
+}
+
+Table rental_schedule [note: '招租時程,補充各社宅房型開放申請的時間,不修改社宅主檔;聚合根,資料由廠商 API 推送。CHECK 與 trigger 見 08_rental_schedule.sql'] {
+  id uuid [pk, default: `gen_random_uuid()`, note: '主鍵']
+  agency_id uuid [not null, note: '招租機關,限 AGENCY 群組;由 API 驗證的呼叫者身分帶入,不接受 request body 傳入;清單內社宅的 agency_id 須與此相同(聯合招租不跨機關),由服務驗證']
+  schedule_code varchar(50) [note: '招租案代碼,廠商自訂,選填;有值時與 agency_id 組成 upsert 鍵(同機關內不可重複),重送即覆蓋並取代子表;空值表示廠商未提供,每次推送新增一筆;空字串視為未提供,服務一律轉為空值']
+  rental_form_id uuid [not null, note: '招租型態(單一、虛擬、聯合),限 RENTAL_FORM 群組,群組由匯入與服務驗證;單一社宅時清單須剛好一間,由服務驗證']
+  rental_type_id uuid [not null, note: '招租期別(新招租、隨到隨辦),限 RENTAL_TYPE 群組,群組由匯入與服務驗證']
+  apply_start_at timestamptz [not null, note: '申請開始時間']
+  apply_end_at timestamptz [not null, note: '申請結束時間,起迄兩端都含;CHECK 迄 >= 起']
+  is_enabled boolean [not null, default: true, note: '是否啟用,取消招租以停用表示,不刪除']
+  created_at timestamptz [not null, default: `now()`, note: '建立時間']
+  updated_at timestamptz [not null, default: `now()`, note: '更新時間,本表或子表業務內容變更才更新,由 trigger 維護,見 08_rental_schedule.sql']
+  synced_at timestamptz [note: '最後一次廠商同步時間,內容未變也更新']
+  push_id bigint [note: '最後一次寫入這筆時程的推送,對應 api_push_log.id(見 13_api_push_log.sql);不建外鍵;未經廠商推送者為空']
+
+  indexes {
+    agency_id [name: 'ix_rental_schedule_agency_id']
+    (apply_start_at, apply_end_at) [name: 'ix_rental_schedule_apply_period']
+    (agency_id, schedule_code) [unique, name: 'uq_rental_schedule_agency_schedule_code', note: '部分唯一索引,只收 schedule_code is not null 的列;沒送代碼的推送每次新增一筆,不受限']
+  }
+}
+
+Table rental_schedule_housing_room_type [note: '招租時程涵蓋的社宅與各社宅開放的房型;每間社宅至少一筆,由服務驗證。trigger 見 08_rental_schedule.sql'] {
+  schedule_id uuid [not null, note: '招租時程']
+  housing_id uuid [not null, note: '社宅,須屬於招租時程的機關,由服務驗證']
+  room_type_id uuid [not null, note: '本次開放的房型,限 ROOM_TYPE 群組,群組由匯入與服務驗證;須是該社宅 housing_room_type 已有的房型,由服務驗證,不建外鍵以免擋住社宅房型的同步']
+
+  indexes {
+    (schedule_id, housing_id, room_type_id) [pk, name: 'pk_rental_schedule_housing_room_type']
+    housing_id [name: 'ix_rental_schedule_housing_room_type_housing_id']
+  }
+}
+
+Table announcement [note: '公告(最新消息),招租資訊與系統公告,點擊後開啟外部網址;單表,資料由廠商 API 推送。trigger 見 10_announcement.sql'] {
+  id uuid [pk, default: `gen_random_uuid()`, note: '主鍵']
+  announcement_type_id uuid [not null, note: '公告類型(招租資訊、系統公告),限 ANNOUNCEMENT_TYPE 群組,群組由匯入與服務驗證']
+  title varchar(200) [not null, note: '公告標題']
+  external_url varchar(2048) [not null, note: '點擊公告後開啟的外部網址,http/https 格式由服務驗證']
+  agency_id uuid [not null, note: '發布機關,限 AGENCY 群組,群組由匯入與服務驗證;由 API 驗證的呼叫者身分帶入,不接受 request body 傳入']
+  announcement_date date [not null, note: '公告發布日期']
+  is_enabled boolean [not null, default: true, note: '是否啟用,隱藏以停用表示,不刪除']
+  created_at timestamptz [not null, default: `now()`, note: '建立時間']
+  updated_at timestamptz [not null, default: `now()`, note: '更新時間,業務內容變更才更新,由 trigger 維護,見 10_announcement.sql']
+  synced_at timestamptz [note: '最後一次廠商同步時間,內容未變也更新']
+
+  indexes {
+    (announcement_date, created_at) [name: 'ix_announcement_date_created']
+    agency_id [name: 'ix_announcement_agency_id']
+  }
+}
+
+Table api_session [note: '介接機關 API session,一次登入一列,有效 15 分鐘不延長。機關、金鑰、IP 白名單由設定檔 AgencyApi.Clients 管理,沒有對應的資料表。CHECK 見 12_api_auth.sql'] {
+  id uuid [pk, default: `gen_random_uuid()`, note: '主鍵']
+  agency_id varchar(20) [not null, note: '所屬機關代碼,對應設定檔 AgencyApi.Clients 的 AgencyId(即 housing_class 中 AGENCY 群組的 item_code,例如 CH、LF);不建外鍵']
+  key_id varchar(16) [not null, note: '發出此 session 的金鑰 KeyId(設定檔 Keys 的 KeyId,不是金鑰原文);不建外鍵']
+  token_hash char(64) [not null, unique, note: 'session token 的 SHA-256 十六進位值(64 字元);token 為 256 位元隨機值,原文只在登入回應中出現一次']
+  issued_ip inet [not null, note: '發出 session 的來源 IP;啟用 IP 驗證(AgencyApi.Session.EnforceIp)時,session 綁定此 IP,其他 IP 使用一律拒絕']
+  issued_at timestamptz [not null, default: `now()`, note: '發出時間']
+  expires_at timestamptz [not null, note: '到期時間,發出時間加 15 分鐘,不延長;CHECK 到期 > 發出']
+  revoked_at timestamptz [note: '撤銷時間(logout、revoke-all),有值即失效;機關或金鑰在設定檔停用時不寫入此欄,改在每次呼叫時檢查設定檔']
+
+  indexes {
+    (agency_id, expires_at) [name: 'ix_api_session_agency_active', note: '部分索引,只收 revoked_at is null 的列,用於計算有效 session 數']
+    key_id [name: 'ix_api_session_key_id']
+    expires_at [name: 'ix_api_session_expires_at']
+  }
+}
+
+Table api_auth_log [note: '介接機關 API 驗證紀錄,登入、登出、revoke-all 的每次嘗試(含失敗)都記錄;只增不改;一般 API 呼叫不寫入'] {
+  id bigint [pk, increment, note: '主鍵,流水號(generated always as identity)']
+  occurred_at timestamptz [not null, default: `now()`, note: '發生時間']
+  event_type varchar(20) [not null, note: '事件類型:LOGIN 登入、LOGOUT 登出、REVOKE_ALL 撤銷全部 session;值由服務維護,不設 CHECK']
+  result varchar(30) [not null, note: '結果:SUCCESS、INVALID_KEY、KEY_REVOKED、KEY_EXPIRED、CLIENT_DISABLED、IP_NOT_ALLOWED、SESSION_LIMIT_EXCEEDED、LOCKED;值由服務維護,不設 CHECK']
+  agency_id varchar(20) [note: '對應的機關代碼;金鑰格式錯誤或 KeyId 不存在而無法判斷機關時為空(此類請求不會被鎖定)']
+  key_id varchar(16) [note: '呼叫端送來的金鑰 KeyId(金鑰前段的 8 碼十六進位),供追查;金鑰原文與 Secret 不得寫入']
+  source_ip inet [not null, note: '連線端 IP(Connection.RemoteIpAddress);經 Traefik / Gateway 轉發時可能是代理的 IP,真實來源見 forwarded_for']
+  forwarded_for varchar(200) [note: '原始 X-Forwarded-For 標頭(截斷至 200 字),供釐清代理後的真實來源 IP 與日後設定 AllowedIps']
+
+  indexes {
+    (agency_id, occurred_at) [name: 'ix_api_auth_log_agency_id_occurred_at', note: '連續失敗鎖定用(以機關計算)']
+    (source_ip, occurred_at) [name: 'ix_api_auth_log_source_ip_occurred_at', note: '啟用 IP 限制後的稽核用']
+    occurred_at [name: 'ix_api_auth_log_occurred_at', note: 'BRIN 索引,依時間範圍查詢用,見 12_api_auth.sql']
+  }
+}
+
+Table api_push_log [note: '介接機關推送紀錄,社宅、招租時程、公告三支推送 API 共用;每次寫入類呼叫記一列(含被拒絕的),保存請求內容供稽核與重跑;只增不改。見 13_api_push_log.sql'] {
+  id bigint [pk, increment, note: '主鍵,流水號(generated always as identity)']
+  received_at timestamptz [not null, default: `now()`, note: '收到請求的時間']
+  agency_id varchar(20) [not null, note: '呼叫的機關代碼,取自 session(即 housing_class 中 AGENCY 群組的 item_code,例如 CH、LF);不建外鍵,與 api_session.agency_id 同格式']
+  key_id varchar(16) [not null, note: '呼叫時所用金鑰的 KeyId,取自 session(不是金鑰原文);不建外鍵']
+  endpoint varchar(50) [not null, note: 'API 名稱,命名為「資源_動作」;目前使用 ANNOUNCEMENT_CREATE、ANNOUNCEMENT_UPDATE、ANNOUNCEMENT_CANCEL,社宅、招租時程推送上線時比照命名;值由服務維護,不設 CHECK']
+  source_ip inet [not null, note: '呼叫的來源 IP']
+  payload jsonb [note: '請求內容(jsonb);公告為請求 JSON 本身(取消只有 id);JSON 本身格式錯誤或欄位型別不符的請求在進入服務前就被擋下,不會留下紀錄']
+  result varchar(20) [not null, note: '處理結果:ACCEPTED 接受;REJECTED 拒絕(格式錯誤、資料不存在或不屬於該機關);FAILED 失敗(我方或下游服務錯誤);值由服務維護,不設 CHECK']
+  error_detail text [note: 'REJECTED、FAILED 的原因;服務端截斷至 1000 字;ACCEPTED 時為空']
+  target_id uuid [note: '這次推送影響的單筆資料 id(例如 rental_schedule.id、announcement.id),用於查某筆資料的推送歷史;不建外鍵,因指向的表不固定;公告新增成功為新建的 id,更新、取消為請求帶入的 id(被拒絕時也保留);新增被拒絕、請求未帶 id、或一次影響多筆時為空']
+
+  indexes {
+    (agency_id, received_at) [name: 'ix_api_push_log_agency_id_received_at']
+    target_id [name: 'ix_api_push_log_target_id', note: '部分索引,只收 target_id is not null 的列']
+    received_at [name: 'ix_api_push_log_received_at', note: 'BRIN 索引,依時間範圍查詢用,見 13_api_push_log.sql']
+  }
+}
+
+Table housing_search_log [note: '社宅查詢紀錄(許願池),前台找社宅每按一次查詢記一列,保存查詢條件與結果筆數;不需登入即可查詢,多數為匿名;只增不改;所有欄位都不建外鍵。CHECK 見 14_housing_search_log.sql'] {
+  id bigint [pk, increment, note: '主鍵,流水號(generated always as identity)']
+  searched_at timestamptz [not null, default: `now()`, note: '按下查詢的時間']
+  member_id uuid [note: '已登入會員的 id(member_profile.id);未登入為空;不建外鍵;不存身分證字號']
+  is_login boolean [note: '是否已登入,由 member_id 是否有值自動產生(generated always as (member_id is not null) stored),不需寫入']
+  session_id varchar(100) [note: '前台 session 識別,用於區分同一個訪客的多次查詢;服務取不到時為空']
+  housing_name varchar(100) [note: '查詢條件的社宅名稱關鍵字;使用者沒輸入時由服務轉成空值']
+  county_code varchar(5) [note: '查詢條件的縣市,county.county_code;與 living_area_id 擇一,兩者都為空代表全臺灣;不建外鍵']
+  living_area_id uuid [note: '查詢條件的生活圈,living_area.id;與 county_code 擇一;不建外鍵']
+  district_codes "text[]" [not null, default: '{}', note: '查詢條件的行政區,district.district_code,可複選;空陣列代表未選;不建外鍵']
+  housing_status_codes "text[]" [not null, default: '{}', note: '查詢條件的社宅狀態,可複選:IN_CONSTRUCTION 興建中、COMPLETED 已完工、RENTING 招租中(依 rental_schedule 判斷);查詢分類,不是 housing_class 的 HOUSING_STATUS 項目;值由服務維護,不設 CHECK']
+  room_type_codes "text[]" [not null, default: '{}', note: '查詢條件的房型,housing_class 中 ROOM_TYPE 群組的 item_code,可複選;不建外鍵']
+  facility_codes "text[]" [not null, default: '{}', note: '查詢條件的附屬設施,housing_class 中 FACILITY_ITEM 群組的 item_code,可複選;不建外鍵']
+  life_function_codes "text[]" [not null, default: '{}', note: '查詢條件的生活機能,housing_class 中 LIFE_FUNCTION 群組的 item_code,可複選;不建外鍵']
+  rent_min integer [not null, note: '查詢條件的租金下限(元);沒調整時為畫面預設值 0']
+  rent_max integer [not null, note: '查詢條件的租金上限(元);沒調整時為畫面預設值 40000']
+  result_count integer [not null, note: '這次查詢查到的社宅筆數;0 代表沒有符合的社宅(需求落空)']
+  has_result boolean [note: '是否有查到社宅,由 result_count 是否大於 0 自動產生(generated always as (result_count > 0) stored),不需寫入']
+
+  indexes {
+    searched_at [name: 'ix_housing_search_log_searched_at', note: 'BRIN 索引,依時間範圍統計用,見 14_housing_search_log.sql']
+  }
+}
+
+Table housing_demand_survey [note: '居住需求登記問卷(A5.1 問卷 1),一份問卷一列;暫存(DRAFT)與送出(SUBMITTED)同列,以 status 區分;送出後修改會新增一列,保留歷史;長期保存;所有欄位都不建外鍵。CHECK 與 trigger 見 15_housing_demand_survey.sql'] {
+  id uuid [pk, default: `gen_random_uuid()`, note: '主鍵']
+  member_id uuid [note: '已登入會員的 id(member_profile.id),用於跨裝置續填;訪客為空,所以不建外鍵;member_id 與 session_id 至少要有一個']
+  session_id varchar(100) [note: '前台 session 識別,訪客以它找回自己的草稿;會員登入後也可同時記錄']
+  status varchar(20) [not null, default: 'DRAFT', note: '狀態:DRAFT 暫存中、SUBMITTED 已送出;值由服務維護,不設 CHECK;每位會員、每個訪客 session 同時最多一筆 DRAFT']
+  current_step smallint [note: '暫存時進行到第幾頁,續填時回到該頁;從 1 起算(暫定:1 區位、2 房型、3 預算、4 附屬設施)']
+  county_code varchar(5) [note: '區位的縣市,county.county_code;與 living_area_id 擇一;選全臺灣或生活圈時為空;不建外鍵']
+  living_area_id uuid [note: '區位的生活圈,living_area.id;與 county_code 擇一;不建外鍵']
+  district_codes "text[]" [note: '區位的行政區,district.district_code,可複選;county_code 為空(全臺灣或生活圈)時可跨縣市;勾選縣市「全區」時展開成該縣市所有行政區代碼(跨縣市時各縣市各自展開),不另存「全區」旗標;NULL 代表尚未作答(只出現在 DRAFT),空陣列代表已作答但沒選任何行政區(例如全臺灣)']
+  room_type_codes "text[]" [note: '房型,housing_class 中 ROOM_TYPE 群組的 item_code,可複選;NULL 代表尚未作答,空陣列代表已作答但沒選']
+  rent_min integer [note: '預算範圍下限(元);NULL 代表尚未作答;畫面預設 0']
+  rent_max integer [note: '預算範圍上限(元);NULL 代表尚未作答;畫面預設 40000']
+  facility_codes "text[]" [note: '附屬設施,housing_class 中 FACILITY_ITEM 群組的 item_code,可複選;NULL 代表尚未作答,空陣列代表已作答但沒選']
+  created_at timestamptz [not null, default: `now()`, note: '建立時間(第一次暫存或複製出新草稿的時間)']
+  updated_at timestamptz [not null, default: `now()`, note: '最後更新時間,答案或狀態有變才更新,由 trigger 維護']
+  submitted_at timestamptz [note: '送出時間;DRAFT 為空,改成 SUBMITTED 時寫入']
+
+  indexes {
+    member_id [unique, name: 'uq_housing_demand_survey_member_draft', note: '部分索引,只收 status = DRAFT 的列;每位會員最多一筆草稿']
+    session_id [unique, name: 'uq_housing_demand_survey_session_draft', note: '部分索引,只收 status = DRAFT 且 member_id 為空的列;每個訪客 session 最多一筆草稿']
+    (member_id, submitted_at) [name: 'ix_housing_demand_survey_member_id_submitted_at', note: '部分索引,只收 member_id 不為空的列;查會員最新一份已送出的問卷']
+  }
+}
+
+Table member_profile [note: '前台會員主檔,一位會員一列;無帳號密碼,以身分證字號為唯一身分;登記完成時才新增;停用不刪除;查詢紀錄、問卷的 member_id 存這張表的 id,不建外鍵。trigger 見 11_member.sql'] {
+  id uuid [pk, default: `gen_random_uuid()`, note: '主鍵']
+  id_no_hash char(64) [not null, unique, note: '身分證字號的帶金鑰雜湊(HMAC-SHA256 十六進位值,64 字元),供登入查找與機關介接比對;金鑰由應用程式保管']
+  id_no_encrypted bytea [not null, note: '身分證字號的密文(應用程式加密,可還原);金鑰由應用程式保管']
+  id_no_key_version smallint [not null, default: 1, note: '加密與雜湊所用的金鑰版本,金鑰輪替時使用']
+  member_name varchar(100) [not null, note: '真實姓名']
+  mobile_phone varchar(20) [not null, note: '聯絡手機']
+  email varchar(254) [not null, note: '電子信箱,需通過信箱驗證碼驗證']
+  email_verified_at timestamptz [note: '信箱通過驗證的時間;尚未驗證為空']
+  is_email_verified boolean [note: '信箱是否已驗證,由 email_verified_at 自動產生,不需寫入']
+  first_auth_type varchar(30) [not null, note: '首次認證方式,housing_class 中 AUTH_TYPE 群組的 item_code(NATURAL_PERSON_CERT、MOBILE_NATURAL_PERSON_CERT、NHI_CARD);不建外鍵']
+  first_auth_at timestamptz [not null, note: '首次認證時間']
+  is_enabled boolean [not null, default: true, note: '是否啟用;停用的會員不能登入,資料保留']
+  created_at timestamptz [not null, default: `now()`, note: '建立時間']
+  updated_at timestamptz [not null, default: `now()`, note: '最後更新時間,內容有變才更新,由 trigger 維護']
+}
+
+Table member_email_verification [note: '登記時的信箱驗證碼,一次發送一列,以 token 對應驗證碼;5 分鐘後失效;此時會員主檔還不存在,所以不存 member_id。見 11_member.sql'] {
+  token uuid [pk, default: `gen_random_uuid()`, note: '主鍵,也是回給瀏覽器的憑據']
+  email varchar(254) [not null, note: '驗證碼寄送的電子信箱']
+  code_hash char(64) [not null, note: '6 位數驗證碼的帶金鑰雜湊(HMAC-SHA256 十六進位值,64 字元),原文不存']
+  created_at timestamptz [not null, default: `now()`, note: '發送時間']
+  expires_at timestamptz [not null, default: `now() + interval '5 minutes'`, note: '失效時間,預設發送後 5 分鐘;CHECK 失效 > 發送']
+  attempt_count smallint [not null, default: 0, note: '驗證碼輸入錯誤的次數']
+  verified_at timestamptz [note: '驗證通過的時間;有值代表已使用']
+
+  indexes {
+    (email, created_at) [name: 'ix_member_email_verification_email_created_at', note: '以信箱查最近一次發送時間(60 秒內不得重發)']
+  }
+}
+
+Table member_consent [note: '會員登記時的同意與切結紀錄,勾選一項記一列,有一列就代表同意;勾選在身分驗證前,先以 session_id 記錄,登記完成後補上 member_id;不存條款全文與版本;所有欄位都不建外鍵。CHECK 見 11_member.sql'] {
+  id bigint [pk, increment, note: '主鍵,流水號']
+  member_id uuid [note: '會員 id(member_profile.id);勾選時尚未登記為空,登記完成後補上;不建外鍵']
+  session_id varchar(100) [note: '勾選當下的前台 session 識別,登記完成時用它找回這些列並補上 member_id']
+  consent_item_code varchar(30) [not null, note: '勾選的項目,housing_class 中 CONSENT_ITEM 群組的 item_code;不建外鍵']
+  consented_at timestamptz [not null, default: `now()`, note: '勾選當下的時間']
+
+  indexes {
+    (session_id, consent_item_code) [unique, name: 'uq_member_consent_session_item', note: '部分索引,只收 member_id 為空的列;登記前重複送出同一項不會重複寫入']
+    (member_id, consent_item_code, consented_at) [name: 'ix_member_consent_member_id_item_consented_at', note: '部分索引,只收 member_id 不為空的列;查會員某項最新的同意時間']
+  }
+}
+
+Table member_login_log [note: '前台會員登入與登出紀錄,每次登入嘗試(含失敗)與每次登出記一列;只增不改;所有欄位都不建外鍵。見 16_member_activity_log.sql'] {
+  id bigint [pk, increment, note: '主鍵,流水號']
+  occurred_at timestamptz [not null, default: `now()`, note: '發生時間']
+  event_type varchar(20) [not null, note: '事件類型:LOGIN 登入、LOGOUT 登出;值由服務維護,不設 CHECK 以便日後新增']
+  result varchar(30) [not null, note: '結果:SUCCESS 成功、NEED_REGISTER 認證通過但尚未登記、MEMBER_DISABLED 會員已停用、AUTH_FAILED 認證未通過;登出固定為 SUCCESS;值由服務維護,不設 CHECK 以便日後新增']
+  member_id uuid [note: '會員 id(member_profile.id);認證未通過、尚未登記時為空;不建外鍵']
+  session_id varchar(100) [note: '事件發生時的前台 session 識別;登入成功為換新後的 session,其餘為當時使用的 session;服務取不到時為空']
+  prior_session_id varchar(100) [note: '登入成功且 session 換新時,換新前的訪客 session,用來接回登入前的瀏覽;其餘為空']
+  auth_type varchar(30) [note: '使用者選用的認證方式,housing_class 中 AUTH_TYPE 群組的 item_code;登出為空;不建外鍵']
+  source_ip inet [not null, note: '連線端 IP;經代理轉發時可能是代理的 IP,真實來源見 forwarded_for']
+  forwarded_for varchar(200) [note: '原始 X-Forwarded-For 標頭(截斷至 200 字)']
+  user_agent varchar(500) [note: '瀏覽器與裝置資訊(截斷至 500 字)']
+
+  indexes {
+    (member_id, occurred_at) [name: 'ix_member_login_log_member_id_occurred_at', note: '部分索引,只收 member_id 不為空的列;查某位會員的登入歷程']
+    occurred_at [name: 'ix_member_login_log_occurred_at', note: 'BRIN 索引,依時間範圍查詢用,見 16_member_activity_log.sql']
+  }
+}
+
+Table member_page_view_log [note: '前台瀏覽頁面紀錄,每進入一個頁面記一列,含未登入的訪客;只增不改;所有欄位都不建外鍵。CHECK 見 16_member_activity_log.sql'] {
+  id bigint [pk, increment, note: '主鍵,流水號']
+  viewed_at timestamptz [not null, default: `now()`, note: '進入頁面的時間']
+  member_id uuid [note: '已登入會員的 id(member_profile.id);訪客為空;不建外鍵']
+  session_id varchar(100) [note: '前台 session 識別,區分同一個訪客的多次瀏覽;登入前的 session 由 member_login_log.prior_session_id 接回會員']
+  page_code varchar(50) [not null, note: '頁面代碼;值由服務維護,不設 CHECK 以便日後新增']
+  target_id uuid [note: '瀏覽的內容 id(例如 housing.id、announcement.id);沒有對象的頁面為空;不建外鍵,因指向的表不固定']
+
+  indexes {
+    (member_id, viewed_at) [name: 'ix_member_page_view_log_member_id_viewed_at', note: '部分索引,只收 member_id 不為空的列;查某位會員的瀏覽軌跡']
+    (session_id, viewed_at) [name: 'ix_member_page_view_log_session_id_viewed_at', note: '部分索引,只收 session_id 不為空的列;查某個 session 的瀏覽軌跡']
+    viewed_at [name: 'ix_member_page_view_log_viewed_at', note: 'BRIN 索引,依時間範圍查詢用,見 16_member_activity_log.sql']
+  }
+}
+
+TableGroup 基礎資料 [color: #8b5cf6] {
+  housing_class
+  county
+  district
+  living_area
+  living_area_county
+}
+
+TableGroup 社宅資料 [color: #2563eb] {
+  housing
+  housing_room_type
+  housing_facility
+}
+
+TableGroup 招租資料 [color: #f59e0b] {
+  rental_schedule
+  rental_schedule_housing_room_type
+}
+
+TableGroup 公告資料 [color: #ec4899] {
+  announcement
+}
+
+TableGroup API驗證與安全 [color: #ef4444] {
+  api_session
+  api_auth_log
+  api_push_log
+}
+
+TableGroup 需求與查詢紀錄 [color: #10b981] {
+  housing_search_log
+  housing_demand_survey
+}
+
+TableGroup 會員資料 [color: #06b6d4] {
+  member_profile
+  member_email_verification
+  member_consent
+  member_login_log
+  member_page_view_log
+}
+
+Ref: district.county_code > county.county_code
+Ref: living_area_county.living_area_id > living_area.id
+Ref: living_area_county.county_id > county.id
+Ref: housing.housing_status_id > housing_class.id
+Ref: housing.agency_id > housing_class.id
+Ref: housing.county_id > county.id
+Ref: housing.district_id > district.id
+Ref: housing_room_type.housing_id > housing.id
+Ref: housing_room_type.room_type_id > housing_class.id
+Ref: housing_facility.housing_id > housing.id
+Ref: housing_facility.facility_item_id > housing_class.id
+Ref: rental_schedule.agency_id > housing_class.id
+Ref: rental_schedule.rental_form_id > housing_class.id
+Ref: rental_schedule.rental_type_id > housing_class.id
+Ref: rental_schedule_housing_room_type.schedule_id > rental_schedule.id
+Ref: rental_schedule_housing_room_type.housing_id > housing.id
+Ref: rental_schedule_housing_room_type.room_type_id > housing_class.id
+Ref: announcement.announcement_type_id > housing_class.id
+Ref: announcement.agency_id > housing_class.id
