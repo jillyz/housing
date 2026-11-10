@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="zh-Hant"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>編輯居住需求｜社會住宅統一登記平台</title>
+<style>
+:root{--bg:#fffaf0;--teal:#258b7c;--teal-2:#17998c;--dark:#176c62;--mint:#e7f5ef;--ink:#30433f;--muted:#7d8c86;--line:#dce9e2;--yellow:#f4c94a;--yellow-d:#d9ac2c}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif;color:var(--ink);line-height:1.6;min-height:100vh;display:flex;flex-direction:column}
+a{color:inherit}
+button,input,select{font:inherit}
+:focus-visible{outline:3px solid #8bc9b3;outline-offset:2px}
+[hidden]{display:none!important}
+
+/* 頁首 */
+header{background:#fff;border-bottom:1px solid #e7eee9}
+.utility{height:29px;background:#e4f3ee;display:flex;align-items:center;justify-content:flex-end;padding:0 max(20px,calc((100% - 1180px)/2));gap:23px;font-size:11px;color:#46675f}
+.utility a{text-decoration:none}
+.mainnav{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:10px max(20px,calc((100% - 1180px)/2))}
+.brand{display:flex;align-items:center;gap:12px;flex-shrink:0;color:#303b38;text-decoration:none}
+.logo{width:auto;height:48px;flex-shrink:0;display:block;object-fit:contain}
+.agency{font-size:15px;font-weight:700;color:#5d6b66;white-space:nowrap}
+.divider{width:2px;height:22px;background:#c9d6cf;flex-shrink:0}
+.platform{font-size:17px;font-weight:900;color:#303b38;white-space:nowrap}
+.navlinks{display:flex;align-items:center;gap:22px;white-space:nowrap;flex-shrink:0}
+.navlinks > a{color:#35433f;text-decoration:none;font-size:14px;font-weight:700;padding:25px 0 21px;border-bottom:3px solid transparent}
+.navlinks > a:hover{color:var(--dark);border-bottom-color:#8bc9b3}
+.user-menu{position:relative;flex-shrink:0}
+.user-trigger{display:flex;align-items:center;gap:6px;background:none;border:0;border-bottom:3px solid transparent;padding:25px 0 21px;font:inherit;font-size:14px;font-weight:700;color:var(--dark);cursor:pointer;white-space:nowrap}
+.user-trigger[aria-expanded="true"]{border-bottom-color:var(--teal)}
+.user-icon{flex-shrink:0;color:var(--teal)}
+.user-caret{color:var(--teal);margin-left:2px}
+.user-dropdown{position:absolute;right:0;top:100%;margin-top:6px;min-width:150px;padding:8px 0;background:#fff;border:1px solid #e3ebe6;border-radius:10px;box-shadow:0 10px 26px rgba(49,93,78,.16);z-index:60;display:flex;flex-direction:column}
+.user-dropdown a{display:block;padding:9px 18px;font-size:13px;font-weight:700;color:#35433f;text-decoration:none;white-space:nowrap}
+.user-dropdown a:hover{background:#f1f8f4;color:var(--dark)}
+.user-dropdown a.current{color:var(--teal);font-weight:900}
+.user-dropdown a.signout{color:#5d6b66}
+.user-dropdown[hidden]{display:none}
+
+/* 共用：Hero、分區面板 */
+.hero{background:#fff;border-bottom:1px solid #eef3ef}
+.hero-inner{max-width:1040px;margin:0 auto;padding:30px 20px 34px}
+.hero-grid{display:flex;align-items:center;justify-content:space-between;gap:32px}
+.hero h1{font-size:40px;font-weight:900;color:#2f3d39;margin:0 0 14px;line-height:1.3}
+.hero .intro{font-size:15px;color:#5f716a;margin:0;max-width:460px;line-height:1.8}
+.hero-art{width:340px;max-width:44%;flex-shrink:0;background:linear-gradient(145deg,#f1f8f4,#fdf8e6);border-radius:24px;padding:14px;border:1px solid #eef3ef}
+.hero-art svg{width:100%;height:auto;display:block}
+.band{background:var(--bg);padding:44px 20px 72px;flex:1}
+.band-inner{max-width:1040px;margin:0 auto;display:flex;flex-direction:column;gap:22px}
+.panel{background:#fff;border:1px solid #e5ece6;border-radius:22px;padding:26px 28px;box-shadow:0 8px 22px #315d4e0f}
+.panel-head{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:8px}
+.panel-title{display:flex;align-items:center;gap:12px;margin:0;font-size:21px;font-weight:900;color:#2f3d39;line-height:1.35}
+.num{width:40px;height:40px;border-radius:11px;display:grid;place-items:center;font-size:18px;font-weight:900;color:#fff;background:var(--teal);box-shadow:0 2px 0 #176e63;flex-shrink:0}
+.hint{font-size:13px;color:var(--muted);margin:0 0 16px}
+.badge-open{background:#e4f3eb;color:#216e61;border:1px solid #c9e5d7;border-radius:999px;padding:5px 14px;font-size:12px;font-weight:900;white-space:nowrap}
+.badge-closed{background:#eef1ef;color:#6b7973;border:1px solid #d9e0dc;border-radius:999px;padding:5px 14px;font-size:12px;font-weight:900;white-space:nowrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:46px;padding:0 26px;border:0;border-radius:12px;font-weight:900;font-size:15px;cursor:pointer;white-space:nowrap;transition:background .15s,transform .1s,box-shadow .1s}
+.btn:active{transform:translateY(2px)}
+.btn:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:none}
+.btn-primary,.save{background:var(--teal);color:#fff;box-shadow:0 4px 0 #176e63}
+.btn-primary:hover,.save:hover{background:var(--dark)}
+.cancel{background:#eff3ef;color:#53645d}
+.btn-secondary{background:#fff;color:var(--dark);border:1.5px solid var(--teal)}
+.btn-secondary:hover{background:var(--mint)}
+.btn-sm{height:36px;padding:0 18px;font-size:14px;border-radius:999px}
+.toast{display:none;position:fixed;top:80px;left:50%;transform:translateX(-50%);background:var(--dark);color:#fff;padding:11px 18px;border-radius:12px;z-index:1100}
+footer{background:#f4f8f5;border-top:1px solid #e3ebe6;padding:22px 20px;font-size:12px;color:#66756f;margin-top:auto}
+.foot-inner{max-width:1040px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.foot-inner a{color:#54736a;text-decoration:none;margin-left:16px}
+
+/* ===== 編輯居住需求 ===== */
+.group-note{font-size:13px;color:var(--muted);margin:0 0 16px}
+.card{background:#fff;border:1px solid #e5ece6;border-radius:20px;margin-bottom:14px;box-shadow:0 7px 20px #315d4e0a;overflow:hidden}
+.card:last-of-type{margin-bottom:0}
+.section-row{display:flex;align-items:center;gap:16px;padding:20px 24px}
+.accordion-number{width:42px;height:42px;flex:0 0 42px;border:1.5px solid #78b9a3;border-radius:12px;display:grid;place-items:center;color:#237f70;font-weight:800;font-size:18px;background:#f0f8f3}
+.accordion-heading{flex:1;min-width:0}
+.accordion-title{display:block;color:#245f55;font-size:20px;font-weight:800}
+.accordion-summary{display:block;margin-top:5px;color:#71827b;font-size:14px;line-height:1.5;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.edit-btn{flex:0 0 auto;border:1.5px solid #258b7c;background:#fff;color:#176c62;border-radius:999px;padding:9px 22px;font-weight:900;font-size:14px;cursor:pointer;box-shadow:0 3px 0 #c9e3d8}
+.edit-btn:hover{background:#e7f5ef}
+.edit-btn:disabled{border-color:#cfd7d3;color:#9aa8a2;background:#f4f6f5;box-shadow:none;cursor:not-allowed}
+.section-content[hidden]{display:none!important}
+.form-block{padding:22px 24px 26px;border-top:1px solid #edf2ee}
+.cardhead{display:flex;gap:13px;align-items:flex-start;margin-bottom:12px}
+.qtitle{font-size:19px;font-weight:900;margin:4px 0 0;line-height:1.35}
+.field{margin:10px 0}
+.field label,.rent-field label{display:block;font-size:14px;font-weight:800;margin-bottom:6px;color:#405c51}
+
+/* 區位 */
+.area-hero{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:8px 8px 22px}
+.area-hero-copy{flex:1;min-width:0}
+.area-main-title{font-size:25px;line-height:1.35;margin:0 0 8px;color:#304c44;font-weight:900}
+.area-main-desc{font-size:14px;color:#74877e;margin:0;max-width:560px}
+.area-illustration{width:290px;max-width:38%;height:145px;display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg,#f7f3df,#eef7ef);border-radius:22px;overflow:hidden}
+.area-illustration svg{width:100%;height:100%}
+.area-select-wrap{padding:20px;background:#fbfefc;border-top:1px solid #edf2ee}
+.area-select-grid select{height:54px;width:100%;font-size:15px;padding:10px 16px;border:1.5px solid #d4e4da;border-radius:11px;font-weight:700;color:#36554a;background:#fff}
+.area-select-grid select:focus{outline:3px solid #d8eee4;border-color:var(--teal)}
+.district-panel{background:#fff;border:1px solid #e0ebe4;border-radius:14px;padding:18px;margin-top:14px}
+.district-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+.district-panel h3{font-size:16px;margin:0 0 3px;color:#304c44}
+.area-help{font-size:13px;color:#7d8c86;margin:0}
+.count-badge{white-space:nowrap;background:#e4f3eb;color:#216e61;border:1px solid #c9e5d7;border-radius:999px;padding:5px 11px;font-size:12px;font-weight:900}
+.county-tabs{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 15px;padding-bottom:13px;border-bottom:1px solid #edf2ee}
+.county-tab{border:1px solid #d8e7df;background:#fff;color:#536b60;border-radius:10px;padding:9px 13px;font-size:13px;font-weight:800;cursor:pointer}
+.county-tab span{display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:20px;margin-left:5px;padding:0 5px;border-radius:99px;background:#f0f4f1;color:#75877e;font-size:11px}
+.county-tab.active{background:#e2f3ea;border-color:#258b7c;color:#176c62;box-shadow:inset 0 0 0 1px #258b7c}
+.county-tab.active span{background:#258b7c;color:#fff}
+.district-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.district-option{display:flex;align-items:center;gap:8px;border:1px solid #dce8e1;border-radius:11px;padding:12px 13px;background:#fff;color:#50665d;font-size:14px;cursor:pointer}
+.district-option:has(input:checked){background:#e4f4ec;border-color:#258b7c;color:#176c62;font-weight:800}
+.district-option input{accent-color:var(--teal);width:17px;height:17px;margin:0}
+.district-option.all-district{grid-column:1/-1;background:#f8fbf8;font-weight:800}
+.empty-tip{grid-column:1/-1;color:#93a39a;font-size:13px;padding:12px 4px}
+.selected{background:#f5faf6;border:1px solid #dcebe1;border-radius:15px;padding:14px 16px;margin-top:16px;font-size:13px}
+.selected b{display:block;color:#38584d;margin-bottom:5px}
+.tag{display:inline-flex;gap:6px;background:#e1f3eb;color:#216e61;border-radius:8px;padding:5px 8px;margin:5px 5px 0 0;font-weight:700}
+.tag button{border:0;background:none;color:inherit;cursor:pointer}
+
+/* 房型 / 租金 / 設施 */
+.page-head{text-align:center;margin:0 0 22px}
+.page-question{font-size:24px;font-weight:900;color:#176c62;margin:0 0 8px;line-height:1.4}
+.page-desc{font-size:14px;color:#74877e;margin:0;line-height:1.7}
+.sel-mark{position:absolute;top:8px;right:8px;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;background:#f1f4f2;color:#9aa8a2;font-style:normal;font-size:14px;font-weight:900;line-height:1}
+.sel-mark .mk-check{display:none;color:#fff;font-size:12px}
+.on .sel-mark{background:#258b7c}
+.on .sel-mark .mk-plus{display:none}
+.on .sel-mark .mk-check{display:block}
+.choices{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.choice{position:relative;display:flex;flex-direction:column;align-items:center;gap:4px;padding:30px 10px 18px;border:1.5px solid #dce9e2;border-radius:18px;background:#fff;color:var(--ink);font:inherit;cursor:pointer;transition:background .15s,border-color .15s}
+.choice:hover{border-color:#9fd0bf}
+.choice.on{background:#e4f4ec;border-color:#258b7c}
+.choice .plan{width:100%;display:flex;justify-content:center;margin-bottom:8px}
+.choice .plan svg{width:120px;height:auto;display:block}
+.choice strong{font-size:17px;font-weight:900;color:#245f55}
+.choice small{font-size:12px;color:var(--muted);line-height:1.5}
+.rent-illus{display:flex;justify-content:center;background:linear-gradient(145deg,#fdf8e6,#eef7ef);border-radius:20px;padding:14px;margin-bottom:22px}
+.rent-illus svg{width:min(340px,100%);height:auto;display:block}
+.rent-inputs{display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:end}
+.money{position:relative}
+.money em{position:absolute;left:11px;top:14px;color:var(--muted);font-style:normal}
+.money input{width:100%;height:52px;padding:0 12px 0 30px;border:1px solid var(--line);border-radius:11px;font-size:18px;font-weight:800;color:#245f55;background:#fff}
+.rent-sep{font-size:22px;font-weight:900;color:var(--teal);padding-bottom:12px}
+.dual-range{position:relative;height:40px;margin:26px 6px 0}
+.dual-track{position:absolute;left:0;right:0;top:17px;height:6px;border-radius:6px;background:#e3ece6}
+.dual-fill{position:absolute;top:17px;height:6px;border-radius:6px;background:#258b7c}
+.dual-range input[type=range]{position:absolute;left:0;top:9px;width:100%;height:22px;margin:0;background:transparent;-webkit-appearance:none;appearance:none;pointer-events:none}
+.dual-range input[type=range]::-webkit-slider-runnable-track{background:transparent;height:22px}
+.dual-range input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;pointer-events:auto;width:22px;height:22px;border-radius:50%;background:#fff;border:3px solid #258b7c;cursor:pointer;box-shadow:0 2px 6px #258b7c33}
+.dual-range input[type=range]::-moz-range-track{background:transparent}
+.dual-range input[type=range]::-moz-range-thumb{pointer-events:auto;width:16px;height:16px;border-radius:50%;background:#fff;border:3px solid #258b7c;cursor:pointer}
+.dual-scale{display:flex;justify-content:space-between;margin:10px 6px 0;font-size:12px;color:var(--muted)}
+.note{background:#fff9e4;color:#78672f;border:1px solid #f0e5b8;border-radius:11px;padding:9px 12px;margin-top:20px;font-size:12px}
+.fac-topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:0 0 14px}
+.fac-tip{margin:0;font-size:13px;color:#6f8179}
+.fac-count{font-size:14px;font-weight:800;color:#176c62;background:#e4f4ec;border-radius:999px;padding:6px 14px}
+.fac-count b{font-size:16px}
+.facilities{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.facility{position:relative;margin:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;min-height:112px;padding:16px 10px;border:1.5px solid #dce9e2;border-radius:16px;background:#fff;color:#405c51;font-size:14px;font-weight:800;cursor:pointer;text-align:center}
+.facility:hover{border-color:#9fd0bf}
+.facility:focus-within{outline:3px solid #8bc9b3;outline-offset:2px}
+.facility input{position:absolute;opacity:0;width:1px;height:1px;margin:0;pointer-events:none}
+.facility.on{background:#e4f4ec;border-color:#258b7c;color:#176c62}
+.fac-icon{width:44px;height:44px;border-radius:50%;background:#f4f8f5;display:grid;place-items:center;font-size:22px;line-height:1}
+.facility.on .fac-icon{background:#fff}
+.fac-name{line-height:1.4}
+.page-actions{display:flex;justify-content:flex-end;gap:12px;margin-top:18px}
+
+/* 收合列摘要（區位、附屬設施）：標籤式顯示，完整呈現不截斷 */
+.accordion-summary.multi{white-space:normal;overflow:visible;text-overflow:clip;line-height:1.6}
+.sum-group{display:block}
+.sum-group + .sum-group{margin-top:8px}
+.sum-county{display:block;font-size:14px;font-weight:900;color:#245f55;margin-bottom:4px}
+.sum-tags{display:flex;flex-wrap:wrap;gap:6px}
+.sum-tag{display:inline-block;background:#e1f3eb;color:#216e61;border:1px solid #c5e4d5;border-radius:999px;padding:3px 11px;font-size:13px;font-weight:700;line-height:1.5}
+
+/* 區位需求摘要：縣市＋行政區文字的精簡列表 */
+.sum-row{display:flex;align-items:baseline;gap:12px;font-size:14px;line-height:1.6}
+.sum-row + .sum-row{margin-top:10px}
+.sum-county{flex:0 0 72px;width:72px;display:inline-block;font-size:14px;font-weight:900;color:#176c62;margin:0;padding-left:9px;border-left:3px solid #258b7c;line-height:1.5}
+.sum-dist{flex:1;min-width:0;color:#2f3d39;font-weight:500;overflow-wrap:anywhere}
+
+/* 區位需求摘要：縣市分組區塊＋行政區標籤 */
+.area-block{display:block;background:#f3faf7;border-radius:12px;padding:9px 13px;margin-top:8px}
+.area-block:first-child{margin-top:0}
+.area-cty{display:block;font-size:14px;font-weight:900;color:#176c62;margin-bottom:6px;line-height:1.5}
+.area-chips{display:flex;flex-wrap:wrap;gap:6px;flex:1 1 0;min-width:0}
+.area-chip{display:inline-block;background:#fff;border:1px solid #cfe6db;color:#2f5f55;border-radius:7px;padding:2px 9px;font-size:12.5px;font-weight:700;line-height:1.6}
+.area-all{display:inline-block;font-size:14px;font-weight:900;color:#176c62}
+
+/* 四大需求卡片統一排列：數字與名稱同列，摘要在標題下方，編輯按鈕固定右側 */
+.accordion-heading{flex:1;min-width:0;display:block}
+.sec-title{display:flex;align-items:center;gap:14px;min-width:0}
+.accordion-title{display:inline-block;margin:0;font-size:20px;font-weight:800;color:#245f55;line-height:1.4}
+.accordion-heading > .accordion-summary{display:block;margin:8px 0 0 56px;font-size:14px;color:#71827b;line-height:1.6;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.accordion-heading > .accordion-summary.multi{white-space:normal;overflow:visible;text-overflow:clip}
+/* 區位摘要：每個縣市為淺灰綠色分組區塊，行政區為白底小標籤 */
+.area-block{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;background:#f4f8f6;border-radius:12px;padding:10px 14px;margin-top:10px}
+.area-block:first-child{margin-top:0}
+.area-cty{flex:0 0 auto;white-space:nowrap;font-size:14px;font-weight:800;color:#176c62;line-height:1.5}
+.area-chip{background:#fff;border:1px solid #d3e7dd;color:#2f5f55;border-radius:7px;padding:3px 10px;font-size:13px;font-weight:700;line-height:1.5}
+.area-chips{display:flex;flex-wrap:wrap;gap:6px;flex:1 1 0;min-width:0}
+@media (max-width:640px){
+  .sec-title{gap:11px}
+  .accordion-heading > .accordion-summary{margin-left:47px}
+  .accordion-title{font-size:18px}
+}
+
+/* 已暫存標記 */
+.dirty-tag{display:inline-block;margin-left:10px;font-size:12px;font-weight:800;color:#8a5e0c;background:#fff4d6;border:1px solid #f0dc96;border-radius:999px;padding:1px 10px;line-height:1.6;vertical-align:middle}
+.dirty-tag[hidden]{display:none}
+
+/* 編輯按鈕位於卡片右上角，與標題列同一水平線 */
+.section-row{align-items:flex-start}
+.section-row > .edit-btn{margin-top:3px}
+
+/* 編輯彈窗 */
+.modal-overlay{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;padding:20px;background:rgba(33,58,50,.45)}
+.modal-dialog{width:min(820px,100%);max-height:calc(100vh - 40px);display:flex;flex-direction:column;background:var(--bg);border-radius:22px;overflow:hidden;box-shadow:0 24px 60px rgba(20,50,40,.3)}
+.modal-dialog:focus{outline:none}
+.modal-head{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 24px;background:#fff;border-bottom:1px solid #e7eee9}
+.modal-head h2{margin:0;font-size:21px;color:#245f55}
+.modal-close{flex:0 0 36px;width:36px;height:36px;border:0;border-radius:50%;background:#eff5f1;color:#44605a;font-size:22px;line-height:1;cursor:pointer}
+.modal-close:hover{background:#dfeee6}
+.modal-body{flex:1;min-height:0;overflow-y:auto;padding:22px 24px}
+.modal-body .cardhead{display:none}
+.modal-body .card{margin:0;box-shadow:none}
+.modal-foot{display:flex;justify-content:flex-end;gap:10px;padding:14px 24px;background:#fff;border-top:1px solid #e7eee9}
+body.modal-open{overflow:hidden}
+
+/* 政策區塊（尚未開放，配色參照設計稿） */
+.policy-card{background:#fff;border:1.5px solid #dfe9e3;border-radius:22px;padding:22px 26px 28px;display:flex;flex-direction:column;align-items:center;text-align:center;box-shadow:0 8px 22px #315d4e0a}
+.policy-top{width:100%;display:flex;justify-content:space-between;align-items:center}
+.policy-num{width:40px;height:40px;border-radius:11px;display:grid;place-items:center;font-size:18px;font-weight:900;color:#5c4a12;background:#f4c94a;box-shadow:0 2px 0 #d9ac2c}
+.policy-pill{background:#fff4d6;color:#9a6f12;border:1px solid #f0dc96;border-radius:999px;padding:5px 16px;font-size:13px;font-weight:900;white-space:nowrap}
+.policy-art{width:100%;max-width:340px;margin:18px 0 8px}
+.policy-art svg{width:100%;height:auto;display:block}
+.policy-title{font-size:20px;font-weight:900;color:#2f5f55;margin:6px 0 8px}
+.policy-desc{font-size:14px;color:#7d8c86;margin:0 0 18px;line-height:1.7}
+.policy-btn{border:0;border-radius:999px;padding:10px 28px;background:#e6ebe8;color:#8a9590;font-weight:900;font-size:14px;cursor:not-allowed}
+.locked-card{padding:26px 24px;background:#fbfbfa;border:1.5px dashed #cfd7d3;border-radius:20px}
+.locked-card p{margin:0;font-size:14px;color:#7d8c86;line-height:1.7}
+
+/* ===== 操作歷程 ===== */
+.panel-filter{margin-bottom:22px}
+.filter-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr auto auto;gap:16px;align-items:end}
+#view-history .field label{display:block;font-size:14px;font-weight:800;color:#4a6159;margin-bottom:7px}
+#view-history .field select,#view-history .field input[type="date"]{width:100%;height:46px;border:1.5px solid #d5e2db;border-radius:12px;padding:0 12px;background:#fff;color:var(--ink)}
+#view-history .field select:focus,#view-history .field input:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(37,139,124,.15);outline:none}
+.form-error{color:#b3412f;font-size:13px;margin:12px 0 0;font-weight:700}
+.form-error:empty{display:none}
+.filter-actions{display:flex;gap:12px;align-items:flex-end;margin:0 0 10px}
+.filter-actions .btn{height:46px;margin:0}
+.filter-actions .btn-primary{box-shadow:none}
+.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:16px}
+.table-wrap[hidden]{display:none}
+table{width:100%;border-collapse:collapse;min-width:680px}
+thead th{background:#f3faf7;color:#4a6159;font-weight:900;font-size:13px;text-align:left;padding:14px 18px;border-bottom:1px solid var(--line);white-space:nowrap}
+tbody td{padding:16px 18px;border-bottom:1px solid #eef3ef;vertical-align:middle;font-size:14px}
+tbody tr:last-child td{border-bottom:0}
+tbody tr{cursor:pointer;transition:background .12s}
+tbody tr:hover{background:#f7fbf9}
+tbody tr:focus-visible{outline:3px solid #8bc9b3;outline-offset:-3px}
+.col-time{white-space:nowrap;width:180px}
+.time-date{font-weight:800;color:#2f3d39}
+.time-clock{color:var(--muted);font-size:13px}
+.op-name{font-weight:900;color:#2f3d39}
+.op-content{color:#526b61}
+.chev{color:var(--teal);font-size:18px;font-weight:900;text-align:right;width:40px}
+.empty{text-align:center;padding:52px 20px;border:2px dashed #cfe6dc;border-radius:16px;background:#fbfdfb}
+.empty[hidden]{display:none}
+.empty-icon{width:68px;height:68px;margin:0 auto 14px;border-radius:50%;background:var(--mint);display:grid;place-items:center;font-size:30px}
+.empty h3{margin:0 0 6px;font-size:18px;font-weight:900;color:#2f3d39}
+.empty p{margin:0 0 18px;color:var(--muted)}
+.pager{display:flex;justify-content:center;align-items:center;gap:6px;margin-top:22px;flex-wrap:wrap}
+.pager button{min-width:40px;height:40px;padding:0 12px;border-radius:12px;border:1px solid #d5e2db;background:#fff;color:var(--ink);cursor:pointer;font-weight:700}
+.pager button:hover:not(:disabled){border-color:var(--teal);color:var(--dark)}
+.pager button[aria-current="page"]{background:var(--teal);border-color:var(--teal);color:#fff;box-shadow:0 2px 0 #176e63}
+.pager button:disabled{opacity:.4;cursor:not-allowed}
+.foot-note{margin:18px 0 0;font-size:12px;color:#66756f;text-align:center}
+.hm-overlay{position:fixed;inset:0;background:rgba(48,67,63,.45);display:none;align-items:center;justify-content:center;padding:20px;z-index:100}
+.hm-overlay.open{display:flex}
+.hm{background:#fff;border-radius:22px;width:100%;max-width:580px;max-height:calc(100vh - 40px);overflow-y:auto;box-shadow:0 20px 50px rgba(30,60,50,.25)}
+.hm-head{display:flex;justify-content:space-between;align-items:center;padding:22px 26px;border-bottom:1px solid var(--line)}
+.hm-head h2{margin:0;font-size:20px;font-weight:900;color:#2f3d39}
+.hm-close{width:36px;height:36px;border-radius:50%;border:0;background:#eef4f0;font-size:20px;cursor:pointer;color:#4a6159}
+.hm-close:hover{background:var(--line)}
+.hm-body{padding:6px 26px 8px}
+.detail-list{margin:0}
+.detail-row{display:grid;grid-template-columns:150px 1fr;gap:12px;padding:14px 0;border-bottom:1px solid #eef3ef}
+.detail-row:last-child{border-bottom:0}
+.detail-row dt{color:var(--muted);font-size:14px;font-weight:700}
+.detail-row dd{margin:0;font-size:15px;color:#2f3d39}
+.detail-sub{color:var(--muted);font-size:13px;margin-top:4px}
+.hm-foot{padding:4px 26px 24px;display:flex;justify-content:flex-end}
+.status{display:inline-block;font-size:12px;font-weight:900;border-radius:999px;padding:4px 12px;white-space:nowrap}
+.status.ok{background:#e0f3eb;color:#176c62;border:1px solid #bfe2d2}
+
+/* 更新成功頁 */
+.success-view{max-width:1040px;margin:auto;padding:40px 20px 80px;width:100%;flex:1}
+.success-head{text-align:center;margin-bottom:34px}
+.success-icon{width:60px;height:60px;margin:0 auto 14px;border-radius:50%;background:#dff3ec;color:#258b7c;display:grid;place-items:center;font-size:30px}
+.success-title{font-size:30px;font-weight:900;color:#176c62;margin:0 0 10px}
+.success-desc{font-size:14px;color:#4d6059;line-height:1.8;margin:0}
+.success-cards{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:760px;margin:0 auto}
+.success-card{background:#fff;border:1px solid #e3ebe6;border-radius:20px;padding:30px 24px;text-align:center;box-shadow:0 8px 22px #315d4e0c;display:flex;flex-direction:column;align-items:center}
+.success-card p{flex:1}
+.success-card .sc-btn{margin-top:auto}
+.sc-art{font-size:44px;height:80px;display:grid;place-items:center;margin-bottom:12px}
+.success-card h2{font-size:18px;margin:0 0 8px;color:#303b38}
+.success-card p{font-size:13px;color:#6f8179;margin:0 0 20px;line-height:1.7}
+.sc-btn{display:inline-block;background:#17998c;color:#fff;text-decoration:none;font-weight:900;padding:11px 26px;border-radius:12px;box-shadow:0 4px 0 #0f7a70}
+.sc-btn-yellow{background:#f4c94a;color:#3d3416;box-shadow:0 4px 0 #d9ac2c}
+.success-back{text-align:center;margin-top:32px}
+@media (max-width:650px){.success-cards{grid-template-columns:1fr}.success-title{font-size:24px}}
+
+/* RWD */
+@media (max-width:1280px){.navlinks{gap:14px}.navlinks > a,.user-trigger{font-size:13px}}
+@media (max-width:1024px){.navlinks{gap:16px}.filter-grid{grid-template-columns:1fr 1fr}.filter-actions{grid-column:1/-1;display:flex;gap:12px}.filter-actions .btn{flex:1}}
+@media (max-width:850px){
+  .mainnav{flex-wrap:wrap;gap:8px}
+  .navlinks{width:100%;justify-content:space-between;gap:9px}
+  .navlinks > a,.user-trigger{font-size:12px;padding:9px 0 7px}
+  .agency{font-size:12px}.platform{font-size:14px}.logo{height:32px}.divider{height:16px}
+  .hero-art{width:260px}
+  .area-hero{flex-direction:column;align-items:flex-start}
+  .area-illustration{max-width:100%;width:100%;height:125px}
+}
+@media (max-width:650px){
+  .utility{padding:0 14px}
+  .mainnav{padding:9px 14px}
+  .navlinks{gap:12px}
+  .navlinks > a,.user-trigger{font-size:12px}
+  .user-dropdown a{font-size:12px}
+  .agency{font-size:11px}.platform{font-size:13px}
+  .hero-inner{padding:22px 16px 26px}
+  .hero-grid{flex-direction:column-reverse;align-items:flex-start;gap:20px}
+  .hero h1{font-size:28px}
+  .hero-art{width:100%;max-width:100%}
+  .band{padding:28px 12px 52px}
+  .panel{padding:18px}
+  .panel-title{font-size:18px}
+  .section-row{padding:16px 15px;gap:11px}
+  .accordion-number{width:36px;height:36px;flex-basis:36px;font-size:16px}
+  .accordion-title{font-size:18px}
+  .accordion-summary{font-size:13px}
+  .edit-btn{padding:8px 14px}
+  .area-main-title{font-size:21px}
+  .district-list,.choices{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .facilities{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .rent-inputs{grid-template-columns:1fr}
+  .rent-sep{display:none}
+  .page-question{font-size:20px}
+  .form-block{padding:18px 15px 22px}
+  .page-actions{flex-direction:column-reverse}
+  .btn{width:100%}
+  .modal-overlay{padding:10px}
+  .modal-body{padding:18px 15px}
+  .filter-grid{grid-template-columns:1fr}
+  .detail-row{grid-template-columns:1fr;gap:4px}
+  .hm-overlay{padding:10px}
+  .foot-inner{flex-direction:column}
+  .foot-inner a{margin-left:0;margin-right:14px}
+}
+</style>
+</head><body>
+
+<header>
+<div class="utility"><a href="#">網站導覽</a><a href="#">聯絡我們</a></div>
+<div class="mainnav">
+  <div class="brand"><img class="logo" src="logo.png" alt="內政部國土管理署標誌"><span class="agency">內政部國土管理署</span><span class="divider" aria-hidden="true"></span><span class="platform">全國社宅統一登記申請平台</span></div>
+  <nav class="navlinks" aria-label="主要導覽">
+    <a href="#">找社宅</a>
+    <a href="#">登記居住需求</a>
+    <a href="#">最新消息</a>
+    <a href="#">常見問題</a>
+    <div class="user-menu">
+      <button type="button" class="user-trigger" id="userTrigger" aria-haspopup="true" aria-expanded="false" aria-controls="userDropdown"><svg class="user-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="10" r="3.2"/><path d="M5.8 18.4c1.4-2.2 3.6-3.4 6.2-3.4s4.8 1.2 6.2 3.4"/></svg><span>張OO</span><svg class="user-caret" viewBox="0 0 10 6" width="10" height="6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>
+      <div class="user-dropdown" id="userDropdown" hidden>
+        <a href="#">申請案件查詢</a>
+        <a href="#edit" data-view="edit" id="menuEdit">編輯居住需求</a>
+        <a href="#">訂閱管理</a>
+        <a href="#history" data-view="history" id="menuHistory">操作歷程</a>
+        <a href="#" class="signout">登出</a>
+      </div>
+    </div>
+  </nav>
+</div>
+</header>
+
+<!-- ===================== 視圖一：編輯居住需求 ===================== -->
+<main id="view-edit">
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-grid">
+      <div>
+        <h1>編輯居住需求</h1>
+        <p class="intro">您可以依照目前的生活狀況，更新已登記的問卷內容。各份問卷可分別儲存。</p>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <svg viewBox="0 0 340 220">
+          <circle cx="282" cy="46" r="30" fill="#f5d978"/>
+          <circle cx="44" cy="52" r="20" fill="#cfe9f0"/>
+          <rect x="74" y="92" width="62" height="110" fill="#b8e0d6" stroke="#5caa93" stroke-width="2.5"/>
+          <rect x="136" y="46" width="92" height="156" fill="#fff" stroke="#258b7c" stroke-width="3"/>
+          <path d="M126 50 L182 14 L238 50" fill="none" stroke="#258b7c" stroke-width="4" stroke-linejoin="round"/>
+          <path d="M228 102 L276 66 L324 102" fill="#fff" stroke="#258b7c" stroke-width="3"/>
+          <rect x="228" y="102" width="96" height="100" fill="#fff" stroke="#258b7c" stroke-width="3"/>
+          <g fill="#b9dfd0" stroke="#5caa93" stroke-width="1.5">
+            <rect x="150" y="62" width="18" height="18"/><rect x="176" y="62" width="18" height="18"/><rect x="202" y="62" width="18" height="18"/>
+            <rect x="150" y="92" width="18" height="18"/><rect x="176" y="92" width="18" height="18"/><rect x="202" y="92" width="18" height="18"/>
+            <rect x="240" y="118" width="18" height="18"/><rect x="266" y="118" width="18" height="18"/><rect x="292" y="118" width="18" height="18"/>
+          </g>
+          <rect x="166" y="170" width="22" height="32" fill="#f4d96c"/>
+          <circle cx="104" cy="152" r="14" fill="#9acdb4"/><rect x="101" y="162" width="6" height="36" fill="#8a6d4e"/>
+          <circle cx="54" cy="132" r="22" fill="#76b99a"/><rect x="51" y="150" width="6" height="48" fill="#8a6d4e"/>
+          <circle cx="330" cy="150" r="20" fill="#76b99a"/><rect x="327" y="168" width="6" height="40" fill="#8a6d4e"/>
+          <path d="M16 206 Q170 190 326 206" fill="none" stroke="#9acdb4" stroke-width="6" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+<div class="band-inner">
+
+  <!-- 問卷一：居住需求 -->
+  <section class="panel" id="groupNeeds" aria-labelledby="needsTitle">
+    <div class="panel-head">
+      <h2 class="panel-title" id="needsTitle"><span class="num">1</span>居住需求問卷</h2>
+      <span class="badge-open">已開放填寫</span>
+    </div>
+    <p class="hint">共 4 題，點選「編輯」可開啟填寫視窗。</p>
+
+    <section class="card accordion-card" data-idx="0">
+      <div class="section-row">
+        <span class="accordion-heading"><span class="sec-title"><span class="accordion-number">1</span><span class="accordion-title">區位需求</span></span><span class="accordion-summary"></span></span>
+        <button type="button" class="edit-btn" aria-label="編輯區位需求">編輯</button>
+      </div>
+      <div class="section-content" hidden>
+        <div class="form-block">
+          <div class="area-hero">
+            <div class="area-hero-copy">
+              <div class="cardhead"><div class="num">1</div><div><h3 class="qtitle">區位需求</h3></div></div>
+              <h3 class="area-main-title">您希望住在哪個地區？</h3>
+              <p class="area-main-desc">選擇您理想的居住區域，幫助我們了解各地的社會住宅需求。</p>
+            </div>
+            <div class="area-illustration" aria-hidden="true">
+              <svg viewBox="0 0 300 150" role="img">
+                <circle cx="245" cy="31" r="19" fill="#f5d978"/>
+                <path d="M0 122 Q65 85 128 117 T300 108 V150 H0Z" fill="#dff0e5"/>
+                <path d="M18 120 L18 78 L55 48 L92 78 V120Z" fill="#fff" stroke="#7bb8a2" stroke-width="3"/>
+                <path d="M12 79 L55 42 L98 79" fill="none" stroke="#258b7c" stroke-width="5" stroke-linejoin="round"/>
+                <rect x="48" y="88" width="17" height="32" rx="2" fill="#f4d96c"/>
+                <rect x="30" y="85" width="12" height="13" fill="#b9dfd0"/><rect x="70" y="85" width="12" height="13" fill="#b9dfd0"/>
+                <path d="M113 119 V61 L153 31 L193 61 V119Z" fill="#d6eee4" stroke="#5caa93" stroke-width="3"/>
+                <path d="M106 62 L153 24 L200 62" fill="none" stroke="#258b7c" stroke-width="5" stroke-linejoin="round"/>
+                <rect x="143" y="83" width="20" height="36" rx="2" fill="#f4d96c"/>
+                <rect x="123" y="69" width="14" height="15" fill="#fff"/><rect x="170" y="69" width="14" height="15" fill="#fff"/>
+                <path d="M214 115 C214 95 229 83 242 83 C255 83 270 95 270 115Z" fill="#9acdb4"/>
+                <path d="M242 82 C230 82 225 70 230 60 C238 44 259 48 262 64 C264 75 254 82 242 82Z" fill="#76b99a"/>
+                <path d="M219 117 Q242 103 276 117" fill="none" stroke="#258b7c" stroke-width="4" stroke-linecap="round"/>
+                <path d="M205 40 C195 48 192 60 198 69 C207 81 223 74 226 62 C229 51 219 39 205 40Z" fill="#fff" stroke="#e4bd52" stroke-width="2"/>
+                <circle cx="207" cy="55" r="4" fill="#258b7c"/><path d="M207 59 L207 67" stroke="#258b7c" stroke-width="2"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="area-select-wrap">
+          <div class="area-select-grid">
+            <div class="field"><label for="areaRegion">縣市／生活圈</label><select id="areaRegion"><option value="生活圈|中部生活圈" selected>中部生活圈</option><option value="全台灣">全台灣</option><optgroup label="依縣市選擇" id="countyOptions"></optgroup><optgroup label="依生活圈選擇" id="circleOptions"></optgroup></select></div>
+          </div>
+          <div class="district-panel">
+            <div class="district-head"><div><h3>行政區（可複選）</h3><p class="area-help">可切換縣市分頁，勾選一個或多個希望居住的行政區。</p></div><span class="count-badge" id="districtCount">3 個區域已選取</span></div>
+            <div class="county-tabs" id="countyTabs" role="tablist" aria-label="縣市分頁"></div>
+            <div class="district-list" id="districts"></div>
+          </div>
+          <div class="selected"><b>已選擇區域</b><div id="tags"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card accordion-card" data-idx="1">
+      <div class="section-row">
+        <span class="accordion-heading"><span class="sec-title"><span class="accordion-number">2</span><span class="accordion-title">房型需求</span></span><span class="accordion-summary"></span></span>
+        <button type="button" class="edit-btn" aria-label="編輯房型需求">編輯</button>
+      </div>
+      <div class="section-content" hidden>
+        <div class="form-block">
+          <div class="cardhead"><div class="num">2</div><div><h3 class="qtitle">房型需求</h3></div></div>
+          <div class="page-head"><h4 class="page-question">您希望居住哪種房型？</h4><p class="page-desc">可依照家庭人數與生活習慣，選擇合適的房型，此題支援複選。</p></div>
+          <div class="choices" id="rooms">
+            <button type="button" class="choice"><span class="sel-mark"><i class="mk-plus">+</i><i class="mk-check">✓</i></span><span class="plan"><svg viewBox="0 0 140 100" aria-hidden="true"><rect x="10" y="10" width="120" height="80" fill="#fff" stroke="#258b7c" stroke-width="3"/><g stroke="#7bb8a2" stroke-width="2"><rect x="16" y="16" width="66" height="68" fill="#e4f4ec"/><rect x="88" y="16" width="36" height="24" fill="#eef3f0"/><rect x="88" y="46" width="36" height="38" fill="#fff9e4"/></g></svg></span><strong>一房型</strong><small>單人或單身居住</small></button>
+            <button type="button" class="choice on"><span class="sel-mark"><i class="mk-plus">+</i><i class="mk-check">✓</i></span><span class="plan"><svg viewBox="0 0 140 100" aria-hidden="true"><rect x="10" y="10" width="120" height="80" fill="#fff" stroke="#258b7c" stroke-width="3"/><g stroke="#7bb8a2" stroke-width="2"><rect x="16" y="16" width="50" height="34" fill="#e4f4ec"/><rect x="16" y="56" width="50" height="28" fill="#e4f4ec"/><rect x="72" y="16" width="52" height="68" fill="#fff9e4"/></g></svg></span><strong>二房型</strong><small>小家庭居住</small></button>
+            <button type="button" class="choice on"><span class="sel-mark"><i class="mk-plus">+</i><i class="mk-check">✓</i></span><span class="plan"><svg viewBox="0 0 140 100" aria-hidden="true"><rect x="10" y="10" width="120" height="80" fill="#fff" stroke="#258b7c" stroke-width="3"/><g stroke="#7bb8a2" stroke-width="2"><rect x="16" y="16" width="34" height="68" fill="#e4f4ec"/><rect x="56" y="16" width="30" height="34" fill="#e4f4ec"/><rect x="56" y="56" width="30" height="28" fill="#e4f4ec"/><rect x="92" y="16" width="32" height="68" fill="#fff9e4"/></g></svg></span><strong>三房型</strong><small>一般家庭居住</small></button>
+            <button type="button" class="choice"><span class="sel-mark"><i class="mk-plus">+</i><i class="mk-check">✓</i></span><span class="plan"><svg viewBox="0 0 140 100" aria-hidden="true"><rect x="10" y="10" width="120" height="80" fill="#fff" stroke="#258b7c" stroke-width="3"/><g stroke="#7bb8a2" stroke-width="2"><rect x="16" y="16" width="28" height="34" fill="#e4f4ec"/><rect x="50" y="16" width="28" height="34" fill="#e4f4ec"/><rect x="84" y="16" width="38" height="34" fill="#e4f4ec"/><rect x="16" y="56" width="106" height="28" fill="#fff9e4"/></g></svg></span><strong>四房型</strong><small>多人家庭居住</small></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card accordion-card" data-idx="2">
+      <div class="section-row">
+        <span class="accordion-heading"><span class="sec-title"><span class="accordion-number">3</span><span class="accordion-title">預算租金</span></span><span class="accordion-summary"></span></span>
+        <button type="button" class="edit-btn" aria-label="編輯預算租金">編輯</button>
+      </div>
+      <div class="section-content" hidden>
+        <div class="form-block">
+          <div class="cardhead"><div class="num">3</div><div><h3 class="qtitle">預算租金</h3></div></div>
+          <div class="page-head"><h4 class="page-question">您每月可負擔多少租金？</h4><p class="page-desc">請設定可接受的每月租金範圍，協助平台了解您的租屋預算。</p></div>
+          <div class="rent-illus" aria-hidden="true">
+            <svg viewBox="0 0 360 150">
+              <circle cx="310" cy="34" r="20" fill="#f5d978"/>
+              <path d="M0 130 Q90 110 180 128 T360 122 V150 H0Z" fill="#dff0e5"/>
+              <rect x="70" y="60" width="110" height="70" fill="#fff" stroke="#5caa93" stroke-width="3"/>
+              <path d="M56 66 L125 14 L194 66" fill="none" stroke="#258b7c" stroke-width="6" stroke-linejoin="round"/>
+              <rect x="84" y="78" width="20" height="18" fill="#b9dfd0"/>
+              <rect x="150" y="78" width="20" height="18" fill="#b9dfd0"/>
+              <rect x="118" y="94" width="22" height="36" rx="2" fill="#f4d96c"/>
+              <circle cx="250" cy="95" r="24" fill="#f4d96c" stroke="#e4bd52" stroke-width="3"/>
+              <text x="250" y="105" text-anchor="middle" font-size="28" font-weight="900" fill="#8a6d12" font-family="Arial,sans-serif">$</text>
+              <circle cx="32" cy="88" r="20" fill="#76b99a"/>
+              <rect x="29" y="106" width="6" height="24" fill="#8a6d4e"/>
+              <circle cx="330" cy="86" r="24" fill="#9acdb4"/>
+              <rect x="327" y="108" width="6" height="22" fill="#8a6d4e"/>
+            </svg>
+          </div>
+          <div class="rent-inputs">
+            <div class="rent-field"><label for="min">最低租金（元／月）</label><div class="money"><em>$</em><input id="min" type="number" min="0" max="40000" step="500" value="0"></div></div>
+            <span class="rent-sep" aria-hidden="true">～</span>
+            <div class="rent-field"><label for="max">最高租金（元／月）</label><div class="money"><em>$</em><input id="max" type="number" min="0" max="40000" step="500" value="40000"></div></div>
+          </div>
+          <div class="dual-range">
+            <div class="dual-track"></div>
+            <div class="dual-fill" id="rentFill"></div>
+            <input id="minR" type="range" min="0" max="40000" step="500" value="0" aria-label="最低租金滑桿">
+            <input id="maxR" type="range" min="0" max="40000" step="500" value="40000" aria-label="最高租金滑桿">
+          </div>
+          <div class="dual-scale"><span>0 元</span><span>40,000 元</span></div>
+          <div class="note">提醒：此處的租金金額可能不包含管理費及其他相關費用。</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card accordion-card" data-idx="3">
+      <div class="section-row">
+        <span class="accordion-heading"><span class="sec-title"><span class="accordion-number">4</span><span class="accordion-title">附屬設施</span></span><span class="accordion-summary"></span></span>
+        <button type="button" class="edit-btn" aria-label="編輯附屬設施">編輯</button>
+      </div>
+      <div class="section-content" hidden>
+        <div class="form-block">
+          <div class="cardhead"><div class="num">4</div><div><h3 class="qtitle">附屬設施</h3></div></div>
+          <div class="page-head"><h4 class="page-question">您希望社宅提供哪些生活設施？</h4><p class="page-desc">可以選擇重視的社宅附屬設施，讓未來的居住環境更符合生活需求。</p></div>
+          <div class="fac-topbar"><p class="fac-tip">設施可複選，亦可選擇「無特別需求」</p><span class="fac-count">已選 <b id="facCount">4</b> 項</span></div>
+          <div class="facilities" id="facilities"></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="page-actions">
+      <button type="button" class="btn cancel" id="needsCancel">取消編輯</button>
+      <button type="button" class="btn save" id="needsSave">儲存居住需求 ✓</button>
+    </div>
+  </section>
+
+
+</div>
+</section>
+</main>
+
+<!-- ===================== 更新成功 ===================== -->
+<div class="success-view" id="view-success" hidden>
+  <div class="success-head">
+    <div class="success-icon" aria-hidden="true">✓</div>
+    <h1 class="success-title">更新成功</h1>
+    <p class="success-desc">您的居住需求已更新。<br>我們將依照最新的需求條件，為您提供符合的社宅資訊。</p>
+  </div>
+  <div class="success-cards">
+    <div class="success-card">
+      <div class="sc-art" aria-hidden="true">🔍</div>
+      <h2>查看推薦社宅</h2>
+      <p>查看符合居住需求的社宅介紹</p>
+      <a href="#" class="sc-btn">查看社宅 →</a>
+    </div>
+    <div class="success-card" id="subCard"></div>
+  </div>
+  <div class="success-back"><button type="button" class="btn cancel" id="backEdit">返回編輯居住需求</button></div>
+  <!-- 預覽用切換：正式系統依會員訂閱資料決定 -->
+  <div class="sub-preview" style="text-align:center;margin-top:18px;font-size:12px;color:#7d8c86">
+    預覽：<button type="button" class="btn btn-secondary btn-sm" data-sub="0">未訂閱</button>
+    <button type="button" class="btn btn-secondary btn-sm" data-sub="1">已依需求訂閱</button>
+  </div>
+</div>
+
+<!-- ===================== 視圖二：操作歷程 ===================== -->
+<main id="view-history" hidden>
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-grid">
+      <div>
+        <h1>操作歷程</h1>
+        <p class="intro">查看您在社會住宅統一登記平台中的操作紀錄，掌握個人服務使用情形。</p>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <svg viewBox="0 0 340 220">
+          <circle cx="282" cy="46" r="30" fill="#f5d978"/>
+          <circle cx="44" cy="52" r="20" fill="#cfe9f0"/>
+          <rect x="74" y="92" width="62" height="110" fill="#b8e0d6" stroke="#5caa93" stroke-width="2.5"/>
+          <rect x="136" y="46" width="92" height="156" fill="#fff" stroke="#258b7c" stroke-width="3"/>
+          <path d="M126 50 L182 14 L238 50" fill="none" stroke="#258b7c" stroke-width="4" stroke-linejoin="round"/>
+          <path d="M228 102 L276 66 L324 102" fill="#fff" stroke="#258b7c" stroke-width="3"/>
+          <rect x="228" y="102" width="96" height="100" fill="#fff" stroke="#258b7c" stroke-width="3"/>
+          <g fill="#b9dfd0" stroke="#5caa93" stroke-width="1.5">
+            <rect x="150" y="62" width="18" height="18"/><rect x="176" y="62" width="18" height="18"/><rect x="202" y="62" width="18" height="18"/>
+            <rect x="150" y="92" width="18" height="18"/><rect x="176" y="92" width="18" height="18"/><rect x="202" y="92" width="18" height="18"/>
+            <rect x="240" y="118" width="18" height="18"/><rect x="266" y="118" width="18" height="18"/><rect x="292" y="118" width="18" height="18"/>
+          </g>
+          <rect x="166" y="170" width="22" height="32" fill="#f4d96c"/>
+          <circle cx="104" cy="152" r="14" fill="#9acdb4"/><rect x="101" y="162" width="6" height="36" fill="#8a6d4e"/>
+          <circle cx="54" cy="132" r="22" fill="#76b99a"/><rect x="51" y="150" width="6" height="48" fill="#8a6d4e"/>
+          <circle cx="330" cy="150" r="20" fill="#76b99a"/><rect x="327" y="168" width="6" height="40" fill="#8a6d4e"/>
+          <path d="M16 206 Q170 190 326 206" fill="none" stroke="#9acdb4" stroke-width="6" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="band-inner">
+
+    <section class="panel" aria-labelledby="filter-title">
+      <div class="panel-head">
+        <h2 class="panel-title" id="filter-title"><span class="num">1</span>查詢條件</h2>
+      </div>
+      <form id="filter-form" novalidate>
+        <div class="filter-grid">
+          <div class="field">
+            <label for="category">分類</label>
+            <select id="category" name="category">
+              <option value="">全部</option>
+              <option>首頁</option>
+              <option>找社宅</option>
+              <option>驗證登入</option>
+              <option>居住需求登記</option>
+              <option>會員專區</option>
+                          </select>
+          </div>
+          <div class="field">
+            <label for="start-date">開始日期</label>
+            <input type="date" id="start-date" name="start">
+          </div>
+          <div class="field">
+            <label for="end-date">結束日期</label>
+            <input type="date" id="end-date" name="end">
+          </div>
+          <div class="filter-actions">
+            <button type="submit" class="btn btn-primary">查詢</button>
+            <button type="button" class="btn btn-secondary" id="clear-btn">清除</button>
+          </div>
+        </div>
+        <p class="form-error" id="form-error" role="alert"></p>
+      </form>
+    </section>
+
+    <section class="panel" aria-labelledby="list-title">
+      <div class="panel-head">
+        <h2 class="panel-title" id="list-title"><span class="num">2</span>操作紀錄</h2>
+        <span class="hint" id="result-count" aria-live="polite" style="margin:0"></span>
+      </div>
+
+      <div class="table-wrap" id="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">操作時間</th>
+              <th scope="col">分類</th>
+              <th scope="col">操作內容</th>
+            </tr>
+          </thead>
+          <tbody id="record-body"></tbody>
+        </table>
+      </div>
+
+      <div class="empty" id="empty" hidden>
+        <div class="empty-icon" aria-hidden="true">🔍</div>
+        <h3>查無符合條件的操作紀錄</h3>
+        <p>請嘗試調整操作項目或日期範圍，再重新查詢。</p>
+        <button type="button" class="btn btn-secondary btn-sm" id="empty-clear">清除</button>
+      </div>
+
+      <nav class="pager" id="pager" aria-label="分頁"></nav>
+      <p class="foot-note">為保護您的帳號安全，登入紀錄僅顯示登入結果與登入方式，不會顯示密碼或憑證內容。</p>
+    </section>
+
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="foot-inner">
+    <span>© 內政部國土管理署　社會住宅統一登記平台</span>
+    <span><a href="#">網站說明</a><a href="#">隱私權政策</a><a href="#">網站安全政策</a></span>
+  </div>
+</footer>
+
+<!-- 編輯編輯視窗 -->
+<div class="modal-overlay" id="editModal" hidden>
+  <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modalTitle" tabindex="-1">
+    <div class="modal-head"><h2 id="modalTitle"></h2><button type="button" class="modal-close" id="modalClose" aria-label="關閉">×</button></div>
+    <div class="modal-body" id="modalBody"></div>
+    <div class="modal-foot">
+      <button type="button" class="btn cancel btn-sm" id="modalCancel">取消</button>
+      <button type="button" class="btn save btn-sm" id="modalSave">暫存</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ===== 共用：頁面切換（以網址 hash 決定顯示哪一頁） ===== */
+(() => {
+  const viewEdit = document.getElementById('view-edit');
+  const viewHistory = document.getElementById('view-history');
+  const menu = document.getElementById('userDropdown');
+  const trigger = document.getElementById('userTrigger');
+
+  const show = () => {
+    const isHistory = location.hash !== '#edit';   // 未指定頁面時預設開啟操作歷程
+    viewHistory.hidden = !isHistory;
+    viewEdit.hidden = isHistory;
+    document.getElementById('view-success').hidden = true;
+    document.getElementById('menuEdit').classList.toggle('current', !isHistory);
+    document.getElementById('menuHistory').classList.toggle('current', isHistory);
+    menu.hidden = true;
+    trigger.setAttribute('aria-expanded', 'false');
+    window.scrollTo(0, 0);
+  };
+  // 從編輯頁切換到操作歷程時，若有未儲存的暫存內容需先確認
+  let lastHash = location.hash || '#history';
+  let reverting = false;
+  window.addEventListener('hashchange', () => {
+    if (reverting) { reverting = false; return; }
+    const leavingEdit = lastHash !== '#history' && location.hash === '#history';
+    if (leavingEdit && window.__hasUnsaved && window.__hasUnsaved()) {
+      if (!confirm('尚未儲存的修改將不會保留，確定離開？')) {
+        reverting = true;
+        location.hash = lastHash;
+        return;
+      }
+      if (window.__discardStaged) window.__discardStaged();   // 確定離開：捨棄暫存內容
+    }
+    lastHash = location.hash;
+    show();
+  });
+  // 點選同一個選單項目時（網址不變，不會觸發 hashchange），也要切回該頁
+  // 點選同一頁的選單項目時（網址不變）才直接切回該頁；換頁一律交由離開確認處理
+  document.querySelectorAll('[data-view]').forEach(a => a.addEventListener('click', () => {
+    if (location.hash === a.getAttribute('href')) show();   // 同一頁不會觸發 hashchange，直接切回
+  }));
+  show();
+
+  // 下拉選單開合
+  const setMenuOpen = open => { menu.hidden = !open; trigger.setAttribute('aria-expanded', String(open)); };
+  trigger.addEventListener('click', e => { e.stopPropagation(); setMenuOpen(menu.hidden); });
+  document.addEventListener('click', e => { if (!menu.hidden && !menu.contains(e.target)) setMenuOpen(false); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && !menu.hidden) { setMenuOpen(false); trigger.focus(); } });
+
+  // 示意連結避免跳頁（不影響 #edit / #history）
+  document.querySelectorAll('a[href="#"]').forEach(a => a.addEventListener('click', e => e.preventDefault()));
+})();
+</script>
+
+<script>
+/* ===== 編輯居住需求：縣市與生活圈資料 ===== */
+const counties={
+'基隆市':['仁愛區','信義區','中正區','中山區','安樂區','暖暖區','七堵區'],
+'臺北市':['中正區','大同區','中山區','松山區','大安區','萬華區','信義區','士林區','北投區','內湖區','南港區','文山區'],
+'新北市':['板橋區','三重區','中和區','永和區','新莊區','新店區','土城區','蘆洲區','樹林區','汐止區','鶯歌區','三峽區','淡水區','瑞芳區','五股區','泰山區','林口區','深坑區','石碇區','坪林區','三芝區','石門區','八里區','平溪區','雙溪區','貢寮區','金山區','萬里區','烏來區'],
+'桃園市':['桃園區','中壢區','大溪區','楊梅區','蘆竹區','大園區','龜山區','八德區','龍潭區','平鎮區','新屋區','觀音區','復興區'],
+'新竹市':['東區','北區','香山區'],'新竹縣':['竹北市','竹東鎮','新埔鎮','關西鎮','湖口鄉','新豐鄉','芎林鄉','寶山鄉','北埔鄉','峨眉鄉','尖石鄉','五峰鄉'],
+'苗栗縣':['苗栗市','頭份市','竹南鎮','後龍鎮','通霄鎮','苑裡鎮','卓蘭鎮','造橋鄉','西湖鄉','頭屋鄉','公館鄉','銅鑼鄉','三義鄉','大湖鄉','獅潭鄉','三灣鄉','南庄鄉','泰安鄉'],
+'臺中市':['中區','東區','南區','西區','北區','西屯區','南屯區','北屯區','豐原區','大里區','太平區','清水區','沙鹿區','梧棲區','后里區','神岡區','潭子區','大雅區','新社區','石岡區','外埔區','大甲區','大安區','烏日區','大肚區','龍井區','霧峰區','和平區'],
+'彰化縣':['彰化市','員林市','鹿港鎮','和美鎮','北斗鎮','溪湖鎮','田中鎮','二林鎮','線西鄉','伸港鄉','福興鄉','秀水鄉','花壇鄉','芬園鄉','大村鄉','埔鹽鄉','埔心鄉','永靖鄉','社頭鄉','二水鄉','田尾鄉','埤頭鄉','芳苑鄉','大城鄉','竹塘鄉','溪州鄉'],
+'南投縣':['南投市','埔里鎮','草屯鎮','竹山鎮','集集鎮','名間鄉','鹿谷鄉','中寮鄉','魚池鄉','國姓鄉','水里鄉','信義鄉','仁愛鄉'],
+'雲林縣':['斗六市','斗南鎮','虎尾鎮','西螺鎮','土庫鎮','北港鎮','古坑鄉','大埤鄉','莿桐鄉','林內鄉','二崙鄉','崙背鄉','麥寮鄉','東勢鄉','褒忠鄉','臺西鄉','元長鄉','四湖鄉','口湖鄉','水林鄉'],
+'嘉義市':['東區','西區'],'嘉義縣':['太保市','朴子市','布袋鎮','大林鎮','民雄鄉','溪口鄉','新港鄉','六腳鄉','東石鄉','義竹鄉','鹿草鄉','水上鄉','中埔鄉','竹崎鄉','梅山鄉','番路鄉','大埔鄉','阿里山鄉'],
+'臺南市':['中西區','東區','南區','北區','安平區','安南區','永康區','歸仁區','新化區','左鎮區','玉井區','楠西區','南化區','仁德區','關廟區','龍崎區','官田區','麻豆區','佳里區','西港區','七股區','將軍區','學甲區','北門區','新營區','後壁區','白河區','東山區','六甲區','下營區','柳營區','鹽水區','善化區','大內區','山上區','新市區','安定區'],
+'高雄市':['新興區','前金區','苓雅區','鹽埕區','鼓山區','旗津區','前鎮區','三民區','楠梓區','小港區','左營區','仁武區','大社區','岡山區','路竹區','阿蓮區','田寮區','燕巢區','橋頭區','梓官區','彌陀區','永安區','湖內區','鳳山區','大寮區','林園區','鳥松區','大樹區','旗山區','美濃區','六龜區','內門區','杉林區','甲仙區','桃源區','那瑪夏區','茂林區','茄萣區'],
+'屏東縣':['屏東市','潮州鎮','東港鎮','恆春鎮','萬丹鄉','長治鄉','麟洛鄉','九如鄉','里港鄉','鹽埔鄉','高樹鄉','萬巒鄉','內埔鄉','竹田鄉','新埤鄉','枋寮鄉','新園鄉','崁頂鄉','林邊鄉','南州鄉','佳冬鄉','琉球鄉','車城鄉','滿州鄉','枋山鄉','三地門鄉','霧臺鄉','瑪家鄉','泰武鄉','來義鄉','春日鄉','獅子鄉','牡丹鄉'],
+'宜蘭縣':['宜蘭市','羅東鎮','蘇澳鎮','頭城鎮','礁溪鄉','壯圍鄉','員山鄉','冬山鄉','五結鄉','三星鄉','大同鄉','南澳鄉'],
+'花蓮縣':['花蓮市','鳳林鎮','玉里鎮','新城鄉','吉安鄉','壽豐鄉','光復鄉','豐濱鄉','瑞穗鄉','富里鄉','秀林鄉','萬榮鄉','卓溪鄉'],
+'臺東縣':['臺東市','成功鎮','關山鎮','卑南鄉','鹿野鄉','池上鄉','東河鄉','長濱鄉','太麻里鄉','大武鄉','綠島鄉','海端鄉','延平鄉','金峰鄉','達仁鄉','蘭嶼鄉'],
+'澎湖縣':['馬公市','湖西鄉','白沙鄉','西嶼鄉','望安鄉','七美鄉'],'金門縣':['金城鎮','金湖鎮','金沙鎮','金寧鄉','烈嶼鄉','烏坵鄉'],'連江縣':['南竿鄉','北竿鄉','莒光鄉','東引鄉']};
+const circles={'北部生活圈':['基隆市','臺北市','新北市','桃園市','新竹市','新竹縣'],'中部生活圈':['苗栗縣','臺中市','彰化縣','南投縣','雲林縣'],'南部生活圈':['嘉義市','嘉義縣','臺南市','高雄市','屏東縣'],'東部生活圈':['宜蘭縣','花蓮縣','臺東縣'],'離島生活圈':['澎湖縣','金門縣','連江縣']};
+let activeRegion='中部生活圈',activeType='生活圈',activeCounty='臺中市',chosen=['臺中市・西區','臺中市・大里區','南投縣・草屯鎮'];
+const regionSelect=document.querySelector('#areaRegion'),districts=document.querySelector('#districts'),countyTabs=document.querySelector('#countyTabs');
+Object.keys(counties).forEach(name=>{let o=document.createElement('option');o.value='縣市|'+name;o.textContent=name;document.querySelector('#countyOptions').append(o)});
+Object.keys(circles).forEach(name=>{let o=document.createElement('option');o.value='生活圈|'+name;o.textContent=name;document.querySelector('#circleOptions').append(o)});
+function currentCountyList(){if(activeRegion==='全台灣')return Object.keys(counties);if(activeType==='縣市'&&counties[activeRegion])return [activeRegion];if(activeType==='生活圈'&&circles[activeRegion])return circles[activeRegion];return []}
+function countySelectedCount(county){return chosen.filter(v=>v.startsWith(county+'・')).length}
+function drawTabs(){
+ const list=currentCountyList();countyTabs.innerHTML='';
+ if(!list.length)return;
+ if(!list.includes(activeCounty))activeCounty=list[0];
+ list.forEach(county=>{
+  const b=document.createElement('button');b.type='button';b.className='county-tab'+(county===activeCounty?' active':'');
+  b.setAttribute('role','tab');b.setAttribute('aria-selected',county===activeCounty?'true':'false');
+  b.innerHTML=`${county}<span>${countySelectedCount(county)}</span>`;
+  b.onclick=()=>{activeCounty=county;drawTabs();drawDistricts()};
+  countyTabs.append(b);
+ });
+}
+function drawDistricts(){
+ const list=currentCountyList();districts.innerHTML='';
+ if(!list.length){districts.innerHTML='<span class="empty-tip">請先選擇縣市或生活圈</span>';countyTabs.innerHTML='';updateCount();return}
+ if(!list.includes(activeCounty))activeCounty=list[0];
+ const county=activeCounty;
+ const all=document.createElement('label');all.className='district-option all-district';
+ const allCb=document.createElement('input');allCb.type='checkbox';allCb.checked=counties[county].every(d=>chosen.includes(county+'・'+d));
+ const allText=document.createElement('span');allText.textContent=county+'全區';
+ all.append(allCb,allText);districts.append(all);
+ allCb.onchange=()=>{const vals=counties[county].map(d=>county+'・'+d);chosen=allCb.checked?[...new Set([...chosen,...vals])]:chosen.filter(v=>!vals.includes(v));drawTabs();drawDistricts();tags()};
+ counties[county].forEach(d=>{
+  const v=county+'・'+d,l=document.createElement('label');l.className='district-option';
+  const cb=document.createElement('input');cb.type='checkbox';cb.checked=chosen.includes(v);
+  cb.onchange=()=>{chosen=cb.checked?[...chosen,v]:chosen.filter(x=>x!==v);drawTabs();updateCount();tags();};
+  const text=document.createElement('span');text.textContent=d;l.append(cb,text);districts.append(l);
+ });
+ updateCount();
+}
+function updateCount(){document.querySelector('#districtCount').textContent=chosen.length+' 個區域已選取'}
+regionSelect.onchange=e=>{
+ const v=e.target.value;
+ if(v==='全台灣'){activeType='';activeRegion='全台灣'}
+ else if(v){[activeType,activeRegion]=v.split('|')}
+ else{activeType='';activeRegion=''}
+ activeCounty=currentCountyList()[0]||'';drawTabs();drawDistricts();
+};
+function tags(){
+ const box=document.querySelector('#tags');box.innerHTML='';
+ chosen.forEach(v=>{
+  const t=document.createElement('span');t.className='tag';t.textContent=v.replace('・','');
+  const x=document.createElement('button');x.type='button';x.textContent='×';x.setAttribute('aria-label','移除'+v);
+  x.onclick=()=>{chosen=chosen.filter(a=>a!==v);drawTabs();drawDistricts();tags()};
+  t.append(x);box.append(t);
+ });
+ if(!chosen.length)box.textContent='尚未選擇區域';
+}
+drawTabs();drawDistricts();tags();
+document.querySelectorAll('#rooms .choice').forEach(b=>b.onclick=()=>b.classList.toggle('on'));
+const opts=[['社會福利服務','❤️'],['長照服務','♿'],['身心障礙服務','♿'],['托育服務','🧸'],['幼兒園','👶'],['青年創業空間','💡'],['社區活動','📋'],['文康休閒','🎨'],['商業活動','🧾'],['餐飲服務','🍱'],['其他','＋'],['無特別需求','—']];let fb=document.querySelector('#facilities');const preset=['幼兒園','青年創業空間','社區活動','其他'];
+opts.forEach(([n,i])=>{let l=document.createElement('label');l.className='facility';l.innerHTML=`<span class="fac-icon" aria-hidden="true">${i}</span><span class="fac-name">${n}</span><span class="sel-mark" aria-hidden="true"><i class="mk-plus">+</i><i class="mk-check">✓</i></span><input type="checkbox" value="${n}">`;fb.append(l);l.querySelector('input').checked=preset.includes(n);l.querySelector('input').onchange=()=>{fb.querySelectorAll('.facility').forEach(x=>x.classList.toggle('on',x.querySelector('input').checked));document.querySelector('#facCount').textContent=fb.querySelectorAll('input:checked').length}});
+fb.querySelectorAll('.facility').forEach(x=>x.classList.toggle('on',x.querySelector('input').checked));
+document.querySelector('#facCount').textContent=preset.length;
+let min=document.querySelector('#min'),max=document.querySelector('#max'),minR=document.querySelector('#minR'),maxR=document.querySelector('#maxR');function sync(s){let a=+min.value,b=+max.value;if(s==='minR'){a=+minR.value;min.value=a}if(s==='maxR'){b=+maxR.value;max.value=b}if(s==='min')minR.value=Math.min(40000,Math.max(0,a));if(s==='max')maxR.value=Math.min(40000,Math.max(0,b));if(a>b){if(s.startsWith('min')){max.value=b=a;maxR.value=b}else{min.value=a=b;minR.value=a}}}[min,max].forEach(x=>x.oninput=()=>sync(x.id));[minR,maxR].forEach(x=>x.oninput=()=>sync(x.id));
+function toast(s){let t=document.querySelector('#toast');t.textContent=s;t.style.display='block';clearTimeout(t._timer);t._timer=setTimeout(()=>t.style.display='none',2800)}
+</script>
+
+<script>
+/* ===== 編輯居住需求：收合、彈窗與分開儲存 ===== */
+document.addEventListener('DOMContentLoaded', () => {
+  const $ = s => document.querySelector(s);
+  const modal = $('#editModal');
+  const dialog = modal.querySelector('.modal-dialog');
+  const modalBody = $('#modalBody');
+  const modalTitle = $('#modalTitle');
+  const minInput = $('#min'), maxInput = $('#max');
+  const minRange = $('#minR'), maxRange = $('#maxR');
+  const regionEl = $('#areaRegion');
+  const fmt = n => Number(n || 0).toLocaleString('zh-TW');
+
+  const cards = [...document.querySelectorAll('#groupNeeds .accordion-card')];
+  const titles = cards.map(c => c.querySelector('.accordion-title').textContent.trim());
+  const contents = cards.map(c => c.querySelector('.section-content'));
+
+  // 摘要用的 HTML 輔助函式
+  const escHTML = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const tagHTML = t => `<span class="area-chip">${escHTML(t)}</span>`;
+
+  const summaryFns = [
+    // 區位需求：依縣市分組，每個縣市獨立一行，行政區以標籤呈現
+    () => {
+      if (!chosen.length) return '尚未選擇居住區域';
+      if (activeRegion === '全台灣') return `<span class="area-all">全台灣</span>`;
+      return Object.keys(counties).map(county => {
+        const ds = counties[county].filter(d => chosen.includes(county + '・' + d));
+        if (!ds.length) return '';
+        return `<span class="area-block"><span class="area-cty">${escHTML(county)}</span><span class="area-chips">${ds.map(d => `<span class="area-chip">${escHTML(d)}</span>`).join('')}</span></span>`;   // 縣市獨立一行，行政區標籤於下方
+      }).join('');
+    },
+    () => {
+      const s = [...document.querySelectorAll('#rooms .choice.on strong')].map(el => el.textContent.trim());
+      if (!s.length) return '尚未選擇房型';
+      return `<span class="sum-tags">${s.map(tagHTML).join('')}</span>`;
+    },
+    () => `<span class="sum-tags">${tagHTML('每月 $' + fmt(minInput.value) + '～$' + fmt(maxInput.value))}</span>`,
+    () => {
+      const s = [...document.querySelectorAll('#facilities input:checked')].map(el => el.closest('label').querySelector('.fac-name').textContent.trim());
+      if (!s.length) return '尚未選擇附屬設施';
+      if (s.includes('無特別需求')) return `<span class="sum-tags">${tagHTML('無特別需求')}</span>`;
+      return `<span class="sum-tags">${s.map(tagHTML).join('')}</span>`;
+    }
+  ];
+
+  const stateFns = [
+    {
+      capture: () => ({ chosen: [...chosen], region: regionEl.value, activeType, activeRegion, activeCounty }),
+      restore: s => {
+        chosen = [...s.chosen];
+        activeType = s.activeType; activeRegion = s.activeRegion; activeCounty = s.activeCounty;
+        regionEl.value = s.region;
+        drawTabs(); drawDistricts(); tags();
+      }
+    },
+    {
+      capture: () => [...document.querySelectorAll('#rooms .choice')].map(b => b.classList.contains('on')),
+      restore: s => document.querySelectorAll('#rooms .choice').forEach((b, k) => b.classList.toggle('on', s[k]))
+    },
+    {
+      capture: () => ({ min: minInput.value, max: maxInput.value }),
+      restore: s => { minInput.value = s.min; maxInput.value = s.max; minRange.value = s.min; maxRange.value = s.max; updateFill(); }
+    },
+    {
+      capture: () => [...document.querySelectorAll('#facilities input')].map(i => i.checked),
+      restore: s => document.querySelectorAll('#facilities input').forEach((i, k) => {
+        i.checked = s[k];
+        i.dispatchEvent(new Event('change'));
+      })
+    }
+  ];
+
+  const dualFill = $('#rentFill');
+  const updateFill = () => {
+    const max = 40000;
+    const lo = Math.min(+minRange.value, +maxRange.value) / max;
+    const hi = Math.max(+minRange.value, +maxRange.value) / max;
+    dualFill.style.left = `calc(11px + (100% - 22px) * ${lo})`;
+    dualFill.style.right = `calc(11px + (100% - 22px) * ${1 - hi})`;
+  };
+  [minInput, maxInput, minRange, maxRange].forEach(el => el.addEventListener('input', updateFill));
+
+  const refreshSummaries = () => {
+    cards.forEach((c, i) => {
+      // 暫存中的區塊顯示「已暫存」標記
+      let tag = c.querySelector('.dirty-tag');
+      if (!tag) {
+        tag = document.createElement('span');
+        tag.className = 'dirty-tag';
+        tag.textContent = '已暫存';
+        c.querySelector('.accordion-title').after(tag);
+      }
+      tag.hidden = !isDirty(i);
+      const el = c.querySelector('.accordion-summary');
+      el.innerHTML = summaryFns[i]();
+      el.classList.add('multi');   // 所有摘要標籤完整換行顯示，不截斷
+    });
+    updateFill();
+  };
+
+  let baseline = stateFns.map(f => f.capture());
+
+  // 暫存中（尚未正式儲存）的判斷、區塊標示與離開確認
+  let staged = stateFns.map(() => false);   // 已按「暫存」的區塊（即使內容沒有變動也算）
+  const isDirty = i => staged[i] || JSON.stringify(stateFns[i].capture()) !== JSON.stringify(baseline[i]);
+  const anyDirty = () => stateFns.some((_, i) => isDirty(i));
+  window.__hasUnsaved = anyDirty;
+  // 確定離開時捨棄暫存：還原為上次儲存的內容，並清除暫存標記
+  window.__discardStaged = () => {
+    staged = stateFns.map(() => false);
+    stateFns.forEach((f, i) => f.restore(baseline[i]));
+    refreshSummaries();
+  };
+  window.addEventListener('beforeunload', e => { if (anyDirty()) { e.preventDefault(); e.returnValue = ''; } });
+
+  const validate = i => {
+    if (i === 0 && !chosen.length) return '請至少選擇一個居住區域';
+    if (i === 1 && !document.querySelectorAll('#rooms .choice.on').length) return '請至少選擇一個房型';
+    if (i === 2 && +minInput.value > +maxInput.value) return '最低租金不可高於最高租金';
+    if (i === 3 && !document.querySelectorAll('#facilities input:checked').length) return '請至少選擇一項附屬設施';
+    return '';
+  };
+
+  let openIndex = null, snapshot = null, opener = null;
+
+  const openEditor = (i, btn) => {
+    openIndex = i;
+    opener = btn;
+    snapshot = stateFns[i].capture();
+    modalTitle.textContent = titles[i];
+    modalBody.append(...contents[i].childNodes);
+    modalBody.scrollTop = 0;
+    modal.hidden = false;
+    document.body.classList.add('modal-open');
+    dialog.focus();
+  };
+
+  const closeEditor = () => {
+    contents[openIndex].append(...modalBody.childNodes);
+    modal.hidden = true;
+    document.body.classList.remove('modal-open');
+    const btn = opener;
+    openIndex = null; opener = null;
+    refreshSummaries();
+    if (btn) btn.focus();
+  };
+
+  const applyEditor = () => {
+    if (openIndex === null) return;
+    const msg = validate(openIndex);
+    if (msg) return toast(msg);
+    const t = titles[openIndex];
+    staged[openIndex] = true;   // 按暫存即標記，不論內容有無變動
+    closeEditor();
+    toast(`「${t}」已暫存，請按下方「儲存居住需求」完成儲存`);
+  };
+
+  const discardEditor = () => {
+    if (openIndex === null) return;
+    stateFns[openIndex].restore(snapshot);
+    closeEditor();
+    toast('已取消，未套用本次修改');
+  };
+
+  cards.forEach((c, i) => {
+    const btn = c.querySelector('.edit-btn');
+    btn.addEventListener('click', () => openEditor(i, btn));
+  });
+
+  $('#modalSave').addEventListener('click', applyEditor);
+  $('#modalCancel').addEventListener('click', discardEditor);
+  $('#modalClose').addEventListener('click', discardEditor);
+  modal.addEventListener('click', e => { if (e.target === modal) discardEditor(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && openIndex !== null) discardEditor(); });
+
+  $('#needsSave').addEventListener('click', () => {
+    const msg = [0, 1, 2, 3].map(validate).find(Boolean);   // 四題皆需通過驗證
+    if (msg) return toast(msg);
+    baseline = stateFns.map(f => f.capture());
+    staged = stateFns.map(() => false);   // 正式儲存後清除所有「已暫存」標記
+    refreshSummaries();
+    // 儲存成功後切換到「更新成功」畫面
+    document.getElementById('view-edit').hidden = true;
+    document.getElementById('view-success').hidden = false;
+    window.scrollTo(0, 0);
+  });
+  $('#backEdit').addEventListener('click', () => {
+    document.getElementById('view-success').hidden = true;
+    document.getElementById('view-edit').hidden = false;
+    window.scrollTo(0, 0);
+  });
+  $('#needsCancel').addEventListener('click', () => {
+    if (!confirm('確定取消編輯？尚未儲存的居住需求修改將不會保留。')) return;
+    staged = stateFns.map(() => false);   // 取消後清除暫存標記
+    stateFns.forEach((f, i) => f.restore(baseline[i]));
+    refreshSummaries();
+    toast('已取消編輯，已還原為上次儲存的內容');
+  });
+
+  // 更新成功頁：第二張卡片依是否已有「依居住需求訂閱」切換
+  let subscribedByNeeds = false;   // 預覽用，正式系統由訂閱資料決定
+  const renderSubCard = () => {
+    $('#subCard').innerHTML = subscribedByNeeds
+      ? `<div class="sc-art" aria-hidden="true">🔔</div><h2>已同步更新您的訂閱條件</h2><p>招租通知將依最新居住需求條件為您推送。</p><a href="#" class="sc-btn">訂閱通知管理 →</a>`
+      : `<div class="sc-art" aria-hidden="true">🔔</div><h2>訂閱招租通知</h2><p>掌握符合您居住需求的最新社宅招租資訊，開放招租時主動通知您。</p><a href="#" class="sc-btn sc-btn-yellow">立即訂閱 →</a>`;
+  };
+  document.querySelectorAll('.sub-preview button').forEach(b => b.addEventListener('click', () => {
+    subscribedByNeeds = b.dataset.sub === '1';
+    renderSubCard();
+  }));
+  renderSubCard();
+
+  refreshSummaries();
+});
+</script>
+
+<script>
+/* ===== 操作歷程：範例資料、查詢、分頁與明細 ===== */
+(() => {
+  "use strict";
+
+  // 操作項目（細項）對應到查詢用的分類；列表仍顯示細項
+  const CATEGORY_OF = {
+    "前往招租資訊": "首頁",
+    "前往申請": "找社宅",
+    "會員登入": "驗證登入",
+    "會員註冊": "驗證登入",
+    "居住需求登記問卷": "居住需求登記",
+    "編輯居住需求": "會員專區",
+    "訂閱通知管理": "會員專區",
+  };
+
+  // 操作項目＝功能細項；操作內容＝會員實際做了什麼（與 A6.4 單頁版一致）
+  const RAW = [
+    { time: "2026-11-04T09:30", item: "會員登入",         content: "使用行動自然人憑證登入" },
+    { time: "2026-11-04T09:24", item: "居住需求登記問卷", content: "儲存居住需求登記問卷" },
+    { time: "2026-11-03T19:45", item: "前往申請",         content: "前往臺南市政府都市發展局申請頁面" },
+    { time: "2026-11-02T16:05", item: "訂閱通知管理",     content: "新增訂閱：「八德一號社會住宅」" },
+    { time: "2026-11-02T10:12", item: "編輯居住需求",     content: "儲存居住需求修改" },
+    { time: "2026-11-02T10:05", item: "編輯居住需求",     content: "開始編輯居住需求" },
+    { time: "2026-11-01T15:45", item: "前往招租資訊",     content: "前往「○○機關」招租資訊" },
+    { time: "2026-10-30T09:15", item: "訂閱通知管理",     content: "取消訂閱：依居住需求條件" },
+    { time: "2026-10-18T10:06", item: "會員註冊",         content: "完成會員註冊" },
+    { time: "2026-10-10T20:13", item: "會員登入",         content: "使用實體自然人憑證登入" },
+    { time: "2026-11-05T14:20", item: "會員登入",         content: "使用健保卡登入" },
+    { time: "2026-11-05T09:10", item: "前往申請",         content: "前往國家住宅及都市更新中心申請頁面" },
+    { time: "2026-11-04T16:40", item: "訂閱通知管理",     content: "新增訂閱：依居住需求條件" },
+    { time: "2026-11-04T11:15", item: "編輯居住需求",     content: "儲存居住需求修改" },
+    { time: "2026-11-04T11:02", item: "編輯居住需求",     content: "開始編輯居住需求" },
+    { time: "2026-11-03T10:30", item: "前往招租資訊",     content: "前往「○○機關」招租資訊" },
+    { time: "2026-11-03T08:55", item: "居住需求登記問卷", content: "儲存居住需求登記問卷" },
+    { time: "2026-10-28T13:25", item: "訂閱通知管理",     content: "新增訂閱：「八德一號社會住宅」" },
+    { time: "2026-10-26T19:40", item: "前往申請",         content: "前往臺南市政府都市發展局申請頁面" },
+    { time: "2026-10-20T09:05", item: "會員登入",         content: "使用行動自然人憑證登入" },
+    { time: "2026-10-12T15:18", item: "編輯居住需求",     content: "儲存居住需求修改" },
+    { time: "2026-10-12T15:10", item: "編輯居住需求",     content: "開始編輯居住需求" },
+  ];
+
+  // 依時間由新到舊排序（字串可直接比較）
+  // 暫不顯示：智能客服（尚未開發）
+  const HIDDEN_CATEGORIES = ["智能客服"];
+  const RECORDS = RAW.filter(r => !HIDDEN_CATEGORIES.includes(CATEGORY_OF[r.item]))
+    .map(r => ({ ...r, cat: CATEGORY_OF[r.item] || "", date: r.time.slice(0, 10) }))
+    .sort((a, b) => (a.time < b.time ? 1 : a.time > b.time ? -1 : 0));
+  const PAGE_SIZE = 10;
+  const state = { category: "", start: "", end: "", page: 1 };
+
+  const $ = (id) => document.getElementById(id);
+  const form = $("filter-form");
+  const categoryEl = $("category");
+  const startEl = $("start-date");
+  const endEl = $("end-date");
+  const errorEl = $("form-error");
+  const bodyEl = $("record-body");
+  const countEl = $("result-count");
+  const emptyEl = $("empty");
+  const tableWrap = $("table-wrap");
+  const pagerEl = $("pager");
+
+  const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+  }[c]));
+
+  const splitTime = (iso) => {
+    const [d, t] = iso.split("T");
+    return { date: d.replace(/-/g, "/"), clock: t.length === 5 ? t + ":00" : t };   // 時:分:秒
+  };
+
+  const statusHTML = (r) => `<span class="status ok">${esc(r.resultLabel)}</span>`;
+
+  function getFiltered() {
+    return RECORDS.filter((r) =>
+      (!state.category || r.cat === state.category) &&
+      (!state.start || r.date >= state.start) &&
+      (!state.end || r.date <= state.end)
+    );
+  }
+
+  function rowHTML(r) {
+    const t = splitTime(r.time);
+    return `
+      <tr>
+        <td class="col-time" data-label="操作時間">
+          <div class="time-date">${esc(t.date)}</div>
+          <div class="time-clock">${esc(t.clock)}</div>
+        </td>
+        <td data-label="分類">${esc(r.cat)}</td>
+        <td class="col-content" data-label="操作內容"><span class="op-content">${esc(r.content)}</span></td>
+      </tr>`;
+  }
+
+  // 分頁按鈕：第一頁、上一頁、頁碼（含省略號）、下一頁、最後一頁
+  function renderPager(totalPages) {
+    if (totalPages <= 1) { pagerEl.innerHTML = ""; return; }
+    const cur = state.page;
+    const btn = (p, label, disabled, extra = "") =>
+      `<button type="button" data-page="${p}" ${disabled ? "disabled" : ""} ${extra} aria-label="${label}">${label}</button>`;
+
+    let html = btn(1, "«", cur === 1, 'aria-label="第一頁"')
+             + btn(cur - 1, "‹", cur === 1, 'aria-label="上一頁"');
+
+    // 只顯示第一頁、最後一頁及目前頁前後各 1 頁，其餘以省略號代替
+    const pages = [];
+    for (let p = 1; p <= totalPages; p++) {
+      if (p === 1 || p === totalPages || Math.abs(p - cur) <= 1) pages.push(p);
+    }
+    let prev = 0;
+    pages.forEach(p => {
+      if (p - prev > 1) html += `<span class="ellipsis" aria-hidden="true">…</span>`;
+      html += `<button type="button" data-page="${p}" ${p === cur ? 'aria-current="page"' : ""} aria-label="第 ${p} 頁">${p}</button>`;
+      prev = p;
+    });
+
+    html += btn(cur + 1, "›", cur === totalPages, 'aria-label="下一頁"')
+          + btn(totalPages, "»", cur === totalPages, 'aria-label="最後一頁"');
+    pagerEl.innerHTML = html;
+  }
+
+  function render() {
+    const list = getFiltered();
+    const total = list.length;
+    const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
+    if (state.page > totalPages) state.page = totalPages;
+
+    const startIdx = (state.page - 1) * PAGE_SIZE;
+    const items = list.slice(startIdx, startIdx + PAGE_SIZE);
+
+    bodyEl.innerHTML = items.map(rowHTML).join("");
+    countEl.textContent = total
+      ? `共 ${total} 筆，目前顯示第 ${startIdx + 1}–${startIdx + items.length} 筆`
+      : "共 0 筆";
+
+    const hasData = total > 0;
+    emptyEl.hidden = hasData;
+    tableWrap.hidden = !hasData;
+    renderPager(totalPages);
+  }
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const start = startEl.value;
+    const end = endEl.value;
+    // 開始與結束日期需成對填寫
+    if (!!start !== !!end) {
+      errorEl.textContent = "請同時填寫開始日期與結束日期。";
+      (start ? endEl : startEl).focus();
+      return;
+    }
+    if (start && end && start > end) {
+      errorEl.textContent = "結束日期不可早於開始日期，請重新選擇。";
+      endEl.focus();
+      return;
+    }
+    errorEl.textContent = "";
+    state.category = categoryEl.value;
+    state.start = start;
+    state.end = end;
+    state.page = 1;
+    render();
+  });
+
+  function resetFilters() {
+    form.reset();
+    errorEl.textContent = "";
+    Object.assign(state, { category: "", start: "", end: "", page: 1 });
+    render();
+  }
+  $("clear-btn").addEventListener("click", resetFilters);
+  $("empty-clear").addEventListener("click", resetFilters);
+
+  pagerEl.addEventListener("click", (e) => {
+    const btn = e.target.closest("button[data-page]");
+    if (!btn || btn.disabled) return;
+    state.page = Number(btn.dataset.page);
+    render();
+    $("list-title").scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+
+  render();
+})();
+</script>
+</body></html>

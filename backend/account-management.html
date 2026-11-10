@@ -165,7 +165,20 @@
 <button class="nav-link" id="agencyTab" type="button" role="tab" aria-selected="false" aria-controls="accountPanel" tabindex="-1" data-role="機關">機關帳號</button>
 </div><div id="accountPanel" role="tabpanel" aria-labelledby="citizenTab" tabindex="0">
           <div class="collapse-wrap position-relative"><h4 class="collapse-title"><span class="text">查詢條件</span></h4><a href="#accountSearch" class="collapse-btn stretched-link" data-bs-toggle="collapse" aria-expanded="true" aria-controls="accountSearch" aria-label="展開或收合查詢條件"><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></a></div>
-          <div class="collapse show" id="accountSearch"><form class="search" id="accountFilter"><div class="search-top-form"><div class="row g-3"><div class="account-keyword-field col-12 col-md-6 col-lg"><label class="form-label" for="accountKeyword">關鍵字</label><input class="form-control" id="accountKeyword" placeholder="姓名、身分證／居留證號、手機、電子信箱"></div><div class="col-md-6 col-lg-3" data-agency-only hidden><label class="form-label" for="filterAgency">機關名稱</label><select class="form-select" id="filterAgency"><option value="">全部機關</option></select></div><div class="col-md-6 col-lg-3" data-agency-only hidden><label class="form-label" for="filterAgencyRole">機關角色</label><select class="form-select" id="filterAgencyRole"><option value="">全部機關角色</option><option>系統管理員</option><option>國土署管理員</option><option>國土署人員</option><option>社宅機關查調人員</option><option>社宅機關人員</option></select></div><div class="col-md-6 col-lg-3"><label class="form-label" for="filterStatus">狀態</label><select class="form-select" id="filterStatus"><option value="">全部狀態</option><option value="1">啟用</option><option value="0">停用</option></select></div></div></div><div class="search-bottom-buttons"><button class="btn btn-primary" type="submit"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>查詢</button><button class="btn btn-outline-secondary" type="reset">重設</button></div></form></div>
+          <div class="collapse show" id="accountSearch"><form class="search" id="accountFilter"><div class="search-top-form"><div class="row g-3"><div class="account-keyword-field col-12 col-md-6 col-lg"><label class="form-label" for="accountKeyword">關鍵字</label><input class="form-control" id="accountKeyword" placeholder="姓名、身分證／居留證號、手機、電子信箱、IP"></div><div class="col-md-6 col-lg-3" data-agency-only hidden><label class="form-label" for="filterAgency">機關名稱</label><select class="form-select" id="filterAgency"><option value="">全部機關</option></select></div><div class="col-md-6 col-lg-3" data-agency-only hidden><label class="form-label" for="filterAgencyRole">機關角色</label><select class="form-select" id="filterAgencyRole"><option value="">全部機關角色</option><option>系統管理員</option><option>國土署管理員</option><option>國土署人員</option><option>社宅機關查調人員</option><option>社宅機關人員</option></select></div><div class="col-md-6 col-lg-3"><label class="form-label" for="filterStatus">狀態</label><select class="form-select" id="filterStatus"><option value="">全部狀態</option><option value="1">啟用</option><option value="0">停用</option></select></div></div>
+            <div class="mt-3">
+              <div class="row g-3">
+                <div class="col-sm-6 col-lg-4">
+                  <label class="form-label" for="filterLoginStart">最後登入時間（起）</label>
+                  <input class="form-control" id="filterLoginStart" type="date">
+                </div>
+                <div class="col-sm-6 col-lg-4">
+                  <label class="form-label" for="filterLoginEnd">最後登入時間（迄）</label>
+                  <input class="form-control" id="filterLoginEnd" type="date">
+                </div>
+              </div>
+            </div>
+          </div><div class="search-bottom-buttons"><button class="btn btn-primary" type="submit"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>查詢</button><button class="btn btn-outline-secondary" type="reset">重設</button></div></form></div>
           <div class="account-results-bar mb-3">
             <div class="d-flex d-lg-none align-items-center gap-2">
               <label for="accountSortField">排序</label>

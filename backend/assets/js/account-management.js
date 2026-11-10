@@ -153,15 +153,47 @@
     }).join('')||'<tr><td colspan="'+labels.length+'" class="text-center">查無符合條件的帳號。</td></tr>';
     renderPager(pages);
   }
+  function validateLoginRange() {
+    const start = $('filterLoginStart').value;
+    const end = $('filterLoginEnd');
+    const invalid = Boolean(start && end.value && start > end.value);
+    end.setCustomValidity(invalid ? '最後登入時間的迄日不得早於起日。' : '');
+    return !invalid;
+  }
+  for (const id of ['filterLoginStart', 'filterLoginEnd']) {
+    $(id).addEventListener('input', validateLoginRange);
+  }
   function filter(resetPage = true){
-    const q=$('accountKeyword').value.trim().toLowerCase();
-    matches=accounts.filter(a=>[a.name,a.nationalId,a.phone,a.email].some(v=>v.toLowerCase().includes(q))&&a.role===activeRole&&(activeRole!=='機關'||!$('filterAgency').value||a.agency===$('filterAgency').value)&&(activeRole!=='機關'||!$('filterAgencyRole').value||a.agencyRole===$('filterAgencyRole').value)&&(!$('filterStatus').value||String(Number(a.active))===$('filterStatus').value));
+    const q = $('accountKeyword').value.trim().toLowerCase();
+    const start = $('filterLoginStart').value;
+    const end = $('filterLoginEnd').value;
+    matches = accounts.filter(a => {
+      // 依畫面顯示的登入日期比較，包含起訖當日，不另做時區轉換。
+      const loginDate = String(a.lastLoginAt || '').slice(0, 10).replaceAll('/', '-');
+      return [a.name, a.nationalId, a.phone, a.email, a.lastLoginIp].some(v => String(v ?? '').toLowerCase().includes(q))
+        && a.role === activeRole
+        && (activeRole !== '機關' || !$('filterAgency').value || a.agency === $('filterAgency').value)
+        && (activeRole !== '機關' || !$('filterAgencyRole').value || a.agencyRole === $('filterAgencyRole').value)
+        && (!$('filterStatus').value || String(Number(a.active)) === $('filterStatus').value)
+        && (!start || (loginDate && loginDate >= start))
+        && (!end || (loginDate && loginDate <= end));
+    });
     sortMatches();
     if (resetPage) page = 1;
     render();
   }
-  $('accountFilter').addEventListener('submit',e=>{e.preventDefault();filter();});
-  $('accountFilter').addEventListener('reset',e=>{e.preventDefault();for(const id of ['accountKeyword','filterAgency','filterAgencyRole','filterStatus'])$(id).value='';syncFilterRoles();filter();});
+  $('accountFilter').addEventListener('submit', e => {
+    e.preventDefault();
+    if (!validateLoginRange()) { $('filterLoginEnd').reportValidity(); return; }
+    filter();
+  });
+  $('accountFilter').addEventListener('reset', e => {
+    e.preventDefault();
+    for (const id of ['accountKeyword', 'filterAgency', 'filterAgencyRole', 'filterStatus', 'filterLoginStart', 'filterLoginEnd']) $(id).value = '';
+    validateLoginRange();
+    syncFilterRoles();
+    filter();
+  });
   const tabs=Array.from(document.querySelectorAll('.account-tabs [role="tab"]'));
   function selectTab(tab){
     activeRole=tab.dataset.role;
