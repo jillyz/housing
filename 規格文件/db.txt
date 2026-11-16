@@ -337,6 +337,87 @@ Table member_page_view_log [note: '前台瀏覽頁面紀錄,每進入一個頁�
   }
 }
 
+Table application_case [note: '申請案件基本資料,一個統一案件編號一列;A6.1.1 配號與建檔,A6.1.2 僅更新狀態與進度接收時間。格式、CHECK 與交易規則見申請案件查詢功能規格.md 第十一節'] {
+  id uuid [pk, default: `gen_random_uuid()`, note: '主鍵']
+  case_number varchar(14) [not null, unique, note: '統一案件編號,2 碼機關+3 碼民國年度+1 碼字母縣市+8 碼補零流水號;必須與各組碼欄位一致']
+  agency_code varchar(2) [not null, note: '來源權責機關代碼,例如 CH;須符合機關憑證授權']
+  case_year varchar(3) [not null, note: '民國案件年度,3 碼數字字串,例如 115']
+  city_code varchar(1) [not null, note: '社宅所在地字母縣市代碼,不是 county.county_code 的五碼代碼;由服務依對照資料驗證']
+  serial_number integer [not null, note: '1 至 99999999,組碼時左補零至 8 碼;由平台原子配發']
+  applied_at timestamptz [not null, note: '原始申請日期與時間,來自 A6.1.1 caseData.appliedAt']
+  housing_code varchar(50) [not null, note: '來源申請社宅代碼,來自 caseData.housingCode;依來源機關與代碼對應 housing 的 agency_id/no_build']
+  housing_id uuid [not null, note: '對應社宅主檔,取號時解析並驗證所在地']
+  room_type_code varchar(30) [not null, note: '申請房型代碼,來自 caseData.roomTypeCode;限 housing_class 的 ROOM_TYPE 群組且屬於該社宅,由服務驗證']
+  status varchar(20) [note: '僅 ACCEPTED 已受理、MOVED_IN 已入住、MOVED_OUT 已退租;取號時為 NULL,不預設已受理;回傳後須等於最新狀態歷程的 to_status']
+  progress_received_at timestamptz [note: '最近一次內容有異動的進度接收時間;尚未回傳時為 NULL,相同內容重送不變']
+  created_at timestamptz [not null, default: `now()`, note: '取號及基本資料建立時間']
+  updated_at timestamptz [not null, default: `now()`, note: '實際資料異動時間,相同進度重送不變,由服務維護']
+
+  indexes {
+    (agency_code, case_year, city_code, serial_number) [unique, name: 'uq_application_case_number_parts']
+    (agency_code, status, applied_at) [name: 'ix_application_case_agency_status_applied', note: 'applied_at DESC,供案件列表查詢']
+    housing_id [name: 'ix_application_case_housing_id']
+  }
+}
+
+Table application_case_member [note: '案件目前完整成員清單;A6.1.2 與狀態在同一交易更新,保留傳入順序。只取號時零筆,成功回傳進度後至少一筆,member_order 由 1 連續起算且第一筆為申請人;完整性由服務驗證'] {
+  id uuid [pk, default: `gen_random_uuid()`, note: '主鍵']
+  case_id uuid [not null, note: '所屬申請案件']
+  member_order integer [not null, note: '成員順序,1 代表 members[0] 申請人本人,其餘由 2 起算;須大於等於 1']
+  national_id_encrypted bytea [not null, note: '身分證字號應用程式加密密文,不存明文;輸入須通過格式與檢查碼驗證']
+  national_id_hash char(64) [not null, note: '正規化身分證字號 HMAC-SHA256,供成員去重與會員比對']
+  id_key_version smallint [not null, note: '加密/HMAC 金鑰版本;同案去重與會員比對使用一致有效版本,換版時維護比對資料']
+  name varchar(200) [not null, note: '姓名,不可空白']
+  birth_date date [not null, note: '生日,西元有效日期且不得晚於臺灣當日日期,由服務驗證']
+  gender varchar(20) [not null, note: '性別文字,例如男、女;不可空白,不由身分證字號推定']
+  title varchar(50) [not null, note: '稱謂文字,例如本人、配偶、子女;不可空白,不以此判定申請人']
+  created_at timestamptz [not null, default: `now()`, note: '本份成員資料建立時間']
+
+  indexes {
+    (case_id, member_order) [unique, name: 'uq_application_case_member_order']
+    (case_id, national_id_hash) [unique, name: 'uq_application_case_member_national_id']
+    (national_id_hash, member_order, case_id) [name: 'ix_application_case_member_applicant', note: '會員只比對 member_order=1 的申請人,其他成員不自動授權']
+  }
+}
+
+Table application_case_number_counter [note: '各來源機關/民國年度/字母縣市獨立配號;A6.1.1 以資料列鎖或原子 UPSERT 更新,與 application_case 建檔共用同一交易,失敗整筆回滾。到 99999999 回應 409,不重用'] {
+  agency_code varchar(2) [not null, note: '來源權責機關代碼']
+  case_year varchar(3) [not null, note: '3 碼民國案件年度']
+  city_code varchar(1) [not null, note: '社宅所在地字母縣市代碼']
+  last_serial_number integer [not null, default: 0, note: '最後配發流水號,限制 0 至 99999999;首次成功取號更新為 1']
+  updated_at timestamptz [not null, default: `now()`, note: '最近配號時間']
+
+  indexes {
+    (agency_code, case_year, city_code) [pk, name: 'pk_application_case_number_counter']
+  }
+}
+
+Table application_case_status_history [note: '案件狀態及成員異動歷程,只新增不改刪;首次回傳、狀態或成員任一異動皆新增,每筆保存當次完整成員加密快照;狀態及有序成員皆相同的重送不新增。序號、主檔、目前成員及歷程在同一案件鎖與交易中維護,失敗全數回滾。詳細規則見申請案件資料表規劃.md;與查調批次歷程分開保存'] {
+  id uuid [pk, default: `gen_random_uuid()`, note: '主鍵']
+  case_id uuid [not null, note: '所屬申請案件;不設定連鎖刪除,保留歷程']
+  sequence_no integer [not null, note: '案件內狀態歷程序號,由 1 起算,每次異動加 1,由平台在案件鎖內配發;不以時間戳決定順序']
+  change_type varchar(30) [not null, note: '平台比對後填入:INITIAL 首次、STATUS_CHANGED 僅狀態、MEMBERS_CHANGED 僅成員、STATUS_AND_MEMBERS_CHANGED 兩者皆異動']
+  from_status varchar(20) [note: '更新前狀態,僅序號 1 為 NULL,其餘限 ACCEPTED/MOVED_IN/MOVED_OUT;須等於前一筆 to_status']
+  to_status varchar(20) [not null, note: '本次狀態,限 ACCEPTED/MOVED_IN/MOVED_OUT;僅成員異動時與 from_status 相同,狀態異動時須不同;最新一筆須等於主檔 status']
+  members_snapshot_encrypted bytea [not null, note: '當次更新後完整有序成員 JSON 的應用程式加密密文;每項含 member_order、national_id、name、birth_date、gender、title;至少一位,歷史快照獨立於目前成員列']
+  members_snapshot_key_version smallint [not null, note: '成員快照加密金鑰版本,正整數;保留歷史解密能力']
+  recorded_at timestamptz [not null, note: '平台在案件鎖內記錄的異動時間,與本次 progress_received_at/receivedAt 相同;不是來源業務生效時間']
+  source_agency_code varchar(2) [not null, note: '由平台依呼叫憑證填入,須與案件 agency_code 一致']
+  request_id varchar(100) [not null, note: '平台請求追蹤識別,用於關聯介接紀錄,不是來源冪等鍵,不含個資或憑證']
+
+  indexes {
+    (case_id, sequence_no) [unique, name: 'uq_application_case_status_history_sequence', note: '同案歷程依序號讀取;不對案件加狀態設唯一限制,允許更正後再次出現相同狀態']
+    request_id [name: 'ix_application_case_status_history_request']
+  }
+}
+
+TableGroup 申請案件資料 [color: #0f766e] {
+  application_case
+  application_case_member
+  application_case_number_counter
+  application_case_status_history
+}
+
 TableGroup 基礎資料 [color: #8b5cf6] {
   housing_class
   county
@@ -398,3 +479,6 @@ Ref: rental_schedule_housing_room_type.housing_id > housing.id
 Ref: rental_schedule_housing_room_type.room_type_id > housing_class.id
 Ref: announcement.announcement_type_id > housing_class.id
 Ref: announcement.agency_id > housing_class.id
+Ref: application_case.housing_id > housing.id
+Ref: application_case_member.case_id > application_case.id
+Ref: application_case_status_history.case_id > application_case.id
