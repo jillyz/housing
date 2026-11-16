@@ -3,7 +3,7 @@
   const records = window.EnquiryCases || [];
   const params = new URLSearchParams(location.search);
   const caseId = params.get('case');
-  const record = caseId ? records.find(item => item.caseId === caseId) : records[0];
+  const record = caseId ? records.find(item => item.caseId === caseId.replaceAll('-', '')) : records[0];
   const body = document.getElementById('detailBody');
 
   const escape = value => String(value ?? '').replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);

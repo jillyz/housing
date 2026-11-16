@@ -1,0 +1,22 @@
+@media (min-width: 992px) {
+  #enquiryTable {
+    width: 100%;
+    table-layout: auto;
+  }
+  #enquiryTable .case-column { width: 1%; }
+  #enquiryTable .name-column { width: 4.5rem; }
+  #enquiryTable .housing-column { width: 13%; }
+  #enquiryTable .room-column { width: 5.25rem; }
+  #enquiryTable .agency-column { width: 12%; }
+  #enquiryTable .status-column { width: 6rem; }
+  #enquiryTable .result-column { width: 5.5rem; }
+  #enquiryTable .monthly-column { width: 6.5rem; }
+  #enquiryTable .action-column { width: 6.25rem; }
+  #enquiryTable th,
+  #enquiryTable td { padding-inline: clamp(.2rem, .55vw, .5rem); overflow-wrap: anywhere; }
+  #enquiryTable .btn,
+  #enquiryTable .enquiry-status { white-space: nowrap !important; }
+}
+@media (max-width: 991.98px) {
+  #enquiryTable colgroup { display: none; }
+}

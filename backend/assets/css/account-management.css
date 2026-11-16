@@ -82,21 +82,38 @@
   }
 }
 
-#accountModal .account-detail { display: none; }
-#accountModal.is-viewing .account-detail { display: block; margin: 0; }
-#accountModal.is-viewing .account-detail ~ :is(label, input, select) { display: none; }
-#accountModal.is-viewing :is(.account-detail, #accountVerification) dt {
-  margin: 0 0 .25rem;
-  color: #475569;
+#accountModal .account-section + .account-section { margin-top: 1.75rem; }
+#accountModal .account-section-title {
+  margin: 0 0 1.25rem;
+  padding-bottom: .75rem;
+  border-bottom: 1px solid var(--bs-border-color);
+  color: var(--bs-primary);
+  font-size: 18px;
   font-weight: 500;
 }
-#accountModal.is-viewing :is(.account-detail, #accountVerification) dd {
+#accountModal .account-detail { margin: 0; }
+#accountModal .account-view-detail { display: none; }
+#accountModal.is-viewing .account-view-detail { display: block; }
+#accountModal.is-viewing .account-view-detail ~ :is(label, select) { display: none; }
+#accountModal :is(.account-detail, #accountVerification) dt {
+  margin: 0 0 .5rem;
+  color: var(--bs-secondary-color);
+  font-weight: 500;
+}
+#accountModal :is(.account-detail, #accountVerification) dd {
   margin: 0;
   color: #111;
   line-height: 1.6;
   overflow-wrap: anywhere;
 }
-#accountModal #editId:disabled { color: #111; -webkit-text-fill-color: #111; opacity: 1; }
+#accountModal .form-label { margin-bottom: .5rem; }
+#accountModal .email-verification-note { align-items: baseline; line-height: 1.5; }
+#accountModal .email-verification-note i { flex-shrink: 0; }
+#accountModal .modal-body { padding-top: 1.5rem; padding-bottom: .5rem; }
+@media (max-width: 575.98px) {
+  #accountModal .modal-header,
+  #accountModal .modal-body { padding-inline: 1rem; }
+}
 
 .account-results-bar, .account-pager, .account-page-size, .account-page-jump {
   display: flex;

@@ -64,23 +64,11 @@
 .enquiry-detail-table td { overflow-wrap: anywhere; }
 @media (min-width: 992px) {
   .enquiry-detail-table { table-layout: fixed; width: 100%; }
-  #enquiryTable { table-layout: fixed; width: 100%; }
-  #enquiryTable .case-column { width: 10%; }
-  #enquiryTable .name-column,
-  #enquiryTable .room-column { width: 6%; }
-  #enquiryTable .agency-column { width: 9%; }
-  #enquiryTable .housing-column { width: 10%; }
-  #enquiryTable .status-column { width: 9%; }
-  #enquiryTable .result-column { width: 8%; }
-  #enquiryTable .action-column { width: 10%; }
 }
 .enquiry-detail-page .enquiry-comparison th.highlight { background-color: #eef8f8; }
 .enquiry-detail-page .enquiry-boolean-no { color: #c5cbce; }
 .enquiry-detail-page details summary { cursor: pointer; color: #087f8c; }
 .enquiry-detail-page .enquiry-notes p { white-space: pre-line; }
-@media (max-width: 991px) {
-  #enquiryTable colgroup { display: none; }
-}
 @media (min-width: 992px) {
   .backend-page .top-helper .dropdown-toggle { color: #fff; }
 }

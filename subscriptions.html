@@ -35,18 +35,38 @@ a.mini-action{display:inline-flex;align-items:center;justify-content:center}
 <div class="page">
 <main class="main-card subscription-page">
 <div class="subscription-heading"><div><h1>訂閱管理</h1><p>管理您關注的區位與社宅招租通知。</p></div></div>
-<div id="subscriptionLists"><section class="subscription-section" aria-labelledby="queryHeading"><h2 id="queryHeading" tabindex="-1">已訂閱條件 <span id="queryCount"></span></h2><div id="queryTableWrap" class="subscription-table-wrap"><table class="subscription-table query-table"><caption class="subscription-sr-only">已訂閱條件</caption><thead><tr><th scope="col">訂閱地區</th><th scope="col">房型</th><th scope="col">預算範圍</th><th scope="col">公設服務</th><th scope="col">訂閱日期</th><th scope="col">媒合推薦</th><th scope="col">操作</th></tr></thead><tbody id="queryList"></tbody></table></div><p id="queryEmpty" class="subscription-section-empty" hidden>目前沒有依據訂閱條件的通知。<a href="housing-map.html">前往找社宅</a></p></section><section class="subscription-section" aria-labelledby="housingHeading"><h2 id="housingHeading" tabindex="-1">已訂閱社宅 <span id="housingCount"></span></h2><div id="housingTableWrap" class="subscription-table-wrap"><table class="subscription-table housing-table"><caption class="subscription-sr-only">已訂閱社宅</caption><thead><tr><th scope="col">社宅名稱</th><th scope="col">所在地區</th><th scope="col">訂閱日期</th><th scope="col">媒合推薦</th><th scope="col">操作</th></tr></thead><tbody id="housingList"></tbody></table></div><p id="housingEmpty" class="subscription-section-empty" hidden>目前沒有訂閱社宅的通知。<a href="housing-map.html">前往找社宅</a></p></section></div>
+<div id="subscriptionLists">
+<section class="subscription-section" aria-labelledby="registrationHeading">
+  <h2 id="registrationHeading" tabindex="-1">居住需求登記</h2>
+  <div class="subscription-table-wrap">
+    <table class="subscription-table query-table registration-table">
+      <caption class="subscription-sr-only">居住需求登記</caption>
+      <thead><tr><th scope="col">訂閱地區</th><th scope="col">房型</th><th scope="col">預算範圍</th><th scope="col">公設服務</th><th scope="col">訂閱日期</th><th scope="col">媒合推薦</th><th scope="col">操作</th></tr></thead>
+      <tbody>
+        <tr>
+          <td data-label="訂閱地區"><strong>無訂閱</strong><div>尚未登記</div></td>
+          <td data-label="房型">—</td><td data-label="預算範圍">—</td><td data-label="公設服務">—</td>
+          <td data-label="訂閱日期">—</td><td data-label="媒合推薦">—</td>
+          <td data-label="操作"><a class="unsubscribe-button" href="questionnaire.html">前往登記</a></td>
+        </tr>
+      </tbody>
+      <tbody id="registrationList"></tbody>
+    </table>
+  </div>
+</section>
+<section class="subscription-section" aria-labelledby="queryHeading"><h2 id="queryHeading" tabindex="-1">已訂閱條件 <span id="queryCount"></span></h2><div id="queryTableWrap" class="subscription-table-wrap"><table class="subscription-table query-table"><caption class="subscription-sr-only">已訂閱條件</caption><thead><tr><th scope="col">訂閱地區</th><th scope="col">房型</th><th scope="col">預算範圍</th><th scope="col">公設服務</th><th scope="col">訂閱日期</th><th scope="col">媒合推薦</th><th scope="col">操作</th></tr></thead><tbody id="queryList"></tbody></table></div><p id="queryEmpty" class="subscription-section-empty" hidden>目前沒有依據訂閱條件的通知。<a href="housing-map.html">前往找社宅</a></p></section><section class="subscription-section" aria-labelledby="housingHeading"><h2 id="housingHeading" tabindex="-1">已訂閱社宅 <span id="housingCount"></span></h2><div id="housingTableWrap" class="subscription-table-wrap"><table class="subscription-table housing-table"><caption class="subscription-sr-only">已訂閱社宅</caption><thead><tr><th scope="col">社宅名稱</th><th scope="col">所在地區</th><th scope="col">訂閱日期</th><th scope="col">媒合推薦</th><th scope="col">操作</th></tr></thead><tbody id="housingList"></tbody></table></div><p id="housingEmpty" class="subscription-section-empty" hidden>目前沒有訂閱社宅的通知。<a href="housing-map.html">前往找社宅</a></p></section></div>
 <!-- <p class="subscription-footnote">地區符合任一項即可通知。取消訂閱不影響已送出的申請。</p> -->
 <noscript><p>請啟用 JavaScript，以查看及管理訂閱。</p></noscript>
 </main>
-<dialog class="subscription-dialog" id="updateSubscriptionDialog" aria-labelledby="updateTitle" aria-describedby="updateDescription">
-<form method="dialog">
-<h2 id="updateTitle">更新訂閱條件</h2>
-<p id="updateDescription">這筆訂閱來自您的居住需求問卷。請前往問卷變更需求條件。</p>
-<div class="dialog-actions"><button autofocus>留在本頁</button><a class="subscription-match-button" href="questionnaire.html">前往居住需求問卷</a></div>
-</form>
+<dialog class="subscription-dialog" id="cancelSubscriptionDialog" aria-labelledby="cancelSubscriptionTitle" aria-describedby="cancelSubscriptionDescription"><form method="dialog"><span class="dialog-eyebrow">招租通知設定</span><h2 id="cancelSubscriptionTitle">確定取消這筆訂閱？</h2><p id="cancelSubscriptionDescription"></p><p class="dialog-note" id="cancelSubscriptionNote">取消後將不再收到這筆招租通知，不影響您的其他訂閱與申請。</p><div class="dialog-actions"><button value="keep" autofocus>保留訂閱</button><button value="cancel" class="cancel-confirm">確認取消訂閱</button></div></form></dialog>
+<dialog class="subscription-dialog" id="resubscribeDialog" aria-labelledby="resubscribeTitle" aria-describedby="resubscribeDescription">
+  <form method="dialog">
+    <span class="dialog-eyebrow">招租通知設定</span>
+    <h2 id="resubscribeTitle">重新訂閱？</h2>
+    <p id="resubscribeDescription">重新訂閱後，您會收到符合目前居住需求登記條件的招租通知。</p>
+    <div class="dialog-actions"><button value="back" autofocus>返回</button><button value="subscribe" class="subscribe-confirm">確認訂閱</button></div>
+  </form>
 </dialog>
-<dialog class="subscription-dialog" id="cancelSubscriptionDialog" aria-labelledby="cancelSubscriptionTitle" aria-describedby="cancelSubscriptionDescription"><form method="dialog"><span class="dialog-eyebrow">招租通知設定</span><h2 id="cancelSubscriptionTitle">確定取消這筆訂閱？</h2><p id="cancelSubscriptionDescription"></p><p class="dialog-note">取消後將不再收到這筆招租通知，不影響您的其他訂閱與申請。</p><div class="dialog-actions"><button value="keep" autofocus>保留訂閱</button><button value="cancel" class="cancel-confirm">確認取消訂閱</button></div></form></dialog>
 <div class="subscription-feedback" id="subscriptionFeedback" hidden><span id="subscriptionMessage" role="status" aria-live="polite"></span><button type="button" id="undoSubscription" hidden>復原訂閱</button></div>
 </div>
 <footer class="site-footer" id="siteFooter">

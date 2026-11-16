@@ -1,0 +1,584 @@
+<!doctype html>
+<html class="no-js" lang="zh-Hant">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>查調案件詳細資料｜全國社會住宅資料整合暨共同查調管理平臺</title>
+  <!-- jQuery -->
+  <script src="../後臺模板/assets/vendor/jquery-3.7.1.min.js"></script>
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="../後臺模板/assets/vendor/bootstrap-5.3.3/dist/css/bootstrap.min.css">
+  <script src="../後臺模板/assets/vendor/bootstrap-5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../後臺模板/assets/vendor/fontawesome-pro-6.5.2-web/css/all.css">
+  <!-- Rubik (數字字型) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap">
+  <!-- Tom Select -->
+  <link rel="stylesheet" href="../後臺模板/assets/vendor/tom-select-2.2.2/tom-select.bootstrap5.min.css">
+  <script src="../後臺模板/assets/vendor/tom-select-2.2.2/tom-select.complete.js"></script>
+  <!-- Menu -->
+  <script src="../後臺模板/assets/vendor/utils/menu/menu.js"></script>
+  <!-- 自訂 -->
+  <link rel="stylesheet" href="../後臺模板/assets/css/main.css">
+  <script src="../後臺模板/assets/vendor/utils/photoLightbox/photoLightbox.js"></script>
+  <script src="../後臺模板/assets/js/customJS.js"></script>
+  <link rel="stylesheet" href="assets/css/enquiry-template.css">
+  <link rel="stylesheet" href="assets/css/navigation.css">
+  <style>
+  /* 僅調整本頁 familyInfo，其他區塊使用原查調明細樣式。 */
+  #familyInfo .hurc-applicant-meta { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px 28px; margin:0 0 26px; }
+  #familyInfo .hurc-applicant-meta dt { color:#66747a; font-weight:400; font-size:.9rem; margin-bottom:5px; }
+  #familyInfo .hurc-applicant-meta dd { margin:0; overflow-wrap:anywhere; }
+  #familyInfo .hurc-family-table { margin-bottom:0; }
+  #familyInfo .hurc-family-table th,#familyInfo .hurc-family-table td { line-height:1.65; vertical-align:top; }
+  #familyInfo .hurc-family-table small { color:#66747a; font-size:.85rem; }
+  #familyInfo .hurc-household-row th { background:#eef7f7; padding:16px 20px; text-align:left; border-bottom:1px solid #d9d9d9; }
+  #familyInfo .hurc-household { display:flex; flex-wrap:wrap; gap:8px 22px; font-weight:400; font-size:.9rem; }
+  #familyInfo .hurc-household strong { font-size:1rem; color:#075f70; }
+  #familyInfo .hurc-pairs { margin:14px 0 0; font-size:.875rem; }
+  #familyInfo .hurc-pairs > div { margin-bottom:10px; }
+  #familyInfo .hurc-pairs dt { font-weight:400; color:#66747a; }
+  #familyInfo .hurc-pairs dd { margin:3px 0 0; white-space:pre-line; }
+  #familyInfo .hurc-child-status { margin:18px 0; font-size:.9rem; line-height:1.8; }
+  #familyInfo .hurc-service-details { font-size:.9rem; }
+  #familyInfo .hurc-service-list { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px; margin-top:18px; }
+  #familyInfo .hurc-service { display:flex; flex-direction:column; gap:8px; }
+  #familyInfo .hurc-service dl { margin:12px 0 0; }
+  #familyInfo .hurc-service dt { color:#66747a; font-weight:400; }
+  #familyInfo .hurc-service dd { margin:4px 0 10px; }
+  @media(max-width:991.98px) {
+    #familyInfo .hurc-applicant-meta { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    #familyInfo .hurc-family-table colgroup { display:none; }
+    #familyInfo .hurc-household-row { display:block; }
+    #familyInfo .hurc-household-row th { display:block; width:100%; }
+    #familyInfo .hurc-household-row th::before { display:none; }
+  }
+  @media(max-width:575.98px) {
+    #familyInfo .hurc-applicant-meta { grid-template-columns:1fr; gap:14px; }
+    #familyInfo .hurc-service-list { grid-template-columns:1fr; }
+  }
+  </style>
+</head>
+
+<body class="backend-page enquiry-detail-page">
+  <div class="wrapper multi-column | column-with-menu">
+    <!-- Top -->
+    <div class="top">
+      <header class="header">
+        <!-- logo -->
+        <a class="logo" href="home-admin.html" title="回後臺首頁">
+        <div class="img-wrap">
+          <img src="assets/img/nlma-seal.svg" alt="內政部國土管理署署徽" width="250" height="318">
+          <div class="agency-name"><span>內政部</span><strong>國土管理署</strong></div>
+        </div>
+        <h2>全國社會住宅資料整合暨共同查調管理平臺</h2>
+      </a>
+        <!-- 手機版漢堡 -->
+        <div class="d-lg-none">
+          <div class="menu-hamburger-toggle">
+            <a class="btn-icon" data-bs-toggle="collapse" href=".js-nav-collapse">
+              <span class="is-close"><i class="fas fa-bars"></i></span>
+              <span class="is-open"><i class="fas fa-times"></i></span>
+            </a>
+          </div>
+        </div>
+      </header>
+    </div>
+    <!-- Center -->
+    <div class="center">
+      <!-- Left -->
+      <div class="left">
+        <aside class="aside">
+          <!-- 桌機版漢堡 -->
+          <div class="d-none d-lg-block">
+              <div class="menu-hamburger | js-menu-hamburger">
+                <a class="btn btn-icon" title="選單收闔"><i class="fas fa-bars"></i></a>
+              </div>
+            </div>
+          <!-- Nav collapse -->
+          <div class="nav-collapse | collapse js-nav-collapse">
+            <!-- 上方輔助功能 -->
+            <div class="top-helper-wrapper">
+              <div class="top-helper">
+                <div class="warning-bell">
+                  <button><i class="fa-solid fa-bell"></i></button>
+                  <span class="badge">8</span>
+                </div>
+                <div class="dropdown">
+                  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    張ＯＯ <small>(國家住宅及都市更新中心)</small>
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="#">編輯個人資料</a></li>
+                    <li><a class="dropdown-item" href="#">變更密碼</a></li>
+                    <li><a class="dropdown-item" href="#">操作手冊下載</a></li>
+                    <li><a class="dropdown-item" href="#">登出</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <!-- Menu -->
+            <ul id="backendNavigation" class="menu menu-vertical scroll isMenuOpen js-menu-vertical backend-navigation" aria-label="後臺主選單">
+<li>
+<a class="has-children" role="button" tabindex="0" aria-expanded="false"><span class="icon-text">首頁</span><i class="fas fa-chevron-down" aria-hidden="true"></i></a>
+<ul class="sub-menu">
+<li><a href="home-admin.html">資訊儀表板</a></li>
+</ul>
+</li>
+<li>
+<a class="has-children" role="button" tabindex="0" aria-expanded="false"><span class="icon-text">家戶案件追蹤查詢</span><i class="fas fa-chevron-down" aria-hidden="true"></i></a>
+<ul class="sub-menu">
+<li><a href="../admin/home-agency.html#case-workbench">家戶案件追蹤查詢</a></li>
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">結果名冊紀錄</a></li>
+</ul>
+</li>
+<li>
+<a class="has-children" role="button" tabindex="0" aria-expanded="false"><span class="icon-text">資料共同查調</span><i class="fas fa-chevron-down" aria-hidden="true"></i></a>
+<ul class="sub-menu">
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">查調模組 API</a></li>
+<li><a class="active" href="enquiry-hub.html">查調工作臺</a></li>
+</ul>
+</li>
+<li>
+<a class="has-children" role="button" tabindex="0" aria-expanded="false"><span class="icon-text">監控中心</span><i class="fas fa-chevron-down" aria-hidden="true"></i></a>
+<ul class="sub-menu">
+<li><a href="home-admin.html#platform-monitor">介接運作總覽</a></li>
+<li>
+<a class="has-children" role="button" tabindex="0" aria-expanded="false"><span class="icon-text">資料交換紀錄</span><i class="fas fa-chevron-down" aria-hidden="true"></i></a>
+<ul class="sub-menu">
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">案件取號紀錄</a></li>
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">狀態回傳紀錄</a></li>
+</ul>
+</li>
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">查調紀錄</a></li>
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">異常紀錄</a></li>
+</ul>
+</li>
+<li>
+<a class="has-children" role="button" tabindex="0" aria-expanded="false"><span class="icon-text">查詢及統計</span><i class="fas fa-chevron-down" aria-hidden="true"></i></a>
+<ul class="sub-menu">
+<li><a href="home-admin.html#case-overview">案件統計報表</a></li>
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">問卷統計分析</a></li>
+</ul>
+</li>
+<li>
+<a class="has-children" role="button" tabindex="0" aria-expanded="false"><span class="icon-text">系統營運管理</span><i class="fas fa-chevron-down" aria-hidden="true"></i></a>
+<ul class="sub-menu">
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">社宅資料管理</a></li>
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">招租時程（API）</a></li>
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">招租公告（API）</a></li>
+<li>
+<a class="has-children" role="button" tabindex="0" aria-expanded="false"><span class="icon-text">帳號權限管理</span><i class="fas fa-chevron-down" aria-hidden="true"></i></a>
+<ul class="sub-menu">
+<li><a href="account-management.html">帳號管理</a></li>
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">角色權限管理</a></li>
+</ul>
+</li>
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">通知紀錄查詢</a></li>
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">操作紀錄查詢</a></li>
+<li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">智能客服管理</a></li>
+</ul>
+</li>
+</ul>
+          </div>
+        </aside>
+      </div>
+      <!-- Right -->
+      <div class="right">
+        <!-- 麵包屑 -->
+        <div class="breadcrumb-wrapper">
+            <div class="breadcrumb-inner">
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb">
+                  <li class="breadcrumb-item">資料共同查調</li>
+                  <li class="breadcrumb-item"><a href="enquiry-hub.html">查調工作臺</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">案件詳細資料</li>
+                </ol>
+              </nav>
+            </div>
+        </div>
+        <!-- 依 apply-03.html 的 Head info 與分段內容結構呈現。 -->
+        <div class="content | sticky-top-scroll">
+          <div class="flex-item-wrap | row-gap-2 column-gap-4">
+            <h4 class="mb-0">查調案件詳細資料</h4>
+            <div class="d-flex flex-wrap align-items-center gap-3"><div class="pill-state"><div class="pill-state-text" id="detailStatus">案件資料</div></div></div>
+            
+            <button type="button" class="btn btn-outline-primary" id="viewHistoryButton" data-bs-toggle="modal" data-bs-target="#viewHistoryModal" disabled><i class="fa-solid fa-eye me-1" aria-hidden="true"></i>檢視次數：<span id="viewHistoryCount">0</span></button>
+            <a class="btn btn-outline-primary ms-auto" href="enquiry-hub.html"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i>返回列表</a>
+          </div>
+        </div>
+        <div class="content" id="detailContent">
+          <div class="bg-orange-lightest p-3 mb-4 d-flex flex-wrap align-items-center justify-content-between gap-3" id="enquiryVersion" hidden>
+            <div><div id="enquiryVersionInfo" role="status"></div><div class="mt-2" id="detailCompletedAt"></div></div>
+            <button type="button" class="btn btn-outline-primary" id="enquiryHistoryButton" data-bs-toggle="modal" data-bs-target="#enquiryHistoryModal" disabled><i class="fa-solid fa-clock-rotate-left me-1" aria-hidden="true"></i>歷次查調紀錄</button>
+          </div>
+          
+          <p id="detailError" role="alert" hidden></p>
+          <div class="vstack gap-5" id="detailBody"></div>
+          <noscript><p>請啟用 JavaScript 以查看案件詳細資料。</p></noscript>
+        </div>
+      </div>
+    </div>
+    <!-- Bottom -->
+    <div class="bottom">
+      <footer class="footer">
+          <div class="img-wrap"><img src="assets/img/nlma-seal.svg" alt="內政部國土管理署署徽"></div>
+          <div class="text">
+            <div>內政部國土管理署</div>
+            <div>全國社會住宅資料整合暨共同查調管理平臺</div>
+          </div>
+      </footer>
+    </div>
+  </div> 
+  <!-- /.wrapper  -->
+
+  <!-- 回到最上面 -->
+  <div class="go-top | js-go-top">
+      <a href="#" class="" title="回到最上面">TOP</a>
+  </div>
+
+  <div class="modal fade" id="viewHistoryModal" tabindex="-1" aria-labelledby="viewHistoryTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title" id="viewHistoryTitle"><i class="fa-solid fa-eye" aria-hidden="true"></i> 檢視紀錄</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="關閉"></button>
+        </div>
+        <div class="modal-body">
+          <p>統一案件編號：<span id="viewHistoryCase"></span></p>
+          <div id="viewHistoryBody"></div>
+        </div>
+        <div class="modal-footer"><div class="btn-cta-group w-100 p-0"><button type="button" class="btn btn-pill-outline-primary" data-bs-dismiss="modal">關閉</button></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="enquiryHistoryModal" tabindex="-1" aria-labelledby="enquiryHistoryTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header"><h1 class="modal-title" id="enquiryHistoryTitle"><i class="fa-solid fa-clock-rotate-left" aria-hidden="true"></i> 歷次查調紀錄</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="關閉"></button></div>
+        <div class="modal-body"><div id="enquiryHistoryBody"></div></div>
+        <div class="modal-footer"><div class="btn-cta-group w-100 p-0"><button type="button" class="btn btn-pill-outline-primary" data-bs-dismiss="modal">關閉</button></div></div>
+      </div>
+    </div>
+  </div>
+  <!-- JS -->
+  <script src="assets/js/enquiry-cases.js"></script>
+  <script src="assets/js/enquiry-results.js"></script>
+  <script>
+/* 靜態展示：歷史批次明確標示範例；正式資料應由後端提供不可變快照及到期刪除。 */
+window.EnquiryHistory = (() => {
+  const escape = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const parse = value => new Date(String(value).replaceAll('/', '-').replace(' ', 'T') + '+08:00');
+  const format = date => new Intl.DateTimeFormat('sv-SE', { timeZone: 'Asia/Taipei', year:'numeric', month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit', second:'2-digit', hour12:false }).format(date).replaceAll('-', '/');
+  function expiry(sentAt) {
+    const [y,m,d,h,min,sec] = sentAt.match(/\d+/g).map(Number);
+    const lastDay = new Date(Date.UTC(y, m + 6, 0)).getUTCDate();
+    return new Date(Date.UTC(y, m - 1 + 6, Math.min(d, lastDay), h - 8, min, sec || 0));
+  }
+  const available = (batches, now = new Date()) => batches.filter(b => now < expiry(b.sentAt)).sort((a,b) => parse(b.sentAt) - parse(a.sentAt));
+  let activeRecord, batches = [];
+  function sourceFor(record) {
+    // 模擬歷次紀錄沿用本案資料快照，不編造不同審查數值。
+    const source = record.enquiryHistory || [2,1,0].map((offset, index) => ({
+      id: 'INQ-' + String(3-index).padStart(3,'0'),
+      sentAt: format(new Date(parse(record.appliedAt).getTime() + offset * 1000)),
+      current: index === 0,
+      snapshot: JSON.parse(JSON.stringify(record)),
+      sample: true
+    }));
+    return source;
+  }
+  function render(record) {
+    batches = available(sourceFor(record));
+    const rows = batches.map(b => '<tr><td data-th="批次">'+escape(b.id)+'</td><td data-th="送查調時間">'+escape(b.sentAt)+'</td><td data-th="狀態"><span class="badge rounded-pill '+(b.current?'enquiry-status--complete':'enquiry-status--pending')+'">'+(b.current?'目前採用':'歷史結果')+'</span></td><td data-th="保存期限">'+escape(format(expiry(b.sentAt)))+'</td><td data-th="結果"><button type="button" class="btn btn-sm btn-outline-primary" data-enquiry-batch="'+escape(b.id)+'" aria-label="檢視 '+escape(b.id)+' 查調結果">檢視</button></td></tr>').join('');
+    return '<p>每次查調紀錄自送查調時間起保存六個月，到期刪除。</p><table class="table table-list table-rwd enquiry-detail-table"><caption class="visually-hidden">歷次查調紀錄</caption><thead><tr><th scope="col">批次</th><th scope="col">送查調時間</th><th scope="col">狀態</th><th scope="col">保存期限</th><th scope="col">結果</th></tr></thead><tbody>'+(rows || '<tr><td colspan="5">目前無保存期限內的查調紀錄。</td></tr>')+'</tbody></table>';
+  }
+  const modal = document.getElementById('enquiryHistoryModal');
+  const target = document.getElementById('enquiryHistoryBody');
+
+  function showList() {
+    if (!activeRecord) return;
+    target.innerHTML = render(activeRecord);
+
+  }
+  modal.addEventListener('show.bs.modal', showList);
+  target.addEventListener('click', event => {
+    const button = event.target.closest('[data-enquiry-batch]');
+    if (!button) return;
+    const batch = batches.find(b => b.id === button.dataset.enquiryBatch);
+    if (!batch || !available([batch]).length) {
+      target.innerHTML = '<p>此版查調內容已超過六個月保存期限或不存在，無法檢視。</p>';
+      return;
+    }
+    location.href = 'enquiry-result-hurc.html?case=' + encodeURIComponent(activeRecord.caseId) + '&batch=' + encodeURIComponent(batch.id);
+  });
+  modal.addEventListener('hidden.bs.modal', () => { target.innerHTML = ''; });
+  function select(record, batchId) {
+    init(record);
+    const retained = available(sourceFor(record));
+    const selected = batchId ? retained.find(b => b.id === batchId) : retained.find(b => b.current);
+    document.getElementById('enquiryVersion').hidden = false;
+    const banner = document.getElementById('enquiryVersionInfo');
+    const currentLink = '<a class="btn btn-outline-primary btn-sm" href="enquiry-result-hurc.html?case=' + encodeURIComponent(record.caseId) + '">返回目前採用版本</a>';
+    if (!selected) {
+      banner.innerHTML = '<span>此版本已超過六個月保存期限或不存在，無法檢視。</span>' + (batchId ? currentLink : '');
+      return null;
+    }
+    banner.innerHTML = '<div><div class="d-flex flex-wrap align-items-center gap-2"><strong>目前檢視：' + escape(selected.id) + '</strong><span class="badge rounded-pill ' + (selected.current ? 'enquiry-status--complete' : 'enquiry-status--pending') + '">' + (selected.current ? '目前採用版本' : '歷史版本') + '</span>' + (!selected.current ? currentLink : '') + '</div><div class="mt-2">送查調時間：' + escape(selected.sentAt) + '｜保存期限：' + escape(format(expiry(selected.sentAt))) + '</div></div>';
+    return selected.snapshot;
+  }
+  function init(record) {
+    activeRecord = record;
+    document.getElementById('enquiryHistoryButton').disabled = false;
+  }
+  return { init, select, render, expiry, available };
+})();
+
+</script>
+  <script>
+/* 資料沿用 admin/enquiry-hub.html；檢視外觀使用 apply-03.html 的 item/head/body 與表格合計列。 */
+(() => {
+  const records = window.EnquiryCases || [];
+  const caseId = new URLSearchParams(location.search).get('case');
+  const baseRecord = caseId === null ? records[0] : records.find(item => item.caseId === caseId.replaceAll('-', ''));
+  const body = document.getElementById('detailBody');
+  if (!baseRecord) {
+    const error = document.getElementById('detailError');
+    error.hidden = false;
+    error.textContent = '查無此案件，請返回列表重新選擇。';
+    return;
+  }
+
+  const record = window.EnquiryHistory.select(baseRecord, new URLSearchParams(location.search).get('batch'));
+  if (!record) return;
+
+  const escape = value => String(value ?? '').replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
+  const number = value => Number(value).toLocaleString('zh-TW');
+  const money = value => `${number(value)} 元`;
+  document.getElementById('detailStatus').textContent = record.enquiryStatus;
+  document.getElementById('detailCompletedAt').textContent = `資料完成時間：${record.enquiryStatus === '查調完成' ? record.completedAt || '未提供' : '尚未完成'}`;
+  document.getElementById('detailStatus').setAttribute('data-state', record.enquiryStatus);
+  document.title = `${record.caseId}｜查調案件詳細資料｜全國社會住宅資料整合暨共同查調管理平臺`;
+  const result = record.result || { received: {}, people: [] };
+  const incomeAvailable = Boolean(result.received.family);
+  const propertyAvailable = Boolean(result.received.property);
+  const memberIds = new Set(record.caseMemberIds);
+  const authorized = window.EnquiryResults.authorizedData(record);
+  const authorizedMembers = authorized.people.filter(p => memberIds.has(p.id));
+  const financialValues = window.EnquiryResults.values(record);
+  const allPeople = [...new Map((record.households || []).flatMap(h => h.members).map(p => [p.id, p])).values()];
+  const knownPeople = new Map([...allPeople, ...result.people].map(p => [p.id, p]));
+  if (!knownPeople.has(record.idNumber)) knownPeople.set(record.idNumber, { id: record.idNumber, name: record.name });
+  const enquiryPeople = [...memberIds].map(id => knownPeople.get(id)).filter(Boolean).sort((a, b) => Number(b.id === record.idNumber) - Number(a.id === record.idNumber));
+  const people = result.people.filter(person => memberIds.has(person.id));
+  const annualIncome = authorizedMembers.reduce((sum, person) => sum + Number(person.income || 0), 0);
+  const fetusCount = people.reduce((sum, person) => sum + Number(person.fetus || 0), 0);
+  const population = memberIds.size + fetusCount;
+  const spouse = result.people.find(person => person.relation === '配偶');
+
+  function fields(items) {
+    return `<dl class="row g-3 mb-0">${items.map(([label, value]) => `<div class="col-12 col-md-6 col-xl-4"><dt class="form-label">${escape(label)}</dt><dd class="mb-0 text-break">${escape(value)}</dd></div>`).join('')}</dl>`;
+  }
+  const booleanColumns = new Set(['案件成員', '授權查調', '戶籍地', '公同共有']);
+  function cellContent(value, label) {
+    if (label === '個人詳細記事') return value ? `<details class="enquiry-notes"><summary>查看記事</summary><p class="mb-0 mt-2 text-break">${escape(value)}</p></details>` : '--';
+    if (label === '社福資格') {
+      const items = String(value || '').split(/\r?\n/).map(item => item.trim()).filter(Boolean);
+      return `<ul class="list-unstyled vstack gap-2 mb-0 w-100">${items.map(item => {
+        const numbered = item.match(/^(\d+)[.．、]\s*(.+)$/);
+        return `<li class="d-flex align-items-start gap-2">${numbered ? `<span class="badge rounded-pill text-bg-primary flex-shrink-0"><span class="visually-hidden">編號 </span>${escape(numbered[1])}</span><span>${escape(numbered[2])}</span>` : `<span>${escape(item)}</span>`}</li>`;
+      }).join('')}</ul>`;
+    }
+    if (booleanColumns.has(label) && (value === '是' || value === '否')) {
+      const yes = value === '是';
+      return `<span class="${yes ? 'text-success' : 'enquiry-boolean-no'} fs-5" role="img" aria-label="${value}" title="${value}"><i class="fa-solid ${yes ? 'fa-circle-check' : 'fa-circle-xmark'}" aria-hidden="true"></i></span>`;
+    }
+    return escape(value);
+  }
+  function table(headers, rows, caption, totals = []) {
+    const summaryRow = totals.length ? `<tr class="p-0"><td colspan="${headers.length}" class="p-0 bg-orange-lightest"><div class="p-3 px-lg-4 text-end"><div class="grid-right-auto row-gap-2 column-gap-3 | text-end">${totals.map(([label, value]) => `<div class="start">${escape(label)}</div><div class="end">${escape(value)}</div>`).join('')}</div></div></td></tr>` : '';
+    return `<table class="table table-list table-rwd enquiry-detail-table"><caption class="visually-hidden">${escape(caption)}</caption><thead><tr>${headers.map(label => `<th class="text-wrap" scope="col">${label === '申請人／配偶' ? '<span class="visually-hidden">身分</span>' : escape(label)}</th>`).join('')}</tr></thead><tbody>${rows.map(row => `<tr>${row.map((cell, i) => `<td data-th="${headers[i] === '申請人／配偶' ? '' : escape(headers[i])}">${cellContent(cell, headers[i])}</td>`).join('')}</tr>` ).join('')}${summaryRow}</tbody></table>`;
+  }
+  function section(id, title, content) {
+    if (['familyInfo', 'welfareInfo', 'incomeInfo', 'propertyInfo', 'movableInfo'].includes(id)) return `<section class="item" id="${id}" aria-labelledby="${id}Title"><div class="collapse-wrap | position-relative"><h2 class="collapse-title" id="${id}Title"><span class="text">${title}</span></h2><a href="#${id}Body" class="collapse-btn | stretched-link" data-bs-toggle="collapse" role="button" aria-expanded="true" aria-controls="${id}Body" aria-label="展開或收合${title}"><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></a></div><div class="collapse show" id="${id}Body"><div class="body">${content}</div></div></section>`;
+    return `<section class="item" id="${id}" aria-labelledby="${id}Title"><div class="head | title-border-bottom"><h2 class="title-name" id="${id}Title">${title}</h2></div><div class="body">${content}</div></section>`;
+  }
+  // 靜態展示紀錄；正式串接時由案件 viewHistory 提供，不假裝記錄實際使用者。
+  const viewHistory = baseRecord.viewHistory || [
+    { viewedAt: (baseRecord.referenceDate || baseRecord.appliedAt.slice(0, 10)).replaceAll('-', '/') + ' 22:30:00', viewer: '承辦人甲（範例）', agency: baseRecord.agency, batchId: 'INQ-003' },
+    { viewedAt: (baseRecord.referenceDate || baseRecord.appliedAt.slice(0, 10)).replaceAll('-', '/') + ' 22:15:00', viewer: '承辦人乙（範例）', agency: '內政部國土管理署', batchId: 'INQ-002' },
+    { viewedAt: (baseRecord.referenceDate || baseRecord.appliedAt.slice(0, 10)).replaceAll('-', '/') + ' 22:00:00', viewer: '承辦人甲（範例）', agency: baseRecord.agency, batchId: 'INQ-001' }
+  ];
+  const visits = [...viewHistory].sort((a, b) => b.viewedAt.localeCompare(a.viewedAt));
+  document.getElementById('viewHistoryCount').textContent = number(visits.length);
+  document.getElementById('viewHistoryCase').textContent = record.caseId;
+  document.getElementById('viewHistoryBody').innerHTML = visits.length
+    ? table(['檢視時間', '檢視人員', '所屬機關', '查閱批次'], visits.map(v => [v.viewedAt, v.viewer, v.agency, v.batchId || '未記錄']), '案件檢視紀錄')
+    : '<p>尚無檢視紀錄。</p>';
+  document.getElementById('viewHistoryButton').disabled = false;
+
+
+  const overview = table(
+    ['統一案件編號', '權責機關', '申請社宅', '申請房型', '申請時間', '查調基準日'],
+    [[record.caseId, record.agency, record.housing, record.room, record.appliedAt,
+      record.referenceDate || (record.appliedAt || '').slice(0, 10).replaceAll('-', '/') || '未提供']], '案件資料')
+    + table(['', '姓名', '身分證字號', '授權查調', '胎兒數'], enquiryPeople.map(p => [p.id === record.idNumber ? '申請人' : '', p.name, p.id, authorized.ids.has(p.id) ? '是' : '否', allPeople.length ? Number(p.fetus || 0) : '未提供']), '案件查調對象與授權');
+  const checks = window.EnquiryResults;
+  const resultClass = record.enquiryStatus === '查調完成' ? 'enquiry-result--complete' : 'enquiry-result--pending';
+  const comparisonRows = [['actual', '本案'], ['standard', '標準值'], ['verdict', '初判結果']];
+  const summary = `
+    <table class="table table-list table-rwd enquiry-detail-table enquiry-comparison">
+      <caption class="visually-hidden">本案查調數值、標準值與超標判定</caption>
+      <thead><tr><th scope="col" class="text-wrap">項目</th>${checks.columns.map(c => `<th scope="col" class="text-wrap">${c.label}<div class="small fw-normal mt-1">${c.key === 'propertyValue' ? '地政司' : c.key === 'rentTier' ? '平臺試算' : '財政部'}</div></th>`).join('')}</tr></thead>
+      <tbody>${comparisonRows.map(([type, label]) => `<tr><th scope="row" class="highlight text-wrap">${label}</th>${checks.columns.map(c => {
+        let value = checks.display(record, c.key, type);
+        if (c.key === 'rentTier' && record.requiredChecks.rentTier) {
+          if (type === 'standard') return '<td class="enquiry-result enquiry-result--complete" data-th="租金級距"><details><summary class="text-primary">點開查看</summary><ul class="list-unstyled mt-2 mb-0"><li class="mb-2">第 1 級：低收入戶 OR 中低收入戶</li><li class="mb-2">第 2 級：每人每月平均所得 0～26,624 元</li><li>第 3 級：每人每月平均所得 26,625～62,125 元</li></ul></details></td>';
+          if (record.enquiryStatus === '查調完成') {
+            const monthly = financialValues.monthlyIncome;
+            const lowIncome = enquiryPeople.some(p => /(?:^|[\s.、])(?:低收入戶|中低收入戶)(?:$|[\s、])/m.test(p.identity || ''));
+            value = type === 'actual' ? (monthly == null ? '待資料齊全' : money(monthly))
+              : lowIncome ? '第 1 級' : monthly == null ? '待資料齊全' : monthly >= 0 && monthly <= 26624 ? '第 2 級' : monthly >= 26625 && monthly <= 62125 ? '第 3 級' : '未落於指定級距';
+          }
+        }
+        const content = value === '未超標' || value === '超標' ? `<span class="text-${value === '未超標' ? 'success' : 'danger'} fw-bold">${value}</span>` : escape(value);
+        return `<td class="enquiry-result ${type === 'standard' ? 'enquiry-result--complete' : resultClass}" data-th="${c.label}">${content}</td>`;
+      }).join('')}</tr>`).join('')}</tbody>
+    </table>`;
+  if (!record.result) {
+    body.innerHTML = section('caseOverview', '案件資料', overview)
+      + section('enquirySummary', '查調結果', summary)
+      + section('returnDetails', '回傳明細', '<p>此案件目前提供案件資料與查調狀態，尚無家庭及財產回傳明細。</p>')
+      + '<div class="item"><div class="btn-cta-group pb-4"><a class="btn btn-pill-outline-primary" href="enquiry-hub.html">返回列表</a></div></div>';
+    return;
+  }
+  // 僅本頁的戶政區塊調整。hurc 是畫面資料模型，並非推定的 API JSON 欄位。
+  // 僅呈現文件內的資料欄位及人員範圍，另外保留案件成員標記。
+  const family = (() => {
+    const hurc = result.hurc || {};
+    const cp03 = hurc.cp03 || {};
+    const cp04 = hurc.cp04 || {};
+    const list = value => Array.isArray(value) ? value : [];
+    const present = value => value !== null && value !== undefined && value !== '' && value !== '未提供';
+    const text = value => present(value) ? escape(value) : '';
+    const mappings = {
+      marriage: {1:'未婚',2:'有偶',3:'離婚',4:'喪偶',5:'婚姻關係消滅',6:'有偶（施行法）',7:'終止結婚（施行法）',8:'喪偶（施行法）',9:'婚姻關係消滅（施行法）'},
+      indigenous: {0:'非原住民',1:'平地原住民',2:'山地原住民',3:'平埔原住民'},
+      spouse: {3:'喪失國籍',4:'遷出國外',5:'喪失身分'},
+      message: {0:'查調成功',1:'存在收養關係',2:'配偶死亡',3:'配偶無統號',9:'查調異常'}
+    };
+    const codeText = (value, type) => present(value) ? escape(value) + '｜' + escape(mappings[type][value] || '未定義代碼') : '';
+    const legacyMarriage = {single:'1',married:'2',divorced:'3',widowed:'4'};
+    const marriageCode = cp03.applicant?.marriageCode ?? legacyMarriage[result.marriage];
+    const spouseNote = cp03.applicant?.spouseNote;
+    const response = (data, type) => {
+      const code = data.code;
+      const status = present(code) ? codeText(code, 'message') : '尚未取得獨立回應';
+      return '<div class="hurc-service"><strong>' + type + '</strong><span>' + status + '</span><details><summary>查調訊息</summary><dl><dt>訊息代碼</dt><dd>' + text(code) + '</dd><dt>訊息</dt><dd>' + text(data.message) + '</dd><dt>異常訊息</dt><dd>' + text(data.error) + '</dd>' + (type.startsWith('CP04') ? '<dt>出生日期基準日（民國 YYYMMDD）</dt><dd>' + text(data.birthReferenceDate) + '</dd>' : '') + '</dl></details></div>';
+    };
+    const applicantHousehold = list(record.households).find(h => list(h.members).some(p => p.id === record.idNumber));
+    const spousePerson = spouse || allPeople.find(p => p.role === '配偶');
+    const spouseHousehold = spousePerson && list(record.households).find(h => list(h.members).some(p => p.id === spousePerson.id));
+    const sameHousehold = spouseHousehold && applicantHousehold && spouseHousehold === applicantHousehold;
+    const detailPairs = pairs => '<dl class="hurc-pairs">' + pairs.map(([label, value]) => '<div><dt>' + escape(label) + '</dt><dd>' + text(value) + '</dd></div>').join('') + '</dl>';
+    const childQuerySucceeded = String(cp04.code) === '0';
+    const children = childQuerySucceeded ? list(cp04.children) : [];
+    const people = new Map([...allPeople, ...result.people].map(p => [p.id, p]));
+    const childrenById = new Map(children.map(p => [p.id, p]));
+    // 使用者確認本案張大富受輔助宣告，輔助人為張忠政；僅補入本頁的展示資料。
+    const memberGuardians = record.caseId === 'CH11500000001' ? {
+      E123456789: [{ type:'受輔助宣告', id:'B134567890', name:'張忠政' }]
+    } : {};
+    const memberRelationships = record.caseId === 'CH11500000001' ? { E123456789:'父親', B234567890:'女兒' } : {};
+    const renderedIds = new Set();
+    const indigenous = person => {
+      if (present(person.indigenousCode)) return codeText(person.indigenousCode, 'indigenous');
+      const identity = String(person.identity || '');
+      const named = [['平埔原住民','3'],['山地原住民','2'],['平地原住民','1']].find(([label]) => identity.includes(label));
+      return named ? codeText(named[1], 'indigenous') : '';
+    };
+    const row = (raw, household) => {
+      const p = {...raw, ...people.get(raw.id)};
+      renderedIds.add(p.id);
+      const isApplicant = p.id === record.idNumber;
+      const isSpouse = p.id === spousePerson?.id;
+      const child = childrenById.get(p.id);
+      const relation = isApplicant ? '本人' : isSpouse ? '配偶' : p.applicantRelationship ?? memberRelationships[p.id] ?? (household === applicantHousehold ? p.hurcRelationship : undefined);
+      const role = isApplicant ? '本人' : isSpouse ? '配偶' : child ? '未成年子女' : '';
+      const guardians = hurc.guardiansByPerson?.[p.id] ?? (isApplicant ? cp03.guardians : memberGuardians[p.id]);
+      let extra = '';
+      if(isApplicant || Array.isArray(guardians)) {
+        extra += Array.isArray(guardians)
+          ? guardians.length ? guardians.map(g => '<div class="mb-2"><div>監護／輔助類別：' + text(g.type) + '</div><div>監護／輔助人姓名：' + text(g.name) + '</div><div>監護／輔助人統號：' + text(g.id) + '</div></div>').join('') : '<div class="mb-2">監護／輔助：回傳 0 筆</div>'
+          : '';
+      }
+      if(child) extra += '<div class="mb-2">行使權義負擔人：' + text(child.responsibleName) + '／' + text(child.responsibleId) + '<small class="d-block">CP04 未成年子女回傳</small></div>';
+      const apiDetails = [];
+if(child) apiDetails.push(['行使權義負擔人統號',child.responsibleId],['行使權義負擔人姓名',child.responsibleName]);
+      if(apiDetails.length) extra += '<details class="hurc-person-details"><summary>查看資料</summary>' + detailPairs(apiDetails) + '</details>';
+      return '<tr><td data-th="姓名"><strong>' + text(p.name) + '</strong>' + (role ? '<small class="d-block mt-1">' + role + '</small>' : '') + '</td><td data-th="案件成員">' + cellContent(memberIds.has(p.id) ? '是' : '否','案件成員') + '</td><td data-th="統號／出生日期"><span class="d-block">' + text(p.id) + '</span><small class="d-block mt-1">出生：' + text(p.birth) + '</small></td><td data-th="與申請人關係">' + text(relation) + '</td><td data-th="原住民身分">' + indigenous(p) + '</td><td data-th="監護／輔助及子女權義資料">' + extra + '</td></tr>';
+    };
+    const group = (title, meta, rows) => '<tbody><tr class="hurc-household-row"><th colspan="6" scope="rowgroup"><div class="hurc-household"><strong>' + escape(title) + '</strong>' + meta.map(([label,value]) => '<span>' + escape(label) + '：' + text(value) + '</span>').join('') + '</div></th></tr>' + rows + '</tbody>';
+    let rows = list(record.households).filter(h => h === applicantHousehold || h === spouseHousehold).map(h => {
+      const isApplicantHousehold = h === applicantHousehold;
+      const address = String(h.address || '');
+      const match = address.match(/^(.*?[縣市])(.+?[區鄉鎮市])/);
+      const meta = [['戶號',h.number],['戶籍所在縣市',match?.[1]]];
+      if(isApplicantHousehold) meta.push(['戶籍所在鄉鎮市區',record.caseId === 'CH11500000001' ? '三重區' : match?.[2]]);
+      // 文件不包含非三等親寄居者；地址僅取文件列出的行政區欄位。
+      const members = list(h.members).filter(p => !/寄居/.test(p.title || '')).sort((a,b) => Number(b.id === record.idNumber) - Number(a.id === record.idNumber));
+      return group(isApplicantHousehold ? '申請人戶' : h === spouseHousehold ? '配偶戶' : h.label || '其他戶',meta,members.map(p => row(p,h)).join(''));
+    }).join('');
+    const ungrouped = children.filter((p,i,items) => !renderedIds.has(p.id) && items.findIndex(other => other.id === p.id) === i);
+    if(ungrouped.length) rows += group('申請人未成年子女',[],ungrouped.map(p => row(p,null)).join(''));
+    const tableMarkup = rows ? '<table class="table table-list table-rwd enquiry-detail-table hurc-family-table"><caption class="visually-hidden">戶籍及未成年子女資料</caption><colgroup><col style="width:13%"><col style="width:8%"><col style="width:19%"><col style="width:17%"><col style="width:16%"><col style="width:27%"></colgroup><thead><tr>' + ['姓名','案件成員','統號／出生日期','與申請人關係','原住民身分','監護／輔助及子女權義資料'].map(label => '<th scope="col">' + label + '</th>').join('') + '</tr></thead>' + rows + '</table>' : '<p>尚無戶政人員明細。</p>';
+    const applicantInfo = '<dl class="hurc-applicant-meta">' + [
+      ['遷入日期',record.movedAt],
+      ['婚姻狀況代碼',present(marriageCode) ? marriageCode + '｜' + (mappings.marriage[marriageCode] || '未定義代碼') : null],
+      ['配偶姓名',cp03.applicant?.spouseName ?? spousePerson?.name],
+      ['配偶統號',cp03.applicant?.spouseId ?? spousePerson?.id],
+      ['配偶特殊記事',spouseNote === '' ? '空字串｜現住人口' : present(spouseNote) ? spouseNote + '｜' + (mappings.spouse[spouseNote] || '未定義代碼') : null],
+      ['結婚日期',cp03.applicant?.marriedAt]
+    ].map(([label,value]) => '<div><dt>' + label + '</dt><dd>' + text(value) + '</dd></div>').join('') + '</dl>';
+    const childStatus = String(cp04.code) === '9' ? '查調異常，暫無可用子女及權義負擔人資料' : childQuerySucceeded && Array.isArray(cp04.children) ? children.length ? '共 ' + children.length + ' 筆，已併入人員表，權義負擔人見同一人列' : '回傳 0 筆符合查詢範圍的子女' : '尚未回傳，暫無可用子女及權義負擔人資料';
+    return applicantInfo + tableMarkup
+      + '<p class="hurc-child-status"><strong>未成年子女查調（CP04）：</strong>' + childStatus + '。<span class="d-block">出生日期基準日：' + text(cp04.birthReferenceDate) + '（民國 YYYMMDD）</span></p>'
+      + (sameHousehold ? '<p class="small">配偶與申請人同戶；依規格不另提供配偶戶、配偶本人及配偶同戶三等親資料。</p>' : '')
+      + '<details class="hurc-service-details"><summary>查看查調回應</summary><div class="hurc-service-list">' + response(cp03,'CP03 戶籍資料') + response(cp04,'CP04 未成年子女') + '</div></details>';
+  })();
+  const welfarePeople = allPeople.filter(p => String(p.identity || '').trim());
+  const welfare = welfarePeople.length ? table(['申請人／配偶', '姓名', '生日', '社福資格'], welfarePeople.map(p => [p.id === record.idNumber ? '申請人' : p.id === spouse?.id ? '配偶' : '', p.name, p.birth, p.identity]), '社福資格（戶政司、衛福部）') : '<p>無社福資格資料。</p>';
+  const income = authorized.people.length ? table(['申請人／配偶', '姓名', '案件成員', '近一年所得'], authorized.people.map(p => [p.id === record.idNumber ? '申請人' : p.id === spouse?.id ? '配偶' : '', p.name, memberIds.has(p.id) ? '是' : '否', incomeAvailable ? money(p.income) : '']), '家庭成員所得清單', [
+    ['胎兒數', `${fetusCount} 人`],
+    ['人口數', `${population} 人`],
+    ['年所得', incomeAvailable ? money(annualIncome) : ''],
+    ['每人每月平均所得', financialValues.monthlyIncome != null ? money(financialValues.monthlyIncome) : '待資料齊全']
+  ]) + '' : '<p>無已授權查調者。</p>';
+  const realEstate = propertyAvailable && !authorized.realEstate.length ? '<p>已授權查調者無不動產明細。</p>' : propertyAvailable
+    ? table(['持有者', '類別', '地段地號建號／座落', '戶籍地', '持分比', '房地面積', '房地現值金額', '公同共有'], authorized.realEstate.map(p => [p.owner, p.category, p.address, p.household ? '是' : '否', p.share, p.area, money(p.value), p.common ? '是' : '否']), '家庭成員不動產明細', [['不動產總額', money(authorized.realEstate.reduce((sum, p) => sum + p.value, 0))]])
+    : '<p>尚未取得財產資料，等待資料來源機關回傳。</p>';
+  const movable = propertyAvailable && !authorized.movable.length ? '<p>已授權查調者無動產明細。</p>' : propertyAvailable
+    ? table(['姓名', '利息（存款本金）', '中獎所得', '其他所得', '小計'], authorized.movable.map(p => [p.name, money(p.interest), money(p.prize), money(p.other), money(p.subtotal)]), '家庭成員動產明細', [['動產總額', money(authorized.movable.reduce((sum, p) => sum + p.subtotal, 0))]])
+    : '<p>尚未取得財產資料，等待資料來源機關回傳。</p>';
+
+  body.innerHTML = section('caseOverview', '案件資料', overview)
+    + section('enquirySummary', '查調結果', summary)
+    + section('familyInfo', '家庭成員／共居者（戶政司）', family)
+    + section('welfareInfo', '社福資格（戶政司、衛福部）', welfare)
+    + section('incomeInfo', '所得（財政部）', income)
+    + section('propertyInfo', '不動產（地政司）', realEstate)
+    + section('movableInfo', '動產（財政部）', movable)
+    + '<div class="item"><div class="btn-cta-group pb-4"><a class="btn btn-pill-outline-primary" href="enquiry-hub.html">返回列表</a></div></div>';
+  document.title = `${record.caseId}｜查調案件詳細資料｜全國社會住宅資料整合暨共同查調管理平臺`;
+})();
+
+</script>
+  <script src="assets/js/navigation.js"></script>
+</body>
+
+</html>

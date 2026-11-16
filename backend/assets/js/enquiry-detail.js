@@ -2,7 +2,7 @@
 (() => {
   const records = window.EnquiryCases || [];
   const caseId = new URLSearchParams(location.search).get('case');
-  const baseRecord = caseId === null ? records[0] : records.find(item => item.caseId === caseId);
+  const baseRecord = caseId === null ? records[0] : records.find(item => item.caseId === caseId.replaceAll('-', ''));
   const body = document.getElementById('detailBody');
   if (!baseRecord) {
     const error = document.getElementById('detailError');
@@ -95,7 +95,7 @@
   const comparisonRows = [['actual', '本案'], ['standard', '標準值'], ['verdict', '初判結果']];
   const summary = `
     <table class="table table-list table-rwd enquiry-detail-table enquiry-comparison">
-      <caption class="visually-hidden">本案查調數值、標準值與符合判定</caption>
+      <caption class="visually-hidden">本案查調數值、標準值與超標判定</caption>
       <thead><tr><th scope="col" class="text-wrap">項目</th>${checks.columns.map(c => `<th scope="col" class="text-wrap">${c.label}<div class="small fw-normal mt-1">${c.key === 'propertyValue' ? '地政司' : c.key === 'rentTier' ? '平臺試算' : '財政部'}</div></th>`).join('')}</tr></thead>
       <tbody>${comparisonRows.map(([type, label]) => `<tr><th scope="row" class="highlight text-wrap">${label}</th>${checks.columns.map(c => {
         let value = checks.display(record, c.key, type);
@@ -108,7 +108,7 @@
               : lowIncome ? '第 1 級' : monthly == null ? '待資料齊全' : monthly >= 0 && monthly <= 26624 ? '第 2 級' : monthly >= 26625 && monthly <= 62125 ? '第 3 級' : '未落於指定級距';
           }
         }
-        const content = value === '符合' || value === '不符合' ? `<span class="text-${value === '符合' ? 'success' : 'danger'} fw-bold">${value}</span>` : escape(value);
+        const content = value === '未超標' || value === '超標' ? `<span class="text-${value === '未超標' ? 'success' : 'danger'} fw-bold">${value}</span>` : escape(value);
         return `<td class="enquiry-result ${type === 'standard' ? 'enquiry-result--complete' : resultClass}" data-th="${c.label}">${content}</td>`;
       }).join('')}</tr>`).join('')}</tbody>
     </table>`;

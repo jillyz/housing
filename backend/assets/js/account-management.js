@@ -28,7 +28,7 @@
   const esc = v => String(v ?? '').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const badge = (text,ok) => '<span class="badge rounded-pill text-nowrap '+(ok?'account-badge':'account-muted')+'">'+esc(text)+'</span>';
   const orderedAgencies = [firstAgency, ...agencies.filter(agency => agency !== firstAgency)];
-  for (const id of ['filterAgency', 'editAgency']) {
+  for (const id of ['filterAgency']) {
     $(id).insertAdjacentHTML('beforeend', orderedAgencies.map(agency => '<option>'+esc(agency)+'</option>').join(''));
   }
   function syncFilterRoles() {
@@ -234,35 +234,26 @@
     render();
   });
   function roleFields() {
-    const agency = $('editRole').value === '機關';
-    for (const id of ['editAgency', 'editAgencyRole']) {
-      $(id + 'Wrap').hidden = !agency;
-      $(id).disabled = readOnly || !agency;
-      $(id).required = agency;
-    }
+    const agency = editing.role === '機關';
+    $('editAgencyWrap').hidden = !agency;
+    $('editAgencyRoleWrap').hidden = !agency;
+    $('editAgencyRole').disabled = readOnly || !agency;
+    $('editAgencyRole').required = agency;
   }
-  $('editRole').addEventListener('change',roleFields);
   $('accountModal').addEventListener('show.bs.modal',e=>{
     editing=accounts.find(a=>a.key===Number(e.relatedTarget?.dataset.key));if(!editing){e.preventDefault();return;}
     readOnly=e.relatedTarget.dataset.mode==='view';$('accountModalTitle').textContent=(readOnly?'檢視':'編輯')+'帳號資料';$('accountSave').hidden=readOnly;
-    const values={editName:editing.name,editId:editing.nationalId,editPhone:editing.phone,editEmail:editing.email,editRole:editing.role,editAgency:editing.agency||agencies[0],editAgencyRole:editing.agencyRole||'社宅機關人員',editStatus:editing.active?'啟用':'停用'};
+    const values={editName:editing.name,editId:editing.nationalId,editPhone:editing.phone,editEmail:editing.email,editRole:editing.role,editAgency:editing.agency||'—',editAgencyRole:editing.agencyRole||'社宅機關人員',editStatus:editing.active?'啟用':'停用'};
     $('accountModal').classList.toggle('is-viewing', readOnly);
     for (const [id, value] of Object.entries(values)) {
       const field = $(id);
-      field.value = value;
-      field.disabled = readOnly || id === 'editId';
-      if (readOnly) {
-        const wrapper = $(id + 'Wrap');
-        let detail = wrapper.querySelector('.account-detail');
-        if (!detail) {
-          detail = document.createElement('dl');
-          detail.className = 'account-detail';
-          const label = document.createElement('dt');
-          label.textContent = field.labels[0].textContent;
-          detail.append(label, document.createElement('dd'));
-          wrapper.prepend(detail);
-        }
-        detail.querySelector('dd').textContent = value;
+      const fixed = !['editAgencyRole', 'editStatus'].includes(id);
+      if (fixed) {
+        field.textContent = value;
+      } else {
+        field.value = value;
+        field.disabled = readOnly;
+        $(id + 'Text').textContent = value;
       }
     }
     updateEmailVerification();
@@ -272,22 +263,19 @@
       ['最後登入時間', editing.lastLoginAt || '尚未登入'],
       ['最後登入 IP', editing.lastLoginAt ? (editing.lastLoginIp || '無紀錄') : '無紀錄']
     ] : [];
-    $('accountVerification').hidden = !readOnly;
-    $('accountEditForm').querySelector('hr').hidden = !readOnly;
+    $('accountVerificationSection').hidden = !readOnly;
     $('accountVerification').innerHTML = details.map(([k,v]) => '<div class="col-md-6"><dt class="form-label">'+k+'</dt><dd>'+esc(v)+'</dd></div>').join('');
     roleFields();
   });
   function updateEmailVerification(){
-    const verified=editing.verified&&$('editEmail').value.trim()===editing.email;
+    const verified=editing.verified;
     const note = $('editEmailVerification');
     note.classList.toggle('is-verified', verified);
     note.querySelector('i').className = verified ? 'fa-solid fa-circle-check' : 'fa-solid fa-circle-exclamation';
     $('editEmailVerifiedAt').textContent=verified?'驗證時間：'+editing.verifiedAt:'信箱尚未驗證';
   }
-  $('editEmail').addEventListener('input',updateEmailVerification);
-  $('accountEditForm').addEventListener('submit',e=>{e.preventDefault();if(!editing||readOnly||!e.target.reportValidity())return;const email=$('editEmail').value.trim(),agency=$('editRole').value==='機關';if(!agencies.includes($('editAgency').value)&&agency)return;
-    if(editing.email!==email){editing.verified=false;editing.verifiedAt=null;}
-    Object.assign(editing,{name:$('editName').value.trim(),phone:$('editPhone').value.trim(),email,role:$('editRole').value,agency:agency?$('editAgency').value:'',agencyRole:agency?$('editAgencyRole').value:'',active:$('editStatus').value==='啟用'});
+  $('accountEditForm').addEventListener('submit',e=>{e.preventDefault();if(!editing||readOnly||!e.target.reportValidity())return;
+    Object.assign(editing,{agencyRole:editing.role==='機關'?$('editAgencyRole').value:'',active:$('editStatus').value==='啟用'});
     filter(false);$('accountMessage').innerHTML='<div class="alert alert-success">已更新「'+esc(editing.name)+'」的示範資料。</div>';bootstrap.Modal.getInstance($('accountModal')).hide();
   });
   selectTab(tabs[0]);

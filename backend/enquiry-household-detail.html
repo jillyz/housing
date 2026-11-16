@@ -278,7 +278,7 @@
 (() => {
   const params = new URLSearchParams(location.search);
   const records = window.EnquiryCases || [];
-  const base = params.has('case') ? records.find(r => r.caseId === params.get('case')) : records[0];
+  const base = params.has('case') ? records.find(r => r.caseId === params.get('case').replaceAll('-', '')) : records[0];
   const target = document.querySelector('#familyInfo .body');
   if (!base || !target) return;
   const record = window.EnquiryHistory.select(base, params.get('batch'));
@@ -310,12 +310,12 @@
   const spouseData = data.spouse || {};
   const isMarried = ['2','6'].includes(String(marriageCode));
   // 原案件為展示資料；只為主範例補上結婚日期，不改共用案件資料或推定其他人的日期。
-  const marriageDate = data.marriageDate ?? record.result?.marriageDate ?? (record.caseId === 'CH-115-00000001' && isMarried ? '2010/06/18' : null);
+  const marriageDate = data.marriageDate ?? record.result?.marriageDate ?? (record.caseId === 'CH11500000001' && isMarried ? '2010/06/18' : null);
   const householdLocation = place => [place.county,place.district].filter(Boolean).join('．') || '無';
   // 保留原戶籍名單中的寄居者，在關係欄標示寄居。
-  const knownRelations = record.caseId === 'CH-115-00000001' ? {E123456789:'父',B234567890:'女'} : {};
+  const knownRelations = record.caseId === 'CH11500000001' ? {E123456789:'父',B234567890:'女'} : {};
   const applicantRelatives = data.applicantRelatives ?? (applicantHousehold ? applicantHousehold.members.filter(p => p.id !== applicant.id).map(p => ({...p,relationToApplicant:/寄居/.test(p.title || '') ? '寄居' : p.id === spouse?.id ? '配偶' : knownRelations[p.id] || p.relationToApplicant || null,relation:null})) : null);
-  const spouseRelatives = data.spouseRelatives ?? (spouseHousehold ? spouseHousehold.members.filter(p => p.id !== spouse.id).map(p => ({...p,relationToSpouse:/寄居/.test(p.title || '') ? '寄居' : record.caseId === 'CH-115-00000001' && p.id === 'B123456789' ? '子' : p.relationToSpouse || null,relation:null})) : null);
+  const spouseRelatives = data.spouseRelatives ?? (spouseHousehold ? spouseHousehold.members.filter(p => p.id !== spouse.id).map(p => ({...p,relationToSpouse:/寄居/.test(p.title || '') ? '寄居' : record.caseId === 'CH11500000001' && p.id === 'B123456789' ? '子' : p.relationToSpouse || null,relation:null})) : null);
   const caseMembers = new Set(record.caseMemberIds || []);
   const table = (headers, rows, caption, columns = []) => `<div class="hr-table-wrap"><table class="hr-table"><caption class="visually-hidden">${escape(caption)}</caption>${columns.length ? `<colgroup>${columns.map(c => `<col class="${c}">`).join('')}</colgroup>` : ''}<thead><tr>${headers.map(h => `<th scope="col">${escape(h)}</th>`).join('')}</tr></thead><tbody>${rows.length ? rows.map(row => `<tr>${row.map((v,i) => `<td data-th="${escape(headers[i])}">${v}</td>`).join('')}</tr>`).join('') : `<tr><td colspan="${headers.length}">無</td></tr>`}</tbody></table></div>`;
   const text = value => escape(display(value));

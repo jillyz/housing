@@ -57,7 +57,7 @@ window.EnquiryResults = (() => {
     if (!hasValue(values(record)[key])) return '待資料齊全';
     if (key in limits) {
       const value = values(record)[key];
-      return (key === 'monthlyIncome' ? value <= limits[key] : value < limits[key]) ? '符合' : '不符合';
+      return (key === 'monthlyIncome' ? value <= limits[key] : value < limits[key]) ? '未超標' : '超標';
     }
     return record.results[key] || '待判定';
   }

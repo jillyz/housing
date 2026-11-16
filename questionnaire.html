@@ -462,7 +462,24 @@
       document.getElementById('roomGrid').scrollIntoView({behavior:'smooth',block:'center'});
       return;
     }
-    localStorage.setItem('housingNeedsCompleted', 'true');
+    const registrationKey = 'housingNeedsRegistration';
+    const rent = rentOptions.find(input => input.checked);
+    try {
+      const previous = JSON.parse(localStorage.getItem(registrationKey) || 'null');
+      const registration = {
+        locations: getSelectedCounties().map(city => ({ city, districts: getSelectedDistricts(city) })),
+        roomTypes: [...needsForm.querySelectorAll('input[name="roomType"]:checked')].map(getOptionLabel),
+        services: facilityOptions.filter(input => input.checked).map(getOptionLabel),
+        budget: rent ? getOptionLabel(rent) : '不限',
+        date: previous?.date || new Date().toLocaleDateString('sv-SE', { timeZone: 'Asia/Taipei' }).replace(/-/g, '/')
+      };
+      if (accessibleRoom.checked) registration.roomTypes.push(getOptionLabel(accessibleRoom));
+      localStorage.setItem(registrationKey, JSON.stringify(registration));
+      localStorage.setItem('housingNeedsCompleted', 'true');
+    } catch {
+      alert('無法儲存居住需求登記，請確認瀏覽器允許儲存資料後再試一次。');
+      return;
+    }
     completionDialog.showModal();
   });
 

@@ -28,6 +28,7 @@
   <script src="../後臺模板/assets/js/customJS.js"></script>
   <link rel="stylesheet" href="assets/css/shell.css">
   <link rel="stylesheet" href="assets/css/theme.css">
+  <link rel="stylesheet" href="assets/css/enquiry-list.css">
 </head>
 
 <body class="backend-page">
@@ -171,7 +172,7 @@
                 <div class="row g-3">
                   <div class="col-md-6 col-xl-9">
                     <label for="enquiryKeyword" class="form-label">關鍵字</label>
-                    <input type="text" class="form-control" id="enquiryKeyword" name="keyword" placeholder="請輸入統一案件編號、申請人或申請人身分證字號" aria-describedby="keywordHint">
+                    <input type="search" class="form-control bg-body" id="enquiryKeyword" name="keyword" placeholder="請輸入統一案件編號、申請人或申請人身分證字號" aria-describedby="keywordHint">
                     <div class="form-text text-muted" id="keywordHint"><span class="me-1"><i class="fas fa-info-circle" aria-hidden="true"></i></span>可輸入統一案件編號、申請人或申請人身分證字號的完整或部分內容。</div>
                   </div>
                   <div class="col-md-6 col-xl-3">
@@ -199,12 +200,23 @@
             <div class="start"><div class="flex-item-wrap"><span id="enquirySummary" role="status" aria-live="polite">共 8 筆查調案件</span></div></div>
             <div class="end"><span class="text-muted small" id="resultHint">示意資料；查調結果空白表示未查調該項目。</span></div>
           </div>
-          <div class="table-responsive mb-3">
-            <table class="table table-list table-rwd table-bordered mb-0" aria-describedby="resultHint">
+          <div class="mb-3">
+            <table class="table table-list table-rwd table-bordered mb-0" id="enquiryTable" aria-describedby="resultHint">
               <caption class="visually-hidden">查調工作臺案件與各項查調結果</caption>
+              <colgroup>
+                <col class="case-column">
+                <col class="name-column">
+                <col class="agency-column">
+                <col class="housing-column">
+                <col class="room-column">
+                <col class="result-column">
+                <col class="monthly-column">
+                <col class="result-column">
+                <col class="action-column">
+              </colgroup>
               <thead>
                 <tr>
-                  <th rowspan="2" scope="col" id="caseId">統一案件編號</th>
+                  <th class="text-nowrap" rowspan="2" scope="col" id="caseId">統一案件編號</th>
                   <th rowspan="2" scope="col" id="applicant">申請人</th>
                   <th rowspan="2" scope="col" id="agency">權責機關</th>
                   <th rowspan="2" scope="col" id="housing">申請社宅</th>
@@ -219,74 +231,74 @@
                 </tr>
               </thead>
               <tbody id="enquiryRows">
-                <tr data-case-id="115-000001" data-applicant="陳怡君" data-id-number="A000000001" data-agency="國家住都中心">
-                  <td data-th="統一案件編號" headers="caseId">115-000001</td>
+                <tr data-case-id="115000001" data-applicant="陳怡君" data-id-number="A000000001" data-agency="國家住都中心">
+                  <td class="text-nowrap" data-th="統一案件編號" headers="caseId">115000001</td>
                   <td data-th="申請人" headers="applicant">陳怡君</td>
                   <td data-th="權責機關" headers="agency">國家住都中心</td>
                   <td data-th="申請社宅" headers="housing">安居示範社宅</td>
                   <td data-th="申請房型" headers="room">套房</td>
-                  <td data-th="總所得" headers="resultGroup totalIncome"><span class="text-success fw-bold">符合</span></td>
-                  <td data-th="每人每月平均所得" headers="resultGroup monthlyIncome"><span class="text-success fw-bold">符合</span></td>
-                  <td data-th="不動產價值" headers="resultGroup propertyValue"><span class="text-success fw-bold">符合</span></td>
+                  <td data-th="總所得" headers="resultGroup totalIncome"><span class="text-success fw-bold">未超標</span></td>
+                  <td data-th="每人每月平均所得" headers="resultGroup monthlyIncome"><span class="text-success fw-bold">未超標</span></td>
+                  <td data-th="不動產價值" headers="resultGroup propertyValue"><span class="text-success fw-bold">未超標</span></td>
                   <td data-th="操作" headers="actions"><div class="flex-item-wrap"><button class="btn btn-sm btn-outline-primary" type="button" disabled title="詳細頁待建置">查看詳細</button></div></td>
                 </tr>
-                <tr data-case-id="115-000002" data-applicant="林志明" data-id-number="A000000002" data-agency="新北市政府">
-                  <td data-th="統一案件編號" headers="caseId">115-000002</td>
+                <tr data-case-id="115000002" data-applicant="林志明" data-id-number="A000000002" data-agency="新北市政府">
+                  <td class="text-nowrap" data-th="統一案件編號" headers="caseId">115000002</td>
                   <td data-th="申請人" headers="applicant">林志明</td>
                   <td data-th="權責機關" headers="agency">新北市政府</td>
                   <td data-th="申請社宅" headers="housing">新北示範社宅</td>
                   <td data-th="申請房型" headers="room">一房型</td>
-                  <td data-th="總所得" headers="resultGroup totalIncome"><span class="text-danger fw-bold">不符合</span></td>
-                  <td data-th="每人每月平均所得" headers="resultGroup monthlyIncome"><span class="text-success fw-bold">符合</span></td>
-                  <td data-th="不動產價值" headers="resultGroup propertyValue"><span class="text-success fw-bold">符合</span></td>
+                  <td data-th="總所得" headers="resultGroup totalIncome"><span class="text-danger fw-bold">超標</span></td>
+                  <td data-th="每人每月平均所得" headers="resultGroup monthlyIncome"><span class="text-success fw-bold">未超標</span></td>
+                  <td data-th="不動產價值" headers="resultGroup propertyValue"><span class="text-success fw-bold">未超標</span></td>
                   <td data-th="操作" headers="actions"><div class="flex-item-wrap"><button class="btn btn-sm btn-outline-primary" type="button" disabled title="詳細頁待建置">查看詳細</button></div></td>
                 </tr>
-                <tr data-case-id="115-000003" data-applicant="王雅婷" data-id-number="A000000003" data-agency="臺北市政府">
-                  <td data-th="統一案件編號" headers="caseId">115-000003</td>
+                <tr data-case-id="115000003" data-applicant="王雅婷" data-id-number="A000000003" data-agency="臺北市政府">
+                  <td class="text-nowrap" data-th="統一案件編號" headers="caseId">115000003</td>
                   <td data-th="申請人" headers="applicant">王雅婷</td>
                   <td data-th="權責機關" headers="agency">臺北市政府</td>
                   <td data-th="申請社宅" headers="housing">臺北示範社宅</td>
                   <td data-th="申請房型" headers="room">二房型</td>
-                  <td data-th="總所得" headers="resultGroup totalIncome"><span class="text-success fw-bold">符合</span></td>
-                  <td data-th="每人每月平均所得" headers="resultGroup monthlyIncome"><span class="text-danger fw-bold">不符合</span></td>
-                  <td data-th="不動產價值" headers="resultGroup propertyValue"><span class="text-success fw-bold">符合</span></td>
+                  <td data-th="總所得" headers="resultGroup totalIncome"><span class="text-success fw-bold">未超標</span></td>
+                  <td data-th="每人每月平均所得" headers="resultGroup monthlyIncome"><span class="text-danger fw-bold">超標</span></td>
+                  <td data-th="不動產價值" headers="resultGroup propertyValue"><span class="text-success fw-bold">未超標</span></td>
                   <td data-th="操作" headers="actions"><div class="flex-item-wrap"><button class="btn btn-sm btn-outline-primary" type="button" disabled title="詳細頁待建置">查看詳細</button></div></td>
                 </tr>
-                <tr data-case-id="115-000004" data-applicant="張家豪" data-id-number="A000000004" data-agency="桃園市政府">
-                  <td data-th="統一案件編號" headers="caseId">115-000004</td>
+                <tr data-case-id="115000004" data-applicant="張家豪" data-id-number="A000000004" data-agency="桃園市政府">
+                  <td class="text-nowrap" data-th="統一案件編號" headers="caseId">115000004</td>
                   <td data-th="申請人" headers="applicant">張家豪</td>
                   <td data-th="權責機關" headers="agency">桃園市政府</td>
                   <td data-th="申請社宅" headers="housing">桃園示範社宅</td>
                   <td data-th="申請房型" headers="room">三房型</td>
-                  <td data-th="總所得" headers="resultGroup totalIncome"><span class="text-success fw-bold">符合</span></td>
-                  <td data-th="每人每月平均所得" headers="resultGroup monthlyIncome"><span class="text-success fw-bold">符合</span></td>
-                  <td data-th="不動產價值" headers="resultGroup propertyValue"><span class="text-danger fw-bold">不符合</span></td>
+                  <td data-th="總所得" headers="resultGroup totalIncome"><span class="text-success fw-bold">未超標</span></td>
+                  <td data-th="每人每月平均所得" headers="resultGroup monthlyIncome"><span class="text-success fw-bold">未超標</span></td>
+                  <td data-th="不動產價值" headers="resultGroup propertyValue"><span class="text-danger fw-bold">超標</span></td>
                   <td data-th="操作" headers="actions"><div class="flex-item-wrap"><button class="btn btn-sm btn-outline-primary" type="button" disabled title="詳細頁待建置">查看詳細</button></div></td>
                 </tr>
-                <tr data-case-id="115-000005" data-applicant="李佳蓉" data-id-number="A000000005" data-agency="臺中市政府">
-                  <td data-th="統一案件編號" headers="caseId">115-000005</td>
+                <tr data-case-id="115000005" data-applicant="李佳蓉" data-id-number="A000000005" data-agency="臺中市政府">
+                  <td class="text-nowrap" data-th="統一案件編號" headers="caseId">115000005</td>
                   <td data-th="申請人" headers="applicant">李佳蓉</td>
                   <td data-th="權責機關" headers="agency">臺中市政府</td>
                   <td data-th="申請社宅" headers="housing">臺中示範社宅</td>
                   <td data-th="申請房型" headers="room">二房型</td>
-                  <td data-th="總所得" headers="resultGroup totalIncome"><span class="text-success fw-bold">符合</span></td>
+                  <td data-th="總所得" headers="resultGroup totalIncome"><span class="text-success fw-bold">未超標</span></td>
                   <td data-th="每人每月平均所得" headers="resultGroup monthlyIncome"></td>
-                  <td data-th="不動產價值" headers="resultGroup propertyValue"><span class="text-success fw-bold">符合</span></td>
+                  <td data-th="不動產價值" headers="resultGroup propertyValue"><span class="text-success fw-bold">未超標</span></td>
                   <td data-th="操作" headers="actions"><div class="flex-item-wrap"><button class="btn btn-sm btn-outline-primary" type="button" disabled title="詳細頁待建置">查看詳細</button></div></td>
                 </tr>
-                <tr data-case-id="115-000006" data-applicant="黃柏翰" data-id-number="A000000006" data-agency="臺南市政府">
-                  <td data-th="統一案件編號" headers="caseId">115-000006</td>
+                <tr data-case-id="115000006" data-applicant="黃柏翰" data-id-number="A000000006" data-agency="臺南市政府">
+                  <td class="text-nowrap" data-th="統一案件編號" headers="caseId">115000006</td>
                   <td data-th="申請人" headers="applicant">黃柏翰</td>
                   <td data-th="權責機關" headers="agency">臺南市政府</td>
                   <td data-th="申請社宅" headers="housing">臺南示範社宅</td>
                   <td data-th="申請房型" headers="room">一房型</td>
                   <td data-th="總所得" headers="resultGroup totalIncome"></td>
-                  <td data-th="每人每月平均所得" headers="resultGroup monthlyIncome"><span class="text-success fw-bold">符合</span></td>
+                  <td data-th="每人每月平均所得" headers="resultGroup monthlyIncome"><span class="text-success fw-bold">未超標</span></td>
                   <td data-th="不動產價值" headers="resultGroup propertyValue"></td>
                   <td data-th="操作" headers="actions"><div class="flex-item-wrap"><button class="btn btn-sm btn-outline-primary" type="button" disabled title="詳細頁待建置">查看詳細</button></div></td>
                 </tr>
-                <tr data-case-id="115-000007" data-applicant="吳欣怡" data-id-number="A000000007" data-agency="高雄市政府">
-                  <td data-th="統一案件編號" headers="caseId">115-000007</td>
+                <tr data-case-id="115000007" data-applicant="吳欣怡" data-id-number="A000000007" data-agency="高雄市政府">
+                  <td class="text-nowrap" data-th="統一案件編號" headers="caseId">115000007</td>
                   <td data-th="申請人" headers="applicant">吳欣怡</td>
                   <td data-th="權責機關" headers="agency">高雄市政府</td>
                   <td data-th="申請社宅" headers="housing">高雄示範社宅</td>
@@ -296,14 +308,14 @@
                   <td data-th="不動產價值" headers="resultGroup propertyValue"></td>
                   <td data-th="操作" headers="actions"><div class="flex-item-wrap"><button class="btn btn-sm btn-outline-primary" type="button" disabled title="詳細頁待建置">查看詳細</button></div></td>
                 </tr>
-                <tr data-case-id="115-000008" data-applicant="陳建宏" data-id-number="A000000008" data-agency="國家住都中心">
-                  <td data-th="統一案件編號" headers="caseId">115-000008</td>
+                <tr data-case-id="115000008" data-applicant="陳建宏" data-id-number="A000000008" data-agency="國家住都中心">
+                  <td class="text-nowrap" data-th="統一案件編號" headers="caseId">115000008</td>
                   <td data-th="申請人" headers="applicant">陳建宏</td>
                   <td data-th="權責機關" headers="agency">國家住都中心</td>
                   <td data-th="申請社宅" headers="housing">安居示範社宅</td>
                   <td data-th="申請房型" headers="room">三房型</td>
-                  <td data-th="總所得" headers="resultGroup totalIncome"><span class="text-danger fw-bold">不符合</span></td>
-                  <td data-th="每人每月平均所得" headers="resultGroup monthlyIncome"><span class="text-danger fw-bold">不符合</span></td>
+                  <td data-th="總所得" headers="resultGroup totalIncome"><span class="text-danger fw-bold">超標</span></td>
+                  <td data-th="每人每月平均所得" headers="resultGroup monthlyIncome"><span class="text-danger fw-bold">超標</span></td>
                   <td data-th="不動產價值" headers="resultGroup propertyValue"></td>
                   <td data-th="操作" headers="actions"><div class="flex-item-wrap"><button class="btn btn-sm btn-outline-primary" type="button" disabled title="詳細頁待建置">查看詳細</button></div></td>
                 </tr>
@@ -352,7 +364,8 @@
     </div>
   </div>
 </div>
-<script src="assets/js/enquiry-list.js"></script>
+<script src="assets/js/clear-keyword.js"></script>
+  <script src="assets/js/enquiry-list.js"></script>
 <script src="assets/js/shell.js"></script>
 </body>
 </html>

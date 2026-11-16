@@ -4,7 +4,7 @@
 /* 主案案件成員與已授權者：張大富、張忠政（申請人）、張曉雯、劉欣慧（配偶）。 */
 window.EnquiryCases = [
   {
-    "caseId": "CH-115-00000001",
+    "caseId": "CH11500000001",
     "name": "張忠政",
     "idNumber": "B134567890",
     "agency": "國家住都中心",
@@ -14,10 +14,10 @@ window.EnquiryCases = [
     "movedAt": "2012/04/23",
     "address": "新北市OO區OO路100號5樓",
     "results": {
-      "totalIncome": "符合",
-      "monthlyIncome": "符合",
-      "propertyValue": "符合",
-      "movableValue": "符合",
+      "totalIncome": "未超標",
+      "monthlyIncome": "未超標",
+      "propertyValue": "未超標",
+      "movableValue": "未超標",
       "rentTier": "第2級"
     },
     "status": "查調中",
@@ -348,18 +348,18 @@ window.EnquiryCases = [
     }
   },
   {
-    "caseId": "CH-115-00000002",
+    "caseId": "CH11500000002",
     "name": "陳怡君",
     "idNumber": "A000000001",
     "agency": "國家住都中心",
     "housing": "安居示範社宅",
     "room": "套房",
     "results": {
-      "totalIncome": "符合",
-      "monthlyIncome": "符合",
-      "propertyValue": "符合",
-      "movableValue": "符合",
-      "rentTier": "符合"
+      "totalIncome": "未超標",
+      "monthlyIncome": "未超標",
+      "propertyValue": "未超標",
+      "movableValue": "未超標",
+      "rentTier": "未超標"
     },
     "enquiryStatus": "查調完成",
     "requiredChecks": {
@@ -405,18 +405,18 @@ window.EnquiryCases = [
     }
   },
   {
-    "caseId": "LF-115-00000001",
+    "caseId": "LF11500000001",
     "name": "林志明",
     "idNumber": "A000000002",
     "agency": "新北市政府",
     "housing": "新北示範社宅",
     "room": "一房型",
     "results": {
-      "totalIncome": "不符合",
-      "monthlyIncome": "符合",
-      "propertyValue": "符合",
-      "movableValue": "符合",
-      "rentTier": "符合"
+      "totalIncome": "超標",
+      "monthlyIncome": "未超標",
+      "propertyValue": "未超標",
+      "movableValue": "未超標",
+      "rentTier": "未超標"
     },
     "enquiryStatus": "查調完成",
     "requiredChecks": {
@@ -462,18 +462,18 @@ window.EnquiryCases = [
     }
   },
   {
-    "caseId": "LA-115-00000001",
+    "caseId": "LA11500000001",
     "name": "王雅婷",
     "idNumber": "A000000003",
     "agency": "臺北市政府",
     "housing": "臺北示範社宅",
     "room": "二房型",
     "results": {
-      "totalIncome": "符合",
-      "monthlyIncome": "不符合",
-      "propertyValue": "符合",
-      "movableValue": "符合",
-      "rentTier": "不符合"
+      "totalIncome": "未超標",
+      "monthlyIncome": "超標",
+      "propertyValue": "未超標",
+      "movableValue": "未超標",
+      "rentTier": "超標"
     },
     "enquiryStatus": "查調完成",
     "requiredChecks": {
@@ -519,18 +519,18 @@ window.EnquiryCases = [
     }
   },
   {
-    "caseId": "LH-115-00000001",
+    "caseId": "LH11500000001",
     "name": "張家豪",
     "idNumber": "A000000004",
     "agency": "桃園市政府",
     "housing": "桃園示範社宅",
     "room": "三房型",
     "results": {
-      "totalIncome": "符合",
-      "monthlyIncome": "符合",
-      "propertyValue": "不符合",
-      "movableValue": "不符合",
-      "rentTier": "符合"
+      "totalIncome": "未超標",
+      "monthlyIncome": "未超標",
+      "propertyValue": "超標",
+      "movableValue": "超標",
+      "rentTier": "未超標"
     },
     "enquiryStatus": "查調完成",
     "requiredChecks": {
@@ -576,17 +576,17 @@ window.EnquiryCases = [
     }
   },
   {
-    "caseId": "LB-115-00000001",
+    "caseId": "LB11500000001",
     "name": "李佳蓉",
     "idNumber": "A000000005",
     "agency": "臺中市政府",
     "housing": "臺中示範社宅",
     "room": "二房型",
     "results": {
-      "totalIncome": "符合",
+      "totalIncome": "未超標",
       "monthlyIncome": "",
-      "propertyValue": "符合",
-      "movableValue": "符合",
+      "propertyValue": "未超標",
+      "movableValue": "未超標",
       "rentTier": ""
     },
     "enquiryStatus": "查調完成",
@@ -633,7 +633,7 @@ window.EnquiryCases = [
     }
   },
   {
-    "caseId": "LD-115-00000001",
+    "caseId": "LD11500000001",
     "name": "黃柏翰",
     "idNumber": "A000000006",
     "agency": "臺南市政府",
@@ -641,10 +641,10 @@ window.EnquiryCases = [
     "room": "一房型",
     "results": {
       "totalIncome": "",
-      "monthlyIncome": "符合",
+      "monthlyIncome": "未超標",
       "propertyValue": "",
       "movableValue": "",
-      "rentTier": "符合"
+      "rentTier": "未超標"
     },
     "enquiryStatus": "查調完成",
     "requiredChecks": {
@@ -690,7 +690,7 @@ window.EnquiryCases = [
     }
   },
   {
-    "caseId": "LE-115-00000001",
+    "caseId": "LE11500000001",
     "name": "吳欣怡",
     "idNumber": "A000000007",
     "agency": "高雄市政府",
@@ -747,18 +747,18 @@ window.EnquiryCases = [
     }
   },
   {
-    "caseId": "CH-115-00000003",
+    "caseId": "CH11500000003",
     "name": "陳建宏",
     "idNumber": "A000000008",
     "agency": "國家住都中心",
     "housing": "安居示範社宅",
     "room": "三房型",
     "results": {
-      "totalIncome": "不符合",
-      "monthlyIncome": "不符合",
+      "totalIncome": "超標",
+      "monthlyIncome": "超標",
       "propertyValue": "",
       "movableValue": "",
-      "rentTier": "不符合"
+      "rentTier": "超標"
     },
     "enquiryStatus": "查調完成",
     "requiredChecks": {
@@ -804,7 +804,7 @@ window.EnquiryCases = [
     }
   },
   {
-    "caseId": "LF-115-00000002",
+    "caseId": "LF11500000002",
     "name": "王怡君",
     "idNumber": "A123456789",
     "agency": "新北市政府",
@@ -916,7 +916,7 @@ window.EnquiryCases = [
     }
   },
   {
-    "caseId": "LA-115-00000002",
+    "caseId": "LA11500000002",
     "name": "林志明",
     "idNumber": "A123456780",
     "agency": "臺北市政府",
@@ -1073,7 +1073,7 @@ window.EnquiryCases = [
     }
   },
   {
-    "caseId": "LH-115-00000002",
+    "caseId": "LH11500000002",
     "name": "陳怡安",
     "idNumber": "A123456781",
     "agency": "桃園市政府",
@@ -1230,7 +1230,7 @@ window.EnquiryCases = [
     }
   },
   {
-    "caseId": "LB-115-00000002",
+    "caseId": "LB11500000002",
     "name": "李雅雯",
     "idNumber": "A123456782",
     "agency": "臺中市政府",

@@ -53,13 +53,13 @@
       // 先取結果標籤，避免「無法判定」後的原因文字干擾比對。
       value: (cell.querySelector('span')?.textContent || cell.textContent).trim()
     }));
-    if (selectedResult === '不符合') return values.some(cell => cell.value === '不符合');
+    if (selectedResult === '超標') return values.some(cell => cell.value === '超標');
     if (selectedResult === '無法判定') return values.some(cell => cell.value === '無法判定');
-    if (selectedResult !== '符合') return false;
+    if (selectedResult !== '未超標') return false;
     const required = values.filter(cell => cell.value !== '--');
     const judgments = required.filter(cell => cell.key !== 'rentTier');
     // 級距是分類，不把「第X級」當成資格判定；但未完成的級距不能算全案符合。
-    return judgments.length > 0 && required.every(cell => cell.value === '符合'
+    return judgments.length > 0 && required.every(cell => cell.value === '未超標'
       || cell.key === 'rentTier' && /^第\s*\d+\s*級$/.test(cell.value));
   }
 

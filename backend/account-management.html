@@ -165,7 +165,7 @@
 <button class="nav-link" id="agencyTab" type="button" role="tab" aria-selected="false" aria-controls="accountPanel" tabindex="-1" data-role="機關">機關帳號</button>
 </div><div id="accountPanel" role="tabpanel" aria-labelledby="citizenTab" tabindex="0">
           <div class="collapse-wrap position-relative"><h4 class="collapse-title"><span class="text">查詢條件</span></h4><a href="#accountSearch" class="collapse-btn stretched-link" data-bs-toggle="collapse" aria-expanded="true" aria-controls="accountSearch" aria-label="展開或收合查詢條件"><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></a></div>
-          <div class="collapse show" id="accountSearch"><form class="search" id="accountFilter"><div class="search-top-form"><div class="row g-3"><div class="account-keyword-field col-12 col-md-6 col-lg"><label class="form-label" for="accountKeyword">關鍵字</label><input class="form-control" id="accountKeyword" placeholder="姓名、身分證／居留證號、手機、電子信箱、IP"></div><div class="col-md-6 col-lg-3" data-agency-only hidden><label class="form-label" for="filterAgency">機關名稱</label><select class="form-select" id="filterAgency"><option value="">全部機關</option></select></div><div class="col-md-6 col-lg-3" data-agency-only hidden><label class="form-label" for="filterAgencyRole">機關角色</label><select class="form-select" id="filterAgencyRole"><option value="">全部機關角色</option><option>系統管理員</option><option>國土署管理員</option><option>國土署人員</option><option>社宅機關查調人員</option><option>社宅機關人員</option></select></div><div class="col-md-6 col-lg-3"><label class="form-label" for="filterStatus">狀態</label><select class="form-select" id="filterStatus"><option value="">全部狀態</option><option value="1">啟用</option><option value="0">停用</option></select></div></div>
+          <div class="collapse show" id="accountSearch"><form class="search" id="accountFilter"><div class="search-top-form"><div class="row g-3"><div class="account-keyword-field col-12 col-md-6 col-lg"><label class="form-label" for="accountKeyword">關鍵字</label><input type="search" class="form-control bg-body" id="accountKeyword" placeholder="姓名、身分證／居留證號、手機、電子信箱、IP"></div><div class="col-md-6 col-lg-3" data-agency-only hidden><label class="form-label" for="filterAgency">機關名稱</label><select class="form-select" id="filterAgency"><option value="">全部機關</option></select></div><div class="col-md-6 col-lg-3" data-agency-only hidden><label class="form-label" for="filterAgencyRole">機關角色</label><select class="form-select" id="filterAgencyRole"><option value="">全部機關角色</option><option>系統管理員</option><option>國土署管理員</option><option>國土署人員</option><option>社宅機關查調人員</option><option>社宅機關人員</option></select></div><div class="col-md-6 col-lg-3"><label class="form-label" for="filterStatus">狀態</label><select class="form-select" id="filterStatus"><option value="">全部狀態</option><option value="1">啟用</option><option value="0">停用</option></select></div></div>
             <div class="mt-3">
               <div class="row g-3">
                 <div class="col-sm-6 col-lg-4">
@@ -226,8 +226,71 @@
       <a href="#" class="" title="回到最上面">TOP</a>
   </div>
 
-<div class="modal fade" id="accountModal" tabindex="-1" aria-labelledby="accountModalTitle" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg"><div class="modal-content"><div class="modal-header"><h1 class="modal-title" id="accountModalTitle">帳號資料</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="關閉"></button></div><div class="modal-body"><form id="accountEditForm"><div class="row g-3"><div class="col-md-6" id="editNameWrap"><label class="form-label" for="editName">真實姓名</label><input id="editName" class="form-control" type="text" required maxlength="100"></div><div class="col-md-6" id="editIdWrap"><label class="form-label" for="editId">身分證字號／居留證號</label><input id="editId" class="form-control" type="text" required maxlength="20"></div><div class="col-md-6" id="editPhoneWrap"><label class="form-label" for="editPhone">聯絡手機</label><input id="editPhone" class="form-control" type="tel" required maxlength="20"></div><div class="col-md-6" id="editEmailWrap"><label class="form-label" for="editEmail">電子信箱</label><input id="editEmail" class="form-control" type="email" required maxlength="254" aria-describedby="editEmailVerifiedAt"><p class="email-verification-note mt-2 mb-0" id="editEmailVerification"><i class="fa-solid" aria-hidden="true"></i><span id="editEmailVerifiedAt"></span></p></div><div class="col-md-6" id="editRoleWrap"><label class="form-label" for="editRole">角色</label><select id="editRole" class="form-select" required><option>民眾</option><option>機關</option></select></div><div class="col-md-6" id="editAgencyWrap"><label class="form-label" for="editAgency">機關名稱</label><select id="editAgency" class="form-select" required></select></div><div class="col-md-6" id="editAgencyRoleWrap"><label class="form-label" for="editAgencyRole">機關角色</label><select id="editAgencyRole" class="form-select" required><option>系統管理員</option><option>國土署管理員</option><option>國土署人員</option><option>社宅機關查調人員</option><option>社宅機關人員</option></select></div><div class="col-md-6" id="editStatusWrap"><label class="form-label" for="editStatus">狀態</label><select id="editStatus" class="form-select" required><option>啟用</option><option>停用</option></select></div></div><hr><dl class="row g-3 mb-0" id="accountVerification"></dl></form></div><div class="modal-footer"><div class="btn-cta-group w-100 p-0"><button type="button" class="btn btn-pill-outline-primary" data-bs-dismiss="modal">關閉</button><button type="submit" form="accountEditForm" class="btn btn-primary" id="accountSave">儲存</button></div></div></div></div></div>
+<div class="modal fade" id="accountModal" tabindex="-1" aria-labelledby="accountModalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title" id="accountModalTitle">帳號資料</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="關閉"></button>
+      </div>
+      <div class="modal-body">
+        <form id="accountEditForm">
+          <section class="account-section" aria-labelledby="accountBasicTitle">
+            <h2 class="account-section-title" id="accountBasicTitle">基本資料</h2>
+            <div class="row g-4">
+                  <div class="col-md-6" id="editNameWrap">
+                    <dl class="account-detail"><dt>真實姓名</dt><dd id="editName"></dd></dl>
+                  </div>
+                  <div class="col-md-6" id="editIdWrap">
+                    <dl class="account-detail"><dt>身分證字號／居留證號</dt><dd id="editId"></dd></dl>
+                  </div>
+                  <div class="col-md-6" id="editPhoneWrap">
+                    <dl class="account-detail"><dt>聯絡手機</dt><dd id="editPhone"></dd></dl>
+                  </div>
+                  <div class="col-md-6" id="editEmailWrap">
+                    <dl class="account-detail"><dt>電子信箱</dt><dd id="editEmail"></dd></dl>
+                    <p class="email-verification-note mt-2 mb-0" id="editEmailVerification"><i class="fa-solid" aria-hidden="true"></i><span id="editEmailVerifiedAt"></span></p>
+                  </div>
+            </div>
+          </section>
+          <section class="account-section" aria-labelledby="accountSettingsTitle">
+            <h2 class="account-section-title" id="accountSettingsTitle">帳號設定</h2>
+            <div class="row g-4">
+                  <div class="col-md-6" id="editRoleWrap">
+                    <dl class="account-detail"><dt>角色</dt><dd id="editRole"></dd></dl>
+                  </div>
+                  <div class="col-md-6" id="editAgencyWrap">
+                    <dl class="account-detail"><dt>機關名稱</dt><dd id="editAgency"></dd></dl>
+                  </div>
+              <div class="col-md-6" id="editAgencyRoleWrap">
+                <dl class="account-detail account-view-detail"><dt>機關角色</dt><dd id="editAgencyRoleText"></dd></dl>
+                <label class="form-label" for="editAgencyRole">機關角色</label>
+                <select id="editAgencyRole" class="form-select" required><option>系統管理員</option><option>國土署管理員</option><option>國土署人員</option><option>社宅機關查調人員</option><option>社宅機關人員</option></select>
+              </div>
+              <div class="col-md-6" id="editStatusWrap">
+                <dl class="account-detail account-view-detail"><dt>狀態</dt><dd id="editStatusText"></dd></dl>
+                <label class="form-label" for="editStatus">狀態</label>
+                <select id="editStatus" class="form-select" required><option>啟用</option><option>停用</option></select>
+              </div>
+            </div>
+          </section>
+          <section class="account-section" id="accountVerificationSection" aria-labelledby="accountVerificationTitle">
+            <h2 class="account-section-title" id="accountVerificationTitle">驗證與登入紀錄</h2>
+            <dl class="row g-4 mb-0" id="accountVerification"></dl>
+          </section>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <div class="btn-cta-group w-100 p-0">
+          <button type="button" class="btn btn-pill-outline-primary" data-bs-dismiss="modal">關閉</button>
+          <button type="submit" form="accountEditForm" class="btn btn-pill-primary" id="accountSave">儲存</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
   <!-- JS -->
+  <script src="assets/js/clear-keyword.js"></script>
   <script src="assets/js/account-management.js"></script>
   <script src="assets/js/navigation.js"></script>
 </body>

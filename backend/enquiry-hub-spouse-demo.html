@@ -32,6 +32,7 @@
 .backend-page .consent-waiting { background-color: #fff3df; color: #854b00; }
 .backend-page .table td.consent-waiting { --bs-table-bg: #fff3df; --bs-table-color: #854b00; }
 </style>
+  <link rel="stylesheet" href="assets/css/enquiry-list.css">
 </head>
 
 <body class="backend-page">
@@ -186,7 +187,7 @@
                         <div class="row g-3">
                   <div class="col-md-12 col-lg-6">
                     <label for="enquiryKeyword" class="form-label">關鍵字</label>
-                    <input type="text" class="form-control" id="enquiryKeyword" name="keyword" placeholder="統一案件編號、申請人姓名/身分證字號" aria-describedby="keywordHint">
+                    <input type="search" class="form-control bg-body" id="enquiryKeyword" name="keyword" placeholder="統一案件編號、申請人姓名/身分證字號" aria-describedby="keywordHint">
                     <!-- <div class="form-text text-muted" id="keywordHint"><span class="me-1"><i class="fas fa-info-circle" aria-hidden="true"></i></span>可輸入統一案件編號、申請人或申請人身分證字號的完整或部分內容。</div> -->
                   </div>
                   <div class="col-md-4 col-lg-2">
@@ -215,8 +216,8 @@
                     <label for="enquiryResult" class="form-label">查調結果</label>
                     <select class="form-select" id="enquiryResult" name="result">
                       <option value="">全部結果</option>
-                      <option value="符合">符合</option>
-                      <option value="不符合">不符合</option>
+                      <option value="未超標">未超標</option>
+                      <option value="超標">超標</option>
                       <option value="無法判定">無法判定</option>
                     </select>
                   </div>
@@ -244,7 +245,7 @@
                 <col class="agency-column">
                 <col class="status-column">
                 <col class="result-column">
-                <col class="result-column">
+                <col class="monthly-column">
                 <col class="result-column">
                 <col class="result-column">
                 <col class="result-column">
@@ -252,7 +253,7 @@
               </colgroup>
               <thead>
                 <tr>
-                  <th class="text-wrap" rowspan="2" scope="col" id="caseId">統一案件編號</th>
+                  <th class="text-nowrap" rowspan="2" scope="col" id="caseId">統一案件編號</th>
                   <th class="text-wrap" rowspan="2" scope="col" id="applicant">申請人</th>
                   <th class="text-wrap" rowspan="2" scope="col" id="housing">申請社宅</th>
                   <th class="text-wrap" rowspan="2" scope="col" id="room">申請房型</th>
@@ -270,8 +271,8 @@
                 </tr>
               </thead>
               <tbody id="enquiryRows">
-                <tr data-case-id="CH-115-00000001" data-applicant="張忠政" data-id-number="B134567890" data-agency="國家住都中心" data-status="部分完成">
-                  <td data-th="統一案件編號" headers="caseId">CH-115-00000001</td>
+                <tr data-case-id="CH11500000001" data-applicant="張忠政" data-id-number="B134567890" data-agency="國家住都中心" data-status="部分完成">
+                  <td class="text-nowrap" data-th="統一案件編號" headers="caseId">CH11500000001</td>
                   <td data-th="申請人" headers="applicant">張忠政</td>
                   <td data-th="申請社宅" headers="housing">世大運選手村D區</td>
                   <td data-th="申請房型" headers="room">三房型</td>
@@ -279,97 +280,97 @@
                   <td data-th="查調狀態" headers="statusColumn"><span class="badge rounded-pill text-wrap consent-waiting">部分完成</span><div class="mt-2">配偶所得待授權</div></td>
                   <td class="enquiry-result consent-waiting" data-th="總所得" headers="resultGroup totalIncome"><span class="fw-bold">無法判定</span><div class="mt-2">所得資料未齊</div></td>
                   <td class="enquiry-result consent-waiting" data-th="每人每月平均所得" headers="resultGroup monthlyIncome"><span class="fw-bold">無法判定</span><div class="mt-2">所得資料未齊</div></td>
-                  <td class="enquiry-result enquiry-result--complete" data-th="不動產價值" headers="resultGroup propertyValue"><span class="text-success fw-bold">符合</span></td>
-                  <td class="enquiry-result enquiry-result--complete" data-th="動產價值" headers="resultGroup movableValue"><span class="text-success fw-bold">符合</span></td>
+                  <td class="enquiry-result enquiry-result--complete" data-th="不動產價值" headers="resultGroup propertyValue"><span class="text-success fw-bold">未超標</span></td>
+                  <td class="enquiry-result enquiry-result--complete" data-th="動產價值" headers="resultGroup movableValue"><span class="text-success fw-bold">未超標</span></td>
                   <td class="enquiry-result consent-waiting" data-th="租金級距" headers="resultGroup rentTier"><span class="fw-bold">無法判定</span><div class="mt-2">所得資料未齊</div></td>
-                  <td data-th="操作" headers="actions"><div class="flex-item-wrap"><a class="btn btn-sm btn-outline-primary" href="enquiry-detail-spouse-demo.html?case=CH-115-00000001" aria-label="查看案件 CH-115-00000001 詳細資料">查看詳細</a></div></td>
+                  <td data-th="操作" headers="actions"><div class="flex-item-wrap"><a class="btn btn-sm btn-outline-primary" href="enquiry-detail-spouse-demo.html?case=CH11500000001" aria-label="查看案件 CH11500000001 詳細資料">查看詳細</a></div></td>
                 </tr>
-                <tr data-case-id="CH-115-00000002" data-applicant="陳怡君" data-id-number="A000000001" data-agency="國家住都中心" data-status="查調完成">
-                  <td data-th="統一案件編號" headers="caseId">CH-115-00000002</td>
+                <tr data-case-id="CH11500000002" data-applicant="陳怡君" data-id-number="A000000001" data-agency="國家住都中心" data-status="查調完成">
+                  <td class="text-nowrap" data-th="統一案件編號" headers="caseId">CH11500000002</td>
                   <td data-th="申請人" headers="applicant">陳怡君</td>
                   <td data-th="申請社宅" headers="housing">安居示範社宅</td>
                   <td data-th="申請房型" headers="room">套房</td>
                   <td data-th="權責機關" headers="agency">國家住都中心</td>
                   <td data-th="查調狀態" headers="statusColumn"><span class="badge rounded-pill text-wrap enquiry-status enquiry-status--complete">查調完成</span></td>
-                  <td class="enquiry-result enquiry-result--complete" data-th="總所得" headers="resultGroup totalIncome"><span class="text-success fw-bold">符合</span></td>
-                  <td class="enquiry-result enquiry-result--complete" data-th="每人每月平均所得" headers="resultGroup monthlyIncome"><span class="text-success fw-bold">符合</span></td>
-                  <td class="enquiry-result enquiry-result--complete" data-th="不動產價值" headers="resultGroup propertyValue"><span class="text-success fw-bold">符合</span></td>
-                  <td class="enquiry-result enquiry-result--complete" data-th="動產價值" headers="resultGroup movableValue"><span class="text-success fw-bold">符合</span></td>
+                  <td class="enquiry-result enquiry-result--complete" data-th="總所得" headers="resultGroup totalIncome"><span class="text-success fw-bold">未超標</span></td>
+                  <td class="enquiry-result enquiry-result--complete" data-th="每人每月平均所得" headers="resultGroup monthlyIncome"><span class="text-success fw-bold">未超標</span></td>
+                  <td class="enquiry-result enquiry-result--complete" data-th="不動產價值" headers="resultGroup propertyValue"><span class="text-success fw-bold">未超標</span></td>
+                  <td class="enquiry-result enquiry-result--complete" data-th="動產價值" headers="resultGroup movableValue"><span class="text-success fw-bold">未超標</span></td>
                   <td class="enquiry-result enquiry-result--complete" data-th="租金級距" headers="resultGroup rentTier">第2級</td>
-                  <td data-th="操作" headers="actions"><div class="flex-item-wrap"><a class="btn btn-sm btn-outline-primary" href="enquiry-detail.html?case=CH-115-00000002" aria-label="查看案件 CH-115-00000002 詳細資料">查看詳細</a></div></td>
+                  <td data-th="操作" headers="actions"><div class="flex-item-wrap"><a class="btn btn-sm btn-outline-primary" href="enquiry-detail.html?case=CH11500000002" aria-label="查看案件 CH11500000002 詳細資料">查看詳細</a></div></td>
                 </tr>
-                <tr data-case-id="LF-115-00000001" data-applicant="林志明" data-id-number="A000000002" data-agency="新北市政府" data-status="查調完成">
-                  <td data-th="統一案件編號" headers="caseId">LF-115-00000001</td>
+                <tr data-case-id="LF11500000001" data-applicant="林志明" data-id-number="A000000002" data-agency="新北市政府" data-status="查調完成">
+                  <td class="text-nowrap" data-th="統一案件編號" headers="caseId">LF11500000001</td>
                   <td data-th="申請人" headers="applicant">林志明</td>
                   <td data-th="申請社宅" headers="housing">新北示範社宅</td>
                   <td data-th="申請房型" headers="room">一房型</td>
                   <td data-th="權責機關" headers="agency">新北市政府</td>
                   <td data-th="查調狀態" headers="statusColumn"><span class="badge rounded-pill text-wrap enquiry-status enquiry-status--complete">查調完成</span></td>
-                  <td class="enquiry-result enquiry-result--complete" data-th="總所得" headers="resultGroup totalIncome"><span class="text-danger fw-bold">不符合</span></td>
-                  <td class="enquiry-result enquiry-result--complete" data-th="每人每月平均所得" headers="resultGroup monthlyIncome"><span class="text-success fw-bold">符合</span></td>
-                  <td class="enquiry-result enquiry-result--complete" data-th="不動產價值" headers="resultGroup propertyValue"><span class="text-success fw-bold">符合</span></td>
-                  <td class="enquiry-result enquiry-result--complete" data-th="動產價值" headers="resultGroup movableValue"><span class="text-success fw-bold">符合</span></td>
+                  <td class="enquiry-result enquiry-result--complete" data-th="總所得" headers="resultGroup totalIncome"><span class="text-danger fw-bold">超標</span></td>
+                  <td class="enquiry-result enquiry-result--complete" data-th="每人每月平均所得" headers="resultGroup monthlyIncome"><span class="text-success fw-bold">未超標</span></td>
+                  <td class="enquiry-result enquiry-result--complete" data-th="不動產價值" headers="resultGroup propertyValue"><span class="text-success fw-bold">未超標</span></td>
+                  <td class="enquiry-result enquiry-result--complete" data-th="動產價值" headers="resultGroup movableValue"><span class="text-success fw-bold">未超標</span></td>
                   <td class="enquiry-result enquiry-result--complete" data-th="租金級距" headers="resultGroup rentTier">第2級</td>
-                  <td data-th="操作" headers="actions"><div class="flex-item-wrap"><a class="btn btn-sm btn-outline-primary" href="enquiry-detail.html?case=LF-115-00000001" aria-label="查看案件 LF-115-00000001 詳細資料">查看詳細</a></div></td>
+                  <td data-th="操作" headers="actions"><div class="flex-item-wrap"><a class="btn btn-sm btn-outline-primary" href="enquiry-detail.html?case=LF11500000001" aria-label="查看案件 LF11500000001 詳細資料">查看詳細</a></div></td>
                 </tr>
-                <tr data-case-id="LA-115-00000001" data-applicant="王雅婷" data-id-number="A000000003" data-agency="臺北市政府" data-status="查調完成">
-                  <td data-th="統一案件編號" headers="caseId">LA-115-00000001</td>
+                <tr data-case-id="LA11500000001" data-applicant="王雅婷" data-id-number="A000000003" data-agency="臺北市政府" data-status="查調完成">
+                  <td class="text-nowrap" data-th="統一案件編號" headers="caseId">LA11500000001</td>
                   <td data-th="申請人" headers="applicant">王雅婷</td>
                   <td data-th="申請社宅" headers="housing">臺北示範社宅</td>
                   <td data-th="申請房型" headers="room">二房型</td>
                   <td data-th="權責機關" headers="agency">臺北市政府</td>
                   <td data-th="查調狀態" headers="statusColumn"><span class="badge rounded-pill text-wrap enquiry-status enquiry-status--complete">查調完成</span></td>
-                  <td class="enquiry-result enquiry-result--complete" data-th="總所得" headers="resultGroup totalIncome"><span class="text-success fw-bold">符合</span></td>
-                  <td class="enquiry-result enquiry-result--complete" data-th="每人每月平均所得" headers="resultGroup monthlyIncome"><span class="text-success fw-bold">符合</span></td>
-                  <td class="enquiry-result enquiry-result--complete" data-th="不動產價值" headers="resultGroup propertyValue"><span class="text-success fw-bold">符合</span></td>
-                  <td class="enquiry-result enquiry-result--complete" data-th="動產價值" headers="resultGroup movableValue"><span class="text-success fw-bold">符合</span></td>
+                  <td class="enquiry-result enquiry-result--complete" data-th="總所得" headers="resultGroup totalIncome"><span class="text-success fw-bold">未超標</span></td>
+                  <td class="enquiry-result enquiry-result--complete" data-th="每人每月平均所得" headers="resultGroup monthlyIncome"><span class="text-success fw-bold">未超標</span></td>
+                  <td class="enquiry-result enquiry-result--complete" data-th="不動產價值" headers="resultGroup propertyValue"><span class="text-success fw-bold">未超標</span></td>
+                  <td class="enquiry-result enquiry-result--complete" data-th="動產價值" headers="resultGroup movableValue"><span class="text-success fw-bold">未超標</span></td>
                   <td class="enquiry-result enquiry-result--complete" data-th="租金級距" headers="resultGroup rentTier">第4級</td>
-                  <td data-th="操作" headers="actions"><div class="flex-item-wrap"><a class="btn btn-sm btn-outline-primary" href="enquiry-detail.html?case=LA-115-00000001" aria-label="查看案件 LA-115-00000001 詳細資料">查看詳細</a></div></td>
+                  <td data-th="操作" headers="actions"><div class="flex-item-wrap"><a class="btn btn-sm btn-outline-primary" href="enquiry-detail.html?case=LA11500000001" aria-label="查看案件 LA11500000001 詳細資料">查看詳細</a></div></td>
                 </tr>
-                <tr data-case-id="LH-115-00000001" data-applicant="張家豪" data-id-number="A000000004" data-agency="桃園市政府" data-status="查調完成">
-                  <td data-th="統一案件編號" headers="caseId">LH-115-00000001</td>
+                <tr data-case-id="LH11500000001" data-applicant="張家豪" data-id-number="A000000004" data-agency="桃園市政府" data-status="查調完成">
+                  <td class="text-nowrap" data-th="統一案件編號" headers="caseId">LH11500000001</td>
                   <td data-th="申請人" headers="applicant">張家豪</td>
                   <td data-th="申請社宅" headers="housing">桃園示範社宅</td>
                   <td data-th="申請房型" headers="room">三房型</td>
                   <td data-th="權責機關" headers="agency">桃園市政府</td>
                   <td data-th="查調狀態" headers="statusColumn"><span class="badge rounded-pill text-wrap enquiry-status enquiry-status--complete">查調完成</span></td>
-                  <td class="enquiry-result enquiry-result--complete" data-th="總所得" headers="resultGroup totalIncome"><span class="text-success fw-bold">符合</span></td>
-                  <td class="enquiry-result enquiry-result--complete" data-th="每人每月平均所得" headers="resultGroup monthlyIncome"><span class="text-success fw-bold">符合</span></td>
-                  <td class="enquiry-result enquiry-result--complete" data-th="不動產價值" headers="resultGroup propertyValue"><span class="text-success fw-bold">符合</span></td>
-                  <td class="enquiry-result enquiry-result--complete" data-th="動產價值" headers="resultGroup movableValue"><span class="text-success fw-bold">符合</span></td>
+                  <td class="enquiry-result enquiry-result--complete" data-th="總所得" headers="resultGroup totalIncome"><span class="text-success fw-bold">未超標</span></td>
+                  <td class="enquiry-result enquiry-result--complete" data-th="每人每月平均所得" headers="resultGroup monthlyIncome"><span class="text-success fw-bold">未超標</span></td>
+                  <td class="enquiry-result enquiry-result--complete" data-th="不動產價值" headers="resultGroup propertyValue"><span class="text-success fw-bold">未超標</span></td>
+                  <td class="enquiry-result enquiry-result--complete" data-th="動產價值" headers="resultGroup movableValue"><span class="text-success fw-bold">未超標</span></td>
                   <td class="enquiry-result enquiry-result--complete" data-th="租金級距" headers="resultGroup rentTier">第2級</td>
-                  <td data-th="操作" headers="actions"><div class="flex-item-wrap"><a class="btn btn-sm btn-outline-primary" href="enquiry-detail.html?case=LH-115-00000001" aria-label="查看案件 LH-115-00000001 詳細資料">查看詳細</a></div></td>
+                  <td data-th="操作" headers="actions"><div class="flex-item-wrap"><a class="btn btn-sm btn-outline-primary" href="enquiry-detail.html?case=LH11500000001" aria-label="查看案件 LH11500000001 詳細資料">查看詳細</a></div></td>
                 </tr>
-                <tr data-case-id="LB-115-00000001" data-applicant="李佳蓉" data-id-number="A000000005" data-agency="臺中市政府" data-status="查調完成">
-                  <td data-th="統一案件編號" headers="caseId">LB-115-00000001</td>
+                <tr data-case-id="LB11500000001" data-applicant="李佳蓉" data-id-number="A000000005" data-agency="臺中市政府" data-status="查調完成">
+                  <td class="text-nowrap" data-th="統一案件編號" headers="caseId">LB11500000001</td>
                   <td data-th="申請人" headers="applicant">李佳蓉</td>
                   <td data-th="申請社宅" headers="housing">臺中示範社宅</td>
                   <td data-th="申請房型" headers="room">二房型</td>
                   <td data-th="權責機關" headers="agency">臺中市政府</td>
                   <td data-th="查調狀態" headers="statusColumn"><span class="badge rounded-pill text-wrap enquiry-status enquiry-status--complete">查調完成</span></td>
-                  <td class="enquiry-result enquiry-result--complete" data-th="總所得" headers="resultGroup totalIncome"><span class="text-success fw-bold">符合</span></td>
+                  <td class="enquiry-result enquiry-result--complete" data-th="總所得" headers="resultGroup totalIncome"><span class="text-success fw-bold">未超標</span></td>
                   <td class="enquiry-result enquiry-result--complete" data-th="每人每月平均所得" headers="resultGroup monthlyIncome">--</td>
-                  <td class="enquiry-result enquiry-result--complete" data-th="不動產價值" headers="resultGroup propertyValue"><span class="text-success fw-bold">符合</span></td>
-                  <td class="enquiry-result enquiry-result--complete" data-th="動產價值" headers="resultGroup movableValue"><span class="text-success fw-bold">符合</span></td>
+                  <td class="enquiry-result enquiry-result--complete" data-th="不動產價值" headers="resultGroup propertyValue"><span class="text-success fw-bold">未超標</span></td>
+                  <td class="enquiry-result enquiry-result--complete" data-th="動產價值" headers="resultGroup movableValue"><span class="text-success fw-bold">未超標</span></td>
                   <td class="enquiry-result enquiry-result--complete" data-th="租金級距" headers="resultGroup rentTier">--</td>
-                  <td data-th="操作" headers="actions"><div class="flex-item-wrap"><a class="btn btn-sm btn-outline-primary" href="enquiry-detail.html?case=LB-115-00000001" aria-label="查看案件 LB-115-00000001 詳細資料">查看詳細</a></div></td>
+                  <td data-th="操作" headers="actions"><div class="flex-item-wrap"><a class="btn btn-sm btn-outline-primary" href="enquiry-detail.html?case=LB11500000001" aria-label="查看案件 LB11500000001 詳細資料">查看詳細</a></div></td>
                 </tr>
-                <tr data-case-id="LD-115-00000001" data-applicant="黃柏翰" data-id-number="A000000006" data-agency="臺南市政府" data-status="查調完成">
-                  <td data-th="統一案件編號" headers="caseId">LD-115-00000001</td>
+                <tr data-case-id="LD11500000001" data-applicant="黃柏翰" data-id-number="A000000006" data-agency="臺南市政府" data-status="查調完成">
+                  <td class="text-nowrap" data-th="統一案件編號" headers="caseId">LD11500000001</td>
                   <td data-th="申請人" headers="applicant">黃柏翰</td>
                   <td data-th="申請社宅" headers="housing">臺南示範社宅</td>
                   <td data-th="申請房型" headers="room">一房型</td>
                   <td data-th="權責機關" headers="agency">臺南市政府</td>
                   <td data-th="查調狀態" headers="statusColumn"><span class="badge rounded-pill text-wrap enquiry-status enquiry-status--complete">查調完成</span></td>
                   <td class="enquiry-result enquiry-result--complete" data-th="總所得" headers="resultGroup totalIncome">--</td>
-                  <td class="enquiry-result enquiry-result--complete" data-th="每人每月平均所得" headers="resultGroup monthlyIncome"><span class="text-success fw-bold">符合</span></td>
+                  <td class="enquiry-result enquiry-result--complete" data-th="每人每月平均所得" headers="resultGroup monthlyIncome"><span class="text-success fw-bold">未超標</span></td>
                   <td class="enquiry-result enquiry-result--complete" data-th="不動產價值" headers="resultGroup propertyValue">--</td>
                   <td class="enquiry-result enquiry-result--complete" data-th="動產價值" headers="resultGroup movableValue">--</td>
                   <td class="enquiry-result enquiry-result--complete" data-th="租金級距" headers="resultGroup rentTier">第2級</td>
-                  <td data-th="操作" headers="actions"><div class="flex-item-wrap"><a class="btn btn-sm btn-outline-primary" href="enquiry-detail.html?case=LD-115-00000001" aria-label="查看案件 LD-115-00000001 詳細資料">查看詳細</a></div></td>
+                  <td data-th="操作" headers="actions"><div class="flex-item-wrap"><a class="btn btn-sm btn-outline-primary" href="enquiry-detail.html?case=LD11500000001" aria-label="查看案件 LD11500000001 詳細資料">查看詳細</a></div></td>
                 </tr>
-                <tr data-case-id="LE-115-00000001" data-applicant="吳欣怡" data-id-number="A000000007" data-agency="高雄市政府" data-status="查調中">
-                  <td data-th="統一案件編號" headers="caseId">LE-115-00000001</td>
+                <tr data-case-id="LE11500000001" data-applicant="吳欣怡" data-id-number="A000000007" data-agency="高雄市政府" data-status="查調中">
+                  <td class="text-nowrap" data-th="統一案件編號" headers="caseId">LE11500000001</td>
                   <td data-th="申請人" headers="applicant">吳欣怡</td>
                   <td data-th="申請社宅" headers="housing">高雄示範社宅</td>
                   <td data-th="申請房型" headers="room">套房</td>
@@ -380,24 +381,24 @@
                   <td class="enquiry-result enquiry-result--pending" data-th="不動產價值" headers="resultGroup propertyValue">查調中</td>
                   <td class="enquiry-result enquiry-result--pending" data-th="動產價值" headers="resultGroup movableValue">查調中</td>
                   <td class="enquiry-result enquiry-result--pending" data-th="租金級距" headers="resultGroup rentTier">查調中</td>
-                  <td data-th="操作" headers="actions"><div class="flex-item-wrap"><a class="btn btn-sm btn-outline-primary" href="enquiry-detail.html?case=LE-115-00000001" aria-label="查看案件 LE-115-00000001 詳細資料">查看詳細</a></div></td>
+                  <td data-th="操作" headers="actions"><div class="flex-item-wrap"><a class="btn btn-sm btn-outline-primary" href="enquiry-detail.html?case=LE11500000001" aria-label="查看案件 LE11500000001 詳細資料">查看詳細</a></div></td>
                 </tr>
-                <tr data-case-id="CH-115-00000003" data-applicant="陳建宏" data-id-number="A000000008" data-agency="國家住都中心" data-status="查調完成">
-                  <td data-th="統一案件編號" headers="caseId">CH-115-00000003</td>
+                <tr data-case-id="CH11500000003" data-applicant="陳建宏" data-id-number="A000000008" data-agency="國家住都中心" data-status="查調完成">
+                  <td class="text-nowrap" data-th="統一案件編號" headers="caseId">CH11500000003</td>
                   <td data-th="申請人" headers="applicant">陳建宏</td>
                   <td data-th="申請社宅" headers="housing">安居示範社宅</td>
                   <td data-th="申請房型" headers="room">三房型</td>
                   <td data-th="權責機關" headers="agency">國家住都中心</td>
                   <td data-th="查調狀態" headers="statusColumn"><span class="badge rounded-pill text-wrap enquiry-status enquiry-status--complete">查調完成</span></td>
-                  <td class="enquiry-result enquiry-result--complete" data-th="總所得" headers="resultGroup totalIncome"><span class="text-danger fw-bold">不符合</span></td>
-                  <td class="enquiry-result enquiry-result--complete" data-th="每人每月平均所得" headers="resultGroup monthlyIncome"><span class="text-success fw-bold">符合</span></td>
+                  <td class="enquiry-result enquiry-result--complete" data-th="總所得" headers="resultGroup totalIncome"><span class="text-danger fw-bold">超標</span></td>
+                  <td class="enquiry-result enquiry-result--complete" data-th="每人每月平均所得" headers="resultGroup monthlyIncome"><span class="text-success fw-bold">未超標</span></td>
                   <td class="enquiry-result enquiry-result--complete" data-th="不動產價值" headers="resultGroup propertyValue">--</td>
                   <td class="enquiry-result enquiry-result--complete" data-th="動產價值" headers="resultGroup movableValue">--</td>
                   <td class="enquiry-result enquiry-result--complete" data-th="租金級距" headers="resultGroup rentTier">第4級</td>
-                  <td data-th="操作" headers="actions"><div class="flex-item-wrap"><a class="btn btn-sm btn-outline-primary" href="enquiry-detail.html?case=CH-115-00000003" aria-label="查看案件 CH-115-00000003 詳細資料">查看詳細</a></div></td>
+                  <td data-th="操作" headers="actions"><div class="flex-item-wrap"><a class="btn btn-sm btn-outline-primary" href="enquiry-detail.html?case=CH11500000003" aria-label="查看案件 CH11500000003 詳細資料">查看詳細</a></div></td>
                 </tr>
-                <tr data-case-id="LF-115-00000002" data-applicant="王怡君" data-id-number="A123456789" data-agency="新北市政府" data-status="查調中">
-                  <td data-th="統一案件編號" headers="caseId">LF-115-00000002</td>
+                <tr data-case-id="LF11500000002" data-applicant="王怡君" data-id-number="A123456789" data-agency="新北市政府" data-status="查調中">
+                  <td class="text-nowrap" data-th="統一案件編號" headers="caseId">LF11500000002</td>
                   <td data-th="申請人" headers="applicant">王怡君</td>
                   <td data-th="申請社宅" headers="housing">新北示範社宅</td>
                   <td data-th="申請房型" headers="room">一房型</td>
@@ -408,10 +409,10 @@
                   <td class="enquiry-result enquiry-result--pending" data-th="不動產價值" headers="resultGroup propertyValue">查調中</td>
                   <td class="enquiry-result enquiry-result--pending" data-th="動產價值" headers="resultGroup movableValue">查調中</td>
                   <td class="enquiry-result enquiry-result--pending" data-th="租金級距" headers="resultGroup rentTier">查調中</td>
-                  <td data-th="操作" headers="actions"><div class="flex-item-wrap"><a class="btn btn-sm btn-outline-primary" href="enquiry-detail.html?case=LF-115-00000002" aria-label="查看案件 LF-115-00000002 詳細資料">查看詳細</a></div></td>
+                  <td data-th="操作" headers="actions"><div class="flex-item-wrap"><a class="btn btn-sm btn-outline-primary" href="enquiry-detail.html?case=LF11500000002" aria-label="查看案件 LF11500000002 詳細資料">查看詳細</a></div></td>
                 </tr>
-                <tr data-case-id="LA-115-00000002" data-applicant="林志明" data-id-number="A123456780" data-agency="臺北市政府" data-status="查調中">
-                  <td data-th="統一案件編號" headers="caseId">LA-115-00000002</td>
+                <tr data-case-id="LA11500000002" data-applicant="林志明" data-id-number="A123456780" data-agency="臺北市政府" data-status="查調中">
+                  <td class="text-nowrap" data-th="統一案件編號" headers="caseId">LA11500000002</td>
                   <td data-th="申請人" headers="applicant">林志明</td>
                   <td data-th="申請社宅" headers="housing">臺北示範社宅</td>
                   <td data-th="申請房型" headers="room">二房型</td>
@@ -422,10 +423,10 @@
                   <td class="enquiry-result enquiry-result--pending" data-th="不動產價值" headers="resultGroup propertyValue">查調中</td>
                   <td class="enquiry-result enquiry-result--pending" data-th="動產價值" headers="resultGroup movableValue">查調中</td>
                   <td class="enquiry-result enquiry-result--pending" data-th="租金級距" headers="resultGroup rentTier">查調中</td>
-                  <td data-th="操作" headers="actions"><div class="flex-item-wrap"><a class="btn btn-sm btn-outline-primary" href="enquiry-detail.html?case=LA-115-00000002" aria-label="查看案件 LA-115-00000002 詳細資料">查看詳細</a></div></td>
+                  <td data-th="操作" headers="actions"><div class="flex-item-wrap"><a class="btn btn-sm btn-outline-primary" href="enquiry-detail.html?case=LA11500000002" aria-label="查看案件 LA11500000002 詳細資料">查看詳細</a></div></td>
                 </tr>
-                <tr data-case-id="LH-115-00000002" data-applicant="陳怡安" data-id-number="A123456781" data-agency="桃園市政府" data-status="查調中">
-                  <td data-th="統一案件編號" headers="caseId">LH-115-00000002</td>
+                <tr data-case-id="LH11500000002" data-applicant="陳怡安" data-id-number="A123456781" data-agency="桃園市政府" data-status="查調中">
+                  <td class="text-nowrap" data-th="統一案件編號" headers="caseId">LH11500000002</td>
                   <td data-th="申請人" headers="applicant">陳怡安</td>
                   <td data-th="申請社宅" headers="housing">桃園示範社宅</td>
                   <td data-th="申請房型" headers="room">三房型</td>
@@ -436,10 +437,10 @@
                   <td class="enquiry-result enquiry-result--pending" data-th="不動產價值" headers="resultGroup propertyValue">查調中</td>
                   <td class="enquiry-result enquiry-result--pending" data-th="動產價值" headers="resultGroup movableValue">查調中</td>
                   <td class="enquiry-result enquiry-result--pending" data-th="租金級距" headers="resultGroup rentTier">查調中</td>
-                  <td data-th="操作" headers="actions"><div class="flex-item-wrap"><a class="btn btn-sm btn-outline-primary" href="enquiry-detail.html?case=LH-115-00000002" aria-label="查看案件 LH-115-00000002 詳細資料">查看詳細</a></div></td>
+                  <td data-th="操作" headers="actions"><div class="flex-item-wrap"><a class="btn btn-sm btn-outline-primary" href="enquiry-detail.html?case=LH11500000002" aria-label="查看案件 LH11500000002 詳細資料">查看詳細</a></div></td>
                 </tr>
-                <tr data-case-id="LB-115-00000002" data-applicant="李雅雯" data-id-number="A123456782" data-agency="臺中市政府" data-status="查調中">
-                  <td data-th="統一案件編號" headers="caseId">LB-115-00000002</td>
+                <tr data-case-id="LB11500000002" data-applicant="李雅雯" data-id-number="A123456782" data-agency="臺中市政府" data-status="查調中">
+                  <td class="text-nowrap" data-th="統一案件編號" headers="caseId">LB11500000002</td>
                   <td data-th="申請人" headers="applicant">李雅雯</td>
                   <td data-th="申請社宅" headers="housing">臺中示範社宅</td>
                   <td data-th="申請房型" headers="room">套房</td>
@@ -450,7 +451,7 @@
                   <td class="enquiry-result enquiry-result--pending" data-th="不動產價值" headers="resultGroup propertyValue">查調中</td>
                   <td class="enquiry-result enquiry-result--pending" data-th="動產價值" headers="resultGroup movableValue">查調中</td>
                   <td class="enquiry-result enquiry-result--pending" data-th="租金級距" headers="resultGroup rentTier">查調中</td>
-                  <td data-th="操作" headers="actions"><div class="flex-item-wrap"><a class="btn btn-sm btn-outline-primary" href="enquiry-detail.html?case=LB-115-00000002" aria-label="查看案件 LB-115-00000002 詳細資料">查看詳細</a></div></td>
+                  <td data-th="操作" headers="actions"><div class="flex-item-wrap"><a class="btn btn-sm btn-outline-primary" href="enquiry-detail.html?case=LB11500000002" aria-label="查看案件 LB11500000002 詳細資料">查看詳細</a></div></td>
                 </tr>
                 <tr id="enquiryEmpty" hidden><td colspan="12" class="text-center py-5">查無符合條件的案件，請調整查詢條件。</td></tr>
               </tbody>
@@ -482,6 +483,7 @@
   </div>
 
   <!-- JS -->
+  <script src="assets/js/clear-keyword.js"></script>
   <script src="assets/js/enquiry-list.js"></script>
   <script src="assets/js/navigation.js"></script>
 </body>
