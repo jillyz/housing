@@ -28,7 +28,6 @@
   <script src="../後臺模板/assets/js/customJS.js"></script>
   <link rel="stylesheet" href="assets/css/enquiry-template.css">
   <link rel="stylesheet" href="assets/css/navigation.css">
-  <link rel="stylesheet" href="assets/css/enquiry-consent-demo.css">
 </head>
 
 <body class="backend-page enquiry-detail-page">
@@ -107,7 +106,7 @@
 <a class="has-children" role="button" tabindex="0" aria-expanded="false"><span class="icon-text">資料共同查調</span><i class="fas fa-chevron-down" aria-hidden="true"></i></a>
 <ul class="sub-menu">
 <li><a class="is-unavailable" role="link" aria-disabled="true" title="功能尚未建置">查調模組 API</a></li>
-<li><a class="active" href="enquiry-hub-spouse-demo.html">查調工作臺</a></li>
+<li><a class="active" href="enquiry-hub.html">查調工作臺</a></li>
 </ul>
 </li>
 <li>
@@ -162,7 +161,7 @@
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb breadcrumb">
                   <li class="breadcrumb-item">資料共同查調</li>
-                  <li class="breadcrumb-item"><a href="enquiry-hub-spouse-demo.html">查調工作臺</a></li>
+                  <li class="breadcrumb-item"><a href="enquiry-hub.html">查調工作臺</a></li>
                   <li class="breadcrumb-item active" aria-current="page">案件詳細資料</li>
                 </ol>
               </nav>
@@ -171,13 +170,11 @@
         <!-- 依 apply-03.html 的 Head info 與分段內容結構呈現。 -->
         <div class="content | sticky-top-scroll">
           <div class="flex-item-wrap | row-gap-2 column-gap-4">
-            <h4 class="mb-0">查調案件詳細資料 (案件未列配偶情境示範) 
-              <!-- <span class="badge rounded-pill text-bg-primary">查調完成</span> -->
-            </h4>
+            <h4 class="mb-0">查調案件詳細資料</h4>
             <div class="d-flex flex-wrap align-items-center gap-3"><div class="pill-state"><div class="pill-state-text" id="detailStatus">案件資料</div></div></div>
             
             <button type="button" class="btn btn-outline-primary" id="viewHistoryButton" data-bs-toggle="modal" data-bs-target="#viewHistoryModal" disabled><i class="fa-solid fa-eye me-1" aria-hidden="true"></i>檢視次數：<span id="viewHistoryCount">0</span></button>
-            <a class="btn btn-outline-primary ms-auto" href="enquiry-hub-spouse-demo.html"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i>返回列表</a>
+            <a class="btn btn-outline-primary ms-auto" href="enquiry-hub.html"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i>返回列表</a>
           </div>
         </div>
         <div class="content" id="detailContent">
@@ -237,10 +234,9 @@
   </div>
   <!-- JS -->
   <script src="assets/js/enquiry-cases.js"></script>
-  <script src="assets/js/enquiry-spouse-demo-data.js"></script>
   <script src="assets/js/enquiry-results.js"></script>
-  <script src="assets/js/enquiry-history-spouse-demo.js"></script>
-  <script src="assets/js/enquiry-detail-spouse-demo.js"></script>
+  <script src="assets/js/enquiry-history.js"></script>
+  <script src="assets/js/enquiry-detail.js"></script>
   <script src="assets/js/navigation.js"></script>
 </body>
 

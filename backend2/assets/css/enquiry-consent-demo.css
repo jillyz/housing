@@ -1,0 +1,22 @@
+.enquiry-detail-page .consent-warning { background-color: #fff3df; color: #854b00; }
+.enquiry-detail-page .table td.consent-incomplete { --bs-table-bg: #fff3df; --bs-table-color: #854b00; }
+
+/* 戶役政 CP03 專頁與案件摘要共用的低干擾資訊卡。 */
+.enquiry-detail-page .enquiry-household-stat {
+  height: 100%;
+  padding: 1rem 1.15rem;
+  border: 1px solid rgba(33, 37, 41, .12);
+  border-left: 4px solid var(--bs-primary, #0d6efd);
+  background: #f8fafc;
+}
+.enquiry-detail-page .enquiry-household-stat span { display: block; color: #6c757d; font-size: .875rem; margin-bottom: .25rem; }
+.enquiry-detail-page .enquiry-household-stat strong { display: block; font-size: 1.05rem; font-weight: 600; }
+.enquiry-detail-page .enquiry-household-meta { background: #f8fafc; border: 1px solid rgba(33, 37, 41, .12); }
+.enquiry-detail-page .enquiry-household-meta dt { color: #6c757d; font-size: .875rem; font-weight: 500; }
+.enquiry-detail-page .enquiry-household-meta dd { margin-bottom: 0; font-weight: 600; }
+.enquiry-detail-page .household-filter-bar { background: #f8fafc; border: 1px solid rgba(33, 37, 41, .12); }
+.enquiry-detail-page .household-member-row.is-hidden { display: none; }
+.enquiry-detail-page .household-source-badge { white-space: nowrap; }
+@media (max-width: 767.98px) {
+  .enquiry-detail-page .enquiry-household-stat { padding: .85rem 1rem; }
+}

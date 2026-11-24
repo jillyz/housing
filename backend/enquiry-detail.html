@@ -28,9 +28,10 @@
   <script src="../後臺模板/assets/js/customJS.js"></script>
   <link rel="stylesheet" href="assets/css/enquiry-template.css">
   <link rel="stylesheet" href="assets/css/navigation.css">
+  <link rel="stylesheet" href="assets/css/enquiry-rules.css">
 </head>
 
-<body class="backend-page enquiry-detail-page">
+<body class="backend-page enquiry-detail-page enquiry-rules-page">
   <div class="wrapper multi-column | column-with-menu">
     <!-- Top -->
     <div class="top">
@@ -167,26 +168,8 @@
               </nav>
             </div>
         </div>
-        <!-- 依 apply-03.html 的 Head info 與分段內容結構呈現。 -->
-        <div class="content | sticky-top-scroll">
-          <div class="flex-item-wrap | row-gap-2 column-gap-4">
-            <h4 class="mb-0">查調案件詳細資料</h4>
-            <div class="d-flex flex-wrap align-items-center gap-3"><div class="pill-state"><div class="pill-state-text" id="detailStatus">案件資料</div></div></div>
-            
-            <button type="button" class="btn btn-outline-primary" id="viewHistoryButton" data-bs-toggle="modal" data-bs-target="#viewHistoryModal" disabled><i class="fa-solid fa-eye me-1" aria-hidden="true"></i>檢視次數：<span id="viewHistoryCount">0</span></button>
-            <a class="btn btn-outline-primary ms-auto" href="enquiry-hub.html"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i>返回列表</a>
-          </div>
-        </div>
-        <div class="content" id="detailContent">
-          <div class="bg-orange-lightest p-3 mb-4 d-flex flex-wrap align-items-center justify-content-between gap-3" id="enquiryVersion" hidden>
-            <div><div id="enquiryVersionInfo" role="status"></div><div class="mt-2" id="detailCompletedAt"></div></div>
-            <button type="button" class="btn btn-outline-primary" id="enquiryHistoryButton" data-bs-toggle="modal" data-bs-target="#enquiryHistoryModal" disabled><i class="fa-solid fa-clock-rotate-left me-1" aria-hidden="true"></i>歷次查調紀錄</button>
-          </div>
-          
-          <p id="detailError" role="alert" hidden></p>
-          <div class="vstack gap-5" id="detailBody"></div>
-          <noscript><p>請啟用 JavaScript 以查看案件詳細資料。</p></noscript>
-        </div>
+<div class="content sticky-top-scroll"><div class="rules-heading mb-0"><h1>查調案件詳細資料</h1><div id="detailStatus" role="status"></div><button type="button" class="btn btn-outline-primary" id="viewHistoryButton" data-bs-toggle="modal" data-bs-target="#viewHistoryModal" disabled><i class="fa-solid fa-eye me-1" aria-hidden="true"></i>檢視次數：<span id="viewHistoryCount">0</span></button><a href="enquiry-hub.html" class="btn btn-outline-primary ms-auto">返回列表</a></div></div>
+<div class="content"><div class="rules-version rules-toolbar mb-4" id="enquiryVersion" hidden><div><div id="enquiryVersionInfo" role="status"></div><div class="mt-2" id="detailCompletedAt"></div></div><button type="button" class="btn btn-outline-primary" id="enquiryHistoryButton" data-bs-toggle="modal" data-bs-target="#enquiryHistoryModal" disabled><i class="fa-solid fa-clock-rotate-left me-1" aria-hidden="true"></i>歷次查調紀錄</button></div><div id="detailBody" class="vstack gap-4"></div><noscript><p>請啟用 JavaScript 查看案件情境。</p></noscript></div>
       </div>
     </div>
     <!-- Bottom -->
@@ -207,37 +190,11 @@
       <a href="#" class="" title="回到最上面">TOP</a>
   </div>
 
-  <div class="modal fade" id="viewHistoryModal" tabindex="-1" aria-labelledby="viewHistoryTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title" id="viewHistoryTitle"><i class="fa-solid fa-eye" aria-hidden="true"></i> 檢視紀錄</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="關閉"></button>
-        </div>
-        <div class="modal-body">
-          <p>統一案件編號：<span id="viewHistoryCase"></span></p>
-          <div id="viewHistoryBody"></div>
-        </div>
-        <div class="modal-footer"><div class="btn-cta-group w-100 p-0"><button type="button" class="btn btn-pill-outline-primary" data-bs-dismiss="modal">關閉</button></div></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal fade" id="enquiryHistoryModal" tabindex="-1" aria-labelledby="enquiryHistoryTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
-      <div class="modal-content">
-        <div class="modal-header"><h1 class="modal-title" id="enquiryHistoryTitle"><i class="fa-solid fa-clock-rotate-left" aria-hidden="true"></i> 歷次查調紀錄</h1><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="關閉"></button></div>
-        <div class="modal-body"><div id="enquiryHistoryBody"></div></div>
-        <div class="modal-footer"><div class="btn-cta-group w-100 p-0"><button type="button" class="btn btn-pill-outline-primary" data-bs-dismiss="modal">關閉</button></div></div>
-      </div>
-    </div>
-  </div>
-  <!-- JS -->
-  <script src="assets/js/enquiry-cases.js"></script>
-  <script src="assets/js/enquiry-results.js"></script>
-  <script src="assets/js/enquiry-history.js"></script>
-  <script src="assets/js/enquiry-detail.js"></script>
+  <div class="modal fade" id="viewHistoryModal" tabindex="-1" aria-labelledby="viewHistoryTitle" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl"><div class="modal-content"><div class="modal-header"><h2 class="modal-title" id="viewHistoryTitle">檢視紀錄</h2><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="關閉"></button></div><div class="modal-body"><p>統一案件編號：<span id="viewHistoryCase"></span></p><div id="viewHistoryBody"></div></div><div class="modal-footer"><button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">關閉</button></div></div></div></div>
+  <div class="modal fade" id="enquiryHistoryModal" tabindex="-1" aria-labelledby="enquiryHistoryTitle" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl"><div class="modal-content"><div class="modal-header"><h2 class="modal-title" id="enquiryHistoryTitle">歷次查調紀錄</h2><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="關閉"></button></div><div class="modal-body"><div id="enquiryHistoryBody"></div></div><div class="modal-footer"><button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">關閉</button></div></div></div></div>
+  <script src="assets/js/enquiry-rules-data.js"></script>
+  <script src="assets/js/enquiry-rules-history.js"></script>
+  <script src="assets/js/enquiry-rules.js"></script>
   <script src="assets/js/navigation.js"></script>
 </body>
-
 </html>

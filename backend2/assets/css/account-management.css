@@ -1,0 +1,141 @@
+/* 此頁含導覽、提示、表單及彈窗的文字，最小字級為 16px。 */
+.account-management-page { font-size: 16px; }
+.account-management-page :where(p, a, button, input, select, option, label, span, small, strong, div, li, th, td, dt, dd, caption) { font-size: max(16px, 1em); }
+.account-management-page .badge,
+.account-management-page .btn-sm,
+.account-management-page .form-label,
+.account-management-page .form-control,
+.account-management-page .form-select,
+.account-management-page .breadcrumb,
+.account-management-page .breadcrumb-item,
+.account-management-page .top-helper small,
+.account-management-page .agency-name span,
+.account-management-page .agency-name strong,
+.account-management-page .footer,
+.account-management-page .go-top a,
+.account-management-page .menu a { font-size: 16px !important; }
+#accountTable { width: 100%; }
+#accountTable th, #accountTable td { overflow-wrap: anywhere; font-size: 16px; }
+#accountTable .btn { white-space: nowrap; }
+.account-badge { background: #e2f0f1; color: #075f70; line-height: 1.5; }
+.account-muted { background: #edf0f2; color: #59636b; }
+.account-tabs { gap: .5rem; border-bottom: 2px solid #d6e5e7; }
+.account-tabs .nav-link { padding: .85rem 1.5rem; color: #52626b; font-size: 18px; font-weight: 600; border: 0; border-bottom: 3px solid transparent; }
+.account-tabs .nav-link.active { color: #075f70; background: #e9f4f4; border-bottom-color: #087f8c; }
+.account-tabs .nav-link:focus-visible { outline: 3px solid #087f8c; outline-offset: 3px; }
+.account-email, .email-verification-note { display: flex; align-items: center; gap: .5rem; }
+.email-verification-note { color: #b42318; }
+.email-verification-note.is-verified { color: #087763; }
+.account-email .email-address { min-width: 0; }
+.account-status { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; width: 28px; height: 28px; font-size: 20px; }
+.account-status.is-positive { color: #087763; }
+.account-status.is-negative { color: #9c4b15; }
+.account-table-scroll { max-width: 100%; overflow-x: auto; }
+#accountTable button[data-sort="phone"],
+#accountTable td[data-th="聯絡手機"] { white-space: nowrap; }
+#accountTable .email-address { white-space: nowrap; flex-shrink: 0; }
+
+@media (min-width: 992px) {
+  #accountTable { table-layout: auto; }
+  #accountTable th:nth-last-child(2) { width: 4rem; }
+  #accountTable th:last-child { width: 8rem; }
+  #accountTable th:nth-last-child(-n+2),
+  #accountTable td[data-th="狀態"],
+  #accountTable td[data-th="操作"] { text-align: center; white-space: nowrap !important; }
+  #accountTable.is-agency th:nth-child(6),
+  #accountTable th:nth-child(4) { white-space: nowrap !important; }
+}
+#accountModal .modal-footer .btn {
+  border-radius: 999px;
+  min-height: 44px;
+  padding: .5rem 1.5rem;
+}
+.backend-page .modal .btn-pill-outline-primary { color: #087f8c; border-color: #087f8c; }
+/* 覆蓋共用模板在窄螢幕與輔助文字上的較小字級。 */
+.account-management-page :where(p, a, button, input, select, option, label, span, small, strong, div, li, th, td, dt, dd, caption) { font-size: max(16px, 1em) !important; }
+.account-management-page .logo h2 { font-size: clamp(16px, 2.2vw, 20px); }
+.account-management-page .account-tabs .nav-link { font-size: 18px !important; }
+.account-management-page .account-status { font-size: 20px !important; }
+
+#accountFilter .search-top-form { container-type: inline-size; }
+
+@container (min-width: 54rem) {
+  #accountPanel[aria-labelledby="agencyTab"] .search-top-form > .row {
+    display: grid;
+    grid-template-columns: minmax(21rem, 1.8fr) minmax(12rem, 1fr) minmax(10rem, .9fr) minmax(7rem, .6fr);
+    gap: 1rem;
+    margin: 0;
+  }
+
+  #accountPanel[aria-labelledby="agencyTab"] .search-top-form > .row > div {
+    width: auto;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+@container (max-width: 53.999rem) {
+  #accountPanel[aria-labelledby="agencyTab"] .account-keyword-field {
+    flex: 0 0 100%;
+    width: 100%;
+  }
+}
+
+#accountModal .account-section + .account-section { margin-top: 1.75rem; }
+#accountModal .account-section-title {
+  margin: 0 0 1.25rem;
+  padding-bottom: .75rem;
+  border-bottom: 1px solid var(--bs-border-color);
+  color: var(--bs-primary);
+  font-size: 18px;
+  font-weight: 500;
+}
+#accountModal .account-detail { margin: 0; }
+#accountModal .account-view-detail { display: none; }
+#accountModal.is-viewing .account-view-detail { display: block; }
+#accountModal.is-viewing .account-view-detail ~ :is(label, select) { display: none; }
+#accountModal :is(.account-detail, #accountVerification) dt {
+  margin: 0 0 .5rem;
+  color: var(--bs-secondary-color);
+  font-weight: 500;
+}
+#accountModal :is(.account-detail, #accountVerification) dd {
+  margin: 0;
+  color: #111;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+#accountModal .form-label { margin-bottom: .5rem; }
+#accountModal .email-verification-note { align-items: baseline; line-height: 1.5; }
+#accountModal .email-verification-note i { flex-shrink: 0; }
+#accountModal .modal-body { padding-top: 1.5rem; padding-bottom: .5rem; }
+@media (max-width: 575.98px) {
+  #accountModal .modal-header,
+  #accountModal .modal-body { padding-inline: 1rem; }
+}
+
+.account-results-bar, .account-pager, .account-page-size, .account-page-jump {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .5rem;
+}
+.account-results-bar, .account-pager { justify-content: space-between; gap: 1rem; }
+.account-page-size .form-select { width: auto; }
+#accountCount { scroll-margin-top: 6rem; }
+.account-pager { padding-block: 1rem; border-top: 1px solid #d6e5e7; }
+.account-pager[hidden] { display: none; }
+.account-page-jump input { width: 6rem; }
+
+
+#accountHead button[data-sort] {
+  border: 0;
+  padding: .25rem 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-weight: inherit;
+}
+#accountHead button[data-sort]:hover { text-decoration: underline; }
+#accountHead th:not([aria-sort]) button i { opacity: .6; }

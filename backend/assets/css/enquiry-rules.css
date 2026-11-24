@@ -1,0 +1,139 @@
+/* 共用既有後臺模板；本檔僅處理階段提示與查調內容。 */
+.enquiry-rules-page { --rule-teal: #087f8c; --rule-border: #c9dddd; }
+.enquiry-rules-page [hidden] { display: none !important; }
+.rules-heading { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
+.rules-heading h1 { font-size: 1.5rem; margin: 0; }
+.rules-demo-label { color: #53676c; font-size: .875rem; border: 1px solid #c9dddd; border-radius: .25rem; padding: .2rem .6rem; }
+.rules-intro { background: #eef8f8; border-left: 4px solid var(--rule-teal); padding: 1rem 1.25rem; margin-bottom: 1.5rem; }
+.rules-intro p:last-child { margin-bottom: 0; }
+.rules-steps { display: grid; grid-template-columns: 1fr 1fr; list-style: none; gap: 1rem; padding: 0; margin: 0 0 1.5rem; }
+.rules-step { display: flex; gap: .85rem; align-items: center; padding: 1rem 1.25rem; background: #f3f5f6; border: 1px solid #dde3e6; border-radius: .25rem; color: #56636b; }
+.rules-step.current, .rules-step.done { border-color: #9dcfd0; background: #eef8f8; color: #075f70; }
+.rules-step-number { display: grid; place-items: center; flex-shrink: 0; width: 2rem; height: 2rem; border: 1px solid currentColor; border-radius: 50%; font-weight: 600; }
+.rules-step strong, .rules-step small { display: block; }
+.rules-step small { font-size: .875rem; margin-top: .2rem; }
+.rules-status { display: inline-block; padding: .3rem .65rem; border-radius: 1rem; font-size: .875rem; white-space: nowrap; background: #e4f3ee; color: #086249; }
+.rules-status.pending { color: #80551a; background: #fff0d6; }
+.rules-status.loading { color: #66717a; background: #edf0f2; }
+.rules-status.neutral { background: #edf0f2; color: #53616b; }
+.rules-warning { border: 1px solid #e4c892; border-left: 4px solid #ad741e; background: #fffaf0; padding: 1rem 1.25rem; border-radius: .25rem; }
+.rules-warning h2 { font-size: 1.125rem; margin: 0 0 .5rem; }
+.rules-warning ul { margin: .75rem 0 0; }
+.rules-success { border: 1px solid #abd4c9; background: #f0f9f5; padding: 1rem 1.25rem; border-radius: .25rem; }
+.rules-meta { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem 1.5rem; margin: 0; }
+.rules-meta dt { color: #65757b; font-weight: 400; font-size: .875rem; margin-bottom: .25rem; }
+.rules-meta dd { margin: 0; overflow-wrap: anywhere; }
+.rules-muted { color: #64747a; font-size: .875rem; }
+.rules-empty { color: #8b969d; }
+.rules-scenario-name { font-weight: 600; margin-bottom: .35rem; }
+.rules-scope { color: #4c6267; background: #f3f7f8; padding: .85rem 1rem; border-radius: .25rem; }
+.rules-chips { display: flex; gap: .5rem; flex-wrap: wrap; }
+.rules-chip { background: #f0f4f5; border: 1px solid #dbe3e5; padding: .25rem .65rem; border-radius: .25rem; }
+.rules-unfilled { display: inline-block; color: #925516; background: #fff0d6; padding: .15rem .5rem; border-radius: .25rem; font-weight: 600; }
+.rules-toolbar { display: flex; align-items: center; flex-wrap: wrap; justify-content: space-between; gap: 1rem; }
+.rules-household + .rules-household { margin-top: 1.75rem; }
+.rules-household h3 { font-size: 1.125rem; margin: 0 0 1rem; }
+.rules-notes { min-width: 0; }
+.rules-notes summary { cursor: pointer; color: #08717d; padding: .25rem 0; }
+.rules-notes ol { padding-left: 1.25rem; margin: .75rem 0 0; }
+.rules-notes li + li { margin-top: 1rem; }
+.rules-notes p { margin: .35rem 0 0; white-space: normal; }
+.rules-parent span { display: block; }
+.rules-adopted { display: inline-block; color: #075f70; background: #e4f2f2; padding: .2rem .45rem; border-radius: .25rem; margin-bottom: .4rem; }
+.rules-note-tag { display: inline-block; color: #075f70; background: #e4f2f2; padding: .2rem .45rem; border-radius: .25rem; margin-bottom: .4rem; }
+.rules-total { text-align: right; background: #eef8f8; padding: 1rem; }
+.rules-total strong { margin-left: 1rem; }
+.rules-table { width: 100%; }
+.rules-table td, .rules-table th { overflow-wrap: anywhere; }
+.enquiry-rules-page .rules-table th { white-space: normal; }
+.rules-table .btn { white-space: nowrap; }
+.rules-tip { display: inline-flex; align-items: center; justify-content: center; background: none; border: 0; padding: .15rem; line-height: 1; vertical-align: middle; cursor: help; }
+.rules-tip:focus-visible { outline: 3px solid #087f8c; outline-offset: 3px; border-radius: .25rem; }
+.rules-info { color: #49747c; font-size: .95rem; }
+.rules-verdict { font-size: 1.35rem; width: 1.8rem; height: 1.8rem; }
+.rules-verdict--pass { color: #19845d; }
+.rules-verdict--fail { color: #bd3542; }
+.rules-verdict--waiting { color: #c3cbcf; font-size: 1rem; }
+.enquiry-rules-page .rules-list-table td.rules-result-cell--loading { --bs-table-bg: #edf0f2; background-color: #edf0f2; }
+.enquiry-rules-page .rules-list-table td.rules-result-cell--waiting { --bs-table-bg: #fff7e6; background-color: #fff7e6; }
+.rules-loading-swatch { display: inline-block; width: 1rem; height: 1rem; margin-right: .3rem; vertical-align: middle; background: #edf0f2; border: 1px solid #cbd1d5; }
+.rules-waiting-swatch { display: inline-block; width: 1rem; height: 1rem; margin-right: .3rem; vertical-align: middle; background: #fff7e6; border: 1px solid #e4d3ab; }
+.rules-tier { display: block; margin-top: .25rem; font-size: .875rem; white-space: nowrap; }
+.rules-verdict-label { display: inline-block; margin-left: .35rem; font-size: .875rem; }
+.rules-case-id { display: inline-flex; align-items: center; gap: .15rem; white-space: nowrap; font-size: .875rem; }
+.rules-legend { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; font-size: .875rem; color: #53676c; }
+.rules-legend i { font-size: 1.1rem; margin-right: .3rem; }
+.rules-version { padding: 1.2rem; border: 1px solid #c9dddd; background: #eef8f8; }
+.rules-members-heading { font-size: 1.125rem; margin: 1.5rem 0 .5rem; }
+.rules-population { padding: .8rem 1rem; background: #eef8f8; color: #355a62; border-radius: .25rem; line-height: 1.8; }
+.rules-population strong { color: #075f70; white-space: nowrap; }
+body.enquiry-rules-page .tooltip-inner { max-width: 22rem; text-align: left; font-size: .875rem; line-height: 1.65; }
+.rules-personal-table td { vertical-align: top; }
+.enquiry-rules-page .rules-personal-table .rules-member-row--declared > td { --bs-table-bg: #fff; background-color: #fff; }
+.enquiry-rules-page .rules-personal-table .rules-member-row--unlisted > td { --bs-table-bg: #fff7e6; background-color: #fff7e6; }
+.rules-minor-children { margin: .35rem 0 0; padding-left: 1.5rem; }
+.rules-property-boolean { font-size: 1.25rem; }
+.rules-property-no { color: #8b969d; }
+.rules-service-summary { display: grid; grid-template-columns: repeat(5, 1fr); gap: .75rem; }
+.rules-service-summary a { display: block; border: 1px solid #c9dddd; border-radius: .25rem; padding: .75rem 1rem; color: #075f70; text-decoration: none; }
+.rules-service-summary a:hover { background: #eef8f8; }
+.rules-service-summary small { display: block; margin-top: .3rem; color: #65757b; font-size: .875rem; }
+.enquiry-rules-page .item { scroll-margin-top: 13rem; }
+/* 保持案件標題與返回入口可操作，避免模板捲動動畫把按鈕移出畫面。 */
+body.enquiry-rules-page.scrollDown .sticky-top-scroll { top: 85px; }
+.enquiry-rules-page .btn:focus-visible, .enquiry-rules-page summary:focus-visible { outline: 3px solid #087f8c; outline-offset: 3px; }
+@media (min-width: 992px) {
+  .rules-table { table-layout: fixed; }
+  .rules-personal-table th, .rules-personal-table td { padding-inline: .6rem; }
+  .rules-personal-table th:first-child { width: 8%; }
+  .rules-personal-table th:last-child { width: 18%; }
+  .rules-personal-table th:nth-child(2) { width: 11%; }
+  .rules-personal-table th:nth-child(3) { width: 13%; }
+  .rules-personal-table th:nth-child(4), .rules-personal-table th:nth-child(6), .rules-personal-table th:nth-child(7) { width: 12%; }
+  .rules-personal-table th:nth-child(5) { width: 14%; }
+  .rules-property-table th, .rules-property-table td { padding-inline: .6rem; }
+  .rules-property-table th:nth-child(1) { width: 8%; }
+  .rules-property-table th:nth-child(2), .rules-property-table th:nth-child(4) { width: 7%; }
+  .rules-property-table th:nth-child(3) { width: 22%; }
+  .rules-property-table th:nth-child(5) { width: 9%; }
+  .rules-property-table th:nth-child(6) { width: 11%; }
+  .rules-property-table th:nth-child(7) { width: 16%; }
+  .rules-property-table th:nth-child(8) { width: 8%; }
+  .rules-property-table th:nth-child(9) { width: 12%; }
+  .enquiry-rules-page .rules-list-table th, .enquiry-rules-page .rules-list-table td { padding-inline: .35rem; }
+  .enquiry-rules-page .rules-table tr > :first-child { padding-left: .6rem; }
+  .enquiry-rules-page .rules-table tr > :last-child { padding-right: .6rem; }
+  .enquiry-rules-page .rules-list-table tr > :first-child { padding-left: .35rem; }
+  .enquiry-rules-page .rules-list-table tr > :last-child { padding-right: .35rem; }
+  .rules-list-table tr > :first-child { white-space: nowrap; }
+  .rules-list-table th { font-size: .875rem; }
+  .rules-list-table .rules-status { white-space: normal; padding-inline: .45rem; }
+  .rules-list-table td.rules-result-cell { text-align: center; }
+  .rules-list-col-0 { width: 15%; }
+  .rules-list-col-1 { width: 8%; }
+  .rules-list-col-2 { width: 13%; }
+  .rules-list-col-3, .rules-list-col-4, .rules-list-col-10 { width: 10%; }
+  .rules-list-col-5, .rules-list-col-7, .rules-list-col-8 { width: 6%; }
+  .rules-list-col-6, .rules-list-col-9 { width: 8%; }
+  .rules-comparison th:first-child { width: 10%; }
+}
+@media (max-width: 991.98px) {
+  body.enquiry-rules-page.scrollDown .sticky-top-scroll { top: 50px; }
+  .enquiry-rules-page .item { scroll-margin-top: 15rem; }
+  .rules-meta { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .rules-service-summary { grid-template-columns: repeat(2, 1fr); }
+  .rules-table td { min-width: 0; }
+  .rules-list-table colgroup { display: none; }
+  .rules-notes { width: 100%; }
+  .rules-personal-table td[data-th="註記"] { display: block; }
+  .rules-personal-table td[data-th="註記"]:empty { display: none; }
+  .rules-personal-table .rules-member-row--unlisted td:empty { display: none; }
+  .enquiry-rules-page .rules-personal-table.table-rwd td[data-th="（稱謂）與戶長關係"]:not([data-th=""])::before { content: "（稱謂）\A 與戶長關係："; white-space: pre-line; }
+  .rules-personal-table td[data-th="註記"]::before { display: block; margin-bottom: .5rem; }
+}
+@media (max-width: 575.98px) {
+  .rules-steps, .rules-meta { grid-template-columns: 1fr; }
+  .rules-steps { gap: .5rem; }
+  .rules-step { padding: .75rem 1rem; }
+  .rules-toolbar .btn { width: 100%; }
+}

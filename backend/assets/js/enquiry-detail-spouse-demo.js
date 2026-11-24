@@ -42,19 +42,22 @@
   const missingConsent = incomePeople.filter(p => !authorized.ids.has(p.id));
   const incomplete = missingConsent.length > 0;
   const missingNames = missingConsent.map(p => p.name).join('、');
-  const incomeStatus = p => !authorized.ids.has(p.id) ? '待授權' : incomeAvailable && p.income != null ? '已取得' : record.enquiryStatus === '查調中' ? '查調中' : '取得失敗';
+  const incomeStatus = p => !authorized.ids.has(p.id) ? '未授權' : incomeAvailable && p.income != null ? '已取得' : record.enquiryStatus === '查調中' ? '查調中' : '取得失敗';
   if (incomplete) {
     document.getElementById('detailStatus').textContent = '查調完成';
     document.getElementById('detailCompletedAt').textContent = '已授權資料完成時間：' + (record.completedAt || '未提供');
   }
-  const notice = discoveredSpouse ? '<div class="alert alert-warning mb-0" role="status"><h5 class="alert-heading"><i class="fa-solid fa-circle-exclamation me-2" aria-hidden="true"></i>戶政查出配偶，原案件未列入</h5><p>原案件成員共 ' + memberIds.size + ' 人。戶政確認申請人已婚，配偶為' + escape(discoveredSpouse.name) + '；已另列配偶所得查調需求，尚未取得其授權。</p><p>原案件名單保留不變。補查配偶僅查所得；所得資格及租金級距暫無法判定。動產、不動產維持原案件成員的查調結果。</p><div class="d-flex flex-wrap gap-2"><a href="#discoveredSpouseInfo" class="btn btn-outline-primary btn-sm">查看查出的配偶</a><a href="#incomeInfo" class="btn btn-outline-primary btn-sm">查看所得缺漏</a></div></div>' : '';
+  const notice = discoveredSpouse ? '<div class="alert alert-warning mb-0" role="status"><h5 class="alert-heading"><i class="fa-solid fa-circle-exclamation me-2" aria-hidden="true"></i>戶政查出配偶，原案件未列入</h5><p>原案件成員共 ' + memberIds.size + ' 人。戶政確認申請人已婚，配偶為' + escape(discoveredSpouse.name) + '；尚未取得其授權，所得、社福、動產與不動產資料均不可查調。</p><p>原案件名單保留不變。配偶資料在各明細列示「未授權」；所得資格及租金級距暫無法判定。現有財產小計僅含已授權的原案件成員。</p><div class="d-flex flex-wrap gap-2"><a href="#discoveredSpouseInfo" class="btn btn-outline-primary btn-sm">查看查出的配偶</a><a href="#incomeInfo" class="btn btn-outline-primary btn-sm">查看所得缺漏</a></div></div>' : '';
 
   function fields(items) {
     return `<dl class="row g-3 mb-0">${items.map(([label, value]) => `<div class="col-12 col-md-6 col-xl-4"><dt class="form-label">${escape(label)}</dt><dd class="mb-0 text-break">${escape(value)}</dd></div>`).join('')}</dl>`;
   }
   const booleanColumns = new Set(['案件成員', '授權查調', '戶籍地', '公同共有']);
   function cellContent(value, label) {
-    if (label === '所得資料狀態' || label === '授權狀態') return '<span class="badge rounded-pill ' + (value === '已取得' ? 'enquiry-status--complete' : value === '查調中' ? 'enquiry-status--pending' : 'consent-warning') + '">' + escape(value) + '</span>';
+    if (label === '姓名' && value && typeof value === 'object') {
+      return '<span class="d-inline-flex flex-wrap align-items-center gap-2"><span>' + escape(value.name) + '</span>' + (value.role ? '<span class="small text-secondary">（' + escape(value.role) + '）</span>' : '') + '</span>';
+    }
+    if (label === '所得資料狀態' || label === '授權狀態') return '<span class="badge rounded-pill ' + (value === '已取得' || value === '已授權' ? 'enquiry-status--complete' : value === '查調中' ? 'enquiry-status--pending' : 'consent-warning') + '">' + escape(value) + '</span>';
 
     if (label === '個人詳細記事') return value ? `<details class="enquiry-notes"><summary>查看記事</summary><p class="mb-0 mt-2 text-break">${escape(value)}</p></details>` : '--';
     if (label === '社福資格') {
@@ -84,8 +87,8 @@
   }
 
   const discovered = discoveredSpouse ? '<p>資料來源：戶政司。婚姻狀態：已婚。以下為戶政查出的配偶，並非原案件成員。</p>'
-    + table(['身分', '姓名', '身分證字號', '原案件成員', '查調需求', '授權狀態'], [['配偶', discoveredSpouse.name, discoveredSpouse.id, '未列入', '所得（須查調）', '待取得授權']], '戶政查出的配偶')
-    + '<div class="alert alert-warning"><strong>待辦事項</strong><ul class="mb-0 mt-2"><li>取得配偶所得查調授權後，才能查詢所得。</li><li>配偶另列所得查調對象，不自動加入原案件成員或財產查調範圍。</li><li>確認胎兒數及所得計算人口，資料齊全後再進行初判。</li></ul></div>' : '';
+    + table(['身分', '姓名', '身分證字號', '原案件成員', '資料項目', '授權狀態'], [['配偶', discoveredSpouse.name, discoveredSpouse.id, '未列入', '所得、社福、動產、不動產', '未授權']], '戶政查出的配偶')
+    + '<div class="alert alert-warning"><strong>待辦事項</strong><ul class="mb-0 mt-2"><li>取得配偶查調授權後，才能查詢其所得、社福與財產資料。</li><li>配偶不自動加入原案件成員；未授權資料不納入已授權財產小計。</li><li>確認胎兒數及所得計算人口，資料齊全後再進行初判。</li></ul></div>' : '';
 
   // 靜態展示紀錄；正式串接時由案件 viewHistory 提供，不假裝記錄實際使用者。
   const viewHistory = baseRecord.viewHistory || [
@@ -128,7 +131,7 @@
         }
         if (incomplete && ['totalIncome', 'monthlyIncome', 'rentTier'].includes(c.key) && record.requiredChecks[c.key] && type !== 'standard') {
           const display = type === 'verdict' ? '無法判定' : c.key === 'monthlyIncome' || c.key === 'rentTier' ? '無法計算' : '資料未齊';
-          return '<td class="enquiry-result consent-incomplete" data-th="' + c.label + '"><span class="fw-bold">' + display + '</span><div class="mt-2">' + escape(missingNames) + '所得待授權' + '</div></td>';
+          return '<td class="enquiry-result consent-incomplete" data-th="' + c.label + '"><span class="fw-bold">' + display + '</span><div class="mt-2">' + escape(missingNames) + '所得未授權' + '</div></td>';
         }
         const content = value === '未超標' || value === '超標' ? `<span class="text-${value === '未超標' ? 'success' : 'danger'} fw-bold">${value}</span>` : escape(value);
         return `<td class="enquiry-result ${type === 'standard' ? 'enquiry-result--complete' : resultClass}" data-th="${c.label}">${content}</td>`;
@@ -144,9 +147,17 @@
   }
   const family = record.households.map(h => household(h.number ? `${h.label}｜戶號 ${h.number}` : h.label, h.address, h.members)).join('')
     ;
-  const welfarePeople = allPeople.filter(p => authorized.ids.has(p.id) && String(p.identity || '').trim());
-  const welfare = welfarePeople.length ? table(['申請人／配偶', '姓名', '生日', '社福資格'], welfarePeople.map(p => [p.id === record.idNumber ? '申請人' : p.id === spouse?.id ? '配偶' : '', p.name, p.birth, p.identity]), '社福資格（戶政司、衛福部）') : '<p>無社福資格資料。</p>';
-  const income = table(['申請人／配偶', '姓名', '案件成員', '所得資料狀態', '近一年所得'], incomePeople.map(p => [p.id === record.idNumber ? '申請人' : p.id === spouse?.id ? '配偶（戶政查出）' : '', p.name, memberIds.has(p.id) ? '是' : '否', incomeStatus(p), incomeStatus(p) === '已取得' ? money(p.income) : '未取得']), '家庭成員所得清單', [
+  const welfarePeople = [...allPeople.filter(p => authorized.ids.has(p.id) && String(p.identity || '').trim()), ...missingConsent];
+  const welfare = welfarePeople.length ? table(['申請人／配偶', '姓名', '生日', '授權狀態', '社福資格'], welfarePeople.map(p => [p.id === record.idNumber ? '申請人' : p.id === spouse?.id ? '配偶' : '', p.name, p.birth, authorized.ids.has(p.id) ? '已授權' : '未授權', authorized.ids.has(p.id) ? p.identity : '']), '社福資格（戶政司、衛福部）') : '<p>無社福資格資料。</p>';
+  const incomeYear = (() => {
+    const date = String(record.referenceDate || record.appliedAt || '').match(/^(\d{3,4})[/-](\d{1,2})[/-](\d{1,2})/);
+    if (!date) return null;
+    const [, year, month, day] = date.map(Number);
+    const rocYear = year >= 1912 ? year - 1911 : year;
+    return rocYear - (month < 4 || month === 4 && day < 28 ? 2 : 1);
+  })();
+  const incomeAmountLabel = incomeYear === null ? '近一年所得' : '近一年所得（' + incomeYear + '年度）';
+  const income = table(['姓名', '所得資料狀態', incomeAmountLabel], incomePeople.map(p => [{ name: p.name, role: p.id === record.idNumber ? '申請人' : p.id === spouse?.id ? '配偶' : '' }, incomeStatus(p), incomeStatus(p) === '已取得' ? money(p.income) : authorized.ids.has(p.id) ? '未取得' : '']), '家庭成員所得清單', [
     ['已取得所得資料', authorizedMembers.length + '／' + incomePeople.length + ' 人'],
     ['尚缺所得資料', missingConsent.length + ' 人'],
     ['原案件胎兒數', fetusCount + ' 人'],
@@ -155,19 +166,26 @@
     [incomplete ? '已取得所得小計（非家庭總額）' : '家庭年所得總額', money(annualIncome)],
     ['每人每月平均所得', incomplete ? '無法計算（必要所得資料未齊）' : financialValues.monthlyIncome != null ? money(financialValues.monthlyIncome) : '待資料齊全']
   ]);
-  const realEstate = propertyAvailable && !authorized.realEstate.length ? '<p>已授權查調者無不動產明細。</p>' : propertyAvailable
-    ? table(['持有者', '類別', '地段地號建號／座落', '戶籍地', '持分比', '房地面積', '房地現值金額', '公同共有'], authorized.realEstate.map(p => [p.owner, p.category, p.address, p.household ? '是' : '否', p.share, p.area, money(p.value), p.common ? '是' : '否']), '家庭成員不動產明細', [['不動產總額', money(authorized.realEstate.reduce((sum, p) => sum + p.value, 0))]])
-    : '<p>尚未取得財產資料，等待資料來源機關回傳。</p>';
-  const movable = propertyAvailable && !authorized.movable.length ? '<p>已授權查調者無動產明細。</p>' : propertyAvailable
-    ? table(['姓名', '利息（存款本金）', '中獎所得', '其他所得', '小計'], authorized.movable.map(p => [p.name, money(p.interest), money(p.prize), money(p.other), money(p.subtotal)]), '家庭成員動產明細', [['動產總額', money(authorized.movable.reduce((sum, p) => sum + p.subtotal, 0))]])
-    : '<p>尚未取得財產資料，等待資料來源機關回傳。</p>';
+  const incomeNote = '<p class="small text-secondary mt-3 mb-0">備註：所得查調年度依查調基準日認定；基準日在 4 月 28 日前，查調前二年度所得；自 4 月 28 日（含）起，查調前一年度所得。</p>';
+  // 未授權者只列提示列，不讀取其所得、社福或財產內容，也不納入已授權資料的小計。
+  const realEstateRows = propertyAvailable ? authorized.realEstate.map(p => [p.owner, '已授權', p.category, p.address, p.household ? '是' : '否', p.share, p.area, money(p.value), p.common ? '是' : '否']) : [];
+  realEstateRows.push(...missingConsent.map(p => [p.name, '未授權', '', '', '', '', '', '', '']));
+  const movableRows = propertyAvailable ? authorized.movable.map(p => [p.name, '已授權', money(p.interest), money(p.prize), money(p.other), money(p.subtotal)]) : [];
+  movableRows.push(...missingConsent.map(p => [p.name, '未授權', '', '', '', '']));
+  const waitingProperty = '<p>尚未取得財產資料，等待資料來源機關回傳。</p>';
+  const realEstateNote = !propertyAvailable ? waitingProperty : !authorized.realEstate.length ? '<p>已授權查調者無不動產明細。</p>' : '';
+  const movableNote = !propertyAvailable ? waitingProperty : !authorized.movable.length ? '<p>已授權查調者無動產明細。</p>' : '';
+  const realEstate = realEstateNote + (realEstateRows.length
+    ? table(['持有者', '授權狀態', '類別', '地段地號建號／座落', '戶籍地', '持分比', '房地面積', '房地現值金額', '公同共有'], realEstateRows, '家庭成員不動產明細', propertyAvailable ? [[missingConsent.length ? '已授權者不動產小計' : '不動產總額', money(authorized.realEstate.reduce((sum, p) => sum + p.value, 0))]] : []) : '');
+  const movable = movableNote + (movableRows.length
+    ? table(['姓名', '授權狀態', '利息（存款本金）', '中獎所得', '其他所得', '小計'], movableRows, '家庭成員動產明細', propertyAvailable ? [[missingConsent.length ? '已授權者動產小計' : '動產總額', money(authorized.movable.reduce((sum, p) => sum + p.subtotal, 0))]] : []) : '');
 
   body.innerHTML = notice + section('caseOverview', '案件資料', overview)
     + (discovered ? section('discoveredSpouseInfo', '戶政查出的配偶', discovered) : '')
     + section('enquirySummary', '查調結果', summary)
     + section('familyInfo', '家庭成員／共居者（戶政司）', family)
     + section('welfareInfo', '社福資格（戶政司、衛福部）', welfare)
-    + section('incomeInfo', '所得（財政部）', (discoveredSpouse ? '<p class="consent-warning p-3">配偶所得須納入查調；目前未授權，僅列待辦，不顯示其所得。</p>' : '') + income)
+    + section('incomeInfo', '所得（財政部）', (discoveredSpouse ? '<p class="consent-warning p-3">配偶所得須納入查調；目前未授權，僅列待辦，不顯示其所得。</p>' : '') + income + incomeNote)
     + section('propertyInfo', '不動產（地政司）', realEstate)
     + section('movableInfo', '動產（財政部）', movable)
     + '<div class="item"><div class="btn-cta-group pb-4"><a class="btn btn-pill-outline-primary" href="enquiry-hub-spouse-demo.html">返回列表</a></div></div>';
