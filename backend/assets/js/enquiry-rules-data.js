@@ -1,6 +1,7 @@
 /* 查調規則互動原型：所有案件、人員與金額均為虛構資料，未連接查調服務。 */
 (() => {
-  const parameters = { interestRate: 0.015, movableLimit: 4710000 };
+  const parameters = { interestRate: 1.67, movableLimit: 4710000, selfOwnedHousing: { cityCodes: ['A', 'F'] } };
+  const cityNames = { A: '臺北市', F: '新北市', H: '桃園市', B: '臺中市', D: '臺南市', E: '高雄市' };
   const note = (type, code, text) => ({ type, code, text });
   const marriage = name => note('結婚登記', '2003900001', `民國100年6月18日與${name}結婚（民國100年6月18日申登）。`);
   const divorce = name => note('離婚登記', '2004900001', `民國98年3月20日與${name}兩願離婚（民國98年3月20日申登）。`);
@@ -45,18 +46,18 @@
       person(key + 7, '廖OO', '寄居', { generation: 0, caseRequired: false, birth: '2018/04/06', father: '廖OO', mother: '賴OO' })
     ];
     // 房屋與土地範例沿用 backend2 主案的回傳內容與欄位，不再省略面積及共有資訊。
-    applicant.properties = [{ type: '房屋', location: '新北市／三重段／00123-000', household: true, share: '5 分之 2', area: '36 平方公尺', value: 1200000, common: true, landUse: '一般用地' }];
+    applicant.properties = [{ type: '房屋', propertyId: 'F-SANCHONG-00123-000', cityCode: 'F', isResidential: true, shareNumerator: 2, shareDenominator: 5, totalArea: 36, location: '新北市／三重段／00123-000', household: true, share: '5 分之 2', area: '36 平方公尺', value: 1200000, common: true, landUse: '一般用地' }];
     spouse.properties = [{ type: '土地', location: '南投縣／南投段／0427-0013', household: false, share: '100 分之 5', area: '18.5 平方公尺', value: 320000, common: false, landUse: '原住民保留地' }];
     const members = [elder, applicant, daughter, ...(separate ? [] : [spouse, son]), ...lodgers];
     return {
       id: `${agencyCode}${caseYear}${cityCode}${sequence}`, agencyCode, caseYear, cityCode, sequence, applicant: applicant.key, spouse: spouse.key, marriage: '有偶',
-      agency: '國家住都中心', housing: '世大運選手村D區', scenario: '', description: '',
+      agency: '國家住都中心', housing: '世大運選手村D區', roomType: '三房型', scenario: '', description: '',
       applicationDate: '2026-11-18', housingDistrict: ({ 1: '大同區', 2: '新店區', 3: '新店區', 4: '桃園區', 5: '北屯區', 6: '松山區', 7: '安南區', 8: '苓雅區', 9: '三重區', 10: '桃園區', 11: '新店區' })[number],
       declared: [elder.key, applicant.key, daughter.key, spouse.key, son.key],
       familyMemberKeys: [elder.key, applicant.key, daughter.key, spouse.key, son.key],
       caseMembers: [elder, applicant, daughter, spouse, son],
-      relationships: { [elder.key]: '養父', [applicant.key]: '申請人本人', [spouse.key]: '配偶', [daughter.key]: '女兒', [son.key]: '兒子' },
-      households: [home('申請人戶籍（三代家庭）', members), ...(separate ? [home('申請人配偶戶籍（分戶）', [spouse, son])] : [])],
+      relationships: { [elder.key]: '養父', [applicant.key]: '本人', [spouse.key]: '配偶', [daughter.key]: '女兒', [son.key]: '兒子' },
+      households: [home('申請人戶籍', members), ...(separate ? [home('申請人配偶戶籍（分戶）', [spouse, son])] : [])],
       ...options
     };
   }
@@ -84,12 +85,18 @@
   const find = (number, key) => people(cases[number - 1]).find(p => p.key === key);
   Object.assign(find(5, 51), { income: 300000, interest: 0, properties: [] });
   Object.assign(find(5, 52), { income: 180000, interest: 0, properties: [] });
-  Object.assign(find(6, 61), { income: 4320000, interest: 75000, securities: 180000, prizeIncome: 200000, oneTimeIncome: 100000, notes: [note('結婚登記', '2003900001', '民國95年5月20日與陳美玲結婚（民國95年5月20日申登）。'), divorce('陳美玲'), note('結婚登記', '2003900001', '民國100年6月18日與劉欣慧結婚（民國100年6月18日申登）。')], properties: [{ type: '房屋', location: '臺北市／○○段／01234-000（○○路 100 號）', household: true, share: '1 分之 1', area: '95.6 平方公尺', value: 7500000, common: false, landUse: '一般用地' }] });
+  Object.assign(find(6, 61), { income: 4320000, interest: 75000, securities: 180000, prizeIncome: 200000, oneTimeIncome: 100000, notes: [note('結婚登記', '2003900001', '民國95年5月20日與陳美玲結婚（民國95年5月20日申登）。'), divorce('陳美玲'), note('結婚登記', '2003900001', '民國100年6月18日與劉欣慧結婚（民國100年6月18日申登）。')], properties: [{ type: '房屋', propertyId: 'A-01234-000', cityCode: 'A', isResidential: true, shareNumerator: 1, shareDenominator: 1, totalArea: 95.6, location: '臺北市／○○段／01234-000（○○路 100 號）', household: true, share: '1 分之 1', area: '95.6 平方公尺', value: 7500000, common: false, landUse: '一般用地' }] });
   Object.assign(find(6, 62), { income: 480000, interest: 2400, notes: [note('結婚登記', '2003900001', '民國100年6月18日與張忠政結婚（民國100年6月18日申登）。')] });
   Object.assign(find(7, 71), { income: 120000, interest: 750, prizeIncome: 12000, oneTimeIncome: 8000, properties: [{ type: '土地', location: '臺南市／安南區○○段／0123 地號', household: false, share: '6 分之 1', area: '30 平方公尺', value: 180000, common: true, landUse: '道路用地' }] });
   Object.assign(find(7, 72), { income: 96000, interest: 900, securities: 20000, welfare: ['中低收入戶'] });
   Object.assign(find(8, 81), { father: '未登載', adoptiveFather: '張大富' });
+  // 兩人各持有四分之一，合計換算面積恰為 40㎡。
+  Object.assign(find(8, 81).properties[0], { household: false, shareNumerator: 1, shareDenominator: 4, totalArea: 80, share: '4 分之 1', area: '80 平方公尺', value: 600000 });
+  find(8, 83).properties = [{ ...find(8, 81).properties[0] }];
   cases[7].relationships[83] = '養父';
+  // 個人恰為 40㎡未超過；另一案個人為 44㎡，超過門檻。
+  Object.assign(find(9, 91).properties[0], { household: false, totalArea: 100, area: '100 平方公尺' });
+  Object.assign(find(11, 111).properties[0], { household: false, totalArea: 110, area: '110 平方公尺' });
   Object.assign(find(9, 93), { marriage: '有偶', spouseName: '張陳梅' });
   find(9, 93).notes.push(note('結婚登記', '2003900001', '民國65年6月18日與張陳梅結婚（民國65年6月18日申登）。'));
   const outsideCase = cases[10];
@@ -130,7 +137,7 @@
   };
   const ready = (record, declared = record.declared) => missing(record, declared).length === 0 && (record.marriage !== '有偶' || Boolean(spouseCheck(record, declared)?.member));
   const canView = record => !record.querying;
-  const status = (record, declared = record.declared) => record.querying ? '查調中' : ready(record, declared) ? '查調完成' : '待補齊成員';
+  const status = (record, declared = record.declared) => record.querying ? '查調中' : ready(record, declared) ? '查調完成' : '成員未完備';
   // 與申請人關係取自案件填列資料；未列入案件時不以戶籍稱謂推定。
   const relationship = (record, key, declared = record.declared) => declared.includes(key) ? record.relationships?.[key] || '未填列' : '未填列';
   const population = (record, declared = record.declared) => {
@@ -147,10 +154,69 @@
   };
   function movable(person) {
     if (!Number.isFinite(parameters.interestRate) || parameters.interestRate <= 0) throw new RangeError('利率參數須為大於 0 的數值');
-    const deposit = Math.round(person.interest / parameters.interestRate);
+    const deposit = Math.round(person.interest / (parameters.interestRate / 100));
     return { deposit, total: deposit + person.securities + person.prizeIncome + person.oneTimeIncome };
   }
-  const totals = record => people(record).filter(p => requiredKeys(record).includes(p.key)).reduce((sum, p) => ({ income: sum.income + p.income, property: sum.property + p.properties.reduce((v, a) => v + a.value, 0), movable: sum.movable + movable(p).total }), { income: 0, property: 0, movable: 0 });
+  const excludedProperty = property => ['原住民保留地', '道路用地'].includes(property.landUse);
+  const totals = record => people(record).filter(p => requiredKeys(record).includes(p.key)).reduce((sum, p) => ({ income: sum.income + p.income, property: sum.property + p.properties.filter(a => !excludedProperty(a)).reduce((v, a) => v + a.value, 0), movable: sum.movable + movable(p).total }), { income: 0, property: 0, movable: 0 });
+  function selfOwnedHousing(record, declared = record.declared) {
+    if (record.querying || !ready(record, declared)) return null;
+    const scope = parameters.selfOwnedHousing.cityCodes;
+    const cityCodes = Array.isArray(scope) ? scope : [];
+    const checks = [
+      { label: '於公告範圍縣市有自有住宅', met: false },
+      { label: '完全持有住宅(持分為1)', met: false },
+      { label: '個別持有共有住宅面積>40㎡', met: false },
+      { label: '戶籍設於持有住宅地址', met: false },
+      { label: '多名家庭成員持有同一共有住宅:持分合計為1(完全持有)或換算面積≥40㎡', met: false }
+    ];
+    const matches = [];
+    const groups = new Map();
+    const seen = new Set();
+    let incomplete = cityCodes.length === 0;
+    const unknown = checks.map(() => incomplete);
+    const members = people(record).filter(p => requiredKeys(record).includes(p.key));
+    for (const person of members) for (const property of person.properties) {
+      if (excludedProperty(property)) continue;
+      if (property.type !== '房屋' || property.isResidential === false) continue;
+      if (!property.cityCode) { incomplete = true; unknown.fill(true); continue; }
+      if (!cityCodes.includes(property.cityCode)) continue;
+      if (property.isResidential !== true) { incomplete = true; unknown.fill(true); continue; }
+      checks[0].met = true;
+      const { shareNumerator: numerator, shareDenominator: denominator, totalArea: area } = property;
+      const validShare = Number.isFinite(numerator) && Number.isFinite(denominator) && numerator > 0 && denominator > 0 && numerator <= denominator;
+      const validArea = Number.isFinite(area) && area >= 0;
+      const rules = [checks[0].label];
+      if (validShare && numerator === denominator) { checks[1].met = true; rules.push('完全持有住宅'); }
+      if (validShare && numerator < denominator && validArea && area * numerator > 40 * denominator) { checks[2].met = true; rules.push('個別持有共有住宅面積大於 40㎡'); }
+      if (property.household === true) { checks[3].met = true; rules.push('戶籍設於持有住宅地址'); }
+      if (!validShare) { unknown[1] = true; unknown[2] = true; unknown[4] = true; }
+      if (!validArea) { unknown[2] = true; unknown[4] = true; }
+      if (typeof property.household !== 'boolean') unknown[3] = true;
+      if (!property.propertyId) unknown[4] = true;
+      matches.push({ names: [person.name], location: property.location, rules });
+      if (!validShare || !validArea || typeof property.household !== 'boolean' || !property.propertyId) incomplete = true;
+      if (!validShare || !property.propertyId) continue;
+      const id = `${property.cityCode}:${property.propertyId}`;
+      const ownerKey = `${person.key}:${id}`;
+      if (seen.has(ownerKey)) continue;
+      seen.add(ownerKey);
+      if (!groups.has(id)) groups.set(id, { names: [], location: property.location, share: 0, area: 0 });
+      const group = groups.get(id);
+      group.names.push(person.name);
+      group.share += numerator / denominator;
+      if (validArea) group.area += area * numerator / denominator;
+    }
+    for (const group of groups.values()) {
+      if (group.names.length < 2) continue;
+      const rules = [];
+      if (Math.abs(group.share - 1) <= Number.EPSILON * 8) rules.push('家庭成員持分合計為 1');
+      if (group.area >= 40 || Math.abs(group.area - 40) <= Number.EPSILON * 40 * 8) rules.push('家庭成員換算面積合計達 40㎡');
+      if (rules.length) { checks[4].met = true; matches.push({ names: group.names, location: group.location, rules }); }
+    }
+    checks.forEach((check, index) => { if (!check.met && unknown[index]) check.met = null; });
+    return { pass: matches.length ? false : incomplete ? null : true, checks, matches, cityCodes: [...cityCodes] };
+  }
   // 沿用 backend2 參考頁門檻作為模擬，不代表正式審查標準。
   const columns = [
     { key: 'totalIncome', label: '總所得', limit: 1450000, inclusive: false },
@@ -178,5 +244,5 @@
     const maxDay = new Date(Date.UTC(year, month + 6, 0)).getUTCDate();
     return new Date(Date.UTC(year, month - 1 + 6, Math.min(day, maxDay), hour - 8, minute, second));
   }
-  window.EnquiryRuleDemo = { parameters, movable, cases, people, spouseCheck, requiredKeys, missing, ready, canView, status, relationship, population, householdView, otherCaseMembers, totals, columns, assessment, batches, expiry };
+  window.EnquiryRuleDemo = { parameters, cityNames, movable, excludedProperty, selfOwnedHousing, cases, people, spouseCheck, requiredKeys, missing, ready, canView, status, relationship, population, householdView, otherCaseMembers, totals, columns, assessment, batches, expiry };
 })();

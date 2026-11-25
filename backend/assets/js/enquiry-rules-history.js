@@ -30,13 +30,13 @@ window.EnquiryRuleHistory = (() => {
     version.hidden = false;
     document.getElementById('enquiryHistoryButton').disabled = false;
     const headers = ['批次', '送查調時間', '查調狀態', '保存期限', '操作'];
-    document.getElementById('enquiryHistoryBody').innerHTML = table(headers, state.batches.map(batch => row(headers, [escape(batch.id) + (batch.current ? '<div class="rules-muted">目前採用</div>' : ''), escape(batch.sentAt), model.ready(record, batch.declared) ? '查調完成' : '待補齊成員', escape(format(model.expiry(batch.sentAt))), `<a class="btn btn-sm btn-outline-primary" href="${currentUrl}&batch=${encodeURIComponent(batch.id)}" aria-label="檢視 ${batch.id} 查調結果">檢視</a>`])), '歷次查調批次');
+    document.getElementById('enquiryHistoryBody').innerHTML = table(headers, state.batches.map(batch => row(headers, [escape(batch.id) + (batch.current ? '<div class="rules-muted">目前採用</div>' : ''), escape(batch.sentAt), model.ready(record, batch.declared) ? '查調完成' : '成員未完備', escape(format(model.expiry(batch.sentAt))), `<a class="btn btn-sm btn-outline-primary" href="${currentUrl}&batch=${encodeURIComponent(batch.id)}" aria-label="檢視 ${batch.id} 查調結果">檢視</a>`])), '歷次查調批次');
     if (!selected) {
       document.getElementById('enquiryVersionInfo').innerHTML = `此批次不存在或已超過六個月保存期限。<a class="ms-2" href="${currentUrl}">返回目前採用版本</a>`;
       return;
     }
     document.getElementById('enquiryVersionInfo').innerHTML = `<strong>目前檢視：${escape(selected.id)}</strong><span class="rules-status ${selected.current ? '' : 'neutral'} ms-2">${selected.current ? '目前採用版本' : '歷史版本'}</span>${selected.current ? '' : `<a class="btn btn-sm btn-outline-primary ms-2" href="${currentUrl}">返回目前採用版本</a>`}<div class="rules-muted mt-2">送查調時間：${escape(selected.sentAt)}｜保存期限：${escape(format(model.expiry(selected.sentAt)))}</div>`;
-    document.getElementById('detailCompletedAt').textContent = model.ready(record, selected.declared) ? `完成時間：${selected.completedAt}` : '完整查調：尚未啟動，待成員補齊';
+    document.getElementById('detailCompletedAt').textContent = model.ready(record, selected.declared) ? `完成時間：${selected.completedAt}` : '完整查調：尚未啟動，待成員確認';
     let storage;
     try { storage = window.localStorage; } catch { /* 私密模式或本機檔案可能不允許儲存。 */ }
     const views = trackView(record, selected.id, storage);

@@ -11,7 +11,7 @@ const caseIds = ["LA115A00000001","LF115F00000002","CH115F00000003","LH115H00000
 function setup(id = 'LA115A00000001', supplemented = false, list = false, batch = '') {
   const nodes = new Map();
   const node = id => {
-    if (!nodes.has(id)) nodes.set(id, { value: '', textContent: '', innerHTML: '', handlers: {}, addEventListener(name, callback) { this.handlers[name] = callback; } });
+    if (!nodes.has(id)) nodes.set(id, { value: '', textContent: '', innerHTML: '', handlers: {}, addEventListener(name, callback) { this.handlers[name] = callback; }, focus() {}, scrollIntoView() {} });
     return nodes.get(id);
   };
   const context = {
@@ -186,9 +186,10 @@ test('兩戶以外的已列案件成員另列一區，仍計入授權、人數�
   assert.equal(model.ready(record), true);
   assert.equal(model.population(record).memberCount, 5);
   assert.equal(model.population(record).total, 6);
-  assert.equal(model.totals(record).movable, 220000);
+  assert.equal(model.totals(record).movable, 197604);
   const family = html.match(/<section class="item" id="familyInfo"[\s\S]*?<\/section>/)[0];
   assert.match(family, /id="otherCaseMembers"><h3>其他案件成員（不在申請人戶及配偶戶）<\/h3>/);
+  assert.match(family, /role="note">多列成員，審查時需剔除。<\/p>/);
   assert.equal((family.match(/data-th="姓名">張曉雯<\/td>/g) || []).length, 1);
   for (const id of ['caseInfo', 'incomeInfo', 'welfareInfo', 'movableInfo']) {
     const section = html.match(new RegExp(`<section class="item" id="${id}"[\\s\\S]*?<\\/section>`))[0];
@@ -202,7 +203,7 @@ test('兩戶以外的已列案件成員另列一區，仍計入授權、人數�
   moved.households[0].members.push(moved.caseMembers.find(p => p.key === 114));
   assert.equal(model.otherCaseMembers(moved).length, 0);
   assert.equal(model.people(moved).filter(p => p.key === 114).length, 1);
-  assert.equal(model.totals(moved).movable, 220000);
+  assert.equal(model.totals(moved).movable, 197604);
 });
 
 test('同戶與分戶的申請人配偶皆必須列入案件', () => {
@@ -288,8 +289,8 @@ test('所得與財產加總一致，零筆財產明確呈現為查無紀錄', ()
   const { model, html } = setup('CH115D00000007');
   const totals = model.totals(model.cases[6]);
   assert.equal(totals.income, 216000);
-  assert.equal(totals.property, 500000);
-  assert.equal(totals.movable, 150000);
+  assert.equal(totals.property, 0);
+  assert.equal(totals.movable, 138802);
   assert.match(html, /3,000 元/);
   const single = setup('LB115B00000005');
   assert.match(single.html, /均無不動產紀錄（合計 0 元）/);
@@ -302,7 +303,7 @@ test('案件與戶政分開呈現與申請人關係及與戶長關係', () => {
   const members = before.html.match(/<section class="item" id="caseInfo"[\s\S]*?<\/section>/)[0];
   assert.deepEqual([...members.matchAll(/<th scope="col">(.*?)<\/th>/g)].map(m => m[1]), ['姓名', '與申請人關係', '身分證字號', '是否同意授權查調']);
   const family = before.model.householdView(record).flatMap(h => h.members);
-  assert.equal(family.find(p => p.key === 31).relation, '申請人本人');
+  assert.equal(family.find(p => p.key === 31).relation, '本人');
   assert.equal(family.find(p => p.key === 31).title, '長子');
   assert.equal(family.find(p => p.key === 33).relation, '養父');
   assert.equal(family.find(p => p.key === 33).title, '戶長');
@@ -328,17 +329,17 @@ test('人數依案件已列成員加胎兒數，未填列成員的胎兒不先�
   assert.equal(before.model.population(record).memberCount, 4);
   assert.equal(before.model.population(record).fetusCount, 0);
   assert.equal(before.model.population(record).total, 4);
-  assert.match(before.html, /成員數 4 人 ＋ 胎兒數 0 人 ＝ <strong>共 4 人/);
+  assert.match(before.html, /總人數：<strong>4 人/);
   const after = setup('CH115F00000003', true);
   const counts = after.model.population(after.model.cases[2], after.model.requiredKeys(after.model.cases[2]));
   assert.equal(counts.memberCount, 5);
   assert.equal(counts.fetusCount, 1);
   assert.equal(counts.total, 6);
-  assert.match(after.html, /成員數 5 人 ＋ 胎兒數 1 人 ＝ <strong>共 6 人/);
+  assert.match(after.html, /總人數：<strong>6 人/);
   const historical = setup('CH115F00000003', true, false, 'INQ-003');
-  assert.match(historical.html, /成員數 4 人 ＋ 胎兒數 0 人 ＝ <strong>共 4 人/);
+  assert.match(historical.html, /總人數：<strong>4 人/);
   const filled = setup('LB115B00000005');
-  assert.match(filled.html, /<h3 class="rules-members-heading">案件成員<\/h3><p class="rules-population">人數：成員數 5 人 ＋ 胎兒數 1 人 ＝ <strong>共 6 人/);
+  assert.match(filled.html, /<h3 class="rules-members-heading">案件成員<\/h3><p class="rules-population">總人數：<strong>6 人/);
   const duplicated = record.declared.concat(record.declared);
   assert.equal(before.model.population(record, duplicated).total, 4);
 });
@@ -347,8 +348,8 @@ test('平均所得分母含胎兒，列表初判、案件總人數與明細計�
   const sample = setup('CH115D00000007');
   const record = sample.model.cases[6];
   assert.equal(sample.model.assessment(record)[1].value, 3000);
-  assert.match(sample.html, /計算人數共 6 人/);
-  assert.match(sample.html, /÷ 6 人（含胎兒 1 人）/);
+  assert.match(sample.html, /總人數：6 人（含胎兒）/);
+  assert.match(sample.html, /÷ 總人數（含胎兒）/);
   const clone = JSON.parse(JSON.stringify(record));
   clone.households[1].members[0].fetus = 2;
   assert.equal(sample.model.population(clone).total, 7);
@@ -368,7 +369,7 @@ test('平均所得分母含胎兒，列表初判、案件總人數與明細計�
     assert.equal(sample.model.population(record, declared).total, 6);
     assert.equal(sample.model.assessment(record, declared)[1].value, expectedAverage);
     const info = detail.match(/<section class="item" id="caseInfo"[\s\S]*?<\/section>/)[0];
-    assert.match(info, /案件成員<\/h3><p class="rules-population">人數：成員數 5 人 ＋ 胎兒數 1 人 ＝ <strong>共 6 人/);
+    assert.match(info, /案件成員<\/h3><p class="rules-population">總人數：<strong>6 人/);
     assert.match(info, /劉欣慧<small class="rules-muted d-block">胎兒 1 人<\/small>/);
     assert.ok(detail.includes(`每人每月平均所得<strong>${new Intl.NumberFormat('zh-TW').format(expectedAverage)} 元`));
   }
@@ -376,31 +377,33 @@ test('平均所得分母含胎兒，列表初判、案件總人數與明細計�
 
 test('動產以利息換算存款本金，加上證券、中獎與其他一次性所得，限額採嚴格小於', () => {
   const { model, html } = setup('CH115D00000007');
+  assert.equal(model.parameters.interestRate, 1.67, '利率參數以百分比數值設定');
   const person = { interest: 1500, securities: 20000, prizeIncome: 30000, oneTimeIncome: 5000 };
-  assert.equal(model.movable(person).deposit, 100000);
-  assert.equal(model.movable(person).total, 155000);
-  model.parameters.interestRate = 0.03;
+  assert.equal(model.movable(person).deposit, 89820);
+  assert.equal(model.movable(person).total, 144820);
+  model.parameters.interestRate = 3;
   assert.equal(model.movable(person).deposit, 50000);
   assert.equal(model.movable(person).total, 105000);
-  model.parameters.interestRate = 0.015;
+  model.parameters.interestRate = 1.67;
   const record = model.cases[6];
-  model.parameters.movableLimit = 150000;
-  assert.equal(model.assessment(record)[3].value, 150000);
-  assert.equal(model.assessment(record)[3].limit, 150000);
+  model.parameters.movableLimit = 138802;
+  assert.equal(model.assessment(record)[3].value, 138802);
+  assert.equal(model.assessment(record)[3].limit, 138802);
   assert.equal(model.assessment(record)[3].pass, false);
-  model.parameters.movableLimit = 150001;
+  model.parameters.movableLimit = 138803;
   assert.equal(model.assessment(record)[3].pass, true);
   const section = html.match(/<section class="item" id="movableInfo"[\s\S]*?<\/section>/)[0];
+  assert.match(section, /利率：1\.67%/);
   assert.deepEqual([...section.matchAll(/<th scope="col">(.*?)<\/th>/g)].map(m => m[1]), ['姓名', '利息（存款本金）', '中獎所得', '其他所得', '小計']);
   assert.match(section, /data-th="利息（存款本金）">750 元<\/td>/);
   assert.doesNotMatch(section, /（存款本金 [\d,]+ 元）/);
   assert.match(section, /data-th="中獎所得">12,000 元/);
   assert.match(section, /data-th="其他所得">8,000 元/);
-  assert.match(section, /data-th="小計">70,000 元/);
+  assert.match(section, /data-th="小計">64,910 元/);
   assert.match(section, /含有價證券 20,000 元/);
-  assert.match(section, /全案動產價值合計<strong>150,000 元/);
+  assert.match(section, /全案動產價值合計<strong>138,802 元/);
   const list = setup('', false, true).html;
-  assert.match(list.match(/<tr data-case-id="CH115D00000007">[\s\S]*?<\/tr>/)[0], /動產價值：150,000 元，未超標/);
+  assert.match(list.match(/<tr data-case-id="CH115D00000007">[\s\S]*?<\/tr>/)[0], /動產價值：138,802 元，未超標/);
   model.parameters.interestRate = 0;
   assert.throws(() => model.movable(person), /利率參數/);
 });
@@ -416,10 +419,11 @@ test('不動產標記原住民保留地與道路用地，一般房屋為否', ()
 });
 
 test('不動產呈現九欄、兩位持有者，明細與初判總額一致', () => {
-  for (const [id, supplemented, expected] of [['CH115F00000003', true, 1520000], ['LA115A00000006', false, 7820000], ['CH115D00000007', false, 500000]]) {
+  for (const [id, supplemented, expected] of [['CH115F00000003', true, 1200000], ['LA115A00000006', false, 7500000], ['CH115D00000007', false, 0]]) {
     const { html, model } = setup(id, supplemented);
     const propertySection = html.match(/<section class="item" id="propertyInfo"[\s\S]*?<\/section>/)[0];
-    const headers = [...propertySection.matchAll(/<th scope="col">(.*?)<\/th>/g)].map(match => match[1]);
+    const propertyTable = propertySection.match(/<table[^>]*rules-property-table[^>]*>[\s\S]*?<\/table>/)[0];
+    const headers = [...propertyTable.matchAll(/<th scope="col">(.*?)<\/th>/g)].map(match => match[1]);
     assert.deepEqual(headers, ['持有者', '類別', '地段地號建號／座落', '戶籍地', '持分比', '房地面積', '房地現值金額', '公同共有', '原住民保留地、道路用地']);
     assert.equal((propertySection.match(/<td data-th="持有者">/g) || []).length, 2);
     assert.match(propertySection, /張忠政/);
@@ -451,12 +455,12 @@ test('列表入口、交集篩選、重設與無結果提示', () => {
   assert.match(node('enquirySummary').textContent, /共 11 筆查調案件/);
 });
 
-test('列表隱藏情境欄，拆分社宅機關，五項初判有勾號與注意圖示', () => {
+test('列表隱藏情境欄，拆分社宅機關，六項初判有勾號與注意圖示', () => {
   const { html } = setup('', false, true);
   assert.doesNotMatch(html, /<th[^>]*>案件情境<\/th>|申請社宅／權責機關/);
   assert.match(html, /<th[^>]*>申請社宅<\/th>/);
   assert.match(html, /<th[^>]*>權責機關<\/th>/);
-  assert.match(html, /colspan="5" scope="colgroup">資格初判/);
+  assert.match(html, /colspan="6" scope="colgroup">資格初判/);
   assert.equal((html.match(/rules-info"/g) || []).length, 11);
   assert.match(html, /rules-verdict--pass/);
   assert.match(html, /rules-verdict--fail/);
@@ -506,12 +510,12 @@ test('未齊全不初判、完整回傳五項判定與參考門檻一致', () =>
   assert.equal(model.assessment(record)[0].pass, false, '總所得須小於門檻');
 });
 
-test('列表待補齊成員五格黃底留白，明細保留等待提示', () => {
+test('列表成員未完備六格黃底留白，明細保留等待提示', () => {
   const { html } = setup('', false, true);
   for (let n = 1; n <= 4; n++) {
     const row = html.match(new RegExp(`<tr data-case-id="${caseIds[n - 1]}">[\\s\\S]*?<\\/tr>`))[0];
     assert.doesNotMatch(row, /fa-hourglass-half|fa-circle-exclamation|fa-circle-check/);
-    assert.equal((row.match(/class="rules-result-cell rules-result-cell--waiting" aria-label="[^"]+"><\/td>/g) || []).length, 5);
+    assert.equal((row.match(/class="rules-result-cell rules-result-cell--waiting" aria-label="[^"]+"><\/td>/g) || []).length, 6);
     const detail = setup(`${caseIds[n - 1]}`).html;
     const summary = detail.match(/<section class="item" id="enquirySummary"[\s\S]*?<\/section>/)[0];
     assert.equal((summary.match(/fa-hourglass-half/g) || []).length, 4);
@@ -549,7 +553,7 @@ test('查調中案例操作留白、可篩選且直接網址無法開啟明細�
   assert.match(row, /<td data-th="操作"><\/td>/);
   assert.doesNotMatch(row, /尚未開放|disabled/);
   assert.doesNotMatch(row, /fa-spinner|rules-spin/);
-  assert.equal((row.match(/class="rules-result-cell rules-result-cell--loading" aria-label="[^"]+"><\/td>/g) || []).length, 5);
+  assert.equal((row.match(/class="rules-result-cell rules-result-cell--loading" aria-label="[^"]+"><\/td>/g) || []).length, 6);
   for (const supplemented of [false, true]) {
     const detail = setup('LH115H00000010', supplemented, false, 'INQ-003');
     assert.match(detail.html, /查調中，暫不開放明細/);
@@ -627,4 +631,274 @@ test('頁面相對資源均存在', () => {
       assert.ok(fs.existsSync(path.resolve(path.dirname(fullPath), target.split(/[?#]/)[0])), `${name}: ${target}`);
     }
   }
+});
+
+function housingCase(model, holdings) {
+  const record = JSON.parse(JSON.stringify(model.cases[4]));
+  model.people(record).forEach(person => { person.properties = []; });
+  holdings.forEach(({ owner = '張忠政', ...property }) => {
+    model.people(record).find(person => person.name === owner).properties.push({
+      type: '房屋', propertyId: 'F-HOUSE-1', cityCode: 'F', isResidential: true,
+      shareNumerator: 1, shareDenominator: 4, totalArea: 80, household: false,
+      location: '新北市／同一住宅', ...property
+    });
+  });
+  return record;
+}
+
+test('明細註記不顯示代碼，關係為本人，社福來源包含戶政司', () => {
+  const { html } = setup('LA115A00000006');
+  const family = html.match(/<section class="item" id="familyInfo"[\s\S]*?<\/section>/)[0];
+  assert.doesNotMatch(family, /代碼：|2003900001|2004900001|申請人本人/);
+  assert.match(family, /民國95年5月20日與陳美玲結婚/);
+  assert.match(family, /data-th="與申請人關係">本人<\/td>/);
+  assert.match(html, /社福資格（衛福部、戶政司）/);
+});
+
+test('自有住宅先依公告縣市篩選，排除土地與非住宅，不以申請人戶籍縣市替代範圍', () => {
+  const { model } = setup();
+  const result = holdings => model.selfOwnedHousing(housingCase(model, holdings));
+  assert.equal(result([{ cityCode: 'E', shareNumerator: 1, shareDenominator: 1, household: true }]).pass, true);
+  assert.equal(result([{ type: '土地', household: true }]).pass, true);
+  assert.equal(result([{ isResidential: false, household: true }]).pass, true);
+  const record = housingCase(model, [{ shareNumerator: 1, shareDenominator: 1 }]);
+  model.people(record).find(person => person.key === record.applicant).registration.cityCode = 'E';
+  assert.equal(model.selfOwnedHousing(record).pass, false);
+  model.parameters.selfOwnedHousing.cityCodes = ['E'];
+  assert.equal(model.selfOwnedHousing(record).pass, true);
+});
+
+test('個別共有面積須大於40㎡，完全持有或戶籍設於住宅亦各自構成持有', () => {
+  const { model } = setup();
+  const result = property => model.selfOwnedHousing(housingCase(model, [property]));
+  assert.equal(result({ totalArea: 159.6 }).checks[2].met, false);
+  assert.equal(result({ totalArea: 160 }).checks[2].met, false);
+  assert.equal(result({ totalArea: 160.4 }).checks[2].met, true);
+  assert.equal(result({ totalArea: 1, shareNumerator: 1, shareDenominator: 1 }).pass, false);
+  assert.equal(result({ totalArea: 1, household: true }).pass, false);
+});
+
+test('同一共有住宅跨家庭成員合計：面積40㎡含邊界，持分合計1亦構成持有', () => {
+  const { model } = setup();
+  const result = holdings => model.selfOwnedHousing(housingCase(model, holdings));
+  assert.equal(result([{ totalArea: 79.8 }, { owner: '張大富', totalArea: 79.8 }]).checks[4].met, false);
+  const atForty = result([{}, { owner: '張大富' }]);
+  assert.equal(atForty.pass, false);
+  assert.ok(atForty.matches.some(match => match.rules.includes('家庭成員換算面積合計達 40㎡')));
+  const full = result([{ totalArea: 10, shareDenominator: 2 }, { owner: '張大富', totalArea: 10, shareDenominator: 2 }]);
+  assert.equal(full.pass, false);
+  assert.ok(full.matches.some(match => match.rules.includes('家庭成員持分合計為 1')));
+  assert.equal(result([{}, { owner: '張大富', propertyId: 'OTHER-HOUSE' }]).checks[4].met, false);
+  assert.equal(result([{}, { owner: '張大富', cityCode: 'E' }]).checks[4].met, false);
+  assert.equal(result([{}, {}]).checks[4].met, false, '同一人重複回傳的持分不可累加');
+  assert.equal(result([{}, { owner: '陳OO' }]).checks[4].met, false, '未列為家庭成員的寄居者不併入');
+});
+
+test('未完成或資料不齊不推定無住宅，無財產及可確認的無持有才顯示符合', () => {
+  const { model } = setup();
+  assert.equal(model.selfOwnedHousing(model.cases[0]), null);
+  assert.equal(model.selfOwnedHousing(model.cases[9]), null);
+  assert.equal(model.selfOwnedHousing(housingCase(model, [])).pass, true);
+  assert.equal(model.selfOwnedHousing(housingCase(model, [{ totalArea: undefined }])).pass, false, '已確認在公告範圍有住宅，面積缺值不改變第一項命中結果');
+  assert.equal(model.selfOwnedHousing(housingCase(model, [{ cityCode: undefined }])).pass, null);
+  model.parameters.selfOwnedHousing.cityCodes = [];
+  assert.equal(model.selfOwnedHousing(housingCase(model, [])).pass, null);
+});
+
+test('原住民保留地及道路用地不計入不動產金額、初判與住宅判斷', () => {
+  const { model } = setup();
+  for (const landUse of ['原住民保留地', '道路用地']) {
+    const record = housingCase(model, [{ landUse, value: 9000000, shareDenominator: 1, household: true }]);
+    assert.equal(model.totals(record).property, 0);
+    assert.equal(model.assessment(record)[2].pass, true);
+    const result = model.selfOwnedHousing(record);
+    assert.equal(result.pass, true);
+    assert.ok(result.checks.every(check => check.met === false));
+    model.people(record).find(person => person.name === '張忠政').properties[0].landUse = '一般用地';
+    assert.equal(model.totals(record).property, 9000000);
+    assert.equal(model.assessment(record)[2].pass, false);
+    assert.equal(model.selfOwnedHousing(record).pass, false);
+  }
+  const mixed = housingCase(model, [{ value: 100 }, { owner: '張大富', value: 9000000, landUse: '道路用地' }]);
+  assert.equal(model.totals(mixed).property, 100);
+  assert.equal(model.selfOwnedHousing(mixed).checks[4].met, false, '排除的持分與面積不併入家庭共有');
+  assert.equal(model.selfOwnedHousing(mixed).pass, false, '未排除的住宅仍命中第一項');
+});
+
+test('排除財產仍可查看原金額，明細標示不納入計算且列表初判同步扣除', () => {
+  const { html, model } = setup('CH115D00000007');
+  const section = html.match(/<section class="item" id="propertyInfo"[\s\S]*?<\/section>/)[0];
+  assert.match(section, /180,000 元/);
+  assert.match(section, /320,000 元/);
+  assert.equal((section.match(/<small class="rules-empty ms-2">不納入計算<\/small>/g) || []).length, 2);
+  assert.match(section, /納入計算不動產總額<strong>0 元<\/strong>/);
+  const list = setup('', false, true).html;
+  assert.equal(model.assessment(model.cases[6])[2].value, 0);
+  assert.match(list, /不動產價值：0 元，未超標/);
+});
+
+test('不動產明細顯示獨立的無持有自有住宅結果，含個人與家庭40㎡邊界情境', () => {
+  const expected = { 'LB115B00000005': true, 'LA115A00000006': false, 'CH115D00000007': true, 'LE115E00000008': false, 'LF115F00000009': false, 'CH115F00000011': false };
+  for (const [id, pass] of Object.entries(expected)) {
+    const { html, model } = setup(id);
+    const result = model.selfOwnedHousing(model.cases.find(record => record.id === id));
+    assert.equal(result.pass, pass, id);
+    const block = html.match(/<div class="rules-housing-summary mb-4" id="selfOwnedHousingResult">[\s\S]*?<\/dl><\/div>/)[0];
+    assert.match(block, /無持有自有住宅/);
+    assert.match(block, /aria-label="查看公告範圍縣市"/);
+    assert.match(block, /<li>臺北市<\/li><li>新北市<\/li>/);
+    assert.ok(block.includes(pass ? 'fa-solid fa-circle-check' : 'fa-solid fa-circle-exclamation'));
+    assert.ok(block.indexOf('無持有自有住宅：</strong>') < block.indexOf('rules-housing-verdict'));
+  }
+});
+
+test('結果優先顯示、五項規則完整保留名稱並以卡片標示是或否，下方為財產明細', () => {
+  const labels = [
+    '於公告範圍縣市有自有住宅',
+    '完全持有住宅(持分為1)',
+    '個別持有共有住宅面積>40㎡',
+    '戶籍設於持有住宅地址',
+    '多名家庭成員持有同一共有住宅:持分合計為1(完全持有)或換算面積≥40㎡'
+  ];
+  const expected = {
+    'LB115B00000005': [false, false, false, false, false],
+    'LA115A00000006': [true, true, false, true, false],
+    'LE115E00000008': [true, false, false, false, true],
+    'LF115F00000009': [true, false, false, false, false],
+    'CH115F00000011': [true, false, true, false, false]
+  };
+  for (const [id, flags] of Object.entries(expected)) {
+    const { html, model } = setup(id);
+    const result = model.selfOwnedHousing(model.cases.find(record => record.id === id));
+    assert.deepEqual(Array.from(result.checks, check => check.met), flags);
+    assert.deepEqual(Array.from(result.checks, check => check.label), labels);
+    const summary = html.match(/<div class="rules-housing-summary mb-4" id="selfOwnedHousingResult">[\s\S]*?<\/dl><\/div>/)[0];
+    const answers = [...summary.matchAll(/<dd class="rules-housing-answer[^"]*">(是|否)<\/dd>/g)].map(match => match[1]);
+    assert.deepEqual(answers, flags.map(flag => flag ? '是' : '否'));
+    const highlighted = [...summary.matchAll(/class="rules-housing-check( is-hit)?" data-housing-check="\d"/g)].map(match => Boolean(match[1]));
+    assert.deepEqual(highlighted, flags, '包含第一項在內，符合的條件均標紅');
+    const shownLabels = [...summary.matchAll(/<span class="rules-housing-label">(.*?)<\/span>/g)].map(match => match[1].replaceAll('&gt;', '>'));
+    assert.deepEqual(shownLabels, labels, '畫面完整顯示使用者提供的名稱');
+    assert.equal(result.pass, !flags.some(Boolean), '五項條件任一為是即不符合無自有住宅');
+    assert.ok(summary.indexOf('rules-housing-conclusion') < summary.indexOf('持有住宅五項判斷規則'));
+    assert.equal((summary.match(/data-housing-check=/g) || []).length, 5);
+    assert.match(summary, /<details class="rules-housing-scope">/);
+    assert.doesNotMatch(summary, /公告範圍縣市：/);
+    assert.doesNotMatch(html, />不動產明細<\/h3>/);
+    if (id !== 'LB115B00000005') assert.ok(html.indexOf('rules-housing-checks') < html.indexOf('rules-property-table'));
+  }
+  const { model } = setup();
+  const pending = model.selfOwnedHousing(housingCase(model, [{ cityCode: undefined }]));
+  assert.equal(pending.pass, null);
+  assert.ok(pending.checks.every(check => check.met === null), '無法判斷時不以否代替');
+});
+
+test('戶籍設於持有住宅地址即有自有住宅，不需同時滿足完全持有或面積門檻', () => {
+  const { model } = setup();
+  const record = housingCase(model, [{ household: true, totalArea: 1 }]);
+  const result = model.selfOwnedHousing(record);
+  assert.equal(result.pass, false);
+  assert.deepEqual(Array.from(result.checks, check => check.met), [true, false, false, true, false]);
+  model.people(record).find(person => person.key === record.applicant).properties[0].household = false;
+  assert.equal(model.selfOwnedHousing(record).pass, false, '戶籍條件改為否，公告範圍有住宅仍判定持有');
+});
+
+test('列表新增無自有住宅置於不動產價值左邊，與各案明細結果一致', () => {
+  const { html, model } = setup('', false, true);
+  const headings = [...html.matchAll(/<th scope="col">([^<]+)<\/th>/g)].map(match => match[1]);
+  assert.deepEqual(headings, ['總所得', '每人每月平均所得', '無自有住宅', '不動產價值', '動產價值', '租金級距']);
+  for (const record of model.cases) {
+    const row = html.match(new RegExp(`<tr data-case-id="${record.id}">[\\s\\S]*?<\\/tr>`))[0];
+    const cell = row.match(/<td data-th="無自有住宅"[^>]*>([\s\S]*?)<\/td>/)[1];
+    const result = model.selfOwnedHousing(record);
+    if (!result) assert.equal(cell, '');
+    else assert.ok(cell.includes(result.pass ? 'fa-solid fa-circle-check' : 'fa-solid fa-circle-exclamation'));
+    assert.doesNotMatch(cell, /[\d,]+ 元/);
+  }
+});
+
+function pageRows(node) {
+  return [...node('enquiryCaseList').innerHTML.matchAll(/<tr data-case-id="([^"]+)"/g)].map(match => match[1]);
+}
+function clickPage(node, number) {
+  node('enquiryPagination').handlers.click({ preventDefault() {}, target: { closest() { return { dataset: { page: String(number) } }; } } });
+}
+function addPageCases(model, count) {
+  const template = JSON.parse(JSON.stringify(model.cases[4]));
+  for (let index = 0; index < count; index++) model.cases.push({ ...template, id: `LB115B${String(index + 12).padStart(8, '0')}` });
+}
+
+test('分頁預設20筆，切換10筆可瀏覽第二頁並限制無效頁碼', () => {
+  const { node } = setup('', false, true);
+  assert.equal(node('enquiryPageSize').value, '20');
+  assert.equal(pageRows(node).length, 11);
+  assert.equal(node('enquiryPageNumber').disabled, true);
+  assert.match(node('enquiryPagination').innerHTML, /aria-disabled="true"[^>]*aria-label="下一頁"/);
+  node('enquiryPageSize').value = '10';
+  node('enquiryPageSize').handlers.change();
+  const first = pageRows(node);
+  assert.equal(first.length, 10);
+  clickPage(node, 2);
+  assert.deepEqual(pageRows(node), ['CH115F00000011']);
+  assert.match(node('enquirySummary').textContent, /第 11–11 筆.*第 2／2 頁/);
+  assert.match(node('enquiryPagination').innerHTML, /aria-current="page" aria-label="第 2 頁"/);
+  for (const invalid of [0, -1, 3, 1.5, NaN]) {
+    node('enquiryPageNumber').value = String(invalid);
+    node('enquiryPageJump').handlers.submit({ preventDefault() {} });
+    assert.deepEqual(pageRows(node), ['CH115F00000011']);
+  }
+  clickPage(node, 1);
+  assert.deepEqual(pageRows(node), first);
+});
+
+test('多頁可跳頁與切換筆數，匯出維持全部篩選結果，查詢與重設回第一頁', async () => {
+  const { model, node, context } = setup('', false, true);
+  addPageCases(model, 45);
+  node('enquiryFilter').handlers.reset({ preventDefault() {} });
+  assert.equal(pageRows(node).length, 20);
+  assert.equal(node('enquiryPageNumber').max, '3');
+  node('enquiryPageNumber').value = '3';
+  node('enquiryPageJump').handlers.submit({ preventDefault() {} });
+  assert.equal(pageRows(node).length, 16);
+  assert.match(node('enquirySummary').textContent, /第 41–56 筆/);
+  node('enquiryKeyword').value = '尚未送出的篩選';
+  node('enquiryPageSize').value = '50';
+  node('enquiryPageSize').handlers.change();
+  assert.equal(pageRows(node).length, 50, '換頁或換筆數不套用尚未送出的條件');
+  let exported;
+  context.EnquiryRuleExport = { async download(records) { exported = Array.from(records, record => record.id); } };
+  await node('enquiryExport').handlers.click();
+  assert.equal(exported.length, 56, '匯出包含所有頁面');
+  node('enquiryPageSize').value = '20';
+  node('enquiryPageSize').handlers.change();
+  clickPage(node, 3);
+  node('enquiryKeyword').value = 'LB115B00000056';
+  node('enquiryFilter').handlers.submit({ preventDefault() {} });
+  assert.deepEqual(pageRows(node), ['LB115B00000056']);
+  assert.equal(node('enquiryPageNumber').value, '1');
+  node('enquiryKeyword').value = '無符合案件';
+  node('enquiryFilter').handlers.submit({ preventDefault() {} });
+  assert.deepEqual(pageRows(node), []);
+  assert.equal(node('enquiryPageGo').disabled, true);
+  assert.equal(node('enquiryExport').disabled, true);
+  node('enquiryFilter').handlers.reset({ preventDefault() {} });
+  assert.equal(pageRows(node).length, 20);
+  assert.equal(node('enquiryPageNumber').value, '1');
+});
+
+test('多頁頁碼保留首末頁、目前頁與省略號，成員狀態同步改為成員未完備', () => {
+  const { model, node } = setup('', false, true);
+  addPageCases(model, 210);
+  node('enquiryFilter').handlers.reset({ preventDefault() {} });
+  clickPage(node, 7);
+  const pager = node('enquiryPagination').innerHTML;
+  assert.equal((pager.match(/…/g) || []).length, 2);
+  assert.match(pager, /aria-current="page" aria-label="第 7 頁"/);
+  assert.match(pager, /aria-label="第 1 頁"/);
+  assert.match(pager, /aria-label="第 12 頁"/);
+  const detail = setup('CH115F00000003');
+  assert.equal(detail.model.status(detail.model.cases[2]), '成員未完備');
+  assert.match(detail.node('detailStatus').innerHTML, /成員未完備/);
+  assert.match(detail.node('enquiryHistoryBody').innerHTML, /成員未完備/);
+  assert.doesNotMatch(detail.html + detail.node('enquiryHistoryBody').innerHTML, /待補齊成員/);
 });
