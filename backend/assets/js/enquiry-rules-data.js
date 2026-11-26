@@ -57,7 +57,7 @@
       familyMemberKeys: [elder.key, applicant.key, daughter.key, spouse.key, son.key],
       caseMembers: [elder, applicant, daughter, spouse, son],
       relationships: { [elder.key]: '養父', [applicant.key]: '本人', [spouse.key]: '配偶', [daughter.key]: '女兒', [son.key]: '兒子' },
-      households: [home('申請人戶籍', members), ...(separate ? [home('申請人配偶戶籍（分戶）', [spouse, son])] : [])],
+      households: [home('申請人戶籍', members), ...(separate ? [home('配偶戶籍（分戶）', [spouse, son])] : [])],
       ...options
     };
   }
@@ -135,7 +135,7 @@
     if (spouse?.name && !spouse.member) members.push(spouse.person || { name: spouse.name });
     return members;
   };
-  const ready = (record, declared = record.declared) => missing(record, declared).length === 0 && (record.marriage !== '有偶' || Boolean(spouseCheck(record, declared)?.member));
+  const ready = (record, declared = record.declared) => missing(record, declared).length === 0 && otherCaseMembers(record, declared).length === 0 && (record.marriage !== '有偶' || Boolean(spouseCheck(record, declared)?.member));
   const canView = record => !record.querying;
   const status = (record, declared = record.declared) => record.querying ? '查調中' : ready(record, declared) ? '查調完成' : '成員未完備';
   // 與申請人關係取自案件填列資料；未列入案件時不以戶籍稱謂推定。
@@ -150,12 +150,12 @@
   const householdView = (record, declared = record.declared) => record.households.map(h => ({ label: h.label, members: h.members.map(p => ({ ...(declared.includes(p.key) ? p : { key: p.key, name: p.name, title: p.title }), relation: relationship(record, p.key, declared) })) }));
   const otherCaseMembers = (record, declared = record.declared) => {
     const householdKeys = new Set(record.households.flatMap(h => h.members.map(p => p.key)));
-    return people(record).filter(p => declared.includes(p.key) && !householdKeys.has(p.key)).map(p => ({ ...p, relation: relationship(record, p.key, declared) }));
+    return people(record).filter(p => declared.includes(p.key) && !householdKeys.has(p.key)).map(p => ({ key: p.key, name: p.name, relation: relationship(record, p.key, declared) }));
   };
   function movable(person) {
     if (!Number.isFinite(parameters.interestRate) || parameters.interestRate <= 0) throw new RangeError('利率參數須為大於 0 的數值');
     const deposit = Math.round(person.interest / (parameters.interestRate / 100));
-    return { deposit, total: deposit + person.securities + person.prizeIncome + person.oneTimeIncome };
+    return { deposit, total: deposit + person.prizeIncome + person.oneTimeIncome };
   }
   const excludedProperty = property => ['原住民保留地', '道路用地'].includes(property.landUse);
   const totals = record => people(record).filter(p => requiredKeys(record).includes(p.key)).reduce((sum, p) => ({ income: sum.income + p.income, property: sum.property + p.properties.filter(a => !excludedProperty(a)).reduce((v, a) => v + a.value, 0), movable: sum.movable + movable(p).total }), { income: 0, property: 0, movable: 0 });

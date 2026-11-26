@@ -52,15 +52,15 @@ test('統一案件編號符合機關、年度、縣市及八碼流水號，列�
   assert.doesNotMatch(list, /DEMO115/);
 });
 
-test('十一種三代家庭情境包含四件缺漏、六件完成及一件查調中', () => {
+test('十一種三代家庭情境包含四件少列、一件多列、五件完成及一件查調中', () => {
   const { model } = setup();
   assert.equal(model.cases.length, 11);
-  assert.equal(model.cases.filter(c => !model.ready(c)).length, 4);
-  assert.equal(model.cases.filter(c => model.status(c) === '查調完成').length, 6);
+  assert.equal(model.cases.filter(c => !model.ready(c)).length, 5);
+  assert.equal(model.cases.filter(c => model.status(c) === '查調完成').length, 5);
   assert.equal(model.cases.filter(c => model.status(c) === '查調中').length, 1);
   for (const record of model.cases) {
     assert.ok(model.people(record).some(p => p.key === record.applicant));
-    assert.equal(model.ready(record, model.requiredKeys(record)), true);
+    assert.equal(model.ready(record, model.requiredKeys(record)), model.otherCaseMembers(record).length === 0);
     assert.deepEqual([...new Set(model.people(record).filter(p => p.caseRequired !== false).map(p => p.generation))].sort(), [1, 2, 3]);
     assert.equal(model.requiredKeys(record).length, 5);
   }
@@ -176,25 +176,43 @@ test('有偶先取得配偶姓名，再以姓名比對案件成員，未比對�
   assert.equal(model.spouseCheck(record), null);
 });
 
-test('兩戶以外的已列案件成員另列一區，仍計入授權、人數與財產且不重複', () => {
+test('兩戶以外的多列案件成員判為未完備，保留原名單並提醒排除，阻擋完整查調', () => {
   const { model, html } = setup('CH115F00000011');
   const record = model.cases[10];
   const others = model.otherCaseMembers(record);
   assert.deepEqual(Array.from(others, p => p.name), ['張曉雯']);
   assert.equal(others[0].relation, '女兒');
+  assert.deepEqual(Object.keys(others[0]).sort(), ['key', 'name', 'relation']);
   assert.equal(record.households.flatMap(h => h.members).some(p => p.key === 114), false);
-  assert.equal(model.ready(record), true);
+  assert.equal(model.ready(record), false);
+  assert.equal(model.status(record), '成員未完備');
+  assert.equal(model.missing(record).length, 0, '只有多列時不誤報少列');
+  assert.equal(model.assessment(record), null);
+  assert.equal(model.selfOwnedHousing(record), null);
   assert.equal(model.population(record).memberCount, 5);
   assert.equal(model.population(record).total, 6);
   assert.equal(model.totals(record).movable, 197604);
   const family = html.match(/<section class="item" id="familyInfo"[\s\S]*?<\/section>/)[0];
-  assert.match(family, /id="otherCaseMembers"><h3>其他案件成員（不在申請人戶及配偶戶）<\/h3>/);
-  assert.match(family, /role="note">多列成員，審查時需剔除。<\/p>/);
+  assert.match(family, /id="otherCaseMembers"><h3>非申請人戶、非配偶戶<\/h3>/);
+  assert.match(family, /<h3>配偶戶籍（分戶）<\/h3>/);
+  assert.equal((family.match(/案件多列成員，須排除/g) || []).length, 1);
+  const extraBlock = family.match(/<div class="rules-household" id="otherCaseMembers">[\s\S]*?<\/table><\/div>/)[0];
+  assert.deepEqual([...extraBlock.matchAll(/<th scope="col">([^<]+)<\/th>/g)].map(match => match[1]), ['姓名', '與申請人關係', '提醒']);
+  assert.match(extraBlock, /<tr class="rules-member-row--declared">/);
+  assert.doesNotMatch(extraBlock, /身分證字號|生日|與戶長關係|父／養父|母／養母|個人記事|data-th="註記"/);
+  for (const cell of family.matchAll(/<td data-th="註記">([\s\S]*?)<\/td>/g)) assert.doesNotMatch(cell[1], /案件多列成員，須排除/);
+  assert.match(extraBlock, /data-th="與申請人關係">女兒<\/td><td data-th="提醒"><span class="rules-unfilled">案件多列成員，須排除<\/span><\/td>/);
+  assert.doesNotMatch(family, /申請人配偶戶籍（分戶）|其他案件成員（不在申請人戶及配偶戶）|多列成員，審查時需剔除/);
   assert.equal((family.match(/data-th="姓名">張曉雯<\/td>/g) || []).length, 1);
-  for (const id of ['caseInfo', 'incomeInfo', 'welfareInfo', 'movableInfo']) {
-    const section = html.match(new RegExp(`<section class="item" id="${id}"[\\s\\S]*?<\\/section>`))[0];
-    assert.match(section, /data-th="姓名">張曉雯<\/td>/);
-  }
+  const info = html.match(/<section class="item" id="caseInfo"[\s\S]*?<\/section>/)[0];
+  assert.match(info, /data-th="姓名">張曉雯<\/td>/);
+  assert.match(html, /有 1 位多列成員待排除/);
+  assert.match(html, /張曉雯（多列案件成員）：待排除/);
+  assert.doesNotMatch(html, /尚有 0 位成員待補齊|id="(?:incomeInfo|welfareInfo|propertyInfo|movableInfo|simulateComplete)"/);
+  const forced = setup(record.id, true);
+  assert.doesNotMatch(forced.html, /id="(?:incomeInfo|welfareInfo|propertyInfo|movableInfo)"/);
+  assert.doesNotMatch(forced.node('enquiryVersionInfo').innerHTML, /INQ-004/);
+  assert.match(forced.node('enquiryHistoryBody').innerHTML, /成員未完備/);
   const declared = record.declared.filter(key => key !== 114);
   assert.equal(model.otherCaseMembers(record, declared).length, 0);
   assert.equal(model.ready(record, declared), false);
@@ -202,8 +220,26 @@ test('兩戶以外的已列案件成員另列一區，仍計入授權、人數�
   const moved = JSON.parse(JSON.stringify(record));
   moved.households[0].members.push(moved.caseMembers.find(p => p.key === 114));
   assert.equal(model.otherCaseMembers(moved).length, 0);
+  assert.equal(model.ready(moved), true, '已確認在任一戶內的成員不誤判為多列');
   assert.equal(model.people(moved).filter(p => p.key === 114).length, 1);
   assert.equal(model.totals(moved).movable, 197604);
+  const reviewed = JSON.parse(JSON.stringify(record));
+  reviewed.declared = reviewed.declared.filter(key => key !== 114);
+  reviewed.familyMemberKeys = reviewed.familyMemberKeys.filter(key => key !== 114);
+  assert.equal(model.ready(reviewed), true, '審查確認並更正必要名單後才可完整查調');
+  assert.equal(model.population(reviewed).total, 5);
+  assert.equal(model.assessment(reviewed).find(c => c.key === 'monthlyIncome').value, 16000);
+});
+
+test('少列與多列同時存在時，僅補齊少列仍維持未完備；逐案檢查只有第十一案多列', () => {
+  const { model } = setup();
+  assert.deepEqual(Array.from(model.cases.filter(r => model.otherCaseMembers(r).length), r => r.id), ['CH115F00000011']);
+  const record = JSON.parse(JSON.stringify(model.cases[10]));
+  record.declared = record.declared.filter(key => key !== record.spouse);
+  assert.equal(model.missing(record).length, 1);
+  assert.equal(model.otherCaseMembers(record).length, 1);
+  assert.equal(model.ready(record), false);
+  assert.equal(model.ready(record, [...record.declared, record.spouse]), false);
 });
 
 test('同戶與分戶的申請人配偶皆必須列入案件', () => {
@@ -290,7 +326,7 @@ test('所得與財產加總一致，零筆財產明確呈現為查無紀錄', ()
   const totals = model.totals(model.cases[6]);
   assert.equal(totals.income, 216000);
   assert.equal(totals.property, 0);
-  assert.equal(totals.movable, 138802);
+  assert.equal(totals.movable, 118802);
   assert.match(html, /3,000 元/);
   const single = setup('LB115B00000005');
   assert.match(single.html, /均無不動產紀錄（合計 0 元）/);
@@ -365,6 +401,11 @@ test('平均所得分母含胎兒，列表初判、案件總人數與明細計�
     const supplemented = !sample.model.ready(record);
     const detail = setup(record.id, supplemented).html;
     const declared = sample.model.requiredKeys(record);
+    if (!sample.model.ready(record, declared)) {
+      assert.equal(sample.model.assessment(record, declared), null, '多列成員待排除前不計算平均所得');
+      assert.doesNotMatch(detail, /id="incomeInfo"/);
+      continue;
+    }
     const expectedAverage = Math.round(sample.model.totals(record).income / 12 / 6);
     assert.equal(sample.model.population(record, declared).total, 6);
     assert.equal(sample.model.assessment(record, declared)[1].value, expectedAverage);
@@ -375,22 +416,25 @@ test('平均所得分母含胎兒，列表初判、案件總人數與明細計�
   }
 });
 
-test('動產以利息換算存款本金，加上證券、中獎與其他一次性所得，限額採嚴格小於', () => {
-  const { model, html } = setup('CH115D00000007');
+test('動產以參數利率換算本金，加中獎及其他所得且排除證券，畫面算法同步且限額嚴格小於', () => {
+  const { model, html, context, node } = setup('CH115D00000007');
   assert.equal(model.parameters.interestRate, 1.67, '利率參數以百分比數值設定');
   const person = { interest: 1500, securities: 20000, prizeIncome: 30000, oneTimeIncome: 5000 };
   assert.equal(model.movable(person).deposit, 89820);
-  assert.equal(model.movable(person).total, 144820);
+  assert.equal(model.movable(person).total, 124820);
   model.parameters.interestRate = 3;
   assert.equal(model.movable(person).deposit, 50000);
-  assert.equal(model.movable(person).total, 105000);
+  assert.equal(model.movable(person).total, 85000);
+  vm.runInContext(script, context);
+  const changedSection = node('detailBody').innerHTML.match(/<section class="item" id="movableInfo"[\s\S]*?<\/section>/)[0];
+  assert.match(changedSection, /動產價值 = \(利息 ÷ 3%\) \+ 中獎所得 \+ 其他所得/);
   model.parameters.interestRate = 1.67;
   const record = model.cases[6];
-  model.parameters.movableLimit = 138802;
-  assert.equal(model.assessment(record)[3].value, 138802);
-  assert.equal(model.assessment(record)[3].limit, 138802);
+  model.parameters.movableLimit = 118802;
+  assert.equal(model.assessment(record)[3].value, 118802);
+  assert.equal(model.assessment(record)[3].limit, 118802);
   assert.equal(model.assessment(record)[3].pass, false);
-  model.parameters.movableLimit = 138803;
+  model.parameters.movableLimit = 118803;
   assert.equal(model.assessment(record)[3].pass, true);
   const section = html.match(/<section class="item" id="movableInfo"[\s\S]*?<\/section>/)[0];
   assert.match(section, /利率：1\.67%/);
@@ -400,10 +444,11 @@ test('動產以利息換算存款本金，加上證券、中獎與其他一次�
   assert.match(section, /data-th="中獎所得">12,000 元/);
   assert.match(section, /data-th="其他所得">8,000 元/);
   assert.match(section, /data-th="小計">64,910 元/);
-  assert.match(section, /含有價證券 20,000 元/);
-  assert.match(section, /全案動產價值合計<strong>138,802 元/);
+  assert.doesNotMatch(section, /有價證券|參數設定/);
+  assert.match(section, /動產價值 = \(利息 ÷ 1\.67%\) \+ 中獎所得 \+ 其他所得/);
+  assert.match(section, /全案動產價值合計<strong>118,802 元/);
   const list = setup('', false, true).html;
-  assert.match(list.match(/<tr data-case-id="CH115D00000007">[\s\S]*?<\/tr>/)[0], /動產價值：138,802 元，未超標/);
+  assert.match(list.match(/<tr data-case-id="CH115D00000007">[\s\S]*?<\/tr>/)[0], /動產價值：118,802 元，未超標/);
   model.parameters.interestRate = 0;
   assert.throws(() => model.movable(person), /利率參數/);
 });
@@ -476,14 +521,14 @@ test('Excel 匯出採目前已套用的篩選及順序，查無資料時停用',
   node('enquiryStage').value = 'complete';
   node('enquiryFilter').handlers.submit({ preventDefault() {} });
   await node('enquiryExport').handlers.click();
-  assert.deepEqual(downloaded, ['CH115D00000007', 'CH115F00000011']);
-  assert.equal(node('enquiryExportStatus').textContent, '已匯出 2 筆案件。');
+  assert.deepEqual(downloaded, ['CH115D00000007']);
+  assert.equal(node('enquiryExportStatus').textContent, '已匯出 1 筆案件。');
   assert.equal(node('enquiryExport').disabled, false);
   node('enquiryKeyword').value = '不存在的案件';
   node('enquiryFilter').handlers.submit({ preventDefault() {} });
   assert.equal(node('enquiryExport').disabled, true);
   await node('enquiryExport').handlers.click();
-  assert.equal(downloaded.length, 2);
+  assert.equal(downloaded.length, 1);
 });
 
 test('Excel 匯出失敗顯示原因，且可重試', async () => {
@@ -512,13 +557,13 @@ test('未齊全不初判、完整回傳五項判定與參考門檻一致', () =>
 
 test('列表成員未完備六格黃底留白，明細保留等待提示', () => {
   const { html } = setup('', false, true);
-  for (let n = 1; n <= 4; n++) {
+  for (const n of [1, 2, 3, 4, 11]) {
     const row = html.match(new RegExp(`<tr data-case-id="${caseIds[n - 1]}">[\\s\\S]*?<\\/tr>`))[0];
     assert.doesNotMatch(row, /fa-hourglass-half|fa-circle-exclamation|fa-circle-check/);
     assert.equal((row.match(/class="rules-result-cell rules-result-cell--waiting" aria-label="[^"]+"><\/td>/g) || []).length, 6);
     const detail = setup(`${caseIds[n - 1]}`).html;
     const summary = detail.match(/<section class="item" id="enquirySummary"[\s\S]*?<\/section>/)[0];
-    assert.equal((summary.match(/fa-hourglass-half/g) || []).length, 4);
+    assert.equal((summary.match(/fa-hourglass-half/g) || []).length, 5);
     assert.doesNotMatch(summary, /fa-circle-exclamation|fa-circle-check/);
   }
 });
@@ -738,7 +783,7 @@ test('排除財產仍可查看原金額，明細標示不納入計算且列表�
 });
 
 test('不動產明細顯示獨立的無持有自有住宅結果，含個人與家庭40㎡邊界情境', () => {
-  const expected = { 'LB115B00000005': true, 'LA115A00000006': false, 'CH115D00000007': true, 'LE115E00000008': false, 'LF115F00000009': false, 'CH115F00000011': false };
+  const expected = { 'LB115B00000005': true, 'LA115A00000006': false, 'CH115D00000007': true, 'LE115E00000008': false, 'LF115F00000009': false };
   for (const [id, pass] of Object.entries(expected)) {
     const { html, model } = setup(id);
     const result = model.selfOwnedHousing(model.cases.find(record => record.id === id));
@@ -764,8 +809,7 @@ test('結果優先顯示、五項規則完整保留名稱並以卡片標示是�
     'LB115B00000005': [false, false, false, false, false],
     'LA115A00000006': [true, true, false, true, false],
     'LE115E00000008': [true, false, false, false, true],
-    'LF115F00000009': [true, false, false, false, false],
-    'CH115F00000011': [true, false, true, false, false]
+    'LF115F00000009': [true, false, false, false, false]
   };
   for (const [id, flags] of Object.entries(expected)) {
     const { html, model } = setup(id);
@@ -815,6 +859,42 @@ test('列表新增無自有住宅置於不動產價值左邊，與各案明細�
     else assert.ok(cell.includes(result.pass ? 'fa-solid fa-circle-check' : 'fa-solid fa-circle-exclamation'));
     assert.doesNotMatch(cell, /[\d,]+ 元/);
   }
+});
+
+test('明細查調結果包含無自有住宅，三列內容與住宅判斷一致，未查或未知不誤判符合', () => {
+  const { model } = setup();
+  const cellsOf = html => {
+    const summary = html.match(/<section class="item" id="enquirySummary"[\s\S]*?<\/section>/)[0];
+    const headings = [...summary.matchAll(/<th scope="col">([^<]+)<\/th>/g)].map(match => match[1]);
+    assert.deepEqual(headings, ['項目', '總所得', '每人每月平均所得', '無自有住宅', '不動產價值', '動產價值', '租金級距']);
+    const cells = [...summary.matchAll(/<td data-th="無自有住宅">([\s\S]*?)<\/td>/g)].map(match => match[1]);
+    assert.equal(cells.length, 3);
+    assert.equal(cells[1], '無持有自有住宅');
+    assert.ok(cells.every(cell => !cell.includes(' 元')));
+    return cells;
+  };
+  for (const record of model.cases.filter(r => model.canView(r))) {
+    const cells = cellsOf(setup(record.id).html);
+    const result = model.selfOwnedHousing(record);
+    if (!result) {
+      assert.match(cells[0], /尚未查調/);
+      assert.match(cells[2], /等待確認/);
+      assert.doesNotMatch(cells[2], /fa-circle-check|fa-circle-exclamation/);
+    } else {
+      assert.equal(cells[0], result.pass ? '無持有' : '有持有');
+      assert.ok(cells[2].includes(result.pass ? 'fa-circle-check' : 'fa-circle-exclamation'));
+      assert.match(cells[2], result.pass ? />符合<\/span>/ : />不符合<\/span>/);
+    }
+  }
+  const unknown = setup('LB115B00000005');
+  unknown.model.people(unknown.model.cases[4]).find(p => p.key === unknown.model.cases[4].applicant).properties = [
+    { type: '房屋', isResidential: true, value: 0 }
+  ];
+  vm.runInContext(script, unknown.context);
+  const cells = cellsOf(unknown.node('detailBody').innerHTML);
+  assert.match(cells[0], /待確認/);
+  assert.match(cells[2], /待確認/);
+  assert.doesNotMatch(cells[2], /fa-circle-check|fa-circle-exclamation/);
 });
 
 function pageRows(node) {

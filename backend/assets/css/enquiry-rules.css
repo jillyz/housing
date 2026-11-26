@@ -81,7 +81,6 @@ body.enquiry-rules-page .tooltip-inner { max-width: 22rem; text-align: left; fon
 .enquiry-rules-page .rules-personal-table .rules-member-row--declared > td { --bs-table-bg: #fff; background-color: #fff; }
 .enquiry-rules-page .rules-personal-table .rules-member-row--unlisted > td { --bs-table-bg: #fff7e6; background-color: #fff7e6; }
 #otherCaseMembers .rules-member-row--declared > td { --bs-table-bg: #fff0e3; background-color: #fff0e3; }
-.rules-extra-notice { color: #925516; font-size: .875rem; margin-bottom: 1rem; }
 .rules-minor-children { margin: .35rem 0 0; padding-left: 1.5rem; }
 .rules-property-boolean { font-size: 1.25rem; }
 .rules-property-no { color: #8b969d; }
@@ -114,10 +113,10 @@ body.enquiry-rules-page.scrollDown .sticky-top-scroll { top: 85px; }
 .enquiry-rules-page .btn:focus-visible, .enquiry-rules-page summary:focus-visible { outline: 3px solid #087f8c; outline-offset: 3px; }
 @media (min-width: 992px) {
   .rules-table { table-layout: fixed; }
-  .rules-personal-table th, .rules-personal-table td { padding-inline: .6rem; }
-  .rules-personal-table th:first-child { width: 8%; }
+  .rules-personal-table th, .rules-personal-table td, .rules-other-members-table th, .rules-other-members-table td { padding-inline: .6rem; }
+  .rules-personal-table th:first-child, .rules-other-members-table th:first-child { width: 8%; }
   .rules-personal-table th:last-child { width: 18%; }
-  .rules-personal-table th:nth-child(2) { width: 11%; }
+  .rules-personal-table th:nth-child(2), .rules-other-members-table th:nth-child(2) { width: 11%; }
   .rules-personal-table th:nth-child(3) { width: 13%; }
   .rules-personal-table th:nth-child(4), .rules-personal-table th:nth-child(6), .rules-personal-table th:nth-child(7) { width: 12%; }
   .rules-personal-table th:nth-child(5) { width: 14%; }

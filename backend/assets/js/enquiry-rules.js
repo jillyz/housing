@@ -29,20 +29,36 @@
   }
   const rentTier = check => check?.value ? `<span class="rules-tier">第${check.value}級</span>` : '';
   const housingIcon = (result, label = '無持有自有住宅') => result?.pass == null ? emptyText('待確認') : hint(`${label}：${result.pass ? '符合' : '不符合'}`, result.pass ? 'fa-circle-check' : 'fa-circle-exclamation', `rules-verdict rules-verdict--${result.pass ? 'pass' : 'fail'}`);
+  const assessmentColumns = () => [...model.columns.slice(0, 2), { key: 'noOwnedHousing', label: '無自有住宅' }, ...model.columns.slice(2)];
   function comparison(record, declared) {
-    const checks = model.assessment(record, declared);
-    const complete = Boolean(checks);
+    const assessment = model.assessment(record, declared);
+    const complete = Boolean(assessment);
     const state = model.status(record, declared);
-    const headers = ['項目', ...model.columns.map(c => c.label)];
+    const columns = assessmentColumns();
+    const housing = model.selfOwnedHousing(record, declared);
+    const checks = columns.map(column => column.key === 'noOwnedHousing' ? housing : assessment?.find(check => check.key === column.key));
+    const headers = ['項目', ...columns.map(c => c.label)];
     const rows = [
-      ['本案', ...model.columns.map((column, i) => column.key === 'rentTier' ? rentTier(checks?.[i]) : !complete ? '<span class="rules-muted rules-empty">尚未查調</span>' : `${amount(checks[i].value)} 元`)],
-      ['標準值', ...model.columns.map(column => column.key === 'rentTier' ? '<details class="rules-notes"><summary>查看級距</summary><ul class="ps-3 mt-2 mb-0"><li>第 1 級：低收入戶或中低收入戶</li><li>第 2 級：每人每月平均所得 0～26,624 元</li><li>第 3 級：每人每月平均所得 26,625～62,125 元</li></ul></details>' : `${column.inclusive ? '≤' : '&lt;'} ${amount(column.limit)} 元`)],
-      ['資格初判', ...model.columns.map((column, i) => column.key === 'rentTier' ? rentTier(checks?.[i]) : `${resultIcon(checks?.[i], state, column.label)}<span class="rules-verdict-label">${!complete ? '等待確認' : checks[i].pass ? '未超標' : '超標'}</span>`)]
+      ['本案', ...columns.map((column, i) => {
+        if (column.key === 'rentTier') return rentTier(checks[i]);
+        if (!complete) return '<span class="rules-muted rules-empty">尚未查調</span>';
+        if (column.key === 'noOwnedHousing') return housing?.pass == null ? emptyText('待確認') : housing.pass ? '無持有' : '有持有';
+        return `${amount(checks[i].value)} 元`;
+      })],
+      ['標準值', ...columns.map(column => {
+        if (column.key === 'noOwnedHousing') return '無持有自有住宅';
+        return column.key === 'rentTier' ? '<details class="rules-notes"><summary>查看級距</summary><ul class="ps-3 mt-2 mb-0"><li>第 1 級：低收入戶或中低收入戶</li><li>第 2 級：每人每月平均所得 0～26,624 元</li><li>第 3 級：每人每月平均所得 26,625～62,125 元</li></ul></details>' : `${column.inclusive ? '≤' : '&lt;'} ${amount(column.limit)} 元`;
+      })],
+      ['資格初判', ...columns.map((column, i) => {
+        if (column.key === 'rentTier') return rentTier(checks[i]);
+        if (column.key === 'noOwnedHousing' && complete) return housing?.pass == null ? emptyText('待確認') : `${housingIcon(housing, column.label)}<span class="rules-verdict-label">${housing.pass ? '符合' : '不符合'}</span>`;
+        return `${resultIcon(checks[i], state, column.label)}<span class="rules-verdict-label">${!complete ? '等待確認' : checks[i].pass ? '未超標' : '超標'}</span>`;
+      })]
     ];
     return table(headers, rows, '本案查調結果、標準值與資格初判', 'rules-comparison');
   }
   function listTable(records) {
-    const columns = [...model.columns.slice(0, 2), { key: 'noOwnedHousing', label: '無自有住宅' }, ...model.columns.slice(2)];
+    const columns = assessmentColumns();
     const labels = ['統一案件編號', '申請人', '申請社宅', '權責機關', '查調狀態', ...columns.map(c => c.label), '操作'];
     const headings = labels.slice(0, 5).map(label => `<th rowspan="2" scope="col">${label}</th>`).join('') + `<th colspan="${columns.length}" scope="colgroup">資格初判</th><th rowspan="2" scope="col">操作</th>`;
     return `<table class="table table-list table-rwd rules-table rules-list-table"><caption class="visually-hidden">查調案件與六項資格初判</caption><colgroup>${labels.map((_, i) => `<col class="rules-list-col-${i}">`).join('')}</colgroup><thead><tr>${headings}</tr><tr>${columns.map(column => `<th scope="col">${column.label}</th>`).join('')}</tr></thead><tbody>${records.map(record => {
@@ -208,18 +224,19 @@
     const applicant = model.people(record).find(p => p.key === record.applicant);
     const spouse = model.spouseCheck(record, declared);
     const otherMembers = model.otherCaseMembers(record, declared);
+    const memberIssues = [missing.length ? `尚有 ${missing.length} 位成員待補齊` : '', otherMembers.length ? `有 ${otherMembers.length} 位多列成員待排除` : ''].filter(Boolean);
     const status = document.getElementById('detailStatus');
     status.innerHTML = complete ? badge('查調完成') : badge('成員未完備', 'pending');
     document.title = `${record.id}｜${record.scenario}｜查調案件詳細資料`;
     const notices = complete
       ? '<div class="rules-success" role="status"><strong>案件成員齊全，查調完成。</strong></div>'
-      : `<div class="rules-warning" role="status"><h2>尚有 ${missing.length} 位成員待補齊</h2><ul>${missing.map(p => `<li>${escape(p.name)}${p.key === record.spouse ? '（申請人配偶）' : '（家庭成員）'}</li>`).join('')}</ul></div>`;
+      : `<div class="rules-warning" role="status"><h2>${memberIssues.join('；') || '案件成員待確認'}</h2><ul>${missing.map(p => `<li>${escape(p.name)}${p.key === record.spouse ? '（申請人配偶）' : '（家庭成員）'}：待補齊</li>`).join('')}${otherMembers.map(p => `<li>${escape(p.name)}（多列案件成員）：待排除</li>`).join('')}</ul></div>`;
     const overview = fields([['統一案件編號', record.id], ['申請人', applicant.name], ['申請時間', '2026/11/18 09:30'], ['查調基準日', '2026/11/18'], ['申請社宅', record.housing], ['申請房型', record.roomType], ['社宅所在縣市行政區', `${model.cityNames[record.cityCode] || record.cityCode}${record.housingDistrict}`], ['權責機關', record.agency]])
       + `<h3 class="rules-members-heading">案件成員</h3><p class="rules-population">總人數：<strong>${population.total} 人</strong>（含胎兒）</p>`
       + table(['姓名', '與申請人關係', '身分證字號', '是否同意授權查調'], model.people(record).filter(p => declared.includes(p.key)).map(p => [escape(p.name) + (p.fetus ? `<small class="rules-muted d-block">胎兒 ${p.fetus} 人</small>` : ''), relationCell(model.relationship(record, p.key, declared)), escape(p.idNumber), (record.authorizations.find(a => a.key === p.key)?.consent === true || supplemented && !record.declared.includes(p.key)) ? '<span class="text-success"><i class="fa-solid fa-circle-check me-2" aria-hidden="true"></i>是</span>' : '否']), '案件成員與申請人關係及授權查調狀態');
     const family = `<div class="rules-scope mb-4">申請人婚姻狀況：<strong>${escape(record.marriage)}</strong>${spouse ? `　｜　申請人配偶姓名：<strong>${escape(spouse.name)}</strong>（${spouse.separate ? '分戶' : '同戶'}）　｜　${spouse.member ? '配偶已填列' : relationCell('未填列')}` : ''}</div>`
       + model.householdView(record, declared).map(h => `<div class="rules-household"><h3>${escape(h.label)}</h3>${personalTable(h.members)}</div>`).join('')
-      + (otherMembers.length ? `<div class="rules-household" id="otherCaseMembers"><h3>其他案件成員（不在申請人戶及配偶戶）</h3><p class="rules-extra-notice" role="note">多列成員，審查時需剔除。</p>${personalTable(otherMembers)}</div>` : '');
+      + (otherMembers.length ? `<div class="rules-household" id="otherCaseMembers"><h3>非申請人戶、非配偶戶</h3>${table(['姓名', '與申請人關係', '提醒'], otherMembers.map(p => [escape(p.name), relationCell(p.relation), '<span class="rules-unfilled">案件多列成員，須排除</span>']), '非申請人戶、非配偶戶的案件成員', 'rules-other-members-table', () => 'rules-member-row--declared')}</div>` : '');
     const summary = section('enquirySummary', '查調結果', comparison(record, declared));
     let html = `${steps(complete)}${notices}${section('caseInfo', '案件資料', overview)}${summary}${section('familyInfo', '家庭成員／共居者（戶政司）', family)}`;
     if (complete) {
@@ -229,15 +246,15 @@
       const serviceSummary = `<div class="rules-service-summary mt-4">${serviceLinks.map(([id, name]) => `<a href="#${id}">${name}<small>查調完成</small></a>`).join('')}</div>`;
       html = `${steps(complete)}${notices}${section('caseInfo', '案件資料', overview)}${section('enquirySummary', '查調結果', comparison(record, declared) + serviceSummary)}${section('familyInfo', '家庭成員／共居者（戶政司）', family)}`;
       html += section('welfareInfo', '社福資格（衛福部、戶政司）', table(['姓名', '社福資格', '查調結果'], members.map(p => [escape(p.name), p.welfare.length ? `<ul class="mb-0 ps-3">${p.welfare.map(w => `<li>${escape(w)}${w === '育有未成年子女' && p.minorChildren?.length ? `<ol class="rules-minor-children">${p.minorChildren.map(name => `<li>${escape(name)}</li>`).join('')}</ol>` : ''}</li>`).join('')}</ul>` : emptyText('無符合之社福資格紀錄'), badge('已回傳')]), '案件成員社福資格'));
-      html += section('incomeInfo', '所得（財政部）', `<p class="rules-muted">所得年度：114 年度（2025 年）；總人數：${population.total} 人（含胎兒）。</p>` + table(['姓名', '所得年度', '年所得合計'], members.map(p => [escape(p.name), '114 年度', `${amount(p.income)} 元`]), '案件成員年所得') + `<div class="rules-total">全案年所得合計<strong>${amount(totals.income)} 元</strong><div class="mt-2">每人每月平均所得<strong>${amount(Math.round(totals.income / 12 / population.total))} 元</strong></div><div class="rules-muted mt-2">年所得合計 ÷ 12 個月 ÷ 總人數（含胎兒）</div></div>`);
+      html += section('incomeInfo', '所得（財政部）', `<p class="rules-muted">所得年度：114 年度（2025 年）；總人數：${population.total} 人（含胎兒）。</p><p class="rules-muted">所得查調年度依查調基準日判定：4 月 28 日前採前二年度所得；4 月 28 日起（含當日）採前一年度所得。</p>` + table(['姓名', '所得年度', '年所得合計'], members.map(p => [escape(p.name), '114 年度', `${amount(p.income)} 元`]), '案件成員年所得') + `<div class="rules-total">全案年所得合計<strong>${amount(totals.income)} 元</strong><div class="mt-2">每人每月平均所得<strong>${amount(Math.round(totals.income / 12 / population.total))} 元</strong></div><div class="rules-muted mt-2">年所得合計 ÷ 12 個月 ÷ 總人數（含胎兒）</div></div>`);
       const properties = members.flatMap(p => p.properties.map(a => [escape(p.name), escape(a.type), escape(a.location), propertyBoolean(a.household), escape(a.share), escape(a.area), `${amount(a.value)} 元${model.excludedProperty(a) ? '<small class="rules-empty ms-2">不納入計算</small>' : ''}`, propertyBoolean(a.common), propertyBoolean(model.excludedProperty(a))]));
       html += section('propertyInfo', '不動產（地政司）', housingResult(record, declared) + (properties.length ? '<div class="rules-property-scroll">' + table(['持有者', '類別', '地段地號建號／座落', '戶籍地', '持分比', '房地面積', '房地現值金額', '公同共有', '原住民保留地、道路用地'], properties, '案件成員不動產明細', 'rules-property-table') + `</div><div class="rules-total">納入計算不動產總額<strong>${amount(totals.property)} 元</strong></div>` : '<p class="mb-0 rules-empty">查調完成，全案成員均無不動產紀錄（合計 0 元）。</p>'));
       html += section('movableInfo', '動產（財政部）', `<p class="rules-muted">利率：${amount(model.parameters.interestRate)}%　｜　動產限額：${amount(model.parameters.movableLimit)} 元</p>` + table(['姓名', '利息（存款本金）', '中獎所得', '其他所得', '小計'], members.map(p => {
         const value = model.movable(p);
-        return [escape(p.name), `${amount(p.interest)} 元`, `${amount(p.prizeIncome)} 元`, `${amount(p.oneTimeIncome)} 元`, `${amount(value.total)} 元${p.securities ? `<small class="rules-muted d-block">含有價證券 ${amount(p.securities)} 元</small>` : ''}`];
-      }), '案件成員動產明細') + `<div class="rules-total">全案動產價值合計<strong>${amount(totals.movable)} 元</strong></div>`);
+        return [escape(p.name), `${amount(p.interest)} 元`, `${amount(p.prizeIncome)} 元`, `${amount(p.oneTimeIncome)} 元`, `${amount(value.total)} 元`];
+      }), '案件成員動產明細') + `<div class="rules-total">全案動產價值合計<strong>${amount(totals.movable)} 元</strong><div class="rules-muted mt-2">動產價值 = (利息 ÷ ${amount(model.parameters.interestRate)}%) + 中獎所得 + 其他所得</div></div>`);
     }
-    html += `<div class="rules-toolbar pb-4"><a href="enquiry-hub.html" class="btn btn-outline-primary">返回案件列表</a>${!complete ? '<button type="button" id="simulateComplete" class="btn btn-primary">模擬補齊成員並查調</button>' : supplemented ? `<a href="enquiry-detail.html?case=${encodeURIComponent(record.id)}" class="btn btn-outline-primary">還原成員未齊情境</a>` : ''}</div>`;
+    html += `<div class="rules-toolbar pb-4"><a href="enquiry-hub.html" class="btn btn-outline-primary">返回案件列表</a>${!complete && !otherMembers.length ? '<button type="button" id="simulateComplete" class="btn btn-primary">模擬補齊成員並查調</button>' : supplemented ? `<a href="enquiry-detail.html?case=${encodeURIComponent(record.id)}" class="btn btn-outline-primary">還原成員未齊情境</a>` : ''}</div>`;
     root.innerHTML = html;
     activateTips();
     document.getElementById('simulateComplete')?.addEventListener('click', () => {

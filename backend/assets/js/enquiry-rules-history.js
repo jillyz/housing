@@ -5,7 +5,7 @@ window.EnquiryRuleHistory = (() => {
   const format = date => new Intl.DateTimeFormat('sv-SE', { timeZone: 'Asia/Taipei', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false }).format(date).replaceAll('-', '/');
   const available = (record, supplemented, now = new Date()) => model.batches(record, supplemented).filter(batch => now < model.expiry(batch.sentAt));
   function select(record, params) {
-    const supplemented = params.get('members') === 'complete' && !model.ready(record);
+    const supplemented = params.get('members') === 'complete' && !model.ready(record) && model.otherCaseMembers(record).length === 0;
     const batches = available(record, supplemented);
     const selected = params.get('batch') ? batches.find(batch => batch.id === params.get('batch')) : batches.find(batch => batch.current);
     return { supplemented, batches, selected };

@@ -73,6 +73,10 @@ test('查調中和待補齊的未查資料留白，不輸出未填列者隱藏�
   assert.ok(pending.slice(12).every(value => value === ''));
   assert.equal(pending.join('\n').includes('張曉雯'), false);
   assert.equal(pending[9], 1);
+  const extra = report.row(model.cases[10]);
+  assert.equal(model.status(model.cases[10]), '成員未完備');
+  assert.equal(extra[10], '');
+  assert.ok(extra.slice(12).every(value => value === ''), '多列成員未排除前不匯出財務及租金初判');
 });
 test('實際 xlsx 往返讀取保留多行、欄位次序、數字型人數、凍結及篩選', async () => {
   const { model, report, Excel } = setup(true);
